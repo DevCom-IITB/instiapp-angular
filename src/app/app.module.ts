@@ -18,12 +18,14 @@ import 'hammerjs';
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
 import { DataService } from './data.service';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavmenuComponent,
-    FeedComponent
+    FeedComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

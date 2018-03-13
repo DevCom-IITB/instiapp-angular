@@ -20,36 +20,73 @@ export class DataService {
 
   constructor(private http: HttpClient, public router: Router) { }
 
+  /**
+   * Fire a URI template or URL with GET verb
+   * @param uriTemplate URI Template or URL
+   * @param options Options to fill in URI Template
+   */
   FireGET<T>(uriTemplate: string, options: any = {}): Observable<T> {
     return this.http.get<T>(this.FillURITemplate(Host + uriTemplate, options));
   }
 
+  /**
+   * Fire a URI template or URL with PUT verb
+   * @param uriTemplate URI Template or URL
+   * @param body Body to PUT
+   * @param options Options to fill in URI Template
+   */
   FirePUT<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
     return this.http.put<T>(this.FillURITemplate(Host + uriTemplate, options), body);
   }
 
+  /**
+   * Fire a URI template or URL with POST verb
+   * @param uriTemplate URI Template or URL
+   * @param body Body to POST
+   * @param options Options to fill in URI Template
+   */
   FirePOST<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
     return this.http.post<T>(this.FillURITemplate(Host + uriTemplate, options), body);
   }
 
+  /**
+   * Fire a URI template or URL with DELETE verb
+   * @param uriTemplate URI Template or URL
+   * @param options Options to fill in URI Template
+   */
   FireDELETE<T>(uriTemplate: string, options: any = {}): Observable<T> {
     return this.http.delete<T>(this.FillURITemplate(Host + uriTemplate, options));
   }
 
+  /**
+   * Fill URI Templates according to RFC 6570
+   * @param uriTemplate URI Template to fill
+   * @param options Options to fill URI with
+   */
   FillURITemplate(uriTemplate: string, options: any): string {
     const URITemplate = uriTemplates(uriTemplate);
     return URITemplate.fill(options);
   }
 
+  /**
+   * Gets a list of all users
+   */
   GetUsersList(): Observable<UserProfile[]> {
     return this.FireGET<UserProfile[]>(ApiGetUserList);
   }
 
+  /**
+   * Gets an EnumContainer with all events
+   * related to bodies the user follows
+   * @param uuid UUID of user
+   */
   GetUserFollowedBodiesEvents(uuid: string): Observable<EnumContainer> {
     return this.FireGET<EnumContainer>(ApiGetUserFollowedEvents, {uuid: uuid});
   }
 
-  /** DEPRACATED */
+  /**
+   * Get all events currently stored
+   */
   GetAllEvents(): Observable<EnumContainer> {
     return this.FireGET<EnumContainer>(ApiGetEvents);
   }
