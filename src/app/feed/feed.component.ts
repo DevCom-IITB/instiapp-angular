@@ -13,9 +13,13 @@ export class FeedComponent implements OnInit {
   constructor(public dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.GetUserFollowedBodiesEvents(
+    /*this.dataService.GetUserFollowedBodiesEvents(
       'fc4bb12b-2b29-4c57-b497-9ca69eef7ed1').subscribe(result => {
         this.events = result.data;
+      });*/
+
+      this.dataService.GetAllEvents().subscribe(result => {
+          this.events = result.data;
       });
   }
 

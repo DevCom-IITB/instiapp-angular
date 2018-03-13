@@ -1,0 +1,45 @@
+.head-card {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.sub-card {
+    max-width: 400px;
+    height:40px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: Arial;
+    padding-right: 200px;
+}
+
+.mat-dialog-container {
+    padding: 0px !important;
+    min-height:70vh !important;
+}
+
+.container {
+    position: relative;
+    color: white;
+    width: 100%;
+    padding:0; margin:0;
+}
+
+.container img {
+    width:100%;
+    margin: auto 0; padding:0;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+}
+
+.subhead {
+    color: grey;
+    font-size: 10pt;
+}
