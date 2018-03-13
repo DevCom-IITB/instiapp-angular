@@ -16,9 +16,11 @@
             {{ this.titleService.getTitle() }}
         </h1>
 
+        <!--
         <span class="fill-space"></span>
 
         <a id="logout" mat-icon-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></a>
+        -->
     </mat-toolbar>
 
     <!-- Sidenav -->
@@ -26,7 +28,7 @@
                            [style.marginTop.px]="mobileQuery.matches ? 56 : -8">
         <!-- Make sidenav stay when in desktop mode-->
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
+                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="48"
                      (swipeleft)="snav.close()">
             <mat-nav-list>
               <app-navmenu *ngIf="mobileQuery.matches" (click)="snav.toggle();"></app-navmenu>
