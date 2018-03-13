@@ -16,11 +16,13 @@ import { MyMaterialClass } from './material-angular.module';
 
 import 'hammerjs';
 import { NavmenuComponent } from './navmenu/navmenu.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavmenuComponent
+    NavmenuComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +32,9 @@ import { NavmenuComponent } from './navmenu/navmenu.component';
     FormsModule,
 
     RouterModule.forRoot([
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: '**', redirectTo: 'home' }
+      { path: '', redirectTo: 'feed', pathMatch: 'full' },
+      { path: 'feed', component: FeedComponent },
+      { path: '**', redirectTo: 'feed' }
     ]),
 
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
