@@ -13,6 +13,7 @@ const Host = 'https://temp-iitb.radialapps.com/';
 const ApiGetUserList = 'api/users';
 const ApiGetUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
 const ApiGetEvents = 'api/events';
+const ApiGetEvent = 'api/events/{uuid}';
 
 /** Main data service */
 @Injectable()
@@ -89,6 +90,11 @@ export class DataService {
    */
   GetAllEvents(): Observable<EnumContainer> {
     return this.FireGET<EnumContainer>(ApiGetEvents);
+  }
+
+  /** Get detailed information on an event */
+  GetEvent(uuid: string): Observable<Event> {
+    return this.FireGET<Event>(ApiGetEvent, {uuid: uuid});
   }
 
   /** Adds leading zeros to a number */
