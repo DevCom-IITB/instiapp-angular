@@ -17,6 +17,7 @@ import { MyMaterialClass } from './material-angular.module';
 import 'hammerjs';
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { FeedComponent } from './feed/feed.component';
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     MyMaterialClass,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
