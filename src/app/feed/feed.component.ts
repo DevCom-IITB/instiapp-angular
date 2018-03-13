@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
+import { Event } from '../interfaces';
 
 @Component({
   selector: 'app-feed',
@@ -10,7 +12,10 @@ export class FeedComponent implements OnInit {
 
   events: Event[];
 
-  constructor(public dataService: DataService) { }
+  constructor(
+    public dataService: DataService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
     /*this.dataService.GetUserFollowedBodiesEvents(
@@ -21,6 +26,11 @@ export class FeedComponent implements OnInit {
       this.dataService.GetAllEvents().subscribe(result => {
           this.events = result.data;
       });
+  }
+
+  /** Opens the event-details component */
+  OpenEvent(event: Event) {
+    this.router.navigate(['/event-details', event.id]);
   }
 
 }

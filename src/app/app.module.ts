@@ -37,6 +37,7 @@ import { EventDetailsComponent } from './event-details/event-details.component';
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
       { path: 'feed', component: FeedComponent },
+      { path: 'event-details/:id', component: EventDetailsComponent },
       { path: '**', redirectTo: 'feed' }
     ]),
 

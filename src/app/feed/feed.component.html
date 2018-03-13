@@ -1,13 +1,14 @@
 <div class="header">Upcoming!</div>
 
 <div *ngIf="events">
-    <mat-card class="head-card">
+    <mat-card class="head-card" (click)=OpenEvent(events[0])>
         <img mat-card-image [src]="events[0].image_url">
         <div> {{ events[0].name }} </div>
         <span class="subhead">{{ dataService.GetDate(events[0].start_time) }}</span>
     </mat-card>
 
-    <mat-card *ngFor="let event of events.slice(1, events.length)" 
+    <mat-card *ngFor="let event of events.slice(1, events.length)"
+               (click)=OpenEvent(event)
                 class="sub-card">
         <mat-card-header>
           <img *ngIf="event.image_url;else placeholder" mat-card-avatar [src]="event.image_url" />
