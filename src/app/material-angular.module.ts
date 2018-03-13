@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +34,7 @@ import { NgModule } from '@angular/core';
         MatSnackBarModule,
         MatSidenavModule,
         MatToolbarModule,
+        MatCardModule,
     ],
     exports: [
         BrowserModule,
@@ -50,6 +52,7 @@ import { NgModule } from '@angular/core';
         MatSlideToggleModule,
         MatSnackBarModule,
         MatToolbarModule,
+        MatCardModule,
     ],
 })
 export class MyMaterialClass { }

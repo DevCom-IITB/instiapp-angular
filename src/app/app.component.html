@@ -23,7 +23,7 @@
 
     <!-- Sidenav -->
     <mat-sidenav-container class="sidenav-container"
-                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : -8">
         <!-- Make sidenav stay when in desktop mode-->
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
