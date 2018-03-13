@@ -1,0 +1,92 @@
+@media (max-width: 767px) {
+    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
+    .body-content {
+        padding-top: 50px;
+    }
+}
+
+#outlet-div {
+    margin:30px;
+}
+
+.fill-space {
+    flex: 1 1 auto;
+}
+
+#swipe-right-area {
+    /* Uncomment and set opacity to 0.5 for debugging */
+    /* background-color:green; */
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh; 
+    width: 5vw;
+    z-index: 1000;
+}
+
+@media (max-width: 767px) {
+    .body-content {
+        margin: 5px;
+    }
+    #outlet-div {
+        margin: 8px;
+    }
+}
+
+#logout:hover {
+    color:white;
+}
+
+:focus {
+    outline: none;
+}
+::-moz-focus-inner {
+    border: 0;
+}
+
+mat-sidenav,
+mat-sidenav.mat-locked-open,
+mat-sidenav.mat-closed.mat-locked-open-add-active {
+    min-width: 200px !important;
+    width: 17vw !important;
+    max-width: 300px !important;
+} 
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.example-toolbar {
+    z-index: 2;
+}
+
+.example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+h1.example-app-name {
+    margin-left: 8px;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.example-is-mobile .sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+}
