@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
@@ -35,13 +35,14 @@ import { EventDetailsComponent } from './event-details/event-details.component';
     CommonModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
 
     SidebarJSModule.forRoot(),
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
-      { path: 'feed', component: FeedComponent },
-      { path: 'event-details/:id', component: EventDetailsComponent },
+      { path: 'feed', component: FeedComponent, data: { state: 'feed' } },
+      { path: 'event-details/:id', component: EventDetailsComponent, data: { state: 'event-details' } },
       { path: '**', redirectTo: 'feed' }
     ]),
 

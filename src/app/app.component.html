@@ -8,21 +8,23 @@
     [class.example-is-mobile]="mobileQuery.matches">
 
     <!-- Toolbar at top. The name of the page should be clickable when in desktop mode -->
-    <mat-toolbar class="mat-elevation-z3 example-toolbar" color="primary" *ngIf="dataService.showToolbar">
+    <mat-toolbar class="mat-elevation-z3 example-toolbar" color="primary"
+                 [class.hide-toolbar]="!dataService.showToolbar">
         <button mat-icon-button sidebarjsOpen><mat-icon>menu</mat-icon></button>
 
         <h1 class="example-app-name">
             {{ this.titleService.getTitle() }}
         </h1>
-
     </mat-toolbar>
 
     <!-- Sidenav -->
-    <mat-sidenav-container class="sidenav-container" [class.add-margin-mobile]="dataService.showToolbar">
-
+    <mat-sidenav-container class="sidenav-container">
         <!-- Outlet for the router page -->
-        <div id="outlet-div">
-            <router-outlet></router-outlet>
+        <div class="outlet-div" [class.no-margin]="!dataService.showToolbar">
+            <main [@routerTransition]="getState(o)" style="margin:0;padding:0">
+                <router-outlet #o="outlet"></router-outlet>
+            </main>
         </div>
     </mat-sidenav-container>
+    
 </div>

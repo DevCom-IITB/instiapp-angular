@@ -2,11 +2,13 @@ import { ChangeDetectorRef, Component, Injectable, OnDestroy } from '@angular/co
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
+import { routerTransition } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [ routerTransition ],
 })
 export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
@@ -29,5 +31,9 @@ export class AppComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
+    }
+
+    getState(outlet) {
+      return outlet.activatedRouteData.state;
+    }
 }
