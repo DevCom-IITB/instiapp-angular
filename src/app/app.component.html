@@ -1,47 +1,29 @@
+<sidebar-js>
+    <mat-nav-list>
+        <app-navmenu sidebarjsClose></app-navmenu>
+    </mat-nav-list>
+</sidebar-js>
+
 <div class="example-container" 
     [class.example-is-mobile]="mobileQuery.matches">
 
     <!-- Toolbar at top. The name of the page should be clickable when in desktop mode -->
     <mat-toolbar class="mat-elevation-z3 example-toolbar" color="primary">
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <button mat-icon-button sidebarjsOpen><mat-icon>menu</mat-icon></button>
 
-        <h1 *ngIf="mobileQuery.matches"
-            class="example-app-name">
+        <h1 class="example-app-name">
             {{ this.titleService.getTitle() }}
         </h1>
 
-        <h1 *ngIf="!mobileQuery.matches"
-            class="example-app-name"
-            [routerLink]="['/home']">
-            {{ this.titleService.getTitle() }}
-        </h1>
-
-        <!--
-        <span class="fill-space"></span>
-
-        <a id="logout" mat-icon-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></a>
-        -->
     </mat-toolbar>
 
     <!-- Sidenav -->
     <mat-sidenav-container class="sidenav-container"
                            [style.marginTop.px]="mobileQuery.matches ? 56 : -8">
-        <!-- Make sidenav stay when in desktop mode-->
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="48"
-                     (swipeleft)="snav.close()">
-            <mat-nav-list>
-              <app-navmenu *ngIf="mobileQuery.matches" (click)="snav.toggle();"></app-navmenu>
-              <app-navmenu *ngIf="!mobileQuery.matches"></app-navmenu>
-            </mat-nav-list>
-        </mat-sidenav>
 
         <!-- Outlet for the router page -->
-        <mat-sidenav-content>
-            <div id="outlet-div">
-                <router-outlet></router-outlet>
-            </div>
-            <div id="swipe-right-area" (swiperight)="snav.open()"></div>
-        </mat-sidenav-content>
+        <div id="outlet-div">
+            <router-outlet></router-outlet>
+        </div>
     </mat-sidenav-container>
 </div>

@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
 import { MyMaterialClass } from './material-angular.module';
 
 import 'hammerjs';
+import { SidebarJSModule } from 'ng-sidebarjs';
+
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
 import { DataService } from './data.service';
@@ -33,6 +35,8 @@ import { EventDetailsComponent } from './event-details/event-details.component';
     CommonModule,
     HttpClientModule,
     FormsModule,
+
+    SidebarJSModule.forRoot(),
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },

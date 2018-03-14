@@ -1,7 +1,7 @@
 .head-card {
     height: 40px;
     background-color: #5bc7ca;
-    margin: 0;
+    margin-top: -10px;
     box-shadow: none !important;
 }
 
