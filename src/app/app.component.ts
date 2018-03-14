@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
@@ -14,6 +14,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
     public initialized = false;
+    @ViewChild('swipeArea') hamburger: ElementRef;
 
     private _mobileQueryListener: () => void;
 
@@ -44,5 +45,10 @@ export class AppComponent implements OnDestroy, OnInit {
 
     getState(outlet) {
       return outlet.activatedRouteData.state;
+    }
+
+    clickHamburger() {
+      const el: HTMLElement = this.hamburger.nativeElement as HTMLElement;
+      el.click();
     }
 }

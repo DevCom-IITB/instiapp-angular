@@ -1,8 +1,10 @@
-<sidebar-js>
+<sidebar-js [sidebarjsConfig]="{nativeSwipeOpen: false}">
     <mat-nav-list>
         <app-navmenu sidebarjsClose></app-navmenu>
     </mat-nav-list>
 </sidebar-js>
+
+<div #swipeArea id="swipe-right-area" sidebarjsOpen (panright)="clickHamburger()"></div>
 
 <mat-toolbar class="mat-elevation-z3 example-toolbar" color="primary"
              [class.hide-toolbar]="!dataService.showToolbar">
