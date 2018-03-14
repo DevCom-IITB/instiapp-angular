@@ -21,7 +21,7 @@ export class AppComponent implements OnDestroy, OnInit {
     constructor(
         changeDetectorRef: ChangeDetectorRef,
         media: MediaMatcher,
-        private titleService: Title,
+        public titleService: Title,
         public dataService: DataService,
         public router: Router,
       ) {
