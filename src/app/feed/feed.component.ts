@@ -15,7 +15,9 @@ export class FeedComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public router: Router
-  ) { }
+  ) {
+    dataService.showToolbar = true;
+  }
 
   ngOnInit() {
     /*this.dataService.GetUserFollowedBodiesEvents(

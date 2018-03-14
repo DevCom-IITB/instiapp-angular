@@ -19,6 +19,9 @@ const ApiGetEvent = 'api/events/{uuid}';
 @Injectable()
 export class DataService {
 
+  /** True to show the global toolbar */
+  public showToolbar = true;
+
   constructor(private http: HttpClient, public router: Router) { }
 
   /**

@@ -17,8 +17,13 @@
     .body-content {
         margin: 5px;
     }
+
     #outlet-div {
-        margin-top: 8px;
+        margin-top: 0px;
+    }
+
+    .add-margin-mobile {
+        margin-top: 50px;
     }
 }
 

@@ -16,7 +16,9 @@ export class EventDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public dataService: DataService,
-  ) { }
+  ) {
+    dataService.showToolbar = false;
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
