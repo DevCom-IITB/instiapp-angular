@@ -12,8 +12,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class FeedComponent implements OnInit, AfterViewChecked {
   mobileQuery: MediaQueryList;
   events: Event[];
-  showingEventDetails = false;
-  eventDetailsId: string;
+  showingEventDetails = true;
+  eventDetailsId: string = 'b25a609d-dee9-4bdf-bf63-6f76ad4544a5';
 
   private _mobileQueryListener: () => void;
 
