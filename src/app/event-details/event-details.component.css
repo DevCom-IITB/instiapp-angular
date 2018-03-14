@@ -11,6 +11,13 @@
     margin-bottom: 10px;
 }
 
+.back-button {
+    left: 10px; top: 10px;
+    z-index: 2;
+    position: absolute;
+    cursor: pointer;
+}
+
 .card-header {
     padding: 12px;
     padding-bottom: 3px;
