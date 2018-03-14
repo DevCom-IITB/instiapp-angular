@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Event } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class EventDetailsComponent implements OnInit {
 
-  @Input() public eventId: string;
+  public eventId: string;
   public event: Event;
 
   constructor(
@@ -22,9 +22,7 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      if (!this.eventId && params['id']) {
-        this.eventId = params['id'];
-      }
+      this.eventId = params['id'];
     });
 
     this.dataService.GetEvent(this.eventId).subscribe(result => {

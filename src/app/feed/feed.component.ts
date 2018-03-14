@@ -11,8 +11,6 @@ import { Event } from '../interfaces';
 export class FeedComponent implements OnInit {
 
   events: Event[];
-  showingEventDetails = false;
-  eventDetailsId: string;
 
   constructor(
     public dataService: DataService,
@@ -34,8 +32,7 @@ export class FeedComponent implements OnInit {
 
   /** Opens the event-details component */
   OpenEvent(event: Event) {
-    this.eventDetailsId = event.id;
-    this.showingEventDetails = true;
+    this.router.navigate(['/event-details', event.id]);
   }
 
 }
