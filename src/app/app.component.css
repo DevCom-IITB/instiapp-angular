@@ -6,7 +6,7 @@
 }
 
 #outlet-div {
-    margin:30px;
+    margin-top:30px;
 }
 
 .fill-space {
@@ -18,7 +18,7 @@
         margin: 5px;
     }
     #outlet-div {
-        margin: 8px;
+        margin-top: 8px;
     }
 }
 

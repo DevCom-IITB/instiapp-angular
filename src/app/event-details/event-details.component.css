@@ -1,0 +1,36 @@
+.detail-card {
+    width: 100%;
+    margin: auto;
+    max-width: 400px;
+    z-index: 3;
+}
+
+.theme-header {
+    width: 100%;
+    background-color: #5bc7ca;
+    margin-bottom: 10px;
+}
+
+.card-header {
+    padding: 12px;
+    padding-bottom: 3px;
+}
+
+.event-name {
+    color: white;
+    font-weight: bold;
+    font-size: 14pt;
+    padding-left: 10px;
+}
+
+.event-time {
+    color: whitesmoke;
+    font-size: 10pt;
+    padding: 5px;
+    padding-left: 10px;
+    padding-bottom: 12px;
+}
+
+.description {
+    padding: 10px;
+}

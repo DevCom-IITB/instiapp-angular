@@ -1,5 +1,20 @@
-<div *ngIf="event">
-  {{ event.id }}<br>
-  {{ event.name }}<br>
-  {{ event.image_url }}
+<div *ngIf="event" class="detail-card mat-elevation-z3">
+    <div class='theme-header'>
+      <img style="width:100%;" [src]="event.image_url">
+      <div class="card-header">
+        <div class="event-name">{{ event.name }}</div>
+        <div class="event-time">{{ dataService.GetDate(event.start_time) }}</div>
+      </div>
+    </div>
+
+    <div style="text-align:center">
+        <button mat-button>INTERESTED</button>
+        <button mat-button>GOING</button>
+    </div>
+    <div class="description">
+      <p>
+        {{ event.description }}
+      </p>
+    </div>
 </div>
+  
