@@ -10,7 +10,7 @@
     margin: auto;
     max-width: 400px;
     z-index: 3;
-    min-height: 100vh;
+    min-height: 60vh;
 }
 
 .theme-header {

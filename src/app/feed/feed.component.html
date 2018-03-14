@@ -1,4 +1,5 @@
-<div *ngIf="events">
+<div class="flex-container">
+  <div *ngIf="events">
     <div class="toolbar-margin"></div>
     <mat-card class="head-card" (click)=OpenEvent(events[0])>
         <img mat-card-image [src]="events[0].image_url">
@@ -16,4 +17,13 @@
           <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</mat-card-subtitle>
         </mat-card-header>
     </mat-card>
+  </div>
+
+  <div class="event-details-container">
+    <div class="toolbar-margin"></div>
+    <app-event-details
+      *ngIf="showingEventDetails"
+      [eventId]="eventDetailsId">
+    </app-event-details> 
+  </div>
 </div>

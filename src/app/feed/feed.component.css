@@ -1,3 +1,21 @@
+.flex-container {
+    display: flex;
+    margin:auto;
+}
+
+.flex-container > div {
+    margin: 10px;
+    padding: 20px;
+}
+
+.event-details-container {
+    position: fixed;
+    left: 50%;
+    max-height:calc(100% - 60px);
+    width:auto;
+    overflow: scroll;
+}
+
 .head-card {
     max-width: 400px;
     margin: 0 auto;

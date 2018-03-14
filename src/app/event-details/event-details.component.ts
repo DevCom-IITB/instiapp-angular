@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Event } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -8,9 +8,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.css']
 })
-export class EventDetailsComponent implements OnInit {
+export class EventDetailsComponent implements OnChanges {
 
-  public eventId: string;
+  @Input() public eventId: string;
   public event: Event;
 
   constructor(
@@ -21,10 +21,12 @@ export class EventDetailsComponent implements OnInit {
     dataService.showToolbar = false;
   }
 
-  ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.eventId = params['id'];
-    });
+  ngOnChanges() {
+    if (!this.eventId) {
+      this.activatedRoute.params.subscribe((params: Params) => {
+        this.eventId = params['id'];
+      });
+    }
 
     this.dataService.GetEvent(this.eventId).subscribe(result => {
       this.event = result;
