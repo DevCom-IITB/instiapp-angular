@@ -52,12 +52,13 @@
 .example-toolbar {
     z-index: 2;
     position: fixed;
-    -webkit-transition: transform 0.5s;
-    transition: transform 0.5s;
+    transition-delay: 0.5ms;
+    -webkit-transition: ease-in-out transform 0.5s;
+    transition: ease-in-out transform 0.5s;
 }
 
 .hide-toolbar {
-    transform: translateY(-105%);
+    transform: translateX(-100%);
 }
 
 h1.example-app-name {
