@@ -1,10 +1,16 @@
+@media (max-width: 767px) {
+    .full-container {
+        background-color: white;
+        width: 100vw;
+    }
+}
+
 .detail-card {
     width: 100%;
     margin: auto;
     max-width: 400px;
     z-index: 3;
     min-height: 100vh;
-    background-color: white;
 }
 
 .theme-header {
