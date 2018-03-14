@@ -8,10 +8,28 @@
     padding: 20px;
 }
 
+@media (max-width: 767px) {
+    .flex-container {
+        display: inline;
+    }
+
+    .flex-container > div {
+        margin: 0;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 430px) {
+    .flex-container > div {
+        padding: 0;
+    }
+}
+
 .event-details-container {
     position: fixed;
     left: 50%;
-    max-height:calc(100% - 60px);
+    top: 50px;
+    max-height:calc(100% - 120px);
     width:auto;
     overflow: auto;
 }

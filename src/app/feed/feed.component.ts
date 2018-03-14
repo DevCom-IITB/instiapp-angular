@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { Event } from '../interfaces';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-feed',
@@ -9,15 +10,23 @@ import { Event } from '../interfaces';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit, AfterViewChecked {
-
+  mobileQuery: MediaQueryList;
   events: Event[];
   showingEventDetails = false;
   eventDetailsId: string;
 
+  private _mobileQueryListener: () => void;
+
   constructor(
     public dataService: DataService,
-    public router: Router
-  ) {}
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    public router: Router,
+  ) {
+      this.mobileQuery = media.matchMedia('(max-width: 767px)');
+      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+      this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit() {
     /*this.dataService.GetUserFollowedBodiesEvents(
@@ -39,9 +48,11 @@ export class FeedComponent implements OnInit, AfterViewChecked {
 
   /** Opens the event-details component */
   OpenEvent(event: Event) {
-    // this.router.navigate(['/event-details', event.id]);
-    this.eventDetailsId = event.id;
-    this.showingEventDetails = true;
+    if (this.mobileQuery.matches) {
+      this.router.navigate(['/event-details', event.id]);
+    } else {
+      this.eventDetailsId = event.id;
+      this.showingEventDetails = true;
+    }
   }
-
 }

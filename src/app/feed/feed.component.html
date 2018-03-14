@@ -19,11 +19,11 @@
     </mat-card>
   </div>
 
-  <div class="event-details-container">
-    <div class="toolbar-margin"></div>
+  <div class="event-details-container" *ngIf="!mobileQuery.matches">
     <app-event-details
       *ngIf="showingEventDetails"
       [eventId]="eventDetailsId">
-    </app-event-details> 
+    </app-event-details>
+    <div style="height:20px"></div>
   </div>
 </div>

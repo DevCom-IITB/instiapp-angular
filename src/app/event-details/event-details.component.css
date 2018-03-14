@@ -1,16 +1,21 @@
-@media (max-width: 767px) {
-    .full-container {
-        background-color: white;
-        width: 100vw;
-    }
-}
-
 .detail-card {
     width: 100%;
     margin: auto;
     max-width: 400px;
     z-index: 3;
     min-height: 60vh;
+}
+
+@media (max-width: 767px) {
+    .full-container {
+        background-color: white;
+        width: 100vw;
+    }
+
+    .detail-card {
+        box-shadow: none !important;
+        min-height: 100vh;
+    }
 }
 
 .theme-header {
@@ -24,6 +29,12 @@
     z-index: 2;
     position: absolute;
     cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .back-button {
+        display: none;
+    }    
 }
 
 .card-header {

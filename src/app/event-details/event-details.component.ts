@@ -8,7 +8,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.css']
 })
-export class EventDetailsComponent implements OnChanges {
+export class EventDetailsComponent implements OnChanges, OnInit {
 
   @Input() public eventId: string;
   public event: Event;
@@ -22,12 +22,19 @@ export class EventDetailsComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    this.refresh();
+  }
+
+  ngOnInit() {
     if (!this.eventId) {
       this.activatedRoute.params.subscribe((params: Params) => {
         this.eventId = params['id'];
+        this.refresh();
       });
     }
+  }
 
+  refresh() {
     this.dataService.GetEvent(this.eventId).subscribe(result => {
       this.event = result;
       this.event.venues_str = this.event.venues.map(v => v.name).join(', ');

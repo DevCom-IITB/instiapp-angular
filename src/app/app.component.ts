@@ -26,7 +26,7 @@ export class AppComponent implements OnDestroy, OnInit {
         public router: Router,
       ) {
 
-        this.mobileQuery = media.matchMedia('(max-width: 600px)');
+        this.mobileQuery = media.matchMedia('(max-width: 767px)');
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
         this.titleService.setTitle('Home');
