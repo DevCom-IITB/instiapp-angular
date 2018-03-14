@@ -1,6 +1,10 @@
 <div *ngIf="event" class="detail-card mat-elevation-z3">
     <div class='theme-header'>
-      <button mat-icon-button class="back-button"><mat-icon>arrow_back</mat-icon></button>
+      <button mat-icon-button
+              class="back-button"
+              (click)="closeEventDetails()">
+          <mat-icon>arrow_back</mat-icon>
+      </button>
       <img style="width:100%; height:auto;" [src]="event.image_url">
       <div class="card-header">
         <div class="event-name">{{ event.name }}</div>

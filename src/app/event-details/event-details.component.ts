@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../interfaces';
 import { DataService } from '../data.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-details',
@@ -16,6 +16,7 @@ export class EventDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public dataService: DataService,
+    public router: Router,
   ) {
     dataService.showToolbar = false;
   }
@@ -28,6 +29,10 @@ export class EventDetailsComponent implements OnInit {
     this.dataService.GetEvent(this.eventId).subscribe(result => {
       this.event = result;
     });
+  }
+
+  closeEventDetails() {
+    this.router.navigate(['/feed']);
   }
 
 }
