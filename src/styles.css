@@ -1,2 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.toolbar-margin {
+    height: 70px;
+}
+
+@media (max-width: 767px) {
+    .toolbar-margin {
+        height: 56px;
+    }
+}
