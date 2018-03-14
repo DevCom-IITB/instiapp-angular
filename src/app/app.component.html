@@ -4,27 +4,16 @@
     </mat-nav-list>
 </sidebar-js>
 
-<div class="example-container" 
-    [class.example-is-mobile]="mobileQuery.matches">
+<mat-toolbar class="mat-elevation-z3 example-toolbar" color="primary"
+             [class.hide-toolbar]="!dataService.showToolbar">
+    <button mat-icon-button sidebarjsOpen><mat-icon>menu</mat-icon></button>
 
-    <!-- Toolbar at top. The name of the page should be clickable when in desktop mode -->
-    <mat-toolbar class="mat-elevation-z3 example-toolbar" color="primary"
-                 [class.hide-toolbar]="!dataService.showToolbar">
-        <button mat-icon-button sidebarjsOpen><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">
+        {{ this.titleService.getTitle() }}
+    </h1>
+</mat-toolbar>
 
-        <h1 class="example-app-name">
-            {{ this.titleService.getTitle() }}
-        </h1>
-    </mat-toolbar>
-
-    <!-- Sidenav -->
-    <mat-sidenav-container class="sidenav-container">
-        <!-- Outlet for the router page -->
-        <div class="outlet-div" [class.no-margin]="!dataService.showToolbar">
-            <main [@routerTransition]="getState(o)" style="margin:0;padding:0">
-                <router-outlet #o="outlet"></router-outlet>
-            </main>
-        </div>
-    </mat-sidenav-container>
-    
-</div>
+<main [@routerTransition]="getState(o)"
+        (@routerTransition.done)="scrollToTop();">
+    <router-outlet #o="outlet" style="padding:0; margin: 0; position:fixed; top:0;"></router-outlet>
+</main>
