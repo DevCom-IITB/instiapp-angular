@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { Event } from '../interfaces';
@@ -8,16 +8,14 @@ import { Event } from '../interfaces';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, AfterViewChecked {
 
   events: Event[];
 
   constructor(
     public dataService: DataService,
     public router: Router
-  ) {
-    dataService.showToolbar = true;
-  }
+  ) {}
 
   ngOnInit() {
     /*this.dataService.GetUserFollowedBodiesEvents(
@@ -28,6 +26,10 @@ export class FeedComponent implements OnInit {
       this.dataService.GetAllEvents().subscribe(result => {
           this.events = result.data;
       });
+  }
+
+  ngAfterViewChecked() {
+    this.dataService.showToolbar = true;
   }
 
   /** Opens the event-details component */

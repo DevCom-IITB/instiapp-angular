@@ -17,6 +17,9 @@ import { MyMaterialClass } from './material-angular.module';
 import 'hammerjs';
 import { SidebarJSModule } from 'ng-sidebarjs';
 import { ImgFallbackModule } from 'ngx-img-fallback';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomReuseStrategy } from './routing';
+
 
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
@@ -51,7 +54,10 @@ import { EventDetailsComponent } from './event-details/event-details.component';
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     MyMaterialClass,
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
