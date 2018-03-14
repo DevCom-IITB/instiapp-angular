@@ -1,12 +1,14 @@
 .head-card {
     max-width: 400px;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .sub-card {
     max-width: 400px;
     height:40px;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .header {
