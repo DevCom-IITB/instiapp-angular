@@ -20,3 +20,8 @@
         </mat-card-header>
     </mat-card>
 </div>
+
+<app-event-details
+    *ngIf="showingEventDetails"
+    [eventId]="eventDetailsId">
+</app-event-details>
