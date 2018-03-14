@@ -25,6 +25,9 @@ export class FeedComponent implements OnInit, AfterViewChecked {
 
       this.dataService.GetAllEvents().subscribe(result => {
           this.events = result.data;
+          this.events.forEach(ev => {
+            ev.venues_str = ev.venues.map(v => v.name).join(', ');
+          });
       });
   }
 

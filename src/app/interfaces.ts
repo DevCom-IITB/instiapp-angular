@@ -28,6 +28,7 @@ export interface Event {
     all_day: boolean;
     venues: Location[];
     venues_names: string[];
+    venues_str: string;
     bodies: Body[];
     bodies_id: string[];
     interested: UserProfile[];

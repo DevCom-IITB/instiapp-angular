@@ -3,7 +3,7 @@
     <mat-card class="head-card" (click)=OpenEvent(events[0])>
         <img mat-card-image [src]="events[0].image_url">
         <div> {{ events[0].name }} </div>
-        <span class="subhead">{{ dataService.GetDate(events[0].start_time) }}</span>
+        <span class="subhead">{{ dataService.GetDate(events[0].start_time) }} | {{ events[0].venues_str }}</span>
     </mat-card>
 
     <mat-card *ngFor="let event of events.slice(1, events.length)"
@@ -13,7 +13,7 @@
           <img mat-card-avatar [src]="event.image_url" src-fallback="/assets/placeholder.png"/>
 
           <mat-card-title>{{ event.name }}</mat-card-title>
-          <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</mat-card-subtitle>
         </mat-card-header>
     </mat-card>
 </div>

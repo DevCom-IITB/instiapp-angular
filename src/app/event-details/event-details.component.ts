@@ -28,6 +28,7 @@ export class EventDetailsComponent implements OnInit {
 
     this.dataService.GetEvent(this.eventId).subscribe(result => {
       this.event = result;
+      this.event.venues_str = this.event.venues.map(v => v.name).join(', ');
     });
   }
 
