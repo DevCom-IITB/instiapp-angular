@@ -123,7 +123,7 @@ export class DataService {
       daySuffix = 'nd';
     }
     return this.zeroPad(hours, 2) + ':' + this.zeroPad(minutes, 2) + ' | ' +
-        day + daySuffix + ' ' + monthNames[monthIndex + 1];
+        day + daySuffix + ' ' + monthNames[monthIndex];
   }
 
 }
