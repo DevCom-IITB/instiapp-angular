@@ -21,10 +21,12 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     dataService.showToolbar = false;
   }
 
+  /** Refresh the component whenever passed eventId changes */
   ngOnChanges() {
     this.refresh();
   }
 
+  /** Check if called with a url and update */
   ngOnInit() {
     if (!this.eventId) {
       this.activatedRoute.params.subscribe((params: Params) => {
@@ -34,6 +36,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     }
   }
 
+  /** Call the events API and show data */
   refresh() {
     this.dataService.GetEvent(this.eventId).subscribe(result => {
       this.event = result;
@@ -41,6 +44,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     });
   }
 
+  /** Navigate back to feed (should be changed to last page) */
   closeEventDetails() {
     this.router.navigate(['/feed']);
   }

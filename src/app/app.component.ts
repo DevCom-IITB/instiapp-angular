@@ -13,42 +13,45 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
-    public initialized = false;
-    @ViewChild('swipeArea') hamburger: ElementRef;
+  /** Hamburger icon to open menu */
+  @ViewChild('swipeArea') hamburger: ElementRef;
 
-    private _mobileQueryListener: () => void;
+  private _mobileQueryListener: () => void;
 
-    constructor(
-        changeDetectorRef: ChangeDetectorRef,
-        media: MediaMatcher,
-        public titleService: Title,
-        public dataService: DataService,
-        public router: Router,
-      ) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    public titleService: Title,
+    public dataService: DataService,
+    public router: Router,
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 767px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.titleService.setTitle('Home');
+  }
 
-        this.mobileQuery = media.matchMedia('(max-width: 767px)');
-        this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-        this.mobileQuery.addListener(this._mobileQueryListener);
-        this.titleService.setTitle('Home');
-    }
+  ngOnInit() {
+  }
 
-    ngOnInit() {
-    }
+  /** For use after router navigation */
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 
-    scrollToTop() {
-      window.scrollTo(0, 0);
-    }
+  /** Unsubscribe from listeners */
+  ngOnDestroy(): void {
+      this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
 
-    ngOnDestroy(): void {
-        this.mobileQuery.removeListener(this._mobileQueryListener);
-    }
+  /** Gets if the current router outlet state is `base` or `overlay` */
+  getState(outlet) {
+    return outlet.activatedRouteData.state;
+  }
 
-    getState(outlet) {
-      return outlet.activatedRouteData.state;
-    }
-
-    clickHamburger() {
-      const el: HTMLElement = this.hamburger.nativeElement as HTMLElement;
-      el.click();
-    }
+  /** Emulate a click on the hamburger button */
+  clickHamburger() {
+    const el: HTMLElement = this.hamburger.nativeElement as HTMLElement;
+    el.click();
+  }
 }

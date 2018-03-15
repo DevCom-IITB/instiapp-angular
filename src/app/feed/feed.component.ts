@@ -28,6 +28,7 @@ export class FeedComponent implements OnInit, AfterViewChecked {
       this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
+  /** Initialize initial list wiht API call */
   ngOnInit() {
     /*this.dataService.GetUserFollowedBodiesEvents(
       'fc4bb12b-2b29-4c57-b497-9ca69eef7ed1').subscribe(result => {
@@ -42,6 +43,7 @@ export class FeedComponent implements OnInit, AfterViewChecked {
       });
   }
 
+  /* Set showToolbar to true when coming to this view */
   ngAfterViewChecked() {
     this.dataService.showToolbar = true;
   }
