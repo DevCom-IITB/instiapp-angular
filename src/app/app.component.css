@@ -68,6 +68,7 @@
     transition-delay: 0.5ms;
     -webkit-transition: ease-in-out transform 0.5s;
     transition: ease-in-out transform 0.5s;
+    color: white;
 }
 
 .hide-toolbar {

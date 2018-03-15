@@ -1,7 +1,7 @@
 {
-    "name": "Evenire",
-    "short_name": "Evenire",
+    "name": "IITB-App",
+    "short_name": "IITB-App",
     "start_url": "/home",
     "display": "standalone",
-    "theme_color": "#7b1fa2"
+    "theme_color": "#4DB6AC"
 }
