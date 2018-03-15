@@ -15,6 +15,8 @@ const ApiGetUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
 const ApiGetEvents = 'api/events';
 const ApiGetEvent = 'api/events/{uuid}';
 
+const ApiPostImage = 'api/upload';
+
 /** Main data service */
 @Injectable()
 export class DataService {
@@ -70,6 +72,35 @@ export class DataService {
   FillURITemplate(uriTemplate: string, options: any): string {
     const URITemplate = uriTemplates(uriTemplate);
     return URITemplate.fill(options);
+  }
+
+  /** Uploads a static image to the server */
+  UploadImage(image: File): Observable<any> {
+    return Observable.create(observer => {
+      this.GetBase64(image).subscribe(result => {
+        return this.FirePOST(ApiPostImage, {picture: result}).subscribe(httpresult => {
+          observer.next(httpresult);
+          observer.complete();
+        }, (error) => observer.error(error.message));
+      }, (error) => observer.error(error.message));
+    });
+  }
+
+  /** Returns an observable with the base64 representaion of a file */
+  GetBase64(file: File): Observable<string> {
+    return Observable.create(observer => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = (() => {
+        observer.next(reader.result);
+        observer.complete();
+      });
+
+      reader.onerror = ((error) => {
+        observer.error(new Error(error.message));
+      });
+    });
   }
 
   /**
