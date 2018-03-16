@@ -17,7 +17,7 @@
 </div>
 
 <div class="details-view full-width">
-  <div style="display:flex">
+  <div style="display:flex;">
     <mat-form-field class="half-width">
       <input matInput [matDatepicker]="fromPicker" placeholder="From">
       <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
@@ -27,7 +27,15 @@
         <input matInput [matDatepicker]="toPicker" placeholder="To">
         <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
         <mat-datepicker #toPicker></mat-datepicker>
-      </mat-form-field>
+    </mat-form-field>
+  </div>
+  <div style="display:flex; margin-top: -10px;">
+    <mat-form-field class="half-width">
+        <input matInput placeholder="Time" type="time">
+    </mat-form-field>
+    <mat-form-field class="half-width">
+        <input matInput placeholder="Time" type="time">
+    </mat-form-field>
   </div>
 </div>
 
