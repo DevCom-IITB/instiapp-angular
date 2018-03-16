@@ -27,6 +27,7 @@ import { FeedComponent } from './feed/feed.component';
 import { DataService } from './data.service';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { AddEventComponent } from './add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     NavmenuComponent,
     FeedComponent,
     EventDetailsComponent,
-    CalendarComponent
+    CalendarComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { CalendarComponent } from './calendar/calendar.component';
       { path: 'feed', component: FeedComponent, data: { state: 'base' } },
       { path: 'event-details/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
+      { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' }
     ]),
 
