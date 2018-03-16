@@ -51,6 +51,12 @@ export class AddEventComponent implements OnInit {
       Number(this.end_time.substr(3, 2)));
   }
 
+  uploadImage(files: FileList) {
+    this.dataService.UploadImage(files[0]).subscribe(result => {
+      this.event.image_url = result.picture;
+    });
+  }
+
   /** POSTs to the server */
   create() {
     this.timeChanged();

@@ -6,7 +6,11 @@
               (click)="closeEventDetails()">
           <mat-icon>arrow_back</mat-icon>
       </button>
-      <img style="width:100%; height:auto;" [src]="event.image_url" src-fallback="/assets/placeholder.png">
+
+      <img style="width:100%; height:auto;"
+           [src]="event.image_url"
+           src-fallback="/assets/placeholder.png">
+
       <div class="card-header">
         <div class="event-name">{{ event.name }}</div>
         <div class="event-time">{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</div>

@@ -7,7 +7,11 @@
 </button>
 
 <div class="theme-header">
-  <img style="width:100%; height:auto;" src="" src-fallback="/assets/add_image_placeholder.png">
+  <input style="display:none;" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
+  <img style="width:100%; height:auto;"
+       [src]="event.image_url"
+       src-fallback="/assets/add_image_placeholder.png"
+       (click)="file.click()">
 
   <div class="card-header">
       <mat-form-field color="accent" class="full-width">
