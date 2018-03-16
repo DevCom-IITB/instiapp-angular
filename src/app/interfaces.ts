@@ -27,7 +27,7 @@ export interface Event {
     end_time: Date;
     all_day: boolean;
     venues: Location[];
-    venues_names: string[];
+    venue_names: string[];
     venues_str: string;
     bodies: Body[];
     bodies_id: string[];
