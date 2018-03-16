@@ -2,6 +2,7 @@
     min-height: 100vh;
     background-color: white;
     max-width: 400px;
+    margin: auto;
 }
 
 .back-button {
