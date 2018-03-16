@@ -17,12 +17,6 @@
     }
 }
 
-.theme-header {
-    width: 100%;
-    background-color: #4DB6AC;
-    margin-bottom: 10px;
-}
-
 .back-button {
     left: 10px; top: 10px;
     z-index: 2;

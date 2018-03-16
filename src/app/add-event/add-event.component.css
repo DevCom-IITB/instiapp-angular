@@ -9,3 +9,8 @@
     position: fixed;
     cursor: pointer;
 }
+
+.card-header {
+    padding: 12px;
+    padding-bottom: 3px;
+}
