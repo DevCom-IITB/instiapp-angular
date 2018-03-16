@@ -11,13 +11,19 @@ import { FormControl } from '@angular/forms';
 export class AddEventComponent implements OnInit {
 
   venues = new FormControl();
-  venuesList = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  venuesList = [];
 
   constructor(
     public dataService: DataService,
     public router: Router,
   ) {
     dataService.showToolbar = false;
+
+    /* Load locations */
+    dataService.GetAllLocations().subscribe(result => {
+      this.venuesList = result.map(r => r.name);
+    });
+
   }
 
   ngOnInit() {

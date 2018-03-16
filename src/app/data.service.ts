@@ -10,10 +10,14 @@ let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 
 const Host = 'https://temp-iitb.radialapps.com/';
+
 const ApiGetUserList = 'api/users';
 const ApiGetUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
+
 const ApiGetEvents = 'api/events';
 const ApiGetEvent = 'api/events/{uuid}';
+
+const ApiGetLocations = 'api/locations';
 
 const ApiPostImage = 'api/upload';
 
@@ -129,6 +133,11 @@ export class DataService {
   /** Get detailed information on an event */
   GetEvent(uuid: string): Observable<Event> {
     return this.FireGET<Event>(ApiGetEvent, {uuid: uuid});
+  }
+
+  /** Get all locations */
+  GetAllLocations(): Observable<Location[]> {
+    return this.FireGET<Location[]>(ApiGetLocations);
   }
 
   /** Adds leading zeros to a number */
