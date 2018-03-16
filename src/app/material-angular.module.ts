@@ -11,11 +11,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     imports: [
@@ -35,6 +37,8 @@ import { NgModule } from '@angular/core';
         MatSidenavModule,
         MatToolbarModule,
         MatCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
     exports: [
         BrowserModule,
@@ -53,6 +57,8 @@ import { NgModule } from '@angular/core';
         MatSnackBarModule,
         MatToolbarModule,
         MatCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
 })
 export class MyMaterialClass { }
