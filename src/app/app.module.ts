@@ -20,6 +20,7 @@ import { ImgFallbackModule } from 'ngx-img-fallback';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './routing';
 
+import { XunkCalendarModule } from 'xunk-calendar';
 
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
@@ -45,6 +46,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 
     SidebarJSModule.forRoot(),
     ImgFallbackModule,
+
+    XunkCalendarModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
