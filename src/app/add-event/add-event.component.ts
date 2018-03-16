@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { Event } from '../interfaces';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-add-event',
@@ -10,8 +12,13 @@ import { FormControl } from '@angular/forms';
 })
 export class AddEventComponent implements OnInit {
 
-  venues = new FormControl();
-  venuesList = [];
+  public venues = new FormControl();
+  public venuesList = [];
+
+  public event: Event = {} as Event;
+
+  public start_time = '00:00';
+  public end_time = '00:00';
 
   constructor(
     public dataService: DataService,
@@ -24,9 +31,23 @@ export class AddEventComponent implements OnInit {
       this.venuesList = result.map(r => r.name);
     });
 
+    /* Initialize */
+    this.event.start_time = new Date();
+    this.event.end_time = new Date();
+
   }
 
   ngOnInit() {
+  }
+
+  /** Uses an extremely ugly hack to set time */
+  timeChanged() {
+    this.event.start_time.setHours(
+      Number(this.start_time.substr(0, 2)),
+      Number(this.start_time.substr(3, 2)));
+    this.event.end_time.setHours(
+      Number(this.end_time.substr(0, 2)),
+      Number(this.end_time.substr(3, 2)));
   }
 
   close() {

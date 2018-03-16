@@ -11,7 +11,7 @@
 
   <div class="card-header">
       <mat-form-field color="accent" class="full-width">
-        <input matInput name="event_name" placeholder="Event Name">
+        <input [(ngModel)]="event.name" matInput name="event_name" placeholder="Event Name">
       </mat-form-field>
   </div>
 </div>
@@ -19,22 +19,22 @@
 <div class="details-view full-width">
   <div style="display:flex;">
     <mat-form-field class="half-width middle-gap">
-      <input matInput [matDatepicker]="fromPicker" placeholder="From">
+      <input [(ngModel)]="event.start_time" matInput [matDatepicker]="fromPicker" placeholder="From">
       <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
       <mat-datepicker #fromPicker></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="half-width">
-        <input matInput [matDatepicker]="toPicker" placeholder="To">
+        <input [(ngModel)]="event.end_time" matInput [matDatepicker]="toPicker" placeholder="To">
         <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
         <mat-datepicker #toPicker></mat-datepicker>
     </mat-form-field>
   </div>
   <div style="display:flex;">
     <mat-form-field class="half-width middle-gap">
-        <input matInput placeholder="Time" type="time">
+        <input (change)="timeChanged()" [(ngModel)]="start_time" matInput placeholder="Time" type="time">
     </mat-form-field>
     <mat-form-field class="half-width">
-        <input matInput placeholder="Time" type="time">
+        <input (change)="timeChanged()" [(ngModel)]="end_time" matInput placeholder="Time" type="time">
     </mat-form-field>
   </div>
 
