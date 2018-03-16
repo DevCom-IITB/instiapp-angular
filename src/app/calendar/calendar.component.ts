@@ -16,4 +16,9 @@ export class CalendarComponent implements OnInit {
     this.selDate = XunkCalendarModule.getToday();
   }
 
+  /** Add a new event */
+  AddEvent() {
+    console.log('Add Event works!');
+  }
+
 }
