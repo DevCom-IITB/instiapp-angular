@@ -6,12 +6,12 @@ import { environment } from './environments/environment';
 
 import { hmrBootstrap } from './hmr';
 
+const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
+
 if (environment.production) {
   enableProdMode();
-  platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+  bootstrap();
 } else {
-  const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
   if (module[ 'hot' ]) {
     hmrBootstrap(module, bootstrap);
   } else {
