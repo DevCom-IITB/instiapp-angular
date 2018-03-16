@@ -34,6 +34,7 @@ export class AddEventComponent implements OnInit {
     /* Initialize */
     this.event.start_time = new Date();
     this.event.end_time = new Date();
+    this.event.bodies_id = [];
 
   }
 
@@ -50,6 +51,16 @@ export class AddEventComponent implements OnInit {
       Number(this.end_time.substr(3, 2)));
   }
 
+  /** POSTs to the server */
+  create() {
+    this.timeChanged();
+    this.dataService.PostEvent(this.event).subscribe(result => {
+      alert(result.name + ' created!');
+      this.close();
+    });
+  }
+
+  /** Navigate back */
   close() {
     this.router.navigate(['calendar']);
   }

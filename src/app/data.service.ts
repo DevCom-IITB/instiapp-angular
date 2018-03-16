@@ -11,13 +11,13 @@ JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 
 const Host = 'https://temp-iitb.radialapps.com/';
 
-const ApiGetUserList = 'api/users';
-const ApiGetUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
+const ApiUserList = 'api/users';
+const ApiUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
 
-const ApiGetEvents = 'api/events';
-const ApiGetEvent = 'api/events/{uuid}';
+const ApiEvents = 'api/events';
+const ApiEvent = 'api/events/{uuid}';
 
-const ApiGetLocations = 'api/locations';
+const ApiLocations = 'api/locations';
 
 const ApiPostImage = 'api/upload';
 
@@ -111,7 +111,7 @@ export class DataService {
    * Gets a list of all users
    */
   GetUsersList(): Observable<UserProfile[]> {
-    return this.FireGET<UserProfile[]>(ApiGetUserList);
+    return this.FireGET<UserProfile[]>(ApiUserList);
   }
 
   /**
@@ -120,24 +120,28 @@ export class DataService {
    * @param uuid UUID of user
    */
   GetUserFollowedBodiesEvents(uuid: string): Observable<EnumContainer> {
-    return this.FireGET<EnumContainer>(ApiGetUserFollowedEvents, {uuid: uuid});
+    return this.FireGET<EnumContainer>(ApiUserFollowedEvents, {uuid: uuid});
   }
 
   /**
    * Get all events currently stored
    */
   GetAllEvents(): Observable<EnumContainer> {
-    return this.FireGET<EnumContainer>(ApiGetEvents);
+    return this.FireGET<EnumContainer>(ApiEvents);
   }
 
   /** Get detailed information on an event */
   GetEvent(uuid: string): Observable<Event> {
-    return this.FireGET<Event>(ApiGetEvent, {uuid: uuid});
+    return this.FireGET<Event>(ApiEvent, {uuid: uuid});
+  }
+
+  PostEvent(body: any): Observable<Event> {
+    return this.FirePOST<Event>(ApiEvents, body);
   }
 
   /** Get all locations */
   GetAllLocations(): Observable<Location[]> {
-    return this.FireGET<Location[]>(ApiGetLocations);
+    return this.FireGET<Location[]>(ApiLocations);
   }
 
   /** Adds leading zeros to a number */
