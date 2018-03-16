@@ -14,3 +14,12 @@
     padding: 12px;
     padding-bottom: 3px;
 }
+
+.details-view {
+    padding: 10px;
+}
+
+.half-width {
+    width: 43%;
+    margin: 5px;
+}
