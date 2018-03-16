@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-event',
@@ -8,6 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
+
+  venues = new FormControl();
+  venuesList = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   constructor(
     public dataService: DataService,

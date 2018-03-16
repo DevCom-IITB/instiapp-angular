@@ -15,11 +15,16 @@
     padding-bottom: 3px;
 }
 
-.details-view {
-    padding: 10px;
+.details-view > div {
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .half-width {
     width: 43%;
-    margin: 5px;
+    padding-right: 15px;
+}
+
+.full-width-details {
+    width: calc(86% + 15px);
 }
