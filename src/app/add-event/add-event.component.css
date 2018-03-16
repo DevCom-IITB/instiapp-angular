@@ -21,10 +21,14 @@
 }
 
 .half-width {
-    width: 43%;
-    padding-right: 15px;
+    width: 45%;
+    padding-right: 0;
+}
+
+.middle-gap {
+    padding-right:4%;
 }
 
 .full-width-details {
-    width: calc(86% + 15px);
+    width: calc(94%);
 }
