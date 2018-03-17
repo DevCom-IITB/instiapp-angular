@@ -1,5 +1,5 @@
 <div class="toolbar-margin"></div>
-<div *ngIf="events" class="events-list mat-elevation-z3">
+<div *ngIf="events" class="events-list mat-elevation-z3" [@enterLeft]='bstr(abln(events)&&!mobileQuery.matches)'>
     <mat-card class="head-card" (click)=OpenEvent(events[0])>
         <img mat-card-image [src]="events[0].image_url">
         <div> {{ events[0].name }} </div>
@@ -18,7 +18,7 @@
     </mat-card>
 </div>
 
-<div class="event-details-container mat-elevation-z3" *ngIf="!mobileQuery.matches">
+<div class="event-details-container mat-elevation-z3" *ngIf="!mobileQuery.matches && showingEventDetails" [@enterRight]>
     <app-event-details
       *ngIf="showingEventDetails"
       [eventId]="eventDetailsId">

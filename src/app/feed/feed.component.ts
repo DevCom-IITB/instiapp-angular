@@ -3,11 +3,13 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { Event } from '../interfaces';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { EnterLeft, EnterRight } from '../animations';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css']
+  styleUrls: ['./feed.component.css'],
+  animations: [EnterLeft, EnterRight]
 })
 export class FeedComponent implements OnInit, AfterViewChecked {
   mobileQuery: MediaQueryList;
@@ -56,5 +58,15 @@ export class FeedComponent implements OnInit, AfterViewChecked {
       this.eventDetailsId = event.id;
       this.showingEventDetails = true;
     }
+  }
+
+  /** any as boolean */
+  abln(a: any): boolean {
+    return a;
+  }
+
+  /** boolean to boolean string */
+  bstr(b: boolean) {
+    return b ? 'true' : 'false';
   }
 }
