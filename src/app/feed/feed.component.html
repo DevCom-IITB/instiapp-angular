@@ -1,5 +1,5 @@
-<div *ngIf="events" class="events-list">
-    <div class="toolbar-margin"></div>
+<div class="toolbar-margin"></div>
+<div *ngIf="events" class="events-list mat-elevation-z3">
     <mat-card class="head-card" (click)=OpenEvent(events[0])>
         <img mat-card-image [src]="events[0].image_url">
         <div> {{ events[0].name }} </div>
