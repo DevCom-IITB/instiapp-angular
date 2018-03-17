@@ -15,6 +15,10 @@ body, .image-background {
     background-size: cover;
 }
 
+body, div {
+    overflow-x: hidden;
+}
+
 .toolbar-margin {
     height: 70px;
 }
