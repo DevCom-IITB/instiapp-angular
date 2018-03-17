@@ -15,13 +15,14 @@ export class FeedComponent implements OnInit, AfterViewChecked {
   mobileQuery: MediaQueryList;
   events: Event[];
   showingEventDetails = false;
+  animedEventDetails = false;
   eventDetailsId;
 
   private _mobileQueryListener: () => void;
 
   constructor(
     public dataService: DataService,
-    changeDetectorRef: ChangeDetectorRef,
+    public changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     public router: Router,
   ) {
@@ -55,8 +56,26 @@ export class FeedComponent implements OnInit, AfterViewChecked {
     if (this.mobileQuery.matches) {
       this.router.navigate(['/event-details', event.id]);
     } else {
-      this.eventDetailsId = event.id;
-      this.showingEventDetails = true;
+      /* Check if the event is already open */
+      if (this.eventDetailsId === event.id) { return; }
+
+      /* Open the bar for the first time */
+      if (!this.showingEventDetails) {
+        this.showingEventDetails = true;
+        this.animedEventDetails = true;
+        this.eventDetailsId = event.id;
+        return;
+      }
+
+      /* Skip if animating */
+      if (!this.animedEventDetails) { return; }
+
+      /* Do some animation */
+      this.animedEventDetails = false;
+      setTimeout(() => {
+        this.eventDetailsId = event.id;
+        this.animedEventDetails = true;
+      }, 250);
     }
   }
 

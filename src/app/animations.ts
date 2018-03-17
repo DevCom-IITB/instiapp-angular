@@ -39,16 +39,19 @@ export const EnterLeft = trigger(
   'enterLeft', [
     transition('void => true', [
       style({transform: 'translateX(-10%)', opacity: 0}),
-      animate('300ms ease-in-out', style({transform: 'translateX(0)', opacity: 1}))
+      animate('250ms ease-in-out', style({transform: 'translateX(0)', opacity: 1}))
     ])
   ]
 );
 
 export const EnterRight = trigger(
   'enterRight', [
-    transition(':enter', [
+    transition('* => true', [
       style({transform: 'translateX(10%)', opacity: 0}),
-      animate('300ms ease-in-out', style({transform: 'translateX(0)', opacity: 1}))
+      animate('250ms ease-in-out', style({transform: 'translateX(0)', opacity: 1}))
+    ]),
+    transition('true => false', [
+      animate('250ms ease-in-out', style({transform: 'translateX(10%)', opacity: 0})),
     ])
   ]
 );

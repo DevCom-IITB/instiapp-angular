@@ -18,7 +18,9 @@
     </mat-card>
 </div>
 
-<div class="event-details-container mat-elevation-z3" *ngIf="!mobileQuery.matches && showingEventDetails" [@enterRight]>
+<div class="event-details-container mat-elevation-z3"
+     *ngIf="!mobileQuery.matches && showingEventDetails"
+     [@enterRight]="bstr(animedEventDetails)">
     <app-event-details
       *ngIf="showingEventDetails"
       [eventId]="eventDetailsId">
