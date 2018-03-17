@@ -42,12 +42,14 @@
     </mat-form-field>
   </div>
 
-  <div>
-    <mat-form-field class="full-width-details">
-        <mat-select [(ngModel)]="event.venue_names" placeholder="Venues" [formControl]="venues" multiple>
-          <mat-option *ngFor="let venue of venuesList" [value]="venue">{{venue}}</mat-option>
+  <div class="full-width-details" *ngFor="let vn of event.venue_names; let i = index">
+    <mat-form-field style="width: calc(100% - 50px)">
+        <mat-select [(ngModel)]="event.venue_names[i]" placeholder="Venues">
+            <mat-option *ngFor="let venue of venuesList" [value]="venue">{{venue}}</mat-option>
         </mat-select>
     </mat-form-field>
+    <button *ngIf="i==0" (click)="AddVenue()" mat-icon-button><mat-icon>add</mat-icon></button>
+    <button *ngIf="i!=0" (click)="RemoveVenue(i)" mat-icon-button><mat-icon>remove</mat-icon></button>
   </div>
 
   <div>

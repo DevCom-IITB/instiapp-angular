@@ -11,8 +11,6 @@ import { Time } from '@angular/common';
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
-
-  public venues = new FormControl();
   public venuesList = [];
 
   public event: Event = {} as Event;
@@ -35,6 +33,7 @@ export class AddEventComponent implements OnInit {
     this.event.start_time = new Date();
     this.event.end_time = new Date();
     this.event.bodies_id = [];
+    this.event.venue_names = [''];
 
   }
 
@@ -64,6 +63,16 @@ export class AddEventComponent implements OnInit {
       alert(result.name + ' created!');
       this.close();
     });
+  }
+
+  /** Add a new venue */
+  AddVenue() {
+    this.event.venue_names.push('');
+  }
+
+  /** Removes venue at index */
+  RemoveVenue(i: number) {
+    this.event.venue_names.splice(i, 1);
   }
 
   /** Navigate back */

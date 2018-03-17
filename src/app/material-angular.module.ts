@@ -12,6 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,6 +40,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatCardModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatAutocompleteModule,
     ],
     exports: [
         BrowserModule,
@@ -59,6 +61,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatCardModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatAutocompleteModule,
     ],
 })
 export class MyMaterialClass { }
