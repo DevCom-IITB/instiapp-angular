@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+body, .image-background {
+    background-image: url("/assets/tile.jpg");
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
 .toolbar-margin {
     height: 70px;
 }
