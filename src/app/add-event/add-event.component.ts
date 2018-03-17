@@ -18,6 +18,8 @@ export class AddEventComponent implements OnInit {
   public start_time = '00:00';
   public end_time = '00:00';
 
+  public networkBusy = false;
+
   constructor(
     public dataService: DataService,
     public router: Router,
@@ -51,18 +53,35 @@ export class AddEventComponent implements OnInit {
   }
 
   uploadImage(files: FileList) {
+    if (!this.MarkNetworkBusy()) { return; }
+
     this.dataService.UploadImage(files[0]).subscribe(result => {
       this.event.image_url = result.picture;
+      this.networkBusy = false;
+    }, () => {
+      this.networkBusy = false;
     });
   }
 
   /** POSTs to the server */
   create() {
+    if (!this.MarkNetworkBusy()) { return; }
+
     this.timeChanged();
     this.dataService.PostEvent(this.event).subscribe(result => {
       alert(result.name + ' created!');
+      this.networkBusy = false;
       this.close();
+    }, () => {
+      this.networkBusy = false;
     });
+  }
+
+  /** Tries to mark the network as busy */
+  MarkNetworkBusy(): Boolean {
+    if (this.networkBusy) { return false; }
+    this.networkBusy = true;
+    return true;
   }
 
   /** Add a new venue */
