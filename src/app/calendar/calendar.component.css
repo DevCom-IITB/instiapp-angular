@@ -3,3 +3,10 @@
     bottom: 20px;
     right: 20px;
 }
+
+.calendar-container {
+    padding: 0;
+    margin: auto;
+    max-width: 400px;
+    background-color: white;
+}
