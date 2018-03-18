@@ -11,20 +11,20 @@
         max-height: calc(100% - 100px);
         top: 80px;
         width:auto;
-        min-width: 400px;
+        min-width: 428px;
         overflow: auto;
         background-color: white;
     }
 }
 
 .head-card {
-    max-width: 400px;
+    max-width: 428px;
     margin: 0 auto;
     cursor: pointer;
 }
 
 .sub-card {
-    max-width: 400px;
+    max-width: 428px;
     height:40px;
     margin: 0 auto;
     cursor: pointer;
