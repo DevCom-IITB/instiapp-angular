@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { UserProfile } from '../interfaces';
 
 @Component({
   selector: 'app-navmenu',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavmenuComponent implements OnInit {
 
-  constructor() { }
+  public userName = 'Guest';
+  public ldap = 'IITB User';
+  public profilePic: string;
+
+  constructor(
+    public dataService: DataService,
+  ) { }
 
   ngOnInit() {
+    this.dataService.GetFillCurrentUser().subscribe(user => {
+      this.userName = user.name;
+      this.ldap = user.roll_no;
+      this.profilePic = user.profile_pic;
+    });
   }
 
 }

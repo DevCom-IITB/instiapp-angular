@@ -1,10 +1,14 @@
-<mat-card class="head-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title class="header-title">Hello World</mat-card-title>
-        <mat-card-subtitle>180010001</mat-card-subtitle>
-    </mat-card-header>
-</mat-card>
+<div class="head-card">
+    <div style="display: flex;">
+        <img class="profile-pic"
+             [src]="profilePic"
+             src-fallback="https://material.angular.io/assets/img/examples/shiba1.jpg">
+        <div>
+            <div class="header-title">{{ userName }}</div>
+            <div>{{ ldap }}</div>
+        </div>
+    </div>
+</div>
 
 <a [routerLink]="['/feed']" mat-list-item><mat-icon>list</mat-icon> &nbsp; Feed</a>
 <a mat-list-item><mat-icon>event</mat-icon> &nbsp; Events</a>

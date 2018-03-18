@@ -2,6 +2,7 @@
     height: 40px;
     background-color: #4DB6AC;
     margin-top: -10px;
+    padding: 20px;
     box-shadow: none !important;
 }
 
@@ -9,7 +10,9 @@
     color: white;
 }
 
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
