@@ -15,7 +15,7 @@ body, .image-background {
     background-size: cover;
 }
 
-body, div {
+body {
     overflow-x: hidden;
 }
 
