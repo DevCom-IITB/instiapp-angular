@@ -14,7 +14,6 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   public initialized = false;
-  public showLogin = false;
 
   /** Hamburger icon to open menu */
   @ViewChild('swipeArea') hamburger: ElementRef;
@@ -36,11 +35,8 @@ export class AppComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     this.dataService.GetFillCurrentUser().subscribe(user => {
-      console.log(user.name + ' is logged in');
       this.initialized = true;
     }, (error) => {
-      console.log(error.error);
-      this.showLogin = true;
       this.initialized = true;
     });
   }

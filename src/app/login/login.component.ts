@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-login',
@@ -7,25 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  /** Currently authenticating */
+  public authenticating = true;
+
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public dataService: DataService,
+    public router: Router,
+  ) { }
 
   ngOnInit() {
+    this.dataService.showToolbar = false;
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (params.hasOwnProperty('code')) {
+      const auth_code = params['code'];
+      this.dataService.AuthenticateSSO(auth_code).subscribe(() => {
+        this.dataService.GetFillCurrentUser().subscribe(user => {
+          this.router.navigate(['feed']);
+        });
+      });
+    } else {
+      this.authenticating = false;
+    }
   }
 
   /** Open a new tab for SSO login */
   login() {
-    const HOST = 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/';
-    const CLIENT_ID = 'vR1pU7wXWyve1rUkg0fMS6StL1Kr6paoSmRIiLXJ';
-    const RESPONSE_TYPE = 'code';
-    const SCOPE = 'basic profile picture sex ldap phone insti_address program secondary_emails';
-    const REDIR = 'http://localhost:8000/api/login';
-
-    const URL = HOST + '?client_id=' + CLIENT_ID +
-                       '&response_type=' + RESPONSE_TYPE +
-                       '&scope=' + SCOPE +
-                       '&redirect_uri=' + REDIR;
-
-    window.open(URL, '_blank');
+    window.location.href = this.dataService.GetLoginURL();
   }
 
 }

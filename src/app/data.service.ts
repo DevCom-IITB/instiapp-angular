@@ -10,6 +10,7 @@ let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 
 const Host = '/';
+const SSO_REDIR = 'http://localhost:4200/login'; /* Has to be absolute URL */
 
 const ApiUserList = 'api/users';
 const ApiUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
@@ -22,6 +23,7 @@ const ApiLocations = 'api/locations';
 const ApiPostImage = 'api/upload';
 
 const ApiLoggedInUser = 'api/login/get-user';
+const ApiLogin = 'api/login{?code,redir}';
 
 /** Main data service */
 @Injectable()
@@ -184,9 +186,11 @@ export class DataService {
         this.FireGET<any>(ApiLoggedInUser).subscribe(result => {
           this.loggedIn = true;
           this.currentUser = result.profile;
+          console.log(this.currentUser.name + ' is logged in');
           observer.next(this.currentUser);
           observer.complete();
         }, (error) => {
+          console.log(error.error);
           observer.error(error);
         });
       } else {
@@ -194,6 +198,24 @@ export class DataService {
         observer.complete();
       }
     });
+  }
+
+  /** Gets SSO URL */
+  GetLoginURL() {
+    const HOST = 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/';
+    const CLIENT_ID = 'vR1pU7wXWyve1rUkg0fMS6StL1Kr6paoSmRIiLXJ';
+    const RESPONSE_TYPE = 'code';
+    const SCOPE = 'basic profile picture sex ldap phone insti_address program secondary_emails';
+
+    return HOST + '?client_id=' + CLIENT_ID +
+                  '&response_type=' + RESPONSE_TYPE +
+                  '&scope=' + SCOPE +
+                  '&redirect_uri=' + SSO_REDIR;
+  }
+
+  /** Tries to authenticate with the given code */
+  AuthenticateSSO(code: string) {
+    return this.FireGET(ApiLogin, {code: code, redir: SSO_REDIR});
   }
 
   /** Adds leading zeros to a number */

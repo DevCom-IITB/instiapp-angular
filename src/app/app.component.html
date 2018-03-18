@@ -1,4 +1,4 @@
-<ng-container *ngIf="initialized&&!showLogin">
+<ng-container *ngIf="initialized">
 <sidebar-js [sidebarjsConfig]="{nativeSwipeOpen: false}">
     <mat-nav-list>
         <app-navmenu sidebarjsClose></app-navmenu>
@@ -20,8 +20,4 @@
         (@routerTransition.done)="scrollToTop();">
     <router-outlet #o="outlet" style="padding:0; margin: 0; position:fixed; top:0;"></router-outlet>
 </main>
-</ng-container>
-
-<ng-container *ngIf="initialized&&showLogin">
-    <app-login></app-login>
 </ng-container>
