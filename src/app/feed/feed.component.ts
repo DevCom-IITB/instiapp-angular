@@ -55,7 +55,9 @@ export class FeedComponent implements OnInit, AfterViewChecked {
   /** Opens the event-details component */
   OpenEvent(event: Event) {
     if (this.mobileQuery.matches) {
-      this.router.navigate(['/event-details', event.id]);
+      this.dataService.FillGetEvent(event.id).subscribe(() => {
+        this.router.navigate(['/event-details', event.id]);
+      });
     } else {
       /* Check if the event is already open */
       if (this.eventDetailsId === event.id) { return; }

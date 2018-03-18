@@ -28,6 +28,9 @@ export class DataService {
   /** True to show the global toolbar */
   public showToolbar = true;
 
+  /** Detailed events */
+  public eventsDetailed: Event[] = [] as Event[];
+
   constructor(private http: HttpClient, public router: Router) { }
 
   /**
@@ -133,6 +136,26 @@ export class DataService {
   /** Get detailed information on an event */
   GetEvent(uuid: string): Observable<Event> {
     return this.FireGET<Event>(ApiEvent, {uuid: uuid});
+  }
+
+  /** Fills the event with uuid into the cache and returns it */
+  FillGetEvent(uuid: string): Observable<Event> {
+    const index = this.eventsDetailed.findIndex(m => m.id === uuid);
+    return Observable.create(observer => {
+      if (index === -1) {
+        this.GetEvent(uuid).subscribe(result => {
+          result.venues_str = result.venues.map(v => v.name).join(', ');
+          this.eventsDetailed.push(result);
+          observer.next(result);
+          observer.complete();
+        }, (error) => {
+          observer.error(error);
+        });
+      } else {
+        observer.next(this.eventsDetailed[index]);
+        observer.complete();
+      }
+    });
   }
 
   PostEvent(body: any): Observable<Event> {
