@@ -59,7 +59,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'event-details/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
-      { path: 'login', component: LoginComponent, data: { state: 'base' } },
+      { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' }
     ]),
 

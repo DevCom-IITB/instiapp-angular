@@ -19,6 +19,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.dataService.loggedIn) {
+      this.router.navigate(['feed']);
+      return;
+    }
+
     this.dataService.showToolbar = false;
     const params = this.activatedRoute.snapshot.queryParams;
     if (params.hasOwnProperty('code')) {
@@ -36,6 +41,11 @@ export class LoginComponent implements OnInit {
   /** Open a new tab for SSO login */
   login() {
     window.location.href = this.dataService.GetLoginURL();
+  }
+
+  /** Continue as guest */
+  guest() {
+    this.router.navigate(['feed']);
   }
 
 }

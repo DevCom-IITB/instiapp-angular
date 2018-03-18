@@ -61,4 +61,10 @@ export class AppComponent implements OnDestroy, OnInit {
     const el: HTMLElement = this.hamburger.nativeElement as HTMLElement;
     el.click();
   }
+
+  /** Redirects to login */
+  login() {
+    this.router.navigate(['login']);
+  }
+
 }
