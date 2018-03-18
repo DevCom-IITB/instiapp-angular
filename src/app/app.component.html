@@ -21,6 +21,12 @@
             *ngIf="!this.dataService.loggedIn">
         Log In
     </button>
+
+    <button mat-button
+            (click)="this.dataService.Logout()"
+            *ngIf="this.dataService.loggedIn">
+        Log Out
+    </button>
 </mat-toolbar>
 
 <main [@routerTransition]="getState(o)"

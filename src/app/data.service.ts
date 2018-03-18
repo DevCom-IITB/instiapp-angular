@@ -27,6 +27,7 @@ const ApiPostImage = 'api/upload';
 
 const ApiLoggedInUser = 'api/login/get-user';
 const ApiLogin = 'api/login{?code,redir}';
+const ApiLogout = 'api/logout';
 
 /** Main data service */
 @Injectable()
@@ -225,6 +226,15 @@ export class DataService {
   /** Tries to authenticate with the given code */
   AuthenticateSSO(code: string) {
     return this.FireGET(ApiLogin, {code: code, redir: SSO_REDIR});
+  }
+
+  /** Logout the current user */
+  Logout() {
+    return this.FireGET(ApiLogout).subscribe(() => {
+      this.loggedIn = false;
+      this.loggedInSubject.next(false);
+      this.currentUser = null;
+    });
   }
 
   /** Adds leading zeros to a number */
