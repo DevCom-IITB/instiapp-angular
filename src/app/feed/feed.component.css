@@ -1,19 +1,30 @@
 @media (min-width: 768px) {
     .events-list {
         position: absolute;
-        left: calc(46% - 400px);
+        left: calc(47% - 400px);
+        max-width: 400px;
         margin: 10px;
     }
 
     .event-details-container {
         position: fixed;
-        left: 54%;
+        left: 53%;
         max-height: calc(100% - 100px);
         top: 80px;
-        width:auto;
-        min-width: 428px;
+        width:400px;
         overflow: auto;
         background-color: white;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+    .events-list {
+        width: 360px;
+        left: calc(48% - 360px);
+    }
+    .event-details-container {
+        width:360px;
+        left: 52%;
     }
 }
 
