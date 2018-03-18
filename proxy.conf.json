@@ -1,0 +1,12 @@
+{
+    "/api/**": {
+      "target": {
+          "host": "temp-iitb.radialapps.com",
+          "protocol": "https:",
+          "port": 443
+        },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "info"
+    }
+}
