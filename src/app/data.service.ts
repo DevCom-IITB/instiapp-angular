@@ -5,6 +5,7 @@ import { EnumContainer, UserProfile, UserEventStatus, Location, Event } from './
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
+import { Subject } from 'rxjs/Subject';
 
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -37,13 +38,19 @@ export class DataService {
   /** Detailed events */
   public eventsDetailed: Event[] = [] as Event[];
 
-  /** True whenever a user is logged in */
+  /** If user is logged in */
   public loggedIn = false;
+  public loggedInObservable: Observable<boolean>;
+  private loggedInSubject: Subject<boolean>;
 
   /** User Profile of the logged in user */
   public currentUser: UserProfile;
 
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(private http: HttpClient, public router: Router) {
+    /* Initialize */
+    this.loggedInSubject = new Subject<boolean>();
+    this.loggedInObservable = this.loggedInSubject.asObservable();
+  }
 
   /**
    * Fire a URI template or URL with GET verb
@@ -190,6 +197,7 @@ export class DataService {
           this.currentUser = result.profile;
           console.log(this.currentUser.name + ' is logged in');
           observer.next(this.currentUser);
+          this.loggedInSubject.next(true);
           observer.complete();
         }, (error) => {
           console.log(error.error);

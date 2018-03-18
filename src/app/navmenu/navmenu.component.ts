@@ -18,6 +18,18 @@ export class NavmenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /* Get profile if the user is logged in */
+    if (this.dataService.loggedIn) {
+      this.getUser();
+    }
+
+    /* Get profile on login state change */
+    this.dataService.loggedInObservable.subscribe(() => {
+      this.getUser();
+    });
+  }
+
+  getUser() {
     this.dataService.GetFillCurrentUser().subscribe(user => {
       this.userName = user.name;
       this.ldap = user.roll_no;
