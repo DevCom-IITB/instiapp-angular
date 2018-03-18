@@ -9,8 +9,10 @@ import * as uriTemplates from 'uri-templates';
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 
-const Host = '/';
-const SSO_REDIR = 'http://localhost:4200/login'; /* Has to be absolute URL */
+const HOST = environment.host;
+const SSO_REDIR = HOST + 'login'; /* Has to be absolute URL */
+const SSOHOST = environment.sso_host;
+const CLIENT_ID = environment.sso_client_id;
 
 const ApiUserList = 'api/users';
 const ApiUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
@@ -49,7 +51,7 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FireGET<T>(uriTemplate: string, options: any = {}): Observable<T> {
-    return this.http.get<T>(this.FillURITemplate(Host + uriTemplate, options));
+    return this.http.get<T>(this.FillURITemplate(HOST + uriTemplate, options));
   }
 
   /**
@@ -59,7 +61,7 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FirePUT<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
-    return this.http.put<T>(this.FillURITemplate(Host + uriTemplate, options), body);
+    return this.http.put<T>(this.FillURITemplate(HOST + uriTemplate, options), body);
   }
 
   /**
@@ -69,7 +71,7 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FirePOST<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
-    return this.http.post<T>(this.FillURITemplate(Host + uriTemplate, options), body);
+    return this.http.post<T>(this.FillURITemplate(HOST + uriTemplate, options), body);
   }
 
   /**
@@ -78,7 +80,7 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FireDELETE<T>(uriTemplate: string, options: any = {}): Observable<T> {
-    return this.http.delete<T>(this.FillURITemplate(Host + uriTemplate, options));
+    return this.http.delete<T>(this.FillURITemplate(HOST + uriTemplate, options));
   }
 
   /**
@@ -202,15 +204,14 @@ export class DataService {
 
   /** Gets SSO URL */
   GetLoginURL() {
-    const HOST = 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/';
-    const CLIENT_ID = 'vR1pU7wXWyve1rUkg0fMS6StL1Kr6paoSmRIiLXJ';
     const RESPONSE_TYPE = 'code';
     const SCOPE = 'basic profile picture sex ldap phone insti_address program secondary_emails';
 
-    return HOST + '?client_id=' + CLIENT_ID +
-                  '&response_type=' + RESPONSE_TYPE +
-                  '&scope=' + SCOPE +
-                  '&redirect_uri=' + SSO_REDIR;
+    return SSOHOST +
+            '?client_id=' + CLIENT_ID +
+            '&response_type=' + RESPONSE_TYPE +
+            '&scope=' + SCOPE +
+            '&redirect_uri=' + SSO_REDIR;
   }
 
   /** Tries to authenticate with the given code */
