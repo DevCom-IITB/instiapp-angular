@@ -9,7 +9,7 @@ import * as uriTemplates from 'uri-templates';
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 
-const Host = 'https://temp-iitb.radialapps.com/';
+const Host = '/';
 
 const ApiUserList = 'api/users';
 const ApiUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
@@ -21,6 +21,8 @@ const ApiLocations = 'api/locations';
 
 const ApiPostImage = 'api/upload';
 
+const ApiLoggedInUser = 'api/login/get-user';
+
 /** Main data service */
 @Injectable()
 export class DataService {
@@ -30,6 +32,12 @@ export class DataService {
 
   /** Detailed events */
   public eventsDetailed: Event[] = [] as Event[];
+
+  /** True whenever a user is logged in */
+  public loggedIn = false;
+
+  /** User Profile of the logged in user */
+  public currentUser: UserProfile;
 
   constructor(private http: HttpClient, public router: Router) { }
 
@@ -165,6 +173,27 @@ export class DataService {
   /** Get all locations */
   GetAllLocations(): Observable<Location[]> {
     return this.FireGET<Location[]>(ApiLocations);
+  }
+
+  /** Gets the current user if logged in
+   * The result is cached
+   */
+  GetFillCurrentUser(): Observable<UserProfile> {
+    return Observable.create(observer => {
+      if (!this.currentUser) {
+        this.FireGET<any>(ApiLoggedInUser).subscribe(result => {
+          this.loggedIn = true;
+          this.currentUser = result.profile;
+          observer.next(this.currentUser);
+          observer.complete();
+        }, (error) => {
+          observer.error(error);
+        });
+      } else {
+        observer.next(this.currentUser);
+        observer.complete();
+      }
+    });
   }
 
   /** Adds leading zeros to a number */

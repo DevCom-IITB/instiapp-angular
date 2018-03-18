@@ -28,6 +28,7 @@ import { DataService } from './data.service';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AddEventComponent } from './add-event/add-event.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AddEventComponent } from './add-event/add-event.component';
     FeedComponent,
     EventDetailsComponent,
     CalendarComponent,
-    AddEventComponent
+    AddEventComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
