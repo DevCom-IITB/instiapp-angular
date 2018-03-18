@@ -16,6 +16,7 @@ export class FeedComponent implements OnInit, AfterViewChecked {
   events: Event[];
   showingEventDetails = false;
   animedEventDetails = false;
+  hiddenEventDetails = true;
   eventDetailsId;
 
   private _mobileQueryListener: () => void;
@@ -62,7 +63,6 @@ export class FeedComponent implements OnInit, AfterViewChecked {
       /* Open the bar for the first time */
       if (!this.showingEventDetails) {
         this.showingEventDetails = true;
-        this.animedEventDetails = true;
         this.eventDetailsId = event.id;
         return;
       }
@@ -73,10 +73,16 @@ export class FeedComponent implements OnInit, AfterViewChecked {
       /* Do some animation */
       this.animedEventDetails = false;
       setTimeout(() => {
+        this.hiddenEventDetails = true;
         this.eventDetailsId = event.id;
-        this.animedEventDetails = true;
       }, 250);
     }
+  }
+
+  /** Animate back in after loading */
+  eventDeatilsLoaded(success: boolean) {
+    this.hiddenEventDetails = false;
+    this.animedEventDetails = true;
   }
 
   /** any as boolean */

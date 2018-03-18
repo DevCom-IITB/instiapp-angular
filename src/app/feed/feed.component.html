@@ -20,10 +20,11 @@
 
 <div class="event-details-container mat-elevation-z3"
      *ngIf="!mobileQuery.matches && showingEventDetails"
+     [hidden]="hiddenEventDetails"
      [@enterRight]="bstr(animedEventDetails)">
     <app-event-details
-      *ngIf="showingEventDetails"
-      [eventId]="eventDetailsId">
+      [eventId]="eventDetailsId"
+      (load)="eventDeatilsLoaded($event)">
     </app-event-details>
     <div style="height:20px"></div>
 </div>
