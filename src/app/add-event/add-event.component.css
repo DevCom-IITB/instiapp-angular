@@ -5,6 +5,13 @@
     margin: auto;
 }
 
+@media (min-width: 768px) {
+    #main {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
 .back-button {
     left: 10px; top: 10px;
     z-index: 2;
