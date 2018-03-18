@@ -1,0 +1,13 @@
+.login-button {
+    width: 80vw;
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.login-container {
+    position: absolute;
+    max-width: 300px;
+    left: 50%;
+    width: auto;
+    transform: translateX(-50%);
+}
