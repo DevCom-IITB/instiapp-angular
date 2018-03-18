@@ -16,7 +16,11 @@
     </h1>
 
     <div class="fill-space"></div>
-    <button mat-button (click)="login()">Log In</button>
+    <button mat-button
+            (click)="login()"
+            *ngIf="!this.dataService.loggedIn">
+        Log In
+    </button>
 </mat-toolbar>
 
 <main [@routerTransition]="getState(o)"
