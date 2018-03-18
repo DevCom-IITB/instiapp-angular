@@ -43,7 +43,7 @@
   </div>
 
   <div class="full-width-details" *ngFor="let vn of event.venue_names; let i = index">
-    <mat-form-field style="width: calc(100% - 50px)">
+    <mat-form-field style="width: calc(98% - 50px); left: 1%;">
         <mat-select [(ngModel)]="event.venue_names[i]" placeholder="Venues">
             <mat-option *ngFor="let venue of venuesList" [value]="venue">{{venue}}</mat-option>
         </mat-select>

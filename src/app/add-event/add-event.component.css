@@ -30,6 +30,7 @@
 }
 
 .half-width {
+    left: 1%;
     width: 45%;
     padding-right: 0;
 }
@@ -39,5 +40,6 @@
 }
 
 .full-width-details {
-    width: calc(94%);
+    left: 1%;
+    width: calc(98%);
 }
