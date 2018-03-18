@@ -4,7 +4,7 @@ import { UserProfile } from '../interfaces';
 
 const DEFAULT_USERNAME = 'Guest';
 const DEFAULT_LDAP = 'IITB User';
-const DEFAULT_PROFILE_PIC = 'https://material.angular.io/assets/img/examples/shiba1.jpg';
+const DEFAULT_PROFILE_PIC = '/assets/useravatar.jpg';
 
 @Component({
   selector: 'app-navmenu',
