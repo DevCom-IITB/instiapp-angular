@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { UserProfile } from '../interfaces';
 
+const DEFAULT_USERNAME = 'Guest';
+const DEFAULT_LDAP = 'IITB User';
+const DEFAULT_PROFILE_PIC = 'https://material.angular.io/assets/img/examples/shiba1.jpg';
+
 @Component({
   selector: 'app-navmenu',
   templateUrl: './navmenu.component.html',
@@ -9,9 +13,9 @@ import { UserProfile } from '../interfaces';
 })
 export class NavmenuComponent implements OnInit {
 
-  public userName = 'Guest';
-  public ldap = 'IITB User';
-  public profilePic: string;
+  public userName = DEFAULT_USERNAME;
+  public ldap = DEFAULT_LDAP;
+  public profilePic = DEFAULT_PROFILE_PIC;
 
   constructor(
     public dataService: DataService,
@@ -24,9 +28,7 @@ export class NavmenuComponent implements OnInit {
     }
 
     /* Get profile on login state change */
-    this.dataService.loggedInObservable.subscribe(() => {
-      this.getUser();
-    });
+    this.monitorChange();
   }
 
   getUser() {
@@ -34,6 +36,19 @@ export class NavmenuComponent implements OnInit {
       this.userName = user.name;
       this.ldap = user.roll_no;
       this.profilePic = user.profile_pic;
+    });
+  }
+
+  /** Monitors change in login state */
+  monitorChange() {
+    this.dataService.loggedInObservable.subscribe(result => {
+      if (result) {
+        this.getUser();
+      } else {
+        this.userName = DEFAULT_USERNAME;
+        this.ldap = DEFAULT_LDAP;
+        this.profilePic = DEFAULT_PROFILE_PIC;
+      }
     });
   }
 
