@@ -44,12 +44,20 @@ export class AddEventComponent implements OnInit {
 
   /** Uses an extremely ugly hack to set time */
   timeChanged() {
-    this.event.start_time.setHours(
-      Number(this.start_time.substr(0, 2)),
-      Number(this.start_time.substr(3, 2)));
-    this.event.end_time.setHours(
-      Number(this.end_time.substr(0, 2)),
-      Number(this.end_time.substr(3, 2)));
+    this.setTimeFrom(this.event.start_time, this.start_time);
+    this.setTimeFrom(this.event.end_time, this.end_time);
+  }
+
+  /**
+   * Returns a Date after setting the time from a string
+   * @param date Date without proper time
+   * @param time Time string HH:MM
+   */
+  setTimeFrom(date: Date, time: string) {
+    date.setHours(
+      Number(time.substr(0, 2)),
+      Number(time.substr(3, 2)));
+    return date;
   }
 
   uploadImage(files: FileList) {
