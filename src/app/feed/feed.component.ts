@@ -55,30 +55,40 @@ export class FeedComponent implements OnInit, AfterViewChecked {
   /** Opens the event-details component */
   OpenEvent(event: Event) {
     if (this.mobileQuery.matches) {
-      this.dataService.FillGetEvent(event.id).subscribe(() => {
-        this.router.navigate(['/event-details', event.id]);
-      });
+      this.NavigateEventDeatils(event);
     } else {
       /* Check if the event is already open */
       if (this.eventDetailsId === event.id) { return; }
 
-      /* Open the bar for the first time */
-      if (!this.showingEventDetails) {
-        this.showingEventDetails = true;
-        this.eventDetailsId = event.id;
-        return;
-      }
-
-      /* Skip if animating */
-      if (!this.animedEventDetails) { return; }
-
-      /* Do some animation */
-      this.animedEventDetails = false;
-      setTimeout(() => {
-        this.hiddenEventDetails = true;
-        this.eventDetailsId = event.id;
-      }, 250);
+      this.EventDetailsPane(event);
     }
+  }
+
+  /** Navigate to event-details component */
+  NavigateEventDeatils(event: Event) {
+    this.dataService.FillGetEvent(event.id).subscribe(() => {
+      this.router.navigate(['/event-details', event.id]);
+    });
+  }
+
+  /** Open or update the side event-details pane */
+  EventDetailsPane(event: Event) {
+    /* Open the bar for the first time */
+    if (!this.showingEventDetails) {
+      this.showingEventDetails = true;
+      this.eventDetailsId = event.id;
+      return;
+    }
+
+    /* Skip if animating */
+    if (!this.animedEventDetails) { return; }
+
+    /* Do some animation */
+    this.animedEventDetails = false;
+    setTimeout(() => {
+      this.hiddenEventDetails = true;
+      this.eventDetailsId = event.id;
+    }, 250);
   }
 
   /** Animate back in after loading */
