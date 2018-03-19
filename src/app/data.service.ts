@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
 import { Subject } from 'rxjs/Subject';
+import { API } from '../api';
 
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -14,20 +15,6 @@ const HOST = environment.host;
 const SSO_REDIR = HOST + 'login'; /* Has to be absolute URL */
 const SSOHOST = environment.sso_host;
 const CLIENT_ID = environment.sso_client_id;
-
-const ApiUserList = 'api/users';
-const ApiUserFollowedEvents = 'api/users/{uuid}/followed_bodies_events';
-
-const ApiEvents = 'api/events';
-const ApiEvent = 'api/events/{uuid}';
-
-const ApiLocations = 'api/locations';
-
-const ApiPostImage = 'api/upload';
-
-const ApiLoggedInUser = 'api/login/get-user';
-const ApiLogin = 'api/login{?code,redir}';
-const ApiLogout = 'api/logout';
 
 /** Main data service */
 @Injectable()
@@ -105,7 +92,7 @@ export class DataService {
   UploadImage(image: File): Observable<any> {
     return Observable.create(observer => {
       this.GetBase64(image).subscribe(result => {
-        return this.FirePOST(ApiPostImage, {picture: result}).subscribe(httpresult => {
+        return this.FirePOST(API.PostImage, {picture: result}).subscribe(httpresult => {
           observer.next(httpresult);
           observer.complete();
         }, (error) => observer.error(error.message));
@@ -134,7 +121,7 @@ export class DataService {
    * Gets a list of all users
    */
   GetUsersList(): Observable<UserProfile[]> {
-    return this.FireGET<UserProfile[]>(ApiUserList);
+    return this.FireGET<UserProfile[]>(API.UserList);
   }
 
   /**
@@ -143,19 +130,19 @@ export class DataService {
    * @param uuid UUID of user
    */
   GetUserFollowedBodiesEvents(uuid: string): Observable<EnumContainer> {
-    return this.FireGET<EnumContainer>(ApiUserFollowedEvents, {uuid: uuid});
+    return this.FireGET<EnumContainer>(API.UserFollowedEvents, {uuid: uuid});
   }
 
   /**
    * Get all events currently stored
    */
   GetAllEvents(): Observable<EnumContainer> {
-    return this.FireGET<EnumContainer>(ApiEvents);
+    return this.FireGET<EnumContainer>(API.Events);
   }
 
   /** Get detailed information on an event */
   GetEvent(uuid: string): Observable<Event> {
-    return this.FireGET<Event>(ApiEvent, {uuid: uuid});
+    return this.FireGET<Event>(API.Event, {uuid: uuid});
   }
 
   /** Fills the event with uuid into the cache and returns it */
@@ -179,12 +166,12 @@ export class DataService {
   }
 
   PostEvent(body: any): Observable<Event> {
-    return this.FirePOST<Event>(ApiEvents, body);
+    return this.FirePOST<Event>(API.Events, body);
   }
 
   /** Get all locations */
   GetAllLocations(): Observable<Location[]> {
-    return this.FireGET<Location[]>(ApiLocations);
+    return this.FireGET<Location[]>(API.Locations);
   }
 
   /** Gets the current user if logged in
@@ -193,7 +180,7 @@ export class DataService {
   GetFillCurrentUser(): Observable<UserProfile> {
     return Observable.create(observer => {
       if (!this.currentUser) {
-        this.FireGET<any>(ApiLoggedInUser).subscribe(result => {
+        this.FireGET<any>(API.LoggedInUser).subscribe(result => {
           this.loggedIn = true;
           this.currentUser = result.profile;
           console.log(this.currentUser.name + ' is logged in');
@@ -225,12 +212,12 @@ export class DataService {
 
   /** Tries to authenticate with the given code */
   AuthenticateSSO(code: string) {
-    return this.FireGET(ApiLogin, {code: code, redir: SSO_REDIR});
+    return this.FireGET(API.Login, {code: code, redir: SSO_REDIR});
   }
 
   /** Logout the current user */
   Logout() {
-    return this.FireGET(ApiLogout).subscribe(() => {
+    return this.FireGET(API.Logout).subscribe(() => {
       this.loggedIn = false;
       this.loggedInSubject.next(false);
       this.currentUser = null;
