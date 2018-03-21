@@ -33,6 +33,13 @@
 .card-header {
     padding: 12px;
     padding-bottom: 3px;
+    position: relative;
+}
+
+.edit-button {
+    position: absolute;
+    top: 12px;
+    right:25px;
 }
 
 .event-name {
