@@ -16,6 +16,7 @@ export interface UserProfile {
     about: string;
     followed_bodies: Body;
     followed_bodies_id: string[];
+    roles: BodyRole[];
 }
 
 export interface Event {
@@ -60,4 +61,14 @@ export interface UserEventStatus {
     event: string;
     user: string;
     status: number;
+}
+
+export interface BodyRole {
+    id: string;
+    name: string;
+    inheritable: boolean;
+    body: string;
+    body_detail: Body;
+    permissions: string[];
+    users: string[];
 }
