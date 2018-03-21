@@ -6,6 +6,7 @@ import { Event, Body } from '../interfaces';
 import { Time } from '@angular/common';
 import { Helpers } from '../helpers';
 import { Observable } from 'rxjs/Observable';
+import { API } from '../../api';
 
 const PREV_PAGE = 'calendar';
 
@@ -28,6 +29,7 @@ export class AddEventComponent implements OnInit {
   public disabledBodies: Body[] = [] as Body[];
 
   public editing = false;
+  public canDelete = false;
   public eventId: string;
 
   constructor(
@@ -71,6 +73,9 @@ export class AddEventComponent implements OnInit {
             alert('You do not have sufficient privileges to edit this event!');
             this.close();
           }
+
+          /* Check if user can delete the event */
+          this.canDelete = this.dataService.CanDeleteEvent(this.event);
 
           /* Initialize date-times */
           this.event.start_time = new Date(this.event.start_time);
@@ -148,6 +153,21 @@ export class AddEventComponent implements OnInit {
       alert('Action failed! Please check all fields.');
       this.networkBusy = false;
     });
+  }
+
+  /** Delete the open event */
+  delete() {
+    if (confirm('Are you sure you want to delete this event? This action is irreversible!')) {
+      this.dataService.FireDELETE(API.Event, {uuid: this.eventId}).subscribe(() => {
+        this.close();
+      }, (error) => {
+        if (error.detail) {
+          alert(error.detail);
+        } else {
+          alert('Deleting failed. Are you sure you have the required permissions?');
+        }
+      });
+    }
   }
 
   /** Tries to mark the network as busy */

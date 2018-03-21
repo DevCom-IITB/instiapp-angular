@@ -83,6 +83,13 @@
       <ng-container *ngIf="!editing">Create</ng-container>
       <ng-container *ngIf="editing">Update</ng-container>
     </button>
+    <button mat-raised-button color="warn"
+            class="full-width-details action-button"
+            (click)="delete()"
+            *ngIf="editing"
+            [disabled]="!canDelete">
+      Delete
+    </button>
   </div>
   <br>
 </div>

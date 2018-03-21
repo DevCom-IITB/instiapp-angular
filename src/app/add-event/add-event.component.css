@@ -49,3 +49,7 @@
     left: 1%;
     width: calc(98%);
 }
+
+.action-button {
+    margin-top: 10px;
+}

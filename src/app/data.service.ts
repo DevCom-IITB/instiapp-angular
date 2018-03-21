@@ -260,6 +260,16 @@ export class DataService {
     return false;
   }
 
+  /** Return true if the user can delete the event */
+  CanDeleteEvent(event: Event): boolean {
+    for (const body of event.bodies) {
+      if (!this.HasBodyPermission(body.id, 'DelE')) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   /** Adds leading zeros to a number */
   zeroPad(num, places) {
     const zero = places - num.toString().length + 1;
