@@ -5,6 +5,12 @@
     margin: auto;
 }
 
+.header-image {
+    width:100%;
+    height:auto;
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     #main {
         margin-top: 10px;

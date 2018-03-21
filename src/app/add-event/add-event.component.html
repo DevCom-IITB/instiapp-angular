@@ -8,14 +8,15 @@
 
 <div class="theme-header">
   <input style="display:none;" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
-  <img style="width:100%; height:auto;"
+  <img class="header-image"
        [src]="event.image_url"
        src-fallback="/assets/add_image_placeholder.png"
        (click)="file.click()">
 
   <div class="card-header">
       <mat-form-field color="accent" class="full-width">
-        <input [(ngModel)]="event.name" matInput name="event_name" placeholder="Event Name">
+        <input [(ngModel)]="event.name" matInput required
+               name="event_name" placeholder="Event Name">
       </mat-form-field>
   </div>
 </div>
@@ -23,22 +24,22 @@
 <div class="details-view full-width">
   <div style="display:flex;">
     <mat-form-field class="half-width middle-gap">
-      <input [(ngModel)]="event.start_time" matInput [matDatepicker]="fromPicker" placeholder="From">
+      <input [(ngModel)]="event.start_time" matInput [matDatepicker]="fromPicker" placeholder="From" required>
       <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
       <mat-datepicker #fromPicker></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="half-width">
-        <input [(ngModel)]="event.end_time" matInput [matDatepicker]="toPicker" placeholder="To">
+        <input [(ngModel)]="event.end_time" matInput [matDatepicker]="toPicker" placeholder="To" required>
         <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
         <mat-datepicker #toPicker></mat-datepicker>
     </mat-form-field>
   </div>
   <div style="display:flex;">
     <mat-form-field class="half-width middle-gap">
-        <input (change)="timeChanged()" [(ngModel)]="start_time" matInput placeholder="Time" type="time">
+        <input (change)="timeChanged()" [(ngModel)]="start_time" matInput placeholder="Time" type="time" required>
     </mat-form-field>
     <mat-form-field class="half-width">
-        <input (change)="timeChanged()" [(ngModel)]="end_time" matInput placeholder="Time" type="time">
+        <input (change)="timeChanged()" [(ngModel)]="end_time" matInput placeholder="Time" type="time" required>
     </mat-form-field>
   </div>
 
@@ -54,7 +55,7 @@
 
   <div>
     <mat-form-field class="full-width-details">
-      <mat-select [(ngModel)]="event.bodies_id" placeholder="Bodies" multiple>
+      <mat-select [(ngModel)]="event.bodies_id" placeholder="Bodies" multiple required>
         <mat-option *ngFor="let body of dataService.GetBodiesWithPermission('AddE')"
                     [value]="body.id">
                 {{ body.name }}
