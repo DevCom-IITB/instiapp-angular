@@ -87,6 +87,7 @@ export class AddEventComponent implements OnInit {
       this.networkBusy = false;
       this.close();
     }, () => {
+      alert('Action failed! Please check all fields.');
       this.networkBusy = false;
     });
   }
