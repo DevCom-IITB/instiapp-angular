@@ -5,6 +5,7 @@
 </div>
 
 <button mat-fab
+        [disabled]="!dataService.loggedIn"
         class="float-fixed-right-bottom"
         (click)="AddEvent()">
     <mat-icon>add</mat-icon>

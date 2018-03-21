@@ -5,6 +5,8 @@ import { FormControl } from '@angular/forms';
 import { Event } from '../interfaces';
 import { Time } from '@angular/common';
 
+const PREV_PAGE = 'calendar';
+
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
@@ -40,6 +42,10 @@ export class AddEventComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.dataService.loggedIn) {
+      alert('Please login to continue!');
+      this.router.navigate([PREV_PAGE]);
+    }
   }
 
   /** Uses an extremely ugly hack to set time */
@@ -104,7 +110,7 @@ export class AddEventComponent implements OnInit {
 
   /** Navigate back */
   close() {
-    this.router.navigate(['calendar']);
+    this.router.navigate([PREV_PAGE]);
   }
 
 }
