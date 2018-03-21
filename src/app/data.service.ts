@@ -237,7 +237,9 @@ export class DataService {
     const bodies: Body[] = [] as Body[];
     for (const role of this.currentUser.roles) {
       if (role.permissions.indexOf(permission) !== -1) {
-        bodies.push(role.body_detail);
+        if (bodies.map(m => m.id).indexOf(role.body) === -1) {
+          bodies.push(role.body_detail);
+        }
       }
     }
     return bodies;
