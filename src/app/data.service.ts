@@ -224,6 +224,21 @@ export class DataService {
     });
   }
 
+  /**
+   * Gets a list of minimal bodies for which the user has the listed permission
+   * @param permission Any of `AddE`, `UpdE`, `DelE`, `Role`
+   */
+  GetBodiesWithPermission(permission: string): Body[] {
+    if (!this.loggedIn) { return []; }
+    const bodies = [];
+    for (const role of this.currentUser.roles) {
+      if (role.permissions.indexOf(permission) !== -1) {
+        bodies.push(role.body_detail);
+      }
+    }
+    return bodies;
+  }
+
   /** Adds leading zeros to a number */
   zeroPad(num, places) {
     const zero = places - num.toString().length + 1;
