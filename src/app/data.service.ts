@@ -169,6 +169,10 @@ export class DataService {
     return this.FirePOST<Event>(API.Events, body);
   }
 
+  PutEvent(id: string, body: any): Observable<Event> {
+    return this.FirePUT<Event>(API.Event, body, {uuid: id});
+  }
+
   /** Get all locations */
   GetAllLocations(): Observable<Location[]> {
     return this.FireGET<Location[]>(API.Locations);

@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Event, Body } from '../interfaces';
 import { Time } from '@angular/common';
 import { Helpers } from '../helpers';
+import { Observable } from 'rxjs/Observable';
 
 const PREV_PAGE = 'calendar';
 
@@ -64,6 +65,8 @@ export class AddEventComponent implements OnInit {
         this.editing = true;
         this.dataService.GetEvent(this.eventId).subscribe(result => {
           this.event = result;
+          this.event.start_time = new Date(this.event.start_time);
+          this.event.end_time = new Date(this.event.end_time);
           this.start_time = Helpers.GetTimeString(this.event.start_time);
           this.end_time = Helpers.GetTimeString(this.event.end_time);
 
@@ -120,10 +123,17 @@ export class AddEventComponent implements OnInit {
   /** POSTs or PUTs to the server */
   go() {
     if (!this.MarkNetworkBusy()) { return; }
-
     this.timeChanged();
-    this.dataService.PostEvent(this.event).subscribe(result => {
-      alert(result.name + ' created!');
+
+    let obs: Observable<Event>;
+    if (!this.editing) {
+      obs = this.dataService.PostEvent(this.event);
+    } else {
+      obs = this.dataService.PutEvent(this.eventId, this.event);
+    }
+
+    obs.subscribe(result => {
+      alert('Successful!');
       this.networkBusy = false;
       this.close();
     }, () => {
