@@ -250,6 +250,16 @@ export class DataService {
     return this.GetBodiesWithPermission(permission).map(m => m.id).indexOf(bodyid) !== -1;
   }
 
+  /** Returns true if the user has permission to edit the event */
+  CanEditEvent(event: Event): boolean {
+    for (const body of event.bodies) {
+      if (this.HasBodyPermission(body.id, 'UpdE')) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   /** Adds leading zeros to a number */
   zeroPad(num, places) {
     const zero = places - num.toString().length + 1;

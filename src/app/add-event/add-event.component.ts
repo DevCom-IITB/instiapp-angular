@@ -65,6 +65,14 @@ export class AddEventComponent implements OnInit {
         this.editing = true;
         this.dataService.GetEvent(this.eventId).subscribe(result => {
           this.event = result;
+
+          /* Check if the user can edit the event */
+          if (!this.dataService.CanEditEvent(this.event)) {
+            alert('You do not have sufficient privileges to edit this event!');
+            this.close();
+          }
+
+          /* Initialize date-times */
           this.event.start_time = new Date(this.event.start_time);
           this.event.end_time = new Date(this.event.end_time);
           this.start_time = Helpers.GetTimeString(this.event.start_time);
