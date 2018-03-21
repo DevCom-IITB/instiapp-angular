@@ -43,6 +43,10 @@ body {
     cursor: pointer;
 }
 
+.multi-line-text {
+    white-space: pre-line;
+}
+
 @media (max-width: 767px) {
     .toolbar-margin {
         height: 56px;
