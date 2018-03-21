@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EnumContainer, UserProfile, UserEventStatus, Location, Event } from './interfaces';
+import { EnumContainer, UserProfile, UserEventStatus, Location, Event, Body } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
@@ -230,13 +230,18 @@ export class DataService {
    */
   GetBodiesWithPermission(permission: string): Body[] {
     if (!this.loggedIn) { return []; }
-    const bodies = [];
+    const bodies: Body[] = [] as Body[];
     for (const role of this.currentUser.roles) {
       if (role.permissions.indexOf(permission) !== -1) {
         bodies.push(role.body_detail);
       }
     }
     return bodies;
+  }
+
+  /** Returns true if the user has the permission for the body */
+  HasBodyPermission(bodyid: string, permission: string) {
+    return this.GetBodiesWithPermission(permission).map(m => m.id).indexOf(bodyid) !== -1;
   }
 
   /** Adds leading zeros to a number */

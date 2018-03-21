@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { Event } from '../interfaces';
+import { Event, Body } from '../interfaces';
 import { Time } from '@angular/common';
 import { Helpers } from '../helpers';
 
@@ -22,6 +22,9 @@ export class AddEventComponent implements OnInit {
   public end_time = '00:00';
 
   public networkBusy = false;
+
+  public bodies: Body[] = [] as Body[];
+  public disabledBodies: Body[] = [] as Body[];
 
   public editing = false;
   public eventId: string;
@@ -53,6 +56,8 @@ export class AddEventComponent implements OnInit {
       return;
     }
 
+    this.bodies = this.bodies.concat(this.dataService.GetBodiesWithPermission('AddE'));
+
     this.activatedRoute.params.subscribe((params: Params) => {
       this.eventId = params['id'];
       if (this.eventId) {
@@ -61,6 +66,23 @@ export class AddEventComponent implements OnInit {
           this.event = result;
           this.start_time = Helpers.GetTimeString(this.event.start_time);
           this.end_time = Helpers.GetTimeString(this.event.end_time);
+
+          /* Add bodies according to permission */
+          for (const body of this.event.bodies) {
+            /* Remove if already present */
+            const currIndex = this.bodies.map(m => m.id).indexOf(body.id);
+            if (currIndex !== -1 ) {
+              this.bodies.splice(currIndex, 1);
+            }
+
+            /* Add according to privilege */
+            if (this.dataService.HasBodyPermission(body.id, 'DelE')) {
+              this.bodies.push(body);
+            } else {
+              this.disabledBodies.push(body);
+            }
+          }
+
         });
       }
     });

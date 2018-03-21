@@ -56,8 +56,12 @@
   <div>
     <mat-form-field class="full-width-details">
       <mat-select [(ngModel)]="event.bodies_id" placeholder="Bodies" multiple required>
-        <mat-option *ngFor="let body of dataService.GetBodiesWithPermission('AddE')"
+        <mat-option *ngFor="let body of bodies"
                     [value]="body.id">
+                {{ body.name }}
+        </mat-option>
+        <mat-option *ngFor="let body of disabledBodies"
+                    [value]="body.id" disabled>
                 {{ body.name }}
         </mat-option>
       </mat-select>
