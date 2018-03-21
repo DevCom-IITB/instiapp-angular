@@ -32,5 +32,16 @@
         {{ event.description }}
       </p>
     </div>
+
+    <!-- Bodies conducting the event -->
+    <div>
+      <mat-card *ngFor="let body of event.bodies" class="sub-card">
+        <mat-card-header>
+          <img mat-card-avatar [src]="body.image_url" />
+          <mat-card-title>{{ body.name }}</mat-card-title>
+          <mat-card-subtitle>{{ body.description }}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
   </div>
 </div>
