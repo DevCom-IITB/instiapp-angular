@@ -79,8 +79,9 @@
   <div>
     <button mat-raised-button color="accent"
             class="full-width-details"
-            (click)="create()">
-      Create
+            (click)="go()">
+      <ng-container *ngIf="!editing">Create</ng-container>
+      <ng-container *ngIf="editing">Update</ng-container>
     </button>
   </div>
   <br>

@@ -117,8 +117,8 @@ export class AddEventComponent implements OnInit {
     });
   }
 
-  /** POSTs to the server */
-  create() {
+  /** POSTs or PUTs to the server */
+  go() {
     if (!this.MarkNetworkBusy()) { return; }
 
     this.timeChanged();
