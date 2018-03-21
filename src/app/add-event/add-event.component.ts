@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Event } from '../interfaces';
 import { Time } from '@angular/common';
+import { Helpers } from '../helpers';
 
 const PREV_PAGE = 'calendar';
 
@@ -22,9 +23,13 @@ export class AddEventComponent implements OnInit {
 
   public networkBusy = false;
 
+  public editing = false;
+  public eventId: string;
+
   constructor(
     public dataService: DataService,
     public router: Router,
+    public activatedRoute: ActivatedRoute,
   ) {
     dataService.showToolbar = false;
 
@@ -37,7 +42,7 @@ export class AddEventComponent implements OnInit {
     this.event.start_time = new Date();
     this.event.end_time = new Date();
     this.event.bodies_id = [];
-    this.event.venue_names = [''];
+    this.event.venue_names = [];
 
   }
 
@@ -45,7 +50,20 @@ export class AddEventComponent implements OnInit {
     if (!this.dataService.loggedIn) {
       alert('Please login to continue!');
       this.router.navigate([PREV_PAGE]);
+      return;
     }
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.eventId = params['id'];
+      if (this.eventId) {
+        this.editing = true;
+        this.dataService.GetEvent(this.eventId).subscribe(result => {
+          this.event = result;
+          this.start_time = Helpers.GetTimeString(this.event.start_time);
+          this.end_time = Helpers.GetTimeString(this.event.end_time);
+        });
+      }
+    });
   }
 
   /** Uses an extremely ugly hack to set time */
