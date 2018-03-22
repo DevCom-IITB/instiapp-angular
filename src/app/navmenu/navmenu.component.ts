@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { IUserProfile } from '../interfaces';
+import { Router } from '@angular/router';
 
 const DEFAULT_USERNAME = 'Guest';
 const DEFAULT_LDAP = 'IITB User';
@@ -19,6 +20,7 @@ export class NavmenuComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
+    public router: Router,
   ) { }
 
   ngOnInit() {
@@ -50,6 +52,15 @@ export class NavmenuComponent implements OnInit {
         this.profilePic = DEFAULT_PROFILE_PIC;
       }
     });
+  }
+
+  /** Open own profile or go to login screen if not logged in */
+  OpenMyProfile() {
+    if (this.dataService.loggedIn) {
+      this.router.navigate(['user-details', this.dataService.currentUser.id]);
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 
 }
