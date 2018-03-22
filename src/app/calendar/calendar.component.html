@@ -1,3 +1,9 @@
+<div class="loading-spinner">
+    <mat-spinner *ngIf="!events"
+                  mode="indeterminate">
+    </mat-spinner>
+</div>
+
 <div class="full-container mat-elevation-z4" *ngIf="events">
     <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
     <mat-chip-list class="mat-chip-list-stacked">

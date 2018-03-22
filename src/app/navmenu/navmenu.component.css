@@ -1,5 +1,5 @@
 .head-card {
-    height: 40px;
+    height: 35px;
     margin-top: -10px;
     padding: 20px;
     box-shadow: none !important;
@@ -11,4 +11,10 @@
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
+    margin-top: -3px;
+}
+
+#ldap {
+    color: #eee;
+    font-size: 10pt;
 }
