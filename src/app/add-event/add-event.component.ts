@@ -46,7 +46,7 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {
     if (!this.dataService.loggedIn) {
       alert('Please login to continue!');
-      this.router.navigate([PREV_PAGE]);
+      this.close();
       return;
     }
 
@@ -73,6 +73,9 @@ export class AddEventComponent implements OnInit {
           this.event.end_time = new Date(this.event.end_time);
           this.start_time = Helpers.GetTimeString(this.event.start_time);
           this.end_time = Helpers.GetTimeString(this.event.end_time);
+
+          /* Add one venue if not present */
+          if (this.event.venue_names.length === 0) { this.AddVenue(); }
 
           /* Add bodies according to permission */
           for (const body of this.event.bodies) {
@@ -101,6 +104,7 @@ export class AddEventComponent implements OnInit {
         this.event.end_time = new Date();
         this.event.bodies_id = [];
         this.event.venue_names = [];
+        this.AddVenue();
       }
     });
   }
@@ -143,6 +147,7 @@ export class AddEventComponent implements OnInit {
   /** POSTs or PUTs to the server */
   go() {
     if (!this.MarkNetworkBusy()) { return; }
+    this.RemoveBlankVenues();
     this.timeChanged();
 
     let obs: Observable<IEvent>;
@@ -157,6 +162,11 @@ export class AddEventComponent implements OnInit {
         duration: 2000,
       });
       this.networkBusy = false;
+
+      /* Add one venue if not present */
+      if (this.event.venue_names.length === 0) { this.AddVenue(); }
+
+      /* Quit if not editing */
       if (!this.editing) {
         this.close();
       }
@@ -196,6 +206,11 @@ export class AddEventComponent implements OnInit {
   /** Add a new venue */
   AddVenue() {
     this.event.venue_names.push('');
+  }
+
+  /** Remove blank venues from event.venue_names */
+  RemoveBlankVenues() {
+    this.event.venue_names = this.event.venue_names.filter(v => v !== '');
   }
 
   /** Removes venue at index */
