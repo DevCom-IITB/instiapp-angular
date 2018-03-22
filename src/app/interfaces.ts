@@ -1,25 +1,25 @@
-﻿export interface EnumContainer {
+﻿export interface IEnumContainer {
     count: number;
     data: any;
 }
 
-export interface UserProfile {
+export interface IUserProfile {
     id: string;
     name: string;
     profile_pic: string;
-    events_interested: Event[];
-    events_going: Event[];
+    events_interested: IEvent[];
+    events_going: IEvent[];
     email: string;
     year: number;
     roll_no: string;
     contact_number: string;
     about: string;
-    followed_bodies: Body;
+    followed_bodies: IBody[];
     followed_bodies_id: string[];
-    roles: BodyRole[];
+    roles: IBodyRole[];
 }
 
-export interface Event {
+export interface IEvent {
     id: string;
     name: string;
     description: string;
@@ -27,48 +27,48 @@ export interface Event {
     start_time: Date;
     end_time: Date;
     all_day: boolean;
-    venues: Location[];
+    venues: ILocation[];
     venue_names: string[];
     venues_str: string;
-    bodies: Body[];
+    bodies: IBody[];
     bodies_id: string[];
-    interested: UserProfile[];
+    interested: IUserProfile[];
     interested_count: number;
     going_count: number;
-    going: UserProfile[];
+    going: IUserProfile[];
 }
 
-export interface Location {
+export interface ILocation {
     id: string;
     name: string;
     lat: number;
     lng: number;
 }
 
-export interface Body {
+export interface IBody {
     id: string;
     name: string;
     description: string;
     image_url: string;
-    children: Body[];
+    children: IBody[];
     parents: string[];
-    events: Event[];
+    events: IEvent[];
     followers_count: number;
 }
 
-export interface UserEventStatus {
+export interface IUserEventStatus {
     id: string;
     event: string;
     user: string;
     status: number;
 }
 
-export interface BodyRole {
+export interface IBodyRole {
     id: string;
     name: string;
     inheritable: boolean;
     body: string;
-    body_detail: Body;
+    body_detail: IBody;
     permissions: string[];
     users: string[];
 }

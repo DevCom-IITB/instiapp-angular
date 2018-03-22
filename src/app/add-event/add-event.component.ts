@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { Event, Body } from '../interfaces';
+import { IEvent, IBody } from '../interfaces';
 import { Time } from '@angular/common';
 import { Helpers } from '../helpers';
 import { Observable } from 'rxjs/Observable';
@@ -19,15 +19,15 @@ const PREV_PAGE = 'calendar';
 export class AddEventComponent implements OnInit {
   public venuesList = [];
 
-  public event: Event;
+  public event: IEvent;
 
   public start_time = '00:00';
   public end_time = '00:00';
 
   public networkBusy = false;
 
-  public bodies: Body[] = [] as Body[];
-  public disabledBodies: Body[] = [] as Body[];
+  public bodies: IBody[] = [] as IBody[];
+  public disabledBodies: IBody[] = [] as IBody[];
 
   public editing = false;
   public canDelete = false;
@@ -98,7 +98,7 @@ export class AddEventComponent implements OnInit {
         });
       } else {
         /* Initialize blank */
-        this.event = {} as Event;
+        this.event = {} as IEvent;
         this.event.start_time = new Date();
         this.event.end_time = new Date();
         this.event.bodies_id = [];
@@ -147,7 +147,7 @@ export class AddEventComponent implements OnInit {
     if (!this.MarkNetworkBusy()) { return; }
     this.timeChanged();
 
-    let obs: Observable<Event>;
+    let obs: Observable<IEvent>;
     if (!this.editing) {
       obs = this.dataService.PostEvent(this.event);
     } else {

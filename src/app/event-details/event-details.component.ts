@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
-import { Event } from '../interfaces';
+import { IEvent } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   @Input() public eventId: string;
   @Output() public load = new EventEmitter<boolean>();
 
-  public event: Event;
+  public event: IEvent;
 
   constructor(
     private activatedRoute: ActivatedRoute,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { UserProfile } from '../interfaces';
+import { IUserProfile } from '../interfaces';
 
 const DEFAULT_USERNAME = 'Guest';
 const DEFAULT_LDAP = 'IITB User';

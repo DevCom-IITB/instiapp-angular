@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EnumContainer, UserProfile, UserEventStatus, Location, Event, Body } from './interfaces';
+import { IEnumContainer, IUserProfile, IUserEventStatus, ILocation, IEvent, IBody } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
@@ -21,7 +21,7 @@ const CLIENT_ID = environment.sso_client_id;
 export class DataService {
 
   /** Detailed events */
-  public eventsDetailed: Event[] = [] as Event[];
+  public eventsDetailed: IEvent[] = [] as IEvent[];
 
   /** If user is logged in */
   public loggedIn = false;
@@ -29,7 +29,7 @@ export class DataService {
   private loggedInSubject: Subject<boolean>;
 
   /** User Profile of the logged in user */
-  public currentUser: UserProfile;
+  public currentUser: IUserProfile;
 
   constructor(private http: HttpClient, public router: Router) {
     /* Initialize */
@@ -117,8 +117,8 @@ export class DataService {
   /**
    * Gets a list of all users
    */
-  GetUsersList(): Observable<UserProfile[]> {
-    return this.FireGET<UserProfile[]>(API.UserList);
+  GetUsersList(): Observable<IUserProfile[]> {
+    return this.FireGET<IUserProfile[]>(API.UserList);
   }
 
   /**
@@ -126,24 +126,24 @@ export class DataService {
    * related to bodies the user follows
    * @param uuid UUID of user
    */
-  GetUserFollowedBodiesEvents(uuid: string): Observable<EnumContainer> {
-    return this.FireGET<EnumContainer>(API.UserFollowedEvents, {uuid: uuid});
+  GetUserFollowedBodiesEvents(uuid: string): Observable<IEnumContainer> {
+    return this.FireGET<IEnumContainer>(API.UserFollowedEvents, {uuid: uuid});
   }
 
   /**
    * Get all events currently stored
    */
-  GetAllEvents(): Observable<EnumContainer> {
-    return this.FireGET<EnumContainer>(API.Events);
+  GetAllEvents(): Observable<IEnumContainer> {
+    return this.FireGET<IEnumContainer>(API.Events);
   }
 
   /** Get detailed information on an event */
-  GetEvent(uuid: string): Observable<Event> {
-    return this.FireGET<Event>(API.Event, {uuid: uuid});
+  GetEvent(uuid: string): Observable<IEvent> {
+    return this.FireGET<IEvent>(API.Event, {uuid: uuid});
   }
 
   /** Fills the event with uuid into the cache and returns it */
-  FillGetEvent(uuid: string): Observable<Event> {
+  FillGetEvent(uuid: string): Observable<IEvent> {
     const index = this.eventsDetailed.findIndex(m => m.id === uuid);
     return Observable.create(observer => {
       if (index === -1) {
@@ -162,23 +162,23 @@ export class DataService {
     });
   }
 
-  PostEvent(body: any): Observable<Event> {
-    return this.FirePOST<Event>(API.Events, body);
+  PostEvent(body: any): Observable<IEvent> {
+    return this.FirePOST<IEvent>(API.Events, body);
   }
 
-  PutEvent(id: string, body: any): Observable<Event> {
-    return this.FirePUT<Event>(API.Event, body, {uuid: id});
+  PutEvent(id: string, body: any): Observable<IEvent> {
+    return this.FirePUT<IEvent>(API.Event, body, {uuid: id});
   }
 
   /** Get all locations */
-  GetAllLocations(): Observable<Location[]> {
-    return this.FireGET<Location[]>(API.Locations);
+  GetAllLocations(): Observable<ILocation[]> {
+    return this.FireGET<ILocation[]>(API.Locations);
   }
 
   /** Gets the current user if logged in
    * The result is cached
    */
-  GetFillCurrentUser(): Observable<UserProfile> {
+  GetFillCurrentUser(): Observable<IUserProfile> {
     return Observable.create(observer => {
       if (!this.currentUser) {
         this.FireGET<any>(API.LoggedInUser).subscribe(result => {
@@ -229,9 +229,9 @@ export class DataService {
    * Gets a list of minimal bodies for which the user has the listed permission
    * @param permission Any of `AddE`, `UpdE`, `DelE`, `Role`
    */
-  GetBodiesWithPermission(permission: string): Body[] {
+  GetBodiesWithPermission(permission: string): IBody[] {
     if (!this.loggedIn) { return []; }
-    const bodies: Body[] = [] as Body[];
+    const bodies: IBody[] = [] as IBody[];
     for (const role of this.currentUser.roles) {
       if (role.permissions.indexOf(permission) !== -1) {
         if (bodies.map(m => m.id).indexOf(role.body) === -1) {
@@ -248,7 +248,7 @@ export class DataService {
   }
 
   /** Returns true if the user has permission to edit the event */
-  CanEditEvent(event: Event): boolean {
+  CanEditEvent(event: IEvent): boolean {
     for (const body of event.bodies) {
       if (this.HasBodyPermission(body.id, 'UpdE')) {
         return true;
@@ -258,7 +258,7 @@ export class DataService {
   }
 
   /** Return true if the user can delete the event */
-  CanDeleteEvent(event: Event): boolean {
+  CanDeleteEvent(event: IEvent): boolean {
     for (const body of event.bodies) {
       if (!this.HasBodyPermission(body.id, 'DelE')) {
         return false;

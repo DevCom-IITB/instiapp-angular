@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
-import { Event } from '../interfaces';
+import { IEvent } from '../interfaces';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { EnterLeft, EnterRight } from '../animations';
 
@@ -13,7 +13,7 @@ import { EnterLeft, EnterRight } from '../animations';
 })
 export class FeedComponent implements OnInit {
   mobileQuery: MediaQueryList;
-  events: Event[];
+  events: IEvent[];
   showingEventDetails = false;
   animedEventDetails = false;
   hiddenEventDetails = true;
@@ -48,7 +48,7 @@ export class FeedComponent implements OnInit {
   }
 
   /** Opens the event-details component */
-  OpenEvent(event: Event) {
+  OpenEvent(event: IEvent) {
     if (this.mobileQuery.matches) {
       this.NavigateEventDeatils(event);
     } else {
@@ -60,12 +60,12 @@ export class FeedComponent implements OnInit {
   }
 
   /** Navigate to event-details component */
-  NavigateEventDeatils(event: Event) {
+  NavigateEventDeatils(event: IEvent) {
     this.router.navigate(['event-details', event.id]);
   }
 
   /** Open or update the side event-details pane */
-  EventDetailsPane(event: Event) {
+  EventDetailsPane(event: IEvent) {
     /* Open the bar for the first time */
     if (!this.showingEventDetails) {
       this.showingEventDetails = true;
