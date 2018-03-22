@@ -1,4 +1,4 @@
-<div class="calendar-container mat-elevation-z4">
+<div class="calendar-container mat-elevation-z4" *ngIf="events">
     <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
     <mat-chip-list class="mat-chip-list-stacked">
         <mat-chip color="accent" selected="true" id="head-chip">
@@ -7,7 +7,7 @@
     </mat-chip-list>
 
     <br>
-    <ng-container *ngIf="events">
+    <ng-container>
         <mat-card *ngFor="let event of GetDateEvents(selDate)"
                     (click)="openEvent(event)"
                     class="sub-card">
