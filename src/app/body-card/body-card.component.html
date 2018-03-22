@@ -1,0 +1,7 @@
+<mat-card *ngIf="body" class="sub-card">
+  <mat-card-header>
+    <img mat-card-avatar [src]="body.image_url" />
+    <mat-card-title>{{ body.name }}</mat-card-title>
+    <mat-card-subtitle>{{ body.description }}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

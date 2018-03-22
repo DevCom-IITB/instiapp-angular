@@ -23,13 +23,10 @@
   <!-- Tabbed information -->
   <mat-tab-group class="tab-group" mat-stretch-tabs>
       <mat-tab label="Following">
-          <mat-card *ngFor="let body of profile.followed_bodies" class="sub-card">
-            <mat-card-header>
-              <img mat-card-avatar [src]="body.image_url" />
-              <mat-card-title>{{ body.name }}</mat-card-title>
-              <mat-card-subtitle>{{ body.description }}</mat-card-subtitle>
-            </mat-card-header>
-          </mat-card>
+          <app-body-card 
+            *ngFor="let body of profile.followed_bodies"
+            [body]="body">
+          </app-body-card>
       </mat-tab>
       <mat-tab label="Events">
         <app-event-card

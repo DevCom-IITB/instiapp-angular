@@ -31,6 +31,7 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { EventCardComponent } from './event-card/event-card.component';
+import { BodyCardComponent } from './body-card/body-card.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { EventCardComponent } from './event-card/event-card.component';
     AddEventComponent,
     LoginComponent,
     UserDetailsComponent,
-    EventCardComponent
+    EventCardComponent,
+    BodyCardComponent
   ],
   imports: [
     BrowserModule,
