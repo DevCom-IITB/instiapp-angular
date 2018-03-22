@@ -1,3 +1,9 @@
-<p>
-  user-details works!
-</p>
+<div class="loading-spinner">
+    <mat-spinner *ngIf="!profile"
+                mode="indeterminate">
+    </mat-spinner>
+</div>
+
+<div class="full-container" *ngIf="profile">
+  {{profile.name}}
+</div>
