@@ -40,7 +40,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color:blue;
+    background-color:black;
 }
 
 .sub-card {
