@@ -92,6 +92,9 @@ export class AddEventComponent implements OnInit {
             }
           }
 
+        }, (error) => {
+          alert('Event not found!');
+          this.close();
         });
       } else {
         /* Initialize blank */
