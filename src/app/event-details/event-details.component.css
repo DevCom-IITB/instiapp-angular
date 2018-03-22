@@ -9,7 +9,6 @@
 @media (max-width: 767px) {
     .full-container {
         background-color: white;
-        width: 100vw;
     }
 
     .detail-card {
