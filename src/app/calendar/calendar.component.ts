@@ -31,4 +31,26 @@ export class CalendarComponent implements OnInit {
     this.router.navigate(['add-event']);
   }
 
+  /** Get events for the date */
+  GetDateEvents(date: any): IEvent[] {
+    const selEvents: IEvent[] = [] as IEvent[];
+    /* Add events for the date */
+    for (const event of this.events) {
+      const start_date = new Date(event.start_time);
+      const end_date = new Date(event.end_time);
+      if (date.month === start_date.getMonth() &&
+          date.year === start_date.getFullYear() &&
+          (start_date.getDate() <= date.date && end_date.getDate() >= date.date)
+        ) {
+          selEvents.push(event);
+      }
+    }
+    return selEvents;
+  }
+
+  /** Open an event */
+  openEvent(event: IEvent): void {
+    this.router.navigate(['event-details', event.id]);
+  }
+
 }

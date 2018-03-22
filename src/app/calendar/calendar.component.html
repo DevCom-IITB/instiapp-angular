@@ -2,14 +2,14 @@
     <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
     <mat-chip-list class="mat-chip-list-stacked">
         <mat-chip color="accent" selected="true" id="head-chip">
-            GOGOGO
+            GOGOGO {{selDate.date}}
         </mat-chip>
     </mat-chip-list>
 
     <br>
     <ng-container *ngIf="events">
-        <mat-card *ngFor="let event of events"
-                    (click)="OpenEvent(event)"
+        <mat-card *ngFor="let event of GetDateEvents(selDate)"
+                    (click)="openEvent(event)"
                     class="sub-card">
             <mat-card-header>
                 <img mat-card-avatar [src]="event.image_url" src-fallback="/assets/placeholder.png"/>
