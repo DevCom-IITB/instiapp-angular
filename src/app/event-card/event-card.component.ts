@@ -7,11 +7,16 @@ import { DataService } from '../data.service';
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.css']
 })
-export class EventCardComponent {
+export class EventCardComponent implements OnInit {
 
   @Input() event: IEvent;
   constructor(
     public dataService: DataService,
   ) { }
 
+  ngOnInit() {
+    if (this.event) {
+      this.event.venues_str = this.event.venues.map(v => v.name).join(', ');
+    }
+  }
 }
