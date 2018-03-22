@@ -7,6 +7,7 @@ import { Time } from '@angular/common';
 import { Helpers } from '../helpers';
 import { Observable } from 'rxjs/Observable';
 import { API } from '../../api';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const PREV_PAGE = 'calendar';
 
@@ -36,6 +37,7 @@ export class AddEventComponent implements OnInit {
     public dataService: DataService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
+    public snackBar: MatSnackBar,
   ) {
     /* Load locations */
     dataService.GetAllLocations().subscribe(result => {
@@ -126,8 +128,14 @@ export class AddEventComponent implements OnInit {
     this.dataService.UploadImage(files[0]).subscribe(result => {
       this.event.image_url = result.picture;
       this.networkBusy = false;
+      this.snackBar.open('Image Uploaded', 'Dismiss', {
+        duration: 2000,
+      });
     }, () => {
       this.networkBusy = false;
+      this.snackBar.open('Image Uploading Failed', 'Dismiss', {
+        duration: 2000,
+      });
     });
   }
 
@@ -144,11 +152,17 @@ export class AddEventComponent implements OnInit {
     }
 
     obs.subscribe(result => {
-      alert('Successful!');
+      this.snackBar.open('Successful!', 'Dismiss', {
+        duration: 2000,
+      });
       this.networkBusy = false;
-      this.close();
+      if (!this.editing) {
+        this.close();
+      }
     }, () => {
-      alert('Action failed! Please check all fields.');
+      this.snackBar.open('An error occured!', 'Dismiss', {
+        duration: 2000,
+      });
       this.networkBusy = false;
     });
   }
@@ -157,6 +171,9 @@ export class AddEventComponent implements OnInit {
   delete() {
     if (confirm('Are you sure you want to delete this event? This action is irreversible!')) {
       this.dataService.FireDELETE(API.Event, {uuid: this.eventId}).subscribe(() => {
+        this.snackBar.open('Event Deleted!', 'Dismiss', {
+          duration: 2000,
+        });
         this.close();
       }, (error) => {
         if (error.detail) {
