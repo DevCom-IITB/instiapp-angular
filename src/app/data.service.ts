@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
 import { Subject } from 'rxjs/Subject';
 import { API } from '../api';
+import { Location } from '@angular/common';
 
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -31,7 +32,11 @@ export class DataService {
   /** User Profile of the logged in user */
   public currentUser: IUserProfile;
 
-  constructor(private http: HttpClient, public router: Router) {
+  constructor(
+    private http: HttpClient,
+    public router: Router,
+    public location: Location,
+  ) {
     /* Initialize */
     this.loggedInSubject = new Subject<boolean>();
     this.loggedInObservable = this.loggedInSubject.asObservable();
@@ -291,6 +296,11 @@ export class DataService {
     }
     return this.zeroPad(hours, 2) + ':' + this.zeroPad(minutes, 2) + ' | ' +
         day + daySuffix + ' ' + monthNames[monthIndex];
+  }
+
+  /** Navigates to the previous page */
+  navigateBack() {
+    this.location.back();
   }
 
 }

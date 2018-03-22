@@ -14,7 +14,8 @@
         <mat-icon>menu</mat-icon>
     </button>
     <button mat-icon-button
-            *ngIf="getState(o)==='overlay'">
+            *ngIf="getState(o)==='overlay'"
+            (click)="dataService.navigateBack();">
         <mat-icon>arrow_back</mat-icon>
     </button>
 
