@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,6 +44,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatNativeDateModule,
         MatAutocompleteModule,
         MatChipsModule,
+        MatTabsModule,
     ],
     exports: [
         BrowserModule,
@@ -65,6 +67,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatNativeDateModule,
         MatAutocompleteModule,
         MatChipsModule,
+        MatTabsModule,
     ],
 })
 export class MyMaterialClass { }

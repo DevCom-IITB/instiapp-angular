@@ -5,6 +5,7 @@
 </div>
 
 <div class="detail-card mat-shadow-z3" *ngIf="profile">
+  <!-- Head information -->
   <div id="head">
     <img [src]="profile.profile_pic"
          class="profile-pic img-circle">
@@ -16,4 +17,30 @@
       </span>
     </div>
   </div>
+
+  <br>
+
+  <!-- Tabbed information -->
+  <mat-tab-group class="tab-group" mat-stretch-tabs>
+      <mat-tab label="Following">
+          <mat-card *ngFor="let body of profile.followed_bodies" class="sub-card">
+            <mat-card-header>
+              <img mat-card-avatar [src]="body.image_url" />
+              <mat-card-title>{{ body.name }}</mat-card-title>
+              <mat-card-subtitle>{{ body.description }}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+      </mat-tab>
+      <mat-tab label="Events">
+        <mat-card *ngFor="let event of profile.events_going.concat(profile.events_interested)"
+                   class="sub-card">
+          <mat-card-header>
+            <img mat-card-avatar [src]="event.image_url" src-fallback="/assets/placeholder.png"/>
+            <mat-card-title>{{ event.name }}</mat-card-title>
+            <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </mat-tab>
+  </mat-tab-group>
+
 </div>
