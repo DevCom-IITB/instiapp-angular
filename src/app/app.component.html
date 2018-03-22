@@ -10,11 +10,11 @@
 <mat-toolbar class="example-toolbar" color="primary">
     <button mat-icon-button
             sidebarjsOpen
-            *ngIf="getState(o)==='base'">
+            [style.display]="getState(o)==='base' ? 'inline' : 'none'">
         <mat-icon>menu</mat-icon>
     </button>
     <button mat-icon-button
-            *ngIf="getState(o)==='overlay'"
+            [style.display]="getState(o)==='overlay' ? 'inline' : 'none'"
             (click)="dataService.navigateBack();">
         <mat-icon>arrow_back</mat-icon>
     </button>
