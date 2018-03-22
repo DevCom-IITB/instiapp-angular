@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { IEvent, IBody } from '../interfaces';
+import { IEvent, IBody, ILocation } from '../interfaces';
 import { Time } from '@angular/common';
 import { Helpers } from '../helpers';
 import { Observable } from 'rxjs/Observable';
@@ -41,6 +41,13 @@ export class AddEventComponent implements OnInit {
     dataService.GetAllLocations().subscribe(result => {
       this.venuesList = result.map(r => r.name);
     });
+  }
+
+  /** Filter venues with name */
+  filterVenues(name: string): string[] {
+    if (!name) { return this.venuesList; }
+    return this.venuesList.filter(venue =>
+      venue.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
   ngOnInit() {
@@ -103,7 +110,7 @@ export class AddEventComponent implements OnInit {
         this.event.start_time = new Date();
         this.event.end_time = new Date();
         this.event.bodies_id = [];
-        this.event.venue_names = [];
+        this.event.venues = [] as ILocation[];
         this.AddVenue();
       }
     });
@@ -147,7 +154,7 @@ export class AddEventComponent implements OnInit {
   /** POSTs or PUTs to the server */
   go() {
     if (!this.MarkNetworkBusy()) { return; }
-    this.RemoveBlankVenues();
+    this.ConstructVenuesNames();
     this.timeChanged();
 
     let obs: Observable<IEvent>;
@@ -205,17 +212,22 @@ export class AddEventComponent implements OnInit {
 
   /** Add a new venue */
   AddVenue() {
-    this.event.venue_names.push('');
+    if (!this.event.venues) {
+      this.event.venues = [] as ILocation[];
+    }
+    const new_loc = {} as ILocation;
+    this.event.venues.push(new_loc);
   }
 
-  /** Remove blank venues from event.venue_names */
-  RemoveBlankVenues() {
+  /** Make and remove blank venues from event.venue_names */
+  ConstructVenuesNames() {
+    this.event.venue_names = this.event.venues.map(v => v.name);
     this.event.venue_names = this.event.venue_names.filter(v => v !== '');
   }
 
   /** Removes venue at index */
   RemoveVenue(i: number) {
-    this.event.venue_names.splice(i, 1);
+    this.event.venues.splice(i, 1);
   }
 
   /** Navigate back */
