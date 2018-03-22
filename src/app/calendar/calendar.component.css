@@ -4,7 +4,7 @@
     right: 20px;
 }
 
-.calendar-container {
+.full-container {
     padding: 0;
     margin: auto;
     max-width: 400px;
@@ -14,6 +14,6 @@
 #head-chip {
     width: 120px;
     text-align: center;
-    margin-top: -15px;
-    margin-left: calc(50% - 75px);
+    margin-top: -8px;
+    margin-left: calc(50% - 72px);
 }
