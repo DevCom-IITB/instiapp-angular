@@ -29,6 +29,7 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { LoginComponent } from './login/login.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoginComponent } from './login/login.component';
     EventDetailsComponent,
     CalendarComponent,
     AddEventComponent,
-    LoginComponent
+    LoginComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' } },
+      { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' }
     ]),
