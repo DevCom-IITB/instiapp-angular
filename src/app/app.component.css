@@ -44,10 +44,6 @@
     margin-top: 0;
 }
 
-#logout:hover {
-    color:white;
-}
-
 :focus {
     outline: none;
 }
@@ -68,7 +64,6 @@
 .example-toolbar {
     z-index: 2;
     position: fixed;
-    color: white;
 }
 
 h1.example-app-name {
