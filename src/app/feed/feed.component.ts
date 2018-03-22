@@ -61,9 +61,7 @@ export class FeedComponent implements OnInit {
 
   /** Navigate to event-details component */
   NavigateEventDeatils(event: Event) {
-    this.dataService.FillGetEvent(event.id).subscribe(() => {
-      this.router.navigate(['/event-details', event.id]);
-    });
+    this.router.navigate(['event-details', event.id]);
   }
 
   /** Open or update the side event-details pane */
