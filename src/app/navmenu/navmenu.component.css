@@ -1,13 +1,9 @@
 .head-card {
     height: 40px;
-    background-color: #4DB6AC;
     margin-top: -10px;
     padding: 20px;
     box-shadow: none !important;
-}
-
-.header-title {
-    color: white;
+    display: flex;
 }
 
 .profile-pic {

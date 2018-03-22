@@ -52,8 +52,13 @@ body {
 
 .theme-header {
     width: 100%;
-    background-color: #4DB6AC;
+    background-color: #009688;
     margin-bottom: 10px;
+}
+
+.primary-background-color{
+    background-color: #009688;
+    color: white;
 }
 
 .full-width {
