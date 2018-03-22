@@ -5,6 +5,7 @@
     z-index: 3;
     min-height: 60vh;
     background-color: white;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 767px) {
@@ -14,6 +15,7 @@
 
     .detail-card {
         min-height: 100vh;
+        margin-bottom: 0;
     }
 }
 
