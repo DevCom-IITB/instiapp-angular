@@ -18,7 +18,7 @@ const PREV_PAGE = 'calendar';
 export class AddEventComponent implements OnInit {
   public venuesList = [];
 
-  public event: Event = {} as Event;
+  public event: Event;
 
   public start_time = '00:00';
   public end_time = '00:00';
@@ -37,18 +37,10 @@ export class AddEventComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
   ) {
-
     /* Load locations */
     dataService.GetAllLocations().subscribe(result => {
       this.venuesList = result.map(r => r.name);
     });
-
-    /* Initialize */
-    this.event.start_time = new Date();
-    this.event.end_time = new Date();
-    this.event.bodies_id = [];
-    this.event.venue_names = [];
-
   }
 
   ngOnInit() {
@@ -99,6 +91,13 @@ export class AddEventComponent implements OnInit {
           }
 
         });
+      } else {
+        /* Initialize blank */
+        this.event = {} as Event;
+        this.event.start_time = new Date();
+        this.event.end_time = new Date();
+        this.event.bodies_id = [];
+        this.event.venue_names = [];
       }
     });
   }

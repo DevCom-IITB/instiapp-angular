@@ -20,6 +20,13 @@ body, .image-background {
     */
 }
 
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 body {
     overflow-x: hidden;
 }

@@ -1,4 +1,10 @@
-<div id="main" class="mat-elevation-z3">
+<div class="loading-spinner">
+    <mat-spinner *ngIf="!event"
+                mode="indeterminate">
+    </mat-spinner>
+</div>
+
+<div id="main" class="mat-elevation-z3" *ngIf="event">
 
 <button mat-mini-fab color="accent"
     class="back-button"

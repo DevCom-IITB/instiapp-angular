@@ -1,3 +1,9 @@
+<div class="loading-spinner">
+    <mat-spinner *ngIf="!events"
+                mode="indeterminate">
+    </mat-spinner>
+</div>
+
 <div *ngIf="events" class="events-list mat-elevation-z3" [@enterLeft]='bstr(abln(events)&&!mobileQuery.matches)'>
     <mat-card class="head-card" (click)=OpenEvent(events[0])>
         <img mat-card-image [src]="events[0].image_url">
