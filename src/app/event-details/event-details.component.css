@@ -4,6 +4,7 @@
     max-width: 428px;
     z-index: 3;
     min-height: 60vh;
+    background-color: white;
 }
 
 @media (max-width: 767px) {

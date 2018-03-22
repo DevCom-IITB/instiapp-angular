@@ -48,6 +48,29 @@ export class CalendarComponent implements OnInit {
     return selEvents;
   }
 
+  /** Gets human readable human count */
+  GetCount(date: any): string {
+    const count = this.GetDateEvents(date).length;
+    let prefix: string;
+    if (count === 0) {
+      prefix = 'No Events';
+    } else if (count === 1) {
+      prefix = '1 Event';
+    } else {
+      prefix = count + ' Events';
+    }
+
+    /* Return with 'today' if date is today */
+    const now = new Date();
+    if (date.date === now.getDate() &&
+        date.month === now.getMonth() &&
+        date.year === now.getFullYear()) {
+          return prefix + ' Today';
+    } else {
+      return prefix;
+    }
+  }
+
   /** Open an event */
   openEvent(event: IEvent): void {
     this.router.navigate(['event-details', event.id]);
