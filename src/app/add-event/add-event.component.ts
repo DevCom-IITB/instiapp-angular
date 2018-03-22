@@ -9,8 +9,6 @@ import { Observable } from 'rxjs/Observable';
 import { API } from '../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-const PREV_PAGE = 'calendar';
-
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
@@ -207,7 +205,7 @@ export class AddEventComponent implements OnInit {
 
   /** Navigate back */
   close() {
-    this.router.navigate([PREV_PAGE]);
+    this.dataService.navigateBack();
   }
 
 }

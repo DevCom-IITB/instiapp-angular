@@ -48,7 +48,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
 
   /** Navigate back to feed (should be changed to last page) */
   closeEventDetails() {
-    this.router.navigate(['feed']);
+    this.dataService.navigateBack();
   }
 
   openEventEdit() {
