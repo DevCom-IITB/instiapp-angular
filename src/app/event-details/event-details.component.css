@@ -1,11 +1,6 @@
 .detail-card {
-    width: 100%;
-    margin: auto;
-    max-width: 428px;
     z-index: 3;
     min-height: 60vh;
-    background-color: white;
-    margin-bottom: 10px;
 }
 
 @media (max-width: 767px) {

@@ -1,0 +1,18 @@
+.detail-card {
+    padding: 10px;
+}
+
+.profile-pic {
+    height: 100px;
+    width: 100px;
+}
+
+#head {
+    display: flex;
+}
+
+#info-header {
+    margin-top: 15px;
+    margin-left: 5%;
+    margin-right: 0;
+}

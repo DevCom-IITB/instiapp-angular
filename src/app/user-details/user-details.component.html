@@ -4,6 +4,16 @@
     </mat-spinner>
 </div>
 
-<div class="full-container" *ngIf="profile">
-  {{profile.name}}
+<div class="detail-card mat-shadow-z3" *ngIf="profile">
+  <div id="head">
+    <img [src]="profile.profile_pic"
+         class="profile-pic img-circle">
+    <div id="info-header">
+      <b>{{ profile.name }}</b><br>
+      <span class="grey-text-on-white">
+        {{ profile.roll_no }}<br>
+        {{ profile.email }}
+      </span>
+    </div>
+  </div>
 </div>

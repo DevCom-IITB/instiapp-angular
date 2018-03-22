@@ -68,3 +68,19 @@ body {
 .full-width {
     width: 100%;
 }
+
+.detail-card {
+    width: 100%;
+    margin: auto;
+    max-width: 428px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.grey-text-on-white {
+    color: #777;
+}
