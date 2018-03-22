@@ -1,5 +1,23 @@
-<div class="calendar-container">
+<div class="calendar-container mat-elevation-z4">
     <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
+    <mat-chip-list class="mat-chip-list-stacked">
+        <mat-chip color="accent" selected="true" id="head-chip">
+            GOGOGO
+        </mat-chip>
+    </mat-chip-list>
+
+    <br>
+    <ng-container *ngIf="events">
+        <mat-card *ngFor="let event of events"
+                    (click)="OpenEvent(event)"
+                    class="sub-card">
+            <mat-card-header>
+                <img mat-card-avatar [src]="event.image_url" src-fallback="/assets/placeholder.png"/>
+                <mat-card-title>{{ event.name }}</mat-card-title>
+                <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
+    </ng-container>
 </div>
 
 <button mat-fab

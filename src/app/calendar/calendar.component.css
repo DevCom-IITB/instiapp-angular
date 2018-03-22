@@ -10,3 +10,10 @@
     max-width: 400px;
     background-color: white;
 }
+
+#head-chip {
+    width: 120px;
+    text-align: center;
+    margin-top: -15px;
+    margin-left: calc(50% - 75px);
+}
