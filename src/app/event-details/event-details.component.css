@@ -32,6 +32,11 @@
     }    
 }
 
+.event-image {
+    width:100%;
+    height:auto;
+}
+
 .card-header {
     padding: 12px;
     padding-bottom: 3px;
@@ -45,7 +50,6 @@
 }
 
 .event-name {
-    color: white;
     font-weight: bold;
     font-size: 14pt;
     padding-left: 10px;
