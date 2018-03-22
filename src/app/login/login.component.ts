@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.dataService.showToolbar = false;
     const params = this.activatedRoute.snapshot.queryParams;
     if (params.hasOwnProperty('code')) {
       const auth_code = params['code'];

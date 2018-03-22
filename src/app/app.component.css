@@ -5,9 +5,12 @@
     }
 }
 
-.outlet-div {
-    margin-top:30px;
-    z-index: 1;
+#outlet {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    position: absolute;
+    margin-top: 70px;
 }
 
 #swipe-right-area {
@@ -32,7 +35,7 @@
         margin: 5px;
     }
 
-    .outlet-div {
+    #outlet {
         margin-top: 50px;
     }
 }
@@ -65,14 +68,7 @@
 .example-toolbar {
     z-index: 2;
     position: fixed;
-    transition-delay: 0.5ms;
-    -webkit-transition: ease-in-out transform 0.5s;
-    transition: ease-in-out transform 0.5s;
     color: white;
-}
-
-.hide-toolbar {
-    transform: translateX(-100%);
 }
 
 h1.example-app-name {

@@ -37,7 +37,6 @@ export class AddEventComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
   ) {
-    dataService.showToolbar = false;
 
     /* Load locations */
     dataService.GetAllLocations().subscribe(result => {

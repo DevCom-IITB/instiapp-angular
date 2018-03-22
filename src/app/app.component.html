@@ -7,8 +7,7 @@
 
 <div #swipeArea id="swipe-right-area" sidebarjsOpen (panright)="clickHamburger()"></div>
 
-<mat-toolbar class="example-toolbar" color="primary"
-             [class.hide-toolbar]="!dataService.showToolbar">
+<mat-toolbar class="example-toolbar" color="primary">
     <button mat-icon-button sidebarjsOpen><mat-icon>menu</mat-icon></button>
 
     <h1 class="example-app-name">
@@ -29,8 +28,8 @@
     </button>
 </mat-toolbar>
 
-<main [@routerTransition]="getState(o)"
-        (@routerTransition.done)="scrollToTop();">
-    <router-outlet #o="outlet" style="padding:0; margin: 0; position:fixed; top:0;"></router-outlet>
-</main>
+<div id="outlet">
+    <router-outlet></router-outlet>
+</div>
+
 </ng-container>

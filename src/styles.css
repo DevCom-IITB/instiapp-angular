@@ -32,10 +32,6 @@ body {
     background-color:blue;
 }
 
-.toolbar-margin {
-    height: 70px;
-}
-
 .sub-card {
     max-width: 428px;
     height:40px;
@@ -45,12 +41,6 @@ body {
 
 .multi-line-text {
     white-space: pre-line;
-}
-
-@media (max-width: 767px) {
-    .toolbar-margin {
-        height: 56px;
-    }
 }
 
 .theme-header {

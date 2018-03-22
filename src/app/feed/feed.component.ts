@@ -11,7 +11,7 @@ import { EnterLeft, EnterRight } from '../animations';
   styleUrls: ['./feed.component.css'],
   animations: [EnterLeft, EnterRight]
 })
-export class FeedComponent implements OnInit, AfterViewChecked {
+export class FeedComponent implements OnInit {
   mobileQuery: MediaQueryList;
   events: Event[];
   showingEventDetails = false;
@@ -45,11 +45,6 @@ export class FeedComponent implements OnInit, AfterViewChecked {
             ev.venues_str = ev.venues.map(v => v.name).join(', ');
           });
       });
-  }
-
-  /* Set showToolbar to true when coming to this view */
-  ngAfterViewChecked() {
-    this.dataService.showToolbar = true;
   }
 
   /** Opens the event-details component */

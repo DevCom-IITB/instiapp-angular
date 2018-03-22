@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent implements OnInit, AfterViewChecked {
+export class CalendarComponent implements OnInit {
 
   public selDate = { date: 1, month: 1, year: 1 };
 
@@ -19,11 +19,6 @@ export class CalendarComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.selDate = XunkCalendarModule.getToday();
-  }
-
-  /* Set showToolbar to true when coming to this view */
-  ngAfterViewChecked() {
-    this.dataService.showToolbar = true;
   }
 
   /** Add a new event */

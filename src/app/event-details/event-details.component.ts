@@ -19,9 +19,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     private activatedRoute: ActivatedRoute,
     public dataService: DataService,
     public router: Router,
-  ) {
-    dataService.showToolbar = false;
-  }
+  ) {}
 
   /** Refresh the component whenever passed eventId changes */
   ngOnChanges() {

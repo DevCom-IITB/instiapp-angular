@@ -2,14 +2,12 @@ import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, ViewChild,
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
-import { routerTransition } from './animations';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [ routerTransition ],
 })
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;

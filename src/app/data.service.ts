@@ -20,9 +20,6 @@ const CLIENT_ID = environment.sso_client_id;
 @Injectable()
 export class DataService {
 
-  /** True to show the global toolbar */
-  public showToolbar = true;
-
   /** Detailed events */
   public eventsDetailed: Event[] = [] as Event[];
 
