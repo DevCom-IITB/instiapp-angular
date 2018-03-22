@@ -1,0 +1,7 @@
+<mat-card class="sub-card" *ngIf="event">
+  <mat-card-header>
+    <img mat-card-avatar [src]="event.image_url" src-fallback="/assets/placeholder.png"/>
+    <mat-card-title>{{ event.name }}</mat-card-title>
+    <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

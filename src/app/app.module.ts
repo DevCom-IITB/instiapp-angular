@@ -30,6 +30,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { EventCardComponent } from './event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     CalendarComponent,
     AddEventComponent,
     LoginComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    EventCardComponent
   ],
   imports: [
     BrowserModule,

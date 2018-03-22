@@ -11,16 +11,10 @@
         <span class="subhead">{{ dataService.GetDate(events[0].start_time) }} | {{ events[0].venues_str }}</span>
     </mat-card>
 
-    <mat-card *ngFor="let event of events.slice(1, events.length)"
-               (click)=OpenEvent(event)
-                class="sub-card">
-        <mat-card-header>
-          <img mat-card-avatar [src]="event.image_url" src-fallback="/assets/placeholder.png"/>
-
-          <mat-card-title>{{ event.name }}</mat-card-title>
-          <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</mat-card-subtitle>
-        </mat-card-header>
-    </mat-card>
+    <app-event-card *ngFor="let event of events.slice(1, events.length)"
+                    (click)=OpenEvent(event)
+                    [event]="event">
+    </app-event-card>
 </div>
 
 <div class="event-details-container mat-elevation-z3"
