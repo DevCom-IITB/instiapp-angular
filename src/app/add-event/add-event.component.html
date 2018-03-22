@@ -6,12 +6,6 @@
 
 <div id="main" class="mat-elevation-z3" *ngIf="event">
 
-<button mat-mini-fab color="accent"
-    class="back-button"
-    (click)="close()">
-  <mat-icon>arrow_back</mat-icon>
-</button>
-
 <div class="theme-header">
   <input style="display:none;" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
   <img class="header-image"
