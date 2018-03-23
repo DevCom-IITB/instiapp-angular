@@ -1,0 +1,46 @@
+.detail-card {
+    z-index: 3;
+    min-height: 60vh;
+}
+
+@media (max-width: 767px) {
+    .full-container {
+        background-color: white;
+    }
+
+    .detail-card {
+        min-height: 100vh;
+        margin-bottom: 0;
+    }
+}
+
+.body-image {
+    width:100%;
+    height:auto;
+}
+
+.card-header {
+    padding: 12px;
+    padding-bottom: 3px;
+    position: relative;
+}
+
+.edit-button {
+    position: absolute;
+    top: 2px;
+    right:25px;
+}
+
+.body-name {
+    font-weight: bold;
+    font-size: 14pt;
+    padding-left: 10px;
+    padding-bottom: 8px;
+}
+
+.description {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: -15px;
+    padding-bottom: 10px;
+}

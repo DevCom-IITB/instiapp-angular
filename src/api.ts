@@ -7,6 +7,8 @@ export const API = {
     Events: 'api/events',
     Event: 'api/events/{uuid}',
 
+    Body: 'api/bodies/{uuid}',
+
     Locations: 'api/locations',
 
     PostImage: 'api/upload',
