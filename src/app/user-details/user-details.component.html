@@ -4,7 +4,7 @@
     </mat-spinner>
 </div>
 
-<div class="detail-card mat-shadow-z3" *ngIf="profile">
+<div class="detail-card mat-elevation-z3" *ngIf="profile">
   <!-- Head information -->
   <div id="head">
     <img [src]="profile.profile_pic"
@@ -21,10 +21,12 @@
 
   <br>
 
-  <app-body-card *ngFor="let role of profile.roles"
-                 [body]="role.body_detail"
-                 [subtitle]="role.name">
-  </app-body-card>
+  <div class="body-cards">
+    <app-body-card *ngFor="let role of profile.roles"
+                  [body]="role.body_detail"
+                  [subtitle]="role.name">
+    </app-body-card>
+  </div>
 
   <br>
 

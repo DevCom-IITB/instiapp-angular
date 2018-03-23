@@ -1,14 +1,15 @@
-.detail-card {
-    padding: 15px;
-}
-
 .profile-pic {
     height: 100px;
     width: 100px;
 }
 
 #head {
+    padding: 10px 15px 0 15px;
     display: flex;
+}
+
+.body-cards {
+    padding: 0 15px;
 }
 
 #info-header {
