@@ -46,20 +46,22 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     });
   }
 
-  markInterested(e) {
-    let status = 1;
-    if (this.dataService.InterestedEvent(this.event.id) && !e.checked) {
+  /** Helper for marking UserEventStatus */
+  markUES(already: boolean, status: number, e) {
+    if (already && !e.checked) {
       status = 0;
     }
     this.dataService.MarkUES(this.event, status).subscribe();
   }
 
+  /** Mark this event as interested */
+  markInterested(e) {
+    this.markUES(this.dataService.InterestedEvent(this.event.id), 1, e);
+  }
+
+  /** Mark this event as going */
   markGoing(e) {
-    let status = 2;
-    if (this.dataService.GoingEvent(this.event.id) && !e.checked) {
-      status = 0;
-    }
-    this.dataService.MarkUES(this.event, status).subscribe();
+    this.markUES(this.dataService.GoingEvent(this.event.id), 2, e);
   }
 
   /** Navigate back to feed (should be changed to last page) */
