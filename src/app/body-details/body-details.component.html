@@ -27,7 +27,10 @@
         </p>
       </div>
 
-      <div class="subtitle">Upcoming Events</div>
+      <div class="subtitle"
+          *ngIf="body.events.length > 0">
+        Upcoming Events
+      </div>
       <app-event-card *ngFor="let event of body.events"
                     [routerLink]="['/event-details', event.id]"
                     [event]="event">

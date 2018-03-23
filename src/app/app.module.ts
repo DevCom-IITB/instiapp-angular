@@ -70,7 +70,8 @@ import { BodyDetailsComponent } from './body-details/body-details.component';
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'body-details/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
-      { path: 'login', component: LoginComponent, data: { state: 'overlay' } }
+      { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
+      { path: '**', redirectTo: 'feed' },
     ]),
 
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
