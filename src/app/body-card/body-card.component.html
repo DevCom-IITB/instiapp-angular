@@ -6,6 +6,13 @@
         [src]="body.image_url" 
          src-fallback="/assets/iitb_logo.svg"/>
     <mat-card-title>{{ body.name }}</mat-card-title>
-    <mat-card-subtitle>{{ body.description }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      <ng-container *ngIf="!subtitle; else hassub">
+        {{ body.description }}
+      </ng-container>
+      <ng-template #hassub>
+        <b>{{ subtitle }}</b>
+      </ng-template>
+    </mat-card-subtitle>
   </mat-card-header>
 </mat-card>

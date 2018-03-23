@@ -9,6 +9,7 @@ import { IBody } from '../interfaces';
 export class BodyCardComponent {
 
   @Input() public body: IBody[];
+  @Input() public subtitle: string;
 
   constructor() { }
 

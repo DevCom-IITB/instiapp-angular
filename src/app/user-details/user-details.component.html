@@ -21,6 +21,13 @@
 
   <br>
 
+  <app-body-card *ngFor="let role of profile.roles"
+                 [body]="role.body_detail"
+                 [subtitle]="role.name">
+  </app-body-card>
+
+  <br>
+
   <!-- Tabbed information -->
   <mat-tab-group class="tab-group" mat-stretch-tabs>
       <mat-tab label="Following">
