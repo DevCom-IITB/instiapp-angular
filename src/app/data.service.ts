@@ -288,17 +288,9 @@ export class DataService {
   MarkUES(event: IEvent, status: number) {
     return Observable.create(observer => {
       this.FireGET(API.UserMeEventStatus, {event: event.id, status: status}).subscribe(() => {
-        /* Remove from interested events */
-        if (this.InterestedEvent(event.id)) {
-          const i = this.currentUser.events_interested.map(m => m.id).indexOf(event.id);
-          this.currentUser.events_interested.splice(i, 1);
-        }
-
-        /* Remove from going events */
-        if (this.GoingEvent(event.id)) {
-          const i = this.currentUser.events_going.map(m => m.id).indexOf(event.id);
-          this.currentUser.events_going.splice(i, 1);
-        }
+        /* Remove from interested and going events */
+        this.spliceEventCurrentUES(this.currentUser.events_interested, event.id);
+        this.spliceEventCurrentUES(this.currentUser.events_going, event.id);
 
         /* Add to appropriate list */
         if (status === 1) {
@@ -313,6 +305,14 @@ export class DataService {
         observer.error(error);
       });
     });
+  }
+
+  /** Removes an event with id from a list */
+  spliceEventCurrentUES(events: IEvent[], eventid: string): void {
+    const i = events.map(m => m.id).indexOf(eventid);
+    if (i !== -1) {
+      events.splice(i, 1);
+    }
   }
 
   /** Adds leading zeros to a number */
