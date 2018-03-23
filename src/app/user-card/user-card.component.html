@@ -3,11 +3,17 @@
     <img mat-card-avatar [src]="profile.profile_pic" src-fallback="/assets/useravatar.jpg"/>
     <mat-card-title>{{profile.name}}</mat-card-title>
     <mat-card-subtitle>
-      <ng-container *ngIf="profile.about; else noAbout">
-        {{profile.about}}
+      <ng-container *ngIf="!role; else hasrole">
+        <ng-container *ngIf="profile.about; else noAbout">
+            {{profile.about}}
+          </ng-container>
+          <ng-template #noAbout>
+            <mat-card-subtitle>IITB User</mat-card-subtitle>
+          </ng-template>
       </ng-container>
-      <ng-template #noAbout>
-        <mat-card-subtitle>IITB User</mat-card-subtitle>
+
+      <ng-template #hasrole>
+        <b>{{role}}</b>
       </ng-template>
     </mat-card-subtitle>
   </mat-card-header>

@@ -9,6 +9,7 @@ import { IUserProfile } from '../interfaces';
 export class UserCardComponent implements OnInit {
 
   @Input() profile: IUserProfile;
+  @Input() role: string;
 
   constructor() { }
 

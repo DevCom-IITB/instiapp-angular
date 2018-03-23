@@ -56,7 +56,8 @@
           </div>
           <ng-container *ngFor="let role of body.roles">
             <app-user-card *ngFor="let user of role.users_detail"
-                          [profile]="user">
+                          [profile]="user"
+                          [role]="role.name">
             </app-user-card>
           </ng-container>
         </div>
