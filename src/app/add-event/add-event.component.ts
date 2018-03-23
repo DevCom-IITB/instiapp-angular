@@ -78,33 +78,9 @@ export class AddEventComponent implements OnInit {
           this.close();
         }
 
-        /* Check if user can delete the event */
-        this.canDelete = this.dataService.CanDeleteEvent(this.event);
-
-        /* Initialize date-times */
-        this.event.start_time = new Date(this.event.start_time);
-        this.event.end_time = new Date(this.event.end_time);
-        this.start_time = Helpers.GetTimeString(this.event.start_time);
-        this.end_time = Helpers.GetTimeString(this.event.end_time);
-
-        /* Add one venue if not present */
-        if (this.event.venue_names.length === 0) { this.AddVenue(); }
-
-        /* Add bodies according to permission */
-        for (const body of this.event.bodies) {
-          /* Remove if already present */
-          const currIndex = this.bodies.map(m => m.id).indexOf(body.id);
-          if (currIndex !== -1 ) {
-            this.bodies.splice(currIndex, 1);
-          }
-
-          /* Add according to privilege */
-          if (this.dataService.HasBodyPermission(body.id, 'DelE')) {
-            this.bodies.push(body);
-          } else {
-            this.disabledBodies.push(body);
-          }
-        }
+        /* Initialize things */
+        this.initializeEvent();
+        this.initializeBodiesExisting();
 
       }, (error) => {
         alert('Event not found!');
@@ -112,6 +88,39 @@ export class AddEventComponent implements OnInit {
       });
     } else {
       this.initializeBlank();
+    }
+  }
+
+  /** Initializes constants for an existing event */
+  initializeEvent() {
+    /* Check if user can delete the event */
+    this.canDelete = this.dataService.CanDeleteEvent(this.event);
+
+    /* Initialize date-times */
+    this.event.start_time = new Date(this.event.start_time);
+    this.event.end_time = new Date(this.event.end_time);
+    this.start_time = Helpers.GetTimeString(this.event.start_time);
+    this.end_time = Helpers.GetTimeString(this.event.end_time);
+
+    /* Add one venue if not present */
+    if (this.event.venue_names.length === 0) { this.AddVenue(); }
+  }
+
+  /** Initialize bodies for existing event after permission check */
+  initializeBodiesExisting() {
+    for (const body of this.event.bodies) {
+      /* Remove if already present */
+      const currIndex = this.bodies.map(m => m.id).indexOf(body.id);
+      if (currIndex !== -1 ) {
+        this.bodies.splice(currIndex, 1);
+      }
+
+      /* Add according to privilege */
+      if (this.dataService.HasBodyPermission(body.id, 'DelE')) {
+        this.bodies.push(body);
+      } else {
+        this.disabledBodies.push(body);
+      }
     }
   }
 
