@@ -1,4 +1,5 @@
-<mat-card class="sub-card" *ngIf="profile">
+<mat-card class="sub-card" *ngIf="profile"
+          [routerLink]="['/user-details', profile.id]">
   <mat-card-header>
     <img mat-card-avatar [src]="profile.profile_pic" src-fallback="/assets/useravatar.jpg"/>
     <mat-card-title>{{profile.name}}</mat-card-title>
