@@ -262,7 +262,7 @@ export class DataService {
     return false;
   }
 
-  /** Return true if the user can delete the event */
+  /** Return true if the current user can delete the event */
   CanDeleteEvent(event: IEvent): boolean {
     for (const body of event.bodies) {
       if (!this.HasBodyPermission(body.id, 'DelE')) {
@@ -270,6 +270,49 @@ export class DataService {
       }
     }
     return true;
+  }
+
+  /** Returns true if the current user is interested in eventid */
+  InterestedEvent(eventid: string): boolean {
+    if (!this.loggedIn) { return false; }
+    return this.currentUser.events_interested.map(m => m.id).indexOf(eventid) !== -1;
+  }
+
+  /** Returns true if the current user is going to eventid */
+  GoingEvent(eventid: string): boolean {
+    if (!this.loggedIn) { return false; }
+    return this.currentUser.events_going.map(m => m.id).indexOf(eventid) !== -1;
+  }
+
+  /** Mark a UES for the current user */
+  MarkUES(event: IEvent, status: number) {
+    return Observable.create(observer => {
+      this.FireGET(API.UserMeEventStatus, {event: event.id, status: status}).subscribe(() => {
+        /* Remove from interested events */
+        if (this.InterestedEvent(event.id)) {
+          const i = this.currentUser.events_interested.map(m => m.id).indexOf(event.id);
+          this.currentUser.events_interested.splice(i, 1);
+        }
+
+        /* Remove from going events */
+        if (this.GoingEvent(event.id)) {
+          const i = this.currentUser.events_going.map(m => m.id).indexOf(event.id);
+          this.currentUser.events_going.splice(i, 1);
+        }
+
+        /* Add to appropriate list */
+        if (status === 1) {
+          this.currentUser.events_interested.push(event);
+        } else if (status === 2) {
+          this.currentUser.events_going.push(event);
+        }
+
+        /* Finished! */
+        observer.complete();
+      }, (error) => {
+        observer.error(error);
+      });
+    });
   }
 
   /** Adds leading zeros to a number */

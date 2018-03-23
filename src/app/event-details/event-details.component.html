@@ -25,9 +25,15 @@
     </div>
 
     <div style="text-align:center">
-        <mat-checkbox>INTERESTED</mat-checkbox>
+        <mat-checkbox [ngModel]="dataService.InterestedEvent(event.id)"
+                      (change)="markInterested($event)">
+          INTERESTED
+        </mat-checkbox>
         &nbsp;&nbsp;&nbsp;
-        <mat-checkbox>GOING</mat-checkbox>
+        <mat-checkbox [ngModel]="dataService.GoingEvent(event.id)"
+                      (change)="markGoing($event)">
+          GOING
+        </mat-checkbox>
     </div>
     <div class="description">
       <p class="multi-line-text">
