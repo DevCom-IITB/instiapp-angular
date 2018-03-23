@@ -1,4 +1,6 @@
-<mat-card *ngIf="body" class="sub-card">
+<mat-card *ngIf="body"
+          class="sub-card"
+          [routerLink]="['/body-details', body.id]">
   <mat-card-header>
     <img mat-card-avatar
         [src]="body.image_url" 
