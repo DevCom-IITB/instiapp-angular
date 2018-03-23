@@ -8,6 +8,7 @@ import * as uriTemplates from 'uri-templates';
 import { Subject } from 'rxjs/Subject';
 import { API } from '../api';
 import { Location } from '@angular/common';
+import { Helpers } from './helpers';
 
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -315,35 +316,12 @@ export class DataService {
     }
   }
 
-  /** Adds leading zeros to a number */
-  zeroPad(num, places) {
-    const zero = places - num.toString().length + 1;
-    return Array(+(zero > 0 && zero)).join('0') + num;
-  }
-
-  /**Returns a human readable representation of a Date */
-  public GetDate(obj: any): string {
-    const date = new Date(obj);
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-    const minutes = date.getMinutes();
-    const hours = date.getHours();
-    const monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December' ];
-    let daySuffix = 'th';
-    if (day % 10 === 1) {
-      daySuffix = 'st';
-    } else if (day % 10 === 2) {
-      daySuffix = 'nd';
-    }
-    return this.zeroPad(hours, 2) + ':' + this.zeroPad(minutes, 2) + ' | ' +
-        day + daySuffix + ' ' + monthNames[monthIndex];
-  }
-
   /** Navigates to the previous page */
   navigateBack() {
     this.location.back();
   }
+
+  /* Define any aliases here */
+  GetDate = (obj: any) => Helpers.GetDate(obj);
 
 }
