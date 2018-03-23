@@ -13,7 +13,6 @@
         top: 80px;
         width:400px;
         overflow: auto;
-        background-color: white;
         overflow-x: hidden;
     }
 }
