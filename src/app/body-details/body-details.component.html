@@ -15,6 +15,7 @@
           <div class="body-name">{{ body.name }}</div>
           <button mat-mini-fab color="accent"
                 class="edit-button"
+               *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
                 style="box-shadow: none">
               <mat-icon>edit</mat-icon>
           </button>
@@ -27,14 +28,25 @@
         </p>
       </div>
 
-      <div class="subtitle"
-          *ngIf="body.events.length > 0">
-        Upcoming Events
+      <div class="subsection">
+        <div class="subtitle"
+            *ngIf="body.events.length > 0">
+          Upcoming Events
+        </div>
+        <app-event-card *ngFor="let event of body.events"
+                      [routerLink]="['/event-details', event.id]"
+                      [event]="event">
+        </app-event-card>
       </div>
-      <app-event-card *ngFor="let event of body.events"
-                    [routerLink]="['/event-details', event.id]"
-                    [event]="event">
-      </app-event-card>
 
+      <div class="subsection">
+        <div class="subtitle"
+            *ngIf="body.children.length > 0">
+          Children
+        </div>
+        <app-body-card *ngFor="let childbody of body.children"
+                      [body]="childbody">
+        </app-body-card>
+      </div>
     </div>
   </div>
