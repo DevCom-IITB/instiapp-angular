@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,6 +46,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatAutocompleteModule,
         MatChipsModule,
         MatTabsModule,
+        MatCheckboxModule,
     ],
     exports: [
         BrowserModule,
@@ -68,6 +70,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatAutocompleteModule,
         MatChipsModule,
         MatTabsModule,
+        MatCheckboxModule,
     ],
 })
 export class MyMaterialClass { }
