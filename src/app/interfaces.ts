@@ -54,6 +54,7 @@ export interface IBody {
     parents: string[];
     events: IEvent[];
     followers_count: number;
+    roles: IBodyRole[];
 }
 
 export interface IUserEventStatus {
@@ -71,4 +72,5 @@ export interface IBodyRole {
     body_detail: IBody;
     permissions: string[];
     users: string[];
+    users_detail: IUserProfile[];
 }

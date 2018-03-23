@@ -48,5 +48,17 @@
                       [body]="childbody">
         </app-body-card>
       </div>
+
+      <div class="subsection">
+          <div class="subtitle"
+              *ngIf="body.roles.length > 0">
+            People
+          </div>
+          <ng-container *ngFor="let role of body.roles">
+            <app-user-card *ngFor="let user of role.users_detail"
+                          [profile]="user">
+            </app-user-card>
+          </ng-container>
+        </div>
     </div>
   </div>

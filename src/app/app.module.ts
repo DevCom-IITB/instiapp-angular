@@ -33,6 +33,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { BodyCardComponent } from './body-card/body-card.component';
 import { BodyDetailsComponent } from './body-details/body-details.component';
+import { UserCardComponent } from './user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BodyDetailsComponent } from './body-details/body-details.component';
     UserDetailsComponent,
     EventCardComponent,
     BodyCardComponent,
-    BodyDetailsComponent
+    BodyDetailsComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
