@@ -61,59 +61,68 @@ export class AddEventComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.eventId = params['id'];
-      if (this.eventId) {
-        this.editing = true;
-        this.dataService.GetEvent(this.eventId).subscribe(result => {
-          this.event = result;
-
-          /* Check if the user can edit the event */
-          if (!this.dataService.CanEditEvent(this.event)) {
-            alert('You do not have sufficient privileges to edit this event!');
-            this.close();
-          }
-
-          /* Check if user can delete the event */
-          this.canDelete = this.dataService.CanDeleteEvent(this.event);
-
-          /* Initialize date-times */
-          this.event.start_time = new Date(this.event.start_time);
-          this.event.end_time = new Date(this.event.end_time);
-          this.start_time = Helpers.GetTimeString(this.event.start_time);
-          this.end_time = Helpers.GetTimeString(this.event.end_time);
-
-          /* Add one venue if not present */
-          if (this.event.venue_names.length === 0) { this.AddVenue(); }
-
-          /* Add bodies according to permission */
-          for (const body of this.event.bodies) {
-            /* Remove if already present */
-            const currIndex = this.bodies.map(m => m.id).indexOf(body.id);
-            if (currIndex !== -1 ) {
-              this.bodies.splice(currIndex, 1);
-            }
-
-            /* Add according to privilege */
-            if (this.dataService.HasBodyPermission(body.id, 'DelE')) {
-              this.bodies.push(body);
-            } else {
-              this.disabledBodies.push(body);
-            }
-          }
-
-        }, (error) => {
-          alert('Event not found!');
-          this.close();
-        });
-      } else {
-        /* Initialize blank */
-        this.event = {} as IEvent;
-        this.event.start_time = new Date();
-        this.event.end_time = new Date();
-        this.event.bodies_id = [];
-        this.event.venues = [] as ILocation[];
-        this.AddVenue();
-      }
+      this.refresh();
     });
+  }
+
+  /** Loads the data */
+  refresh() {
+    if (this.eventId) {
+      this.editing = true;
+      this.dataService.GetEvent(this.eventId).subscribe(result => {
+        this.event = result;
+
+        /* Check if the user can edit the event */
+        if (!this.dataService.CanEditEvent(this.event)) {
+          alert('You do not have sufficient privileges to edit this event!');
+          this.close();
+        }
+
+        /* Check if user can delete the event */
+        this.canDelete = this.dataService.CanDeleteEvent(this.event);
+
+        /* Initialize date-times */
+        this.event.start_time = new Date(this.event.start_time);
+        this.event.end_time = new Date(this.event.end_time);
+        this.start_time = Helpers.GetTimeString(this.event.start_time);
+        this.end_time = Helpers.GetTimeString(this.event.end_time);
+
+        /* Add one venue if not present */
+        if (this.event.venue_names.length === 0) { this.AddVenue(); }
+
+        /* Add bodies according to permission */
+        for (const body of this.event.bodies) {
+          /* Remove if already present */
+          const currIndex = this.bodies.map(m => m.id).indexOf(body.id);
+          if (currIndex !== -1 ) {
+            this.bodies.splice(currIndex, 1);
+          }
+
+          /* Add according to privilege */
+          if (this.dataService.HasBodyPermission(body.id, 'DelE')) {
+            this.bodies.push(body);
+          } else {
+            this.disabledBodies.push(body);
+          }
+        }
+
+      }, (error) => {
+        alert('Event not found!');
+        this.close();
+      });
+    } else {
+      this.initializeBlank();
+    }
+  }
+
+  /* Initialize a blank event */
+  initializeBlank() {
+    this.event = {} as IEvent;
+    this.event.start_time = new Date();
+    this.event.end_time = new Date();
+    this.event.bodies_id = [];
+    this.event.venues = [] as ILocation[];
+    this.AddVenue();
   }
 
   /** Uses an extremely ugly hack to set time */
