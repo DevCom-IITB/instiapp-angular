@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { BodyCardComponent } from './body-card/body-card.component';
+import { BodyDetailsComponent } from './body-details/body-details.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { BodyCardComponent } from './body-card/body-card.component';
     LoginComponent,
     UserDetailsComponent,
     EventCardComponent,
-    BodyCardComponent
+    BodyCardComponent,
+    BodyDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ import { BodyCardComponent } from './body-card/body-card.component';
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
+      { path: 'body-details/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' }
     ]),
