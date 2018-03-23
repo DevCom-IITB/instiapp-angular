@@ -26,12 +26,12 @@
 
     <div style="text-align:center">
         <mat-checkbox [ngModel]="dataService.InterestedEvent(event.id)"
-                      (change)="markInterested($event)">
+                      (change)="markUES(dataService.InterestedEvent(event.id), 1, $event);">
           INTERESTED
         </mat-checkbox>
         &nbsp;&nbsp;&nbsp;
         <mat-checkbox [ngModel]="dataService.GoingEvent(event.id)"
-                      (change)="markGoing($event)">
+                      (change)="markUES(dataService.GoingEvent(event.id), 2, $event);">
           GOING
         </mat-checkbox>
     </div>

@@ -54,16 +54,6 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.MarkUES(this.event, status).subscribe();
   }
 
-  /** Mark this event as interested */
-  markInterested(e) {
-    this.markUES(this.dataService.InterestedEvent(this.event.id), 1, e);
-  }
-
-  /** Mark this event as going */
-  markGoing(e) {
-    this.markUES(this.dataService.GoingEvent(this.event.id), 2, e);
-  }
-
   /** Navigate back to feed (should be changed to last page) */
   closeEventDetails() {
     this.dataService.navigateBack();
