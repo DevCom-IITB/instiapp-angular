@@ -50,24 +50,26 @@ export class CalendarComponent implements OnInit {
 
   /** Gets human readable human count */
   GetCount(date: any): string {
-    const count = this.GetDateEvents(date).length;
-    let prefix: string;
-    if (count === 0) {
-      prefix = 'No Events';
-    } else if (count === 1) {
-      prefix = '1 Event';
-    } else {
-      prefix = count + ' Events';
-    }
-
     /* Return with 'today' if date is today */
     const now = new Date();
     if (date.date === now.getDate() &&
         date.month === now.getMonth() &&
         date.year === now.getFullYear()) {
-          return prefix + ' Today';
+          return this.GetCountPrefix(date) + ' Today';
     } else {
-      return prefix;
+      return this.GetCountPrefix(date);
+    }
+  }
+
+  /** Gets prefix of count */
+  GetCountPrefix(date: any): string {
+    const count = this.GetDateEvents(date).length;
+    if (count === 0) {
+      return 'No Events';
+    } else if (count === 1) {
+      return '1 Event';
+    } else {
+      return count + ' Events';
     }
   }
 
