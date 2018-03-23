@@ -4,27 +4,10 @@
 }
 
 @media (max-width: 767px) {
-    .full-container {
-        background-color: white;
-    }
-
     .detail-card {
         min-height: 100vh;
         margin-bottom: 0;
     }
-}
-
-.back-button {
-    left: 10px; top: 10px;
-    z-index: 2;
-    position: fixed;
-    cursor: pointer;
-}
-
-@media (min-width: 768px) {
-    .back-button {
-        display: none;
-    }    
 }
 
 .event-image {
