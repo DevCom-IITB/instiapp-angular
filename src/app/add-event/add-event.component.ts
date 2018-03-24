@@ -132,6 +132,13 @@ export class AddEventComponent implements OnInit {
     this.event.bodies_id = [];
     this.event.venues = [] as ILocation[];
     this.AddVenue();
+    this.initializeQueryDefaults();
+  }
+
+  /** Initializes defaults from query parameters */
+  initializeQueryDefaults() {
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (params.hasOwnProperty('body')) { this.event.bodies_id.push(params['body']); }
   }
 
   /** Uses an extremely ugly hack to set time */

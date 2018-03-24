@@ -68,6 +68,7 @@
         *ngIf="dataService.HasBodyPermission(body.id, 'AddE')"
         [disabled]="!dataService.loggedIn"
         class="float-fixed-right-bottom"
-        [routerLink]="['/add-event']">
+        [routerLink]="['/add-event']"
+        [queryParams]="{body: body.id}">
     <mat-icon>add</mat-icon>
 </button>
