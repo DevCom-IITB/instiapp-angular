@@ -28,7 +28,7 @@ export class AppComponent implements OnDestroy, OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 767px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.titleService.setTitle('Home');
+    this.titleService.setTitle('IITB App');
   }
 
   ngOnInit() {
