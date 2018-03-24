@@ -5,61 +5,69 @@
 </div>
 
 <div class="full-container">
-    <div *ngIf="body" class="detail-card mat-elevation-z3">
-      <div class="theme-header primary-background-color">
-        <img class="body-image"
-             [src]="body.image_url"
-             alt="">
-  
-        <div class="card-header">
-          <div class="body-name">{{ body.name }}</div>
-          <button mat-mini-fab color="accent"
-                class="edit-button"
-               *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
-                style="box-shadow: none">
-              <mat-icon>edit</mat-icon>
-          </button>
-        </div>
-      </div>
+  <div *ngIf="body" class="detail-card mat-elevation-z3">
+    <div class="theme-header primary-background-color">
+      <img class="body-image"
+            [src]="body.image_url"
+            alt="">
 
-      <div class="description">
-        <p class="multi-line-text">
-          {{ body.description }}
-        </p>
+      <div class="card-header">
+        <div class="body-name">{{ body.name }}</div>
+        <button mat-mini-fab color="accent"
+              class="edit-button"
+              *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
+              style="box-shadow: none">
+            <mat-icon>edit</mat-icon>
+        </button>
       </div>
-
-      <div class="subsection">
-        <div class="subtitle"
-            *ngIf="body.events.length > 0">
-          Upcoming Events
-        </div>
-        <app-event-card *ngFor="let event of body.events"
-                      [routerLink]="['/event-details', event.id]"
-                      [event]="event">
-        </app-event-card>
-      </div>
-
-      <div class="subsection">
-        <div class="subtitle"
-            *ngIf="body.children.length > 0">
-          Children
-        </div>
-        <app-body-card *ngFor="let childbody of body.children"
-                      [body]="childbody">
-        </app-body-card>
-      </div>
-
-      <div class="subsection">
-          <div class="subtitle"
-              *ngIf="body.roles.length > 0">
-            People
-          </div>
-          <ng-container *ngFor="let role of body.roles">
-            <app-user-card *ngFor="let user of role.users_detail"
-                          [profile]="user"
-                          [role]="role.name">
-            </app-user-card>
-          </ng-container>
-        </div>
     </div>
+
+    <div class="description">
+      <p class="multi-line-text">
+        {{ body.description }}
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subtitle"
+          *ngIf="body.events.length > 0">
+        Upcoming Events
+      </div>
+      <app-event-card *ngFor="let event of body.events"
+                    [routerLink]="['/event-details', event.id]"
+                    [event]="event">
+      </app-event-card>
+    </div>
+
+    <div class="subsection">
+      <div class="subtitle"
+          *ngIf="body.children.length > 0">
+        Children
+      </div>
+      <app-body-card *ngFor="let childbody of body.children"
+                    [body]="childbody">
+      </app-body-card>
+    </div>
+
+    <div class="subsection">
+        <div class="subtitle"
+            *ngIf="body.roles.length > 0">
+          People
+        </div>
+        <ng-container *ngFor="let role of body.roles">
+          <app-user-card *ngFor="let user of role.users_detail"
+                        [profile]="user"
+                        [role]="role.name">
+          </app-user-card>
+        </ng-container>
+      </div>
   </div>
+</div>
+
+<button mat-fab
+        *ngIf="dataService.HasBodyPermission(body.id, 'AddE')"
+        [disabled]="!dataService.loggedIn"
+        class="float-fixed-right-bottom"
+        [routerLink]="['/add-event']">
+    <mat-icon>add</mat-icon>
+</button>
