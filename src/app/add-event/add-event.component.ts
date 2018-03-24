@@ -127,8 +127,6 @@ export class AddEventComponent implements OnInit {
   /* Initialize a blank event */
   initializeBlank() {
     this.event = {} as IEvent;
-    this.event.start_time = new Date();
-    this.event.end_time = new Date();
     this.event.bodies_id = [];
     this.event.venues = [] as ILocation[];
     this.AddVenue();
@@ -139,6 +137,14 @@ export class AddEventComponent implements OnInit {
   initializeQueryDefaults() {
     const params = this.activatedRoute.snapshot.queryParams;
     if (params.hasOwnProperty('body')) { this.event.bodies_id.push(params['body']); }
+    if (params.hasOwnProperty('date')) {
+      const date = new Date(params['date']);
+      this.event.start_time = date;
+      this.event.end_time = date;
+    } else {
+      this.event.start_time = new Date();
+      this.event.end_time = new Date();
+    }
   }
 
   /** Uses an extremely ugly hack to set time */

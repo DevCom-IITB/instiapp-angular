@@ -26,11 +26,6 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-  /** Add a new event */
-  AddEvent() {
-    this.router.navigate(['add-event']);
-  }
-
   /** Get events for the date */
   GetDateEvents(date: any): IEvent[] {
     const selEvents: IEvent[] = [] as IEvent[];
@@ -76,6 +71,14 @@ export class CalendarComponent implements OnInit {
   /** Open an event */
   openEvent(event: IEvent): void {
     this.router.navigate(['event-details', event.id]);
+  }
+
+  dateToDate(date: any): Date {
+    const ans = new Date();
+    ans.setDate(date.date);
+    ans.setMonth(date.month);
+    ans.setFullYear(date.year);
+    return ans;
   }
 
 }
