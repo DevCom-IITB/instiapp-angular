@@ -10,11 +10,11 @@
 <mat-toolbar class="example-toolbar" color="primary">
     <button mat-icon-button
             sidebarjsOpen
-            [style.display]="getState(o)==='base' ? 'inline' : 'none'">
+            [style.display]="getState(o)==='base' || !mobileQuery.matches ? 'inline' : 'none'">
         <mat-icon>menu</mat-icon>
     </button>
     <button mat-icon-button
-            [style.display]="getState(o)==='overlay' ? 'inline' : 'none'"
+            [style.display]="getState(o)==='overlay' && mobileQuery.matches ? 'inline' : 'none'"
             (click)="dataService.navigateBack();">
         <mat-icon>arrow_back</mat-icon>
     </button>
