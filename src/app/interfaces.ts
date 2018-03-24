@@ -7,6 +7,7 @@ export interface IUserProfile {
     id: string;
     name: string;
     profile_pic: string;
+    website_url: string;
     events_interested: IEvent[];
     events_going: IEvent[];
     email: string;
@@ -24,6 +25,7 @@ export interface IEvent {
     name: string;
     description: string;
     image_url: string;
+    website_url: string;
     start_time: Date;
     end_time: Date;
     all_day: boolean;
@@ -48,8 +50,10 @@ export interface ILocation {
 export interface IBody {
     id: string;
     name: string;
+    short_description: string;
     description: string;
     image_url: string;
+    website_url: string;
     children: IBody[];
     parents: string[];
     events: IEvent[];

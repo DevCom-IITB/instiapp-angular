@@ -8,7 +8,7 @@
     <mat-card-title>{{ body.name }}</mat-card-title>
     <mat-card-subtitle>
       <ng-container *ngIf="!subtitle; else hassub">
-        {{ body.description }}
+        {{ body.short_description }}
       </ng-container>
       <ng-template #hassub>
         <b>{{ subtitle }}</b>
