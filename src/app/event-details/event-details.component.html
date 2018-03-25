@@ -17,13 +17,17 @@
           <div class="event-time">{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</div>
         </div>
 
-        <button mat-mini-fab color="accent"
-              (click)="openEventEdit()"
-              class="edit-button"
-              style="box-shadow: none"
-              *ngIf="dataService.CanEditEvent(event)">
-            <mat-icon>edit</mat-icon>
-        </button>
+        <div class="action-buttons">
+          <button mat-icon-button
+                (click)="openEventEdit()"
+                *ngIf="dataService.CanEditEvent(event)">
+              <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+              <mat-icon>share</mat-icon>
+          </button>
+        </div>
+
       </div>
     </div>
 
