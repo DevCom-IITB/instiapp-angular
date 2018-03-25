@@ -15,7 +15,6 @@
     <br>
 
     <app-event-card *ngFor="let event of GetDateEvents(selDate)"
-                    (click)="openEvent(event)"
                     [event]="event">
     </app-event-card>
 </div>

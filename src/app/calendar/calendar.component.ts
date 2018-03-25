@@ -68,11 +68,6 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  /** Open an event */
-  openEvent(event: IEvent): void {
-    this.router.navigate(['event-details', event.id]);
-  }
-
   dateToDate(date: any): Date {
     const ans = new Date();
     ans.setDate(date.date);

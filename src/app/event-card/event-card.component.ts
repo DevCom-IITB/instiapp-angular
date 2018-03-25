@@ -10,6 +10,8 @@ import { DataService } from '../data.service';
 export class EventCardComponent implements OnInit {
 
   @Input() event: IEvent;
+  @Input() overrideClick = false;
+
   constructor(
     public dataService: DataService,
   ) { }

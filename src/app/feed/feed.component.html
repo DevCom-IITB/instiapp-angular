@@ -13,7 +13,8 @@
 
     <app-event-card *ngFor="let event of events.slice(1, events.length)"
                     (click)=OpenEvent(event)
-                    [event]="event">
+                    [event]="event"
+                    overrideClick=true>
     </app-event-card>
 </div>
 
