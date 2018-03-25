@@ -36,6 +36,7 @@ import { BodyCardComponent } from './body-card/body-card.component';
 import { BodyDetailsComponent } from './body-details/body-details.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.component';
+import { MyEventsComponent } from './my-events/my-events.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.com
     BodyCardComponent,
     BodyDetailsComponent,
     UserCardComponent,
-    MyShareButtonsComponent
+    MyShareButtonsComponent,
+    MyEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,7 @@ import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.com
       { path: 'feed', component: FeedComponent, data: { state: 'base' } },
       { path: 'event-details/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
+      { path: 'my-events', component: MyEventsComponent, data: { state: 'base' } },
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
