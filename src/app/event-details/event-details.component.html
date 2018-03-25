@@ -23,12 +23,20 @@
                 *ngIf="dataService.CanEditEvent(event)">
               <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button>
+          <button mat-icon-button
+                 (click)="toggleShare()">
               <mat-icon>share</mat-icon>
           </button>
         </div>
-
       </div>
+
+      <div class="share-div" *ngIf="shareShowing">
+          <share-button button="facebook" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
+          <share-button button="twitter" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
+          <share-button button="whatsapp" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
+          <share-button button="copy" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
+      </div>
+
     </div>
 
     <div style="text-align:center">

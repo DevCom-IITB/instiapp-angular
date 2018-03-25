@@ -21,6 +21,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './routing';
 
 import { XunkCalendarModule } from 'xunk-calendar';
+import { ShareButtonModule } from '@ngx-share/button';
 
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
@@ -62,6 +63,7 @@ import { UserCardComponent } from './user-card/user-card.component';
     ImgFallbackModule,
 
     XunkCalendarModule,
+    ShareButtonModule.forRoot(),
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },

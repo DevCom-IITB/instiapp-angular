@@ -1,6 +1,15 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
+/* Sharebutton styles */
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
+@import '~@ngx-share/button/styles/themes/material/material-dark-theme';
+/* @import '~@ngx-share/button/styles/themes/circles/circles-dark-theme'; */
+
 $md-primary: mat-palette($mat-teal, 500, 100, 700);
 $md-accent: mat-palette($mat-purple, 500, 300, 800);
 $md-warn: mat-palette($mat-red, 500, 300, 900);

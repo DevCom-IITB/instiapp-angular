@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angu
 import { IEvent } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-event-details',
@@ -14,6 +15,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   @Output() public load = new EventEmitter<boolean>();
 
   public event: IEvent;
+  public shareShowing = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -57,6 +59,16 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   /** Navigate back to feed (should be changed to last page) */
   closeEventDetails() {
     this.dataService.navigateBack();
+  }
+
+  /** Toggles visibility of share buttons */
+  toggleShare() {
+    this.shareShowing = !this.shareShowing;
+  }
+
+  /** Get the sharing url */
+  shareUrl(): string {
+    return environment.host + 'event-details/' + this.eventId;
   }
 
   openEventEdit() {
