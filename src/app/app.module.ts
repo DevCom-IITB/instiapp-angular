@@ -35,6 +35,7 @@ import { EventCardComponent } from './event-card/event-card.component';
 import { BodyCardComponent } from './body-card/body-card.component';
 import { BodyDetailsComponent } from './body-details/body-details.component';
 import { UserCardComponent } from './user-card/user-card.component';
+import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UserCardComponent } from './user-card/user-card.component';
     EventCardComponent,
     BodyCardComponent,
     BodyDetailsComponent,
-    UserCardComponent
+    UserCardComponent,
+    MyShareButtonsComponent
   ],
   imports: [
     BrowserModule,

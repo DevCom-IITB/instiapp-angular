@@ -31,10 +31,7 @@
       </div>
 
       <div class="share-div" *ngIf="shareShowing">
-          <share-button button="facebook" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
-          <share-button button="twitter" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
-          <share-button button="whatsapp" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
-          <share-button button="copy" theme="material-dark" [url]="shareUrl()" size=-2></share-button>
+          <app-my-share-buttons [url]="shareUrl()"></app-my-share-buttons>
       </div>
 
     </div>
