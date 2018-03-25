@@ -13,12 +13,20 @@
 
       <div class="card-header">
         <div class="body-name">{{ body.name }}</div>
-        <button mat-mini-fab color="accent"
-              class="edit-button"
-              *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
-              style="box-shadow: none">
-            <mat-icon>edit</mat-icon>
-        </button>
+        <div class="action-buttons">
+          <button mat-icon-button
+                *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')">
+              <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button
+                 (click)="shareShowing = !shareShowing">
+              <mat-icon>share</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="share-div" *ngIf="shareShowing">
+          <app-my-share-buttons></app-my-share-buttons>
       </div>
     </div>
 

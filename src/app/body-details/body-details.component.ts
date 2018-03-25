@@ -13,6 +13,7 @@ export class BodyDetailsComponent implements OnInit {
 
   body: IBody;
   bodyId: string;
+  shareShowing = false;
 
   constructor(
     public activatedRoute: ActivatedRoute,

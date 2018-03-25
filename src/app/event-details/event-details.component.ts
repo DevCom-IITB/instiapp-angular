@@ -61,11 +61,6 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.navigateBack();
   }
 
-  /** Toggles visibility of share buttons */
-  toggleShare() {
-    this.shareShowing = !this.shareShowing;
-  }
-
   /** Get the sharing url */
   shareUrl(): string {
     return environment.host + 'event-details/' + this.eventId;
