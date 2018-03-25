@@ -7,6 +7,12 @@
     min-height: 60vh;
 }
 
+.float-fixed-right-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
 @media (min-width: 480px) {
     .full-container {
         margin-top: 10px;

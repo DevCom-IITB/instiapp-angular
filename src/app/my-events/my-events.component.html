@@ -1,7 +1,7 @@
 <div class="full-container">
   <div class="detail-card mat-elevation-z3" *ngIf="roles && dataService.loggedIn">
 
-      <mat-tab-group class="tab-group" mat-stretch-tabs>
+      <mat-tab-group class="tab-group" mat-stretch-tabs [(selectedIndex)]="selIndex">
           <mat-tab label="Following">
             <app-event-card
               *ngFor="let event of dataService.getFollowedEvents()"
@@ -18,5 +18,13 @@
 
   </div>
 </div>
+
+<button mat-fab
+        *ngIf="canAdd(selIndex)"
+        class="float-fixed-right-bottom"
+        [routerLink]="['/add-event']"
+        [queryParams]="{body: roles[selIndex - 1].body}">
+    <mat-icon>add</mat-icon>
+</button>
 
 <app-login *ngIf="!dataService.loggedIn"></app-login>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBodyRole } from '../interfaces';
+import { IBodyRole, IBody } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
 
@@ -10,7 +10,8 @@ import { API } from '../../api';
 })
 export class MyEventsComponent implements OnInit {
 
-  roles: IBodyRole[];
+  public roles: IBodyRole[];
+  public selIndex = 0;
 
   constructor(
     public dataService: DataService,
@@ -20,6 +21,12 @@ export class MyEventsComponent implements OnInit {
     this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
       this.roles = result as IBodyRole[];
     });
+  }
+
+  /** Returns true if can add event for the given tabindex */
+  canAdd(tabindex: number): boolean {
+    if (tabindex === 0) { return false; }
+    return this.roles[tabindex - 1].permissions.indexOf('AddE') !== -1;
   }
 
 }
