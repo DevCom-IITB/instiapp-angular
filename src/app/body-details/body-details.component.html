@@ -73,7 +73,7 @@
 </div>
 
 <button mat-fab
-        *ngIf="dataService.HasBodyPermission(body.id, 'AddE')"
+        *ngIf="body && dataService.HasBodyPermission(body.id, 'AddE')"
         [disabled]="!dataService.loggedIn"
         class="float-fixed-right-bottom"
         [routerLink]="['/add-event']"
