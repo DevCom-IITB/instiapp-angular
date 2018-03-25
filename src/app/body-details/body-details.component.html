@@ -18,6 +18,12 @@
                 *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')">
               <mat-icon>edit</mat-icon>
           </button>
+          <a mat-icon-button
+            *ngIf="body.website_url && body.website_url !== ''"
+            [href]="body.website_url"
+            target="_blank">
+            <i class="fas fa-globe fa-lg"></i>
+          </a>
           <button mat-icon-button
                  (click)="shareShowing = !shareShowing">
               <mat-icon>share</mat-icon>
