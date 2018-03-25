@@ -77,4 +77,5 @@ export interface IBodyRole {
     permissions: string[];
     users: string[];
     users_detail: IUserProfile[];
+    events: IEvent[];
 }
