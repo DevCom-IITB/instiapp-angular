@@ -29,6 +29,14 @@
     }
 }
 
+@media (max-width: 767px) {
+    .events-list {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
 .head-card {
     max-width: 428px;
     margin: 0 auto;
