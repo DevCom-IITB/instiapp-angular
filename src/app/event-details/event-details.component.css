@@ -11,15 +11,13 @@
 }
 
 .card-header {
+    display: flex;
     padding: 12px;
-    padding-bottom: 3px;
-    position: relative;
+    padding-bottom: 3px;    
 }
 
 .edit-button {
-    position: absolute;
-    top: 12px;
-    right:25px;
+    margin-left: auto;
 }
 
 .event-name {

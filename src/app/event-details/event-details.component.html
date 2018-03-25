@@ -12,8 +12,11 @@
            alt="">
 
       <div class="card-header">
-        <div class="event-name">{{ event.name }}</div>
-        <div class="event-time">{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</div>
+        <div>
+          <div class="event-name">{{ event.name }}</div>
+          <div class="event-time">{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</div>
+        </div>
+
         <button mat-mini-fab color="accent"
               (click)="openEventEdit()"
               class="edit-button"
