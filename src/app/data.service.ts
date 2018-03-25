@@ -318,6 +318,13 @@ export class DataService {
     });
   }
 
+  /** Gets concatenated going and interested events for current User */
+  getFollowedEvents(): IEvent[] {
+    if (!this.loggedIn) { return []  as IEvent[]; }
+    return this.currentUser.events_going.concat(
+      this.currentUser.events_interested);
+  }
+
   /** Removes an event with id from a list */
   spliceEventCurrentUES(events: IEvent[], eventid: string): void {
     const i = events.map(m => m.id).indexOf(eventid);

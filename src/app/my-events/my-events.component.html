@@ -1,9 +1,12 @@
 <div class="full-container">
-  <div class="detail-card mat-elevation-z3" *ngIf="roles">
+  <div class="detail-card mat-elevation-z3" *ngIf="roles && dataService.loggedIn">
 
       <mat-tab-group class="tab-group" mat-stretch-tabs>
           <mat-tab label="Following">
-            <!-- TODO: Load events here -->
+            <app-event-card
+              *ngFor="let event of dataService.getFollowedEvents()"
+              [event]="event">
+            </app-event-card>
           </mat-tab>
           <mat-tab *ngFor="let role of roles" [label]="role.body_detail.name" >
             <app-event-card 
