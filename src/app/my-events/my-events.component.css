@@ -1,0 +1,8 @@
+.full-container {
+    margin-top: 10px;
+}
+
+.detail-card {
+    max-width: 480px;
+    min-height: 60vh;
+}

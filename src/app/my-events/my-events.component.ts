@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IBodyRole } from '../interfaces';
+import { DataService } from '../data.service';
+import { API } from '../../api';
 
 @Component({
   selector: 'app-my-events',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyEventsComponent implements OnInit {
 
-  constructor() { }
+  roles: IBodyRole[];
+
+  constructor(
+    public dataService: DataService,
+  ) { }
 
   ngOnInit() {
+    this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
+      this.roles = result as IBodyRole[];
+    });
   }
 
 }

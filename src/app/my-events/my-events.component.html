@@ -1,5 +1,18 @@
 <div class="full-container">
-  <div class="detail-card mat-elevation-z3">
+  <div class="detail-card mat-elevation-z3" *ngIf="roles">
+
+      <mat-tab-group class="tab-group" mat-stretch-tabs>
+          <mat-tab label="Following">
+            <!-- TODO: Load events here -->
+          </mat-tab>
+          <mat-tab *ngFor="let role of roles" [label]="role.body_detail.name" >
+            <app-event-card 
+              *ngFor="let event of role.events"
+              [event]="event"
+              [routerLink]="['/event-details', event.id]">
+            </app-event-card>
+          </mat-tab>
+      </mat-tab-group>
 
   </div>
 </div>
