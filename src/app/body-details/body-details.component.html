@@ -36,6 +36,13 @@
       </div>
     </div>
 
+    <div style="text-align:center">
+        <mat-checkbox [ngModel]="dataService.followingBody(body.id)"
+                      (change)="markFollow($event)">
+          FOLLOW
+        </mat-checkbox>
+    </div>
+
     <div class="description">
       <p class="multi-line-text">
         {{ body.description }}

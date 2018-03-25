@@ -73,6 +73,16 @@ export class DataService {
   }
 
   /**
+   * Fire a URI template or URL with PATCH verb
+   * @param uriTemplate URI Template or URL
+   * @param body Body to PATCH
+   * @param options Options to fill in URI Template
+   */
+  FirePATCH<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
+    return this.http.patch<T>(this.FillURITemplate(HOST + uriTemplate, options), body);
+  }
+
+  /**
    * Fire a URI template or URL with DELETE verb
    * @param uriTemplate URI Template or URL
    * @param options Options to fill in URI Template
@@ -314,6 +324,31 @@ export class DataService {
     if (i !== -1) {
       events.splice(i, 1);
     }
+  }
+
+  /** Retruns true if following teh body */
+  followingBody(bodyid: string) {
+    if (!this.loggedIn) { return false; }
+    return this.currentUser.followed_bodies_id.indexOf(bodyid) !== -1;
+  }
+
+  /** Marks the body as followed or not followed */
+  markBodyFollow(bodyid: string, value: boolean) {
+    if (!this.loggedIn) { return; }
+
+    /* Make a copy. Update only when the request is successful*/
+    const ids = [... this.currentUser.followed_bodies_id];
+    console.log(ids);
+    if (this.followingBody(bodyid) && !value) {
+      ids.splice(ids.indexOf(bodyid), 1);
+    } else if (!this.followingBody(bodyid) && value) {
+      ids.push(bodyid);
+    }
+
+    this.FirePATCH<IUserProfile>(API.UserMe, {followed_bodies_id: ids}).subscribe(result => {
+      this.currentUser.followed_bodies_id = result.followed_bodies_id;
+      this.currentUser.followed_bodies = result.followed_bodies;
+    });
   }
 
   /** Navigates to the previous page */
