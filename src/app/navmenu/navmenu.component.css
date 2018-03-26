@@ -2,7 +2,6 @@
     height: 35px;
     margin-top: -10px;
     padding: 20px;
-    box-shadow: none !important;
     display: flex;
     cursor: pointer;
 }

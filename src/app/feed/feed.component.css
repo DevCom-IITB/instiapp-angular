@@ -50,11 +50,6 @@
     padding-right: 200px;
 }
 
-.mat-dialog-container {
-    padding: 0px !important;
-    min-height:70vh !important;
-}
-
 .container {
     position: relative;
     color: white;
