@@ -37,6 +37,12 @@
     }
 }
 
+@media (min-width: 900px) {
+    .events-list {
+        width: 400px;
+    }
+}
+
 .head-card {
     max-width: 428px;
     margin: 0 auto;
