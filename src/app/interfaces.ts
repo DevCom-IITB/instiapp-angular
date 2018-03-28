@@ -74,6 +74,7 @@ export interface IBodyRole {
     inheritable: boolean;
     body: string;
     body_detail: IBody;
+    bodies: IBody[];
     permissions: string[];
     users: string[];
     users_detail: IUserProfile[];
