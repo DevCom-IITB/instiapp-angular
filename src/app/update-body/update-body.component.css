@@ -1,0 +1,40 @@
+#main {
+    min-height: 100vh;
+    background-color: white;
+    max-width: 428px;
+    margin: auto;
+}
+
+.header-image {
+    width:100%;
+    height:auto;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    #main {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.card-header {
+    padding: 12px;
+    padding-bottom: 8px;
+}
+
+.details-view > div {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.half-width {
+    left: 1%;
+    width: 45%;
+    padding-right: 0;
+}
+
+.full-width-details {
+    left: 2%;
+    width: calc(96%);
+}
