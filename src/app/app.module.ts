@@ -17,6 +17,7 @@ import { MyMaterialClass } from './material-angular.module';
 import 'hammerjs';
 import { SidebarJSModule } from 'ng-sidebarjs';
 import { ImgFallbackModule } from 'ngx-img-fallback';
+import { MarkdownModule } from 'ngx-markdown';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './routing';
 
@@ -67,6 +68,7 @@ import { UpdateBodyComponent } from './update-body/update-body.component';
 
     SidebarJSModule.forRoot(),
     ImgFallbackModule,
+    MarkdownModule.forRoot(),
 
     XunkCalendarModule,
     ShareButtonModule.forRoot(),

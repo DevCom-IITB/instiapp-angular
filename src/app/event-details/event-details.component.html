@@ -54,9 +54,7 @@
         </mat-checkbox>
     </div>
     <div class="description">
-      <p class="multi-line-text">
-        {{ event.description }}
-      </p>
+      <markdown [data]="event.description"></markdown>
     </div>
 
     <!-- Bodies conducting the event -->
