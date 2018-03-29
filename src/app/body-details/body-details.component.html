@@ -15,7 +15,8 @@
         <div class="body-name">{{ body.name }}</div>
         <div class="action-buttons">
           <button mat-icon-button
-                *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')">
+                *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
+                [routerLink]="['/edit-body', body.id]">
               <mat-icon>edit</mat-icon>
           </button>
           <a mat-icon-button

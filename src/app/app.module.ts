@@ -37,6 +37,7 @@ import { BodyDetailsComponent } from './body-details/body-details.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.component';
 import { MyEventsComponent } from './my-events/my-events.component';
+import { UpdateBodyComponent } from './update-body/update-body.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MyEventsComponent } from './my-events/my-events.component';
     BodyDetailsComponent,
     UserCardComponent,
     MyShareButtonsComponent,
-    MyEventsComponent
+    MyEventsComponent,
+    UpdateBodyComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,7 @@ import { MyEventsComponent } from './my-events/my-events.component';
       { path: 'my-events', component: MyEventsComponent, data: { state: 'base' } },
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' } },
+      { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' } },
       { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'body-details/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
