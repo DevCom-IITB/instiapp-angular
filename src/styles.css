@@ -83,3 +83,12 @@ body {
 .grey-text-on-white {
     color: #777;
 }
+
+.markdown a {
+    color: rgb(10, 180, 206);
+    text-decoration: none;
+}
+
+.markdown a:hover {
+    color: blue;
+}
