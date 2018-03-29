@@ -3,6 +3,7 @@ import { IBody } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { API } from '../../api';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-body',
@@ -17,6 +18,7 @@ export class UpdateBodyComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public activatedRoute: ActivatedRoute,
+    public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,29 @@ export class UpdateBodyComponent implements OnInit {
   refresh() {
     this.dataService.FireGET(API.Body, {uuid: this.bodyId}).subscribe(result => {
       this.body = result as IBody;
+    });
+  }
+
+  /** Upload image to API and set image url */
+  uploadImage(files: FileList) {
+    this.dataService.UploadImage(files[0]).subscribe(result => {
+      this.body.image_url = result.picture;
+      this.snackBar.open('Image Uploaded', 'Dismiss', {
+        duration: 2000,
+      });
+    }, () => {
+      this.snackBar.open('Image Uploading Failed', 'Dismiss', {
+        duration: 2000,
+      });
+    });
+  }
+
+  /** Make a PUT request */
+  go() {
+    this.dataService.FirePUT(API.Body, this.body, {uuid: this.bodyId}).subscribe(result => {
+      this.snackBar.open('Successful!', 'Dismiss', {
+        duration: 2000,
+      });
     });
   }
 

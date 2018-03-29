@@ -24,8 +24,9 @@
 
 <div>
   <mat-form-field class="full-width-details">
-    <input matInput placeholder="Short Description"
+    <input matInput placeholder="Short Description" #shortDescription
               [(ngModel)]="body.short_description">
+    <mat-hint align="end">{{shortDescription.value.length}} / 50</mat-hint>
   </mat-form-field>
 
   <mat-form-field class="full-width-details">
@@ -38,6 +39,14 @@
     <input matInput placeholder="Website URL"
               [(ngModel)]="body.website_url">
   </mat-form-field>
+</div>
+
+<div>
+  <button mat-raised-button color="accent"
+          class="full-width-details"
+          (click)="go()">
+    Update
+  </button>
 </div>
 
 </div>
