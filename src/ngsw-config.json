@@ -32,7 +32,7 @@
       "name": "backend-api",
       "urls": ["/api/**"],
       "cacheConfig": {
-        "strategy": "performance",
+        "strategy": "freshness",
         "maxSize": 20,
         "maxAge": "1h",
         "timeout": "4s"
