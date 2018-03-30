@@ -1,9 +1,10 @@
 {
     "name": "IITB-App",
     "short_name": "IITB-App",
-    "start_url": "/home",
+    "start_url": "/feed",
     "display": "standalone",
     "theme_color": "#4DB6AC",
+    "orientation": "portrait",
 
     "icons": [
         {
