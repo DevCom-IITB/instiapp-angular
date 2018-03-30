@@ -1,6 +1,9 @@
 <mat-card class="sub-card" *ngIf="event" [routerLink]="overrideClick ? null : ['/event-details', event.id]">
   <mat-card-header>
-    <img mat-card-avatar [src]="event.image_url" src-fallback="/assets/placeholder.png"/>
+    <img mat-card-avatar
+         [src]="event.image_url"
+         src-fallback="/assets/placeholder.png"
+         class="object-cover" />
     <mat-card-title>{{ event.name }}</mat-card-title>
     <mat-card-subtitle>{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</mat-card-subtitle>
   </mat-card-header>

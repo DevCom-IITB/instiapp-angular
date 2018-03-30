@@ -4,7 +4,8 @@
   <mat-card-header>
     <img mat-card-avatar
         [src]="body.image_url" 
-         src-fallback="/assets/iitb_logo.svg"/>
+         src-fallback="/assets/iitb_logo.svg"
+         class="object-cover" />
     <mat-card-title>{{ body.name }}</mat-card-title>
     <mat-card-subtitle>
       <ng-container *ngIf="!subtitle; else hassub">

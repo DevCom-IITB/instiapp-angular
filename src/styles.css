@@ -92,3 +92,7 @@ body {
 .markdown a:hover {
     color: blue;
 }
+
+.object-cover {
+    object-fit: cover;
+}
