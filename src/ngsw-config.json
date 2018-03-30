@@ -21,7 +21,22 @@
     "resources": {
       "files": [
         "/assets/**"
+      ],
+      "urls": [
+        "https://fonts.googleapis.com/**"
       ]
     }
-  }]
+  }],
+  "dataGroups": [
+    {
+      "name": "backend-api",
+      "urls": ["/api/**"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 20,
+        "maxAge": "1h",
+        "timeout": "4s"
+      }
+    }
+  ]
 }
