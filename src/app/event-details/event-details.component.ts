@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angu
 import { IEvent } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-event-details',
