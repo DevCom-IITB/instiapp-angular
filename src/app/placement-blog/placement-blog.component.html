@@ -1,3 +1,19 @@
-<p>
-  placement-blog works!
-</p>
+<div class="loading-spinner">
+    <mat-spinner *ngIf="!feed"
+                mode="indeterminate">
+    </mat-spinner>
+</div>
+
+<div *ngIf="feed" class="detail-card">
+  <div *ngFor="let item of feed.items">
+    <mat-card class="feed-card" (click)="openLink(item.link)">
+      <mat-card-header>
+        <mat-card-title><h3>{{item.title}}</h3></mat-card-title>
+        <mat-card-subtitle>{{item.pubDate}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <markdown [data]="item['content:encoded']"></markdown>
+      </mat-card-content>
+    </mat-card>      
+  </div>
+</div>

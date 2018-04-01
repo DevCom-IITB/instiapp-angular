@@ -361,6 +361,10 @@ export class DataService {
     });
   }
 
+  getPlacementRSS(): Observable<any> {
+    return this.http.get(API.PlacementRSS, {responseType: 'text'});
+  }
+
   /** Navigates to the previous page */
   navigateBack() {
     this.location.back();
