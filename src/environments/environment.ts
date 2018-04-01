@@ -9,4 +9,5 @@ export const environment = {
   host: 'http://localhost:4200/',
   sso_host: 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/',
   sso_client_id: 'vR1pU7wXWyve1rUkg0fMS6StL1Kr6paoSmRIiLXJ',
+  service_worker_url: '/ngsw-worker.js',
 };

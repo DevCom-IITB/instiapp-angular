@@ -91,7 +91,7 @@ import { PlacementBlogComponent } from './placement-blog/placement-blog.componen
       { path: '**', redirectTo: 'feed' },
     ]),
 
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register(environment.service_worker_url, { enabled: environment.production }),
     MyMaterialClass,
   ],
   providers: [
