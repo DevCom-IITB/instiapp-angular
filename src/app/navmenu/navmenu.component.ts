@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 const DEFAULT_USERNAME = 'Guest';
 const DEFAULT_LDAP = 'IITB User';
-const DEFAULT_PROFILE_PIC = '/assets/useravatar.jpg';
+const DEFAULT_PROFILE_PIC = 'assets/useravatar.jpg';
 
 @Component({
   selector: 'app-navmenu',

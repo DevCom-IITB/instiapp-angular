@@ -31,7 +31,8 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts",
-        "deploy": "environments/environment.deploy.ts"
+        "deploy": "environments/environment.deploy.ts",
+        "deploy2": "environments/environment.deploy2.ts"
       },
       "serviceWorker": true
     }
