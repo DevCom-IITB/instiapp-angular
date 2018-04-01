@@ -19,6 +19,6 @@ export const API = {
     Login: 'api/login{?code,redir}',
     Logout: 'api/logout',
 
-    PlacementRSS: 'placement-rss/blog/?feed=rss2'
+    PlacementBlog: 'api/placement-blog'
 
 };

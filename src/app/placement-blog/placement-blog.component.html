@@ -1,3 +1,5 @@
+<ng-container *ngIf="dataService.loggedIn">
+
 <div class="loading-spinner">
     <mat-spinner *ngIf="!feed"
                 mode="indeterminate">
@@ -5,15 +7,19 @@
 </div>
 
 <div *ngIf="feed" class="detail-card">
-  <div *ngFor="let item of feed.items">
+  <div *ngFor="let item of feed">
     <mat-card class="feed-card" (click)="openLink(item.link)">
       <mat-card-header>
         <mat-card-title><h3>{{item.title}}</h3></mat-card-title>
-        <mat-card-subtitle>{{item.pubDate}}</mat-card-subtitle>
+        <mat-card-subtitle>{{item.published}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <markdown [data]="item['content:encoded']"></markdown>
+        <markdown [data]="item.content"></markdown>
       </mat-card-content>
     </mat-card>      
   </div>
 </div>
+
+</ng-container>
+
+<app-login *ngIf="!dataService.loggedIn"></app-login>

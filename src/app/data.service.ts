@@ -362,7 +362,7 @@ export class DataService {
   }
 
   getPlacementRSS(): Observable<any> {
-    return this.http.get(API.PlacementRSS, {responseType: 'text'});
+    return this.FireGET(API.PlacementBlog);
   }
 
   /** Navigates to the previous page */
