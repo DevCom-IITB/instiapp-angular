@@ -39,6 +39,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
+import { PlacementBlogComponent } from './placement-blog/placement-blog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { UpdateBodyComponent } from './update-body/update-body.component';
     UserCardComponent,
     MyShareButtonsComponent,
     MyEventsComponent,
-    UpdateBodyComponent
+    UpdateBodyComponent,
+    PlacementBlogComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +86,7 @@ import { UpdateBodyComponent } from './update-body/update-body.component';
       { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' } },
       { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'body-details/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
+      { path: 'placement-blog', component: PlacementBlogComponent, data: { state: 'base' } },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' },
     ]),
