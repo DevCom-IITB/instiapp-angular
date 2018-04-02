@@ -11,7 +11,7 @@
     <mat-card class="feed-card" (click)="openLink(item.link)">
       <mat-card-header>
         <mat-card-title><h3>{{item.title}}</h3></mat-card-title>
-        <mat-card-subtitle>{{item.published}}</mat-card-subtitle>
+        <mat-card-subtitle>{{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <markdown [data]="item.content"></markdown>
