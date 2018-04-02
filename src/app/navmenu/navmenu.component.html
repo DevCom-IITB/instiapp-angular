@@ -1,7 +1,8 @@
 <div class="head-card primary-background-color"
      (click)="OpenMyProfile()">
     <img class="profile-pic img-circle object-cover"
-         [src]="profilePic">
+         [src]="profilePic"
+         src-fallback="assets/useravatar.jpg">
     <div>
         <div>{{ userName }}</div>
         <div id="ldap">{{ ldap }}</div>
