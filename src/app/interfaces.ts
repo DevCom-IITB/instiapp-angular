@@ -58,7 +58,7 @@ export interface IBody {
     image_url: string;
     website_url: string;
     children: IBody[];
-    parents: string[];
+    parents: IBody[];
     events: IEvent[];
     followers_count: number;
     roles: IBodyRole[];

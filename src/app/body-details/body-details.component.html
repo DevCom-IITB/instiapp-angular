@@ -62,7 +62,7 @@
     <div class="subsection">
       <div class="subtitle"
           *ngIf="body.children.length > 0">
-        Children
+        Organizations
       </div>
       <app-body-card *ngFor="let childbody of body.children"
                     [body]="childbody">
@@ -80,7 +80,18 @@
                         [role]="role.name">
           </app-user-card>
         </ng-container>
+    </div>
+
+    <div class="subsection">
+      <div class="subtitle"
+          *ngIf="body.parents.length > 0">
+        Part of
       </div>
+      <app-body-card *ngFor="let parentbody of body.parents"
+                    [body]="parentbody">
+      </app-body-card>
+    </div>
+
   </div>
 </div>
 
