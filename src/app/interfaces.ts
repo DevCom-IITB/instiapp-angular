@@ -23,6 +23,7 @@ export interface IUserProfile {
 
 export interface IEvent {
     id: string;
+    str_id: string;
     name: string;
     description: string;
     image_url: string;

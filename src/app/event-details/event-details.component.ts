@@ -63,7 +63,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
 
   /** Get the sharing url */
   shareUrl(): string {
-    return environment.host + 'event-details/' + this.eventId;
+    return environment.host + 'event/' + this.event.str_id;
   }
 
   openEventEdit() {
