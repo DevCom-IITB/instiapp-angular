@@ -57,7 +57,8 @@ export class NavmenuComponent implements OnInit {
   /** Open own profile or go to login screen if not logged in */
   OpenMyProfile() {
     if (this.dataService.loggedIn) {
-      this.router.navigate(['user-details', this.dataService.currentUser.id]);
+      const id = this.dataService.currentUser.ldap_id || this.dataService.currentUser.id;
+      this.router.navigate(['user', id]);
     } else {
       this.router.navigate(['login']);
     }

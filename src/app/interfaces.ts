@@ -13,6 +13,7 @@ export interface IUserProfile {
     email: string;
     year: number;
     roll_no: string;
+    ldap_id: string;
     contact_number: string;
     about: string;
     followed_bodies: IBody[];
@@ -49,6 +50,7 @@ export interface ILocation {
 
 export interface IBody {
     id: string;
+    str_id: string;
     name: string;
     short_description: string;
     description: string;

@@ -78,14 +78,17 @@ import { PlacementBlogComponent } from './placement-blog/placement-blog.componen
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
       { path: 'feed', component: FeedComponent, data: { state: 'base' } },
-      { path: 'event-details/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
       { path: 'my-events', component: MyEventsComponent, data: { state: 'base' } },
+
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' } },
       { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' } },
-      { path: 'user-details/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
-      { path: 'body-details/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
+
+      { path: 'event/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
+      { path: 'user/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
+      { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
+
       { path: 'placement-blog', component: PlacementBlogComponent, data: { state: 'base' } },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' },

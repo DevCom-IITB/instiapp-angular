@@ -54,7 +54,7 @@ export class FeedComponent implements OnInit {
 
   /** Navigate to event-details component */
   NavigateEventDeatils(event: IEvent) {
-    this.router.navigate(['event-details', event.id]);
+    this.router.navigate(['event', event.id]);
   }
 
   /** Open or update the side event-details pane */

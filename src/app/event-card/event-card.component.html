@@ -1,4 +1,4 @@
-<mat-card class="sub-card" *ngIf="event" [routerLink]="overrideClick ? null : ['/event-details', event.id]">
+<mat-card class="sub-card" *ngIf="event" [routerLink]="overrideClick ? null : ['/event', event.id]">
   <mat-card-header>
     <img mat-card-avatar
          [src]="event.image_url"
