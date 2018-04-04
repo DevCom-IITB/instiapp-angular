@@ -24,6 +24,7 @@ export class CalendarComponent implements OnInit {
     this.selDate = XunkCalendarModule.getToday();
     this.dataService.GetAllEvents().subscribe(result => {
       this.events = result.data;
+      this.dateChanged(this.selDate);
     });
   }
 
