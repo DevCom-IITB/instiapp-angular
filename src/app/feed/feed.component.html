@@ -5,10 +5,10 @@
 </div>
 
 <app-event-sidebar-desktop
-    [event]="selectedEvent"
-    [contentInited]="events">
+    *ngIf="events"
+    [event]="selectedEvent">
 
-    <div *ngIf="events" class="events-list mat-elevation-z3">
+    <div class="events-list mat-elevation-z3">
         <mat-card class="head-card" (click)=OpenEvent(events[0])>
             <img mat-card-image [src]="events[0].image_url" alt="">
             <div> {{ events[0].name }} </div>

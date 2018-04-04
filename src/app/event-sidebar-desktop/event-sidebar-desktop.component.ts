@@ -19,7 +19,6 @@ export class EventSidebarDesktopComponent implements OnInit, OnChanges {
   hiddenEventDetails = true;
   eventDetailsId;
 
-  @Input() contentInited = false;
   @Input() event;
 
   constructor(
