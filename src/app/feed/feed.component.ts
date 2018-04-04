@@ -83,11 +83,6 @@ export class FeedComponent implements OnInit {
     this.animedEventDetails = true;
   }
 
-  /** any as boolean */
-  abln(a: any): boolean {
-    return a;
-  }
-
   /** boolean to boolean string */
   bstr(b: boolean) {
     return b ? 'true' : 'false';

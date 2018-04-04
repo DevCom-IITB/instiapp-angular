@@ -4,7 +4,7 @@
     </mat-spinner>
 </div>
 
-<div *ngIf="events" class="events-list mat-elevation-z3" [@enterLeft]='bstr(abln(events)&&!mobileQuery.matches)'>
+<div *ngIf="events" class="events-list mat-elevation-z3" [@enterLeft]='bstr(!mobileQuery.matches)'>
     <mat-card class="head-card" (click)=OpenEvent(events[0])>
         <img mat-card-image [src]="events[0].image_url" alt="">
         <div> {{ events[0].name }} </div>
