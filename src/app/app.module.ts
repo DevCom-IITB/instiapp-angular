@@ -40,6 +40,7 @@ import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.com
 import { MyEventsComponent } from './my-events/my-events.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
 import { PlacementBlogComponent } from './placement-blog/placement-blog.component';
+import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { PlacementBlogComponent } from './placement-blog/placement-blog.componen
     MyShareButtonsComponent,
     MyEventsComponent,
     UpdateBodyComponent,
-    PlacementBlogComponent
+    PlacementBlogComponent,
+    EventSidebarDesktopComponent
   ],
   imports: [
     BrowserModule,

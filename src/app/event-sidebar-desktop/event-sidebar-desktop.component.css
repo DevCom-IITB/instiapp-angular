@@ -1,0 +1,19 @@
+@media (min-width: 768px) {
+    .event-details-container {
+        position: fixed;
+        left: 53%;
+        max-height: calc(100% - 100px);
+        top: 80px;
+        width:400px;
+        overflow: auto;
+        overflow-x: hidden;
+        background-color: white;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+    .event-details-container {
+        width:360px;
+        left: 52%;
+    }
+}

@@ -5,27 +5,12 @@
         max-width: 400px;
         margin: 10px;
     }
-
-    .event-details-container {
-        position: fixed;
-        left: 53%;
-        max-height: calc(100% - 100px);
-        top: 80px;
-        width:400px;
-        overflow: auto;
-        overflow-x: hidden;
-        background-color: white;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 900px) {
     .events-list {
         width: 360px;
         left: calc(48% - 360px);
-    }
-    .event-details-container {
-        width:360px;
-        left: 52%;
     }
 }
 
@@ -54,24 +39,6 @@
     margin-bottom: 10px;
     font-family: Arial;
     padding-right: 200px;
-}
-
-.container {
-    position: relative;
-    color: white;
-    width: 100%;
-    padding:0; margin:0;
-}
-
-.container img {
-    width:100%;
-    margin: auto 0; padding:0;
-}
-
-.bottom-left {
-    position: absolute;
-    bottom: 10px;
-    left: 16px;
 }
 
 .subhead {

@@ -1,0 +1,13 @@
+<div *ngIf="contentInited" [@enterLeft]="bstr(!mobileQuery.matches)">
+  <ng-content></ng-content>
+</div>
+
+<div class="event-details-container mat-elevation-z3"
+     *ngIf="!mobileQuery.matches && showingEventDetails"
+     [hidden]="hiddenEventDetails"
+     [@enterRight]="bstr(animedEventDetails)">
+    <app-event-details
+      [eventId]="eventDetailsId"
+      (load)="eventDeatilsLoaded($event)">
+    </app-event-details>
+</div>
