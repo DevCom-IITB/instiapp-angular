@@ -4,20 +4,28 @@
     </mat-spinner>
 </div>
 
-<div class="full-container mat-elevation-z4" *ngIf="events">
-    <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
-    <mat-chip-list class="mat-chip-list-stacked">
-        <mat-chip color="accent" selected="true" id="head-chip">
-            {{ GetCount(selDate) }}
-        </mat-chip>
-    </mat-chip-list>
+<app-event-sidebar-desktop
+    *ngIf="events"
+    [event]="selectedEvent">
 
-    <br>
+    <div class="full-container mat-elevation-z4">
+        <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
+        <mat-chip-list class="mat-chip-list-stacked">
+            <mat-chip color="accent" selected="true" id="head-chip">
+                {{ GetCount(selDate) }}
+            </mat-chip>
+        </mat-chip-list>
 
-    <app-event-card *ngFor="let event of GetDateEvents(selDate)"
-                    [event]="event">
-    </app-event-card>
-</div>
+        <br>
+
+        <app-event-card *ngFor="let event of GetDateEvents(selDate)"
+                        [event]="event"
+                        (click)=OpenEvent(event)
+                        overrideClick=true>
+        </app-event-card>
+    </div>
+
+</app-event-sidebar-desktop>
 
 <button mat-fab
         [disabled]="!dataService.loggedIn"

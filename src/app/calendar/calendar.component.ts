@@ -13,6 +13,7 @@ export class CalendarComponent implements OnInit {
 
   public selDate = { date: 1, month: 1, year: 1 };
   public events: IEvent[];
+  public selectedEvent: IEvent;
 
   constructor(
     public router: Router,
@@ -24,6 +25,11 @@ export class CalendarComponent implements OnInit {
     this.dataService.GetAllEvents().subscribe(result => {
       this.events = result.data;
     });
+  }
+
+  /** Opens the event-details component */
+  OpenEvent(event: IEvent) {
+    this.selectedEvent = event;
   }
 
   /** Get events for the date */
