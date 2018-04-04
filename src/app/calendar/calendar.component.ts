@@ -1,8 +1,9 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { XunkCalendarModule } from 'xunk-calendar';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { IEvent } from '../interfaces';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-calendar',
@@ -11,6 +12,9 @@ import { IEvent } from '../interfaces';
 })
 export class CalendarComponent implements OnInit {
 
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
   public selDate = { date: 1, month: 1, year: 1 };
   public events: IEvent[];
   public selectedEvent: IEvent;
@@ -18,7 +22,13 @@ export class CalendarComponent implements OnInit {
   constructor(
     public router: Router,
     public dataService: DataService,
-  ) { }
+    public changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 767px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit() {
     this.selDate = XunkCalendarModule.getToday();
@@ -53,6 +63,7 @@ export class CalendarComponent implements OnInit {
 
   /** Open the first event on date change */
   dateChanged(date: any) {
+    if (this.mobileQuery.matches) { return; }
     const selEvents = this.GetDateEvents(date);
     if (selEvents.length > 0) {
       this.selectedEvent = selEvents[0];
