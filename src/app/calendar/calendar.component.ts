@@ -46,7 +46,16 @@ export class CalendarComponent implements OnInit {
           selEvents.push(event);
       }
     }
+
     return selEvents;
+  }
+
+  /** Open the first event on date change */
+  dateChanged(date: any) {
+    const selEvents = this.GetDateEvents(date);
+    if (selEvents.length > 0) {
+      this.selectedEvent = selEvents[0];
+    }
   }
 
   /** Gets human readable human count */

@@ -9,7 +9,8 @@
     [event]="selectedEvent">
 
     <div class="full-container mat-elevation-z4">
-        <xunk-calendar [selectedDate]="selDate"></xunk-calendar>
+        <xunk-calendar [selectedDate]="selDate"
+                       (change)="dateChanged($event)"></xunk-calendar>
         <mat-chip-list class="mat-chip-list-stacked">
             <mat-chip color="accent" selected="true" id="head-chip">
                 {{ GetCount(selDate) }}

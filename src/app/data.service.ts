@@ -124,9 +124,6 @@ export class DataService {
         observer.complete();
       });
 
-      reader.onerror = ((error) => {
-        observer.error(new Error(error.message));
-      });
     });
   }
 
