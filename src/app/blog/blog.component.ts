@@ -3,11 +3,11 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-placement-blog',
-  templateUrl: './placement-blog.component.html',
-  styleUrls: ['./placement-blog.component.css']
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrls: ['./blog.component.css']
 })
-export class PlacementBlogComponent implements OnInit {
+export class BlogComponent implements OnInit {
   public feed;
 
   constructor(

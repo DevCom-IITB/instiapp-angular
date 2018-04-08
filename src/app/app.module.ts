@@ -39,7 +39,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
-import { PlacementBlogComponent } from './placement-blog/placement-blog.component';
+import { BlogComponent } from './blog/blog.component';
 import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
 
 @NgModule({
@@ -59,7 +59,7 @@ import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-side
     MyShareButtonsComponent,
     MyEventsComponent,
     UpdateBodyComponent,
-    PlacementBlogComponent,
+    BlogComponent,
     EventSidebarDesktopComponent
   ],
   imports: [
@@ -91,7 +91,7 @@ import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-side
       { path: 'user/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
 
-      { path: 'placement-blog/:blog', component: PlacementBlogComponent, data: { state: 'base' } },
+      { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' } },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' },
     ]),
