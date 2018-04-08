@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-placement-blog',
@@ -11,11 +12,18 @@ export class PlacementBlogComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
+    public activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.dataService.getPlacementRSS().subscribe(result => {
-      this.feed = result;
+    this.activatedRoute.params.subscribe((params: Params) => {
+      if (params['blog']) {
+        this.dataService.FireGET(
+          this.dataService.DecodeObject(params['blog'])).subscribe(result => {
+
+          this.feed = result;
+        });
+      }
     });
   }
 

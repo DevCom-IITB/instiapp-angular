@@ -42,7 +42,7 @@
     "rxjs": "^5.5.8",
     "uri-templates": "^0.2.0",
     "web-animations-js": "^2.3.1",
-    "xunk-calendar": "^1.6.3",
+    "xunk-calendar": "^1.6.5",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

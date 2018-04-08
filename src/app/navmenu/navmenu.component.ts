@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { IUserProfile } from '../interfaces';
 import { Router } from '@angular/router';
+import { API } from '../../api';
 
 const DEFAULT_USERNAME = 'Guest';
 const DEFAULT_LDAP = 'IITB User';
@@ -17,6 +18,7 @@ export class NavmenuComponent implements OnInit {
   public userName = DEFAULT_USERNAME;
   public ldap = DEFAULT_LDAP;
   public profilePic = DEFAULT_PROFILE_PIC;
+  public api = API;
 
   constructor(
     public dataService: DataService,

@@ -44,6 +44,18 @@ export class DataService {
   }
 
   /**
+   * Encode an object for passing through URL
+   * @param o Object to encode
+   */
+  EncodeObject(o: any): string { return btoa(JSON.stringify(o)); }
+
+  /**
+   * Decode an object encoded with "EncodeObject"
+   * @param s Encoded string
+   */
+  DecodeObject<T>(s: string): T { return JSON.parse(atob(s)) as T; }
+
+  /**
    * Fire a URI template or URL with GET verb
    * @param uriTemplate URI Template or URL
    * @param options Options to fill in URI Template
@@ -356,10 +368,6 @@ export class DataService {
       this.currentUser.followed_bodies_id = result.followed_bodies_id;
       this.currentUser.followed_bodies = result.followed_bodies;
     });
-  }
-
-  getPlacementRSS(): Observable<any> {
-    return this.FireGET(API.PlacementBlog);
   }
 
   /** Navigates to the previous page */

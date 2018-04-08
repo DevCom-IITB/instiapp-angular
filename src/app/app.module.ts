@@ -91,7 +91,7 @@ import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-side
       { path: 'user/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
 
-      { path: 'placement-blog', component: PlacementBlogComponent, data: { state: 'base' } },
+      { path: 'placement-blog/:blog', component: PlacementBlogComponent, data: { state: 'base' } },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' },
     ]),

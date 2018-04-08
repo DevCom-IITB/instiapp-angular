@@ -19,6 +19,7 @@ export const API = {
     Login: 'api/login{?code,redir}',
     Logout: 'api/logout',
 
-    PlacementBlog: 'api/placement-blog'
+    PlacementBlog: 'api/placement-blog',
+    TrainingBlog: 'api/training-blog'
 
 };

@@ -23,9 +23,14 @@
     <mat-icon>people</mat-icon> &nbsp; People
 </a>
 
-<a [routerLink]="['/placement-blog']"
+<a [routerLink]="['/placement-blog/' + dataService.EncodeObject(api.PlacementBlog)]"
    mat-list-item>
     <mat-icon>rss_feed</mat-icon> &nbsp; Placement Blog
+</a>
+
+<a [routerLink]="['/placement-blog/' + dataService.EncodeObject(api.TrainingBlog)]"
+   mat-list-item>
+    <mat-icon>rss_feed</mat-icon> &nbsp; Training Blog
 </a>
 
 <a href="https://gymkhana.iitb.ac.in/cms_new/"
