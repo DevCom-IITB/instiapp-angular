@@ -74,6 +74,7 @@ body {
     margin: auto;
     max-width: 428px;
     background-color: white;
+    overflow-x: hidden;
 }
 
 .img-circle {
