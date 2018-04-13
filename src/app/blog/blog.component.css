@@ -5,4 +5,5 @@
 .feed-card {
     margin-bottom: 8px;
     cursor: pointer;
+    overflow: scroll;
 }
