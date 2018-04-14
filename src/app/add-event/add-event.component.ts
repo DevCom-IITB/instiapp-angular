@@ -47,7 +47,7 @@ export class AddEventComponent implements OnInit {
   filterVenues(name: string): string[] {
     if (!name) { return this.venuesList; }
     return this.venuesList.filter(venue =>
-      venue.toLowerCase().indexOf(name.toLowerCase()) === 0);
+      venue.toLowerCase().includes(name.toLowerCase()));
   }
 
   ngOnInit() {

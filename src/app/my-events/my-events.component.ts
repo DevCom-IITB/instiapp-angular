@@ -26,7 +26,7 @@ export class MyEventsComponent implements OnInit {
   /** Returns true if can add event for the given tabindex */
   canAdd(tabindex: number): boolean {
     if (tabindex === 0) { return false; }
-    return this.roles[tabindex - 1].permissions.indexOf('AddE') !== -1;
+    return this.roles[tabindex - 1].permissions.includes('AddE');
   }
 
 }
