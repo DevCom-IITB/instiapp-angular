@@ -12,8 +12,12 @@
 }
 
 #head-chip {
-    width: 120px;
-    text-align: center;
+    width: 140px;
     margin-top: -8px;
-    margin-left: calc(50% - 72px);
+    margin-left: calc(50% - 70px);
+}
+
+#head-chip div {
+    width: 100%;
+    text-align: center
 }

@@ -1,5 +1,5 @@
 # IITB-App-Angular
-Client for WnCC's IITB App in Angular 5.
+Client for WnCC's IITB App in Angular 6.
 
 [![CircleCI](https://circleci.com/gh/pulsejet/iitb-app-angular.svg?style=shield)](https://circleci.com/gh/pulsejet/iitb-app-angular)
 [![Build Status](https://travis-ci.org/pulsejet/iitb-app-angular.svg?branch=master)](https://travis-ci.org/pulsejet/iitb-app-angular)

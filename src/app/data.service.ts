@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IEnumContainer, IUserProfile, IUserEventStatus, ILocation, IEvent, IBody } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
-import { Subject } from 'rxjs/Subject';
 import { API } from '../api';
 import { Location } from '@angular/common';
 import { Helpers } from './helpers';

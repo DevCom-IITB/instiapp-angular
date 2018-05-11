@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { IEvent, IBody, ILocation } from '../interfaces';
 import { Time } from '@angular/common';
 import { Helpers } from '../helpers';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { API } from '../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
