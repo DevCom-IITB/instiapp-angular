@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { API } from '../../API';
+import { API } from '../../api';
 
 @Component({
   selector: 'app-news',
