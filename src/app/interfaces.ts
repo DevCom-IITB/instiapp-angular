@@ -62,6 +62,7 @@ export interface IBody {
     events: IEvent[];
     followers_count: number;
     roles: IBodyRole[];
+    blog_url: string;
 }
 
 export interface IUserEventStatus {
