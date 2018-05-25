@@ -44,7 +44,7 @@ body {
 }
 
 .sub-card {
-    max-width: 428px;
+    max-width: 500px;
     height:40px;
     margin: 0 auto;
     cursor: pointer;
@@ -72,7 +72,7 @@ body {
 .detail-card {
     width: 100%;
     margin: auto;
-    max-width: 428px;
+    max-width: 500px;
     background-color: white;
     overflow-x: hidden;
 }
