@@ -41,6 +41,7 @@ import { MyEventsComponent } from './my-events/my-events.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
 import { BlogComponent } from './blog/blog.component';
 import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-side
     MyEventsComponent,
     UpdateBodyComponent,
     BlogComponent,
-    EventSidebarDesktopComponent
+    EventSidebarDesktopComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +82,7 @@ import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-side
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
       { path: 'feed', component: FeedComponent, data: { state: 'base' } },
+      { path: 'news', component: NewsComponent, data: { state: 'base' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
       { path: 'my-events', component: MyEventsComponent, data: { state: 'base' } },
 

@@ -20,6 +20,8 @@ export const API = {
     Logout: 'api/logout',
 
     PlacementBlog: 'api/placement-blog',
-    TrainingBlog: 'api/training-blog'
+    TrainingBlog: 'api/training-blog',
+
+    NewsFeed: 'api/news'
 
 };
