@@ -39,7 +39,8 @@
 
     <div style="text-align:center">
         <mat-checkbox [ngModel]="dataService.followingBody(body.id)"
-                      (change)="markFollow($event)">
+                      (change)="markFollow($event)"
+                      [disabled]="!dataService.loggedIn">
           FOLLOW
         </mat-checkbox>
     </div>
