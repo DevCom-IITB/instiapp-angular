@@ -1,6 +1,5 @@
 @media (max-width: 767px) {
     .detail-card {
-        min-height: 100vh;
         margin-bottom: 0;
     }
 }
