@@ -23,7 +23,6 @@ import { CustomReuseStrategy } from './routing';
 
 import { XunkCalendarModule } from 'xunk-calendar';
 import { ShareButtonModule } from '@ngx-share/button';
-import { VirtualScrollModule } from 'angular2-virtual-scroll';
 
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
@@ -81,7 +80,6 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
 
     XunkCalendarModule,
     ShareButtonModule.forRoot(),
-    VirtualScrollModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },

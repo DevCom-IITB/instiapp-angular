@@ -6,13 +6,4 @@
     margin-bottom: 8px;
     cursor: pointer;
     overflow: hidden;
-    width: 93vw;
-    max-width: 450px;
-    height: 220px;
-}
-
-virtual-scroll {
-    display: block;
-    width: 800px;
-    height: calc(100vh - 56px);
 }
