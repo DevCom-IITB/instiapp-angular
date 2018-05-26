@@ -1,20 +1,18 @@
-<div id="main">
-  <div class="detail-card mat-elevation-z3" *ngIf="roles && dataService.loggedIn">
-    <mat-tab-group class="tab-group" mat-stretch-tabs [(selectedIndex)]="selIndex">
-        <mat-tab label="Following">
-          <app-event-card
-            *ngFor="let event of dataService.getFollowedEvents()"
-            [event]="event">
-          </app-event-card>
-        </mat-tab>
-        <mat-tab *ngFor="let role of roles" [label]="role.body_detail.name" >
-          <app-event-card
-            *ngFor="let event of role.events"
-            [event]="event">
-          </app-event-card>
-        </mat-tab>
-    </mat-tab-group>
-  </div>
+<div class="detail-card mat-elevation-z3" *ngIf="roles && dataService.loggedIn">
+  <mat-tab-group class="tab-group" mat-stretch-tabs [(selectedIndex)]="selIndex">
+      <mat-tab label="Following">
+        <app-event-card
+          *ngFor="let event of dataService.getFollowedEvents()"
+          [event]="event">
+        </app-event-card>
+      </mat-tab>
+      <mat-tab *ngFor="let role of roles" [label]="role.body_detail.name" >
+        <app-event-card
+          *ngFor="let event of role.events"
+          [event]="event">
+        </app-event-card>
+      </mat-tab>
+  </mat-tab-group>
 </div>
 
 <button mat-fab

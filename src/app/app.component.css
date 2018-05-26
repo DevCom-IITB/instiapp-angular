@@ -8,6 +8,10 @@
     height: 70px;
 }
 
+#bottom-gap {
+    height: 6px;
+}
+
 @media (max-width: 960px) {
     .example-toolbar {
         width: 100%;
