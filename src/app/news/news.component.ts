@@ -28,7 +28,7 @@ export class NewsComponent implements OnInit {
   }
 
   onListChange(event: ChangeEvent) {
-    if (event.end !== this.feed.length || this.allLoaded) { return; }
+    if (event.end !== this.feed.length || this.allLoaded || this.loading) { return; }
     this.loading = true;
     this.dataService.FireGET<any[]>(API.NewsFeed, { from: this.feed.length, num: 10}).subscribe(result => {
       if (result.length === 0) { this.allLoaded = true; }
