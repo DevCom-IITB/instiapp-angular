@@ -5,19 +5,28 @@
 </div>
 
 <div *ngIf="feed" class="detail-card">
-  <div *ngFor="let item of feed">
-    <mat-card class="feed-card" (click)="openLink(item.link)">
-      <mat-card-header>
-        <mat-card-title>{{item.title}}</mat-card-title>
-        <img mat-card-avatar
-          [src]="item.body.image_url"
-          src-fallback="assets/placeholder.png"
-          class="object-cover" />
-        <mat-card-subtitle><b>{{item.body.name}}</b> - {{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <markdown [data]="item.content"></markdown>
-      </mat-card-content>
-    </mat-card>
-  </div>
+  <virtual-scroll [items]="feed" (update)="viewPortItems=$event" (change)="onListChange($event)">
+    <div *ngFor="let item of viewPortItems"  class="mat-elevation-z2">
+      <mat-card class="feed-card" (click)="openLink(item.link)">
+        <mat-card-header>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <img mat-card-avatar
+            [src]="item.body.image_url"
+            src-fallback="assets/placeholder.png"
+            class="object-cover" />
+          <mat-card-subtitle><b>{{item.body.name}}</b> - {{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <markdown [data]="item.content"></markdown>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </virtual-scroll>
+</div>
+
+<div class="loading mat-elevation-z2" *ngIf="loading">
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
 </div>
