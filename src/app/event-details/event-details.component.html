@@ -5,7 +5,7 @@
 </div>
 
 <div class="full-container">
-  <div *ngIf="event" class="detail-card">
+  <div *ngIf="event" class="detail-card mat-elevation-z3">
     <div class="theme-header primary-background-color">
       <img class="event-image"
            [src]="event.image_url"
@@ -61,7 +61,7 @@
 
     <!-- Bodies conducting the event -->
     <div>
-        <app-body-card 
+        <app-body-card
           *ngFor="let body of event.bodies"
           [body]="body">
       </app-body-card>
