@@ -22,6 +22,6 @@ export const API = {
     PlacementBlog: 'api/placement-blog',
     TrainingBlog: 'api/training-blog',
 
-    NewsFeed: 'api/news'
+    NewsFeed: 'api/news{?from,num}'
 
 };

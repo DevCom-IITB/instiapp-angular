@@ -23,6 +23,7 @@ import { CustomReuseStrategy } from './routing';
 
 import { XunkCalendarModule } from 'xunk-calendar';
 import { ShareButtonModule } from '@ngx-share/button';
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
 
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
@@ -42,6 +43,7 @@ import { UpdateBodyComponent } from './update-body/update-body.component';
 import { BlogComponent } from './blog/blog.component';
 import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
 import { NewsComponent } from './news/news.component';
+import { ListLoadingComponent } from './list-loading/list-loading.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { NewsComponent } from './news/news.component';
     UpdateBodyComponent,
     BlogComponent,
     EventSidebarDesktopComponent,
-    NewsComponent
+    NewsComponent,
+    ListLoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ import { NewsComponent } from './news/news.component';
 
     XunkCalendarModule,
     ShareButtonModule.forRoot(),
+    VirtualScrollModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
