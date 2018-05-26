@@ -3,9 +3,3 @@
     cursor: pointer;
     overflow: auto;
 }
-
-@media (min-width: 1256px) {
-    .feed-card {
-        transform: translateX(-150px);
-    }
-}

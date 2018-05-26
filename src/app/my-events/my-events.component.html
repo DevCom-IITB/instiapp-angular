@@ -2,7 +2,7 @@
     <app-xunk-spinner *ngIf="!roles"></app-xunk-spinner>
 </div>
 
-<div class="detail-card mat-elevation-z3" *ngIf="roles && dataService.loggedIn">
+<div class="detail-card real-center mat-elevation-z3" *ngIf="roles && dataService.loggedIn">
   <mat-tab-group class="tab-group" mat-stretch-tabs [(selectedIndex)]="selIndex">
       <mat-tab label="Following">
         <app-event-card

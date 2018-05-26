@@ -90,3 +90,9 @@ body {
 .object-cover {
     object-fit: cover;
 }
+
+@media (min-width: 1256px) {
+    .real-center {
+        transform: translateX(-150px);
+    }
+}

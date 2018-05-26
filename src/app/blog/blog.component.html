@@ -6,7 +6,7 @@
 
 <ng-container *ngIf="feed">
   <ng-container *ngFor="let item of feed">
-    <mat-card class="feed-card detail-card-elem" (click)="openLink(item.link)">
+    <mat-card class="feed-card detail-card-elem real-center mat-elevation-z3" (click)="openLink(item.link)">
       <mat-card-header>
         <mat-card-title><h3>{{item.title}}</h3></mat-card-title>
         <mat-card-subtitle>{{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
