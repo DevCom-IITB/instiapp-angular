@@ -10,30 +10,36 @@
 </div>
 
 <a [routerLink]="['/feed']"
+   routerLinkActive="active-link"
    mat-list-item>
     <mat-icon>list</mat-icon> &nbsp; Feed
 </a>
 
 <a [routerLink]="['/news/']"
+   routerLinkActive="active-link"
    mat-list-item>
     <mat-icon>rss_feed</mat-icon> &nbsp; News
 </a>
 
 <a [routerLink]="['/my-events']"
+   routerLinkActive="active-link"
    mat-list-item>
     <mat-icon>event</mat-icon> &nbsp; My Events
 </a>
 
-<a mat-list-item>
+<a mat-list-item
+   routerLinkActive="active-link">
     <mat-icon>people</mat-icon> &nbsp; People
 </a>
 
 <a [routerLink]="['/blog/' + dataService.EncodeObject(api.PlacementBlog)]"
+   routerLinkActive="active-link"
    mat-list-item>
     <mat-icon>rss_feed</mat-icon> &nbsp; Placement Blog
 </a>
 
 <a [routerLink]="['/blog/' + dataService.EncodeObject(api.TrainingBlog)]"
+   routerLinkActive="active-link"
    mat-list-item>
     <mat-icon>rss_feed</mat-icon> &nbsp; Training Blog
 </a>
@@ -45,6 +51,7 @@
 </a>
 
 <a [routerLink]="['/calendar']"
+   routerLinkActive="active-link"
    mat-list-item>
     <mat-icon>event_available</mat-icon> &nbsp; Calendar
 </a>
