@@ -15,7 +15,6 @@ import { RouterModule } from '@angular/router';
 import { MyMaterialClass } from './material-angular.module';
 
 import 'hammerjs';
-import { SidebarJSModule } from 'ng-sidebarjs';
 import { ImgFallbackModule } from 'ngx-img-fallback';
 import { MarkdownModule } from 'ngx-markdown';
 import { RouteReuseStrategy } from '@angular/router';
@@ -78,7 +77,6 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     FormsModule,
     BrowserAnimationsModule,
 
-    SidebarJSModule.forRoot(),
     ImgFallbackModule,
     MarkdownModule.forRoot(),
 
