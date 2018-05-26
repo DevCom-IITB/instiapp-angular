@@ -2,8 +2,8 @@
     <app-xunk-spinner *ngIf="!event"></app-xunk-spinner>
 </div>
 
-<div class="full-container real-center">
-  <div *ngIf="event" class="detail-card mat-elevation-z3">
+<div>
+  <div *ngIf="event" class="detail-card mat-elevation-z3" [class.real-center]="!noCenter">
     <div class="theme-header primary-background-color">
       <img class="event-image"
            [src]="event.image_url"

@@ -12,6 +12,7 @@ import { environment } from '../../environments/environment';
 export class EventDetailsComponent implements OnChanges, OnInit {
 
   @Input() public eventId: string;
+  @Input() public noCenter = false;
   @Output() public load = new EventEmitter<boolean>();
 
   public event: IEvent;
