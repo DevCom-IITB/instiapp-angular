@@ -33,4 +33,21 @@ export module Helpers {
         return Helpers.zeroPad(hours, 2) + ':' + Helpers.zeroPad(minutes, 2) + ' | ' +
             day + daySuffix + ' ' + monthNames[monthIndex];
     }
+
+    /**
+     * Helper for infinite scrolling
+     * @param callback void to call when user reaches bottom of scroll
+     */
+    export function CheckScrollBottom(callback: () => any): void {
+        /* Work around browser specific implementations
+         * Try documentElement scrollHeight, then body and finally give up */
+        let maxScroll = document.documentElement.scrollHeight;
+        if (maxScroll === 0) { maxScroll = document.body.scrollHeight; }
+        if (maxScroll === 0) { return; }
+
+        if ((window.innerHeight + window.scrollY) >= maxScroll - 60) {
+          callback();
+        }
+    }
+
 }
