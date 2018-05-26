@@ -54,10 +54,9 @@ export class AppComponent implements OnDestroy, OnInit {
     return outlet.activatedRouteData.state;
   }
 
-  /** Emulate a click on the hamburger button */
-  clickHamburger() {
-    const el: HTMLElement = this.hamburger.nativeElement as HTMLElement;
-    el.click();
+  /** Close sidebar only for mobile */
+  closeSidebarMobile(drawer: any) {
+    if (this.mobileQuery.matches) { drawer.close(); }
   }
 
   /** Redirects to login */

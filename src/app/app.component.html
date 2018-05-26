@@ -1,3 +1,12 @@
+<ng-container *ngIf="initialized">
+
+<!-- Swipe area (only for mobile) -->
+<div #swipeArea id="swipe-right-area"
+     *ngIf="mobileQuery.matches"
+     (click)="drawer.toggle()"
+     (panright)="drawer.toggle()">
+</div>
+
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav
         #drawer
@@ -6,18 +15,22 @@
         [mode]="(mobileQuery.matches) ? 'over' : 'side'"
         [opened]="!mobileQuery.matches">
         <mat-nav-list>
-            <app-navmenu></app-navmenu>
+            <app-navmenu (click)="closeSidebarMobile(drawer)"
+                         (panleft)="closeSidebarMobile(drawer)">
+            </app-navmenu>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content class="image-background">
         <mat-toolbar class="example-toolbar" color="primary">
             <button mat-icon-button
+                    *ngIf="mobileQuery.matches"
                     (click)="drawer.toggle()"
-                    [style.display]="getState(o)==='base' || !mobileQuery.matches ? 'inline' : 'none'">
+                    [style.display]="getState(o)==='base' ? 'inline' : 'none'">
                 <mat-icon>menu</mat-icon>
             </button>
             <button mat-icon-button
-                    [style.display]="getState(o)==='overlay' && mobileQuery.matches ? 'inline' : 'none'"
+                    *ngIf="mobileQuery.matches"
+                    [style.display]="getState(o)==='overlay' ? 'inline' : 'none'"
                     (click)="dataService.navigateBack();">
                 <mat-icon>arrow_back</mat-icon>
             </button>
@@ -45,49 +58,4 @@
     </mat-sidenav-content>
 </mat-sidenav-container>
 
-
-<!--<ng-container *ngIf="initialized">
-<sidebar-js [sidebarjsConfig]="{nativeSwipeOpen: false}">
-    <mat-nav-list>
-        <app-navmenu sidebarjsClose></app-navmenu>
-    </mat-nav-list>
-</sidebar-js>
-
-<div #swipeArea id="swipe-right-area" sidebarjsOpen (panright)="clickHamburger()"></div>
-
-<mat-toolbar class="example-toolbar" color="primary">
-    <button mat-icon-button
-            sidebarjsOpen
-            [style.display]="getState(o)==='base' || !mobileQuery.matches ? 'inline' : 'none'">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <button mat-icon-button
-            [style.display]="getState(o)==='overlay' && mobileQuery.matches ? 'inline' : 'none'"
-            (click)="dataService.navigateBack();">
-        <mat-icon>arrow_back</mat-icon>
-    </button>
-
-    <h1 class="example-app-name">
-        {{ this.titleService.getTitle() }}
-    </h1>
-
-    <div class="fill-space"></div>
-    <button mat-button
-            (click)="login()"
-            *ngIf="!this.dataService.loggedIn">
-        Log In
-    </button>
-
-    <button mat-button
-            (click)="this.dataService.Logout()"
-            *ngIf="this.dataService.loggedIn">
-        Log Out
-    </button>
-</mat-toolbar>
-
-<div id="outlet">
-    <router-outlet #o="outlet"></router-outlet>
-</div>
-
 </ng-container>
--->
