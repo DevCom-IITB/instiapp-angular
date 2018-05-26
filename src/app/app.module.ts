@@ -44,6 +44,8 @@ import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-side
 import { NewsComponent } from './news/news.component';
 import { ListLoadingComponent } from './list-loading/list-loading.component';
 import { XunkSpinnerComponent } from './xunk-spinner/xunk-spinner.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,12 @@ import { XunkSpinnerComponent } from './xunk-spinner/xunk-spinner.component';
 
     ServiceWorkerModule.register(environment.service_worker_url, { enabled: environment.production }),
     MyMaterialClass,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [
     DataService,

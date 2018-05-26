@@ -1,16 +1,23 @@
-@media (max-width: 767px) {
-    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-    .body-content {
-        padding-top: 50px;
+.example-toolbar {
+    position: fixed;
+    width: calc(100% - 300px);
+    z-index: 200;
+}
+
+#top-gap {
+    height: 70px;
+}
+
+@media (max-width: 960px) {
+    .example-toolbar {
+        width: 100%;
     }
 }
 
-#outlet {
-    padding: 0;
-    margin: 0 auto;
-    width: 100%;
-    position: absolute;
-    margin-top: 70px;
+@media (max-width: 768px) {
+    #top-gap {
+        height: 56px;
+    }
 }
 
 #swipe-right-area {
@@ -20,7 +27,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    height: 100vh; 
+    height: 100vh;
     width: 3vw;
     max-width: 12px;
     z-index: 1000;
@@ -33,10 +40,6 @@
 @media (max-width: 767px) {
     .body-content {
         margin: 5px;
-    }
-
-    #outlet {
-        margin-top: 56px;
     }
 }
 
@@ -51,23 +54,18 @@
     border: 0;
 }
 
-.example-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.example-toolbar {
-    z-index: 2;
-    position: fixed;
-}
-
 h1.example-app-name {
     margin-left: 8px;
     text-decoration: none;
     cursor:pointer;
 }
+
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 300px;
+    box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+

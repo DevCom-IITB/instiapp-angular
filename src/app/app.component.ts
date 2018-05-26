@@ -25,7 +25,7 @@ export class AppComponent implements OnDestroy, OnInit {
     public dataService: DataService,
     public router: Router,
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 768px)');
+    this.mobileQuery = media.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.titleService.setTitle('InstiApp');
