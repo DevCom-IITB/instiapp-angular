@@ -1,7 +1,5 @@
 <div class="loading-spinner">
-    <app-xunk-spinner *ngIf="!profile"
-                mode="indeterminate">
-    </app-xunk-spinner>
+    <app-xunk-spinner *ngIf="!profile"></app-xunk-spinner>
 </div>
 
 <div class="detail-card mat-elevation-z3" *ngIf="profile">
@@ -33,7 +31,7 @@
   <!-- Tabbed information -->
   <mat-tab-group class="tab-group" mat-stretch-tabs>
       <mat-tab label="Following">
-          <app-body-card 
+          <app-body-card
             *ngFor="let body of profile.followed_bodies"
             [body]="body">
           </app-body-card>
