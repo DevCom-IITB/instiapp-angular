@@ -4,7 +4,7 @@
 <div #swipeArea id="swipe-right-area"
      *ngIf="mobileQuery.matches"
      (click)="drawer.toggle()"
-     (panright)="drawer.toggle()">
+     (swiperight)="drawer.toggle()">
 </div>
 
 <mat-sidenav-container class="sidenav-container">
@@ -16,7 +16,7 @@
         [opened]="!mobileQuery.matches">
         <mat-nav-list>
             <app-navmenu (click)="closeSidebarMobile(drawer)"
-                         (panleft)="closeSidebarMobile(drawer)">
+                         (swipeleft)="closeSidebarMobile(drawer)">
             </app-navmenu>
         </mat-nav-list>
     </mat-sidenav>
