@@ -29,7 +29,14 @@ export class NewsComponent implements OnInit {
   /** Handles loading new data when the user reaches end of page */
   @HostListener('window:scroll', []) onScroll(): void {
     if (this.allLoaded || this.loading) { return; }
-    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 30) {
+
+    /* Work around browser specific implementations
+     * Try documentElement scrollHeight, then body and finally give up */
+    let maxScroll = document.documentElement.scrollHeight;
+    if (maxScroll === 0) { maxScroll = document.body.scrollHeight; }
+    if (maxScroll === 0) { return; }
+
+    if ((window.innerHeight + window.scrollY) >= maxScroll - 60) {
       this.loading = true;
       this.dataService.FireGET<any[]>(API.NewsFeed, { from: this.feed.length, num: 10}).subscribe(result => {
         if (result.length === 0) { this.allLoaded = true; }
