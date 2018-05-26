@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { DataService } from '../data.service';
 import { API } from '../../api';
-import { ChangeEvent } from 'angular2-virtual-scroll';
 
 @Component({
   selector: 'app-news',
@@ -18,7 +17,7 @@ export class NewsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataService.FireGET(API.NewsFeed).subscribe(result => {
+    this.dataService.FireGET(API.NewsFeed, { from: 0, num: 10}).subscribe(result => {
       this.feed = result;
     });
   }
@@ -27,14 +26,16 @@ export class NewsComponent implements OnInit {
     window.open(link);
   }
 
-  onListChange(event: ChangeEvent) {
-    if (event.end !== this.feed.length || this.allLoaded || this.loading) { return; }
-    this.loading = true;
-    this.dataService.FireGET<any[]>(API.NewsFeed, { from: this.feed.length, num: 10}).subscribe(result => {
-      if (result.length === 0) { this.allLoaded = true; }
-      this.feed = this.feed.concat(result);
-      this.loading = false;
-    }, () => { this.loading = false; });
+  /** Handles loading new data when the user reaches end of page */
+  @HostListener('window:scroll', []) onScroll(): void {
+    if (this.allLoaded || this.loading) { return; }
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight) {
+      this.loading = true;
+      this.dataService.FireGET<any[]>(API.NewsFeed, { from: this.feed.length, num: 10}).subscribe(result => {
+        if (result.length === 0) { this.allLoaded = true; }
+        this.feed = this.feed.concat(result);
+        this.loading = false;
+      }, () => { this.loading = false; });
+    }
   }
-
 }
