@@ -43,6 +43,7 @@ import { UpdateBodyComponent } from './update-body/update-body.component';
 import { BlogComponent } from './blog/blog.component';
 import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
 import { NewsComponent } from './news/news.component';
+import { ListLoadingComponent } from './list-loading/list-loading.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { NewsComponent } from './news/news.component';
     UpdateBodyComponent,
     BlogComponent,
     EventSidebarDesktopComponent,
-    NewsComponent
+    NewsComponent,
+    ListLoadingComponent
   ],
   imports: [
     BrowserModule,

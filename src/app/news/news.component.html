@@ -24,9 +24,4 @@
   </virtual-scroll>
 </div>
 
-<div class="loading mat-elevation-z2" *ngIf="loading">
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-</div>
+<app-list-loading *ngIf="loading"></app-list-loading>
