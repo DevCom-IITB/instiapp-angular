@@ -19,8 +19,8 @@ export const API = {
     Login: 'api/login{?code,redir}',
     Logout: 'api/logout',
 
-    PlacementBlog: 'api/placement-blog',
-    TrainingBlog: 'api/training-blog',
+    PlacementBlog: 'api/placement-blog{?from,num}',
+    TrainingBlog: 'api/training-blog{?from,num}',
 
     NewsFeed: 'api/news{?from,num}'
 

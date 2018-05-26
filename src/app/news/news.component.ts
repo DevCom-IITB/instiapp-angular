@@ -29,7 +29,7 @@ export class NewsComponent implements OnInit {
 
   /** Handles loading new data when the user reaches end of page */
   @HostListener('window:scroll', []) onScroll(): void {
-    if (this.allLoaded || this.loading) { return; }
+    if (!this.feed || this.allLoaded || this.loading) { return; }
     Helpers.CheckScrollBottom(() => {
       this.loading = true;
       this.dataService.FireGET<any[]>(API.NewsFeed, { from: this.feed.length, num: 10}).subscribe(result => {
