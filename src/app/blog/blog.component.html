@@ -1,9 +1,9 @@
 <ng-container *ngIf="dataService.loggedIn">
 
 <div class="loading-spinner">
-    <mat-spinner *ngIf="!feed"
+    <app-xunk-spinner *ngIf="!feed"
                 mode="indeterminate">
-    </mat-spinner>
+    </app-xunk-spinner>
 </div>
 
 <div *ngIf="feed" class="detail-card">

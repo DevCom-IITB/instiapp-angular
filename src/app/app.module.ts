@@ -43,6 +43,7 @@ import { BlogComponent } from './blog/blog.component';
 import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
 import { NewsComponent } from './news/news.component';
 import { ListLoadingComponent } from './list-loading/list-loading.component';
+import { XunkSpinnerComponent } from './xunk-spinner/xunk-spinner.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
     BlogComponent,
     EventSidebarDesktopComponent,
     NewsComponent,
-    ListLoadingComponent
+    ListLoadingComponent,
+    XunkSpinnerComponent
   ],
   imports: [
     BrowserModule,
