@@ -6,9 +6,9 @@
     </app-xunk-spinner>
 </div>
 
-<div *ngIf="feed" class="detail-card">
-  <div *ngFor="let item of feed">
-    <mat-card class="feed-card" (click)="openLink(item.link)">
+<ng-container *ngIf="feed">
+  <ng-container *ngFor="let item of feed">
+    <mat-card class="feed-card detail-card-elem" (click)="openLink(item.link)">
       <mat-card-header>
         <mat-card-title><h3>{{item.title}}</h3></mat-card-title>
         <mat-card-subtitle>{{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
@@ -16,9 +16,9 @@
       <mat-card-content>
         <markdown [data]="item.content"></markdown>
       </mat-card-content>
-    </mat-card>      
-  </div>
-</div>
+    </mat-card>
+  </ng-container>
+</ng-container>
 
 </ng-container>
 

@@ -4,9 +4,9 @@
     </app-xunk-spinner>
 </div>
 
-<div *ngIf="feed" class="detail-card">
-  <div *ngFor="let item of feed"  class="mat-elevation-z2">
-    <mat-card class="feed-card" (click)="openLink(item.link)">
+<ng-container *ngIf="feed">
+  <ng-container *ngFor="let item of feed">
+    <mat-card class="feed-card detail-card-elem mat-elevation-z3" (click)="openLink(item.link)">
       <mat-card-header>
         <mat-card-title>{{item.title}}</mat-card-title>
         <img mat-card-avatar
@@ -19,7 +19,7 @@
         <markdown [data]="item.content"></markdown>
       </mat-card-content>
     </mat-card>
-  </div>
-</div>
+  </ng-container>
+</ng-container>
 
 <app-list-loading *ngIf="loading"></app-list-loading>

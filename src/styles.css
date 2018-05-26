@@ -9,19 +9,7 @@ html {
 body, .image-background {
     /* Set font family */
     font-family: 'Roboto', sans-serif;
-
-    background-image: url("/assets/tile.jpg");
-    background-repeat: repeat;
-    background-attachment: fixed;
-    
-    /*
-    background-image: url("/assets/background.jpg");
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    */
+    background-color: #e9ebee;
 }
 
 .loading-spinner {
@@ -46,7 +34,7 @@ body {
 .sub-card {
     max-width: 500px;
     height:40px;
-    margin: 0 auto;
+    margin: 5px auto;
     cursor: pointer;
 }
 
@@ -56,12 +44,12 @@ body {
 
 .theme-header {
     width: 100%;
-    background-color: #009688;
+    background-color: #673AB7;
     margin-bottom: 10px;
 }
 
 .primary-background-color{
-    background-color: #009688;
+    background-color: #673AB7;
     color: white;
 }
 
@@ -75,6 +63,11 @@ body {
     max-width: 500px;
     background-color: white;
     overflow-x: hidden;
+}
+
+.detail-card-elem {
+    max-width: 500px;
+    margin: auto;
 }
 
 .img-circle {

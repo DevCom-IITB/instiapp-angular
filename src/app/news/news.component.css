@@ -1,9 +1,5 @@
-.detail-card {
-    background-color: transparent;
-}
-
 .feed-card {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     cursor: pointer;
     overflow: hidden;
 }

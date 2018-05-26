@@ -30,7 +30,7 @@
 
 <button mat-fab
         [disabled]="!dataService.loggedIn"
-        class="float-fixed-right-bottom"
+        class="float-fixed-right-bottom mat-elevation-z2"
         [routerLink]="['/add-event']"
         [queryParams]="{date: dateToDate(selDate).toDateString()}">
     <mat-icon>add</mat-icon>

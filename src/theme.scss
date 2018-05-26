@@ -10,8 +10,8 @@
 @import '~@ngx-share/button/styles/themes/material/material-dark-theme';
 /* @import '~@ngx-share/button/styles/themes/circles/circles-dark-theme'; */
 
-$md-primary: mat-palette($mat-teal, 500, 100, 700);
-$md-accent: mat-palette($mat-purple, 500, 300, 800);
+$md-primary: mat-palette($mat-deep-purple, 500, 100, 700);
+$md-accent: mat-palette($mat-deep-orange, 500, 300, 800);
 $md-warn: mat-palette($mat-red, 500, 300, 900);
 
 $my-theme-foreground: (

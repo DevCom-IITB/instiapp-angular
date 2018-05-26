@@ -99,7 +99,7 @@
 <button mat-fab
         *ngIf="body && dataService.HasBodyPermission(body.id, 'AddE')"
         [disabled]="!dataService.loggedIn"
-        class="float-fixed-right-bottom"
+        class="float-fixed-right-bottom mat-elevation-z2"
         [routerLink]="['/add-event']"
         [queryParams]="{body: body.id}">
     <mat-icon>add</mat-icon>

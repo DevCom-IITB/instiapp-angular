@@ -9,7 +9,7 @@
             </app-event-card>
           </mat-tab>
           <mat-tab *ngFor="let role of roles" [label]="role.body_detail.name" >
-            <app-event-card 
+            <app-event-card
               *ngFor="let event of role.events"
               [event]="event">
             </app-event-card>
@@ -21,7 +21,7 @@
 
 <button mat-fab
         *ngIf="canAdd(selIndex)"
-        class="float-fixed-right-bottom"
+        class="float-fixed-right-bottom mat-elevation-z2"
         [routerLink]="['/add-event']"
         [queryParams]="{body: roles[selIndex - 1].body}">
     <mat-icon>add</mat-icon>
