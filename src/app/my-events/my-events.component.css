@@ -1,9 +1,8 @@
-.full-container {
-    height: 100%;
+#main {
+    padding:10px;
 }
 
 .detail-card {
-    max-width: 480px;
     min-height: 60vh;
 }
 
@@ -12,10 +11,4 @@
     bottom: 20px;
     right: 20px;
     z-index: 5;
-}
-
-@media (min-width: 480px) {
-    .full-container {
-        margin-top: 10px;
-    }
 }
