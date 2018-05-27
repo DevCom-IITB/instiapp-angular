@@ -3,8 +3,8 @@
     <img class="profile-pic img-circle object-cover"
          [src]="profilePic"
          src-fallback="assets/useravatar.jpg">
-    <div>
-        <div>{{ userName }}</div>
+    <div class="overflow-ellipsis">
+        {{ userName }}
         <div id="ldap">{{ ldap }}</div>
     </div>
 </div>

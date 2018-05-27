@@ -92,3 +92,10 @@ body, .image-background {
         transform: translateX(-150px);
     }
 }
+
+.overflow-ellipsis {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
