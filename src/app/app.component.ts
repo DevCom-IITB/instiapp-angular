@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
@@ -14,9 +14,6 @@ export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   public initialized = false;
   public openFlyout = false;
-
-  /** Hamburger icon to open menu */
-  @ViewChild('swipeArea') hamburger: ElementRef;
 
   private _mobileQueryListener: () => void;
 
