@@ -22,6 +22,7 @@ body, .image-background {
 .flyout-backdrop {
     top: -70px !important;
     z-index: 9999;
+    touch-action: none;
 }
 
 .sub-card {
