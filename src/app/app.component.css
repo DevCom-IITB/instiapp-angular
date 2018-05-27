@@ -9,6 +9,15 @@
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+    #router-out {
+        padding-top: 0;
+        top: 56px;
+    }
 }
 
 #swipe-right-area {
