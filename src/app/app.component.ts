@@ -13,7 +13,7 @@ import { Helpers } from './helpers';
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   public initialized = false;
-  private openFlyout = false;
+  public openFlyout = false;
 
   /** Hamburger icon to open menu */
   @ViewChild('swipeArea') hamburger: ElementRef;
