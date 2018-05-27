@@ -1,8 +1,8 @@
 <div class="loading-spinner">
-    <app-xunk-spinner *ngIf="!roles && dataService.loggedIn"></app-xunk-spinner>
+    <app-xunk-spinner *ngIf="!roles"></app-xunk-spinner>
 </div>
 
-<div class="detail-card real-center mat-elevation-z3" *ngIf="roles && dataService.loggedIn">
+<div class="detail-card real-center mat-elevation-z3" *ngIf="roles">
   <mat-tab-group class="tab-group" mat-stretch-tabs [(selectedIndex)]="selIndex">
       <mat-tab label="Following">
         <app-event-card
@@ -26,5 +26,3 @@
         [queryParams]="{body: roles[selIndex - 1].body}">
     <mat-icon>add</mat-icon>
 </button>
-
-<app-login *ngIf="!dataService.loggedIn"></app-login>

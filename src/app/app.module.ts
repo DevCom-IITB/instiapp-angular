@@ -45,6 +45,7 @@ import { ListLoadingComponent } from './list-loading/list-loading.component';
 import { XunkSpinnerComponent } from './xunk-spinner/xunk-spinner.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { LoginActivate } from './loginactivate';
 
 @NgModule({
   declarations: [
@@ -88,17 +89,17 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
       { path: 'feed', component: FeedComponent, data: { state: 'base' } },
       { path: 'news', component: NewsComponent, data: { state: 'base' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
-      { path: 'my-events', component: MyEventsComponent, data: { state: 'base' } },
+      { path: 'my-events', component: MyEventsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
 
-      { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' } },
-      { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' } },
-      { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' } },
+      { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
+      { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
+      { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
 
       { path: 'event/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
       { path: 'user/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
 
-      { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' } },
+      { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
       { path: '**', redirectTo: 'feed' },
     ]),
@@ -115,6 +116,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
   providers: [
     DataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
+    LoginActivate,
   ],
   bootstrap: [AppComponent]
 })

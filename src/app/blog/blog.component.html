@@ -1,5 +1,3 @@
-<ng-container *ngIf="dataService.loggedIn">
-
 <div class="loading-spinner">
     <app-xunk-spinner *ngIf="!feed"></app-xunk-spinner>
 </div>
@@ -18,7 +16,4 @@
   </ng-container>
 </ng-container>
 
-</ng-container>
-
-<app-login *ngIf="!dataService.loggedIn"></app-login>
 <app-list-loading *ngIf="loading"></app-list-loading>
