@@ -5,6 +5,23 @@ body, .image-background {
     /* Set font family */
     font-family: 'Roboto', sans-serif;
     background-color: #e9ebee;
+    --flyout-top: 0px;
+}
+
+.flyout {
+    z-index: 10000;
+    width: 300px;
+}
+
+/* Workaround for the abomination called Chrome for Android */
+.flyout-chrome-android {
+    position: absolute !important;
+    top: var(--flyout-top) !important;
+}
+
+.flyout-backdrop {
+    top: -70px !important;
+    z-index: 9999;
 }
 
 .sub-card {

@@ -1,22 +1,39 @@
 .example-toolbar {
-    width: 100%;
+    position: fixed;
+    z-index: 200;
+    width: calc(100% - 300px);
+    margin-left: 300px;
 }
 
 #router-out {
-    position: absolute;
-    top: 64px;
     bottom: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 100%;
+    width: calc(100% - 300px);
     padding-top: 8px;
     padding-bottom: 8px;
+    margin-left: 300px;
+}
+
+#top-gap {
+    height: 70px;
+}
+
+@media (max-width: 1200px) {
+    .example-toolbar {
+        position: absolute;
+    }
+}
+
+@media (max-width: 960px) {
+    #router-out, .example-toolbar {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0;
+    }
 }
 
 @media (max-width: 600px) {
-    #router-out {
-        padding-top: 0;
-        top: 56px;
+    #top-gap {
+        height: 48px;
     }
 }
 
@@ -57,13 +74,3 @@ h1.example-app-name {
 .sidenav-container {
     height: 100%;
 }
-
-.sidenav {
-    width: 300px;
-    box-shadow: 3px 0 6px rgba(0,0,0,.24);
-}
-
-.sidenav-content {
-    overflow: hidden;
-}
-

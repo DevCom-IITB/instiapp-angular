@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { Helpers } from './helpers';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,15 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   public initialized = false;
+  private openFlyout = false;
 
   /** Hamburger icon to open menu */
   @ViewChild('swipeArea') hamburger: ElementRef;
 
   private _mobileQueryListener: () => void;
+
+  /** Control top of sidenav with TS on Android Chrome */
+  private isAndroidChrome = false;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -26,9 +31,22 @@ export class AppComponent implements OnDestroy, OnInit {
     public router: Router,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 960px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this._mobileQueryListener = () => {
+      this.openFlyout = true;
+      changeDetectorRef.detectChanges();
+    };
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.titleService.setTitle('InstiApp');
+
+    /** Check if we are on Chrome-Android */
+    if (window.navigator.userAgent.toLowerCase().includes('chrome') &&
+        window.navigator.userAgent.toLowerCase().includes('android')) {
+        this.isAndroidChrome = true;
+    }
+  }
+
+  private toggleSidebar() {
+    this.openFlyout = !this.openFlyout;
   }
 
   ngOnInit() {
@@ -37,6 +55,11 @@ export class AppComponent implements OnDestroy, OnInit {
     }, (error) => {
       this.initialized = true;
     });
+
+    /* Initialize flyout to open on deskop */
+    if (!this.mobileQuery.matches) {
+      this.openFlyout = true;
+    }
   }
 
   /** For use after router navigation */
@@ -55,8 +78,8 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   /** Close sidebar only for mobile */
-  closeSidebarMobile(drawer: any) {
-    if (this.mobileQuery.matches) { drawer.close(); }
+  closeSidebarMobile() {
+    if (this.mobileQuery.matches) { this.toggleSidebar(); }
   }
 
   /** Redirects to login */
@@ -64,11 +87,21 @@ export class AppComponent implements OnDestroy, OnInit {
     this.router.navigate(['login']);
   }
 
-  @HostListener('scroll', ['$event'])
-  onScroll(event: any) {
-    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight - 60) {
-      this.dataService.scrollBottomFunction();
+  /** Handle reaching end of page and sidenav on android chrome */
+  @HostListener('window:scroll')
+  windowScroll() {
+    if (this.isAndroidChrome) {
+      document.querySelector('body').style.cssText = '--flyout-top:' + window.document.documentElement.scrollTop + 'px';
     }
+
+    Helpers.CheckScrollBottom(this.dataService.scrollBottomFunction);
   }
 
+  /** Add classes for chrome android */
+  getFlyoutClasses() {
+    if (this.isAndroidChrome) {
+      return ['flyout', 'flyout-chrome-android'];
+    }
+    return ['flyout'];
+  }
 }

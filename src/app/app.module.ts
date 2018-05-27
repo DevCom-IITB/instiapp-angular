@@ -22,6 +22,7 @@ import { CustomReuseStrategy } from './routing';
 
 import { XunkCalendarModule } from 'xunk-calendar';
 import { ShareButtonModule } from '@ngx-share/button';
+import { FlyoutModule } from 'ngx-flyout';
 
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
@@ -80,6 +81,7 @@ import { LoginActivate } from './loginactivate';
 
     ImgFallbackModule,
     MarkdownModule.forRoot(),
+    FlyoutModule,
 
     XunkCalendarModule,
     ShareButtonModule.forRoot(),
