@@ -41,6 +41,7 @@
   body {
     background-color: #e9ebee;
     margin: 0;
+    --primary-color: #673AB7;
   }
 
   .loading-spinner {
@@ -65,7 +66,7 @@
   }
 
   .spinner > div {
-      background-color: #673AB7;
+      background-color: var(--primary-color);
       height: 100%;
       transform: scale(1, 0.5);
 
