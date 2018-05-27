@@ -11,6 +11,7 @@ body, .image-background {
 .flyout {
     z-index: 10000;
     width: 300px;
+    touch-action: pan-x;
 }
 
 /* Workaround for the abomination called Chrome for Android */
