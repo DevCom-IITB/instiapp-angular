@@ -1,14 +1,15 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { API } from '../../api';
 import { Helpers } from '../helpers';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
   public feed;
   loading = false;
   allLoaded = false;
@@ -21,14 +22,22 @@ export class NewsComponent implements OnInit {
     this.dataService.FireGET(API.NewsFeed, { from: 0, num: 10}).subscribe(result => {
       this.feed = result;
     });
+
+    /** Lazy load on scroll to bottom */
+    this.dataService.scrollBottomFunction = () => { this.lazyLoad(); };
+
+  }
+
+  ngOnDestroy() {
+    this.dataService.scrollBottomFunction = noop;
   }
 
   openLink(link: string) {
     window.open(link);
   }
 
-  /** Handles loading new data when the user reaches end of page */
-  @HostListener('window:scroll', []) onScroll(): void {
+  /** Lazy load 10 more entries */
+  lazyLoad(): void {
     if (!this.feed || this.allLoaded || this.loading) { return; }
     Helpers.CheckScrollBottom(() => {
       this.loading = true;

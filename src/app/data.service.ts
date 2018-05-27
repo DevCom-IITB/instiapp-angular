@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable ,  Subject } from 'rxjs';
+import { Observable ,  Subject, noop } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IEnumContainer, IUserProfile, IUserEventStatus, ILocation, IEvent, IBody } from './interfaces';
 import { Router } from '@angular/router';
@@ -31,6 +31,9 @@ export class DataService {
 
   /** User Profile of the logged in user */
   public currentUser: IUserProfile;
+
+  /** Function called when user reaches bottom of content */
+  public scrollBottomFunction = noop;
 
   constructor(
     private http: HttpClient,

@@ -1,14 +1,15 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Helpers } from '../helpers';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
   public feed;
   loading = false;
   allLoaded = false;
@@ -28,6 +29,13 @@ export class BlogComponent implements OnInit {
         });
       }
     });
+
+    /** Lazy load on scroll to bottom */
+    this.dataService.scrollBottomFunction = () => { this.lazyLoad(); };
+  }
+
+  ngOnDestroy() {
+    this.dataService.scrollBottomFunction = noop;
   }
 
   openLink(link: string) {
@@ -35,7 +43,7 @@ export class BlogComponent implements OnInit {
   }
 
   /** Handles loading new data when the user reaches end of page */
-  @HostListener('window:scroll', []) onScroll(): void {
+  lazyLoad(): void {
     if (!this.feed || this.allLoaded || this.loading) { return; }
     Helpers.CheckScrollBottom(() => {
       this.loading = true;

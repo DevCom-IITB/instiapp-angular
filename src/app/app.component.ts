@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
@@ -62,6 +62,13 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Redirects to login */
   login() {
     this.router.navigate(['login']);
+  }
+
+  @HostListener('scroll', ['$event'])
+  onScroll(event: any) {
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight - 60) {
+      this.dataService.scrollBottomFunction();
+    }
   }
 
 }
