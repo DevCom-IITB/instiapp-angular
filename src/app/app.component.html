@@ -7,7 +7,7 @@
      (swiperight)="drawer.toggle()">
 </div>
 
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" fullscreen>
     <mat-sidenav
         #drawer
         class="sidenav"
@@ -20,7 +20,7 @@
             </app-navmenu>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content class="image-background">
+    <mat-sidenav-content class="image-background sidenav-content">
         <mat-toolbar class="example-toolbar" color="primary">
             <button mat-icon-button
                     *ngIf="mobileQuery.matches"
@@ -52,10 +52,11 @@
                 Log Out
             </button>
         </mat-toolbar>
-        <div id="outlet"></div>
-        <div id="top-gap"></div>
-        <router-outlet #o="outlet"></router-outlet>
-        <div id="bottom-gap"></div>
+
+        <div id="router-out">
+            <router-outlet #o="outlet"></router-outlet>
+        </div>
+
     </mat-sidenav-content>
 </mat-sidenav-container>
 

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html {
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -17,10 +17,6 @@ body, .image-background {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-body {
-    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

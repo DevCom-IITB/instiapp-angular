@@ -1,27 +1,14 @@
 .example-toolbar {
-    position: fixed;
-    width: calc(100% - 300px);
-    z-index: 200;
+    width: 100%;
 }
 
-#top-gap {
-    height: 70px;
-}
-
-#bottom-gap {
-    height: 6px;
-}
-
-@media (max-width: 960px) {
-    .example-toolbar {
-        width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    #top-gap {
-        height: 56px;
-    }
+#router-out {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 #swipe-right-area {
@@ -39,12 +26,6 @@
 
 .fill-space {
     flex: 1 1 auto;
-}
-
-@media (max-width: 767px) {
-    .body-content {
-        margin: 5px;
-    }
 }
 
 .no-margin {
@@ -71,5 +52,9 @@ h1.example-app-name {
 .sidenav {
     width: 300px;
     box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+.sidenav-content {
+    overflow: hidden;
 }
 
