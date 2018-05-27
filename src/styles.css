@@ -1,30 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-html {
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
 body, .image-background {
     /* Set font family */
     font-family: 'Roboto', sans-serif;
     background-color: #e9ebee;
-}
-
-.loading-spinner {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-::-webkit-scrollbar {
-    width: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color:black;
 }
 
 .sub-card {
