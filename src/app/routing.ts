@@ -2,7 +2,7 @@ import { RouteReuseStrategy, DetachedRouteHandle, ActivatedRouteSnapshot } from 
 
 export class CustomReuseStrategy implements RouteReuseStrategy {
     routesToCache: string[] = ['feed'];
-    componentsNotToCache: string[] = ['BodyDetailsComponent', 'BlogComponent'];
+    routesNotToCache: string[] = ['org/:id', 'blog/:blog'];
     storedRouteHandles = new Map<string, DetachedRouteHandle>();
 
     // Decides if the route should be stored
@@ -27,7 +27,7 @@ export class CustomReuseStrategy implements RouteReuseStrategy {
 
     // Reuse the route if we're going to and from the same route
     shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-       const name = future.component && (<any>future.component).name;
-       return future.routeConfig === curr.routeConfig && !this.componentsNotToCache.includes(name);
+       const route = future.routeConfig && future.routeConfig.path;
+       return future.routeConfig === curr.routeConfig && !this.routesNotToCache.includes(route);
     }
    }
