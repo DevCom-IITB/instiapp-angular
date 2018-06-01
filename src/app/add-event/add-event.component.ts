@@ -81,6 +81,9 @@ export class AddEventComponent implements OnInit {
         /* Initialize things */
         this.initializeEvent();
         this.initializeBodiesExisting();
+        this.bodies.sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
 
       }, (error) => {
         alert('Event not found!');
