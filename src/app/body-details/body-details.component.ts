@@ -3,6 +3,8 @@ import { IBody } from '../interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DataService } from '../data.service';
 import { API } from '../../api';
+import { Helpers } from '../helpers';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-body-details',
@@ -38,6 +40,14 @@ export class BodyDetailsComponent implements OnInit {
     this.dataService.FireGET(API.Body, {uuid: this.bodyId}).subscribe(result => {
       this.body = result as IBody;
     });
+  }
+
+  /** Trigger the native share or show share buttons */
+  share() {
+    if (!Helpers.NativeShare(
+        this.body.name, `Check out ${this.body.name} at InstiApp!`, `${environment.host}org/${this.body.str_id}`)) {
+      this.shareShowing = !this.shareShowing;
+    }
   }
 
 }

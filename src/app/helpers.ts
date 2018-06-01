@@ -50,4 +50,20 @@ export module Helpers {
         }
     }
 
+    /** Try native share and return false if failed */
+    export function NativeShare(title, text, url) {
+        const nav: any = navigator;
+        if (nav.share) {
+            nav.share({
+                title: title,
+                text: text,
+                url: url,
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+            return true;
+        }
+        return false;
+    }
+
 }

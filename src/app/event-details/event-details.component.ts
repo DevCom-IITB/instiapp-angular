@@ -3,6 +3,7 @@ import { IEvent } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { Helpers } from '../helpers';
 
 @Component({
   selector: 'app-event-details',
@@ -63,16 +64,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   }
 
   share() {
-    const nav: any = navigator;
-    if (nav.share) {
-      nav.share({
-          title: this.event.name,
-          text: `Check out ${this.event.name} at InstiApp!`,
-          url: this.shareUrl(),
-      })
-        .then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error));
-    } else {
+    if (!Helpers.NativeShare(this.event.name, `Check out ${this.event.name} at InstiApp!`, this.shareUrl())) {
       this.shareShowing = !this.shareShowing;
     }
   }
