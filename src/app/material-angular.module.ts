@@ -12,6 +12,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRippleModule } from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,6 +40,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatChipsModule,
         MatTabsModule,
         MatCheckboxModule,
+        MatRippleModule,
     ],
     exports: [
         BrowserModule,
@@ -59,6 +61,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatChipsModule,
         MatTabsModule,
         MatCheckboxModule,
+        MatRippleModule,
     ],
 })
 export class MyMaterialClass { }

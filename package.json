@@ -4,7 +4,7 @@
   "license": "MPL-2.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --hmr --proxy-config proxy.conf.json",
+    "start": "ng serve --hmr --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "ng build --prod",
     "build-deploy": "ng build --prod --env=deploy",
     "build-deploy2": "ng build --prod --env=deploy2 --bh /instiapp/",

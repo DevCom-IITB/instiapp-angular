@@ -2,7 +2,7 @@
 
 <ng-container *ngIf="feed">
   <ng-container *ngFor="let item of feed">
-    <mat-card class="feed-card detail-card-elem real-center mat-elevation-z3">
+    <mat-card mat-ripple class="feed-card detail-card-elem real-center mat-elevation-z3">
       <mat-card-header (click)="openLink(item.link)">
         <mat-card-title>{{item.title}}</mat-card-title>
         <img mat-card-avatar
