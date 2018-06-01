@@ -1,4 +1,6 @@
-<mat-card class="sub-card" *ngIf="profile"
+<mat-card mat-ripple
+          class="sub-card"
+          *ngIf="profile"
           [routerLink]="['/user', profile.ldap_id || profile.id]">
   <mat-card-header>
     <img mat-card-avatar
@@ -22,4 +24,3 @@
     </mat-card-subtitle>
   </mat-card-header>
 </mat-card>
-  
