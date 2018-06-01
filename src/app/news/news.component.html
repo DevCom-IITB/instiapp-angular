@@ -2,8 +2,8 @@
 
 <ng-container *ngIf="feed">
   <ng-container *ngFor="let item of feed">
-    <mat-card mat-ripple class="feed-card detail-card-elem real-center mat-elevation-z3">
-      <mat-card-header (click)="openLink(item.link)">
+    <mat-card class="feed-card detail-card-elem real-center mat-elevation-z3" (click)="openLink(item.link)">
+      <mat-card-header>
         <mat-card-title>{{item.title}}</mat-card-title>
         <img mat-card-avatar
           [src]="item.body.image_url"
@@ -11,13 +11,14 @@
           class="object-cover" />
         <mat-card-subtitle><b>{{item.body.name}}</b> - {{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content (click)="openLink(item.link)">
+      <mat-card-content>
         <markdown [data]="item.content"></markdown>
       </mat-card-content>
 
       <button *ngFor="let react of reactions"
               mat-icon-button
-              (click)="do_reaction(item, react.id)"
+              (mousedown)="$event.stopPropagation()"
+              (click)="do_reaction(item, react.id);$event.stopPropagation();"
               [class.selected-reaction]="item.user_reaction === react.id">
 
           <i [class]="'em em-' + react.i"></i>
