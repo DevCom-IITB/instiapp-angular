@@ -60,10 +60,17 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   do_reaction(news: INewsEntry, react: number) {
-    this.dataService.MarkUNR(news, react).subscribe(() => {
-      news.reactions_count[news.user_reaction]--;
-      news.user_reaction = react;
-      news.reactions_count[react]++;
-    });
+    if (news.user_reaction !== react) {
+      this.dataService.MarkUNR(news, react).subscribe(() => {
+        news.reactions_count[news.user_reaction]--;
+        news.user_reaction = react;
+        news.reactions_count[react]++;
+      });
+    } else {
+      this.dataService.MarkUNR(news, -1).subscribe(() => {
+        news.reactions_count[news.user_reaction]--;
+        news.user_reaction = -1;
+      });
+    }
   }
 }
