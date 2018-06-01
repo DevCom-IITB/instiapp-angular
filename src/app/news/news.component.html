@@ -14,24 +14,15 @@
       <mat-card-content (click)="openLink(item.link)">
         <markdown [data]="item.content"></markdown>
       </mat-card-content>
-      <button mat-icon-button (click)="reaction(item, 0)" [class.selected-reaction]="item.user_reaction === 0">
-         <i class="em em-thumbsup"></i>
-      </button>
-      <button mat-icon-button (click)="reaction(item, 1)" [class.selected-reaction]="item.user_reaction === 1">
-          <i class="em em-heart"></i>
-      </button>
-      <button mat-icon-button (click)="reaction(item, 2)" [class.selected-reaction]="item.user_reaction === 2">
-          <i class="em em-laughing"></i>
-      </button>
-      <button mat-icon-button (click)="reaction(item, 3)" [class.selected-reaction]="item.user_reaction === 3">
-          <i class="em em-open_mouth"></i>
-      </button>
-      <button mat-icon-button (click)="reaction(item, 4)" [class.selected-reaction]="item.user_reaction === 4">
-          <i class="em em-disappointed"></i>
-      </button>
-      <button mat-icon-button (click)="reaction(item, 5)" [class.selected-reaction]="item.user_reaction === 5">
-          <i class="em em-angry"></i>
-      </button>
+
+      <button *ngFor="let react of reactions"
+              mat-icon-button
+              (click)="do_reaction(item, react.id)"
+              [class.selected-reaction]="item.user_reaction === react.id">
+
+          <i [class]="'em em-' + react.i"></i>
+          <div class="react-count">{{ item.reactions_count[react.id] }}</div>
+       </button>
     </mat-card>
   </ng-container>
 </ng-container>

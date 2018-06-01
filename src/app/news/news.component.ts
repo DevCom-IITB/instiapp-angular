@@ -19,6 +19,15 @@ export class NewsComponent implements OnInit, OnDestroy {
     public dataService: DataService,
   ) { }
 
+  public reactions = [
+    {id: 0, 'i': 'thumbsup'},
+    {id: 1, 'i': 'heart'},
+    {id: 2, 'i': 'laughing'},
+    {id: 3, 'i': 'open_mouth'},
+    {id: 4, 'i': 'disappointed'},
+    {id: 5, 'i': 'angry'},
+  ];
+
   ngOnInit() {
     this.dataService.FireGET<INewsEntry[]>(API.NewsFeed, { from: 0, num: 10}).subscribe(result => {
       this.feed = result;
@@ -50,9 +59,11 @@ export class NewsComponent implements OnInit, OnDestroy {
     });
   }
 
-  reaction(news: INewsEntry, react: number) {
+  do_reaction(news: INewsEntry, react: number) {
     this.dataService.MarkUNR(news, react).subscribe(() => {
+      news.reactions_count[news.user_reaction]--;
       news.user_reaction = react;
+      news.reactions_count[react]++;
     });
   }
 }
