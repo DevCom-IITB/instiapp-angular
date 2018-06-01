@@ -3,3 +3,7 @@
     cursor: pointer;
     overflow: hidden;
 }
+
+.selected-reaction {
+    background-color: var(--primary-color);
+}

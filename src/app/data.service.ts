@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable ,  Subject, noop } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IEnumContainer, IUserProfile, IUserEventStatus, ILocation, IEvent, IBody } from './interfaces';
+import { IEnumContainer, IUserProfile, IUserEventStatus, ILocation, IEvent, IBody, INewsEntry } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
@@ -330,6 +330,11 @@ export class DataService {
         observer.error(error);
       });
     });
+  }
+
+  /** Mark a UNR for the current user */
+  MarkUNR(news: INewsEntry, reaction: number) {
+    return this.FireGET(API.NewsFeedReaction, {uuid: news.id, reaction: reaction});
   }
 
   /** Gets concatenated going and interested events for current User */

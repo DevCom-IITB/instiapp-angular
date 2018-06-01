@@ -84,3 +84,15 @@ export interface IBodyRole {
     users_detail: IUserProfile[];
     events: IEvent[];
 }
+
+export interface INewsEntry {
+    id: string;
+    guid: string;
+    link: string;
+    title: string;
+    content: string;
+    published: Date;
+    body: IBody;
+    reactions_count: any[];
+    user_reaction: number;
+}

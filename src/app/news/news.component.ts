@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { API } from '../../api';
 import { Helpers } from '../helpers';
 import { noop } from 'rxjs';
+import { INewsEntry } from '../interfaces';
 
 @Component({
   selector: 'app-news',
@@ -10,7 +11,7 @@ import { noop } from 'rxjs';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit, OnDestroy {
-  public feed;
+  public feed: INewsEntry[];
   loading = false;
   allLoaded = false;
 
@@ -19,7 +20,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.dataService.FireGET(API.NewsFeed, { from: 0, num: 10}).subscribe(result => {
+    this.dataService.FireGET<INewsEntry[]>(API.NewsFeed, { from: 0, num: 10}).subscribe(result => {
       this.feed = result;
     });
 
@@ -46,6 +47,12 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.feed = this.feed.concat(result);
         this.loading = false;
       }, () => { this.loading = false; });
+    });
+  }
+
+  reaction(news: INewsEntry, react: number) {
+    this.dataService.MarkUNR(news, react).subscribe(() => {
+      news.user_reaction = react;
     });
   }
 }

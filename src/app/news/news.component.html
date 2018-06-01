@@ -2,8 +2,8 @@
 
 <ng-container *ngIf="feed">
   <ng-container *ngFor="let item of feed">
-    <mat-card class="feed-card detail-card-elem real-center mat-elevation-z3" (click)="openLink(item.link)">
-      <mat-card-header>
+    <mat-card class="feed-card detail-card-elem real-center mat-elevation-z3">
+      <mat-card-header (click)="openLink(item.link)">
         <mat-card-title>{{item.title}}</mat-card-title>
         <img mat-card-avatar
           [src]="item.body.image_url"
@@ -11,9 +11,27 @@
           class="object-cover" />
         <mat-card-subtitle><b>{{item.body.name}}</b> - {{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
+      <mat-card-content (click)="openLink(item.link)">
         <markdown [data]="item.content"></markdown>
       </mat-card-content>
+      <button mat-icon-button (click)="reaction(item, 0)" [class.selected-reaction]="item.user_reaction === 0">
+         <i class="em em-thumbsup"></i>
+      </button>
+      <button mat-icon-button (click)="reaction(item, 1)" [class.selected-reaction]="item.user_reaction === 1">
+          <i class="em em-heart"></i>
+      </button>
+      <button mat-icon-button (click)="reaction(item, 2)" [class.selected-reaction]="item.user_reaction === 2">
+          <i class="em em-laughing"></i>
+      </button>
+      <button mat-icon-button (click)="reaction(item, 3)" [class.selected-reaction]="item.user_reaction === 3">
+          <i class="em em-open_mouth"></i>
+      </button>
+      <button mat-icon-button (click)="reaction(item, 4)" [class.selected-reaction]="item.user_reaction === 4">
+          <i class="em em-disappointed"></i>
+      </button>
+      <button mat-icon-button (click)="reaction(item, 5)" [class.selected-reaction]="item.user_reaction === 5">
+          <i class="em em-angry"></i>
+      </button>
     </mat-card>
   </ng-container>
 </ng-container>
