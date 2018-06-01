@@ -60,6 +60,11 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   do_reaction(news: INewsEntry, react: number) {
+    if (!this.dataService.loggedIn) {
+      alert('Please log in to continue!');
+      return;
+    }
+
     if (news.user_reaction !== react) {
       this.dataService.MarkUNR(news, react).subscribe(() => {
         news.reactions_count[news.user_reaction]--;
