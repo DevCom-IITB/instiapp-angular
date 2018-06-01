@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { IEvent } from '../interfaces';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Helpers } from '../helpers';
 
 @Component({
   selector: 'app-calendar',
@@ -101,6 +102,29 @@ export class CalendarComponent implements OnInit {
     ans.setMonth(date.month);
     ans.setFullYear(date.year);
     return ans;
+  }
+
+  /** Gets the heat map for all events */
+  getHeatMap() {
+    const heatmap = {};
+    /* Fill all events */
+    for (const event of this.events) {
+      const res = this.dateToString(event.start_time);
+      if (res in heatmap) {
+        heatmap[res] += 0.2;
+      } else {
+        heatmap[res] = 0.2;
+      }
+    }
+    return heatmap;
+  }
+
+  /** Date to string for heatmap */
+  dateToString(date: Date) {
+    date = new Date(date);
+    return Helpers.zeroPad(date.getFullYear(), 4) +
+           Helpers.zeroPad((date.getMonth() + 1).toString(), 2) +
+           Helpers.zeroPad(date.getDate().toString(), 2);
   }
 
 }
