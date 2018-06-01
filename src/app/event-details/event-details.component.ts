@@ -62,6 +62,21 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.navigateBack();
   }
 
+  share() {
+    const nav: any = navigator;
+    if (nav.share) {
+      nav.share({
+          title: this.event.name,
+          text: `Check out ${this.event.name} at InstiApp!`,
+          url: this.shareUrl(),
+      })
+        .then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error));
+    } else {
+      this.shareShowing = !this.shareShowing;
+    }
+  }
+
   /** Get the sharing url */
   shareUrl(): string {
     return environment.host + 'event/' + this.event.str_id;
