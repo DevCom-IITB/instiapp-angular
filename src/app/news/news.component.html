@@ -15,15 +15,24 @@
         <markdown [data]="item.content"></markdown>
       </mat-card-content>
 
-      <button *ngFor="let react of reactions"
+      <table>
+        <tr>
+          <td *ngFor="let react of reactions">
+            <button
               mat-icon-button
               (mousedown)="$event.stopPropagation()"
               (click)="do_reaction(item, react.id);$event.stopPropagation();"
               [class.selected-reaction]="item.user_reaction === react.id">
-
-          <i [class]="'em em-' + react.i"></i>
-          <div class="react-count">{{ item.reactions_count[react.id] }}</div>
-       </button>
+            <i [class]="'em em-' + react.i"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="count" *ngFor="let react of reactions">
+            <div class="react-count">{{ item.reactions_count[react.id] }}</div>
+          </td>
+        </tr>
+      </table>
     </mat-card>
   </ng-container>
 </ng-container>

@@ -8,6 +8,10 @@
     background-color: var(--primary-color);
 }
 
+td.count {
+    text-align: center;
+}
+
 .react-count {
-    margin-top: -10px;
+    margin-top: -8px;
 }
