@@ -7,6 +7,7 @@ export const API = {
     UserMeEventStatus: 'api/user-me/ues/{event}{?status}',
 
     Events: 'api/events',
+    EventsFiltered: 'api/events{?start,end}',
     Event: 'api/events/{uuid}',
 
     Body: 'api/bodies/{uuid}',

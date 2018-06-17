@@ -2,9 +2,10 @@ import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular
 import { XunkCalendarModule } from 'xunk-calendar';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { IEvent } from '../interfaces';
+import { IEvent, IEnumContainer } from '../interfaces';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Helpers } from '../helpers';
+import { API } from '../../api';
 
 @Component({
   selector: 'app-calendar',
@@ -33,7 +34,17 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     this.selDate = XunkCalendarModule.getToday();
-    this.dataService.GetAllEvents().subscribe(result => {
+
+    /* Get dates for filtering (3 months) */
+    const initial = new Date();
+    initial.setMonth(initial.getMonth() - 1);
+    const istr = initial.toJSON().toString();
+
+    const final = new Date();
+    final.setMonth(final.getMonth() + 1);
+    const fstr = final.toJSON().toString();
+
+    this.dataService.FireGET<IEnumContainer>(API.EventsFiltered, {start: istr, end: fstr}).subscribe(result => {
       this.events = result.data;
       this.dateChanged(this.selDate);
     });
