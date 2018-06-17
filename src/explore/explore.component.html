@@ -4,7 +4,7 @@
   <mat-form-field class="searchinput">
       <input matInput
               name="search" [(ngModel)]="searchQ"
-              (keyup.enter)="search(searchQ)"
+              (keyup)="search(searchQ, true)"
               placeholder="Search">
   </mat-form-field>
 
