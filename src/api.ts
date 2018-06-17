@@ -10,6 +10,7 @@ export const API = {
     EventsFiltered: 'api/events{?start,end}',
     Event: 'api/events/{uuid}',
 
+    Bodies: 'api/bodies',
     Body: 'api/bodies/{uuid}',
 
     Locations: 'api/locations',
@@ -24,6 +25,8 @@ export const API = {
     TrainingBlog: 'api/training-blog{?from,num}',
 
     NewsFeed: 'api/news{?from,num}',
-    NewsFeedReaction: 'api/user-me/unr/{uuid}{?reaction}'
+    NewsFeedReaction: 'api/user-me/unr/{uuid}{?reaction}',
+
+    Search: 'api/search{?query}'
 
 };

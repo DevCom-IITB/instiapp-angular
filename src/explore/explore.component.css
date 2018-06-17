@@ -1,0 +1,20 @@
+#searchbox {
+    margin-left: 45%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-top: 10px;
+}
+
+.searchinput {
+    min-width: 60%;
+}
+
+@media (max-width: 560px) {
+    #searchbox {
+        margin-left: 40%;
+    }
+
+    .searchinput {
+        min-width: 90%;
+    }
+}

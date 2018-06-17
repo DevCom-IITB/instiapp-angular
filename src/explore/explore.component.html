@@ -1,3 +1,42 @@
-<p>
-  explore works!
-</p>
+<app-xunk-spinner *ngIf="!bodies"></app-xunk-spinner>
+
+<div id="searchbox">
+  <mat-form-field class="searchinput">
+      <input matInput
+              name="search" [(ngModel)]="searchQ"
+              (keyup.enter)="search(searchQ)"
+              placeholder="Search">
+  </mat-form-field>
+
+  <button mat-icon-button
+          color="primary"
+          (click)="search(searchQ)"
+          style="max-height:37px;">
+      <mat-icon>search</mat-icon>
+  </button>
+</div>
+
+<div *ngIf="bodies" class="real-center">
+
+  <div *ngIf="bodies">
+      <app-body-card
+        *ngFor="let body of bodies"
+        [body]="body">
+      </app-body-card>
+  </div>
+
+  <div *ngIf="events">
+    <app-event-card
+      *ngFor="let event of events"
+      [event]="event">
+    </app-event-card>
+  </div>
+
+  <div *ngIf="users">
+    <app-user-card
+      *ngFor="let user of users"
+      [profile]="user">
+    </app-user-card>
+  </div>
+
+</div>
