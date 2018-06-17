@@ -47,6 +47,7 @@ import { XunkSpinnerComponent } from './xunk-spinner/xunk-spinner.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { LoginActivate } from './loginactivate';
+import { ExploreComponent } from '../explore/explore.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { LoginActivate } from './loginactivate';
     EventSidebarDesktopComponent,
     NewsComponent,
     ListLoadingComponent,
-    XunkSpinnerComponent
+    XunkSpinnerComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ import { LoginActivate } from './loginactivate';
       { path: 'news', component: NewsComponent, data: { state: 'base' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
       { path: 'my-events', component: MyEventsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'explore', component: ExploreComponent, data: { state: 'base' } },
 
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },

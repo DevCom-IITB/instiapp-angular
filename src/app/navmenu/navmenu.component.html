@@ -28,8 +28,9 @@
 </a>
 
 <a mat-list-item
+   [routerLink]="['/explore/']"
    routerLinkActive="active-link">
-    <mat-icon>people</mat-icon> &nbsp; People
+    <mat-icon>search</mat-icon> &nbsp; Explore
 </a>
 
 <a [routerLink]="['/blog/' + dataService.EncodeObject(api.PlacementBlog)]"
