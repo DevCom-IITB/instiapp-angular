@@ -48,6 +48,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { LoginActivate } from './loginactivate';
 import { ExploreComponent } from '../explore/explore.component';
+import { MessComponent } from '../mess/mess.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { ExploreComponent } from '../explore/explore.component';
     NewsComponent,
     ListLoadingComponent,
     XunkSpinnerComponent,
-    ExploreComponent
+    ExploreComponent,
+    MessComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +97,7 @@ import { ExploreComponent } from '../explore/explore.component';
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
       { path: 'my-events', component: MyEventsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'explore', component: ExploreComponent, data: { state: 'base' } },
+      { path: 'mess', component: MessComponent, data: { state: 'base' } },
 
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },

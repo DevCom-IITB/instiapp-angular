@@ -33,6 +33,12 @@
     <mat-icon>search</mat-icon> &nbsp; Explore
 </a>
 
+<a mat-list-item
+   [routerLink]="['/mess/']"
+   routerLinkActive="active-link">
+    <mat-icon>restaurant</mat-icon> &nbsp; Mess Menu
+</a>
+
 <a [routerLink]="['/blog/' + dataService.EncodeObject(api.PlacementBlog)]"
    routerLinkActive="active-link"
    mat-list-item>
@@ -55,12 +61,4 @@
    routerLinkActive="active-link"
    mat-list-item>
     <mat-icon>event_available</mat-icon> &nbsp; Calendar
-</a>
-
-<a mat-list-item>
-    <mat-icon>access_time</mat-icon> &nbsp; Time Table
-</a>
-
-<a mat-list-item>
-    <mat-icon>map</mat-icon> &nbsp; Map
 </a>
