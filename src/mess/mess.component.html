@@ -1,3 +1,70 @@
-<p>
-  mess works!
-</p>
+<app-xunk-spinner *ngIf="!hostels"></app-xunk-spinner>
+
+<button mat-fab
+  [disabled]="!menu"
+  class="float-fixed-right-bottom mat-elevation-z2"
+ (click)="restoreList()">
+  <mat-icon>list</mat-icon>
+</button>
+
+<ng-container *ngIf="hostels">
+  <div class="real-center" *ngIf="!menu">
+    <mat-card *ngFor="let hostel of hostels"
+               mat-ripple
+               class="sub-card"
+              (click)="selectHostel(hostel)">
+
+        <mat-card-header>
+          <mat-card-title> {{ hostel.name }} </mat-card-title>
+          <mat-card-subtitle> {{ hostel.long_name }} </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <div class="real-center" *ngIf="menu">
+    <div class="mess-card mat-elevation-z3" *ngFor="let menuday of menu">
+      <div class="mess-card-head">{{ daysOfWeek[menuday.day] }}</div>
+        <mat-divider></mat-divider>
+
+      <table class="mess-table">
+        <tr>
+          <td>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Breakfast</mat-card-title>
+                <mat-card-subtitle>{{menuday.breakfast}}</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </td>
+          <td>
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Lunch</mat-card-title>
+                  <mat-card-subtitle>{{menuday.lunch}}</mat-card-subtitle>
+                </mat-card-header>
+              </mat-card>
+            </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Snacks</mat-card-title>
+                <mat-card-subtitle>{{menuday.snacks}}</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </td>
+          <td>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Dinner</mat-card-title>
+                <mat-card-subtitle>{{menuday.dinner}}</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</ng-container>

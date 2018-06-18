@@ -96,3 +96,21 @@ export interface INewsEntry {
     reactions_count: any[];
     user_reaction: number;
 }
+
+export interface IHostel {
+    id: string;
+    name: string;
+    short_name: string;
+    long_name: string;
+    mess: IMenuEntry[];
+}
+
+export interface IMenuEntry {
+    id: string;
+    day: number;
+    breakfast: string;
+    lunch: string;
+    snacks: string;
+    dinner: string;
+    hostel: string;
+}

@@ -1,0 +1,48 @@
+.mess-card {
+    max-width: 500px;
+    padding: 0.1em;
+    margin: 5px auto;
+    cursor: pointer;
+    background-color: white;
+    white-space: pre-wrap;
+    margin-bottom: 1.4em;
+}
+
+.mess-card-head {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1em;
+    margin: 6px 0;
+}
+
+.mess-table {
+    width: 100%;
+    border-spacing: 8px;
+    table-layout: fixed;
+}
+
+.mess-table mat-card {
+    padding: 8px;
+    min-height: 110px;
+}
+
+@media (max-width: 600px) {
+    .mess-table {
+        border-spacing: 5px;
+    }
+
+    .mess-table mat-card {
+        padding: 5px;
+    }
+}
+
+.mess-table mat-card-subtitle {
+    font-size: 0.83em;
+}
+
+.float-fixed-right-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 5;
+}
