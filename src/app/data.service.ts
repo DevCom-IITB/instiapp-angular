@@ -246,10 +246,15 @@ export class DataService {
   /** Logout the current user */
   Logout() {
     return this.FireGET(API.Logout).subscribe(() => {
-      this.loggedIn = false;
-      this.loggedInSubject.next(false);
-      this.currentUser = null;
+      this.PostLogout();
     });
+  }
+
+  /** Chores to carry out after logout */
+  PostLogout() {
+    this.loggedIn = false;
+    this.loggedInSubject.next(false);
+    this.currentUser = null;
   }
 
   /**
