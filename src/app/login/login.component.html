@@ -1,16 +1,10 @@
-<div class="login-container detail-card-elem real-center" *ngIf="!authenticating">
-  <img src="assets/logo.png" class="login-button">
+<div class="login-container detail-card-elem real-center mat-elevation-z3" *ngIf="!authenticating">
+  <div class="heading">Login to continue</div>
+  <img src="assets/logo.png" class="login-button mat-elevation-z3 logo">
   <button mat-raised-button
           (click)='login()'
           color="accent"
           class="login-button">
       Login with LDAP SSO
-  </button>
-
-  <button mat-raised-button
-          color="warn"
-          class="login-button"
-          (click)="guest()">
-      Continue as Guest
   </button>
 </div>

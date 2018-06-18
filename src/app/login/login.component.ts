@@ -41,10 +41,4 @@ export class LoginComponent implements OnInit {
   login() {
     window.location.href = this.dataService.GetLoginURL();
   }
-
-  /** Continue as guest */
-  guest() {
-    this.router.navigate(['feed']);
-  }
-
 }

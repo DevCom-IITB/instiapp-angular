@@ -1,7 +1,17 @@
+.heading {
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 6px;
+}
+
 .login-button {
     width: 100%;
     max-width: 300px;
     margin-top: 10px;
+}
+
+.logo {
+    border-radius: 40px;
 }
 
 .login-container {
