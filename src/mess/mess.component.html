@@ -22,6 +22,7 @@
   </div>
 
   <div class="real-center" *ngIf="menu">
+    <div class="super-head mat-elevation-z2">{{ currHostel.name }}</div>
     <div class="mess-card mat-elevation-z3" *ngFor="let menuday of menu">
       <div class="mess-card-head">{{ daysOfWeek[menuday.day] }}</div>
         <mat-divider></mat-divider>

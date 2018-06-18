@@ -1,6 +1,16 @@
+.super-head {
+    max-width: 550px;
+    text-align: center;
+    font-size: 1.6em;
+    padding: 0.4em 0;
+    margin: 5px auto;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
 .mess-card {
-    max-width: 500px;
-    padding: 0.1em;
+    max-width: 550px;
+    padding: 0.1em 0;
     margin: 5px auto;
     cursor: pointer;
     background-color: white;

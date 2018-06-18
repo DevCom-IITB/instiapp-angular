@@ -12,6 +12,7 @@ export class MessComponent implements OnInit {
 
   public hostels: IHostel[];
   public menu: IMenuEntry[];
+  public currHostel: IHostel;
 
   public daysOfWeek = {
     1: 'Monday', 2: 'Tuesday', 3: 'Wednesday',
@@ -25,6 +26,11 @@ export class MessComponent implements OnInit {
   ngOnInit() {
     this.dataService.FireGET<IHostel[]>(API.Mess).subscribe(result => {
       this.hostels = result;
+      if (this.dataService.loggedIn) {
+        const hostel = this.hostels.find(
+          h => h.short_name === this.dataService.currentUser.hostel);
+        if (hostel) { this.constructMenu(hostel); }
+      }
     });
   }
 
@@ -38,6 +44,7 @@ export class MessComponent implements OnInit {
     const today = (new Date().getDay() || 7) - 1;
 
     this.menu = [] as IMenuEntry[];
+    this.currHostel = hostel;
 
     for (let i = 0; i < 7; i++) {
       const day = (today + i) % 7 + 1;
@@ -48,6 +55,7 @@ export class MessComponent implements OnInit {
   /** Go back to list of hostels */
   restoreList() {
     this.menu = null;
+    this.currHostel = null;
   }
 
 }

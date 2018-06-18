@@ -19,6 +19,7 @@ export interface IUserProfile {
     followed_bodies: IBody[];
     followed_bodies_id: string[];
     roles: IBodyRole[];
+    hostel: string;
 }
 
 export interface IEvent {
