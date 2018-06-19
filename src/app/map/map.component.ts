@@ -54,7 +54,7 @@ export class MapComponent implements AfterViewInit {
     const features = [];
     for (const loc of this.locations) {
       const pos = [loc.pixel_x, 3575 - loc.pixel_y];
-      if (loc.group_id !== '3') {
+      if (loc.group_id !== '3' && loc.parent === '0') {
 
         const iconStyle = () => {
           const zoom = this.map.getView().getZoom();
@@ -72,11 +72,16 @@ export class MapComponent implements AfterViewInit {
             src: '/assets/circle-green.svg'
           })),
           text: new OlStyleText({
-            font: font_size + 'px Roboto',
+            offsetY: 20,
+            padding: [20, 20, 20, 20],
+            font: 'bold ' + font_size + 'px Roboto',
             text: loc.name,
             fill: new OlStyleFill({
               color: '#ffffff'
-            })
+            }),
+            stroke: new OlStyleStroke({
+              color: '#444', width: 2
+            }),
           })
         });
       };
@@ -127,7 +132,7 @@ export class MapComponent implements AfterViewInit {
         center: OlExtent.getCenter(extent),
         zoom: 3,
         minZoom: 3,
-        maxZoom: 5
+        maxZoom: 5.5
       })
     });
 
