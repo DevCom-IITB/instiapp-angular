@@ -61,18 +61,36 @@ export class MapComponent implements AfterViewInit {
             font_size = zoom * 3;
           }
 
-          return new OlStyleStyle({
-          image: new OlStyleIcon(/** @type {olx.style.IconOptions} */ ({
+          let icon_img;
+          if (loc.group_id === '1' || loc.group_id === '4' || loc.group_id === '12') {
+            icon_img = '/assets/circle-blue.svg';
+          } else if (loc.group_id === '8') {
+            icon_img = '/assets/circle-gray.svg';
+          } else if (loc.group_id === '2') {
+            icon_img = '/assets/circle-orange.svg';
+          } else {
+            icon_img = '/assets/circle-green.svg';
+          }
+
+          let loc_name = loc.name;
+          if (loc.short_name !== '0') {
+            loc_name = loc.short_name;
+          }
+
+          const icon = new OlStyleIcon(/** @type {olx.style.IconOptions} */ ({
             anchor: [0.5, 0.5],
             anchorXUnits: 'fraction',
             anchorYUnits: 'fraction',
-            src: '/assets/circle-green.svg'
-          })),
+            src: icon_img
+          }));
+
+          return new OlStyleStyle({
+          image: (zoom > 3.3) ? icon : null,
           text: new OlStyleText({
             offsetY: 20,
             padding: [20, 20, 20, 20],
             font: 'bold ' + font_size + 'px Roboto',
-            text: loc.name,
+            text: loc_name,
             fill: new OlStyleFill({
               color: '#ffffff'
             }),
@@ -134,7 +152,7 @@ export class MapComponent implements AfterViewInit {
       view: new OlView({
         projection: projection,
         center: OlExtent.getCenter(extent),
-        zoom: 3,
+        zoom: 3.4,
         minZoom: 3,
         maxZoom: 5.5
       })

@@ -14,7 +14,7 @@
    version="1.1"
    id="svg8546"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="circle-green.svg">
+   sodipodi:docname="circle-gray.svg">
   <metadata
      id="metadata8554">
     <rdf:RDF>
@@ -53,11 +53,11 @@
      cx="4.4648829"
      cy="4.5021176"
      id="circle8548"
-     style="fill:#ffffff;fill-opacity:1;stroke:#005e36;stroke-width:0.4657158;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7098214"
+     style="fill:#ffffff;fill-opacity:1;stroke:#525e61;stroke-width:0.4657158;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.7098214"
      rx="4.0689282"
      ry="4.106164" />
   <path
-     style="fill:#008080;fill-opacity:1;stroke:none;stroke-width:0.07801472;stroke-opacity:1"
+     style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.07801472;stroke-opacity:1"
      d="M 3.9861557,7.7895013 C 2.6017455,7.6106283 1.4447655,6.4644695 1.2014166,5.0308082 0.83001919,2.8427631 2.8035263,0.83523914 4.9591782,1.2082752 c 1.10178,0.1906633 1.9992722,0.8660293 2.4913666,1.8747611 0.2459089,0.5040839 0.2570817,0.5662294 0.2570817,1.4299005 0,0.868784 -0.0099,0.92279 -0.2615227,1.4287723 C 7.1206529,6.5961117 6.4429334,7.2677894 5.8337943,7.5396458 5.3027735,7.7766374 4.6108137,7.8702112 3.9861557,7.7895013 Z"
      id="path1360"
      inkscape:connector-curvature="0" />
