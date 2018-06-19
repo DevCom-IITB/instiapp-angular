@@ -33,6 +33,7 @@ export class MapComponent implements AfterViewInit {
 
   public locations = [];
   public map: OlMap;
+  public view: OlView;
   public maploaded = false;
   public pointer = '';
   public selectedLocation;
@@ -163,6 +164,15 @@ export class MapComponent implements AfterViewInit {
     /* Disable tilting */
     const interactions = OlInteraction.defaults({altShiftDragRotate: false, pinchRotate: false});
 
+    /* Make view */
+    this.view = new OlView({
+      projection: projection,
+      center: OlExtent.getCenter(extent),
+      zoom: 3.4,
+      minZoom: 3,
+      maxZoom: 5.5
+    });
+
     /* Generate map */
     this.map = new OlMap({
       interactions: interactions,
@@ -171,13 +181,7 @@ export class MapComponent implements AfterViewInit {
         vectorLayer
       ],
       target: 'map',
-      view: new OlView({
-        projection: projection,
-        center: OlExtent.getCenter(extent),
-        zoom: 3.4,
-        minZoom: 3,
-        maxZoom: 5.5
-      })
+      view: this.view
     });
 
     /* Handle click */
@@ -193,6 +197,7 @@ export class MapComponent implements AfterViewInit {
           stopEvent: false
         });
         this.map.addOverlay(marker);
+        this.view.animate({center: pos}, {zoom: 4.5});
       }
     });
 
