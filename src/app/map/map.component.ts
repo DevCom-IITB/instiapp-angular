@@ -170,7 +170,8 @@ export class MapComponent implements AfterViewInit {
       center: OlExtent.getCenter(extent),
       zoom: 3.4,
       minZoom: 2.8,
-      maxZoom: 5.5
+      maxZoom: 5.5,
+      extent: [300, 300, 5000, 3000]
     });
 
     /* Generate map */
