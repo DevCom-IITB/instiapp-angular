@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataService } from '../data.service';
 
 import OlMap from 'ol/map';
@@ -32,11 +32,8 @@ import OlInteraction from 'ol/interaction';
 export class MapComponent implements AfterViewInit {
 
   public locations = [];
-  map: OlMap;
-  source: OlXYZ;
-  view: OlView;
-
-  @ViewChild('maindiv') public maindiv: ElementRef;
+  public map: OlMap;
+  public maploaded = false;
 
   constructor(
     public dataService: DataService,
@@ -116,6 +113,13 @@ export class MapComponent implements AfterViewInit {
         url: '/assets/map.jpg',
         projection: projection,
         imageExtent: extent,
+        imageLoadFunction: (image, src) => {
+          const img = image.getImage();
+          img.src = src;
+          img.onload = () => {
+            this.maploaded = true;
+          };
+        }
       })
     });
 
