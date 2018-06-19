@@ -4,3 +4,15 @@
 </div>
 
 <img id="marker" src="/assets/location-icon.svg">
+
+<div id="main-box" class="mat-elevation-z3">
+  <mat-form-field>
+    <input type="text"
+            matInput placeholder="Search"
+            [matAutocomplete]="auto"
+            (keyup)="searchChanged($event)">
+    <mat-autocomplete name="locsauto" #auto="matAutocomplete" (optionSelected)="searchChanged($event)">
+      <mat-option *ngFor="let loc of locations_copy" [value]="loc.name">{{loc.name}}</mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

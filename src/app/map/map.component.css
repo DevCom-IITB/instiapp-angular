@@ -5,13 +5,35 @@
     height: calc(100vh - 70px);
 }
 
+.map {
+    width: 100%;
+    height: 100vh;
+}
+
+#main-box {
+    background: white;
+    position: fixed;
+    right: 40px;
+    top: 100px;
+    padding: 0 15px;
+    padding-top: 8px;
+    width: 200px;
+}
+
+#main-box mat-form-field {
+    width: 100%;
+}
+
 @media (max-width: 560px) {
     .main {
         height: calc(100vh - 56px);
     }
-}
 
-.map {
-    width: 100%;
-    height: 100vh;
+    #main-box {
+        width: 80%;
+        left: 50%;
+        top: 75px;
+        margin: 0 auto;
+        transform: translateX(-50%);
+    }
 }

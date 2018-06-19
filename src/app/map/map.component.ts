@@ -32,6 +32,7 @@ import OlInteraction from 'ol/interaction';
 export class MapComponent implements AfterViewInit {
 
   public locations = [];
+  public locations_copy = [];
   public map: OlMap;
   public view: OlView;
   public maploaded = false;
@@ -190,16 +191,7 @@ export class MapComponent implements AfterViewInit {
       const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f);
       if (feature) {
         const loc = feature.get('loc');
-        const pos = [Number(loc.pixel_x), 3575 - Number(loc.pixel_y)];
-        const marker = new OlOverlay({
-          position: pos,
-          positioning: 'center-center',
-          element: document.getElementById('marker'),
-          stopEvent: false
-        });
-        this.map.addOverlay(marker);
-        this.view.animate({center: pos});
-        this.view.animate({zoom: 4.5});
+        this.selectLocation(loc);
       }
     });
 
@@ -207,13 +199,41 @@ export class MapComponent implements AfterViewInit {
     this.map.on('pointermove', (e) => {
       const pixel = this.map.getEventPixel(e.originalEvent);
       const hit = this.map.hasFeatureAtPixel(pixel);
-      this.pointer = hit ? 'pointer' : '';
+      this.pointer = hit ? 'pointer' : 'grab';
     });
 
   }
 
-  locClick(location) {
-    alert(location.name);
+  selectLocation(loc) {
+    const pos = [Number(loc.pixel_x), 3575 - Number(loc.pixel_y)];
+    const marker = new OlOverlay({
+      position: pos,
+      positioning: 'center-center',
+      element: document.getElementById('marker'),
+      stopEvent: false
+    });
+    this.map.addOverlay(marker);
+    this.view.animate({center: pos});
+    this.view.animate({zoom: 4.5});
+  }
+
+  /** Fire when search input has changed */
+  searchChanged(e) {
+    let lname;
+    if ('target' in e) {
+      lname = e.target.value;
+      this.locations_copy = this.locations.filter(
+        l => l.name.toLowerCase().includes(lname.toLowerCase()) ||
+        l.short_name.toLowerCase().includes(lname.toLowerCase())
+      );
+    } else if ('option' in e) {
+      lname = e.option.value;
+    }
+
+    const loc = this.locations.find(l => l.name === lname);
+    if (loc) {
+      this.selectLocation(loc);
+    }
   }
 
 }
