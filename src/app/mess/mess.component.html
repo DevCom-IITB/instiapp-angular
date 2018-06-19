@@ -22,9 +22,9 @@
   </div>
 
   <div class="real-center" *ngIf="menu">
-    <div class="super-head mat-elevation-z2">{{ currHostel.name }}</div>
-    <div class="mess-card mat-elevation-z3" *ngFor="let menuday of menu">
-      <div class="mess-card-head primary-background-color">{{ daysOfWeek[menuday.day] }}</div>
+    <div class="super-head mat-elevation-z1">{{ currHostel.name }}</div>
+    <div class="mess-card" *ngFor="let menuday of menu">
+      <div class="mess-card-head primary-background-color mat-elevation-z1">{{ daysOfWeek[menuday.day] }}</div>
 
       <table class="mess-table">
         <tr>
