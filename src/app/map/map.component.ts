@@ -197,7 +197,8 @@ export class MapComponent implements AfterViewInit {
           stopEvent: false
         });
         this.map.addOverlay(marker);
-        this.view.animate({center: pos}, {zoom: 4.5});
+        this.view.animate({center: pos});
+        this.view.animate({zoom: 4.5});
       }
     });
 
