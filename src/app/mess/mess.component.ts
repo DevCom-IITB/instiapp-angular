@@ -36,7 +36,10 @@ export class MessComponent implements OnInit {
 
   /** Select a particular hostel */
   selectHostel(hostel: IHostel) {
-    setTimeout(() => this.constructMenu(hostel), 100);
+    setTimeout(() => {
+      this.constructMenu(hostel);
+      window.scrollTo(0, 0);
+    }, 100);
   }
 
   /** Constructs the menu in a format the template can read easily */
@@ -56,6 +59,7 @@ export class MessComponent implements OnInit {
   restoreList() {
     this.menu = null;
     this.currHostel = null;
+    window.scrollTo(0, 0);
   }
 
 }
