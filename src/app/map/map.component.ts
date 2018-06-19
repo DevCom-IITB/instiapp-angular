@@ -56,10 +56,7 @@ export class MapComponent implements AfterViewInit {
         const iconStyle = () => {
           const zoom = this.map.getView().getZoom();
 
-          let font_size = 0;
-          if (zoom > 4) {
-            font_size = zoom * 3;
-          }
+          const font_size = zoom * 3;
 
           let icon_img;
           if (loc.group_id === '1' || loc.group_id === '4' || loc.group_id === '12') {
@@ -84,9 +81,7 @@ export class MapComponent implements AfterViewInit {
             src: icon_img
           }));
 
-          return new OlStyleStyle({
-          image: (zoom > 3.3) ? icon : null,
-          text: new OlStyleText({
+          const text = new OlStyleText({
             offsetY: 20,
             padding: [20, 20, 20, 20],
             font: 'bold ' + font_size + 'px Roboto',
@@ -97,7 +92,11 @@ export class MapComponent implements AfterViewInit {
             stroke: new OlStyleStroke({
               color: '#444', width: 2
             }),
-          })
+          });
+
+          return new OlStyleStyle({
+          image: (zoom > 3.3) ? icon : null,
+          text: (zoom >= 4) ? text : null,
         });
       };
 
