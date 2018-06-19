@@ -1,22 +1,17 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { DataService } from '../data.service';
 
 import OlMap from 'ol/map';
-import OlXYZ from 'ol/source/xyz';
 import OlLayerImage from 'ol/layer/image';
-import OlLayerTile from 'ol/layer/tile';
 import OlView from 'ol/view';
 import OlExtent from 'ol/extent';
 import OlOverlay from 'ol/overlay';
 import OlLayerVector from 'ol/layer/vector';
 import OlSourceImageStatic from 'ol/source/imagestatic';
 import OlSourceVector from 'ol/source/vector';
-import OlSourceOSM from 'ol/source/osm';
-import OlSourceTileJSON from 'ol/source/tilejson';
 import OlProjProjection from 'ol/proj/projection';
 import OlFeature from 'ol/feature';
 import OlGeomPoint from 'ol/geom/point';
-import OlProj from 'ol/proj';
 import OlStyleStyle from 'ol/style/style';
 import OlStyleIcon from 'ol/style/icon';
 import OlStyleText from 'ol/style/text';
