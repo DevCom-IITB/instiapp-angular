@@ -35,6 +35,7 @@ export class MapComponent implements AfterViewInit {
   public map: OlMap;
   public maploaded = false;
   public pointer = '';
+  public selectedLocation;
 
   constructor(
     public dataService: DataService,
@@ -183,7 +184,15 @@ export class MapComponent implements AfterViewInit {
     this.map.on('click', (evt) => {
       const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f);
       if (feature) {
-        alert(feature.get('loc').name);
+        const loc = feature.get('loc');
+        const pos = [Number(loc.pixel_x), 3575 - Number(loc.pixel_y)];
+        const marker = new OlOverlay({
+          position: pos,
+          positioning: 'center-center',
+          element: document.getElementById('marker'),
+          stopEvent: false
+        });
+        this.map.addOverlay(marker);
       }
     });
 
