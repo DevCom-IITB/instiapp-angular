@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../app/data.service';
-import { IHostel, IMenuEntry } from '../app/interfaces';
-import { API } from '../api';
+import { DataService } from '../data.service';
+import { IHostel, IMenuEntry } from '../../app/interfaces';
+import { API } from '../../api';
 
 @Component({
   selector: 'app-mess',

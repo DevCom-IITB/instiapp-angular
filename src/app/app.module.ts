@@ -48,7 +48,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { LoginActivate } from './loginactivate';
 import { ExploreComponent } from '../explore/explore.component';
-import { MessComponent } from '../mess/mess.component';
+import { MessComponent } from './mess/mess.component';
 
 @NgModule({
   declarations: [
