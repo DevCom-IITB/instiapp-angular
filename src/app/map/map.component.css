@@ -18,10 +18,21 @@
     padding: 0 15px;
     padding-top: 8px;
     width: 200px;
+    z-index: 2;
 }
 
 #main-box mat-form-field {
     width: 100%;
+}
+
+.search-button {
+    position: fixed;
+    right: 40px;
+    top: 100px;
+}
+
+.only-mobile {
+    display: none;
 }
 
 @media (max-width: 560px) {
@@ -35,5 +46,9 @@
         top: 75px;
         margin: 0 auto;
         transform: translateX(-50%);
+    }
+
+    .only-mobile {
+        display: block;
     }
 }
