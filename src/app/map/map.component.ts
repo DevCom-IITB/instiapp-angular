@@ -108,7 +108,7 @@ export class MapComponent implements AfterViewInit {
 
           /* Generate the style */
           return new OlStyleStyle({
-            image: (zoom > 3.3) ? icon : null,
+            image: (zoom >= 3) ? icon : null,
             text: (zoom >= 4) ? text : null,
           });
         };
@@ -169,7 +169,7 @@ export class MapComponent implements AfterViewInit {
       projection: projection,
       center: OlExtent.getCenter(extent),
       zoom: 3.4,
-      minZoom: 3,
+      minZoom: 2.8,
       maxZoom: 5.5
     });
 
