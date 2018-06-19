@@ -34,6 +34,7 @@ export class MapComponent implements AfterViewInit {
   public locations = [];
   public map: OlMap;
   public maploaded = false;
+  public pointer = '';
 
   constructor(
     public dataService: DataService,
@@ -46,18 +47,24 @@ export class MapComponent implements AfterViewInit {
     });
   }
 
+  /** Show all locations - generate map */
   showLoc() {
-
+    /* Make features array */
     const features = [];
     for (const loc of this.locations) {
+      /* Change coordinate sysetm */
       const pos = [loc.pixel_x, 3575 - loc.pixel_y];
+      /* Ignore housing, inner locations */
       if (loc.group_id !== '3' && loc.parent === '0') {
 
+        /* Generate style */
         const iconStyle = () => {
           const zoom = this.map.getView().getZoom();
 
+          /* Increase font size with zoom */
           const font_size = zoom * 3;
 
+          /* Choose icon image based on group id */
           let icon_img;
           if (loc.group_id === '1' || loc.group_id === '4' || loc.group_id === '12') {
             icon_img = '/assets/circle-blue.svg';
@@ -69,11 +76,13 @@ export class MapComponent implements AfterViewInit {
             icon_img = '/assets/circle-green.svg';
           }
 
+          /* Choose short name if present */
           let loc_name = loc.name;
           if (loc.short_name !== '0') {
             loc_name = loc.short_name;
           }
 
+          /* Make icon object */
           const icon = new OlStyleIcon(/** @type {olx.style.IconOptions} */ ({
             anchor: [0.5, 0.5],
             anchorXUnits: 'fraction',
@@ -81,6 +90,7 @@ export class MapComponent implements AfterViewInit {
             src: icon_img
           }));
 
+          /* Make text object */
           const text = new OlStyleText({
             offsetY: 20,
             padding: [20, 20, 20, 20],
@@ -94,21 +104,27 @@ export class MapComponent implements AfterViewInit {
             }),
           });
 
+          /* Generate the style */
           return new OlStyleStyle({
-          image: (zoom > 3.3) ? icon : null,
-          text: (zoom >= 4) ? text : null,
-        });
-      };
+            image: (zoom > 3.3) ? icon : null,
+            text: (zoom >= 4) ? text : null,
+          });
+        };
 
+        /* Make the icon */
         const iconFeature = new OlFeature({
           geometry: new OlGeomPoint(pos),
-          name: loc.name
+          name: loc.name,
+          loc: loc
         });
+
+        /* Push into array */
         iconFeature.setStyle(iconStyle);
         features.push(iconFeature);
       }
     }
 
+    /* Make vector source and layer from features */
     const vectorSource = new OlSourceVector({
       features: features
     });
@@ -117,6 +133,7 @@ export class MapComponent implements AfterViewInit {
       source: vectorSource
     });
 
+    /* Configure map */
     const extent = [0, 0, 5430, 3575];
     const projection = new OlProjProjection({
       code: 'xkcd-image',
@@ -124,6 +141,7 @@ export class MapComponent implements AfterViewInit {
       extent: extent
     });
 
+    /* Make image layer */
     const imlayer = new OlLayerImage({
       source: new OlSourceImageStatic({
         attributions: 'Prof. Mandar Rane',
@@ -131,6 +149,7 @@ export class MapComponent implements AfterViewInit {
         projection: projection,
         imageExtent: extent,
         imageLoadFunction: (image, src) => {
+          /* For showing loading spinner */
           const img = image.getImage();
           img.src = src;
           img.onload = () => {
@@ -140,7 +159,10 @@ export class MapComponent implements AfterViewInit {
       })
     });
 
+    /* Disable tilting */
     const interactions = OlInteraction.defaults({altShiftDragRotate: false, pinchRotate: false});
+
+    /* Generate map */
     this.map = new OlMap({
       interactions: interactions,
       layers: [
@@ -155,6 +177,21 @@ export class MapComponent implements AfterViewInit {
         minZoom: 3,
         maxZoom: 5.5
       })
+    });
+
+    /* Handle click */
+    this.map.on('click', (evt) => {
+      const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f);
+      if (feature) {
+        alert(feature.get('loc').name);
+      }
+    });
+
+    /* Change mouse cursor on features */
+    this.map.on('pointermove', (e) => {
+      const pixel = this.map.getEventPixel(e.originalEvent);
+      const hit = this.map.hasFeatureAtPixel(pixel);
+      this.pointer = hit ? 'pointer' : '';
     });
 
   }
