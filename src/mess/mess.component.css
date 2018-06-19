@@ -10,7 +10,7 @@
 
 .mess-card {
     max-width: 550px;
-    padding: 0.1em 0;
+    padding: 0;
     margin: 5px auto;
     cursor: pointer;
     background-color: white;
@@ -22,7 +22,7 @@
     width: 100%;
     text-align: center;
     font-size: 1.1em;
-    margin: 6px 0;
+    padding: 6px 0;
 }
 
 .mess-table {
