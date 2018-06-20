@@ -14,17 +14,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRippleModule } from '@angular/material';
 
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule, ReactiveFormsModule,
+        ReactiveFormsModule,
         MatButtonModule,
         MatIconModule,
         MatInputModule,
@@ -43,9 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatRippleModule,
     ],
     exports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule, ReactiveFormsModule,
+        ReactiveFormsModule,
         MatButtonModule,
         MatIconModule,
         MatInputModule,
