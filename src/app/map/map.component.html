@@ -30,7 +30,10 @@
   <ng-container *ngIf="selLocationAnim">
     <b>{{ selLocationAnim.name }}</b>
     <br><br>
-    <div *ngIf="selLocationAnim.description !== ''" class="description-box">
+    <div *ngIf="selLocationAnim.description !== ''"
+          class="description-box"
+          (panup)="mobileShowLoc(true)"
+          (pandown)="mobileShowLoc(false)">
         {{ selLocationAnim.description }}
     </div>
   </ng-container>
