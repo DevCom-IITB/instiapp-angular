@@ -12,6 +12,7 @@ import OlSourceVector from 'ol/source/vector';
 import OlProjProjection from 'ol/proj/projection';
 import OlFeature from 'ol/feature';
 import OlGeomPoint from 'ol/geom/point';
+import OlGeomPolygon from 'ol/geom/polygon';
 import OlStyleStyle from 'ol/style/style';
 import OlStyleCircle from 'ol/style/circle';
 import OlStyleText from 'ol/style/text';
@@ -26,10 +27,16 @@ import OlInteraction from 'ol/interaction';
 })
 export class MapComponent implements AfterViewInit {
 
+  /* Data */
   public locations = [];
-  public locations_copy = [];
+
+  /* Map */
   public map: OlMap;
   public view: OlView;
+  public vectorLayer: OlLayerVector;
+
+  /* Helpers */
+  public locations_copy = [];
   public maploaded = false;
   public pointer = '';
   public selectedLocation;
@@ -132,7 +139,7 @@ export class MapComponent implements AfterViewInit {
       return [style];
     };
 
-    const vectorLayer = new OlLayerVector({
+    this.vectorLayer = new OlLayerVector({
       source: vectorSource,
       style: vectorLayerStyle
     });
@@ -180,7 +187,7 @@ export class MapComponent implements AfterViewInit {
       interactions: interactions,
       layers: [
         imlayer,
-        vectorLayer
+        this.vectorLayer
       ],
       target: 'map',
       view: this.view
@@ -188,7 +195,28 @@ export class MapComponent implements AfterViewInit {
 
     /* Handle click */
     this.map.on('click', (evt) => {
-      const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f);
+      /* Create extent of acceptable click */
+      const pixel = evt.pixel;
+      const pixelOffSet = 30;
+      const pixelWithOffsetMin = [pixel[0] - pixelOffSet, pixel[1] + pixelOffSet];
+      const pixelWithOffsetMax = [pixel[0] + pixelOffSet, pixel[1] - pixelOffSet];
+      const XYMin = this.map.getCoordinateFromPixel(pixelWithOffsetMin);
+      const XYMax = this.map.getCoordinateFromPixel(pixelWithOffsetMax);
+      const ext = XYMax.concat(XYMin);
+      const extentFeat = new OlFeature(new OlGeomPolygon([[
+        [ext[0], ext[1]],
+        [ext[0], ext[3]],
+        [ext[2], ext[3]],
+        [ext[2], ext[1]],
+        [ext[0], ext[1]]
+      ]]));
+
+      /* Get first nearby feature */
+      const feature = this.vectorLayer.getSource().forEachFeatureIntersectingExtent(
+        extentFeat.getGeometry().getExtent(), (f) => f
+      );
+
+      /* Zoom in */
       if (feature) {
         const loc = feature.get('loc');
         this.selectLocation(loc);
