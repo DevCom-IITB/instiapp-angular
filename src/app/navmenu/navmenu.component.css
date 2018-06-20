@@ -21,3 +21,10 @@
     color: #eee;
     font-size: 10pt;
 }
+
+@media (max-width: 560px) {
+    .main-menu {
+        max-height: calc(87vh - 34px);
+        overflow-y: auto;
+    }
+}
