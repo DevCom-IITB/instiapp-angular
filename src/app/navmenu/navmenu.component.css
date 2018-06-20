@@ -25,6 +25,11 @@
 @media (max-width: 560px) {
     .main-menu {
         max-height: calc(87vh - 34px);
+        margin-top: -10px;
         overflow-y: auto;
+    }
+
+    .head-card {
+        margin-top: 0;
     }
 }
