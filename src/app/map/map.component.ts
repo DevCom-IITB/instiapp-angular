@@ -118,12 +118,12 @@ export class MapComponent implements AfterViewInit {
       let icon_color;
       if (loc.group_id === '1' || loc.group_id === '4' || loc.group_id === '12') {
         icon_color = 'blue';
-      } else if (loc.group_id === '8') {
-        icon_color = 'gray';
+      } else if (loc.group_id === '3') {
+        icon_color = 'lightgreen';
       } else if (loc.group_id === '2') {
         icon_color = 'orange';
       } else {
-        icon_color = 'lightgreen';
+        icon_color = 'gray';
       }
 
       /* Make text object */
