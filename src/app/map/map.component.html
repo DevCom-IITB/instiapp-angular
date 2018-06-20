@@ -41,6 +41,14 @@
 </div>
 
 <button mat-mini-fab class="search-button only-mobile"
-       (click)="showSearch = true">
+       (click)="showSearch = true"
+       *ngIf="!showSearch">
   <mat-icon>search</mat-icon>
+</button>
+
+<button mat-mini-fab
+       class="residences-button"
+       (click)="toggleResidences()"
+       [style.backgroundColor]="showResidences ? 'green' : null">
+  <mat-icon>home</mat-icon>
 </button>

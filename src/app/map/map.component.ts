@@ -22,6 +22,7 @@ import OlStyleStroke from 'ol/style/stroke';
 import OlStyleFill from 'ol/style/fill';
 import OlInteraction from 'ol/interaction';
 import OlControlFullscreen from 'ol/control/fullscreen';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-map',
@@ -50,9 +51,11 @@ export class MapComponent implements AfterViewInit {
   public showLocBox = false;
   public mobShowLocBox = false;
   public showSearch = false;
+  public showResidences = false;
 
   constructor(
     public dataService: DataService,
+    public snackBar: MatSnackBar,
   ) {
     if (!window.matchMedia('(max-width: 560px)').matches) {
       this.showSearch = true;
@@ -74,9 +77,8 @@ export class MapComponent implements AfterViewInit {
       /* Change coordinate sysetm */
       const pos = [loc.pixel_x, 3575 - loc.pixel_y];
 
-      /* Ignore housing, inner locations */
-      if (loc.group_id !== '3' && loc.parent === '0') {
-
+      /* Ignore inner locations */
+      if (loc.parent === '0') {
         /* Make the Feature */
         const iconFeature = new OlFeature({
           geometry: new OlGeomPoint(pos),
@@ -97,6 +99,11 @@ export class MapComponent implements AfterViewInit {
     const vectorLayerStyle = (feature) => {
       const zoom = this.map.getView().getZoom();
       const loc = feature.get('loc');
+
+      /* Hide residences */
+      if (loc.group_id === '3' && !this.showResidences) {
+        return;
+      }
 
       /* Increase font size with zoom */
       const font_size = zoom * 3;
@@ -304,17 +311,30 @@ export class MapComponent implements AfterViewInit {
     }
   }
 
-  /* Toggle location showing on mobile */
+  /** Toggle location showing on mobile */
   mobileShowLoc(show: boolean) {
     this.mobShowLocBox = show;
   }
 
-  /* Top of location box for mobile */
+  /** Top of location box for mobile */
   locBoxTop() {
     if (!window.matchMedia('(max-width: 560px)').matches) {
       return '180px';
     }
     return this.mobShowLocBox ? '80px' : '78vh';
+  }
+
+  /** */
+  toggleResidences() {
+    this.showResidences = !this.showResidences;
+    this.vectorLayer.getSource().changed();
+    let msg = 'Residences Visible';
+    if (!this.showResidences) {
+      msg = 'Residences Hidden';
+    }
+    this.snackBar.open(msg, 'Dismiss', {
+      duration: 2000,
+    });
   }
 
   /** boolean to boolean string */

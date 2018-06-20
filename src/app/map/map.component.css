@@ -38,8 +38,14 @@
 
 .search-button {
     position: fixed;
-    right: 30px;
-    top: 80px;
+    right: 8px;
+    top: 110px;
+}
+
+.residences-button {
+    position: fixed;
+    bottom: 53px;
+    right: 8px;
 }
 
 .only-mobile {
