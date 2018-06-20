@@ -21,6 +21,7 @@ import OlStyleText from 'ol/style/text';
 import OlStyleStroke from 'ol/style/stroke';
 import OlStyleFill from 'ol/style/fill';
 import OlInteraction from 'ol/interaction';
+import OlControlFullscreen from 'ol/control/fullscreen';
 
 @Component({
   selector: 'app-map',
@@ -169,6 +170,7 @@ export class MapComponent implements AfterViewInit {
     const imlayer = new OlLayerImage({
       source: new OlSourceImageStatic({
         url: '/assets/map.jpg',
+        attributions: '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
         projection: projection,
         imageExtent: extent,
         imageLoadFunction: (image, src) => {
@@ -205,6 +207,10 @@ export class MapComponent implements AfterViewInit {
       target: 'map',
       view: this.view
     });
+
+    /* Add controls */
+    const fullscreen = new OlControlFullscreen();
+    this.map.addControl(fullscreen);
 
     /* Handle click */
     this.map.on('click', (evt) => {
