@@ -8,7 +8,7 @@
 <div id="main-box" class="floating-box mat-elevation-z3"
     [@enterRight]="bstr(true)">
   <mat-form-field>
-    <input type="text"
+    <input type="search"
             matInput placeholder="Search"
             [matAutocomplete]="auto"
             (keyup)="searchChanged($event)">
@@ -21,14 +21,19 @@
 <div id="loc-box"
     *ngIf="initLocBox"
     [@enterRight]="bstr(showLocBox)"
-     class="floating-box mat-elevation-z3">
+     class="floating-box mat-elevation-z3"
+     (panup)="mobileShowLoc(true)"
+     (pandown)="mobileShowLoc(false)"
+     [style.top]="locBoxTop()">
+
   <ng-container *ngIf="selLocationAnim">
     <b>{{ selLocationAnim.name }}</b>
-    <ng-container *ngIf="selLocationAnim.description !== ''">
-        <br><br>
+    <br><br>
+    <div *ngIf="selLocationAnim.description !== ''" class="description-box">
         {{ selLocationAnim.description }}
-    </ng-container>
+    </div>
   </ng-container>
+
 </div>
 
 <button mat-mini-fab class="search-button only-mobile">

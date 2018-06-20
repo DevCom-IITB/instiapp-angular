@@ -46,6 +46,7 @@ export class MapComponent implements AfterViewInit {
   public selLocationAnim;
   public initLocBox = false;
   public showLocBox = false;
+  public mobShowLocBox = false;
 
   constructor(
     public dataService: DataService,
@@ -286,6 +287,19 @@ export class MapComponent implements AfterViewInit {
     if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
       this.selectLocation(loc);
     }
+  }
+
+  /* Toggle location showing on mobile */
+  mobileShowLoc(show: boolean) {
+    this.mobShowLocBox = show;
+  }
+
+  /* Top of location box for mobile */
+  locBoxTop() {
+    if (!window.matchMedia('(max-width: 560px)').matches) {
+      return '180px';
+    }
+    return this.mobShowLocBox ? '80px' : '78vh';
   }
 
   /** boolean to boolean string */
