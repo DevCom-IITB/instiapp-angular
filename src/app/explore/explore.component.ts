@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../app/data.service';
-import { IBody, IEvent, IUserProfile } from '../app/interfaces';
-import { API } from '../api';
+import { DataService } from '../data.service';
+import { IBody, IEvent, IUserProfile } from '../interfaces';
+import { API } from '../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
