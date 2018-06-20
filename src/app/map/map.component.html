@@ -5,7 +5,8 @@
   <img id="marker" src="/assets/location-icon.svg">
 </div>
 
-<div id="main-box" class="floating-box mat-elevation-z3">
+<div id="main-box" class="floating-box mat-elevation-z3"
+    [@enterRight]="bstr(true)">
   <mat-form-field>
     <input type="text"
             matInput placeholder="Search"
