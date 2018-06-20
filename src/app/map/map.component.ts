@@ -13,7 +13,7 @@ import OlProjProjection from 'ol/proj/projection';
 import OlFeature from 'ol/feature';
 import OlGeomPoint from 'ol/geom/point';
 import OlStyleStyle from 'ol/style/style';
-import OlStyleIcon from 'ol/style/icon';
+import OlStyleCircle from 'ol/style/circle';
 import OlStyleText from 'ol/style/text';
 import OlStyleStroke from 'ol/style/stroke';
 import OlStyleFill from 'ol/style/fill';
@@ -52,72 +52,17 @@ export class MapComponent implements AfterViewInit {
     for (const loc of this.locations) {
       /* Change coordinate sysetm */
       const pos = [loc.pixel_x, 3575 - loc.pixel_y];
+
       /* Ignore housing, inner locations */
       if (loc.group_id !== '3' && loc.parent === '0') {
 
-        /* Generate style */
-        const iconStyle = () => {
-          const zoom = this.map.getView().getZoom();
-
-          /* Increase font size with zoom */
-          const font_size = zoom * 3;
-
-          /* Choose icon image based on group id */
-          let icon_img;
-          if (loc.group_id === '1' || loc.group_id === '4' || loc.group_id === '12') {
-            icon_img = '/assets/circle-blue.svg';
-          } else if (loc.group_id === '8') {
-            icon_img = '/assets/circle-gray.svg';
-          } else if (loc.group_id === '2') {
-            icon_img = '/assets/circle-orange.svg';
-          } else {
-            icon_img = '/assets/circle-green.svg';
-          }
-
-          /* Choose short name if present */
-          let loc_name = loc.name;
-          if (loc.short_name !== '0') {
-            loc_name = loc.short_name;
-          }
-
-          /* Make icon object */
-          const icon = new OlStyleIcon(/** @type {olx.style.IconOptions} */ ({
-            anchor: [0.5, 0.5],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'fraction',
-            src: icon_img
-          }));
-
-          /* Make text object */
-          const text = new OlStyleText({
-            offsetY: 20,
-            padding: [20, 20, 20, 20],
-            font: 'bold ' + font_size + 'px Roboto',
-            text: loc_name,
-            fill: new OlStyleFill({
-              color: '#ffffff'
-            }),
-            stroke: new OlStyleStroke({
-              color: '#444', width: 2
-            }),
-          });
-
-          /* Generate the style */
-          return new OlStyleStyle({
-            image: (zoom >= 3) ? icon : null,
-            text: (zoom >= 4) ? text : null,
-          });
-        };
-
-        /* Make the icon */
+        /* Make the Feature */
         const iconFeature = new OlFeature({
           geometry: new OlGeomPoint(pos),
-          name: loc.name,
           loc: loc
         });
 
         /* Push into array */
-        iconFeature.setStyle(iconStyle);
         features.push(iconFeature);
       }
     }
@@ -127,14 +72,75 @@ export class MapComponent implements AfterViewInit {
       features: features
     });
 
+    /* Style the vector layer */
+    const vectorLayerStyle = (feature) => {
+      const zoom = this.map.getView().getZoom();
+      const loc = feature.get('loc');
+
+      /* Increase font size with zoom */
+      const font_size = zoom * 3;
+
+      /* Choose short name if present */
+      let loc_name = loc.name;
+      if (loc.short_name !== '0') {
+        loc_name = loc.short_name;
+      }
+
+      /* Choose icon color based on group id */
+      let icon_color;
+      if (loc.group_id === '1' || loc.group_id === '4' || loc.group_id === '12') {
+        icon_color = 'blue';
+      } else if (loc.group_id === '8') {
+        icon_color = 'gray';
+      } else if (loc.group_id === '2') {
+        icon_color = 'orange';
+      } else {
+        icon_color = 'lightgreen';
+      }
+
+      /* Make text object */
+      const text = new OlStyleText({
+        offsetY: 20,
+        padding: [20, 20, 20, 20],
+        font: 'bold ' + font_size + 'px Roboto',
+        text: loc_name,
+        fill: new OlStyleFill({
+          color: '#ffffff'
+        }),
+        stroke: new OlStyleStroke({
+          color: '#444', width: 2
+        })
+      });
+
+      /* Icon image*/
+      const icon = new OlStyleCircle({
+        radius: 5,
+        stroke: new OlStyleStroke({
+          color: 'white',
+          width: 2
+        }),
+        fill: new OlStyleFill({
+          color: icon_color
+        })
+      });
+
+      /* Make style */
+      const style = new OlStyleStyle({
+        image: (zoom >= 3) ? icon : null,
+        text: (zoom >= 4) ? text : null,
+      });
+      return [style];
+    };
+
     const vectorLayer = new OlLayerVector({
-      source: vectorSource
+      source: vectorSource,
+      style: vectorLayerStyle
     });
 
     /* Configure map */
     const extent = [0, 0, 5430, 3575];
     const projection = new OlProjProjection({
-      code: 'xkcd-image',
+      code: 'instiMAP',
       units: 'pixels',
       extent: extent
     });
@@ -142,7 +148,6 @@ export class MapComponent implements AfterViewInit {
     /* Make image layer */
     const imlayer = new OlLayerImage({
       source: new OlSourceImageStatic({
-        attributions: 'Prof. Mandar Rane',
         url: '/assets/map.jpg',
         projection: projection,
         imageExtent: extent,
