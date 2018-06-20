@@ -19,6 +19,16 @@ body, .image-background {
     user-select: none;
 }
 
+mat-form-field, mat-form-field * {
+    -webkit-touch-callout: text;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
 .flyout {
     z-index: 10000;
     width: 300px;
