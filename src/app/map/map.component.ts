@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../data.service';
 
 import { EnterRight, EnterLeft } from '../animations';
@@ -40,6 +40,7 @@ export class MapComponent implements AfterViewInit {
   public vectorLayer: OlLayerVector;
 
   /* Helpers */
+  @ViewChild('searchbox') searchBoxEl: ElementRef;
   public locations_copy = [];
   public maploaded = false;
   public pointer = '';
@@ -268,6 +269,9 @@ export class MapComponent implements AfterViewInit {
     this.map.addOverlay(marker);
     this.view.animate({center: pos});
     this.view.animate({zoom: 4.5});
+
+    /* Set focus */
+    this.searchBoxEl.nativeElement.blur();
   }
 
   /** Fire when search input has changed */

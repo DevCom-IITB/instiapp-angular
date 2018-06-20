@@ -8,7 +8,7 @@
 <div id="main-box" class="floating-box mat-elevation-z3"
     [@enterRight]="bstr(true)">
   <mat-form-field>
-    <input type="search"
+    <input type="search" #searchbox
             matInput placeholder="Search"
             [matAutocomplete]="auto"
             (keyup)="searchChanged($event)">
