@@ -48,6 +48,7 @@
 @media (max-width: 560px) {
     .main {
         height: calc(100vh - 56px);
+        margin-top: 0;
     }
 
     .floating-box {

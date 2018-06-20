@@ -24,7 +24,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/theme.scss"
+              "src/theme.scss",
+              "node_modules/ol/ol.css"
             ],
             "scripts": [
               "node_modules/marked/lib/marked.js"
@@ -60,7 +61,6 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
-              "ngswConfigPath": "/src/ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -79,7 +79,6 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
-              "ngswConfigPath": "/src/ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
