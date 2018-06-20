@@ -48,10 +48,15 @@ export class MapComponent implements AfterViewInit {
   public initLocBox = false;
   public showLocBox = false;
   public mobShowLocBox = false;
+  public showSearch = false;
 
   constructor(
     public dataService: DataService,
-  ) { }
+  ) {
+    if (!window.matchMedia('(max-width: 560px)').matches) {
+      this.showSearch = true;
+    }
+  }
 
   ngAfterViewInit() {
     this.dataService.FireGET<any[]>('assets/mapdata.json').subscribe(result => {

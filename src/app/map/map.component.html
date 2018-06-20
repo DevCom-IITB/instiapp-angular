@@ -6,7 +6,8 @@
 </div>
 
 <div id="main-box" class="floating-box mat-elevation-z3"
-    [@enterRight]="bstr(true)">
+    [@enterRight]="bstr(true)"
+    *ngIf="showSearch">
   <mat-form-field>
     <input type="search" #searchbox
             matInput placeholder="Search"
@@ -36,6 +37,7 @@
 
 </div>
 
-<button mat-mini-fab class="search-button only-mobile">
+<button mat-mini-fab class="search-button only-mobile"
+       (click)="showSearch = true">
   <mat-icon>search</mat-icon>
 </button>
