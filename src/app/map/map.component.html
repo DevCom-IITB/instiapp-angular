@@ -5,7 +5,7 @@
   <img id="marker" src="/assets/location-icon.svg">
 </div>
 
-<div id="main-box" class="mat-elevation-z3">
+<div id="main-box" class="floating-box mat-elevation-z3">
   <mat-form-field>
     <input type="text"
             matInput placeholder="Search"
@@ -15,6 +15,19 @@
       <mat-option *ngFor="let loc of locations_copy" [value]="loc.name">{{loc.name}}</mat-option>
     </mat-autocomplete>
   </mat-form-field>
+</div>
+
+<div id="loc-box"
+    *ngIf="initLocBox"
+    [@enterRight]="bstr(showLocBox)"
+     class="floating-box mat-elevation-z3">
+  <ng-container *ngIf="selLocationAnim">
+    <b>{{ selLocationAnim.name }}</b>
+    <ng-container *ngIf="selLocationAnim.description !== ''">
+        <br><br>
+        {{ selLocationAnim.description }}
+    </ng-container>
+  </ng-container>
 </div>
 
 <button mat-mini-fab class="search-button only-mobile">

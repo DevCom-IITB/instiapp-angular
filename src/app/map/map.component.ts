@@ -1,6 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { DataService } from '../data.service';
 
+import { EnterRight, EnterLeft } from '../animations';
+
 import OlMap from 'ol/map';
 import OlLayerImage from 'ol/layer/image';
 import OlView from 'ol/view';
@@ -23,12 +25,14 @@ import OlInteraction from 'ol/interaction';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  animations: [EnterRight, EnterLeft]
 })
 export class MapComponent implements AfterViewInit {
 
   /* Data */
   public locations = [];
+  public selectedLocation;
 
   /* Map */
   public map: OlMap;
@@ -39,7 +43,9 @@ export class MapComponent implements AfterViewInit {
   public locations_copy = [];
   public maploaded = false;
   public pointer = '';
-  public selectedLocation;
+  public selLocationAnim;
+  public initLocBox = false;
+  public showLocBox = false;
 
   constructor(
     public dataService: DataService,
@@ -233,6 +239,24 @@ export class MapComponent implements AfterViewInit {
   }
 
   selectLocation(loc) {
+    /* Set selected location */
+    this.selectedLocation = loc;
+
+    /* No delay on first click */
+    let time = 250;
+    if (!this.initLocBox) {
+      this.initLocBox = true;
+      time = 0;
+    }
+
+    /* Show location box */
+    this.showLocBox = false;
+    setTimeout(() => {
+      this.selLocationAnim = loc;
+      this.showLocBox = true;
+    }, time);
+
+    /* Move marker */
     const pos = [Number(loc.pixel_x), 3575 - Number(loc.pixel_y)];
     const marker = new OlOverlay({
       position: pos,
@@ -259,9 +283,14 @@ export class MapComponent implements AfterViewInit {
     }
 
     const loc = this.locations.find(l => l.name === lname);
-    if (loc) {
+    if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
       this.selectLocation(loc);
     }
+  }
+
+  /** boolean to boolean string */
+  bstr(b: boolean) {
+    return b ? 'true' : 'false';
   }
 
 }

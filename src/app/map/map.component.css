@@ -10,15 +10,20 @@
     height: 100vh;
 }
 
-#main-box {
+.floating-box {
     background: white;
     position: fixed;
     right: 40px;
     top: 100px;
     padding: 0 15px;
     padding-top: 8px;
-    width: 200px;
+    width: 230px;
     z-index: 2;
+}
+
+#loc-box {
+    top: 180px;
+    padding: 8px 15px;
 }
 
 #main-box mat-form-field {
