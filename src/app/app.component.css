@@ -9,7 +9,7 @@
     bottom: 0;
     width: calc(100% - 300px);
     padding-top: 8px;
-    padding-bottom: 8px;
+    padding-bottom: 0;
     margin-left: 300px;
 }
 
