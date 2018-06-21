@@ -6,6 +6,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Helpers } from './helpers';
 import { API } from '../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SwUpdate } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +31,7 @@ export class AppComponent implements OnDestroy, OnInit {
     public dataService: DataService,
     public router: Router,
     public snackBar: MatSnackBar,
+    private swUpdate: SwUpdate,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => {
@@ -50,6 +53,17 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
+    /** Check for update */
+    if (environment.production) {
+      this.swUpdate.available.subscribe(event => {
+        this.snackBar.open('Refresh for new version!', 'Dismiss', {
+          duration: 2000,
+        });
+      });
+      this.swUpdate.checkForUpdate();
+    }
+
+    /** Get user (try) */
     this.dataService.GetFillCurrentUser().subscribe(user => {
       this.initialized = true;
     }, (error) => {
