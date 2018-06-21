@@ -20,7 +20,8 @@
               "src/assets",
               "src/favicon.ico",
               "src/manifest.json",
-              "src/browserconfig.xml"
+              "src/browserconfig.xml",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.css",
@@ -129,7 +130,8 @@
               "src/assets",
               "src/favicon.ico",
               "src/manifest.json",
-              "src/browserconfig.xml"
+              "src/browserconfig.xml",
+              "src/manifest.json"
             ]
           }
         },
