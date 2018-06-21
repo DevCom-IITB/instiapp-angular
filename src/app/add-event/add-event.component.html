@@ -1,6 +1,6 @@
 <app-xunk-spinner *ngIf="!event"></app-xunk-spinner>
 
-<div class="detail-card real-center mat-elevation-z3" *ngIf="event">
+<div id="main" class="detail-card real-center mat-elevation-z3" *ngIf="event">
 
 <div class="theme-header">
   <input style="display:none;" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
