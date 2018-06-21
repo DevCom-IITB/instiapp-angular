@@ -1,7 +1,12 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
 import { EnterRight, EnterLeft } from '../animations';
+import { MatSnackBar, MatAutocompleteTrigger } from '@angular/material';
+import * as Fuse from 'fuse.js';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import OlMap from 'ol/map';
 import OlLayerImage from 'ol/layer/image';
@@ -22,7 +27,6 @@ import OlStyleStroke from 'ol/style/stroke';
 import OlStyleFill from 'ol/style/fill';
 import OlInteraction from 'ol/interaction';
 import OlControlFullscreen from 'ol/control/fullscreen';
-import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-map',
@@ -30,7 +34,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./map.component.css'],
   animations: [EnterRight, EnterLeft]
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements OnInit, AfterViewInit {
 
   /* Data */
   public locations = [];
@@ -43,7 +47,7 @@ export class MapComponent implements AfterViewInit {
 
   /* Helpers */
   @ViewChild('searchbox') searchBoxEl: ElementRef;
-  public locations_copy = [];
+  @ViewChild(MatAutocompleteTrigger) autoComplete: MatAutocompleteTrigger;
   public maploaded = false;
   public pointer = '';
   public selLocationAnim;
@@ -52,6 +56,25 @@ export class MapComponent implements AfterViewInit {
   public mobShowLocBox = false;
   public showSearch = false;
   public showResidences = false;
+  searchForm: FormControl;
+  filteredOptions: Observable<any[]>;
+
+  /* Fuse config */
+  public fuse_options = {
+    shouldSort: true,
+    threshold: 0.3,
+    tokenize: true,
+    location: 0,
+    distance: 7,
+    maxPatternLength: 10,
+    minMatchCharLength: 1,
+    keys: [
+      'name',
+      'short_name'
+    ]
+  };
+
+  public fuse;
 
   constructor(
     public dataService: DataService,
@@ -62,9 +85,20 @@ export class MapComponent implements AfterViewInit {
     }
   }
 
+  ngOnInit() {
+    this.searchForm = new FormControl();
+    this.filteredOptions = this.searchForm.valueChanges.pipe(
+      map(result =>
+        this.filteredLocations(result)
+      )
+    );
+
+  }
+
   ngAfterViewInit() {
     this.dataService.FireGET<any[]>('assets/mapdata.json').subscribe(result => {
       this.locations = result;
+      this.fuse = new Fuse(this.locations, this.fuse_options);
       this.showLoc();
     });
   }
@@ -292,15 +326,18 @@ export class MapComponent implements AfterViewInit {
     this.searchBoxEl.nativeElement.blur();
   }
 
+  /** Return fuzzy filtered locations */
+  filteredLocations(name: string) {
+    /* Search with fuse.js*/
+    return this.fuse.search(name).slice(0, 10);
+  }
+
   /** Fire when search input has changed */
   searchChanged(e) {
     let lname;
     if ('target' in e) {
-      lname = e.target.value;
-      this.locations_copy = this.locations.filter(
-        l => l.name.toLowerCase().includes(lname.toLowerCase()) ||
-        l.short_name.toLowerCase().includes(lname.toLowerCase())
-      );
+      lname = this.filteredLocations(e.target.value)[0].name;
+      this.autoComplete.closePanel();
     } else if ('option' in e) {
       lname = e.option.value;
     }

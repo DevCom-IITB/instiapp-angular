@@ -12,9 +12,10 @@
     <input type="search" #searchbox
             matInput placeholder="Search"
             [matAutocomplete]="auto"
-            (keyup)="searchChanged($event)">
-    <mat-autocomplete name="locsauto" #auto="matAutocomplete" (optionSelected)="searchChanged($event)">
-      <mat-option *ngFor="let loc of locations_copy" [value]="loc.name">{{loc.name}}</mat-option>
+            [formControl]="searchForm"
+            (keyup.enter)="searchChanged($event)">
+    <mat-autocomplete name="locsauto" #auto (optionSelected)="searchChanged($event)">
+      <mat-option *ngFor="let loc of filteredOptions | async" [value]="loc.name">{{loc.name}}</mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </div>
