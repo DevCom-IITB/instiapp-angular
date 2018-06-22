@@ -280,6 +280,13 @@ export class MapComponent implements OnInit, AfterViewInit {
       if (feature) {
         const loc = feature.get('loc');
         this.selectLocation(loc);
+      } else {
+        /* Unselect if nothing here */
+        this.showLocBox = false;
+        setTimeout(() => {
+          this.initLocBox = false;
+        }, 250);
+        this.moveMarker(-50, -50, false);
       }
     });
 
@@ -311,7 +318,15 @@ export class MapComponent implements OnInit, AfterViewInit {
     }, time);
 
     /* Move marker */
-    const pos = [Number(loc.pixel_x), 3575 - Number(loc.pixel_y)];
+    this.moveMarker(loc.pixel_x, loc.pixel_y, true);
+
+    /* Set focus */
+    this.searchBoxEl.nativeElement.blur();
+  }
+
+  /** Move the marker to location */
+  moveMarker(x, y, center = true) {
+    const pos = [Number(x), 3575 - Number(y)];
     const marker = new OlOverlay({
       position: pos,
       positioning: 'center-center',
@@ -319,11 +334,12 @@ export class MapComponent implements OnInit, AfterViewInit {
       stopEvent: false
     });
     this.map.addOverlay(marker);
-    this.view.animate({center: pos});
-    this.view.animate({zoom: 4.5});
 
-    /* Set focus */
-    this.searchBoxEl.nativeElement.blur();
+    /* Animate */
+    if (center) {
+      this.view.animate({center: pos});
+      this.view.animate({zoom: 4.5});
+    }
   }
 
   /** Return fuzzy filtered locations */
