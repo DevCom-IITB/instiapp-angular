@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
-import { EnterRight, EnterLeft } from '../animations';
+import { EnterRight } from '../animations';
 import { MatSnackBar, MatAutocompleteTrigger } from '@angular/material';
 import * as Fuse from 'fuse.js';
 import { FormControl } from '@angular/forms';
@@ -32,7 +32,7 @@ import OlControlFullscreen from 'ol/control/fullscreen';
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  animations: [EnterRight, EnterLeft]
+  animations: [EnterRight]
 })
 export class MapComponent implements OnInit, AfterViewInit {
 
@@ -45,7 +45,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   private view: OlView;
   private vectorLayer: OlLayerVector;
   private imlayer: OlLayerImage;
-  private imExtent: OlExtent;
+  private imExtent: any;
   private imProjection: OlProjProjection;
   private attributions = '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>';
 
@@ -113,7 +113,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     const features = [];
     for (const loc of this.locations) {
       /* Change coordinate sysetm */
-      const pos = [loc.pixel_x, 3575 - loc.pixel_y];
+      const pos: [number, number] = [loc.pixel_x, 3575 - loc.pixel_y];
 
       /* Ignore inner locations */
       if (loc.parent === '0') {
@@ -218,7 +218,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       imageExtent: this.imExtent,
       imageLoadFunction: (image, src) => {
         /* For showing loading spinner */
-        const img = image.getImage();
+        const img: any = image.getImage();
         img.src = src;
         img.onload = () => {
           this.maploaded = true;
@@ -261,12 +261,12 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map.addControl(fullscreen);
 
     /* Handle click */
-    this.map.on('click', (evt) => {
+    this.map.on('click', (evt: any) => {
       /* Create extent of acceptable click */
       const pixel = evt.pixel;
       const pixelOffSet = 30;
-      const pixelWithOffsetMin = [pixel[0] - pixelOffSet, pixel[1] + pixelOffSet];
-      const pixelWithOffsetMax = [pixel[0] + pixelOffSet, pixel[1] - pixelOffSet];
+      const pixelWithOffsetMin: [number, number] = [pixel[0] - pixelOffSet, pixel[1] + pixelOffSet];
+      const pixelWithOffsetMax: [number, number] = [pixel[0] + pixelOffSet, pixel[1] - pixelOffSet];
       const XYMin = this.map.getCoordinateFromPixel(pixelWithOffsetMin);
       const XYMax = this.map.getCoordinateFromPixel(pixelWithOffsetMax);
       const ext = XYMax.concat(XYMin);
@@ -298,7 +298,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
 
     /* Change mouse cursor on features */
-    this.map.on('pointermove', (e) => {
+    this.map.on('pointermove', (e: any) => {
       const pixel = this.map.getEventPixel(e.originalEvent);
       const hit = this.map.hasFeatureAtPixel(pixel);
       this.pointer = hit ? 'pointer' : 'grab';
@@ -333,7 +333,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   /** Move the marker to location */
   moveMarker(x, y, center = true) {
-    const pos = [Number(x), 3575 - Number(y)];
+    const pos: [number, number] = [Number(x), 3575 - Number(y)];
     const marker = new OlOverlay({
       position: pos,
       positioning: 'center-center',
