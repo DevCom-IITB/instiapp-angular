@@ -7,13 +7,14 @@
 .full-container {
     padding: 0;
     margin: auto;
+    overflow-x: hidden;
     max-width: 400px;
     background-color: white;
 }
 
 #head-chip {
     width: 140px;
-    margin-top: -8px;
+    margin-top: 0;
     margin-left: calc(50% - 70px);
 }
 
