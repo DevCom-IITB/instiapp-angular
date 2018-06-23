@@ -8,7 +8,9 @@
         <xunk-calendar [selectedDate]="selDate"
                        (change)="dateChanged($event)"
                        [heatmap]="getHeatMap()"
-                       [RGB_HM]="{R: 255, G: 235, B: 59}"></xunk-calendar>
+                       heatMapColor="rgb(255, 235, 59)"
+                       primaryColor="#673ab7">
+        </xunk-calendar>
         <mat-chip-list class="mat-chip-list-stacked">
             <mat-chip color="accent" selected="true" id="head-chip">
                 <div>{{ GetCount(selDate) }}</div>
