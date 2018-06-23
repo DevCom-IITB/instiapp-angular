@@ -44,6 +44,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   public map: OlMap;
   public view: OlView;
   public vectorLayer: OlLayerVector;
+  public imlayer: OlLayerImage;
 
   /* Helpers */
   @ViewChild('searchbox') searchBoxEl: ElementRef;
@@ -207,23 +208,40 @@ export class MapComponent implements OnInit, AfterViewInit {
       extent: extent
     });
 
-    /* Make image layer */
-    const imlayer = new OlLayerImage({
-      source: new OlSourceImageStatic({
-        url: '/assets/map.jpg',
-        attributions: '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
-        projection: projection,
-        imageExtent: extent,
-        imageLoadFunction: (image, src) => {
-          /* For showing loading spinner */
-          const img = image.getImage();
-          img.src = src;
-          img.onload = () => {
-            this.maploaded = true;
-          };
-        }
-      })
+    const staticSource = new OlSourceImageStatic({
+      url: '/assets/map-min.jpg',
+      attributions: '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
+      projection: projection,
+      imageExtent: extent,
+      imageLoadFunction: (image, src) => {
+        /* For showing loading spinner */
+        const img = image.getImage();
+        img.src = src;
+        img.onload = () => {
+          this.maploaded = true;
+        };
+      }
     });
+
+    /* Make image layer */
+    this.imlayer = new OlLayerImage({
+      source: staticSource
+    });
+
+    /* High res source */
+    const highResSource = new OlSourceImageStatic({
+      url: '/assets/map.jpg',
+      attributions: '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
+      projection: projection,
+      imageExtent: extent,
+    });
+
+    /* Load high resolution image */
+    const highRes = new Image();
+    highRes.src = '/assets/map.jpg';
+    highRes.onload = () => {
+      this.imlayer.setSource(highResSource);
+    };
 
     /* Disable tilting */
     const interactions = OlInteraction.defaults({altShiftDragRotate: false, pinchRotate: false});
@@ -242,7 +260,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map = new OlMap({
       interactions: interactions,
       layers: [
-        imlayer,
+        this.imlayer,
         this.vectorLayer
       ],
       target: 'map',
