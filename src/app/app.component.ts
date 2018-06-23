@@ -21,9 +21,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
   private _mobileQueryListener: () => void;
 
-  /** Control top of sidenav with TS on Android Chrome */
-  private isAndroidChrome = false;
-
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
@@ -40,12 +37,6 @@ export class AppComponent implements OnDestroy, OnInit {
     };
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.titleService.setTitle('InstiApp');
-
-    /** Check if we are on Chrome-Android */
-    if (window.navigator.userAgent.toLowerCase().includes('chrome') &&
-        window.navigator.userAgent.toLowerCase().includes('android')) {
-        this.isAndroidChrome = true;
-    }
   }
 
   private toggleSidebar() {
@@ -119,18 +110,6 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Handle reaching end of page and sidenav on android chrome */
   @HostListener('window:scroll')
   windowScroll() {
-    if (this.isAndroidChrome) {
-      document.querySelector('body').style.cssText = '--flyout-top:' + window.document.documentElement.scrollTop + 'px';
-    }
-
     Helpers.CheckScrollBottom(this.dataService.scrollBottomFunction);
-  }
-
-  /** Add classes for chrome android */
-  getFlyoutClasses() {
-    if (this.isAndroidChrome) {
-      return ['flyout', 'flyout-chrome-android'];
-    }
-    return ['flyout'];
   }
 }

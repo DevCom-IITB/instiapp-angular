@@ -6,11 +6,10 @@ body, .image-background {
     /* Set font family */
     font-family: 'Roboto', sans-serif;
     background-color: #e9ebee;
-    --flyout-top: 0px;
 }
 
 * {
-    -webkit-touch-callout: none;
+    -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -40,7 +39,6 @@ body, .image-background {
 }
 
 mat-form-field, mat-form-field * {
-    -webkit-touch-callout: text;
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: text;
     -khtml-user-select: text;
@@ -50,15 +48,11 @@ mat-form-field, mat-form-field * {
 }
 
 .flyout {
+    -webkit-overflow-scrolling: auto;
+    bottom: auto !important;
     z-index: 10000;
     width: 300px;
-    touch-action: pan-x;
-}
-
-/* Workaround for the abomination called Chrome for Android */
-.flyout-chrome-android {
-    position: absolute !important;
-    top: var(--flyout-top) !important;
+    height: 100vh;
 }
 
 .flyout-backdrop {

@@ -39,11 +39,10 @@
             [showCloseButton]="false"
             [showBackdrop]="mobileQuery.matches"
             [hideOnBackdropClick]="mobileQuery.matches"
-            [flyoutClasses]="getFlyoutClasses()"
+            [flyoutClasses]="['flyout']"
             [backdropClasses]="['flyout-backdrop']">
     <mat-nav-list>
-        <app-navmenu (click)="closeSidebarMobile()"
-            (panleft)="closeSidebarMobile()">
+        <app-navmenu (click)="closeSidebarMobile()">
         </app-navmenu>
     </mat-nav-list>
 </ngx-flyout>
