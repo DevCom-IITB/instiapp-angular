@@ -41,10 +41,13 @@ export class MapComponent implements OnInit, AfterViewInit {
   public selectedLocation;
 
   /* Map */
-  public map: OlMap;
-  public view: OlView;
-  public vectorLayer: OlLayerVector;
-  public imlayer: OlLayerImage;
+  private map: OlMap;
+  private view: OlView;
+  private vectorLayer: OlLayerVector;
+  private imlayer: OlLayerImage;
+  private imExtent: OlExtent;
+  private imProjection: OlProjProjection;
+  private attributions = '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>';
 
   /* Helpers */
   @ViewChild('searchbox') searchBoxEl: ElementRef;
@@ -201,24 +204,25 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
 
     /* Configure map */
-    const extent = [0, 0, 5430, 3575];
-    const projection = new OlProjProjection({
+    this.imExtent = [0, 0, 5430, 3575];
+    this.imProjection = new OlProjProjection({
       code: 'instiMAP',
       units: 'pixels',
-      extent: extent
+      extent: this.imExtent
     });
 
     const staticSource = new OlSourceImageStatic({
       url: '/assets/map-min.jpg',
-      attributions: '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
-      projection: projection,
-      imageExtent: extent,
+      attributions: this.attributions,
+      projection: this.imProjection,
+      imageExtent: this.imExtent,
       imageLoadFunction: (image, src) => {
         /* For showing loading spinner */
         const img = image.getImage();
         img.src = src;
         img.onload = () => {
           this.maploaded = true;
+          this.loadHighRes();
         };
       }
     });
@@ -228,28 +232,13 @@ export class MapComponent implements OnInit, AfterViewInit {
       source: staticSource
     });
 
-    /* High res source */
-    const highResSource = new OlSourceImageStatic({
-      url: '/assets/map.jpg',
-      attributions: '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
-      projection: projection,
-      imageExtent: extent,
-    });
-
-    /* Load high resolution image */
-    const highRes = new Image();
-    highRes.src = '/assets/map.jpg';
-    highRes.onload = () => {
-      this.imlayer.setSource(highResSource);
-    };
-
     /* Disable tilting */
     const interactions = OlInteraction.defaults({altShiftDragRotate: false, pinchRotate: false});
 
     /* Make view */
     this.view = new OlView({
-      projection: projection,
-      center: OlExtent.getCenter(extent),
+      projection: this.imProjection,
+      center: OlExtent.getCenter(this.imExtent),
       zoom: 3.4,
       minZoom: 2.8,
       maxZoom: 5.5,
@@ -364,6 +353,24 @@ export class MapComponent implements OnInit, AfterViewInit {
   filteredLocations(name: string) {
     /* Search with fuse.js*/
     return this.fuse.search(name).slice(0, 10);
+  }
+
+  /** Load the high resolution map */
+  loadHighRes() {
+    /* High res source */
+    const highResSource = new OlSourceImageStatic({
+      url: '/assets/map.jpg',
+      attributions: this.attributions,
+      projection: this.imProjection,
+      imageExtent: this.imExtent,
+    });
+
+    /* Load high resolution image */
+    const highRes = new Image();
+    highRes.src = '/assets/map.jpg';
+    highRes.onload = () => {
+      this.imlayer.setSource(highResSource);
+    };
   }
 
   /** Fire when search input has changed */
