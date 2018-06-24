@@ -12,27 +12,41 @@
         <mat-card-subtitle><b>{{item.body.name}}</b> - {{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <markdown [data]="item.content"></markdown>
+        <markdown [data]="item.content" class="markdown"></markdown>
       </mat-card-content>
 
-      <table>
-        <tr>
-          <td *ngFor="let react of reactions">
-            <button
-              mat-icon-button
-              (mousedown)="$event.stopPropagation()"
-              (click)="do_reaction(item, react.id);$event.stopPropagation();"
-              [class.selected-reaction]="item.user_reaction === react.id">
-            <i [class]="'em em-' + react.i"></i>
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td class="count" *ngFor="let react of reactions">
-            <div class="react-count">{{ item.reactions_count[react.id] }}</div>
-          </td>
-        </tr>
-      </table>
+      <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="before">
+          <table>
+              <tr>
+                <td *ngFor="let react of reactions">
+                  <button
+                    mat-icon-button
+                    (mousedown)="$event.stopPropagation()"
+                    (click)="do_reaction(item, react.id);$event.stopPropagation();"
+                    [class.selected-reaction]="item.user_reaction === react.id"
+                    class="reaction">
+                  <i [class]="'em em-' + react.i"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="count" *ngFor="let react of reactions">
+                  <div class="react-count">{{ item.reactions_count[react.id] }}</div>
+                </td>
+              </tr>
+            </table>
+      </mat-menu>
+
+      <div class="react-button" [style.color]="getReactColor(item)">
+        <button mat-icon-button [matMenuTriggerFor]="reactMenu" (click)="$event.stopPropagation()">
+            <mat-icon>thumb_up</mat-icon>
+        </button>
+      </div>
+
+
+      <!--
+    -->
+
     </mat-card>
   </ng-container>
 </ng-container>

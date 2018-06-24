@@ -42,6 +42,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     this.dataService.scrollBottomFunction = noop;
   }
 
+  /** Open link in new window */
   openLink(link: string) {
     window.open(link);
   }
@@ -59,6 +60,18 @@ export class NewsComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Get reaction heat from total number of reactions on a news item
+   * @param item News item
+   */
+  getReactColor(item: INewsEntry) {
+    const count = Object.values(item.reactions_count).reduce((a, b) => a + b);
+    const s = Math.min(count / 10, 1);
+    const c = { R: 255, G: 88, B: 36 };
+    return `rgb(${c.R * s}, ${c.G * s}, ${c.B * s})`;
+  }
+
+  /** Fire a reaction */
   do_reaction(news: INewsEntry, react: number) {
     if (!this.dataService.loggedIn) {
       alert('Please log in to continue!');
