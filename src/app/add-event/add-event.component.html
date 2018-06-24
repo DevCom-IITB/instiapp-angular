@@ -43,12 +43,13 @@
   <div class="full-width-details" *ngFor="let vn of event.venues; let i = index">
     <mat-form-field style="width: calc(98% - 50px); left: 1%;">
         <input matInput placeholder="Venue" aria-label="Venue"
-              [matAutocomplete]="venueAuto" [(ngModel)]="vn.name">
+              [matAutocomplete]="venueAuto"
+              [formControl]="venueControls[i].form">
     </mat-form-field>
 
     <mat-autocomplete #venueAuto="matAutocomplete">
-      <mat-option *ngFor="let venue of filterVenues(vn.name)" [value]="venue">
-        {{ venue }}
+      <mat-option *ngFor="let venue of venueControls[i].filteredLocations | async" [value]="venue.short_name">
+        {{ venue.short_name }}
       </mat-option>
     </mat-autocomplete>
 

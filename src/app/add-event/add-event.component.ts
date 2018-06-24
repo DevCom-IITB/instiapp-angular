@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormControl } from '@angular/forms';
 import { IEvent, IBody, ILocation } from '../interfaces';
-import { Time } from '@angular/common';
+import * as Fuse from 'fuse.js';
 import { Helpers } from '../helpers';
 import { Observable } from 'rxjs';
 import { API } from '../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-event',
@@ -15,7 +16,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
-  public venuesList = [];
+  public venuesList: ILocation[] = [];
+  public venueControls: any[] = [];
 
   public event: IEvent;
 
@@ -31,23 +33,35 @@ export class AddEventComponent implements OnInit {
   public canDelete = false;
   public eventId: string;
 
+  /* Fuse config */
+  public fuse_options = {
+    shouldSort: true,
+    threshold: 0.3,
+    tokenize: true,
+    location: 0,
+    distance: 7,
+    maxPatternLength: 10,
+    minMatchCharLength: 1,
+    keys: [
+      'name',
+      'short_name'
+    ]
+  };
+
+  public fuse;
+
   constructor(
     public dataService: DataService,
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public snackBar: MatSnackBar,
-  ) {
-    /* Load locations */
-    dataService.GetAllLocations().subscribe(result => {
-      this.venuesList = result.map(r => r.name);
-    });
-  }
+  ) { }
 
   /** Filter venues with name */
-  filterVenues(name: string): string[] {
-    if (!name) { return this.venuesList; }
-    return this.venuesList.filter(venue =>
-      venue.toLowerCase().includes(name.toLowerCase()));
+  filterVenues(name: string): ILocation[] {
+    if (!name || !this.fuse) { return this.venuesList; }
+    /* Search with fuse.js*/
+    return this.fuse.search(name).slice(0, 10);
   }
 
   ngOnInit() {
@@ -56,6 +70,13 @@ export class AddEventComponent implements OnInit {
       this.close();
       return;
     }
+
+    /* Load locations */
+    this.dataService.GetAllLocations().subscribe(result => {
+      /* Filter out residences */
+      this.venuesList = result.filter(l => l.group_id !== 3);
+      this.fuse = new Fuse(this.venuesList, this.fuse_options);
+    });
 
     this.bodies = this.bodies.concat(this.dataService.GetBodiesWithPermission('AddE'));
 
@@ -70,6 +91,14 @@ export class AddEventComponent implements OnInit {
     if (this.eventId) {
       this.editing = true;
       this.dataService.GetEvent(this.eventId).subscribe(result => {
+        /* Set up filtering */
+        for (const vn of result.venues) {
+          const fcontrol = this.getFilterForm(vn);
+          this.venueControls.push(fcontrol);
+          fcontrol.form.setValue(vn.short_name);
+        }
+
+        /* Set data */
         this.event = result;
 
         /* Check if the user can edit the event */
@@ -249,19 +278,37 @@ export class AddEventComponent implements OnInit {
     if (!this.event.venues) {
       this.event.venues = [] as ILocation[];
     }
-    const new_loc = {} as ILocation;
-    this.event.venues.push(new_loc);
+    const new_loc: any = {};
+
+    /* Set up filtering */
+    const ff = this.getFilterForm(new_loc);
+    this.venueControls.push(ff);
+
+    this.event.venues.push(new_loc as ILocation);
+  }
+
+  /** Get a form for filtering */
+  getFilterForm(location: ILocation) {
+    const form = new FormControl();
+    const filteredLocations = form.valueChanges.pipe(
+      map(result => {
+        location.short_name = result;
+        return this.filterVenues(result);
+      })
+    );
+    return { form: form, filteredLocations: filteredLocations };
   }
 
   /** Make and remove blank venues from event.venue_names */
   ConstructVenuesNames() {
-    this.event.venue_names = this.event.venues.map(v => v.name);
+    this.event.venue_names = this.event.venues.map(v => v.short_name);
     this.event.venue_names = this.event.venue_names.filter(v => v !== '');
   }
 
   /** Removes venue at index */
   RemoveVenue(i: number) {
     this.event.venues.splice(i, 1);
+    this.venueControls.splice(i, 1);
   }
 
   /** Navigate back */
