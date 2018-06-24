@@ -18,9 +18,9 @@
 </div>
 
 <button mat-fab
-        *ngIf="canAdd(selIndex)"
+        [disabled]="!canAdd(selIndex)"
         class="float-fixed-right-bottom mat-elevation-z2"
         [routerLink]="['/add-event']"
-        [queryParams]="{body: roles[selIndex - 1].body}">
+        [queryParams]="{body: canAdd(selIndex) ? roles[selIndex - 1].body : null}">
     <mat-icon>add</mat-icon>
 </button>
