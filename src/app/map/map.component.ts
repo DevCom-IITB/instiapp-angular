@@ -27,6 +27,8 @@ import OlStyleStroke from 'ol/style/stroke';
 import OlStyleFill from 'ol/style/fill';
 import OlInteraction from 'ol/interaction';
 import OlControlFullscreen from 'ol/control/fullscreen';
+import { ILocation } from '../interfaces';
+import { API } from '../../api';
 
 @Component({
   selector: 'app-map',
@@ -37,8 +39,8 @@ import OlControlFullscreen from 'ol/control/fullscreen';
 export class MapComponent implements OnInit, AfterViewInit {
 
   /* Data */
-  public locations = [];
-  public selectedLocation;
+  public locations: ILocation[];
+  public selectedLocation: ILocation;
 
   /* Map */
   private map: OlMap;
@@ -100,7 +102,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataService.FireGET<any[]>('assets/mapdata.json').subscribe(result => {
+    this.dataService.FireGET<ILocation[]>(API.Locations).subscribe(result => {
       this.locations = result;
       this.fuse = new Fuse(this.locations, this.fuse_options);
       this.showLoc();
@@ -116,7 +118,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       const pos: [number, number] = [loc.pixel_x, 3575 - loc.pixel_y];
 
       /* Ignore inner locations */
-      if (loc.parent === '0') {
+      if (loc.parent === null) {
         /* Make the Feature */
         const iconFeature = new OlFeature({
           geometry: new OlGeomPoint(pos),
@@ -139,7 +141,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       const loc = feature.get('loc');
 
       /* Hide residences */
-      if (loc.group_id === '3' && !this.showResidences) {
+      if (loc.group_id === 3 && !this.showResidences) {
         return;
       }
 
@@ -154,11 +156,11 @@ export class MapComponent implements OnInit, AfterViewInit {
 
       /* Choose icon color based on group id */
       let icon_color;
-      if (loc.group_id === '1' || loc.group_id === '4' || loc.group_id === '12') {
+      if (loc.group_id === 1 || loc.group_id === 4 || loc.group_id === 12) {
         icon_color = 'blue';
-      } else if (loc.group_id === '3') {
+      } else if (loc.group_id === 3) {
         icon_color = 'lightgreen';
-      } else if (loc.group_id === '2') {
+      } else if (loc.group_id === 2) {
         icon_color = 'orange';
       } else {
         icon_color = 'gray';
