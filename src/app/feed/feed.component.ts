@@ -19,7 +19,7 @@ export class FeedComponent implements OnInit {
   ngOnInit() {
     this.dataService.GetAllEvents().subscribe(result => {
         this.events = result.data;
-        this.events[0].venues_str = this.events[0].venues.map(v => v.name).join(', ');
+        this.events[0].venues_str = this.events[0].venues.map(v => v.short_name).join(', ');
     });
   }
 

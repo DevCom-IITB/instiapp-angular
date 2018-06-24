@@ -18,7 +18,7 @@ export class EventCardComponent implements OnInit {
 
   ngOnInit() {
     if (this.event) {
-      this.event.venues_str = this.event.venues.map(v => v.name).join(', ');
+      this.event.venues_str = this.event.venues.map(v => v.short_name).join(', ');
     }
   }
 }

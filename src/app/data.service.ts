@@ -175,7 +175,7 @@ export class DataService {
     return Observable.create(observer => {
       if (index === -1) {
         this.GetEvent(uuid).subscribe(result => {
-          result.venues_str = result.venues.map(v => v.name).join(', ');
+          result.venues_str = result.venues.map(v => v.short_name).join(', ');
           this.eventsDetailed.push(result);
           observer.next(result);
           observer.complete();
