@@ -68,7 +68,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     const count = Object.values(item.reactions_count).reduce((a, b) => a + b);
     const s = Math.min(count / 10, 1);
     const c = { R: 255, G: 88, B: 36 };
-    return `rgb(${c.R * s}, ${c.G * s}, ${c.B * s})`;
+    return `rgb(${Math.floor(c.R * s)}, ${Math.floor(c.G * s)}, ${Math.floor(c.B * s)})`;
   }
 
   /** Fire a reaction */
