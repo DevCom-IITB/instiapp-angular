@@ -46,8 +46,16 @@ export interface IEvent {
 export interface ILocation {
     id: string;
     name: string;
+    short_name: string;
+    description: string;
+    parent: string;
+    parent_relation: string;
+    group_id: number;
+    pixel_x: number;
+    pixel_y: number;
     lat: number;
     lng: number;
+    reusable: boolean;
 }
 
 export interface IBody {
