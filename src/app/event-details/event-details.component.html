@@ -40,14 +40,14 @@
     </div>
 
     <div style="text-align:center">
-        <mat-checkbox [ngModel]="dataService.InterestedEvent(event.id)"
-                      (change)="markUES(dataService.InterestedEvent(event.id), 1, $event);"
+        <mat-checkbox [ngModel]="event.user_ues === 1"
+                      (change)="markUES(1);"
                       [disabled]="!dataService.loggedIn">
           INTERESTED
         </mat-checkbox>
         &nbsp;&nbsp;&nbsp;
-        <mat-checkbox [ngModel]="dataService.GoingEvent(event.id)"
-                      (change)="markUES(dataService.GoingEvent(event.id), 2, $event);"
+        <mat-checkbox [ngModel]="event.user_ues === 2"
+                      (change)="markUES(2);"
                       [disabled]="!dataService.loggedIn">
           GOING
         </mat-checkbox>

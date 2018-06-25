@@ -302,41 +302,6 @@ export class DataService {
     return true;
   }
 
-  /** Returns true if the current user is interested in eventid */
-  InterestedEvent(eventid: string): boolean {
-    if (!this.loggedIn) { return false; }
-    return this.currentUser.events_interested.map(m => m.id).indexOf(eventid) !== -1;
-  }
-
-  /** Returns true if the current user is going to eventid */
-  GoingEvent(eventid: string): boolean {
-    if (!this.loggedIn) { return false; }
-    return this.currentUser.events_going.map(m => m.id).indexOf(eventid) !== -1;
-  }
-
-  /** Mark a UES for the current user */
-  MarkUES(event: IEvent, status: number) {
-    return Observable.create(observer => {
-      this.FireGET(API.UserMeEventStatus, {event: event.id, status: status}).subscribe(() => {
-        /* Remove from interested and going events */
-        this.spliceEventCurrentUES(this.currentUser.events_interested, event.id);
-        this.spliceEventCurrentUES(this.currentUser.events_going, event.id);
-
-        /* Add to appropriate list */
-        if (status === 1) {
-          this.currentUser.events_interested.push(event);
-        } else if (status === 2) {
-          this.currentUser.events_going.push(event);
-        }
-
-        /* Finished! */
-        observer.complete();
-      }, (error) => {
-        observer.error(error);
-      });
-    });
-  }
-
   /** Mark a UNR for the current user */
   MarkUNR(news: INewsEntry, reaction: number) {
     return this.FireGET(API.NewsFeedReaction, {uuid: news.id, reaction: reaction});

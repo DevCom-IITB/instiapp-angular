@@ -41,6 +41,7 @@ export interface IEvent {
     interested_count: number;
     going_count: number;
     going: IUserProfile[];
+    user_ues: number;
 }
 
 export interface ILocation {

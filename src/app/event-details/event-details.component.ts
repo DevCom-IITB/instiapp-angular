@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { Helpers } from '../helpers';
+import { API } from '../../api';
 
 @Component({
   selector: 'app-event-details',
@@ -51,11 +52,13 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   }
 
   /** Helper for marking UserEventStatus */
-  markUES(already: boolean, status: number, e) {
-    if (already && !e.checked) {
+  markUES(status: number) {
+    if (this.event.user_ues === status) {
       status = 0;
     }
-    this.dataService.MarkUES(this.event, status).subscribe();
+    return this.dataService.FireGET(API.UserMeEventStatus, {event: this.event.id, status: status}).subscribe(() => {
+      this.event.user_ues = status;
+    });
   }
 
   /** Navigate back to feed (should be changed to last page) */
