@@ -1,0 +1,10 @@
+<div class="detail-card form mat-elevation-z2 real-center section"
+    *ngFor="let section of sections">
+  <mat-nav-list>
+    <a *ngFor="let link of section"
+       [href]="link.href"
+       mat-list-item target="_blank" rel="noopener">
+        <mat-icon>{{link.icon}}</mat-icon> &nbsp; {{link.text}}
+    </a>
+  </mat-nav-list>
+</div>

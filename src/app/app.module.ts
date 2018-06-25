@@ -50,6 +50,7 @@ import { LoginActivate } from './loginactivate';
 import { ExploreComponent } from './explore/explore.component';
 import { MessComponent } from './mess/mess.component';
 import { MapComponent } from './map/map.component';
+import { QuickLinksComponent } from './quick-links/quick-links.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { MapComponent } from './map/map.component';
     XunkSpinnerComponent,
     ExploreComponent,
     MessComponent,
-    MapComponent
+    MapComponent,
+    QuickLinksComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +103,7 @@ import { MapComponent } from './map/map.component';
       { path: 'explore', component: ExploreComponent, data: { state: 'base' } },
       { path: 'mess', component: MessComponent, data: { state: 'base' } },
       { path: 'map', component: MapComponent, data: { state: 'base' } },
+      { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
 
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
