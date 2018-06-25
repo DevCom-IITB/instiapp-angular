@@ -314,14 +314,6 @@ export class DataService {
       this.currentUser.events_interested);
   }
 
-  /** Removes an event with id from a list */
-  spliceEventCurrentUES(events: IEvent[], eventid: string): void {
-    const i = events.map(m => m.id).indexOf(eventid);
-    if (i !== -1) {
-      events.splice(i, 1);
-    }
-  }
-
   /** Navigates to the previous page */
   navigateBack() {
     this.location.back();
