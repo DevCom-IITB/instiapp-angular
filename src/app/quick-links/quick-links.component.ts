@@ -28,7 +28,7 @@ export class QuickLinksComponent implements OnInit {
       { href: 'http://www.library.iitb.ac.in/', icon: 'local_library', text: 'Central Library' },
     ],
     [
-      { href: 'http://www.iitb.ac.in/newacadhome/toacadcalender.jsp', icon: 'calendar_today', text: 'Academic Calendar' },
+      { href: 'http://www.iitb.ac.in/newacadhome/toacadcalender.jsp', icon: 'today', text: 'Academic Calendar' },
       { href: 'http://www.iitb.ac.in/newacadhome/timetable.jsp', icon: 'access_alarm', text: 'Academic Timetable' },
       { href: 'http://www.iitb.ac.in/en/about-iit-bombay/iit-bombay-holidays-list', icon: 'whatshot', text: 'Holidays List' },
       { href: 'http://www.iitb.ac.in/newacadhome/circular.jsp', icon: 'info', text: 'Circulars' },
