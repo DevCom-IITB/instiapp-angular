@@ -1,0 +1,24 @@
+
+<div class="detail-card real-center section head">
+  <app-user-card *ngIf="user"
+    [profile]="user"
+    role="You">
+  </app-user-card>
+</div>
+
+<div class="detail-card form mat-elevation-z2 real-center section">
+  <mat-nav-list>
+    <a href="https://gymkhana.iitb.ac.in/sso/user/"
+       mat-list-item target="_blank" rel="noopener">
+        <mat-icon>account_circle</mat-icon> &nbsp; Update Profile
+    </a>
+    <a href="mailto:support@radialapps.com"
+       mat-list-item target="_blank" rel="noopener">
+        <mat-icon>feedback</mat-icon> &nbsp; Feedback
+    </a>
+    <a href="https://github.com/wncc/IITBapp"
+       mat-list-item target="_blank" rel="noopener">
+        <mat-icon>info</mat-icon> &nbsp; About
+    </a>
+  </mat-nav-list>
+</div>
