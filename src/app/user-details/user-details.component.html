@@ -15,16 +15,13 @@
     </div>
   </div>
 
-  <br>
-
-  <mat-divider></mat-divider>
-  <div class="body-cards">
+  <div class="body-cards" *ngIf="profile.roles.length > 0">
     <app-body-card *ngFor="let role of profile.roles"
                   [body]="role.body_detail"
                   [subtitle]="role.name">
     </app-body-card>
+    <mat-divider></mat-divider>
   </div>
-  <mat-divider></mat-divider>
 
   <br>
 
