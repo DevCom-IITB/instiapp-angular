@@ -20,8 +20,9 @@
                   [body]="role.body_detail"
                   [subtitle]="role.name">
     </app-body-card>
-    <mat-divider></mat-divider>
   </div>
+
+  <mat-divider *ngIf="profile.roles.length > 0"></mat-divider>
 
   <br>
 
