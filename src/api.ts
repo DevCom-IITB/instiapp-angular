@@ -12,6 +12,7 @@ export const API = {
 
     Bodies: 'api/bodies',
     Body: 'api/bodies/{uuid}',
+    BodyFollow: 'api/bodies/{uuid}/follow{?action}',
 
     Locations: 'api/locations',
 

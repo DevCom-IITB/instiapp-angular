@@ -72,6 +72,7 @@ export interface IBody {
     followers_count: number;
     roles: IBodyRole[];
     blog_url: string;
+    user_follows: boolean;
 }
 
 export interface IUserEventStatus {
