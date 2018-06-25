@@ -319,6 +319,11 @@ export class DataService {
     this.location.back();
   }
 
+  /** Is this a small width device */
+  isMobile(maxwidth = 767) {
+    return window.matchMedia(`(max-width: ${maxwidth}px)`).matches;
+  }
+
   /* Define any aliases here */
   GetDate = (obj: any) => Helpers.GetDate(obj);
 

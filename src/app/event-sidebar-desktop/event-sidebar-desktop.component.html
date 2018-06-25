@@ -1,9 +1,9 @@
-<div [@enterLeft]="bstr(!mobileQuery.matches)" class="events-list">
+<div [@enterLeft]="true" class="events-list">
     <ng-content></ng-content>
 </div>
 
 <div class="event-details-container mat-elevation-z3"
-     *ngIf="!mobileQuery.matches && showingEventDetails"
+     *ngIf="showingEventDetails"
      [hidden]="hiddenEventDetails"
      [@enterRight]="bstr(animedEventDetails)">
     <app-event-details

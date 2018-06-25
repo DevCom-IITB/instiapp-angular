@@ -13,10 +13,6 @@ import { API } from '../../api';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-
-  mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
-
   public selDate = { date: 1, month: 1, year: 1 };
   public events: IEvent[];
   public selectedEvent: IEvent;
@@ -24,13 +20,7 @@ export class CalendarComponent implements OnInit {
   constructor(
     public router: Router,
     public dataService: DataService,
-    public changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher,
-  ) {
-    this.mobileQuery = media.matchMedia('(max-width: 767px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
+  ) { }
 
   ngOnInit() {
     this.selDate = XunkCalendarModule.getToday();
@@ -52,7 +42,11 @@ export class CalendarComponent implements OnInit {
 
   /** Opens the event-details component */
   OpenEvent(event: IEvent) {
-    this.selectedEvent = event;
+    if (this.dataService.isMobile()) {
+      this.router.navigate(['event', event.str_id]);
+    } else {
+      this.selectedEvent = event;
+    }
   }
 
   /** Get events for the date */
@@ -75,7 +69,7 @@ export class CalendarComponent implements OnInit {
 
   /** Open the first event on date change */
   dateChanged(date: any) {
-    if (this.mobileQuery.matches) { return; }
+    if (this.dataService.isMobile()) { return; }
     const selEvents = this.GetDateEvents(date);
     if (selEvents.length > 0) {
       this.selectedEvent = selEvents[0];

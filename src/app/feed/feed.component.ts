@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { IEvent } from '../interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -13,6 +14,7 @@ export class FeedComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
+    public router: Router,
   ) { }
 
   /** Initialize initial list wiht API call */
@@ -25,6 +27,10 @@ export class FeedComponent implements OnInit {
 
   /** Opens the event-details component */
   OpenEvent(event: IEvent) {
-    this.selectedEvent = event;
+    if (this.dataService.isMobile()) {
+      this.router.navigate(['event', event.str_id]);
+    } else {
+      this.selectedEvent = event;
+    }
   }
 }

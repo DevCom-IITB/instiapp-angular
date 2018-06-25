@@ -86,7 +86,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     public dataService: DataService,
     public snackBar: MatSnackBar,
   ) {
-    if (!window.matchMedia('(max-width: 560px)').matches) {
+    if (!this.dataService.isMobile(560)) {
       this.showSearch = true;
     }
   }
@@ -398,7 +398,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   /** Top of location box for mobile */
   locBoxTop() {
-    if (!window.matchMedia('(max-width: 560px)').matches) {
+    if (!this.dataService.isMobile(560)) {
       return '180px';
     }
     return this.mobShowLocBox ? '80px' : '78vh';
