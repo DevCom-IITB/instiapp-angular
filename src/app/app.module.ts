@@ -52,6 +52,7 @@ import { MessComponent } from './mess/mess.component';
 import { MapComponent } from './map/map.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { SettingsComponent } from './settings/settings.component';
     MessComponent,
     MapComponent,
     QuickLinksComponent,
-    SettingsComponent
+    SettingsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +109,7 @@ import { SettingsComponent } from './settings/settings.component';
       { path: 'map', component: MapComponent, data: { state: 'base' } },
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
+      { path: 'about', component: AboutComponent, data: { state: 'overlay' } },
 
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
