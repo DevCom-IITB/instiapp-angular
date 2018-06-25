@@ -1,6 +1,7 @@
 
-<div class="detail-card real-center section head">
-  <app-user-card *ngIf="user"
+<div *ngIf="user"
+      class="detail-card real-center section head mat-elevation-z2">
+  <app-user-card
     [profile]="user"
     role="You">
   </app-user-card>

@@ -1,7 +1,5 @@
 .head-card {
-    max-width: 428px;
-    margin: 0 auto;
-    cursor: pointer;
+    height: auto;
 }
 
 .header {

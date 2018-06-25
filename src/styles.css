@@ -64,8 +64,13 @@ mat-form-field, mat-form-field * {
 .sub-card {
     max-width: 500px;
     height:40px;
-    margin: 5px auto;
     cursor: pointer;
+    box-shadow: none !important;
+    margin: 0;
+}
+
+.sub-card:hover {
+    background-color: #fafafa;
 }
 
 .multi-line-text {

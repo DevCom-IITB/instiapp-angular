@@ -19,11 +19,14 @@
 
         <br>
 
-        <app-event-card *ngFor="let event of GetDateEvents(selDate)"
-                        [event]="event"
-                        (click)=OpenEvent(event)
-                        overrideClick=true>
-        </app-event-card>
+        <ng-container *ngFor="let event of GetDateEvents(selDate)">
+            <mat-divider></mat-divider>
+            <app-event-card
+                [event]="event"
+                (click)=OpenEvent(event)
+                overrideClick=true>
+            </app-event-card>
+        </ng-container>
     </div>
 
 </app-event-sidebar-desktop>

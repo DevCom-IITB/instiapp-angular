@@ -17,12 +17,14 @@
 
   <br>
 
+  <mat-divider></mat-divider>
   <div class="body-cards">
     <app-body-card *ngFor="let role of profile.roles"
                   [body]="role.body_detail"
                   [subtitle]="role.name">
     </app-body-card>
   </div>
+  <mat-divider></mat-divider>
 
   <br>
 

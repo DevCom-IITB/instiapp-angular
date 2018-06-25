@@ -46,30 +46,34 @@
       <markdown [data]="body.description"></markdown>
     </div>
 
-    <div class="subsection">
-      <div class="subtitle"
-          *ngIf="body.events.length > 0">
+    <mat-divider></mat-divider>
+
+    <div class="subsection" *ngIf="body.events.length > 0">
+      <div class="subtitle">
         Upcoming Events
       </div>
-      <app-event-card *ngFor="let event of body.events"
-                    [routerLink]="['/event', event.id]"
-                    [event]="event">
-      </app-event-card>
+      <ng-container *ngFor="let event of body.events">
+        <app-event-card [routerLink]="['/event', event.id]"
+                        [event]="event">
+        </app-event-card>
+      </ng-container>
+      <mat-divider></mat-divider>
     </div>
 
-    <div class="subsection">
-      <div class="subtitle"
-          *ngIf="body.children.length > 0">
+    <div class="subsection" *ngIf="body.children.length > 0">
+      <div class="subtitle">
         Organizations
       </div>
-      <app-body-card *ngFor="let childbody of body.children"
+      <ng-container *ngFor="let childbody of body.children">
+        <app-body-card
                     [body]="childbody">
-      </app-body-card>
+        </app-body-card>
+        <mat-divider></mat-divider>
+      </ng-container>
     </div>
 
-    <div class="subsection">
-        <div class="subtitle"
-            *ngIf="body.roles.length > 0">
+    <div class="subsection" *ngIf="body.roles.length > 0">
+        <div class="subtitle">
           People
         </div>
         <ng-container *ngFor="let role of body.roles">
@@ -77,17 +81,18 @@
                         [profile]="user"
                         [role]="role.name">
           </app-user-card>
+          <mat-divider></mat-divider>
         </ng-container>
     </div>
 
-    <div class="subsection">
-      <div class="subtitle"
-          *ngIf="body.parents.length > 0">
+    <div class="subsection" *ngIf="body.parents.length > 0">
+      <div class="subtitle">
         Part of
       </div>
-      <app-body-card *ngFor="let parentbody of body.parents"
-                    [body]="parentbody">
-      </app-body-card>
+      <ng-container *ngFor="let parentbody of body.parents">
+        <app-body-card [body]="parentbody">
+        </app-body-card>
+      </ng-container>
     </div>
 
   </div>

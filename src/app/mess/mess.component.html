@@ -8,18 +8,21 @@
 </button>
 
 <ng-container *ngIf="hostels">
-  <div class="real-center" *ngIf="!menu">
-    <mat-card *ngFor="let hostel of hostels"
-               mat-ripple
-               class="sub-card"
-              (click)="selectHostel(hostel)">
+  <ng-container *ngIf="!menu">
+    <div class="real-center detail-card-elem mat-elevation-z1 margin-card"
+        *ngFor="let hostel of hostels">
+      <mat-card mat-ripple
+                class="sub-card"
+               (click)="selectHostel(hostel)">
 
-        <mat-card-header>
-          <mat-card-title> {{ hostel.name }} </mat-card-title>
-          <mat-card-subtitle> {{ hostel.long_name }} </mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
+          <mat-card-header>
+            <mat-card-title> {{ hostel.name }} </mat-card-title>
+            <mat-card-subtitle> {{ hostel.long_name }} </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      <mat-divider></mat-divider>
+    </div>
+  </ng-container>
 
   <div class="real-center" *ngIf="menu">
     <div class="super-head mat-elevation-z1">{{ currHostel.name }}</div>
