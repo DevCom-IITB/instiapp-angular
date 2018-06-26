@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBodyRole, IBody } from '../interfaces';
+import { IBodyRole, IBody, IEvent } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
 
@@ -11,6 +11,7 @@ import { API } from '../../api';
 export class MyEventsComponent implements OnInit {
 
   public roles: IBodyRole[];
+  public followedEvents: IEvent[];
   public selIndex = 0;
 
   constructor(
@@ -18,6 +19,7 @@ export class MyEventsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.followedEvents = this.dataService.getFollowedEvents();
     this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
       this.roles = result as IBodyRole[];
     });

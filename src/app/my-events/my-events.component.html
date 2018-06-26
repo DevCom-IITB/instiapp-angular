@@ -4,14 +4,25 @@
   <mat-tab-group class="tab-group" mat-stretch-tabs [(selectedIndex)]="selIndex">
       <mat-tab label="Following">
         <div class="tab-content">
+          <div *ngIf="followedEvents.length === 0" class="nothing-tab">
+            <img src="/assets/noevent.svg"><br><br>
+            You aren't following any events<br>
+            Let's change that!
+          </div>
           <app-event-card
-            *ngFor="let event of dataService.getFollowedEvents()"
+            *ngFor="let event of followedEvents"
             [event]="event">
           </app-event-card>
         </div>
       </mat-tab>
       <mat-tab *ngFor="let role of roles" [label]="role.body_detail.name" >
         <div class="tab-content">
+          <div *ngIf="role.events.length === 0" class="nothing-tab">
+            <img src="/assets/noevent.svg"><br><br>
+            No upcoming events here<br>
+            Why not add one!
+          </div>
+
           <app-event-card
             *ngFor="let event of role.events"
             [event]="event">

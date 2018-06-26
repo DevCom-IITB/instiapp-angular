@@ -29,16 +29,34 @@
   <!-- Tabbed information -->
   <mat-tab-group class="tab-group" mat-stretch-tabs>
       <mat-tab label="Following">
+        <div class="tab-content">
+
+          <div *ngIf="profile.followed_bodies.length === 0" class="nothing-tab">
+            <img src="/assets/suncloud.svg"><br>
+            Still looking around ...
+          </div>
+
           <app-body-card
             *ngFor="let body of profile.followed_bodies"
             [body]="body">
           </app-body-card>
+
+        </div>
       </mat-tab>
       <mat-tab label="Events">
-        <app-event-card
-            *ngFor="let event of profile.events_going.concat(profile.events_interested)"
-             [event]="event">
-        </app-event-card>
+        <div class="tab-content">
+
+          <div *ngIf="events.length === 0" class="nothing-tab">
+            <img src="/assets/suncloud.svg"><br>
+            No events followed (yet)
+          </div>
+
+          <app-event-card
+              *ngFor="let event of events"
+              [event]="event">
+          </app-event-card>
+
+        </div>
       </mat-tab>
   </mat-tab-group>
 

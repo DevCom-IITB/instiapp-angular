@@ -142,3 +142,16 @@ mat-form-field, mat-form-field * {
 .mat-tab-body-content {
     overflow: hidden !important;
 }
+
+.nothing-tab {
+    padding: 30px 0;
+    width: 100%;
+    font-size: 1.1em;
+    text-align: center;
+    color: #b3b3b3;
+}
+
+.nothing-tab img {
+    width: 40%;
+    display: inline-block;
+}

@@ -22,3 +22,12 @@
 .tab-group {
     width: 100%;
 }
+
+.tab-content {
+    min-height: 30vh;
+    width: 100%;
+}
+
+.nothing-tab img {
+    padding-bottom: 7px;
+}
