@@ -13,6 +13,7 @@ export class MessComponent implements OnInit {
   public hostels: IHostel[];
   public menu: IMenuEntry[];
   public currHostel: IHostel;
+  public error: number;
 
   public daysOfWeek = {
     1: 'Monday', 2: 'Tuesday', 3: 'Wednesday',
@@ -31,6 +32,8 @@ export class MessComponent implements OnInit {
           h => h.short_name === this.dataService.getCurrentUser().hostel);
         if (hostel) { this.constructMenu(hostel); }
       }
+    }, (e) => {
+      this.error = e.status;
     });
   }
 

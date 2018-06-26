@@ -16,6 +16,7 @@ export class CalendarComponent implements OnInit {
   public selDate = { date: 1, month: 1, year: 1 };
   public events: IEvent[];
   public selectedEvent: IEvent;
+  public error: number;
 
   constructor(
     public router: Router,
@@ -37,6 +38,8 @@ export class CalendarComponent implements OnInit {
     this.dataService.FireGET<IEnumContainer>(API.EventsFiltered, {start: istr, end: fstr}).subscribe(result => {
       this.events = result.data;
       this.dateChanged(this.selDate);
+    }, (e) => {
+      this.error = e.status;
     });
   }
 

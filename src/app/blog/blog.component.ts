@@ -14,6 +14,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   loading = false;
   allLoaded = false;
   blog_url: string;
+  error: number;
 
   constructor(
     public dataService: DataService,
@@ -26,6 +27,8 @@ export class BlogComponent implements OnInit, OnDestroy {
         this.blog_url = this.dataService.DecodeObject(params['blog']);
         this.dataService.FireGET<any[]>(this.blog_url).subscribe(result => {
           this.feed = result;
+        }, (e) => {
+          this.error = e.status;
         });
       }
     });

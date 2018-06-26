@@ -14,6 +14,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   public feed: INewsEntry[];
   loading = false;
   allLoaded = false;
+  public error;
 
   constructor(
     public dataService: DataService,
@@ -31,6 +32,8 @@ export class NewsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.dataService.FireGET<INewsEntry[]>(API.NewsFeed, { from: 0, num: 10}).subscribe(result => {
       this.feed = result;
+    }, (e) => {
+      this.error = e.status;
     });
 
     /** Lazy load on scroll to bottom */

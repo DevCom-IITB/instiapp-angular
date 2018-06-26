@@ -15,6 +15,7 @@ export class ExploreComponent implements OnInit {
   public events: IEvent[];
   public users: IUserProfile[];
   public searchQ: string;
+  public error: number;
 
   constructor(
     public dataService: DataService,
@@ -24,6 +25,8 @@ export class ExploreComponent implements OnInit {
   ngOnInit() {
     this.dataService.FireGET<IBody[]>(API.Bodies).subscribe(result => {
       this.bodies = result;
+    }, (e) => {
+      this.error = e.status;
     });
   }
 

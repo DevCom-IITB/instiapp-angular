@@ -13,6 +13,7 @@ export class MyEventsComponent implements OnInit {
   public roles: IBodyRole[];
   public followedEvents: IEvent[];
   public selIndex = 0;
+  public error: number;
 
   constructor(
     public dataService: DataService,
@@ -22,6 +23,8 @@ export class MyEventsComponent implements OnInit {
     this.followedEvents = this.dataService.getFollowedEvents();
     this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
       this.roles = result as IBodyRole[];
+    }, (e) => {
+      this.error = e.status;
     });
   }
 
