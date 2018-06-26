@@ -78,11 +78,6 @@ export class AppComponent implements OnDestroy, OnInit {
     });
   }
 
-  /** For use after router navigation */
-  scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
   /** Unsubscribe from listeners */
   ngOnDestroy(): void {
       this.mobileQuery.removeListener(this._mobileQueryListener);
