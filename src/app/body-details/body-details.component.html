@@ -50,7 +50,7 @@
 
     <div class="subsection" *ngIf="body.events.length > 0">
       <div class="subtitle">
-        Upcoming Events
+        Upcoming and Past Events
       </div>
       <ng-container *ngFor="let event of body.events">
         <app-event-card [routerLink]="['/event', event.id]"
