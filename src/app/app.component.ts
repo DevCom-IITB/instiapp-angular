@@ -4,7 +4,6 @@ import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Helpers } from './helpers';
-import { API } from '../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -103,16 +102,6 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Redirects to login */
   login() {
     window.location.href = this.dataService.GetLoginURL();
-  }
-
-  /** Logout and show a snackbar */
-  logout() {
-    return this.dataService.FireGET(API.Logout).subscribe(() => {
-      this.dataService.PostLogout();
-      this.snackBar.open('Logged Out successfully', 'Dismiss', {
-        duration: 2000,
-      });
-    });
   }
 
   /** Handle reaching end of page and sidenav on android chrome */

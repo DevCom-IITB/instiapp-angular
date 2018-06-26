@@ -21,5 +21,10 @@
         mat-list-item>
         <mat-icon>info</mat-icon> &nbsp; About
     </a>
+    <a (click)="logout()"
+        mat-list-item
+       *ngIf="this.dataService.loggedIn">
+        <mat-icon>exit_to_app</mat-icon> &nbsp; Logout
+    </a>
   </mat-nav-list>
 </div>

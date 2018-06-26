@@ -26,12 +26,6 @@
             *ngIf="!this.dataService.loggedIn">
         Log In
     </button>
-
-    <button mat-button
-            (click)="logout()"
-            *ngIf="this.dataService.loggedIn">
-        Log Out
-    </button>
 </mat-toolbar>
 
 <ngx-flyout [(open)]="openFlyout"
