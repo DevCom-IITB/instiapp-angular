@@ -70,6 +70,14 @@ export class AppComponent implements OnDestroy, OnInit {
     if (!this.mobileQuery.matches) {
       this.openFlyout = true;
     }
+
+    /* Scroll to top on route change */
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 
   /** For use after router navigation */
