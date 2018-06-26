@@ -1,7 +1,7 @@
-<app-xunk-spinner *ngIf="!events"></app-xunk-spinner>
+<app-xunk-spinner *ngIf="!events || error" [error]="error"></app-xunk-spinner>
 
 <app-event-sidebar-desktop
-    *ngIf="events && events.length > 0"
+    *ngIf="events && !error"
     [event]="selectedEvent">
 
     <div class="events-list mat-elevation-z2">
@@ -19,8 +19,3 @@
     </div>
 
 </app-event-sidebar-desktop>
-
-<div class="nothing-at-all" *ngIf="events && events.length === 0">
-    <img src="/assets/sadcloud.svg"><br>
-    Sorry, couldn't get any events!
-</div>

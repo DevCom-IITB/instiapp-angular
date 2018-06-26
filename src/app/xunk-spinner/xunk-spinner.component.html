@@ -1,4 +1,4 @@
-<div class="loading-spinner">
+<div class="loading-spinner" *ngIf="!error">
   <div class="spinner mat-elevation-z2">
     <div class="rect1"></div>
     <div class="rect2"></div>
@@ -6,4 +6,9 @@
     <div class="rect4"></div>
     <div class="rect5"></div>
   </div>
+</div>
+
+<div class="nothing-at-all" *ngIf="error">
+  <img [src]="getError().img"><br>
+  <span style="white-space: pre"> {{ getError().m }} </span>
 </div>
