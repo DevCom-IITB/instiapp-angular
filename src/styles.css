@@ -138,3 +138,7 @@ mat-form-field, mat-form-field * {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.mat-tab-body-content {
+    overflow: hidden !important;
+}
