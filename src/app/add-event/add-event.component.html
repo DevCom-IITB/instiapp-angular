@@ -6,7 +6,7 @@
   <input style="display:none;" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
   <img class="header-image"
        [src]="event.image_url"
-       src-fallback="assets/add_image_placeholder.png"
+       src-fallback="assets/add_image_placeholder.svg"
        (click)="file.click()">
 
   <div class="card-header primary-background-color">
