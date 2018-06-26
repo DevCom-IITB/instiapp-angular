@@ -15,7 +15,6 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
-  public initialized = false;
   public openFlyout = false;
 
   private _mobileQueryListener: () => void;
@@ -60,9 +59,9 @@ export class AppComponent implements OnDestroy, OnInit {
 
     /** Get user (try) */
     this.dataService.GetFillCurrentUser().subscribe(user => {
-      this.initialized = true;
+      this.dataService.setInitialized();
     }, (error) => {
-      this.initialized = true;
+      this.dataService.setInitialized();
     });
 
     /* Initialize flyout to open on deskop */

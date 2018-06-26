@@ -25,6 +25,7 @@ export class DataService {
   public eventsDetailed: IEvent[] = [] as IEvent[];
 
   /** If user is logged in */
+  private _initialized = false;
   public loggedIn = false;
   public loggedInObservable: Observable<boolean>;
   private loggedInSubject: Subject<boolean>;
@@ -322,6 +323,16 @@ export class DataService {
   /** Is this a small width device */
   isMobile(maxwidth = 767) {
     return window.matchMedia(`(max-width: ${maxwidth}px)`).matches;
+  }
+
+  /** If login is initialized */
+  isInitialized(): boolean {
+    return this._initialized;
+  }
+
+  /** If login is initialized */
+  setInitialized() {
+    this._initialized = true;
   }
 
   /* Define any aliases here */

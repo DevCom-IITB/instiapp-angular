@@ -1,6 +1,6 @@
-<app-xunk-spinner *ngIf="!initialized"></app-xunk-spinner>
+<app-xunk-spinner *ngIf="!dataService.isInitialized()"></app-xunk-spinner>
 
-<ng-container *ngIf="initialized">
+<ng-container *ngIf="dataService.isInitialized()">
 
 <mat-toolbar class="example-toolbar" color="primary">
     <button mat-icon-button
