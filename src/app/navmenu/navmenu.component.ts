@@ -6,7 +6,7 @@ import { API } from '../../api';
 
 const DEFAULT_USERNAME = 'Guest';
 const DEFAULT_LDAP = 'IITB User';
-const DEFAULT_PROFILE_PIC = 'assets/useravatar.jpg';
+const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
 
 @Component({
   selector: 'app-navmenu',
