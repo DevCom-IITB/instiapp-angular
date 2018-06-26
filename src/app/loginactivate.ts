@@ -10,7 +10,7 @@ export class LoginActivate implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean>|Promise<boolean>|boolean {
-    if (!this.dataService.loggedIn && this.dataService.isInitialized()) {
+    if (!this.dataService.isLoggedIn() && this.dataService.isInitialized()) {
         this.router.navigate(['login']);
     }
     return true;

@@ -65,7 +65,7 @@ export class AddEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.dataService.loggedIn) {
+    if (!this.dataService.isLoggedIn()) {
       alert('Please login to continue!');
       this.close();
       return;

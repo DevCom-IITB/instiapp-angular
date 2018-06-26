@@ -73,7 +73,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   /** Fire a reaction */
   do_reaction(news: INewsEntry, react: number) {
-    if (!this.dataService.loggedIn) {
+    if (!this.dataService.isLoggedIn()) {
       alert('Please log in to continue!');
       return;
     }

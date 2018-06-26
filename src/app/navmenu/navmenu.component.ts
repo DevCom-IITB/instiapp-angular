@@ -27,7 +27,7 @@ export class NavmenuComponent implements OnInit {
 
   ngOnInit() {
     /* Get profile if the user is logged in */
-    if (this.dataService.loggedIn) {
+    if (this.dataService.isLoggedIn()) {
       this.getUser();
     }
 
@@ -58,7 +58,7 @@ export class NavmenuComponent implements OnInit {
 
   /** Open own profile or go to login screen if not logged in */
   OpenMyProfile() {
-    if (this.dataService.loggedIn) {
+    if (this.dataService.isLoggedIn()) {
       const id = this.dataService.currentUser.ldap_id || this.dataService.currentUser.id;
       this.router.navigate(['user', id]);
     } else {

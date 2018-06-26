@@ -23,7 +23,7 @@
     </a>
     <a (click)="logout()"
         mat-list-item
-       *ngIf="this.dataService.loggedIn">
+       *ngIf="this.dataService.isLoggedIn()">
         <mat-icon>exit_to_app</mat-icon> &nbsp; Logout
     </a>
   </mat-nav-list>

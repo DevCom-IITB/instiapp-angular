@@ -26,9 +26,9 @@ export class DataService {
 
   /** If user is logged in */
   private _initialized = false;
-  public loggedIn = false;
+  private _loggedIn = false;
+  private _loggedInSubject: Subject<boolean>;
   public loggedInObservable: Observable<boolean>;
-  private loggedInSubject: Subject<boolean>;
 
   /** User Profile of the logged in user */
   public currentUser: IUserProfile;
@@ -42,8 +42,8 @@ export class DataService {
     public location: Location,
   ) {
     /* Initialize */
-    this.loggedInSubject = new Subject<boolean>();
-    this.loggedInObservable = this.loggedInSubject.asObservable();
+    this._loggedInSubject = new Subject<boolean>();
+    this.loggedInObservable = this._loggedInSubject.asObservable();
   }
 
   /**
@@ -210,11 +210,11 @@ export class DataService {
     return Observable.create(observer => {
       if (!this.currentUser) {
         this.FireGET<any>(API.LoggedInUser).subscribe(result => {
-          this.loggedIn = true;
+          this._loggedIn = true;
           this.currentUser = result.profile;
           console.log(this.currentUser.name + ' is logged in');
           observer.next(this.currentUser);
-          this.loggedInSubject.next(true);
+          this._loggedInSubject.next(true);
           observer.complete();
         }, (error) => {
           console.log(error.error);
@@ -253,8 +253,8 @@ export class DataService {
 
   /** Chores to carry out after logout */
   PostLogout() {
-    this.loggedIn = false;
-    this.loggedInSubject.next(false);
+    this._loggedIn = false;
+    this._loggedInSubject.next(false);
     this.currentUser = null;
   }
 
@@ -263,7 +263,7 @@ export class DataService {
    * @param permission Any of `AddE`, `UpdE`, `DelE`, `Role`
    */
   GetBodiesWithPermission(permission: string): IBody[] {
-    if (!this.loggedIn) { return []; }
+    if (!this._loggedIn) { return []; }
 
     const bodies: IBody[] = [] as IBody[];
     for (const role of this.currentUser.roles) {
@@ -310,7 +310,7 @@ export class DataService {
 
   /** Gets concatenated going and interested events for current User */
   getFollowedEvents(): IEvent[] {
-    if (!this.loggedIn) { return []  as IEvent[]; }
+    if (!this._loggedIn) { return []  as IEvent[]; }
     return this.currentUser.events_going.concat(
       this.currentUser.events_interested);
   }
@@ -325,6 +325,11 @@ export class DataService {
     return window.matchMedia(`(max-width: ${maxwidth}px)`).matches;
   }
 
+  /* Define any aliases here */
+  GetDate = (obj: any) => Helpers.GetDate(obj);
+
+  /* Getters and setters */
+
   /** If login is initialized */
   isInitialized(): boolean {
     return this._initialized;
@@ -335,7 +340,8 @@ export class DataService {
     this._initialized = true;
   }
 
-  /* Define any aliases here */
-  GetDate = (obj: any) => Helpers.GetDate(obj);
+  isLoggedIn() {
+    return this._loggedIn;
+  }
 
 }

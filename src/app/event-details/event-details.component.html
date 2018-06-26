@@ -42,13 +42,13 @@
     <div style="text-align:center">
         <mat-checkbox [ngModel]="event.user_ues === 1"
                       (change)="markUES(1);"
-                      [disabled]="!dataService.loggedIn">
+                      [disabled]="!dataService.isLoggedIn()">
           INTERESTED
         </mat-checkbox>
         &nbsp;&nbsp;&nbsp;
         <mat-checkbox [ngModel]="event.user_ues === 2"
                       (change)="markUES(2);"
-                      [disabled]="!dataService.loggedIn">
+                      [disabled]="!dataService.isLoggedIn()">
           GOING
         </mat-checkbox>
     </div>

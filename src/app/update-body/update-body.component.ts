@@ -22,7 +22,7 @@ export class UpdateBodyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (!this.dataService.loggedIn) {
+    if (!this.dataService.isLoggedIn()) {
       alert('Please login to continue!');
       this.dataService.navigateBack();
       return;

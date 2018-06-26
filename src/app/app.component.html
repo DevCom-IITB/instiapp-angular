@@ -23,7 +23,7 @@
     <div class="fill-space"></div>
     <button mat-button
             (click)="login()"
-            *ngIf="!this.dataService.loggedIn">
+            *ngIf="!this.dataService.isLoggedIn()">
         Log In
     </button>
 </mat-toolbar>
