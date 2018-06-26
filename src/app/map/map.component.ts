@@ -242,7 +242,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       projection: this.imProjection,
       center: OlExtent.getCenter(this.imExtent),
       zoom: 3.4,
-      minZoom: 2.8,
+      minZoom: 2,
       maxZoom: 5.5,
       extent: [300, 300, 5000, 3000]
     });
