@@ -28,7 +28,7 @@ export class MessComponent implements OnInit {
       this.hostels = result.sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true}));
       if (this.dataService.isLoggedIn()) {
         const hostel = this.hostels.find(
-          h => h.short_name === this.dataService.currentUser.hostel);
+          h => h.short_name === this.dataService.getCurrentUser().hostel);
         if (hostel) { this.constructMenu(hostel); }
       }
     });

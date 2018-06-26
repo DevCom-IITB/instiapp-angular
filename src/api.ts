@@ -1,7 +1,6 @@
 export const API = {
-    UserList: 'api/users',
     User: 'api/users/{uuid}',
-    UserFollowedEvents: 'api/users/{uuid}/followed_bodies_events',
+
     UserMe: 'api/user-me',
     UserMeRoles: 'api/user-me/roles',
     UserMeEventStatus: 'api/user-me/ues/{event}{?status}',

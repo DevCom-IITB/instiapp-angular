@@ -31,7 +31,7 @@ export class DataService {
   public loggedInObservable: Observable<boolean>;
 
   /** User Profile of the logged in user */
-  public currentUser: IUserProfile;
+  private _currentUser: IUserProfile;
 
   /** Function called when user reaches bottom of content */
   public scrollBottomFunction = noop;
@@ -143,22 +143,6 @@ export class DataService {
   }
 
   /**
-   * Gets a list of all users
-   */
-  GetUsersList(): Observable<IUserProfile[]> {
-    return this.FireGET<IUserProfile[]>(API.UserList);
-  }
-
-  /**
-   * Gets an EnumContainer with all events
-   * related to bodies the user follows
-   * @param uuid UUID of user
-   */
-  GetUserFollowedBodiesEvents(uuid: string): Observable<IEnumContainer> {
-    return this.FireGET<IEnumContainer>(API.UserFollowedEvents, {uuid: uuid});
-  }
-
-  /**
    * Get all events currently stored
    */
   GetAllEvents(): Observable<IEnumContainer> {
@@ -208,12 +192,12 @@ export class DataService {
    */
   GetFillCurrentUser(): Observable<IUserProfile> {
     return Observable.create(observer => {
-      if (!this.currentUser) {
+      if (!this._currentUser) {
         this.FireGET<any>(API.LoggedInUser).subscribe(result => {
           this._loggedIn = true;
-          this.currentUser = result.profile;
-          console.log(this.currentUser.name + ' is logged in');
-          observer.next(this.currentUser);
+          this._currentUser = result.profile;
+          console.log(this._currentUser.name + ' is logged in');
+          observer.next(this._currentUser);
           this._loggedInSubject.next(true);
           observer.complete();
         }, (error) => {
@@ -221,7 +205,7 @@ export class DataService {
           observer.error(error);
         });
       } else {
-        observer.next(this.currentUser);
+        observer.next(this._currentUser);
         observer.complete();
       }
     });
@@ -255,7 +239,7 @@ export class DataService {
   PostLogout() {
     this._loggedIn = false;
     this._loggedInSubject.next(false);
-    this.currentUser = null;
+    this._currentUser = null;
   }
 
   /**
@@ -266,7 +250,7 @@ export class DataService {
     if (!this._loggedIn) { return []; }
 
     const bodies: IBody[] = [] as IBody[];
-    for (const role of this.currentUser.roles) {
+    for (const role of this._currentUser.roles) {
       if ((role.permissions.includes(permission))) {
         for (const body of role.bodies) {
           if (!bodies.map(m => m.id).includes(role.body)) {
@@ -311,8 +295,8 @@ export class DataService {
   /** Gets concatenated going and interested events for current User */
   getFollowedEvents(): IEvent[] {
     if (!this._loggedIn) { return []  as IEvent[]; }
-    return this.currentUser.events_going.concat(
-      this.currentUser.events_interested);
+    return this._currentUser.events_going.concat(
+      this._currentUser.events_interested);
   }
 
   /** Navigates to the previous page */
@@ -340,8 +324,14 @@ export class DataService {
     this._initialized = true;
   }
 
+  /** Return true if someone is logged in */
   isLoggedIn() {
     return this._loggedIn;
+  }
+
+  /** Current user profile: Check if logged in first */
+  getCurrentUser() {
+    return this._currentUser;
   }
 
 }

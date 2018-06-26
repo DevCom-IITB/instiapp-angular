@@ -19,9 +19,9 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataService.GetFillCurrentUser().subscribe(user => {
-      this.user = user;
-    });
+    if (this.dataService.isLoggedIn()) {
+      this.user = this.dataService.getCurrentUser();
+    }
   }
 
   /** Logout and show a snackbar */
