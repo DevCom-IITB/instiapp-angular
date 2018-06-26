@@ -19,6 +19,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
 
   public event: IEvent;
   public shareShowing = false;
+  public error: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -46,8 +47,9 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.FillGetEvent(this.eventId).subscribe(result => {
       this.event = result;
       this.load.emit(true);
-    }, () => {
+    }, (e) => {
       this.load.emit(false);
+      this.error = e.status;
     });
   }
 

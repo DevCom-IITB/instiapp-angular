@@ -1,4 +1,4 @@
-<app-xunk-spinner *ngIf="!event"></app-xunk-spinner>
+<app-xunk-spinner *ngIf="!event" [error]="error"></app-xunk-spinner>
 
 <div>
   <div *ngIf="event" class="detail-card mat-elevation-z3" [class.real-center]="!noCenter">

@@ -13,9 +13,10 @@ import { environment } from '../../environments/environment';
 })
 export class BodyDetailsComponent implements OnInit {
 
-  body: IBody;
-  bodyId: string;
-  shareShowing = false;
+  public body: IBody;
+  public bodyId: string;
+  public shareShowing = false;
+  public error: number;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -44,6 +45,8 @@ export class BodyDetailsComponent implements OnInit {
   refresh() {
     this.dataService.FireGET(API.Body, {uuid: this.bodyId}).subscribe(result => {
       this.body = result as IBody;
+    }, (e) => {
+      this.error = e.status;
     });
   }
 

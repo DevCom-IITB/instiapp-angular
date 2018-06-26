@@ -13,6 +13,7 @@ export class UserDetailsComponent implements OnInit {
 
   public profile: IUserProfile;
   public events: IEvent[];
+  public error: number;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -25,6 +26,8 @@ export class UserDetailsComponent implements OnInit {
       this.dataService.FireGET(API.User, {uuid: userId}).subscribe(result => {
         this.profile = result as IUserProfile;
         this.events = this.profile.events_going.concat(this.profile.events_interested);
+      }, (e) => {
+        this.error = e.status;
       });
     });
   }
