@@ -26,9 +26,11 @@ export module Helpers {
             'July', 'August', 'September', 'October', 'November', 'December' ];
         let daySuffix = 'th';
         if (day % 10 === 1) {
-        daySuffix = 'st';
+            daySuffix = 'st';
         } else if (day % 10 === 2) {
-        daySuffix = 'nd';
+            daySuffix = 'nd';
+        } else if (day % 10 === 3) {
+            daySuffix = 'rd';
         }
         return Helpers.zeroPad(hours, 2) + ':' + Helpers.zeroPad(minutes, 2) + ' | ' +
             day + daySuffix + ' ' + monthNames[monthIndex];
