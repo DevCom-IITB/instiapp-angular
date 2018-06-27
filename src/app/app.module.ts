@@ -54,7 +54,6 @@ import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
 import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
-import { ScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -100,7 +99,6 @@ import { ScrollbarModule } from 'ngx-scrollbar';
 
     XunkCalendarModule,
     ShareButtonModule.forRoot(),
-    ScrollbarModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },

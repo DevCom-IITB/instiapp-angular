@@ -19,9 +19,6 @@
 }
 
 @media (max-width: 1200px) {
-    .example-toolbar {
-        position: absolute;
-    }
     #router-out, .example-toolbar {
         width: calc(100% - 240px);
         margin-left: 240px;
@@ -37,6 +34,9 @@
 }
 
 @media (max-width: 600px) {
+    .example-toolbar {
+        position: absolute;
+    }
     #top-gap {
         height: 56px;
     }

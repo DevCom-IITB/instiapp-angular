@@ -6,7 +6,7 @@
     }
 }
 
-ng-scrollbar {
+.event-details-container, .events-list {
     background-color: white;
 }
 
@@ -19,9 +19,19 @@ ng-scrollbar {
     }
 
     .event-details-container {
-        position: relative;
+        left: calc(((100vw - 240px) / 2) + 240px);
+        top: 64px;
         height: calc(100vh - 64px);
-        width: calc(50% - 2px);
-        border-left: 2px silver solid;
+        width: calc(100vw - 240px - (100vw - 240px) / 2);
+        overflow-y: auto;
+        position: fixed;
+        border-left: 2px solid lightgray;
+    }
+}
+
+@media (min-width: 1200px) {
+    .event-details-container {
+        left: calc(60vw);
+        width: calc(40vw);
     }
 }

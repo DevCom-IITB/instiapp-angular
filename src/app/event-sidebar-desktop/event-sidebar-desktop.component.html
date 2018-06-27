@@ -1,15 +1,11 @@
-
-<ng-scrollbar
-        [autoHide]="true"
-        class="events-list">
+<div class="events-list">
     <ng-content></ng-content>
-</ng-scrollbar>
+</div>
 
-<ng-scrollbar class="event-details-container"
-     *ngIf="showingEventDetails"
-     [autoHide]="true">
+<div class="event-details-container"
+     *ngIf="showingEventDetails">
     <app-event-details
       [eventId]="eventDetailsId"
       noCenter="true">
     </app-event-details>
-</ng-scrollbar>
+</div>
