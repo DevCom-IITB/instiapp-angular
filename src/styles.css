@@ -171,3 +171,10 @@ mat-form-field, mat-form-field * {
 .nothing-at-all img {
     width: 70%;
 }
+
+@media (min-width: 768px){
+    .desktop-10px {
+        height: 10px;
+        width: 100%;
+    }
+}
