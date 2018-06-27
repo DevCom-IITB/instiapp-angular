@@ -5,7 +5,7 @@
     [event]="selectedEvent">
 
     <img class="head-img" [src]="events[0].image_url" alt="" (click)=OpenEvent(events[0])>
-    <div class="events-list mat-elevation-z2">
+    <div class="events-list">
         <mat-card mat-ripple class="sub-card head-card" (click)=OpenEvent(events[0])>
             <div> {{ events[0].name }} </div>
             <span class="subhead">{{ dataService.GetDate(events[0].start_time) }} | {{ events[0].venues_str }}</span>
