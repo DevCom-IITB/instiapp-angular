@@ -20,7 +20,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   public event: IEvent;
   public shareShowing = false;
   public error: number;
-  private desktopMode = false;
+  public desktopMode = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
