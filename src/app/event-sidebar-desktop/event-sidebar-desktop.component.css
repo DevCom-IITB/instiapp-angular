@@ -6,46 +6,22 @@
     }
 }
 
+ng-scrollbar {
+    background-color: white;
+}
+
 @media (min-width: 768px) {
     .events-list {
         position: relative;
-        left: calc(47% - 400px);
-        max-width: 400px;
-        margin: 10px;
+        width: 50%;
+        float: left;
+        height: calc(100vh - 64px);
     }
 
     .event-details-container {
-        position: fixed;
-        left: calc(55% + 100px);
-        max-height: calc(100% - 100px);
-        top: 80px;
-        width: 400px;
-        overflow: auto;
-        overflow-x: hidden;
-        background-color: white;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 960px) {
-    .events-list {
-        width: 360px;
-        left: calc(48% - 360px);
-    }
-
-    .event-details-container {
-        width:360px;
-        left: calc(52%);
-    }
-}
-
-@media (min-width: 961px) and (max-width: 1200px) {
-    .events-list {
-        width: 321px;
-        left: calc(48% - 320px);
-    }
-
-    .event-details-container {
-        width:320px;
-        left: calc(52% + 150px);
+        position: relative;
+        height: calc(100vh - 64px);
+        width: calc(50% - 2px);
+        border-left: 2px silver solid;
     }
 }

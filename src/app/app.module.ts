@@ -53,6 +53,8 @@ import { MapComponent } from './map/map.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
+import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
+import { ScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,8 @@ import { AboutComponent } from './about/about.component';
     MapComponent,
     QuickLinksComponent,
     SettingsComponent,
-    AboutComponent
+    AboutComponent,
+    XunkCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +100,7 @@ import { AboutComponent } from './about/about.component';
 
     XunkCalendarModule,
     ShareButtonModule.forRoot(),
+    ScrollbarModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },

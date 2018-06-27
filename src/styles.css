@@ -51,7 +51,8 @@ mat-form-field, mat-form-field * {
     -webkit-overflow-scrolling: auto;
     bottom: auto !important;
     z-index: 10000;
-    width: 300px;
+    width: 20vw;
+    min-width: 240px;
     height: 100vh;
 }
 

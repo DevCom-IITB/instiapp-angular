@@ -20,6 +20,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   public event: IEvent;
   public shareShowing = false;
   public error: number;
+  private desktopMode = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,6 +40,8 @@ export class EventDetailsComponent implements OnChanges, OnInit {
         this.eventId = params['id'];
         this.refresh();
       });
+    } else {
+      this.desktopMode = true;
     }
   }
 

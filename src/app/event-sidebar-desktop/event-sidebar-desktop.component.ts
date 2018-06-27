@@ -31,27 +31,8 @@ export class EventSidebarDesktopComponent implements OnInit, OnChanges {
   /** Open or update the side event-details pane */
   EventDetailsPane() {
     /* Open the bar for the first time */
-    if (!this.showingEventDetails) {
-      this.showingEventDetails = true;
-      this.eventDetailsId = this.event.id;
-      return;
-    }
-
-    /* Skip if animating */
-    if (!this.animedEventDetails) { return; }
-
-    /* Do some animation */
-    this.animedEventDetails = false;
-    setTimeout(() => {
-      this.hiddenEventDetails = true;
-      this.eventDetailsId = this.event.id;
-    }, 250);
-  }
-
-  /** Animate back in after loading */
-  eventDeatilsLoaded(success: boolean) {
-    this.hiddenEventDetails = false;
-    this.animedEventDetails = true;
+    this.showingEventDetails = true;
+    this.eventDetailsId = this.event.id;
   }
 
   /** boolean to boolean string */

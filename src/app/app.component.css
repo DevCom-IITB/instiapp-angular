@@ -1,25 +1,30 @@
 .example-toolbar {
     position: fixed;
     z-index: 200;
-    width: calc(100% - 300px);
-    margin-left: 300px;
 }
 
 #router-out {
     bottom: 0;
-    width: calc(100% - 300px);
-    padding-top: 8px;
+    padding-top: 0;
     padding-bottom: 0;
-    margin-left: 300px;
+}
+
+#router-out, .example-toolbar {
+    width: calc(100% - 20vw);
+    margin-left: 20vw;
 }
 
 #top-gap {
-    height: 70px;
+    height: 64px;
 }
 
 @media (max-width: 1200px) {
     .example-toolbar {
         position: absolute;
+    }
+    #router-out, .example-toolbar {
+        width: calc(100% - 240px);
+        margin-left: 240px;
     }
 }
 

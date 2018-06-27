@@ -1,0 +1,37 @@
+.main {
+    padding: 5px 0;
+}
+
+.xunk-calendar {
+    width: 100%;             /* fill all space */
+}
+
+.xunk-calendar-cell {
+    text-align: center;
+    padding: 0.5vw 0;
+}
+
+.monthname {
+    font-size: 2.4em;
+    font-family: 'Roboto Light';
+    font-weight: 200;
+    margin-left: 25px;
+}
+
+@media (min-width: 1000px) {
+    button {
+        font-size: 1.05em;
+    }
+}
+
+@media (min-width: 1200px) {
+    button {
+        font-size: 1.08em;
+    }
+}
+
+.xunk-calendar-day {
+    -webkit-transition: background-color 100ms linear, color 100ms linear;
+    -ms-transition: background-color 100ms linear, color 100ms linear;
+    transition: background-color 100ms linear, color 100ms linear;
+}

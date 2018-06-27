@@ -1,14 +1,15 @@
-<div [@enterLeft]="true" class="events-list">
-    <ng-content></ng-content>
-</div>
 
-<div class="event-details-container mat-elevation-z3"
+<ng-scrollbar
+        [autoHide]="true"
+        class="events-list">
+    <ng-content></ng-content>
+</ng-scrollbar>
+
+<ng-scrollbar class="event-details-container"
      *ngIf="showingEventDetails"
-     [hidden]="hiddenEventDetails"
-     [@enterRight]="bstr(animedEventDetails)">
+     [autoHide]="true">
     <app-event-details
       [eventId]="eventDetailsId"
-      (load)="eventDeatilsLoaded($event)"
       noCenter="true">
     </app-event-details>
-</div>
+</ng-scrollbar>

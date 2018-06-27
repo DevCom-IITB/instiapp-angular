@@ -4,13 +4,14 @@
     *ngIf="events"
     [event]="selectedEvent">
 
-    <div class="full-container mat-elevation-z4">
-        <xunk-calendar [selectedDate]="selDate"
-                       (change)="dateChanged($event)"
-                       [heatmap]="getHeatMap()"
-                       heatMapColor="rgb(255, 235, 59)"
-                       primaryColor="#536dfe">
-        </xunk-calendar>
+    <div class="full-container">
+        <app-xunk-calendar [selectedDate]="selDate"
+                    (change)="dateChanged($event)"
+                    [heatmap]="getHeatMap()"
+                    heatMapColor="rgb(255, 235, 59)"
+                    primaryColor="#536dfe">
+        </app-xunk-calendar>
+
         <mat-chip-list class="mat-chip-list-stacked">
             <mat-chip color="accent" selected="true" id="head-chip">
                 <div>{{ GetCount(selDate) }}</div>
@@ -20,7 +21,6 @@
         <br>
 
         <ng-container *ngFor="let event of GetDateEvents(selDate)">
-            <mat-divider></mat-divider>
             <app-event-card
                 [event]="event"
                 (click)=OpenEvent(event)

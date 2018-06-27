@@ -32,13 +32,13 @@
 
 .event-name {
     font-weight: bold;
-    font-size: 14pt;
+    font-size: 1.2em;
     padding-left: 10px;
 }
 
 .event-time {
     color: whitesmoke;
-    font-size: 10pt;
+    font-size: 1.0em;
     padding: 5px;
     padding-left: 10px;
     padding-bottom: 12px;
@@ -47,4 +47,13 @@
 .description {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.event-body {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.full-width {
+    max-width: 1500px;
 }

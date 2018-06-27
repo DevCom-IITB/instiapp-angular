@@ -5,20 +5,31 @@
 }
 
 .full-container {
-    padding: 0;
-    margin: auto;
+    padding: 10px 12% 0 12%;
     overflow-x: hidden;
-    max-width: 400px;
     background-color: white;
 }
 
 #head-chip {
-    width: 140px;
-    margin-top: 0;
-    margin-left: calc(50% - 70px);
+    width: 180px;
+    margin-top: 10px;
+    margin-left: calc(50% - 90px);
+    font-size: 0.9em;
 }
 
 #head-chip div {
     width: 100%;
     text-align: center
+}
+
+@media (min-width: 961px) and (max-width: 1200px) {
+    .full-container {
+        padding: 10px 3% 0 3%;
+    }
+}
+
+@media (max-width: 960px) {
+    .full-container {
+        padding: 10px 0 0 0;
+    }
 }

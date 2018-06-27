@@ -1,8 +1,7 @@
 .main {
     overflow: hidden;
     width: 100%;
-    margin-top: -16px;
-    height: calc(100vh - 62px);
+    height: calc(100vh - 64px);
     margin-bottom: 0;
 }
 
