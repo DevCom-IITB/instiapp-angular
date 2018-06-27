@@ -1,5 +1,5 @@
 .feed-card {
-    margin-bottom: 8px;
+    margin: 6px auto;
     cursor: pointer;
     overflow: auto;
 }
