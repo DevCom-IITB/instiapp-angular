@@ -47,6 +47,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
 
   /** Call the events API and show data */
   refresh() {
+    this.event = null;
     this.dataService.FillGetEvent(this.eventId).subscribe(result => {
       this.event = result;
       this.load.emit(true);
