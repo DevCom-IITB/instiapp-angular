@@ -10,8 +10,76 @@
 @import '~@ngx-share/button/styles/themes/material/material-dark-theme';
 /* @import '~@ngx-share/button/styles/themes/circles/circles-dark-theme'; */
 
-$md-primary: mat-palette($mat-deep-purple, 500, 100, 700);
-$md-accent: mat-palette($mat-deep-orange, 500, 300, 800);
+/* For use in src/lib/core/theming/_palette.scss */
+$md-cprimary: (
+    50 : #eaedff,
+    100 : #cbd3ff,
+    200 : #a9b6ff,
+    300 : #8799fe,
+    400 : #6d83fe,
+    500 : #536dfe,
+    600 : #4c65fe,
+    700 : #425afe,
+    800 : #3950fe,
+    900 : #293efd,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #d4d8ff,
+    A700 : #bbc1ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+$md-caccent: (
+    50 : #fffae8,
+    100 : #fff3c6,
+    200 : #ffeba0,
+    300 : #ffe379,
+    400 : #ffdd5d,
+    500 : #ffd740,
+    600 : #ffd33a,
+    700 : #ffcd32,
+    800 : #ffc72a,
+    900 : #ffbe1c,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffefcd,
+    A700 : #ffe8b3,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-primary: mat-palette($md-cprimary, 500, 100, 700);
+$md-accent: mat-palette($md-caccent, 500, 300, 800);
 $md-warn: mat-palette($mat-red, 500, 300, 900);
 
 $my-theme-foreground: (

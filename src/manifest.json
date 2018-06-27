@@ -3,7 +3,7 @@
     "short_name": "InstiApp",
     "start_url": "feed",
     "display": "standalone",
-    "theme_color": "#673AB7",
+    "theme_color": "#536dfe",
     "background_color": "#ffffff",
     "orientation": "portrait",
 
