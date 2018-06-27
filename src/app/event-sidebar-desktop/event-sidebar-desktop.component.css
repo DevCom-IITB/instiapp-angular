@@ -23,7 +23,7 @@
         top: 64px;
         height: calc(100vh - 64px);
         width: calc(100vw - 240px - (100vw - 240px) / 2);
-        overflow-y: auto;
+        overflow-y: scroll;
         position: fixed;
         border-left: 2px solid lightgray;
     }
