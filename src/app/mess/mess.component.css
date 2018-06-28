@@ -1,3 +1,4 @@
+/* Mobile styles */
 .super-head {
     max-width: calc(550px - 16px);
     width: calc(100% - 16px);
@@ -59,4 +60,78 @@
     bottom: 20px;
     right: 20px;
     z-index: 5;
+}
+
+/* Desktop styles */
+
+.desktop {
+    overflow: hidden;
+    overflow-x: auto;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.desktop .day {
+    font-family: 'Roboto';
+    font-weight: 200;
+    font-size: 2.5em;
+    padding-bottom: 0.8em;
+}
+
+.desktop .menu {
+    display: inline-block;
+    padding: 2em;
+    width: 17%;
+}
+
+.desktop .time {
+    min-height: 100px;
+    font-size: 1em;
+}
+
+.desktop .time-head {
+    color: #a0a0a0;
+    font-style: italic;
+    font-size: 0.85em;
+}
+
+.desktop .menu:not(:first-child) {
+    color: #a0a0a0;
+}
+
+/* Common */
+
+.responsive-header {
+    margin-top: 2em;
+    margin-left: 3.5em;
+}
+
+.responsive-header > * {
+    font-size: 2.5em
+}
+
+.responsive-header .selected-hostel {
+    font-family: 'Roboto';
+    font-weight: 200;
+    display: inline-block;
+}
+
+.pick-hostel {
+    display: inline-block;
+}
+
+.hostel-menu-button {
+    font-family: 'Roboto';
+    font-weight: 200;
+    font-size: 1.2em;
+}
+
+@media (max-width: 767px) {
+    .responsive-header {
+        margin: 0.4em 2em;
+    }
+
+    .responsive-header > * {
+        font-size: 1.5em;
+    }
 }

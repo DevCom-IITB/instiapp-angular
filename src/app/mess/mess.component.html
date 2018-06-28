@@ -1,33 +1,26 @@
 <app-xunk-spinner *ngIf="!hostels || error" [error]="error"></app-xunk-spinner>
 
-<div class="desktop-10px"></div>
-
-<button mat-fab
-  [disabled]="!menu"
-  class="float-fixed-right-bottom mat-elevation-z2"
- (click)="restoreList()">
-  <mat-icon>list</mat-icon>
-</button>
-
 <ng-container *ngIf="hostels">
-  <ng-container *ngIf="!menu">
-    <div class="real-center detail-card-elem mat-elevation-z1 margin-card"
-        *ngFor="let hostel of hostels">
-      <mat-card mat-ripple
-                class="sub-card"
-               (click)="selectHostel(hostel)">
 
-          <mat-card-header>
-            <mat-card-title> {{ hostel.name }} </mat-card-title>
-            <mat-card-subtitle> {{ hostel.long_name }} </mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
-      <mat-divider></mat-divider>
+  <div class="responsive-header">
+    <div *ngIf="currHostel" class="selected-hostel" [matMenuTriggerFor]="hostelMenu">
+      {{ currHostel.name }}
     </div>
-  </ng-container>
 
-  <div class="real-center" *ngIf="menu">
-    <div class="super-head mat-elevation-z1">{{ currHostel.name }}</div>
+    <button class="pick-hostel" mat-icon-button [matMenuTriggerFor]="hostelMenu">
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #hostelMenu="matMenu">
+      <button mat-button
+              *ngFor="let hostel of hostels"
+              (click)="selectHostel(hostel)"
+              class="hostel-menu-button">
+        {{hostel.name}}
+    </button>
+    </mat-menu>
+  </div>
+
+  <div class="real-center" *ngIf="menu && dataService.isMobile()">
     <div class="mess-card" *ngFor="let menuday of menu">
       <div class="mess-card-head primary-background-color mat-elevation-z1">{{ daysOfWeek[menuday.day] }}</div>
 
@@ -69,6 +62,28 @@
           </td>
         </tr>
       </table>
+    </div>
+  </div>
+
+  <div class="desktop desktop-main" *ngIf="menu && !dataService.isMobile()">
+    <div class="menu" *ngFor="let menuday of menu">
+      <div class="day">{{ daysOfWeek[menuday.day] }}</div>
+      <div class="time">
+        <div class="time-head">Breakfast</div>
+        {{menuday.breakfast}}
+      </div>
+      <div class="time">
+        <div class="time-head">Lunch</div>
+        {{menuday.lunch}}
+      </div>
+      <div class="time">
+        <div class="time-head">Snacks</div>
+        {{menuday.snacks}}
+      </div>
+      <div class="time">
+        <div class="time-head">Dinner</div>
+        {{menuday.dinner}}
+      </div>
     </div>
   </div>
 

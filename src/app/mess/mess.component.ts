@@ -30,7 +30,13 @@ export class MessComponent implements OnInit {
       if (this.dataService.isLoggedIn()) {
         const hostel = this.hostels.find(
           h => h.short_name === this.dataService.getCurrentUser().hostel);
-        if (hostel) { this.constructMenu(hostel); }
+        if (hostel) {
+          this.constructMenu(hostel);
+        } else {
+          this.constructMenu(this.hostels[0]);
+        }
+      } else {
+        this.constructMenu(this.hostels[0]);
       }
     }, (e) => {
       this.error = e.status;
