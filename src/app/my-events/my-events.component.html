@@ -1,43 +1,14 @@
-<app-xunk-spinner *ngIf="!roles || error" [error]="error"></app-xunk-spinner>
+<app-xunk-spinner *ngIf="!containers || error" [error]="error"></app-xunk-spinner>
 
-<div class="desktop-10px"></div>
-
-<div class="detail-card real-center mat-elevation-z3" *ngIf="roles">
-  <mat-tab-group class="tab-group" mat-stretch-tabs [(selectedIndex)]="selIndex">
-      <mat-tab label="Following">
-        <div class="tab-content">
-          <div *ngIf="followedEvents.length === 0" class="nothing-tab">
-            <img src="/assets/noevent.svg"><br><br>
-            You aren't following any events<br>
-            Let's change that!
-          </div>
-          <app-event-card
-            *ngFor="let event of followedEvents"
-            [event]="event">
-          </app-event-card>
-        </div>
-      </mat-tab>
-      <mat-tab *ngFor="let role of roles" [label]="role.body_detail.name" >
-        <div class="tab-content">
-          <div *ngIf="role.events.length === 0" class="nothing-tab">
-            <img src="/assets/noevent.svg"><br><br>
-            No upcoming events here<br>
-            Why not add one!
-          </div>
-
-          <app-event-card
-            *ngFor="let event of role.events"
-            [event]="event">
-          </app-event-card>
-        </div>
-      </mat-tab>
-  </mat-tab-group>
-</div>
+<app-feed
+    *ngIf="containers && !error"
+    [containers]="containers"
+    [nobig]="true">
+</app-feed>
 
 <button mat-fab
-        [disabled]="!canAdd(selIndex)"
+        *ngIf="hasRole"
         class="float-fixed-right-bottom mat-elevation-z2"
-        [routerLink]="['/add-event']"
-        [queryParams]="{body: canAdd(selIndex) ? roles[selIndex - 1].body : null}">
+        [routerLink]="['/add-event']">
     <mat-icon>add</mat-icon>
 </button>

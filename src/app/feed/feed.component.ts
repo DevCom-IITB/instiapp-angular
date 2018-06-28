@@ -1,13 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
-import { IEvent } from '../interfaces';
+import { IEvent, IEventContainer } from '../interfaces';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-
-interface IEventContainer {
-  title: string;
-  events: IEvent[];
-}
 
 @Component({
   selector: 'app-feed',
@@ -15,7 +10,8 @@ interface IEventContainer {
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
-  public containers: IEventContainer[];
+  @Input() public containers: IEventContainer[];
+  @Input() public nobig = false;
   public events: IEvent[];
   public selectedEvent: IEvent;
   public error: number;
@@ -27,6 +23,10 @@ export class FeedComponent implements OnInit {
 
   /** Initialize initial list wiht API call */
   ngOnInit() {
+    if (this.containers) {
+      return;
+    }
+
     this.dataService.GetAllEvents().subscribe(result => {
         this.events = result.data;
         if (this.events.length === 0) {
@@ -52,10 +52,10 @@ export class FeedComponent implements OnInit {
     const result: IEventContainer[] = [];
 
     /** Static first tab */
-    const first = {} as IEventContainer;
-    first.title = 'Upcoming';
-    first.events = events.splice(0, 3);
-    result.push(first);
+    result.push({
+      title: 'Upcoming',
+      events: events.splice(0, 3)
+    });
 
     let prev = {title: this.getDateTitle(events[0]), events: []} as IEventContainer;
     for (const event of events) {

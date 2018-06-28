@@ -1,19 +1,23 @@
-<app-xunk-spinner *ngIf="!events || error" [error]="error"></app-xunk-spinner>
+<app-xunk-spinner *ngIf="!containers || error" [error]="error"></app-xunk-spinner>
 
 <app-event-sidebar-desktop
-    *ngIf="events && !error"
+    *ngIf="containers && !error"
     [event]="selectedEvent">
 
     <div class="events-list">
         <div *ngFor="let c of containers" class="events-block">
             <div class="date-header">{{c.title}}</div>
-            <mat-card mat-ripple class="sub-card head-card" (click)=OpenEvent(c.events[0])>
+            <mat-card *ngIf="!nobig"
+                       mat-ripple
+                       class="sub-card head-card"
+                      (click)=OpenEvent(c.events[0])>
+
                 <img mat-card-image class="head-img" [src]="c.events[0].image_url" alt="" (click)=OpenEvent(c.events[0])>
                 <div> {{ c.events[0].name }} </div>
                 <span class="subhead">{{ dataService.GetDate(c.events[0].start_time) }} | {{ c.events[0].venues_str }}</span>
             </mat-card>
 
-            <app-event-card *ngFor="let event of c.events.slice(1, c.events.length)"
+            <app-event-card *ngFor="let event of (nobig ? c.events : c.events.slice(1, c.events.length))"
                             (click)=OpenEvent(event)
                             [event]="event"
                             overrideClick=true>

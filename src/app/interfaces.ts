@@ -42,6 +42,7 @@ export interface IEvent {
     going_count: number;
     going: IUserProfile[];
     user_ues: number;
+    weight: number;
 }
 
 export interface ILocation {
@@ -124,4 +125,9 @@ export interface IMenuEntry {
     snacks: string;
     dinner: string;
     hostel: string;
+}
+
+export interface IEventContainer {
+  title: string;
+  events: IEvent[];
 }

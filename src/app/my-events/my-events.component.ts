@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBodyRole, IBody, IEvent } from '../interfaces';
+import { IBodyRole, IBody, IEvent, IEventContainer } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
 
@@ -9,29 +9,43 @@ import { API } from '../../api';
   styleUrls: ['./my-events.component.css']
 })
 export class MyEventsComponent implements OnInit {
-
-  public roles: IBodyRole[];
-  public followedEvents: IEvent[];
-  public selIndex = 0;
   public error: number;
+  public containers: IEventContainer[];
+  public hasRole = false;
 
   constructor(
     public dataService: DataService,
   ) { }
 
   ngOnInit() {
-    this.followedEvents = this.dataService.getFollowedEvents();
+    const followedEvents = this.dataService.getFollowedEvents();
     this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
-      this.roles = result as IBodyRole[];
+      const roles = result as IBodyRole[];
+      this.hasRole = roles.length > 0;
+      this.containers = this.MakeContainers(roles, followedEvents);
     }, (e) => {
       this.error = e.status;
     });
   }
 
-  /** Returns true if can add event for the given tabindex */
-  canAdd(tabindex: number): boolean {
-    if (tabindex === 0) { return false; }
-    return this.roles[tabindex - 1].permissions.includes('AddE');
+  /** Make containers from followed and roles */
+  MakeContainers(roles: IBodyRole[], followedEvents: IEvent[]): IEventContainer[] {
+    const result: IEventContainer[] = [];
+
+    /** Followed in first box */
+    result.push({
+      title: 'Upcoming',
+      events: followedEvents.splice(0, 8).sort((a, b) => b.weight - a.weight)
+    });
+
+    /* For each role */
+    for (const role of roles) {
+      result.push({
+        events: role.events,
+        title: role.body_detail.name
+      });
+    }
+    return result;
   }
 
 }
