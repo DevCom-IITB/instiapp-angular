@@ -2,20 +2,17 @@
 
 <div class="desktop-10px"></div>
 
+<div class="main-title">
+  Freshly In
+</div>
+
 <ng-container *ngIf="feed">
   <ng-container *ngFor="let item of feed">
-    <mat-card class="feed-card detail-card-elem real-center mat-elevation-z3" (click)="openLink(item.link)">
-      <mat-card-header>
-        <mat-card-title>{{item.title}}</mat-card-title>
-        <img mat-card-avatar
-          [src]="item.body.image_url"
-          src-fallback="assets/placeholder.png"
-          class="object-cover" />
-        <mat-card-subtitle><b>{{item.body.name}}</b> - {{item.published | date:"dd-MMM-yyyy HH:mm"}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <markdown [data]="item.content" class="markdown"></markdown>
-      </mat-card-content>
+
+    <div class="feed-card" (click)="openLink(item.link)">
+      <div class="feed-title">{{item.title}}</div>
+      <div class="feed-subtitle">{{item.body.name}} | {{item.published | date:"dd-MMM-yyyy HH:mm"}}</div>
+      <markdown [data]="item.content" class="markdown"></markdown>
 
       <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="before">
           <table>
@@ -45,11 +42,8 @@
         </button>
       </div>
 
+    </div>
 
-      <!--
-    -->
-
-    </mat-card>
   </ng-container>
 </ng-container>
 
