@@ -1,15 +1,3 @@
-.detail-card {
-    z-index: 3;
-    margin-bottom: 10px;
-    padding: 0;
-}
-
-@media (max-width: 767px) {
-    .detail-card {
-        margin-bottom: 0;
-    }
-}
-
 .body-image {
     width:100%;
     height:auto;
@@ -50,12 +38,10 @@
 }
 
 .subtitle {
-    margin-top: 0.8em;
-    margin-left: 1.1em;
-    margin-bottom: 0.5em;
+    margin: 0.8em 0 0.2em 0.4em;
     padding: 0;
-    color: #666;
-    font-size: 0.9em;
+    font-weight: 200;
+    font-size: 2.5em;
 }
 
 .subsection {
@@ -67,4 +53,15 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
+}
+
+.desktop-right {
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .subtitle {
+        margin-left: 1em;
+        font-size: 1.6em;
+    }
 }

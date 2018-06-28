@@ -15,6 +15,7 @@
         position: relative;
         width: 50%;
         float: left;
+        min-height: calc(100vh - 64px);
     }
 
     .right-comp {

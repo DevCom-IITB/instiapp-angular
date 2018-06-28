@@ -1,9 +1,11 @@
 <app-xunk-spinner *ngIf="!body" [error]="error"></app-xunk-spinner>
 
-<div class="desktop-10px"></div>
+<app-desktop-split
+  *ngIf="body"
+  [rightLeftBorder]="false"
+  [centerRightBorder]="true">
 
-<div class="full-container real-center">
-  <div *ngIf="body" class="detail-card mat-elevation-z3">
+  <div center>
     <div class="theme-header primary-background-color">
       <img class="body-image"
             [src]="body.image_url"
@@ -25,7 +27,7 @@
             <i class="fas fa-globe fa-lg"></i>
           </a>
           <button mat-icon-button
-                 (click)="share()">
+                (click)="share()">
               <mat-icon>share</mat-icon>
           </button>
         </div>
@@ -48,57 +50,16 @@
       <markdown [data]="body.description"></markdown>
     </div>
 
-    <mat-divider></mat-divider>
-
-    <div class="subsection" *ngIf="body.events.length > 0">
-      <div class="subtitle">
-        Upcoming and Past Events
-      </div>
-      <ng-container *ngFor="let event of body.events">
-        <app-event-card [routerLink]="['/event', event.id]"
-                        [event]="event">
-        </app-event-card>
-      </ng-container>
-      <mat-divider></mat-divider>
-    </div>
-
-    <div class="subsection" *ngIf="body.children.length > 0">
-      <div class="subtitle">
-        Organizations
-      </div>
-      <ng-container *ngFor="let childbody of body.children">
-        <app-body-card
-                    [body]="childbody">
-        </app-body-card>
-        <mat-divider></mat-divider>
-      </ng-container>
-    </div>
-
-    <div class="subsection" *ngIf="body.roles.length > 0">
-        <div class="subtitle">
-          People
-        </div>
-        <ng-container *ngFor="let role of body.roles">
-          <app-user-card *ngFor="let user of role.users_detail"
-                        [profile]="user"
-                        [role]="role.name">
-          </app-user-card>
-          <mat-divider></mat-divider>
-        </ng-container>
-    </div>
-
-    <div class="subsection" *ngIf="body.parents.length > 0">
-      <div class="subtitle">
-        Part of
-      </div>
-      <ng-container *ngFor="let parentbody of body.parents">
-        <app-body-card [body]="parentbody">
-        </app-body-card>
-      </ng-container>
-    </div>
-
+    <ng-container *ngIf="dataService.isMobile()">
+      <ng-container *ngTemplateOutlet="information"></ng-container>
+    </ng-container>
   </div>
-</div>
+
+  <div right class="desktop-right">
+    <ng-container *ngTemplateOutlet="information"></ng-container>
+  </div>
+
+</app-desktop-split>
 
 <button mat-fab
         *ngIf="body && dataService.HasBodyPermission(body.id, 'AddE')"
@@ -108,3 +69,49 @@
         [queryParams]="{body: body.id}">
     <mat-icon>add</mat-icon>
 </button>
+
+<ng-template #information>
+  <div class="subsection" *ngIf="body.events.length > 0">
+    <div class="subtitle">
+      Events
+    </div>
+    <ng-container *ngFor="let event of body.events">
+      <app-event-card [routerLink]="['/event', event.id]"
+                      [event]="event">
+      </app-event-card>
+    </ng-container>
+  </div>
+
+  <div class="subsection" *ngIf="body.children.length > 0">
+    <div class="subtitle">
+      Organizations
+    </div>
+    <ng-container *ngFor="let childbody of body.children">
+      <app-body-card
+                  [body]="childbody">
+      </app-body-card>
+    </ng-container>
+  </div>
+
+  <div class="subsection" *ngIf="body.roles.length > 0">
+      <div class="subtitle">
+        People
+      </div>
+      <ng-container *ngFor="let role of body.roles">
+        <app-user-card *ngFor="let user of role.users_detail"
+                      [profile]="user"
+                      [role]="role.name">
+        </app-user-card>
+      </ng-container>
+  </div>
+
+  <div class="subsection" *ngIf="body.parents.length > 0">
+    <div class="subtitle">
+      Part of
+    </div>
+    <ng-container *ngFor="let parentbody of body.parents">
+      <app-body-card [body]="parentbody">
+      </app-body-card>
+    </ng-container>
+  </div>
+</ng-template>
