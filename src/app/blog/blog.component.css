@@ -1,5 +1,32 @@
+.main-div {
+    margin: 0 auto;
+    margin-top: 1.4em;
+    width: 90%;
+}
+
 .feed-card {
-    margin-bottom: 6px;
     cursor: pointer;
     overflow: auto;
+    font-size: 0.9em;
+    margin-bottom: 2.5em;
+}
+
+.title {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+@media (min-width: 768px) {
+    .main-div {
+        width: 80%;
+    }
+
+    .feed-card {
+        margin-bottom: 3.5em;
+    }
+
+    .title {
+        font-size: 1.85em
+    }
 }
