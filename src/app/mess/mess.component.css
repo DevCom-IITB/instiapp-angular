@@ -96,6 +96,10 @@
     font-size: 0.85em;
 }
 
+.desktop .menu:first-child  {
+    margin-left: 15px;
+}
+
 .desktop .menu:not(:first-child) {
     color: #a0a0a0;
 }
