@@ -2,7 +2,8 @@
 
 <div class="desktop-10px"></div>
 
-<div class="main-title">
+<div class="main-title"
+    *ngIf="!dataService.isMobile()">
   Freshly In
 </div>
 

@@ -49,6 +49,14 @@ export class FeedComponent implements OnInit {
 
   /** Makes the events into containers */
   MakeContainers(events: IEvent[]): IEventContainer[] {
+    /** Everything is one on mobile */
+    if (this.dataService.isMobile()) {
+      return [{
+        title: '',
+        events: events
+      }];
+    }
+
     const result: IEventContainer[] = [];
 
     /** Static first tab */

@@ -6,7 +6,10 @@
 
     <div class="events-list">
         <div *ngFor="let c of containers" class="events-block">
-            <div class="date-header">{{c.title}}</div>
+            <div class="date-header"
+                *ngIf="c.title !== ''">
+                {{c.title}}
+            </div>
             <mat-card *ngIf="!nobig"
                        mat-ripple
                        class="sub-card head-card"
