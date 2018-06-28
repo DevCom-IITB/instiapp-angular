@@ -54,6 +54,7 @@ import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
 import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
+import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
     QuickLinksComponent,
     SettingsComponent,
     AboutComponent,
-    XunkCalendarComponent
+    XunkCalendarComponent,
+    DesktopSplitComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,12 @@
-<div class="events-list">
-    <ng-content></ng-content>
-</div>
+<app-desktop-split>
+    <div center>
+        <ng-content></ng-content>
+    </div>
 
-<div class="event-details-container"
-     *ngIf="showingEventDetails">
-    <app-event-details
-      [eventId]="eventDetailsId"
-      noCenter="true">
-    </app-event-details>
-</div>
+    <div right *ngIf="showingEventDetails">
+        <app-event-details
+            [eventId]="eventDetailsId"
+            noCenter="true">
+        </app-event-details>
+    </div>
+</app-desktop-split>

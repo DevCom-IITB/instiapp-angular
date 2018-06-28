@@ -1,0 +1,44 @@
+@media (max-width: 767px) {
+    .center-comp {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+.right-comp, .center-comp {
+    background-color: white;
+}
+
+@media (min-width: 768px) {
+    .center-comp {
+        position: relative;
+        width: 50%;
+        float: left;
+        height: calc(100vh - 64px);
+    }
+
+    .right-comp {
+        left: calc(((100vw - 240px) / 2) + 240px);
+        top: 64px;
+        height: calc(100vh - 64px);
+        width: calc(100vw - 240px - (100vw - 240px) / 2);
+        overflow-y: scroll;
+        position: fixed;
+        border-left: 2px solid lightgray;
+    }
+}
+
+@media (min-width: 1200px) {
+    .right-comp {
+        left: calc(60vw);
+        width: calc(40vw);
+    }
+}
+
+@media (max-width: 960px) {
+    .right-comp {
+        left: 50vw;
+        width: 50vw;
+    }
+}
