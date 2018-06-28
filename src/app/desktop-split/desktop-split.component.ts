@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-desktop-split',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class DesktopSplitComponent {
 
-  constructor() { }
+  /** 0 = no hiding
+   *  1 = hide center
+   *  2 = hide right
+   */
+  @Input() public hideOnMobile = 2;
+
+  constructor(
+    public dataService: DataService,
+  ) { }
 
 }

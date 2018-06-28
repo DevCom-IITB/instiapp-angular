@@ -1,7 +1,7 @@
-<div class="center-comp">
+<div class="center-comp" [hidden]="hideOnMobile === 1 && dataService.isMobile()">
   <ng-content select="[center]"></ng-content>
 </div>
 
-<div class="right-comp">
+<div class="right-comp" [hidden]="hideOnMobile === 2 && dataService.isMobile()">
     <ng-content select="[right]"></ng-content>
 </div>
