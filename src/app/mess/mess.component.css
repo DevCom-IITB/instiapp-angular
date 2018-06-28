@@ -69,6 +69,7 @@
     overflow-x: auto;
     width: 100%;
     white-space: nowrap;
+    height: calc(100vh - 2.5em - 2em - 2em - 41px);
 }
 
 .desktop .day {
