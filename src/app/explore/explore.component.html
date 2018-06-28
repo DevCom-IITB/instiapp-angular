@@ -1,10 +1,10 @@
-<app-xunk-spinner *ngIf="!bodies || error" [error]="error"></app-xunk-spinner>
+<app-xunk-spinner *ngIf="!bodies || error || isloading" [error]="error"></app-xunk-spinner>
 
-<div id="searchbox" *ngIf="bodies">
+<div id="searchbox">
   <mat-form-field class="searchinput">
       <input matInput type="search"
               name="search" [(ngModel)]="searchQ"
-              (keyup)="search(searchQ, true)"
+              (keyup.enter)="search(searchQ, false)"
               placeholder="Search">
       <mat-hint align="start">Find Organizations, Events and People </mat-hint>
   </mat-form-field>
@@ -17,24 +17,43 @@
   </button>
 </div>
 
-<div *ngIf="bodies" class="real-center">
+<div class="header" [hidden]="seltab !== -1">
+  Explore
+</div>
 
-  <div *ngFor="let body of bodies"
-        class="detail-card-elem mat-elevation-z2 margin-card">
+<div class="header" [hidden]="seltab === -1">
+  <span [class.selected]="seltab === 0"
+        (click)="selectTab(0)">
+    All</span>
+  <span [class.selected]="seltab === 1"
+        (click)="selectTab(1)">
+    Orgs</span>
+  <span [class.selected]="seltab === 2"
+        (click)="selectTab(2)">
+    Events</span>
+  <span [class.selected]="seltab === 3"
+        (click)="selectTab(3)">
+    People</span>
+</div>
+
+<div *ngIf="bodies" class="section-main">
+
+  <div *ngFor="let body of getBodies()"
+        class="margin-card">
       <app-body-card
         [body]="body">
       </app-body-card>
   </div>
 
-  <div *ngFor="let event of events"
-        class="detail-card-elem mat-elevation-z2 margin-card">
+  <div *ngFor="let event of getEvents()"
+        class="margin-card">
     <app-event-card
       [event]="event">
     </app-event-card>
   </div>
 
-  <div *ngFor="let user of users"
-        class="detail-card-elem mat-elevation-z2 margin-card">
+  <div *ngFor="let user of getPeople()"
+        class="margin-card">
     <app-user-card
       [profile]="user">
     </app-user-card>
