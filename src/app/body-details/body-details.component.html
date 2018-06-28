@@ -30,6 +30,14 @@
                 (click)="share()">
               <mat-icon>share</mat-icon>
           </button>
+          <br>
+          <button mat-button
+                  class="follow-button"
+                  [class.following]="body.user_follows"
+                 (click)="markFollow()"
+                 [disabled]="!dataService.isLoggedIn()">
+            <!-- Text set in CSS -->
+          </button>
         </div>
       </div>
 
@@ -39,11 +47,7 @@
     </div>
 
     <div style="text-align:center">
-        <mat-checkbox [ngModel]="body.user_follows"
-                      (change)="markFollow($event)"
-                      [disabled]="!dataService.isLoggedIn()">
-          FOLLOW
-        </mat-checkbox>
+
     </div>
 
     <div class="description markdown">

@@ -31,7 +31,7 @@ export class BodyDetailsComponent implements OnInit {
   }
 
   /** Handles click of follow button */
-  markFollow(e) {
+  markFollow() {
     if (!this.dataService.isLoggedIn()) { alert('Login first!'); return; }
     /* Fire new API! */
     this.dataService.FireGET(API.BodyFollow, {

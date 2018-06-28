@@ -5,7 +5,7 @@
 
 .card-header {
     display: flex;
-    padding: 12px;
+    padding: 20px;
     padding-bottom: 0;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .theme-header {
-    padding-bottom: 3px;
+    padding-bottom: 10px;
 }
 
 .action-buttons {
@@ -58,6 +58,14 @@
 .desktop-right {
     padding: 0 20px;
 }
+
+.follow-button {
+    float: right;
+}
+
+.following { color: #dadada; }
+.follow-button:after { content: 'FOLLOW'; }
+.following:after { content: 'FOLLOWING'; }
 
 @media (max-width: 768px) {
     .subtitle {
