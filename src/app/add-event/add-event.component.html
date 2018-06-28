@@ -1,110 +1,122 @@
 <app-xunk-spinner *ngIf="!event"></app-xunk-spinner>
 
-<div class="desktop-10px"></div>
+<app-desktop-split *ngIf="event"
+    [rightLeftBorder]="false"
+    [centerRightBorder]="true">
 
-<div id="main" class="detail-card real-center mat-elevation-z3" *ngIf="event">
+  <div center id="main">
 
-<div class="theme-header">
-  <input style="display:none;" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
-  <img class="header-image"
-       [src]="event.image_url"
-       src-fallback="assets/add_image_placeholder.svg"
-       (click)="file.click()">
+  <div class="theme-header">
+    <input style="display:none;" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
+    <img class="header-image"
+        [src]="event.image_url"
+        src-fallback="assets/add_image_placeholder.svg"
+        (click)="file.click()">
 
-  <div class="card-header primary-background-color">
-      <mat-form-field color="accent" class="full-width">
-        <input [(ngModel)]="event.name" matInput required #eventName
-               name="event_name" placeholder="Event Name">
-        <mat-hint align="end">{{eventName.value.length}} / 50</mat-hint>
+    <div class="card-header primary-background-color">
+        <mat-form-field color="accent" class="full-width">
+          <input [(ngModel)]="event.name" matInput required #eventName
+                name="event_name" placeholder="Event Name">
+          <mat-hint align="end">{{eventName.value.length}} / 50</mat-hint>
+        </mat-form-field>
+    </div>
+  </div>
+
+  <div class="details-view full-width">
+    <div style="display:flex;">
+      <mat-form-field class="half-width middle-gap">
+        <input [(ngModel)]="event.start_time" matInput [matDatepicker]="fromPicker" placeholder="From" required>
+        <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fromPicker></mat-datepicker>
       </mat-form-field>
-  </div>
-</div>
-
-<div class="details-view full-width">
-  <div style="display:flex;">
-    <mat-form-field class="half-width middle-gap">
-      <input [(ngModel)]="event.start_time" matInput [matDatepicker]="fromPicker" placeholder="From" required>
-      <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
-      <mat-datepicker #fromPicker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field class="half-width">
-        <input [(ngModel)]="event.end_time" matInput [matDatepicker]="toPicker" placeholder="To" required>
-        <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
-        <mat-datepicker #toPicker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div style="display:flex;">
-    <mat-form-field class="half-width middle-gap">
-        <input (change)="timeChanged()" [(ngModel)]="start_time" matInput placeholder="Time" type="time" required>
-    </mat-form-field>
-    <mat-form-field class="half-width">
-        <input (change)="timeChanged()" [(ngModel)]="end_time" matInput placeholder="Time" type="time" required>
-    </mat-form-field>
-  </div>
-
-  <div class="full-width-details" *ngFor="let vn of event.venues; let i = index">
-    <mat-form-field style="width: calc(98% - 50px); left: 1%;">
-        <input matInput placeholder="Venue" aria-label="Venue"
-              [matAutocomplete]="venueAuto"
-              [formControl]="venueControls[i].form">
-    </mat-form-field>
-
-    <mat-autocomplete #venueAuto="matAutocomplete">
-      <mat-option *ngFor="let venue of venueControls[i].filteredLocations | async" [value]="venue.short_name">
-        {{ venue.short_name }}
-      </mat-option>
-    </mat-autocomplete>
-
-    <button *ngIf="i==0" (click)="AddVenue()" mat-icon-button><mat-icon>add</mat-icon></button>
-    <button *ngIf="i!=0" (click)="RemoveVenue(i)" mat-icon-button><mat-icon>remove</mat-icon></button>
-  </div>
-
-  <div>
-    <mat-form-field class="full-width-details">
-      <mat-select [(ngModel)]="event.bodies_id" placeholder="Bodies" multiple required>
-        <mat-option *ngFor="let body of bodies"
-                    [value]="body.id">
-                {{ body.name }}
-        </mat-option>
-        <mat-option *ngFor="let body of disabledBodies"
-                    [value]="body.id" disabled>
-                {{ body.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div>
-      <mat-form-field class="full-width-details">
-        <input matInput placeholder="Website URL"
-                  [(ngModel)]="event.website_url" rows=8>
+      <mat-form-field class="half-width">
+          <input [(ngModel)]="event.end_time" matInput [matDatepicker]="toPicker" placeholder="To" required>
+          <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+          <mat-datepicker #toPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div style="display:flex;">
+      <mat-form-field class="half-width middle-gap">
+          <input (change)="timeChanged()" [(ngModel)]="start_time" matInput placeholder="Time" type="time" required>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+          <input (change)="timeChanged()" [(ngModel)]="end_time" matInput placeholder="Time" type="time" required>
       </mat-form-field>
     </div>
 
-  <div>
-    <mat-form-field class="full-width-details">
-      <textarea matInput placeholder="Description"
-                [(ngModel)]="event.description" rows=8>
-      </textarea>
-    </mat-form-field>
+    <div class="full-width-details" *ngFor="let vn of event.venues; let i = index">
+      <mat-form-field style="width: calc(98% - 50px); left: 1%;">
+          <input matInput placeholder="Venue" aria-label="Venue"
+                [matAutocomplete]="venueAuto"
+                [formControl]="venueControls[i].form">
+      </mat-form-field>
+
+      <mat-autocomplete #venueAuto="matAutocomplete">
+        <mat-option *ngFor="let venue of venueControls[i].filteredLocations | async" [value]="venue.short_name">
+          {{ venue.short_name }}
+        </mat-option>
+      </mat-autocomplete>
+
+      <button *ngIf="i==0" (click)="AddVenue()" mat-icon-button><mat-icon>add</mat-icon></button>
+      <button *ngIf="i!=0" (click)="RemoveVenue(i)" mat-icon-button><mat-icon>remove</mat-icon></button>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width-details">
+        <mat-select [(ngModel)]="event.bodies_id" placeholder="Bodies" multiple required>
+          <mat-option *ngFor="let body of bodies"
+                      [value]="body.id">
+                  {{ body.name }}
+          </mat-option>
+          <mat-option *ngFor="let body of disabledBodies"
+                      [value]="body.id" disabled>
+                  {{ body.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="full-width-details">
+          <input matInput placeholder="Website URL"
+                    [(ngModel)]="event.website_url" rows=8>
+        </mat-form-field>
+      </div>
+
+    <div>
+      <mat-form-field class="full-width-details">
+        <textarea matInput placeholder="Description"
+                  [(ngModel)]="event.description" rows=8>
+        </textarea>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button color="accent"
+              class="full-width-details"
+              (click)="go()">
+        <ng-container *ngIf="!editing">Create</ng-container>
+        <ng-container *ngIf="editing">Update</ng-container>
+      </button>
+      <button mat-raised-button color="warn"
+              class="full-width-details action-button"
+              (click)="delete()"
+              *ngIf="editing"
+              [disabled]="!canDelete">
+        Delete
+      </button>
+    </div>
+    <br>
   </div>
 
-  <div>
-    <button mat-raised-button color="accent"
-            class="full-width-details"
-            (click)="go()">
-      <ng-container *ngIf="!editing">Create</ng-container>
-      <ng-container *ngIf="editing">Update</ng-container>
-    </button>
-    <button mat-raised-button color="warn"
-            class="full-width-details action-button"
-            (click)="delete()"
-            *ngIf="editing"
-            [disabled]="!canDelete">
-      Delete
-    </button>
   </div>
-  <br>
-</div>
 
-</div>
+  <div right class="md-preview">
+    <div class="rl-header head">Description Preview</div>
+    <div class="subh">
+      Styling with <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown</a> is supported
+    </div>
+    <markdown class="markdown" [data]="event.description"></markdown>
+  </div>
+
+</app-desktop-split>

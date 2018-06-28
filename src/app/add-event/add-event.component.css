@@ -4,10 +4,18 @@
     cursor: pointer;
 }
 
-@media (min-width: 768px) {
-    #main {
-        margin-bottom: 10px;
-    }
+.md-preview {
+    margin: 20px;
+}
+
+.md-preview .subh {
+    margin-left: 5px;
+    font-weight: 200;
+}
+
+.md-preview a {
+    color: var(--warn-color);
+    text-decoration: none;
 }
 
 .back-button {
