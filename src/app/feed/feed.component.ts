@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { IEvent } from '../interfaces';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+
+interface IEventContainer {
+  title: string;
+  events: IEvent[];
+}
 
 @Component({
   selector: 'app-feed',
@@ -9,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
+  public containers: IEventContainer[];
   public events: IEvent[];
   public selectedEvent: IEvent;
   public error: number;
@@ -22,10 +29,10 @@ export class FeedComponent implements OnInit {
   ngOnInit() {
     this.dataService.GetAllEvents().subscribe(result => {
         this.events = result.data;
-        this.events[0].venues_str = this.events[0].venues.map(v => v.short_name).join(', ');
         if (this.events.length === 0) {
           this.error = 204;
         }
+        this.containers = this.MakeContainers(result.data);
     }, (e) => {
       this.error = e.status;
     });
@@ -38,5 +45,37 @@ export class FeedComponent implements OnInit {
     } else {
       this.selectedEvent = event;
     }
+  }
+
+  /** Makes the events into containers */
+  MakeContainers(events: IEvent[]): IEventContainer[] {
+    const result: IEventContainer[] = [];
+
+    /** Static first tab */
+    const first = {} as IEventContainer;
+    first.title = 'Upcoming';
+    first.events = events.splice(0, 3);
+    result.push(first);
+
+    let prev = {title: this.getDateTitle(events[0]), events: []} as IEventContainer;
+    for (const event of events) {
+      event.venues_str = event.venues.map(v => v.short_name).join(', ');
+      const title = this.getDateTitle(event);
+      if (prev.title !== title) {
+        result.push(prev);
+        prev = {title: title, events: []} as IEventContainer;
+      }
+      prev.events.push(event);
+    }
+    return result;
+  }
+
+  /** Moment-fy date */
+  getDateTitle(event: IEvent): string {
+    if (event.start_time) {
+      const date = moment(event.start_time);
+      return date.format('DD MMM \'YY');
+    }
+    return 'More';
   }
 }
