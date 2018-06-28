@@ -65,7 +65,7 @@
 /* Desktop styles */
 
 .desktop {
-    overflow: hidden;
+    overflow-y: hidden;
     overflow-x: auto;
     width: 100%;
     white-space: nowrap;
@@ -83,11 +83,15 @@
     display: inline-block;
     padding: 2em;
     width: 17%;
+    white-space: pre-line;
+    height: 100%;
+    overflow: hidden;
 }
 
 .desktop .time {
     min-height: 100px;
-    font-size: 1em;
+    font-size: 0.95em;
+    padding-bottom: 5px;
 }
 
 .desktop .time-head {
