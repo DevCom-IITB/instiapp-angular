@@ -80,7 +80,7 @@
 .desktop .menu {
     display: inline-block;
     padding: 2em;
-    width: 17%;
+    width: 200px;
     white-space: pre-line;
     height: 100%;
     overflow: hidden;
