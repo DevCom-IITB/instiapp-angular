@@ -17,11 +17,11 @@
   </button>
 </div>
 
-<div class="header" [hidden]="seltab !== -1">
+<div class="rl-header header" [hidden]="seltab !== -1">
   Explore
 </div>
 
-<div class="header" [hidden]="seltab === -1">
+<div class="rl-header header" [hidden]="seltab === -1">
   <span [class.selected]="seltab === 0"
         (click)="selectTab(0)">
     All</span>

@@ -3,7 +3,7 @@
 <ng-container *ngIf="hostels">
 
   <div class="responsive-header">
-    <div *ngIf="currHostel" class="selected-hostel" [matMenuTriggerFor]="hostelMenu">
+    <div *ngIf="currHostel" class="rl-header selected-hostel" [matMenuTriggerFor]="hostelMenu">
       {{ currHostel.name }}
     </div>
 
@@ -67,7 +67,7 @@
 
   <div class="desktop desktop-main" *ngIf="menu && !dataService.isMobile()">
     <div class="menu" *ngFor="let menuday of menu">
-      <div class="day">{{ daysOfWeek[menuday.day] }}</div>
+      <div class="rl-header day">{{ daysOfWeek[menuday.day] }}</div>
       <div class="time">
         <div class="time-head">Breakfast</div>
         {{menuday.breakfast}}

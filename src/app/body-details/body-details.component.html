@@ -76,7 +76,7 @@
 
 <ng-template #information>
   <div class="subsection" *ngIf="body.events.length > 0">
-    <div class="subtitle">
+    <div class="rl-header subtitle">
       Events
     </div>
     <ng-container *ngFor="let event of body.events">
@@ -87,7 +87,7 @@
   </div>
 
   <div class="subsection" *ngIf="body.children.length > 0">
-    <div class="subtitle">
+    <div class="rl-header subtitle">
       Organizations
     </div>
     <ng-container *ngFor="let childbody of body.children">
@@ -98,7 +98,7 @@
   </div>
 
   <div class="subsection" *ngIf="body.roles.length > 0">
-      <div class="subtitle">
+      <div class="rl-header subtitle">
         People
       </div>
       <ng-container *ngFor="let role of body.roles">
@@ -110,7 +110,7 @@
   </div>
 
   <div class="subsection" *ngIf="body.parents.length > 0">
-    <div class="subtitle">
+    <div class="rl-header subtitle">
       Part of
     </div>
     <ng-container *ngFor="let parentbody of body.parents">

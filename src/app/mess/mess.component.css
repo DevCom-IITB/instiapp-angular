@@ -74,8 +74,6 @@
 
 .desktop .day {
     font-family: 'Roboto';
-    font-weight: 200;
-    font-size: 2.5em;
     padding-bottom: 0.8em;
 }
 
@@ -121,7 +119,6 @@
 
 .responsive-header .selected-hostel {
     font-family: 'Roboto';
-    font-weight: 200;
     display: inline-block;
 }
 

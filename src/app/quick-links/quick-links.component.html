@@ -1,6 +1,6 @@
 <div class="main">
   <div class="box" *ngFor="let section of sections">
-    <div class="heading">{{ section.title }}</div>
+    <div class="rl-header heading">{{ section.title }}</div>
     <div class="links-box">
       <a *ngFor="let link of section.links"
         [href]="link.href"
