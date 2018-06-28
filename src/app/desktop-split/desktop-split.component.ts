@@ -14,6 +14,12 @@ export class DesktopSplitComponent {
    */
   @Input() public hideOnMobile = 2;
 
+  /** True for right border on center element */
+  @Input() public centerRightBorder = false;
+
+  /** True for left border on right element */
+  @Input() public rightLeftBorder = true;
+
   constructor(
     public dataService: DataService,
   ) { }

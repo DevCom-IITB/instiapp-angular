@@ -15,7 +15,6 @@
         position: relative;
         width: 50%;
         float: left;
-        height: calc(100vh - 64px);
     }
 
     .right-comp {
@@ -25,6 +24,13 @@
         width: calc(100vw - 240px - (100vw - 240px) / 2);
         overflow-y: scroll;
         position: fixed;
+    }
+
+    .rightborder {
+        border-right: 2px solid lightgray;
+    }
+
+    .leftborder {
         border-left: 2px solid lightgray;
     }
 }
