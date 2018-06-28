@@ -1,8 +1,42 @@
-mat-nav-list {
-    padding: 0;
+.main {
+    padding: 10px 0 0 35px;
 }
 
-.section {
-    margin-top: 8px;
-    margin-bottom: 10px;
+.main .box {
+    display: inline-block;
+    width: 340px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.heading {
+    font-weight: 200;
+    font-size: 2.5em;
+    padding: 14px 0;
+}
+
+.links-box {
+    margin-left: 6px;
+}
+
+.link {
+    color: #1a1a1a;
+    font-size: 1.08em;
+    text-decoration: none;
+    line-height: 1.7em;
+}
+
+.link:hover {
+    color: var(--warn-color);
+}
+
+@media (max-width: 600px) {
+    .main {
+        padding: 0 0 20px 20px;
+    }
+
+    .main .box {
+        width: 100%;
+        height: auto;
+    }
 }
