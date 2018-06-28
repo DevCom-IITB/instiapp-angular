@@ -13,9 +13,18 @@
 
 .monthname {
     font-size: 2.4em;
-    font-family: 'Roboto';
     font-weight: 300;
     margin-left: 25px;
+}
+
+.weekday {
+    color: #cacaca;
+}
+
+.xunk-calendar-day {
+    -webkit-transition: background-color 100ms linear, color 100ms linear;
+    -ms-transition: background-color 100ms linear, color 100ms linear;
+    transition: background-color 100ms linear, color 100ms linear;
 }
 
 @media (min-width: 1000px) {
@@ -28,10 +37,4 @@
     button {
         font-size: 1.08em;
     }
-}
-
-.xunk-calendar-day {
-    -webkit-transition: background-color 100ms linear, color 100ms linear;
-    -ms-transition: background-color 100ms linear, color 100ms linear;
-    transition: background-color 100ms linear, color 100ms linear;
 }
