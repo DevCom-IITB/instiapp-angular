@@ -35,3 +35,10 @@
         width: calc(40vw);
     }
 }
+
+@media (max-width: 960px) {
+    .event-details-container {
+        left: 50vw;
+        width: 50vw;
+    }
+}
