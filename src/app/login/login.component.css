@@ -5,7 +5,8 @@
 .head {
     font-weight: 200;
     font-size: 1.35em;
-    width: 40%;
+    width: 100%;
+    max-width: 440px;
 }
 
 .login-button {
