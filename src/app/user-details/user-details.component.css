@@ -3,13 +3,12 @@
 }
 
 .profile-pic {
-    height: 170px;
-    width: 170px;
+    height: 130px;
+    width: 130px;
 }
 
 #head {
     padding: 15px 15px 0 20px;
-    display: flex;
     margin-bottom: 14px;
 }
 
@@ -19,13 +18,18 @@
     margin-bottom: 20px;
 }
 
+.body {
+    display: inline-block;
+    min-width: 300px;
+}
+
 #info-header {
-    margin: 30px 0 0 3%;
+    margin: 20px 0 0 0;
 }
 
 #info-header .sub-name {
     font-weight: 200;
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 .follow-sec {
@@ -37,13 +41,22 @@
 }
 
 @media (max-width: 768px) {
+    #head {
+        display: flex;
+    }
+
+    .body {
+        display: block;
+        min-width: auto;
+    }
+
     .profile-pic {
         height: 100px;
         width: 100px;
     }
 
     #info-header {
-        margin-top: 12px;
+        margin: 12px 0 0 3%;
     }
 
     .main {

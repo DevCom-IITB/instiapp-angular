@@ -19,7 +19,8 @@
   <div class="body-cards" *ngIf="profile.roles.length > 0">
     <app-body-card *ngFor="let role of profile.roles"
                   [body]="role.body_detail"
-                  [subtitle]="role.name">
+                  [subtitle]="role.name"
+                  class="body">
     </app-body-card>
   </div>
 
