@@ -45,9 +45,9 @@ export class ExploreComponent implements OnInit {
       return;
     }
 
-    if (query.length < 5) {
+    if (query.length < 3) {
       if (!noerror) {
-        this.snackBar.open('Invalid query - At least 5 characters', 'Dismiss', {
+        this.snackBar.open('Invalid query - At least 3 characters', 'Dismiss', {
           duration: 2000,
         });
       }
