@@ -51,6 +51,11 @@
                 *ngIf="dataService.CanEditEvent(event)">
               <mat-icon>edit</mat-icon>
           </button>
+          <button mat-icon-button
+                 [routerLink]="['/event', event.str_id]"
+                 *ngIf="desktopMode">
+              <mat-icon>open_in_new</mat-icon>
+          </button>
           <a mat-icon-button
             *ngIf="event.website_url && event.website_url !== ''"
             [href]="event.website_url"
