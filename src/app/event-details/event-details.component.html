@@ -1,17 +1,43 @@
 <app-xunk-spinner *ngIf="!event" [error]="error"></app-xunk-spinner>
 
-<div [class.desktop-10px]="!desktopMode"></div>
+<ng-container *ngIf="event && desktopMode">
+  <ng-container *ngTemplateOutlet="centerlayout"></ng-container>
+</ng-container>
 
-<div>
-  <div *ngIf="event"
-        class="detail-card"
-       [class.real-center]="!noCenter"
-       [class.full-width]="desktopMode"
-       [class.mat-elevation-z2]="!desktopMode">
+<app-desktop-split *ngIf="event && !desktopMode"
+    [rightLeftBorder]="false"
+    [centerRightBorder]="true">
+
+  <div center>
+    <ng-container *ngTemplateOutlet="centerlayout"></ng-container>
+  </div>
+
+  <div right class="right">
+    <div class="section">
+      <div class="rl-header sm">{{ event.name }}</div>
+      <div class="markdown">
+        <markdown [data]="event.description"></markdown>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="rl-header sm">Following</div>
+      <app-user-card *ngFor="let user of event.interested.concat(event.going)"
+                      [profile]="user"
+                      [role]="user.ldap_id">
+      </app-user-card>
+    </div>
+
+  </div>
+
+</app-desktop-split>
+
+<ng-template #centerlayout>
+  <div>
     <div class="theme-header primary-background-color">
       <img class="event-image"
-           [src]="event.image_url"
-           alt="">
+            [src]="event.image_url"
+            alt="">
 
       <div class="card-header">
         <div>
@@ -33,7 +59,7 @@
             <i class="fas fa-globe fa-lg"></i>
           </a>
           <button mat-icon-button
-                 (click)="share()">
+                  (click)="share()">
               <mat-icon>share</mat-icon>
           </button>
         </div>
@@ -45,27 +71,27 @@
 
     </div>
 
-    <div style="text-align:center">
-        <mat-checkbox [ngModel]="event.user_ues === 1"
-                      (change)="markUES(1);"
-                      [disabled]="!dataService.isLoggedIn()">
-          INTERESTED
-        </mat-checkbox>
-        &nbsp;&nbsp;&nbsp;
-        <mat-checkbox [ngModel]="event.user_ues === 2"
-                      (change)="markUES(2);"
-                      [disabled]="!dataService.isLoggedIn()">
-          GOING
-        </mat-checkbox>
+    <div class="u-actions">
+      <mat-checkbox [ngModel]="event.user_ues === 1"
+                    (change)="markUES(1);"
+                    [disabled]="!dataService.isLoggedIn()">
+        INTERESTED
+      </mat-checkbox>
+      &nbsp;&nbsp;&nbsp;
+      <mat-checkbox [ngModel]="event.user_ues === 2"
+                    (change)="markUES(2);"
+                    [disabled]="!dataService.isLoggedIn()">
+        GOING
+      </mat-checkbox>
     </div>
 
     <div class="event-body">
-      <div class="description markdown">
+      <div class="description markdown" *ngIf="desktopMode || dataService.isMobile()">
         <markdown [data]="event.description"></markdown>
       </div>
 
       <!-- Bodies conducting the event -->
-      <div>
+      <div class="bodies">
           <app-body-card
             *ngFor="let body of event.bodies"
             [body]="body">
@@ -73,6 +99,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="desktop-10px"></div>
+</ng-template>

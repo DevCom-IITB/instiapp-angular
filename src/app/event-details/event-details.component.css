@@ -30,6 +30,11 @@
     text-align: right;
 }
 
+.u-actions {
+    text-align:center;
+    margin-top: 5px;
+}
+
 .event-name {
     font-weight: bold;
     font-size: 1.2em;
@@ -54,6 +59,18 @@
     margin: 0 auto;
 }
 
-.full-width {
-    max-width: 1500px;
+.bodies {
+    margin-top: 10px;
+}
+
+.right {
+    margin: 20px;
+}
+
+.right .section {
+    margin-bottom: 30px;
+}
+
+.right .rl-header {
+    margin-bottom: 4px;
 }
