@@ -1,14 +1,14 @@
+<div class="main">
+  <div class="rl-header">Settings</div>
 
-<div *ngIf="user"
-      class="detail-card real-center section head mat-elevation-z2">
-  <app-user-card
-    [profile]="user"
-    role="You">
-  </app-user-card>
-</div>
+  <div *ngIf="user" class="card">
+    <app-user-card
+      [profile]="user"
+      role="You">
+    </app-user-card>
+  </div>
 
-<div class="detail-card form mat-elevation-z2 real-center section">
-  <mat-nav-list>
+  <div class="links">
     <a href="https://gymkhana.iitb.ac.in/sso/user/"
        mat-list-item target="_blank" rel="noopener">
         <mat-icon>account_circle</mat-icon> &nbsp; Update Profile
@@ -21,10 +21,12 @@
         mat-list-item>
         <mat-icon>info</mat-icon> &nbsp; About
     </a>
-    <a (click)="logout()"
-        mat-list-item
-       *ngIf="this.dataService.isLoggedIn()">
+    <a style="cursor: pointer"
+      (click)="logout()"
+       mat-list-item
+      *ngIf="this.dataService.isLoggedIn()">
         <mat-icon>exit_to_app</mat-icon> &nbsp; Logout
     </a>
-  </mat-nav-list>
+  </div>
+
 </div>

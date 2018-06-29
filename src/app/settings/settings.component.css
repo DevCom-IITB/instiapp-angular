@@ -1,12 +1,37 @@
-mat-nav-list {
-    padding: 0;
+.main {
+    padding: 10px 0 0 35px;
 }
 
-.section {
-    margin-top: 8px;
-    margin-bottom: 10px;
+.card {
+    margin: 7px 0;
 }
 
-.head {
-    background-color: transparent
+.links {
+    margin-left: 35px;
+}
+
+.links a {
+    color: #1a1a1a;
+    font-size: 1.2em;
+    text-decoration: none;
+    line-height: 2.1em;
+    display: block;
+}
+
+mat-icon {
+    font-size: 1.2em;
+    vertical-align: middle !important;
+}
+
+.links a:hover {
+    color: var(--warn-color);
+}
+
+@media (max-width: 600px) {
+    .main {
+        padding: 10px 0 20px 0;
+    }
+    .rl-header {
+        margin-left: 20px;
+    }
 }
