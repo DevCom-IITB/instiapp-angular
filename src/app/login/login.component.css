@@ -1,27 +1,14 @@
-.heading {
-    text-align: center;
-    font-size: 1.1em;
-    margin-top: 6px;
+.main {
+    margin: 30px;
+}
+
+.head {
+    font-weight: 200;
+    font-size: 1.35em;
+    width: 40%;
 }
 
 .login-button {
-    width: 100%;
-    max-width: 300px;
-    margin-top: 10px;
-    border-radius: 40px;
-}
-
-.logo {
-    border-radius: 50px;
-}
-
-.login-container {
-    background-color: whitesmoke;
-    padding: 20px;
-    padding-top: 5px;
-    border-radius: 40px;
-    margin-top: 30px;
-    max-width: 300px;
-    left: 50%;
-    width: auto;
+    width: 150px;
+    margin-top: 20px;
 }
