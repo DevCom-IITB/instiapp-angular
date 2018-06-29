@@ -179,10 +179,13 @@ mat-form-field, mat-form-field * {
     font-size: 2.5em;
 }
 
+.rl-header.sm {
+    font-size: 2em;
+}
+
 @media (max-width: 768px) {
-    .rl-header {
-        font-size: 1.5em;
-    }
+    .rl-header { font-size: 1.5em; }
+    .rl-header.sm { font-size: 1.3em; }
 }
 
 @media (min-width: 768px){

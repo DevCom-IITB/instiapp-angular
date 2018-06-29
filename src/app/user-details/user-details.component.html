@@ -1,22 +1,21 @@
 <app-xunk-spinner *ngIf="!profile" [error]="error"></app-xunk-spinner>
 
-<div class="desktop-10px"></div>
-
-<div class="detail-card real-center mat-elevation-z3" *ngIf="profile">
+<div *ngIf="profile" class="main">
   <!-- Head information -->
   <div id="head">
     <img [src]="profile.profile_pic"
          src-fallback="assets/useravatar.svg"
          class="profile-pic img-circle object-cover">
     <div id="info-header">
-      <b>{{ profile.name }}</b><br>
-      <span class="grey-text-on-white">
+      <div class="rl-header sm">{{ profile.name }}</div>
+      <span class="sub-name">
         {{ profile.roll_no }}<br>
         {{ profile.email }}
       </span>
     </div>
   </div>
 
+  <!-- Roles -->
   <div class="body-cards" *ngIf="profile.roles.length > 0">
     <app-body-card *ngFor="let role of profile.roles"
                   [body]="role.body_detail"
@@ -24,42 +23,21 @@
     </app-body-card>
   </div>
 
-  <mat-divider *ngIf="profile.roles.length > 0"></mat-divider>
+  <div>
+    <div class="follow-sec">
+      <div class="rl-header sm">Following</div>
+      <app-body-card
+        *ngFor="let body of profile.followed_bodies"
+        [body]="body">
+      </app-body-card>
+    </div>
 
-  <br>
-
-  <!-- Tabbed information -->
-  <mat-tab-group class="tab-group" mat-stretch-tabs>
-      <mat-tab label="Following">
-        <div class="tab-content">
-
-          <div *ngIf="profile.followed_bodies.length === 0" class="nothing-tab">
-            <img src="/assets/suncloud.svg"><br>
-            Still looking around ...
-          </div>
-
-          <app-body-card
-            *ngFor="let body of profile.followed_bodies"
-            [body]="body">
-          </app-body-card>
-
-        </div>
-      </mat-tab>
-      <mat-tab label="Events">
-        <div class="tab-content">
-
-          <div *ngIf="events.length === 0" class="nothing-tab">
-            <img src="/assets/suncloud.svg"><br>
-            No events followed (yet)
-          </div>
-
-          <app-event-card
-              *ngFor="let event of events"
-              [event]="event">
-          </app-event-card>
-
-        </div>
-      </mat-tab>
-  </mat-tab-group>
-
+    <div class="follow-sec">
+      <div class="rl-header sm">Events</div>
+      <app-event-card
+          *ngFor="let event of events"
+          [event]="event">
+      </app-event-card>
+    </div>
+  </div>
 </div>

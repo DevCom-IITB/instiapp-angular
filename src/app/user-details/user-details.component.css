@@ -1,33 +1,52 @@
+.main {
+    margin: 7px 0 0 5%;
+}
+
 .profile-pic {
-    height: 100px;
-    width: 100px;
+    height: 170px;
+    width: 170px;
 }
 
 #head {
     padding: 15px 15px 0 20px;
     display: flex;
+    margin-bottom: 14px;
 }
 
 .body-cards {
     padding: 0 20px;
-    margin-top: 0.6em;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 #info-header {
-    margin-top: 15px;
-    margin-left: 5%;
-    margin-right: 0;
+    margin: 30px 0 0 3%;
 }
 
-.tab-group {
-    width: 100%;
+#info-header .sub-name {
+    font-weight: 200;
+    font-size: 1.2em;
 }
 
-.tab-content {
-    min-height: 35vh;
-    width: 100%;
+.follow-sec {
+    margin: 20px;
 }
 
-.nothing-tab img {
-    padding-bottom: 7px;
+.follow-sec .rl-header {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .profile-pic {
+        height: 100px;
+        width: 100px;
+    }
+
+    #info-header {
+        margin-top: 12px;
+    }
+
+    .main {
+        margin: 0;
+    }
 }
