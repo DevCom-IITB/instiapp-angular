@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Title } from '@angular/platform-browser';
 import { DataService } from './data.service';
@@ -7,6 +7,7 @@ import { Helpers } from './helpers';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ export class AppComponent implements OnDestroy, OnInit {
     public router: Router,
     public snackBar: MatSnackBar,
     private swUpdate: SwUpdate,
+    private cookieService: CookieService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => {
@@ -95,6 +97,10 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Redirects to login */
   login() {
+    if (!this.router.url.includes('login')) {
+      const path = [this.router.url];
+      this.cookieService.set('loginredir', this.dataService.EncodeObject(path));
+    }
     window.location.href = this.dataService.GetLoginURL();
   }
 

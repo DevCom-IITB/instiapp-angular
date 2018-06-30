@@ -23,6 +23,7 @@ import { CustomReuseStrategy } from './routing';
 import { XunkCalendarModule } from 'xunk-calendar';
 import { ShareButtonModule } from '@ngx-share/button';
 import { FlyoutModule } from 'ngx-flyout';
+import { CookieService } from 'ngx-cookie-service';
 
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
@@ -141,6 +142,7 @@ import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
     DataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })
