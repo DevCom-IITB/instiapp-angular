@@ -68,4 +68,11 @@ export module Helpers {
         return false;
     }
 
+    /** Strips img tags replacing with alt from string */
+    export function stripImg(str: string): string {
+        return str.replace(/<img.*?alt="(.*?)"[^\>]+>/g, '$1')      // Alt with ""
+                  .replace(/<img.*?alt='(.*?)'[^\>]+>/g, '$1')      // Alt with ''
+                  .replace(/<img[^>]*>/g, '');                      // No alt
+    }
+
 }

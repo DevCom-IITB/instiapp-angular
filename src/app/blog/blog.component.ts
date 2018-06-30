@@ -26,6 +26,7 @@ export class BlogComponent implements OnInit, OnDestroy {
       if (params['blog']) {
         this.blog_url = this.dataService.DecodeObject(params['blog']);
         this.dataService.FireGET<any[]>(this.blog_url).subscribe(result => {
+          result.forEach((i) => i.content = Helpers.stripImg(i.content));
           this.feed = result;
         }, (e) => {
           this.error = e.status;
