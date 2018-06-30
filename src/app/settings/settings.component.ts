@@ -28,7 +28,7 @@ export class SettingsComponent implements OnInit {
   logout() {
     return this.dataService.FireGET(API.Logout).subscribe(() => {
       this.dataService.PostLogout();
-      this.snackBar.open('Logged Out successfully', 'Dismiss', {
+      this.snackBar.open('Logged out successfully', 'Dismiss', {
         duration: 2000,
       });
     });
