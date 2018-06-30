@@ -4,7 +4,7 @@
   <mat-form-field class="searchinput">
       <input matInput type="search"
               name="search" [(ngModel)]="searchQ"
-              (keyup.enter)="search(searchQ, false)"
+              (keyup)="search(searchQ, true)"
               placeholder="Search">
       <mat-hint align="start">Find Organizations, Events and People </mat-hint>
   </mat-form-field>

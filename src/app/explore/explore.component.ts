@@ -54,13 +54,11 @@ export class ExploreComponent implements OnInit {
       return;
     }
 
-    this.isloading = true;
     this.dataService.FireGET<any>(API.Search, {query: query}).subscribe(result => {
       this.bodies = result.bodies;
       this.events = result.events;
       this.users = result.users;
       if (this.seltab === -1) { this.selectTab(0); }
-      this.isloading = false;
     });
   }
 
