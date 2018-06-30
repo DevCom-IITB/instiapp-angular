@@ -10,7 +10,9 @@ import { DataService } from '../data.service';
 export class LoginComponent implements OnInit {
 
   /** Currently authenticating */
-  public authenticating = true;
+  public authenticating = false;
+
+  public error;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -26,11 +28,15 @@ export class LoginComponent implements OnInit {
 
     const params = this.activatedRoute.snapshot.queryParams;
     if (params.hasOwnProperty('code')) {
+      this.authenticating = true;
       const auth_code = params['code'];
       this.dataService.AuthenticateSSO(auth_code).subscribe(() => {
         this.dataService.GetFillCurrentUser().subscribe(user => {
           this.router.navigate(['feed']);
         });
+      }, (e) => {
+        console.log(e);
+        this.error = e.status;
       });
     } else {
       this.authenticating = false;

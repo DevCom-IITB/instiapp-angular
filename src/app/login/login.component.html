@@ -1,4 +1,6 @@
-<div class="main">
+<app-xunk-spinner *ngIf="authenticating || error" [error]="error"></app-xunk-spinner>
+
+<div class="main" *ngIf="!authenticating && !error">
   <div class="head">
     Follow events, get updates on internships, placements and more. Login with your LDAP account to continue.
   </div>
