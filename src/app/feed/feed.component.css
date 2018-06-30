@@ -48,4 +48,8 @@
     .date-header {
         margin-left: 20px;
     }
+
+    .events-block {
+        margin-bottom: 0;
+    }
 }

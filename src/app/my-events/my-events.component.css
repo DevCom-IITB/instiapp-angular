@@ -4,3 +4,9 @@
     right: 20px;
     z-index: 5;
 }
+
+@media (max-width: 768px) {
+    .top-gap {
+        height: 10px;
+    }
+}

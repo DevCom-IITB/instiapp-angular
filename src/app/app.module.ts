@@ -125,7 +125,7 @@ import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
       { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
-      { path: 'login', component: LoginComponent, data: { state: 'overlay' } },
+      { path: 'login', component: LoginComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },
     ]),
 
