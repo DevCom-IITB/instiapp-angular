@@ -116,7 +116,7 @@ mat-form-field, mat-form-field * {
 }
 
 .markdown a {
-    color: rgb(10, 180, 206);
+    color: var(--primary-color);
     text-decoration: none;
 }
 
