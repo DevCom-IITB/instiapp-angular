@@ -13,6 +13,7 @@
     display: flex;
     padding: 12px;
     padding-bottom: 0;
+    margin-top: 2px;
 }
 
 .share-div {
@@ -73,4 +74,27 @@
 
 .right .rl-header {
     margin-bottom: 4px;
+}
+
+.follow-div {
+    text-align: right;
+    margin: -0.6em 0.4em 0.1em 0;
+}
+
+.follow-button {
+    line-height: 2em;
+    transition: background-color 0.2s ease;
+    margin-left: 4px;
+    margin-top: 2px;
+}
+
+.following {
+    background-color: var(--accent-color);
+    color: black;
+}
+
+@media (min-width: 768px) {
+    .follow-div {
+        margin-top: -1em;
+    }
 }

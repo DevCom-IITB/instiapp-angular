@@ -70,24 +70,26 @@
         </div>
       </div>
 
+      <div class="follow-div">
+        <button mat-button
+                class="follow-button"
+              [class.following]="event.user_ues === 1"
+              (click)="markUES(1);"
+              [disabled]="!dataService.isLoggedIn()">
+          Interested
+        </button>
+        <button mat-button
+                class="follow-button"
+              [class.following]="event.user_ues === 2"
+              (click)="markUES(2);"
+              [disabled]="!dataService.isLoggedIn()">
+          Going
+        </button>
+      </div>
+
       <div class="share-div" *ngIf="shareShowing">
           <app-my-share-buttons [url]="shareUrl()"></app-my-share-buttons>
       </div>
-
-    </div>
-
-    <div class="u-actions">
-      <mat-checkbox [ngModel]="event.user_ues === 1"
-                    (change)="markUES(1);"
-                    [disabled]="!dataService.isLoggedIn()">
-        INTERESTED
-      </mat-checkbox>
-      &nbsp;&nbsp;&nbsp;
-      <mat-checkbox [ngModel]="event.user_ues === 2"
-                    (change)="markUES(2);"
-                    [disabled]="!dataService.isLoggedIn()">
-        GOING
-      </mat-checkbox>
     </div>
 
     <div class="event-body">
