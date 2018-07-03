@@ -9,8 +9,7 @@
 }
 
 .card-header {
-    padding: 12px;
-    padding-bottom: 8px;
+    padding: 12px 0 8px 0;
 }
 
 .details-view > div {
@@ -18,15 +17,9 @@
     padding-left: 10px;
 }
 
-.half-width {
-    left: 1%;
-    width: 45%;
-    padding-right: 0;
-}
-
 .full-width-details {
-    left: 2%;
-    width: calc(96%);
+    left: 5%;
+    width: 90%;
 }
 
 .md-preview {
@@ -41,4 +34,11 @@
 .md-preview a {
     color: var(--warn-color);
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .full-width-details {
+        left: 2%;
+        width: 96%;
+    }
 }

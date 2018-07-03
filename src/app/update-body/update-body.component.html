@@ -14,7 +14,7 @@
           (click)="file.click()">
 
       <div class="card-header primary-background-color">
-          <mat-form-field color="accent" class="full-width">
+          <mat-form-field color="accent" class="full-width-details">
             <input [(ngModel)]="body.name" matInput required #bodyName
                   name="body_name" placeholder="Body Name">
             <mat-hint align="end">{{bodyName.value.length}} / 50</mat-hint>
