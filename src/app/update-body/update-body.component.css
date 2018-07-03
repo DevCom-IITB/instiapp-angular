@@ -36,7 +36,7 @@
     text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .full-width-details {
         left: 2%;
         width: 96%;
