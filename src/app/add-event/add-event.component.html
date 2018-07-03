@@ -14,7 +14,7 @@
         (click)="file.click()">
 
     <div class="card-header primary-background-color">
-        <mat-form-field color="accent" class="full-width">
+        <mat-form-field color="accent" class="full-width-details">
           <input [(ngModel)]="event.name" matInput required #eventName
                 name="event_name" placeholder="Event Name">
           <mat-hint align="end">{{eventName.value.length}} / 50</mat-hint>
@@ -44,8 +44,8 @@
       </mat-form-field>
     </div>
 
-    <div class="full-width-details" *ngFor="let vn of event.venues; let i = index">
-      <mat-form-field style="width: calc(98% - 50px); left: 1%;">
+    <div *ngFor="let vn of event.venues; let i = index">
+      <mat-form-field class="full-width-details venue">
           <input matInput placeholder="Venue" aria-label="Venue"
                 [matAutocomplete]="venueAuto"
                 [formControl]="venueControls[i].form">

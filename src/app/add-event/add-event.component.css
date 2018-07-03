@@ -36,20 +36,34 @@
 }
 
 .half-width {
-    left: 1%;
-    width: 45%;
+    left: 5%;
+    width: 42.5%;
     padding-right: 0;
 }
 
 .middle-gap {
-    padding-right:4%;
+    padding-right:5%;
 }
 
 .full-width-details {
-    left: 1%;
-    width: calc(98%);
+    left: 5%;
+    width: 90%;
 }
 
 .action-button {
     margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .full-width-details {
+        left: 1%;
+        width: 98%;
+    }
+    .half-width {
+        left: 1%;
+        width: 47%;
+    }
+    .venue {
+        width: calc(98% - 36px);
+    }
 }
