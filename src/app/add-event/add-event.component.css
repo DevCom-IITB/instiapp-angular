@@ -54,7 +54,7 @@
     margin-top: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .full-width-details {
         left: 1%;
         width: 98%;
