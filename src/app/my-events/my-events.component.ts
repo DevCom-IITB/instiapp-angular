@@ -1,31 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IBodyRole, IBody, IEvent, IEventContainer } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-my-events',
   templateUrl: './my-events.component.html',
   styleUrls: ['./my-events.component.css']
 })
-export class MyEventsComponent implements OnInit {
+export class MyEventsComponent implements OnInit, OnDestroy {
   public error: number;
   public containers: IEventContainer[];
   public hasRole = false;
+  public subscription: Subscription;
 
   constructor(
     public dataService: DataService,
   ) { }
 
   ngOnInit() {
-    const followedEvents = this.dataService.getFollowedEvents();
     this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
       const roles = result as IBodyRole[];
       this.hasRole = roles.length > 0;
-      this.containers = this.MakeContainers(roles, followedEvents);
+      this.containers = this.MakeContainers(roles, this.dataService.getFollowedEvents());
+
+      /* Update followed events */
+      this.subscription = this.dataService.loggedInObservable.subscribe(isLoggedIn => {
+        if (isLoggedIn) {
+          this.containers = this.MakeContainers(roles, this.dataService.getFollowedEvents());
+        }
+      });
+      this.dataService.updateUser();
     }, (e) => {
       this.error = e.status;
     });
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   /** Make containers from followed and roles */

@@ -38,6 +38,7 @@ export class DataService {
 
   /* Constants */
   public LOGIN_REDIR = 'login_redir';
+  public LS_USER = 'user_profile';
 
   constructor(
     private http: HttpClient,
@@ -196,21 +197,58 @@ export class DataService {
   GetFillCurrentUser(): Observable<IUserProfile> {
     return Observable.create(observer => {
       if (!this._currentUser) {
+        /* Try to get from localStorage */
+        if (localStorage.getItem(this.LS_USER) !== null) {
+          const user = JSON.parse(localStorage.getItem(this.LS_USER));
+          this.loginUser(observer, user, false);
+          this.updateUser();
+          return;
+        }
+
+        /* Fire a get */
         this.FireGET<any>(API.LoggedInUser).subscribe(result => {
-          this._loggedIn = true;
-          this._currentUser = result.profile;
-          console.log(this._currentUser.name + ' is logged in');
-          observer.next(this._currentUser);
-          this._loggedInSubject.next(true);
-          observer.complete();
+          this.loginUser(observer, result.profile, true);
         }, (error) => {
-          console.log(error.error);
           observer.error(error);
         });
+
       } else {
         observer.next(this._currentUser);
         observer.complete();
       }
+    });
+  }
+
+  /** Helper to log in the user with the given user object */
+  loginUser(observer: any, profile: IUserProfile, setLocal: Boolean) {
+    this._loggedIn = true;
+    this._currentUser = profile;
+
+    /* Set local storage */
+    if (setLocal) {
+      localStorage.setItem(this.LS_USER, JSON.stringify(profile));
+      console.log(this._currentUser.name + ' is logged in');
+    }
+
+    observer.next(this._currentUser);
+    this._loggedInSubject.next(true);
+    observer.complete();
+  }
+
+  /** Updates the current user profile */
+  updateUser() {
+    if (!this._loggedIn) { return; }
+
+    /* Update the profile */
+    this.FireGET<any>(API.LoggedInUser).subscribe(result => {
+      this._currentUser = result.profile;
+      this._loggedInSubject.next(true);
+    }, (error) => {
+      if (error.status === 401) {
+        alert('Your session has expired');
+        this.PostLogout();
+      }
+      this._loggedInSubject.next(false);
     });
   }
 
@@ -243,6 +281,7 @@ export class DataService {
     this._loggedIn = false;
     this._loggedInSubject.next(false);
     this._currentUser = null;
+    localStorage.removeItem(this.LS_USER);
   }
 
   /**
