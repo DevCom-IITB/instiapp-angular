@@ -36,6 +36,9 @@ export class DataService {
   /** Function called when user reaches bottom of content */
   public scrollBottomFunction = noop;
 
+  /* Constants */
+  public LOGIN_REDIR = 'login_redir';
+
   constructor(
     private http: HttpClient,
     public router: Router,

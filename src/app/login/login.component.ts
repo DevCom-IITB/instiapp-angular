@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public dataService: DataService,
     public router: Router,
-    public cookieService: CookieService,
   ) { }
 
   ngOnInit() {
@@ -34,9 +32,9 @@ export class LoginComponent implements OnInit {
       const auth_code = params['code'];
       this.dataService.AuthenticateSSO(auth_code).subscribe(() => {
         this.dataService.GetFillCurrentUser().subscribe(user => {
-          const redir = this.cookieService.get('loginredir');
+          const redir = localStorage.getItem(this.dataService.LOGIN_REDIR);
           if (redir && redir !== '') {
-            this.cookieService.set('loginredir', '');
+            localStorage.setItem(this.dataService.LOGIN_REDIR, '');
             const rpath: any[] = this.dataService.DecodeObject(redir);
             this.router.navigate(rpath);
           } else {

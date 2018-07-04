@@ -7,7 +7,6 @@ import { Helpers } from './helpers';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +27,6 @@ export class AppComponent implements OnDestroy, OnInit {
     public router: Router,
     public snackBar: MatSnackBar,
     private swUpdate: SwUpdate,
-    private cookieService: CookieService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => {
@@ -99,7 +97,7 @@ export class AppComponent implements OnDestroy, OnInit {
   login() {
     if (!this.router.url.includes('login')) {
       const path = [this.router.url];
-      this.cookieService.set('loginredir', this.dataService.EncodeObject(path));
+      localStorage.setItem(this.dataService.LOGIN_REDIR, this.dataService.EncodeObject(path));
     }
     window.location.href = this.dataService.GetLoginURL();
   }
