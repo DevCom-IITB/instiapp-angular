@@ -6,7 +6,13 @@
     "theme_color": "#536dfe",
     "background_color": "#ffffff",
     "orientation": "portrait",
-
+    "prefer_related_applications": true,
+    "related_applications": [
+      {
+        "platform": "play",
+        "id": "app.insti"
+      }
+    ],
     "icons": [
         {
          "src": "assets/icons/android-icon-36x36.png",
