@@ -27,6 +27,12 @@
             <i class="fas fa-globe fa-lg"></i>
           </a>
           <button mat-icon-button
+                 *ngIf="body.blog_url"
+                 [routerLink]="['/news']"
+                 [queryParams]="{body: body.id}">
+              <mat-icon>rss_feed</mat-icon>
+          </button>
+          <button mat-icon-button
                 (click)="share()">
               <mat-icon>share</mat-icon>
           </button>

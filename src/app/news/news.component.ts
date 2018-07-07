@@ -4,6 +4,7 @@ import { API } from '../../api';
 import { Helpers } from '../helpers';
 import { noop } from 'rxjs';
 import { INewsEntry } from '../interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -12,12 +13,15 @@ import { INewsEntry } from '../interfaces';
 })
 export class NewsComponent implements OnInit, OnDestroy {
   public feed: INewsEntry[];
+  public bodyid: string;
+
   loading = false;
   allLoaded = false;
   public error;
 
   constructor(
     public dataService: DataService,
+    public activatedRoute: ActivatedRoute,
   ) { }
 
   public reactions = [
@@ -30,7 +34,12 @@ export class NewsComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit() {
-    this.dataService.FireGET<INewsEntry[]>(API.NewsFeed, { from: 0, num: 10}).subscribe(result => {
+    /* Check for body query param */
+    const params = this.activatedRoute.snapshot.queryParams;
+    this.bodyid = params['body'];
+
+    /* Get news feed */
+    this.dataService.FireGET<INewsEntry[]>(API.NewsFeed, { from: 0, num: 10, body: this.bodyid}).subscribe(result => {
       this.feed = result;
     }, (e) => {
       this.error = e.status;
@@ -55,7 +64,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     if (!this.feed || this.allLoaded || this.loading) { return; }
     Helpers.CheckScrollBottom(() => {
       this.loading = true;
-      this.dataService.FireGET<any[]>(API.NewsFeed, { from: this.feed.length, num: 10}).subscribe(result => {
+      this.dataService.FireGET<any[]>(API.NewsFeed, { from: this.feed.length, num: 10, body: this.bodyid}).subscribe(result => {
         if (result.length === 0) { this.allLoaded = true; }
         this.feed = this.feed.concat(result);
         this.loading = false;

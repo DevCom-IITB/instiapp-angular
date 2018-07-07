@@ -24,7 +24,7 @@ export const API = {
     PlacementBlog: 'api/placement-blog{?from,num}',
     TrainingBlog: 'api/training-blog{?from,num}',
 
-    NewsFeed: 'api/news{?from,num}',
+    NewsFeed: 'api/news{?from,num,body}',
     NewsFeedReaction: 'api/user-me/unr/{uuid}{?reaction}',
 
     Mess: 'api/mess',
