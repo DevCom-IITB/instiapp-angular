@@ -5,6 +5,9 @@
 <div class="rl-header main-title"
     *ngIf="!dataService.isMobile()">
   Freshly In
+  <ng-container *ngIf="bodyid && feed">
+    - {{ feed[0].body.name }}
+  </ng-container>
 </div>
 
 <ng-container *ngIf="feed">
