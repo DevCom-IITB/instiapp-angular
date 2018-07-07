@@ -1,7 +1,7 @@
 {
     "/api/**": {
       "target": {
-          "host": "temp-iitb.radialapps.com",
+          "host": "insti.app",
           "protocol": "https:",
           "port": 443
         },
