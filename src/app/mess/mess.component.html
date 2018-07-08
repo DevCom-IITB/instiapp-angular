@@ -21,13 +21,13 @@
   </div>
 
   <div class="real-center" *ngIf="menu && dataService.isMobile()">
-    <div class="mess-card" *ngFor="let menuday of menu">
-      <div class="mess-card-head primary-background-color mat-elevation-z1">{{ daysOfWeek[menuday.day] }}</div>
+    <div class="mess-card mat-elevation-z1" *ngFor="let menuday of menu">
+      <div class="mess-card-head primary-background-color">{{ daysOfWeek[menuday.day] }}</div>
 
       <table class="mess-table">
         <tr>
           <td>
-            <mat-card>
+            <mat-card class="sub-card">
               <mat-card-header>
                 <mat-card-title>Breakfast</mat-card-title>
                 <mat-card-subtitle>{{menuday.breakfast}}</mat-card-subtitle>
@@ -35,7 +35,7 @@
             </mat-card>
           </td>
           <td>
-              <mat-card>
+              <mat-card class="sub-card">
                 <mat-card-header>
                   <mat-card-title>Lunch</mat-card-title>
                   <mat-card-subtitle>{{menuday.lunch}}</mat-card-subtitle>
@@ -45,7 +45,7 @@
         </tr>
         <tr>
           <td>
-            <mat-card>
+            <mat-card class="sub-card">
               <mat-card-header>
                 <mat-card-title>Snacks</mat-card-title>
                 <mat-card-subtitle>{{menuday.snacks}}</mat-card-subtitle>
@@ -53,7 +53,7 @@
             </mat-card>
           </td>
           <td>
-            <mat-card>
+            <mat-card class="sub-card">
               <mat-card-header>
                 <mat-card-title>Dinner</mat-card-title>
                 <mat-card-subtitle>{{menuday.dinner}}</mat-card-subtitle>
