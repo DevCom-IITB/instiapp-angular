@@ -22,46 +22,23 @@
 
   <div class="real-center" *ngIf="menu && dataService.isMobile()">
     <div class="mess-card mat-elevation-z1" *ngFor="let menuday of menu">
-      <div class="mess-card-head primary-background-color">{{ daysOfWeek[menuday.day] }}</div>
-
-      <table class="mess-table">
-        <tr>
-          <td>
-            <mat-card class="sub-card">
-              <mat-card-header>
-                <mat-card-title>Breakfast</mat-card-title>
-                <mat-card-subtitle>{{menuday.breakfast}}</mat-card-subtitle>
-              </mat-card-header>
-            </mat-card>
-          </td>
-          <td>
-              <mat-card class="sub-card">
-                <mat-card-header>
-                  <mat-card-title>Lunch</mat-card-title>
-                  <mat-card-subtitle>{{menuday.lunch}}</mat-card-subtitle>
-                </mat-card-header>
-              </mat-card>
-            </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-card class="sub-card">
-              <mat-card-header>
-                <mat-card-title>Snacks</mat-card-title>
-                <mat-card-subtitle>{{menuday.snacks}}</mat-card-subtitle>
-              </mat-card-header>
-            </mat-card>
-          </td>
-          <td>
-            <mat-card class="sub-card">
-              <mat-card-header>
-                <mat-card-title>Dinner</mat-card-title>
-                <mat-card-subtitle>{{menuday.dinner}}</mat-card-subtitle>
-              </mat-card-header>
-            </mat-card>
-          </td>
-        </tr>
-      </table>
+      <div class="mess-card-head">{{ daysOfWeek[menuday.day] }}</div>
+      <div class="time">
+        <div class="head">Breakfast</div>
+        <div class="menu">{{menuday.breakfast}}</div>
+      </div>
+      <div class="time">
+        <div class="head">Lunch</div>
+        <div class="menu">{{menuday.lunch}}</div>
+      </div>
+      <div class="time">
+        <div class="head">Snacks</div>
+        <div class="menu">{{menuday.snacks}}</div>
+      </div>
+      <div class="time">
+        <div class="head">Dinner</div>
+        <div class="menu">{{menuday.dinner}}</div>
+      </div>
     </div>
   </div>
 
