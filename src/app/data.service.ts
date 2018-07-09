@@ -8,6 +8,7 @@ import * as uriTemplates from 'uri-templates';
 import { API } from '../api';
 import { Location } from '@angular/common';
 import { Helpers } from './helpers';
+import { Title } from '@angular/platform-browser';
 
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -30,6 +31,10 @@ export class DataService {
   private _loggedInSubject: Subject<boolean>;
   public loggedInObservable: Observable<boolean>;
 
+  /* Observable for title */
+  private _titleSubject: Subject<string>;
+  public titleObservable: Observable<string>;
+
   /** User Profile of the logged in user */
   private _currentUser: IUserProfile;
 
@@ -44,10 +49,14 @@ export class DataService {
     private http: HttpClient,
     public router: Router,
     public location: Location,
+    public titleService: Title,
   ) {
     /* Initialize */
     this._loggedInSubject = new Subject<boolean>();
     this.loggedInObservable = this._loggedInSubject.asObservable();
+
+    this._titleSubject = new Subject<string>();
+    this.titleObservable = this._titleSubject.asObservable();
   }
 
   /**
@@ -374,6 +383,12 @@ export class DataService {
   /** Current user profile: Check if logged in first */
   getCurrentUser() {
     return this._currentUser;
+  }
+
+  /** Set the HTML title */
+  setTitle(title: string) {
+    this.titleService.setTitle(title);
+    this._titleSubject.next(title);
   }
 
 }

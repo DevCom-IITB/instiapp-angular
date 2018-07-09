@@ -92,6 +92,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.dataService.setTitle('Map');
     this.searchForm = new FormControl();
     this.filteredOptions = this.searchForm.valueChanges.pipe(
       map(result =>

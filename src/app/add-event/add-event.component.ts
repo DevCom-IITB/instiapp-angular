@@ -91,6 +91,8 @@ export class AddEventComponent implements OnInit {
     if (this.eventId) {
       this.editing = true;
       this.dataService.GetEvent(this.eventId).subscribe(result => {
+        this.dataService.setTitle(result.name);
+
         /* Set up filtering */
         for (const vn of result.venues) {
           const fcontrol = this.getFilterForm(vn);
@@ -120,6 +122,7 @@ export class AddEventComponent implements OnInit {
       });
     } else {
       this.initializeBlank();
+      this.dataService.setTitle('Add Event');
     }
   }
 

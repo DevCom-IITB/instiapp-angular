@@ -4,6 +4,8 @@ import { IEvent, IEventContainer } from '../interfaces';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 
+export const TITLE = 'Feed';
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -23,10 +25,15 @@ export class FeedComponent implements OnInit {
 
   /** Initialize initial list wiht API call */
   ngOnInit() {
+    /* If this is a child component */
     if (this.containers) {
       return;
     }
 
+    /* Set title */
+    this.dataService.setTitle(TITLE);
+
+    /* Get all events */
     this.dataService.GetAllEvents().subscribe(result => {
         this.events = result.data;
         if (this.events.length === 0) {

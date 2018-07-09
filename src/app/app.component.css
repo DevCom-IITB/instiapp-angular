@@ -70,10 +70,9 @@
     border: 0;
 }
 
-h1.example-app-name {
+h1.app-name {
     margin-left: 8px;
     text-decoration: none;
-    cursor:pointer;
 }
 
 .sidenav-container {

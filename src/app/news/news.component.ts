@@ -34,6 +34,8 @@ export class NewsComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit() {
+    this.dataService.setTitle('News');
+
     /* Check for body query param */
     const params = this.activatedRoute.snapshot.queryParams;
     this.bodyid = params['body'];

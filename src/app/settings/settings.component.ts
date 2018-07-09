@@ -19,6 +19,7 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.dataService.setTitle('Settings');
     if (this.dataService.isLoggedIn()) {
       this.user = this.dataService.getCurrentUser();
     }

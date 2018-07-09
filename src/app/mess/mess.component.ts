@@ -25,6 +25,10 @@ export class MessComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /* Set title */
+    this.dataService.setTitle('Mess Menu');
+
+    /* Get all mess menus (hostels) */
     this.dataService.FireGET<IHostel[]>(API.Mess).subscribe(result => {
       this.hostels = result.sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true}));
       if (this.dataService.isLoggedIn()) {

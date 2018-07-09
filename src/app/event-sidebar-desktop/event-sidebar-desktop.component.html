@@ -6,7 +6,8 @@
     <div right *ngIf="showingEventDetails">
         <app-event-details
             [eventId]="eventDetailsId"
-            noCenter="true">
+            noCenter="true"
+            [desktopMode]="true">
         </app-event-details>
     </div>
 </app-desktop-split>

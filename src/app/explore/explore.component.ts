@@ -4,6 +4,8 @@ import { IBody, IEvent, IUserProfile } from '../interfaces';
 import { API } from '../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+const TITLE = 'Explore';
+
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
@@ -27,6 +29,10 @@ export class ExploreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /* Set title */
+    this.dataService.setTitle(TITLE);
+
+    /* Initialize with all bodies */
     this.dataService.FireGET<IBody[]>(API.Bodies).subscribe(result => {
       this.bodies = result;
       this.allbodies = result;

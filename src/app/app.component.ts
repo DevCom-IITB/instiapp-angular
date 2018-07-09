@@ -8,6 +8,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+const TITLE = 'InstiApp';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,13 +18,13 @@ import { environment } from '../environments/environment';
 export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   public openFlyout = false;
+  public _title = TITLE;
 
   private _mobileQueryListener: () => void;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public titleService: Title,
     public dataService: DataService,
     public router: Router,
     public snackBar: MatSnackBar,
@@ -34,7 +36,6 @@ export class AppComponent implements OnDestroy, OnInit {
       changeDetectorRef.detectChanges();
     };
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.titleService.setTitle('InstiApp');
   }
 
   private toggleSidebar() {
@@ -42,6 +43,11 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
+    /* Initialize stuff for title */
+    this.dataService.titleObservable.subscribe((title) => {
+      this._title = title;
+    });
+
     /** Check for update */
     if (environment.production) {
       this.swUpdate.available.subscribe(event => {

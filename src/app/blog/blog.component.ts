@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Helpers } from '../helpers';
 import { noop } from 'rxjs';
+import { API } from '../../api';
 
 @Component({
   selector: 'app-blog',
@@ -26,8 +27,19 @@ export class BlogComponent implements OnInit, OnDestroy {
       if (params['blog']) {
         this.blog_url = this.dataService.DecodeObject(params['blog']);
         this.dataService.FireGET<any[]>(this.blog_url).subscribe(result => {
+          /* Strip off images */
           result.forEach((i) => i.content = Helpers.stripImg(i.content));
           this.feed = result;
+
+          /* Set title depending on blog */
+          if (this.blog_url === API.PlacementBlog) {
+            this.dataService.setTitle('Placement Blog');
+          } else if (this.blog_url === API.TrainingBlog) {
+            this.dataService.setTitle('Training Blog');
+          } else {
+            this.dataService.setTitle('Blog');
+          }
+
         }, (e) => {
           this.error = e.status;
         });

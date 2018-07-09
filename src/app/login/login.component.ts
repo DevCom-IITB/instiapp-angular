@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.dataService.setTitle('Login');
     if (this.dataService.isLoggedIn()) {
       this.router.navigate(['feed']);
       return;

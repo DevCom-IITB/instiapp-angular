@@ -24,6 +24,10 @@ export class CalendarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /* Set title */
+    this.dataService.setTitle('Calendar');
+
+    /* Initialize selected date */
     this.selDate = XunkCalendarModule.getToday();
 
     /* Get dates for filtering (3 months) */

@@ -20,6 +20,10 @@ export class MyEventsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    /* Set title */
+    this.dataService.setTitle('My Events');
+
+    /* Get roles */
     this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
       const roles = result as IBodyRole[];
       this.hasRole = roles.length > 0;

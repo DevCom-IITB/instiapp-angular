@@ -20,7 +20,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   public event: IEvent;
   public shareShowing = false;
   public error: number;
-  public desktopMode = false;
+  @Input() public desktopMode = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,6 +51,11 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.FillGetEvent(this.eventId).subscribe(result => {
       this.event = result;
       this.load.emit(true);
+
+      /* Do not change title in split mode */
+      if (!this.desktopMode) {
+        this.dataService.setTitle(result.name);
+      }
     }, (e) => {
       this.load.emit(false);
       this.error = e.status;

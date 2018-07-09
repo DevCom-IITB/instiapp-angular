@@ -23,9 +23,10 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       const userId = params['id'];
-      this.dataService.FireGET(API.User, {uuid: userId}).subscribe(result => {
-        this.profile = result as IUserProfile;
+      this.dataService.FireGET<IUserProfile>(API.User, {uuid: userId}).subscribe(result => {
+        this.profile = result;
         this.events = this.profile.events_going.concat(this.profile.events_interested);
+        this.dataService.setTitle(result.name);
       }, (e) => {
         this.error = e.status;
       });
