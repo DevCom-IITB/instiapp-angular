@@ -10,7 +10,8 @@ img {
 }
 
 .rl-header {
-    padding: 5px
+    padding: 5px;
+    margin-bottom: 2px;
 }
 
 .clear-button {
