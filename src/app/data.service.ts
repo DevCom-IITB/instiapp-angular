@@ -393,7 +393,7 @@ export class DataService {
 
   /** Get unread notifications */
   getUnreadNotifications() {
-    return this.notifications.filter(n => n.unread);
+    return this.notifications.filter(n => n.unread && n.actor);
   }
 
 }
