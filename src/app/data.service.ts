@@ -387,7 +387,7 @@ export class DataService {
 
   /** Set the HTML title */
   setTitle(title: string) {
-    this.titleService.setTitle(title);
+    this.titleService.setTitle(`InstiApp | ${title}`);
     this._titleSubject.next(title);
   }
 
