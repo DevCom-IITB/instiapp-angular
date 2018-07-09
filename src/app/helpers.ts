@@ -70,9 +70,21 @@ export module Helpers {
 
     /** Strips img tags replacing with alt from string */
     export function stripImg(str: string): string {
-        return str.replace(/<img.*?alt="(.*?)"[^\>]+>/g, '$1')      // Alt with ""
-                  .replace(/<img.*?alt='(.*?)'[^\>]+>/g, '$1')      // Alt with ''
-                  .replace(/<img[^>]*>/g, '');                      // No alt
+        /* Parse the item */
+        const doc = new DOMParser().parseFromString(str, 'text/html');
+
+        /* Iterate over all images */
+        const images = doc.getElementsByTagName('img');
+        for (const img of Array.from(images)) {
+            /* Remove insecure images */
+            if (img.src.startsWith('http://')) {
+                img.insertAdjacentHTML('beforebegin', img.alt);
+                img.remove();
+            }
+        }
+
+        /* Re-serialize */
+        return new XMLSerializer().serializeToString(doc);
     }
 
 }

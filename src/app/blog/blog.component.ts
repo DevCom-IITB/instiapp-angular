@@ -64,8 +64,15 @@ export class BlogComponent implements OnInit, OnDestroy {
     Helpers.CheckScrollBottom(() => {
       this.loading = true;
       this.dataService.FireGET<any[]>(this.blog_url, { from: this.feed.length, num: 10}).subscribe(result => {
+        /* We're done infinite scrolling if nothing is returned */
         if (result.length === 0) { this.allLoaded = true; }
+
+        /* Strip off images */
+        result.forEach((i) => i.content = Helpers.stripImg(i.content));
+
+        /* Add to current list */
         this.feed = this.feed.concat(result);
+
         this.loading = false;
       }, () => { this.loading = false; });
     });
