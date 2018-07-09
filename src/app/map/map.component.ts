@@ -304,7 +304,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map.on('pointermove', (e: any) => {
       const pixel = this.map.getEventPixel(e.originalEvent);
       const hit = this.map.hasFeatureAtPixel(pixel);
-      this.pointer = hit ? 'pointer' : 'grab';
+      this.pointer = hit ? 'pointer' : 'move';
     });
 
   }
