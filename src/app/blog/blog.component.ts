@@ -27,8 +27,6 @@ export class BlogComponent implements OnInit, OnDestroy {
       if (params['blog']) {
         this.blog_url = this.dataService.DecodeObject(params['blog']);
         this.dataService.FireGET<any[]>(this.blog_url).subscribe(result => {
-          /* Strip off images */
-          result.forEach((i) => i.content = Helpers.stripImg(i.content));
           this.feed = result;
 
           /* Set title depending on blog */
@@ -54,8 +52,10 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.dataService.scrollBottomFunction = noop;
   }
 
-  openLink(link: string) {
-    window.open(link);
+  openLink(link: string, event: any) {
+    if (!event.target.classList || !Array.from(event.target.classList).includes('noprop')) {
+      window.open(link);
+    }
   }
 
   /** Handles loading new data when the user reaches end of page */
@@ -66,9 +66,6 @@ export class BlogComponent implements OnInit, OnDestroy {
       this.dataService.FireGET<any[]>(this.blog_url, { from: this.feed.length, num: 10}).subscribe(result => {
         /* We're done infinite scrolling if nothing is returned */
         if (result.length === 0) { this.allLoaded = true; }
-
-        /* Strip off images */
-        result.forEach((i) => i.content = Helpers.stripImg(i.content));
 
         /* Add to current list */
         this.feed = this.feed.concat(result);

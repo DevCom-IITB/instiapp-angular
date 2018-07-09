@@ -4,10 +4,10 @@
 
 <div *ngIf="feed" class="main-div">
   <ng-container *ngFor="let item of feed">
-    <div class="feed-card" (click)="openLink(item.link)">
+    <div class="feed-card" (click)="openLink(item.link, $event)">
         <div class="title">{{item.title}}</div>
         {{item.published | date:"dd-MMM-yyyy HH:mm"}}
-        <markdown [data]="item.content" class="markdown"></markdown>
+        <markdown [data]="dataService.processMDHTML(item.content)" class="markdown"></markdown>
     </div>
   </ng-container>
 </div>

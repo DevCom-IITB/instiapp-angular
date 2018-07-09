@@ -13,10 +13,10 @@
 <ng-container *ngIf="feed">
   <ng-container *ngFor="let item of feed">
 
-    <div class="feed-card" (click)="openLink(item.link)">
+    <div class="feed-card" (click)="openLink(item.link, $event)">
       <div class="feed-title">{{item.title}}</div>
       <div class="feed-subtitle">{{item.body.name}} | {{item.published | date:"dd-MMM-yyyy HH:mm"}}</div>
-      <markdown [data]="item.content" class="markdown"></markdown>
+      <markdown [data]="dataService.processMDHTML(item.content)" class="markdown"></markdown>
 
       <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="before">
           <table>
@@ -24,10 +24,9 @@
                 <td *ngFor="let react of reactions">
                   <button
                     mat-icon-button
-                    (mousedown)="$event.stopPropagation()"
-                    (click)="do_reaction(item, react.id);$event.stopPropagation();"
+                    (click)="do_reaction(item, react.id);"
                     [class.selected-reaction]="item.user_reaction === react.id"
-                    class="reaction">
+                    class="reaction noprop">
                   <i [class]="'em em-' + react.i"></i>
                   </button>
                 </td>
@@ -41,7 +40,7 @@
       </mat-menu>
 
       <div class="react-button" [style.color]="getReactColor(item)">
-        <button mat-icon-button [matMenuTriggerFor]="reactMenu" (click)="$event.stopPropagation()">
+        <button mat-icon-button [matMenuTriggerFor]="reactMenu" class="noprop">
             <mat-icon>thumb_up</mat-icon>
         </button>
       </div>

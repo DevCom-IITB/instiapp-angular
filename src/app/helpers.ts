@@ -68,22 +68,59 @@ export module Helpers {
         return false;
     }
 
-    /** Strips img tags replacing with alt from string */
-    export function stripImg(str: string): string {
-        /* Parse the item */
-        const doc = new DOMParser().parseFromString(str, 'text/html');
-
-        /* Iterate over all images */
-        const images = doc.getElementsByTagName('img');
-        for (const img of Array.from(images)) {
-            /* Remove insecure images */
-            if (img.src.startsWith('http://')) {
-                img.insertAdjacentHTML('beforebegin', img.alt);
-                img.remove();
+    /**
+     * Strips insecure HTTP img tags, replacing with alt from string
+     * @param html valid HTML string
+     */
+    export function stripImg(html: string): string {
+        return processHTMLString(html, (doc) => {
+            /* Iterate over all images */
+            const images = doc.getElementsByTagName('img');
+            for (const img of Array.from(images)) {
+                /* Remove insecure images */
+                if (img.src.startsWith('http://')) {
+                    img.insertAdjacentHTML('beforebegin', img.alt);
+                    img.remove();
+                }
             }
-        }
+        });
+    }
 
-        /* Re-serialize */
+    /**
+     * Add target=_blank and rel=noopener to HTML string links
+     * Also adds the class noprop
+     * @param html valid HTML string
+     */
+    export function addTargetBlank(html: string): string {
+        return processHTMLString(html, (doc) => {
+            /* Iterate over all links */
+            const links = doc.getElementsByTagName('a');
+            for (const a of Array.from(links)) {
+                a.target = '_blank';
+                a.rel = 'noopener';
+                a.classList.add('noprop');
+            }
+        });
+    }
+
+    /** Process HTML to be displayed with markdown */
+    export function processMDHTML(html: string): string {
+        return addTargetBlank(stripImg(html));
+    }
+
+    /**
+     * Helper for procissing HTML strings
+     * @param html valid HTML string
+     * @param fun callback to execute on Document object
+     */
+    export function processHTMLString(html: string, fun: (doc: Document) => void): string {
+        /* Parse the HTML */
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+
+        /* Process */
+        fun(doc);
+
+        /* Process and re-serialize */
         return new XMLSerializer().serializeToString(doc);
     }
 
