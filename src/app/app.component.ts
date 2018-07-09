@@ -76,8 +76,12 @@ export class AppComponent implements OnDestroy, OnInit {
     });
 
     /** Get notifications */
-    this.dataService.FireGET<INotification[]>(API.Notifications).subscribe(result => {
-      this.dataService.notifications = result;
+    this.dataService.loggedInObservable.subscribe(status => {
+      if (status) {
+        this.dataService.FireGET<INotification[]>(API.Notifications).subscribe(result => {
+          this.dataService.notifications = result;
+        });
+      }
     });
 
     /* Initialize flyout to open on deskop */
