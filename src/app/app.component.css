@@ -1,6 +1,6 @@
 .example-toolbar {
     position: fixed;
-    z-index: 200;
+    z-index: 100;
 }
 
 #router-out {
