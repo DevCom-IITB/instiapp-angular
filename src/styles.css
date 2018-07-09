@@ -52,7 +52,7 @@ mat-form-field, mat-form-field * {
 .flyout {
     -webkit-overflow-scrolling: auto;
     bottom: auto !important;
-    z-index: 10000;
+    z-index: 102;
     width: 20vw;
     min-width: 240px;
     height: 100vh;
@@ -60,7 +60,7 @@ mat-form-field, mat-form-field * {
 
 .flyout-backdrop {
     top: -70px !important;
-    z-index: 9999;
+    z-index: 101;
     touch-action: none;
 }
 

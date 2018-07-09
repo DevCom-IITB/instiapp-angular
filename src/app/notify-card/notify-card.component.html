@@ -1,0 +1,13 @@
+<mat-nav-list>
+  <a *ngFor="let notification of getUnread()"
+      mat-list-item
+      (click)="followNotification(notification)">
+
+    <img [src]="notification.actor.image_url"
+         src-fallback="assets/placeholder.png"
+         class="object-cover" />
+
+    <span mat-line>{{ notification.actor.name }}</span>
+    <span mat-line>{{ notification.verb }}</span>
+  </a>
+</mat-nav-list>

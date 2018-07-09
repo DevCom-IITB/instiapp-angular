@@ -7,6 +7,10 @@ import { Helpers } from './helpers';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { INotification } from './interfaces';
+import { API } from '../api';
+import { MatBottomSheet } from '@angular/material';
+import { NotifyCardComponent } from './notify-card/notify-card.component';
 
 const TITLE = 'InstiApp';
 
@@ -29,6 +33,7 @@ export class AppComponent implements OnDestroy, OnInit {
     public router: Router,
     public snackBar: MatSnackBar,
     private swUpdate: SwUpdate,
+    private bottomSheet: MatBottomSheet,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => {
@@ -68,6 +73,11 @@ export class AppComponent implements OnDestroy, OnInit {
       this.dataService.setInitialized();
     }, (error) => {
       this.dataService.setInitialized();
+    });
+
+    /** Get notifications */
+    this.dataService.FireGET<INotification[]>(API.Notifications).subscribe(result => {
+      this.dataService.notifications = result;
     });
 
     /* Initialize flyout to open on deskop */
@@ -112,5 +122,11 @@ export class AppComponent implements OnDestroy, OnInit {
   @HostListener('window:scroll')
   windowScroll() {
     Helpers.CheckScrollBottom(this.dataService.scrollBottomFunction);
+  }
+
+  /** Open notifications sheet */
+  openNotifications() {
+
+    this.bottomSheet.open(NotifyCardComponent);
   }
 }

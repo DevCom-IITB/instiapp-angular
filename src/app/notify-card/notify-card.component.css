@@ -1,0 +1,10 @@
+.notify-card {
+    padding: 1em 1.2em;
+    width: calc(100% - 2.4em);
+}
+
+img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}

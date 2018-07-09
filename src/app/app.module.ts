@@ -55,6 +55,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
 import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
 import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
+import { NotifyCardComponent } from './notify-card/notify-card.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
     SettingsComponent,
     AboutComponent,
     XunkCalendarComponent,
-    DesktopSplitComponent
+    DesktopSplitComponent,
+    NotifyCardComponent
   ],
   imports: [
     BrowserModule,
@@ -136,6 +138,9 @@ import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+  ],
+  entryComponents: [
+    NotifyCardComponent
   ],
   providers: [
     DataService,

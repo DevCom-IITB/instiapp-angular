@@ -127,7 +127,15 @@ export interface IMenuEntry {
     hostel: string;
 }
 
+export interface INotification {
+    id: number;
+    verb: string;
+    unread: boolean;
+    actor: any;
+    actor_type: string;
+}
+
 export interface IEventContainer {
-  title: string;
-  events: IEvent[];
+    title: string;
+    events: IEvent[];
 }

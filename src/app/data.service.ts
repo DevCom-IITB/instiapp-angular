@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable ,  Subject, noop } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IEnumContainer, IUserProfile, IUserEventStatus, ILocation, IEvent, IBody, INewsEntry } from './interfaces';
+import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, INotification } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
@@ -37,6 +37,9 @@ export class DataService {
 
   /** User Profile of the logged in user */
   private _currentUser: IUserProfile;
+
+  /** Notifications */
+  public notifications: INotification[];
 
   /** Function called when user reaches bottom of content */
   public scrollBottomFunction = noop;
