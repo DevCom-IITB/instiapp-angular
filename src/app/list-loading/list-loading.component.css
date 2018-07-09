@@ -6,6 +6,8 @@
 
     z-index: 200;
     padding: 20px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     display: block;
     background-color: white;
