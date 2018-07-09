@@ -16,6 +16,8 @@
          class="object-cover" />
 
     <span mat-line>{{ notification.actor.name }}</span>
-    <span mat-line>{{ notification.verb }}</span>
+    <span mat-line class="verb">
+      <span>{{ notification.verb }}</span>
+    </span>
   </a>
 </mat-nav-list>
