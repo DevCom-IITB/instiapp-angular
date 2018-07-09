@@ -26,11 +26,6 @@ export class NotifyCardComponent {
     }
   }
 
-  /** Get unread notifications */
-  getUnread() {
-    return this.notifications.filter(n => n.unread);
-  }
-
   /** Mark all notifications read */
   markAll() {
     this.bottomSheetRef.dismiss();

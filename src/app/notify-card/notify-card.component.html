@@ -7,7 +7,7 @@
 </div>
 
 <mat-nav-list>
-  <a *ngFor="let notification of getUnread()"
+  <a *ngFor="let notification of dataService.getUnreadNotifications()"
       mat-list-item
       (click)="followNotification(notification)">
 

@@ -391,4 +391,9 @@ export class DataService {
     this._titleSubject.next(title);
   }
 
+  /** Get unread notifications */
+  getUnreadNotifications() {
+    return this.notifications.filter(n => n.unread);
+  }
+
 }

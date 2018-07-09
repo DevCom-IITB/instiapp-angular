@@ -29,8 +29,13 @@
 
     <button mat-icon-button
             (click)="openNotifications()"
-            *ngIf="this.dataService.isLoggedIn()">
-        <mat-icon>notifications</mat-icon>
+            *ngIf="dataService.isLoggedIn() && dataService.notifications">
+        <mat-icon *ngIf="dataService.getUnreadNotifications().length > 0">
+            notifications_active
+        </mat-icon>
+        <mat-icon *ngIf="dataService.getUnreadNotifications().length === 0">
+            notifications
+        </mat-icon>
     </button>
 </mat-toolbar>
 
