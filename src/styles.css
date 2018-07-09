@@ -70,6 +70,7 @@ mat-form-field, mat-form-field * {
     cursor: pointer;
     box-shadow: none !important;
     margin: 0;
+    outline:none;
 }
 
 .sub-card:hover {

@@ -16,6 +16,7 @@
     text-decoration: none;
     line-height: 2.1em;
     display: block;
+    outline:none;
 }
 
 mat-icon {
