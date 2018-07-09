@@ -72,18 +72,16 @@ export module Helpers {
      * Strips insecure HTTP img tags, replacing with alt from string
      * @param html valid HTML string
      */
-    export function stripImg(html: string): string {
-        return processHTMLString(html, (doc) => {
-            /* Iterate over all images */
-            const images = doc.getElementsByTagName('img');
-            for (const img of Array.from(images)) {
-                /* Remove insecure images */
-                if (img.src.startsWith('http://')) {
-                    img.insertAdjacentHTML('beforebegin', img.alt);
-                    img.remove();
-                }
+    export function stripImg(doc: Document): void {
+        /* Iterate over all images */
+        const images = doc.getElementsByTagName('img');
+        for (const img of Array.from(images)) {
+            /* Remove insecure images */
+            if (img.src.startsWith('http://')) {
+                img.insertAdjacentHTML('beforebegin', img.alt);
+                img.remove();
             }
-        });
+        }
     }
 
     /**
@@ -91,21 +89,22 @@ export module Helpers {
      * Also adds the class noprop
      * @param html valid HTML string
      */
-    export function addTargetBlank(html: string): string {
-        return processHTMLString(html, (doc) => {
-            /* Iterate over all links */
-            const links = doc.getElementsByTagName('a');
-            for (const a of Array.from(links)) {
-                a.target = '_blank';
-                a.rel = 'noopener';
-                a.classList.add('noprop');
-            }
-        });
+    export function addTargetBlank(doc: Document): void {
+        /* Iterate over all links */
+        const links = doc.getElementsByTagName('a');
+        for (const a of Array.from(links)) {
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.classList.add('noprop');
+        }
     }
 
     /** Process HTML to be displayed with markdown */
     export function processMDHTML(html: string): string {
-        return addTargetBlank(stripImg(html));
+        return processHTMLString(html, (doc) => {
+            addTargetBlank(doc);
+            stripImg(doc);
+        });
     }
 
     /**
