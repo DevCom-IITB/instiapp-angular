@@ -57,7 +57,7 @@
     </div>
 
     <div class="description markdown">
-      <markdown [data]="body.description"></markdown>
+      <div [innerHTML]="dataService.processMDHTML(body.description | markdown)"></div>
     </div>
 
     <ng-container *ngIf="dataService.isMobile()">

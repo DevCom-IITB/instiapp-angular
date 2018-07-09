@@ -16,7 +16,7 @@
     <div class="section">
       <div class="rl-header sm">{{ event.name }}</div>
       <div class="markdown">
-        <markdown [data]="event.description"></markdown>
+        <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
       </div>
     </div>
 
@@ -94,7 +94,7 @@
 
     <div class="event-body">
       <div class="description markdown" *ngIf="desktopMode || dataService.isMobile()">
-        <markdown [data]="event.description"></markdown>
+        <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
       </div>
 
       <!-- Bodies conducting the event -->
