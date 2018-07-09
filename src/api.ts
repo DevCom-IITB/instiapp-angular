@@ -32,6 +32,7 @@ export const API = {
     Search: 'api/search{?query}',
 
     Notifications: 'api/notifications',
-    NotificationRead: 'api/notifications/read/{id}'
+    NotificationRead: 'api/notifications/read/{id}',
+    NotificationsAllRead: 'api/notifications/read'
 
 };

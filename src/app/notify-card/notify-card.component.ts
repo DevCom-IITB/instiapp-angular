@@ -31,6 +31,16 @@ export class NotifyCardComponent {
     return this.notifications.filter(n => n.unread);
   }
 
+  /** Mark all notifications read */
+  markAll() {
+    this.bottomSheetRef.dismiss();
+    this.dataService.FireGET(API.NotificationsAllRead).subscribe(() => {
+      setTimeout(() => {
+        this.dataService.notifications.forEach(n => n.unread = false);
+      }, 300);
+    });
+  }
+
   /** Follow and mark a notification read */
   followNotification(notification: INotification) {
     /* Mark as read */

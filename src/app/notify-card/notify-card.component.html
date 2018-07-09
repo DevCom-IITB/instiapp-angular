@@ -1,3 +1,11 @@
+
+<div class="rl-header sm">
+  Notifications
+  <button mat-icon-button class="clear-button" (click)="markAll()">
+    <mat-icon>clear_all</mat-icon>
+  </button>
+</div>
+
 <mat-nav-list>
   <a *ngFor="let notification of getUnread()"
       mat-list-item
