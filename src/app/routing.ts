@@ -1,7 +1,7 @@
 import { RouteReuseStrategy, DetachedRouteHandle, ActivatedRouteSnapshot } from '@angular/router';
 
 export class CustomReuseStrategy implements RouteReuseStrategy {
-    routesToCache: string[] = ['feed'];
+    routesToCache: string[] = [];
     routesNotToCache: string[] = ['org/:id', 'blog/:blog'];
     storedRouteHandles = new Map<string, DetachedRouteHandle>();
 
