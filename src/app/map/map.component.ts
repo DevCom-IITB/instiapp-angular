@@ -171,7 +171,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       const text = new OlStyleText({
         offsetY: 20,
         padding: [20, 20, 20, 20],
-        font: 'bold ' + font_size + 'px Roboto',
+        font: `bold ${font_size}px Roboto`,
         text: loc_name,
         fill: new OlStyleFill({
           color: '#ffffff'

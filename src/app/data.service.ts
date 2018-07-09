@@ -266,11 +266,7 @@ export class DataService {
     const RESPONSE_TYPE = 'code';
     const SCOPE = 'basic profile picture sex ldap phone insti_address program secondary_emails';
 
-    return SSOHOST +
-            '?client_id=' + CLIENT_ID +
-            '&response_type=' + RESPONSE_TYPE +
-            '&scope=' + SCOPE +
-            '&redirect_uri=' + SSO_REDIR;
+    return `${SSOHOST}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${SSO_REDIR}`;
   }
 
   /** Tries to authenticate with the given code */

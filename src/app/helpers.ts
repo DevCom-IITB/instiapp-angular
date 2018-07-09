@@ -5,7 +5,7 @@ export module Helpers {
     /** Get time in HH:MM format from date */
     export function GetTimeString(date: Date) {
         const dt = new Date(date);
-        return zeroPad(dt.getHours(), 2) + ':' + zeroPad(dt.getMinutes(), 2);
+        return `${zeroPad(dt.getHours(), 2)}:${zeroPad(dt.getMinutes(), 2)}`;
     }
 
     /** Adds leading zeros to a number */
