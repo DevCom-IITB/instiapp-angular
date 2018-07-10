@@ -78,14 +78,11 @@ export class AppComponent implements OnDestroy, OnInit {
     /** Get notifications */
     this.dataService.loggedInObservable.subscribe(status => {
       if (status) {
-        this.dataService.startNotificationsCheck();
-      } else {
-        this.dataService.stopNotificationsCheck();
+        this.dataService.FireGET<INotification[]>(API.Notifications).subscribe(result => {
+          this.dataService.notifications = result;
+        });
       }
     });
-
-    /* Setup notifications */
-    this.setupNotifications();
 
     /* Initialize flyout to open on deskop */
     if (!this.mobileQuery.matches) {
@@ -133,21 +130,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Open notifications sheet */
   openNotifications() {
-    this.bottomSheet.open(NotifyCardComponent);
-  }
 
-  /** Setup service worker notifications */
-  setupNotifications() {
-    if ('serviceWorker' in navigator ) {
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        const registration: ServiceWorkerRegistration = registrations[0];
-        Notification.requestPermission().then((permission) => {
-          if (permission !== 'denied') {
-            this.dataService.swNotificationsReady = true;
-            this.dataService.swRegistration = registration;
-          }
-        });
-      });
-    }
+    this.bottomSheet.open(NotifyCardComponent);
   }
 }
