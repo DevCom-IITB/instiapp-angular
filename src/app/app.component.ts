@@ -98,7 +98,13 @@ export class AppComponent implements OnDestroy, OnInit {
       window.scrollTo(0, 0);
     });
 
-    this.subscribeNotifications();
+    /* Subscribe on login */
+    const lis = this.dataService.loggedInObservable.subscribe(status => {
+      if (status && this.swUpdate.isEnabled) {
+        this.subscribeNotifications();
+        lis.unsubscribe();
+      }
+    });
   }
 
   /** Subscribe to push notifications */
@@ -108,12 +114,7 @@ export class AppComponent implements OnDestroy, OnInit {
       serverPublicKey: environment.VAPID_PUBLIC_KEY
     })
     .then(sub => {
-      const lis = this.dataService.loggedInObservable.subscribe(status => {
-        if (status) {
-          this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
-          lis.unsubscribe();
-        }
-      });
+      this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
     })
     .catch(err => console.error('Could not subscribe to notifications', err));
   }
