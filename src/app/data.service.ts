@@ -40,6 +40,11 @@ export class DataService {
 
   /** Notifications */
   public notifications: INotification[];
+  public notificationsInterval;
+
+  /** Service worker notifications */
+  public swNotificationsReady: boolean;
+  public swRegistration: ServiceWorkerRegistration;
 
   /** Function called when user reaches bottom of content */
   public scrollBottomFunction = noop;
@@ -394,6 +399,60 @@ export class DataService {
   /** Get unread notifications */
   getUnreadNotifications() {
     return this.notifications.filter(n => n.unread && n.actor);
+  }
+
+  /** Send a service worker notification */
+  sendNotification(notification: INotification): boolean {
+    /* Check for nulls*/
+    if (!notification || !notification.actor) {
+      return false;
+    }
+
+    /* Make a notification */
+    const title = notification.actor.name;
+    const options: NotificationOptions = {
+      body: notification.verb,
+      icon: '/assets/logo-sq.png',
+    };
+    this.swRegistration.showNotification(title, options);
+
+    return true;
+  }
+
+  /* Start checking for notifications */
+  startNotificationsCheck() {
+    this.notificationsCheck();
+    this.notificationsInterval = setInterval(() => {
+      this.notificationsCheck();
+    }, 30000);
+  }
+
+  /** Check for notifications */
+  notificationsCheck() {
+    this.FireGET<INotification[]>(API.Notifications).subscribe(result => {
+      /* Initialize */
+      if (!this.notifications) {
+        this.notifications = [];
+      }
+
+      const existing = this.notifications.map(m => m.id);
+      /* Send notifications */
+      for (const n of result) {
+        if (!(existing.includes(n.id))) {
+          this.sendNotification(n);
+        }
+      }
+
+      /* Set new result */
+      this.notifications = result;
+    });
+  }
+
+  /* Stop checking for notifications */
+  stopNotificationsCheck() {
+    if (this.notificationsInterval) {
+      clearInterval(this.notificationsInterval);
+    }
   }
 
 }
