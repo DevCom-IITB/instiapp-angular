@@ -33,6 +33,7 @@ export const API = {
 
     Notifications: 'api/notifications',
     NotificationRead: 'api/notifications/read/{id}',
-    NotificationsAllRead: 'api/notifications/read'
+    NotificationsAllRead: 'api/notifications/read',
+    WebPushSubscribe: 'api/user-me/subscribe-wp'
 
 };

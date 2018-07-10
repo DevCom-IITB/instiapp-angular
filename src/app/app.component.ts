@@ -5,7 +5,7 @@ import { DataService } from './data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Helpers } from './helpers';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SwUpdate } from '@angular/service-worker';
+import { SwUpdate, SwPush } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { INotification } from './interfaces';
 import { API } from '../api';
@@ -33,6 +33,7 @@ export class AppComponent implements OnDestroy, OnInit {
     public router: Router,
     public snackBar: MatSnackBar,
     private swUpdate: SwUpdate,
+    private swPush: SwPush,
     private bottomSheet: MatBottomSheet,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 960px)');
@@ -96,6 +97,25 @@ export class AppComponent implements OnDestroy, OnInit {
       }
       window.scrollTo(0, 0);
     });
+
+    this.subscribeNotifications();
+  }
+
+  /** Subscribe to push notifications */
+  subscribeNotifications() {
+    /* Push notifications */
+    this.swPush.requestSubscription({
+      serverPublicKey: environment.VAPID_PUBLIC_KEY
+    })
+    .then(sub => {
+      const lis = this.dataService.loggedInObservable.subscribe(status => {
+        if (status) {
+          this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
+          lis.unsubscribe();
+        }
+      });
+    })
+    .catch(err => console.error('Could not subscribe to notifications', err));
   }
 
   /** Unsubscribe from listeners */
