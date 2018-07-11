@@ -56,6 +56,11 @@ export class FeedComponent implements OnInit {
 
   /** Makes the events into containers */
   MakeContainers(events: IEvent[]): IEventContainer[] {
+    /* Populate venues string */
+    for (const event of events) {
+      event.venues_str = event.venues.map(v => v.short_name).join(', ');
+    }
+
     /** Everything is one on mobile */
     if (this.dataService.isMobile()) {
       return [{
@@ -74,7 +79,6 @@ export class FeedComponent implements OnInit {
 
     let prev = {title: this.getDateTitle(events[0]), events: []} as IEventContainer;
     for (const event of events) {
-      event.venues_str = event.venues.map(v => v.short_name).join(', ');
       const title = this.getDateTitle(event);
       if (prev.title !== title) {
         result.push(prev);
