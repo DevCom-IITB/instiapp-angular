@@ -82,6 +82,9 @@ export class FeedComponent implements OnInit {
       }
       prev.events.push(event);
     }
+    if (prev.events !== []) {
+      result.push(prev);
+    }
     return result;
   }
 
