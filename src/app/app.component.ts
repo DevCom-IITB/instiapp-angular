@@ -78,8 +78,22 @@ export class AppComponent implements OnDestroy, OnInit {
 
     /** Get notifications */
     this.dataService.loggedInObservable.subscribe(status => {
+      const DEFAULT_IMAGE = '/assets/logo.png';
+
       if (status) {
         this.dataService.FireGET<INotification[]>(API.Notifications).subscribe(result => {
+          for (const notification of result) {
+            if (notification.actor_type.includes('event')) {
+              notification.title = notification.actor.name;
+              notification.image_url = notification.actor.image_url;
+            } else if (notification.actor_type.includes('newsentry')) {
+              notification.title = notification.actor.title;
+              notification.image_url = notification.actor.body.image_url;
+            } else if (notification.actor_type.includes('blogentry')) {
+              notification.title = notification.actor.title;
+              notification.image_url = DEFAULT_IMAGE;
+            }
+          }
           this.dataService.notifications = result;
         });
       }
@@ -114,6 +128,7 @@ export class AppComponent implements OnDestroy, OnInit {
       serverPublicKey: environment.VAPID_PUBLIC_KEY
     })
     .then(sub => {
+      console.log(JSON.stringify(sub));
       this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
     })
     .catch(err => console.error('Could not subscribe to notifications', err));

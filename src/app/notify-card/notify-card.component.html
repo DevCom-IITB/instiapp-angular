@@ -11,11 +11,11 @@
       mat-list-item
       (click)="followNotification(notification)">
 
-    <img [src]="notification.actor.image_url"
+    <img [src]="notification.image_url"
          src-fallback="assets/placeholder.png"
          class="object-cover img-circle" />
 
-    <span mat-line>{{ notification.actor.name }}</span>
+    <span mat-line>{{ notification.title }}</span>
     <span mat-line class="verb">
       <span>{{ notification.verb }}</span>
     </span>

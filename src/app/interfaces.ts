@@ -133,6 +133,9 @@ export interface INotification {
     unread: boolean;
     actor: any;
     actor_type: string;
+
+    image_url: string;
+    title: string;
 }
 
 export interface IEventContainer {
