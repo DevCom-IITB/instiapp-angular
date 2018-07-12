@@ -56,6 +56,7 @@ import { AboutComponent } from './about/about.component';
 import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
 import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
 import { NotifyCardComponent } from './notify-card/notify-card.component';
+import { RedirComponent } from './redir/redir.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { NotifyCardComponent } from './notify-card/notify-card.component';
     AboutComponent,
     XunkCalendarComponent,
     DesktopSplitComponent,
-    NotifyCardComponent
+    NotifyCardComponent,
+    RedirComponent
   ],
   imports: [
     BrowserModule,
@@ -127,6 +129,8 @@ import { NotifyCardComponent } from './notify-card/notify-card.component';
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
+      { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
+      { path: 'android', component: RedirComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },
     ]),
 
