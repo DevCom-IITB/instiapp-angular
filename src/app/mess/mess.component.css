@@ -78,7 +78,7 @@
 /* Desktop styles */
 
 .desktop {
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: auto;
     width: 100%;
     white-space: nowrap;
@@ -95,14 +95,15 @@
     padding: 2em;
     width: 200px;
     white-space: pre-line;
-    height: 100%;
+    height: auto;
     overflow: hidden;
+    vertical-align: top;
 }
 
 .desktop .time {
     min-height: 100px;
     font-size: 0.95em;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 .desktop .time-head {
