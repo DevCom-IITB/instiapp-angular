@@ -93,6 +93,10 @@
     color: black;
 }
 
+span.badge {
+    font-size: 0.8em;
+}
+
 @media (min-width: 768px) {
     .follow-div {
         margin-top: -1em;
