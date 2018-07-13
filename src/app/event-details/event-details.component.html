@@ -37,7 +37,8 @@
     <div class="theme-header primary-background-color">
       <img class="event-image"
             [src]="event.image_url"
-            alt="">
+            alt=""
+            [src-fallback]="event.bodies[0].image_url">
 
       <div class="card-header">
         <div>
