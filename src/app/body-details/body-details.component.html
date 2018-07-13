@@ -42,7 +42,7 @@
                   [class.following]="body.user_follows"
                  (click)="markFollow()"
                  [disabled]="!dataService.isLoggedIn()">
-            <!-- Text set in CSS -->
+            FOLLOW <span class="badge">{{ body.followers_count }}</span>
           </button>
         </div>
       </div>

@@ -59,11 +59,20 @@
 
 .follow-button {
     float: right;
+    line-height: 2em;
+    transition: background-color 0.2s ease;
+    margin-left: 4px;
+    margin-top: 2px;
 }
 
-.following { color: #dadada; }
-.follow-button:after { content: 'FOLLOW'; }
-.following:after { content: 'FOLLOWING'; }
+.following {
+    background-color: var(--accent-color);
+    color: black;
+}
+
+span.badge {
+    font-size: 0.8em;
+}
 
 @media (max-width: 768px) {
     .subtitle {
