@@ -27,18 +27,19 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe((params: Params) => {
       if (params['blog']) {
         this.blog_url = this.dataService.DecodeObject(params['blog']);
+
+        /* Set title depending on blog */
+        if (this.blog_url === API.PlacementBlog) {
+          this.dataService.setTitle('Placement Blog');
+        } else if (this.blog_url === API.TrainingBlog) {
+          this.dataService.setTitle('Internship Blog');
+        } else {
+          this.dataService.setTitle('Blog');
+        }
+
+        /* Get feed */
         this.dataService.FireGET<any[]>(this.blog_url).subscribe(result => {
           this.feed = result;
-
-          /* Set title depending on blog */
-          if (this.blog_url === API.PlacementBlog) {
-            this.dataService.setTitle('Placement Blog');
-          } else if (this.blog_url === API.TrainingBlog) {
-            this.dataService.setTitle('Training Blog');
-          } else {
-            this.dataService.setTitle('Blog');
-          }
-
         }, (e) => {
           this.error = e.status;
         });
