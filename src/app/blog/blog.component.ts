@@ -16,6 +16,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   allLoaded = false;
   blog_url: string;
   error: number;
+  query: string = null;
 
   constructor(
     public dataService: DataService,
@@ -62,17 +63,41 @@ export class BlogComponent implements OnInit, OnDestroy {
   lazyLoad(): void {
     if (!this.feed || this.allLoaded || this.loading) { return; }
     Helpers.CheckScrollBottom(() => {
-      this.loading = true;
-      this.dataService.FireGET<any[]>(this.blog_url, { from: this.feed.length, num: 10}).subscribe(result => {
-        /* We're done infinite scrolling if nothing is returned */
-        if (result.length === 0) { this.allLoaded = true; }
-
-        /* Add to current list */
-        this.feed = this.feed.concat(result);
-
-        this.loading = false;
-      }, () => { this.loading = false; });
+      this.reload();
     });
+  }
+
+  /** Reload data */
+  reload() {
+    this.loading = true;
+    this.dataService.FireGET<any[]>(this.blog_url, { from: this.feed.length, num: 10, query: this.query}).subscribe(result => {
+      /* We're done infinite scrolling if nothing is returned */
+      if (result.length === 0) { this.allLoaded = true; }
+
+      /* Add to current list */
+      this.feed = this.feed.concat(result);
+
+      this.loading = false;
+    }, () => { this.loading = false; });
+  }
+
+  search(e) {
+    /* Reset */
+    this.allLoaded = false;
+    this.feed = [];
+
+    /* Check if nothing */
+    const val: string = e.target.value;
+    if (!val || val.length < 3) {
+      this.query = null;
+      this.reload();
+      return;
+    }
+
+    /* Load query data */
+    if (!this.feed || this.loading) { return; }
+    this.query = e.target.value;
+    this.reload();
   }
 
 }

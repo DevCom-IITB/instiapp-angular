@@ -1,8 +1,12 @@
 <app-xunk-spinner *ngIf="!feed || error" [error]="error"></app-xunk-spinner>
 
-<div class="desktop-10px"></div>
-
 <div *ngIf="feed" class="main-div">
+    <mat-form-field class="searchbox">
+      <input type="search"
+            matInput placeholder="Search"
+            (keyup.enter)="search($event)">
+    </mat-form-field>
+
   <ng-container *ngFor="let item of feed">
     <div class="feed-card" (click)="openLink(item.link, $event)">
         <div class="title">{{item.title}}</div>

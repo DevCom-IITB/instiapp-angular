@@ -21,10 +21,10 @@ export const API = {
     Login: 'api/login{?code,redir}',
     Logout: 'api/logout',
 
-    PlacementBlog: 'api/placement-blog{?from,num}',
-    TrainingBlog: 'api/training-blog{?from,num}',
+    PlacementBlog: 'api/placement-blog{?from,num,query}',
+    TrainingBlog: 'api/training-blog{?from,num,query}',
 
-    NewsFeed: 'api/news{?from,num,body}',
+    NewsFeed: 'api/news{?from,num,body,query}',
     NewsFeedReaction: 'api/user-me/unr/{uuid}{?reaction}',
 
     Mess: 'api/mess',

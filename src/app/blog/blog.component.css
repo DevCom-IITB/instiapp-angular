@@ -11,6 +11,10 @@
     margin-bottom: 2.5em;
 }
 
+.searchbox {
+    width: 100%;
+}
+
 .title {
     font-family: 'Roboto';
     font-weight: 300;
