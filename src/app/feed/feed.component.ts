@@ -77,6 +77,11 @@ export class FeedComponent implements OnInit {
       events: events.splice(0, 3)
     });
 
+    /** Check if not enough events */
+    if (events.length === 0) {
+      return result;
+    }
+
     let prev = {title: this.getDateTitle(events[0]), events: []} as IEventContainer;
     for (const event of events) {
       const title = this.getDateTitle(event);
@@ -94,7 +99,7 @@ export class FeedComponent implements OnInit {
 
   /** Moment-fy date */
   getDateTitle(event: IEvent): string {
-    if (event.start_time) {
+    if (event && event.start_time) {
       const date = moment(event.start_time);
       return date.format('DD MMM \'YY');
     }
