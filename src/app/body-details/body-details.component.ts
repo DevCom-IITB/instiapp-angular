@@ -38,6 +38,7 @@ export class BodyDetailsComponent implements OnInit {
       uuid: this.body.id, action: this.body.user_follows ? 0 : 1
     }).subscribe(result => {
       this.body.user_follows = !this.body.user_follows;
+      this.body.followers_count += this.body.user_follows ? 1 : -1;
     });
   }
 

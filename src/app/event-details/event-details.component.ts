@@ -68,6 +68,19 @@ export class EventDetailsComponent implements OnChanges, OnInit {
       status = 0;
     }
     return this.dataService.FireGET(API.UserMeEventStatus, {event: this.event.id, status: status}).subscribe(() => {
+      /* Change counts */
+      if (status === 0) {
+        if (this.event.user_ues === 1) { this.event.interested_count--; }
+        if (this.event.user_ues === 2) { this.event.going_count--; }
+      } else if (status === 1) {
+        if (this.event.user_ues !== 1) { this.event.interested_count++; }
+        if (this.event.user_ues === 2) { this.event.going_count--; }
+      } else if (status === 2) {
+        if (this.event.user_ues !== 2) { this.event.going_count++; }
+        if (this.event.user_ues === 1) { this.event.interested_count--; }
+      }
+
+      /* Update UES */
       this.event.user_ues = status;
     });
   }
