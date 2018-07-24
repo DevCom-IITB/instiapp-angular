@@ -52,6 +52,7 @@ export class QuickLinksComponent implements OnInit {
     {
       title: 'Services',
       links: [
+        { href: 'https://webmail.iitb.ac.in', icon: 'email', text: 'WebMail' },
         { href: 'https://gpo.iitb.ac.in', icon: 'email', text: 'GPO' },
         { href: 'https://camp.iitb.ac.in/', icon: 'account_box', text: 'CAMP' },
         { href: 'http://msstore.iitb.ac.in/', icon: 'shopping_cart', text: 'Microsoft Store' },
