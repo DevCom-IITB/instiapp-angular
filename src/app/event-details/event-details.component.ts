@@ -49,6 +49,11 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   refresh() {
     this.event = null;
     this.dataService.FillGetEvent(this.eventId).subscribe(result => {
+      /* Check if no image */
+      if (result.image_url === null || result.image_url === '') {
+        result.image_url = result.bodies[0].image_url;
+      }
+
       this.event = result;
       this.load.emit(true);
 
