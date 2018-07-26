@@ -305,7 +305,7 @@ export class AddEventComponent implements OnInit {
   /** Make and remove blank venues from event.venue_names */
   ConstructVenuesNames() {
     this.event.venue_names = this.event.venues.map(v => v.short_name);
-    this.event.venue_names = this.event.venue_names.filter(v => v !== '');
+    this.event.venue_names = this.event.venue_names.filter(v => v && v !== '');
   }
 
   /** Removes venue at index */
