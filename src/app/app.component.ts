@@ -23,11 +23,12 @@ export class AppComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   public openFlyout = false;
   public _title = TITLE;
+  public isSandbox = false;
 
   private _mobileQueryListener: () => void;
 
   constructor(
-    changeDetectorRef: ChangeDetectorRef,
+    public changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     public dataService: DataService,
     public router: Router,
@@ -42,6 +43,12 @@ export class AppComponent implements OnDestroy, OnInit {
       changeDetectorRef.detectChanges();
     };
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    /* Check if this is a fake environment */
+    const sandbox = Helpers.getParameterByName('sandbox');
+    if (sandbox && sandbox === 'true') {
+      this.isSandbox = true;
+    }
   }
 
   private toggleSidebar() {
@@ -52,6 +59,7 @@ export class AppComponent implements OnDestroy, OnInit {
     /* Initialize stuff for title */
     this.dataService.titleObservable.subscribe((title) => {
       this._title = title;
+      this.changeDetectorRef.detectChanges();
     });
 
     /** Check for update */

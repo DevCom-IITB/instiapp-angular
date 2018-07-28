@@ -123,4 +123,19 @@ export module Helpers {
         return new XMLSerializer().serializeToString(doc);
     }
 
+    /**
+     * Gets query parameters by name
+     * @param name Name of the query parameter
+     * @param url URL to look in (defaults to current url)
+     */
+    export function getParameterByName(name, url = null) {
+        if (!url) { url = window.location.href; }
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) { return null; }
+        if (!results[2]) { return ''; }
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
 }

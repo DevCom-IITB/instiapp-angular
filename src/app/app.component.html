@@ -2,7 +2,9 @@
 
 <ng-container *ngIf="dataService.isInitialized()">
 
-<mat-toolbar class="example-toolbar" color="primary">
+<mat-toolbar class="example-toolbar"
+             color="primary"
+            *ngIf="!isSandbox">
     <button mat-icon-button
             *ngIf="mobileQuery.matches"
             (click)="toggleSidebar()"
@@ -45,7 +47,8 @@
             [showBackdrop]="mobileQuery.matches"
             [hideOnBackdropClick]="mobileQuery.matches"
             [flyoutClasses]="['flyout']"
-            [backdropClasses]="['flyout-backdrop']">
+            [backdropClasses]="['flyout-backdrop']"
+            *ngIf="!isSandbox">
     <mat-nav-list>
         <app-navmenu (click)="closeSidebarMobile()">
         </app-navmenu>
@@ -53,13 +56,13 @@
 </ngx-flyout>
 
 <div id="router-out" (scroll)="onScroll($event)">
-    <div id="top-gap"></div>
+    <div id="top-gap" *ngIf="!isSandbox"></div>
     <router-outlet #o="outlet"></router-outlet>
 </div>
 
 <!-- Swipe area (only for mobile) -->
 <div id="swipe-right-area"
-     *ngIf="mobileQuery.matches"
+     *ngIf="mobileQuery.matches && !isSandbox"
      (click)="toggleSidebar()"
      (swiperight)="toggleSidebar()">
 </div>
