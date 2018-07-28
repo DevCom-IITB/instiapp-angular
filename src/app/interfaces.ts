@@ -43,6 +43,7 @@ export interface IEvent {
     going: IUserProfile[];
     user_ues: number;
     weight: number;
+    notify: boolean;
 }
 
 export interface ILocation {

@@ -162,6 +162,7 @@ export class AddEventComponent implements OnInit {
   /* Initialize a blank event */
   initializeBlank() {
     this.event = {} as IEvent;
+    this.event.notify = true;
     this.event.bodies_id = [];
     this.event.venues = [] as ILocation[];
     this.AddVenue();

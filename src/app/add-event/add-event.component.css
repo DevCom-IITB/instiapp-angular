@@ -46,12 +46,17 @@
 }
 
 .full-width-details {
+    position: relative;
     left: 5%;
     width: 90%;
 }
 
 .action-button {
     margin-top: 10px;
+}
+
+.switch {
+    margin-bottom: 12px;
 }
 
 @media (max-width: 1200px) {
