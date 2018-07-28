@@ -67,7 +67,7 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {
     if (!this.dataService.isLoggedIn()) {
       alert('Please login to continue!');
-      this.close();
+      this.close(this.event);
       return;
     }
 
@@ -114,7 +114,7 @@ export class AddEventComponent implements OnInit {
         /* Check if the user can edit the event */
         if (!this.dataService.CanEditEvent(this.event)) {
           alert('You do not have sufficient privileges to edit this event!');
-          this.close();
+          this.close(this.event);
         }
 
         /* Initialize things */
@@ -124,7 +124,7 @@ export class AddEventComponent implements OnInit {
 
       }, (error) => {
         alert('Event not found!');
-        this.close();
+        this.dataService.navigateBack();
       });
     } else {
       this.initializeBlank();
@@ -246,10 +246,8 @@ export class AddEventComponent implements OnInit {
       /* Add one venue if not present */
       if (this.event.venue_names.length === 0) { this.AddVenue(); }
 
-      /* Quit if not editing */
-      if (!this.editing) {
-        this.close();
-      }
+      /* Quit */
+      this.close(result);
     }, () => {
       this.snackBar.open('An error occured!', 'Dismiss', {
         duration: 2000,
@@ -265,7 +263,7 @@ export class AddEventComponent implements OnInit {
         this.snackBar.open('Event Deleted!', 'Dismiss', {
           duration: 2000,
         });
-        this.close();
+        this.router.navigate(['feed']);
       }, (error) => {
         if (error.detail) {
           alert(error.detail);
@@ -321,9 +319,9 @@ export class AddEventComponent implements OnInit {
     this.venueControls.splice(i, 1);
   }
 
-  /** Navigate back */
-  close() {
-    this.dataService.navigateBack();
+  /** Open the event page */
+  close(event: IEvent) {
+    this.router.navigate(['event', event.str_id]);
   }
 
 }
