@@ -79,10 +79,18 @@ export class AddEventComponent implements OnInit {
     });
 
     this.bodies = this.bodies.concat(this.dataService.GetBodiesWithPermission('AddE'));
+    this.sortBodies();
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.eventId = params['id'];
       this.refresh();
+    });
+  }
+
+  /** Sorts all bodies by name in place */
+  sortBodies() {
+    this.bodies.sort((a, b) => {
+      return a.name.localeCompare(b.name);
     });
   }
 
@@ -112,9 +120,7 @@ export class AddEventComponent implements OnInit {
         /* Initialize things */
         this.initializeEvent();
         this.initializeBodiesExisting();
-        this.bodies.sort((a, b) => {
-          return a.name.localeCompare(b.name);
-        });
+        this.sortBodies();
 
       }, (error) => {
         alert('Event not found!');
