@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IBody } from '../interfaces';
 import { DataService } from '../data.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { API } from '../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -19,6 +19,7 @@ export class UpdateBodyComponent implements OnInit {
     public dataService: DataService,
     public activatedRoute: ActivatedRoute,
     public snackBar: MatSnackBar,
+    public router: Router,
   ) { }
 
   ngOnInit() {
@@ -58,10 +59,11 @@ export class UpdateBodyComponent implements OnInit {
 
   /** Make a PUT request */
   go() {
-    this.dataService.FirePUT(API.Body, this.body, {uuid: this.bodyId}).subscribe(result => {
+    this.dataService.FirePUT<IBody>(API.Body, this.body, {uuid: this.bodyId}).subscribe(result => {
       this.snackBar.open('Successful!', 'Dismiss', {
         duration: 2000,
       });
+      this.router.navigate(['org', result.str_id]);
     });
   }
 
