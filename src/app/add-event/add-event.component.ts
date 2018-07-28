@@ -321,7 +321,11 @@ export class AddEventComponent implements OnInit {
 
   /** Open the event page */
   close(event: IEvent) {
-    this.router.navigate(['event', event.str_id]);
+    if (this.dataService.isSandbox) {
+      window.location.href = '/event/' + event.str_id;
+    } else {
+      this.router.navigate(['event', event.str_id]);
+    }
   }
 
 }

@@ -48,6 +48,7 @@ export class AppComponent implements OnDestroy, OnInit {
     const sandbox = Helpers.getParameterByName('sandbox');
     if (sandbox && sandbox === 'true') {
       this.isSandbox = true;
+      this.dataService.isSandbox = true;
     }
   }
 

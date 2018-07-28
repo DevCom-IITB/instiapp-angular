@@ -63,7 +63,11 @@ export class UpdateBodyComponent implements OnInit {
       this.snackBar.open('Successful!', 'Dismiss', {
         duration: 2000,
       });
-      this.router.navigate(['org', result.str_id]);
+      if (this.dataService.isSandbox) {
+        window.location.href = '/org/' + result.str_id;
+      } else {
+        this.router.navigate(['org', result.str_id]);
+      }
     });
   }
 

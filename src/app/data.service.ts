@@ -48,6 +48,9 @@ export class DataService {
   public LOGIN_REDIR = 'login_redir';
   public LS_USER = 'user_profile';
 
+  /** Running in a sandbox */
+  public isSandbox = false;
+
   constructor(
     private http: HttpClient,
     public router: Router,
