@@ -34,9 +34,6 @@
 }
 
 @media (max-width: 600px) {
-    .example-toolbar {
-        position: absolute;
-    }
     #top-gap {
         height: 56px;
     }
