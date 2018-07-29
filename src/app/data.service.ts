@@ -142,8 +142,8 @@ export class DataService {
         return this.FirePOST(API.PostImage, {picture: result}).subscribe(httpresult => {
           observer.next(httpresult);
           observer.complete();
-        }, (error) => observer.error(error.message));
-      }, (error) => observer.error(error.message));
+        }, (error) => observer.error(error));
+      }, (error) => observer.error(error));
     });
   }
 

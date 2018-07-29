@@ -216,9 +216,9 @@ export class AddEventComponent implements OnInit {
       this.snackBar.open('Image Uploaded', 'Dismiss', {
         duration: 2000,
       });
-    }, () => {
+    }, (error) => {
       this.networkBusy = false;
-      this.snackBar.open('Image Uploading Failed', 'Dismiss', {
+      this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
         duration: 2000,
       });
     });
