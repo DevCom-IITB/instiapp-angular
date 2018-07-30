@@ -8,25 +8,25 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import OlMap from 'ol/map';
-import OlLayerImage from 'ol/layer/image';
-import OlView from 'ol/view';
-import OlExtent from 'ol/extent';
-import OlOverlay from 'ol/overlay';
-import OlLayerVector from 'ol/layer/vector';
-import OlSourceImageStatic from 'ol/source/imagestatic';
-import OlSourceVector from 'ol/source/vector';
-import OlProjProjection from 'ol/proj/projection';
-import OlFeature from 'ol/feature';
-import OlGeomPoint from 'ol/geom/point';
-import OlGeomPolygon from 'ol/geom/polygon';
-import OlStyleStyle from 'ol/style/style';
-import OlStyleCircle from 'ol/style/circle';
-import OlStyleText from 'ol/style/text';
-import OlStyleStroke from 'ol/style/stroke';
-import OlStyleFill from 'ol/style/fill';
-import OlInteraction from 'ol/interaction';
-import OlControlFullscreen from 'ol/control/fullscreen';
+import OlMap from 'ol/Map';
+import OlLayerImage from 'ol/layer/Image';
+import OlView from 'ol/View';
+import * as OlExtent from 'ol/extent';
+import OlOverlay from 'ol/Overlay';
+import OlLayerVector from 'ol/layer/Vector';
+import OlSourceImageStatic from 'ol/source/ImageStatic';
+import OlSourceVector from 'ol/source/Vector';
+import OlProjProjection from 'ol/proj/Projection';
+import OlFeature from 'ol/Feature';
+import OlGeomPoint from 'ol/geom/Point';
+import OlGeomPolygon from 'ol/geom/Polygon';
+import OlStyleStyle from 'ol/style/Style';
+import OlStyleCircle from 'ol/style/Circle';
+import OlStyleText from 'ol/style/Text';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyleFill from 'ol/style/Fill';
+import * as OlInteraction from 'ol/interaction';
+import OlControlFullscreen from 'ol/control/FullScreen';
 import { ILocation } from '../interfaces';
 import { API } from '../../api';
 
@@ -86,6 +86,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     public dataService: DataService,
     public snackBar: MatSnackBar,
   ) {
+    this.searchForm = new FormControl();
     if (!this.dataService.isMobile(560)) {
       this.showSearch = true;
     }
@@ -93,7 +94,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataService.setTitle('Map');
-    this.searchForm = new FormControl();
     this.filteredOptions = this.searchForm.valueChanges.pipe(
       map(result =>
         this.filteredLocations(result)
