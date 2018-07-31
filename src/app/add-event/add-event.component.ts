@@ -258,6 +258,13 @@ export class AddEventComponent implements OnInit {
 
   /** Delete the open event */
   delete() {
+    /* Deletion doesn't work in sandbox */
+    if (this.dataService.isSandbox) {
+      alert('Visit the website (insti.app) to delete events');
+      return;
+    }
+
+    /* Confirm before doing this terrible thing */
     if (confirm('Are you sure you want to delete this event? This action is irreversible!')) {
       this.dataService.FireDELETE(API.Event, {uuid: this.eventId}).subscribe(() => {
         this.snackBar.open('Event Deleted!', 'Dismiss', {
