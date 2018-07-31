@@ -132,17 +132,27 @@ mat-form-field, mat-form-field *, .markdown * {
 .markdown table {
     border: 1px solid #ddd;
     margin: 10px 0;
+    border-collapse: collapse;
 }
 
-.markdown td {
+.markdown th, .markdown td {
+    border: 1px solid #ddd;
     text-align: left;
-    padding: 10px;
-    border: none;
+    padding: 8px
+}
+
+.markdown th {
+    padding: 12px 8px;
+    text-align: left;
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .markdown tr:nth-child(even) {
     background-color: #f2f2f2
 }
+
+.markdown tr:hover {background-color: #ddd;}
 
 .object-cover {
     object-fit: cover;
