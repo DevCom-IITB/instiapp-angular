@@ -5,7 +5,6 @@
 }
 
 .feed-card {
-    cursor: pointer;
     overflow: auto;
     font-size: 0.9em;
     margin-bottom: 2.5em;

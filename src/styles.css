@@ -40,7 +40,7 @@ body, .image-background {
     background: var(--warn-color);;
 }
 
-mat-form-field, mat-form-field * {
+mat-form-field, mat-form-field *, .markdown * {
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: text;
     -khtml-user-select: text;
