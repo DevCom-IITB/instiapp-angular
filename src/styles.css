@@ -119,6 +119,7 @@ mat-form-field, mat-form-field *, .markdown * {
     color: #777;
 }
 
+/* Markdown */
 .markdown a {
     color: var(--primary-color);
     text-decoration: none;
@@ -126,6 +127,21 @@ mat-form-field, mat-form-field *, .markdown * {
 
 .markdown a:hover {
     color: blue;
+}
+
+.markdown table {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.markdown td {
+    text-align: left;
+    padding: 10px;
+    border: none;
+}
+
+.markdown tr:nth-child(even) {
+    background-color: #f2f2f2
 }
 
 .object-cover {
