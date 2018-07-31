@@ -11,7 +11,7 @@
     <div class="feed-card" (click)="openLink(item.link, $event)">
         <div class="title">{{item.title}}</div>
         {{item.published | date:"dd-MMM-yyyy HH:mm"}}
-        <markdown [data]="dataService.processMDHTML(item.content)" class="markdown"></markdown>
+        <div [innerHTML]="dataService.processMDHTML(item.content | markdown)" class="markdown"></div>
     </div>
   </ng-container>
 </div>
