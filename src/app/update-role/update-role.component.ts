@@ -71,6 +71,12 @@ export class UpdateRoleComponent implements OnInit {
     this.addForm.setValue('');
   }
 
+  /** Remove a user from role */
+  removePerson(user: IUserProfile) {
+    this.role.users_detail.splice(this.role.users_detail.indexOf(user), 1);
+    this.role.users.splice(this.role.users.indexOf(user.id), 1);
+  }
+
   /** Returns true if the role has permission with code */
   hasPermission(code: string) {
     return this.role.permissions.includes(code);

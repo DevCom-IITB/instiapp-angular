@@ -41,7 +41,9 @@
         </app-user-card>
       </td>
       <td width="50px">
-        <button mat-icon-button color="warn"><mat-icon>remove_circle</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="removePerson(user)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
       </td>
     </tr>
   </table>
