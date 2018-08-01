@@ -28,7 +28,7 @@
            [formControl]="addForm">
 
     <mat-autocomplete name="personauto" #auto (optionSelected)="addPerson($event)">
-      <mat-option *ngFor="let p of explorePeople | async" [value]="p">{{p.name}}</mat-option>
+      <mat-option *ngFor="let person of explorePeople | async" [value]="person">{{person.name}}</mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
