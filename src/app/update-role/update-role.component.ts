@@ -98,4 +98,10 @@ export class UpdateRoleComponent implements OnInit {
       this.doneUpdate.emit(result);
     });
   }
+
+  /** Cancel the edit */
+  cancel() {
+    this.role.editing = true;
+    this.doneUpdate.emit(this.role);
+  }
 }

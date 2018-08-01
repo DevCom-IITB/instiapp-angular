@@ -81,6 +81,13 @@ export class UpdateBodyComponent implements OnInit {
 
   /** Update role */
   doneEditRole(role: IBodyRole) {
+    /* Check for cancellations */
+    if (role.editing) {
+      this.body.roles.find(m => m.id === role.id).editing = false;
+      return;
+    }
+
+    /* Splice/add new role */
     const index = this.body.roles.map(m => m.id).indexOf(role.id);
     if (index !== -1) {
       this.body.roles[index] = role;
