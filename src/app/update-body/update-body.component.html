@@ -49,15 +49,19 @@
     <div class="full-width-details roles">
       <div *ngFor="let role of body.roles">
         <ng-container *ngIf="!role.editing">
-          <div>
-            <span class="rl-header xs">{{role.name}}</span>
-            <button mat-icon-button
-                  *ngIf="this.dataService.HasBodyPermission(this.bodyId, 'Role')"
-                    class="edit-role"
-                  (click)="editRole(role)">
-                <mat-icon>edit</mat-icon>
-            </button>
-          </div>
+          <table style="width: 100%">
+            <tr>
+              <td><span class="rl-header xs">{{role.name}}</span></td>
+              <td width="40px">
+                <button mat-icon-button
+                    *ngIf="this.dataService.HasBodyPermission(this.bodyId, 'Role')"
+                      class="edit-role"
+                    (click)="editRole(role)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
 
           <app-user-card *ngFor="let user of role.users_detail"
                         [profile]="user"
