@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { IBodyRole } from '../interfaces';
+import { IBodyRole, IUserProfile } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
+import { FormControl } from '../../../node_modules/@angular/forms';
+import { Observable } from '../../../node_modules/rxjs';
+import { map, startWith, debounceTime, distinctUntilChanged, switchMap } from '../../../node_modules/rxjs/operators';
 
 @Component({
   selector: 'app-update-role',
@@ -13,6 +16,8 @@ export class UpdateRoleComponent implements OnInit {
   @Input() minrole: IBodyRole;
   @Output() public doneUpdate = new EventEmitter<IBodyRole>();
   role: IBodyRole;
+  addForm: FormControl;
+  explorePeople: Observable<IUserProfile[]>;
 
   possiblePermissions = [
     {name: 'Add Event', code: 'AddE'},
@@ -24,12 +29,45 @@ export class UpdateRoleComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-  ) { }
+  ) {
+    this.addForm = new FormControl();
+  }
 
   ngOnInit() {
     this.dataService.FireGET<IBodyRole>(API.Role, { uuid: this.minrole.id }).subscribe(result => {
       this.role = result;
     });
+
+    this.explorePeople = this.addForm.valueChanges.pipe(
+      startWith(null),
+      debounceTime(200),
+      distinctUntilChanged(),
+      switchMap(val => {
+        return this.explore(val);
+      })
+    );
+  }
+
+  /** Return an observable with explored profiles */
+  explore(query: string): Observable<IUserProfile[]> {
+    return Observable.create(observer => {
+      if (!query || query.length < 3) {
+        observer.next([]);
+        observer.complete();
+      } else {
+        this.dataService.FireGET<any>(API.Search, { query: query }).subscribe(result => {
+            observer.next(result.users);
+            observer.complete();
+        }, (error) => observer.error(error));
+      }
+    });
+  }
+
+  addPerson(event: any) {
+    const person: IUserProfile = event.option.value;
+    this.role.users_detail.push(person);
+    this.role.users.push(person.id);
+    this.addForm.setValue('');
   }
 
   /** Returns true if the role has permission with code */
