@@ -32,6 +32,10 @@
     background-color: var(--accent-color);
 }
 
+.submit button {
+    margin: 8px 0;
+}
+
 .full-width {
     width: 100%;
 }

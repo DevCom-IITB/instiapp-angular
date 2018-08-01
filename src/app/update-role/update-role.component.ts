@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IBodyRole } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
@@ -11,6 +11,7 @@ import { API } from '../../api';
 export class UpdateRoleComponent implements OnInit {
 
   @Input() minrole: IBodyRole;
+  @Output() public doneUpdate = new EventEmitter<IBodyRole>();
   role: IBodyRole;
 
   possiblePermissions = [
@@ -44,5 +45,12 @@ export class UpdateRoleComponent implements OnInit {
     } else {
       this.role.permissions.push(code);
     }
+  }
+
+  /** PUT the role */
+  submit() {
+    this.dataService.FirePUT<IBodyRole>(API.Role, this.role, { uuid: this.role.id }).subscribe(result => {
+      this.doneUpdate.emit(result);
+    });
   }
 }

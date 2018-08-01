@@ -76,10 +76,16 @@ export class UpdateBodyComponent implements OnInit {
    * @param role Role to edit
    */
   editRole(role: IBodyRole) {
-    if (role.editing) {
-      role.editing = undefined;
+    role.editing = true;
+  }
+
+  /** Update role */
+  doneEditRole(role: IBodyRole) {
+    const index = this.body.roles.map(m => m.id).indexOf(role.id);
+    if (index !== -1) {
+      this.body.roles[index] = role;
     } else {
-      role.editing = true;
+      this.body.roles.push(role);
     }
   }
 

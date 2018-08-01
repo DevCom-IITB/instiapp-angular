@@ -66,7 +66,8 @@
         </ng-container>
 
         <app-update-role *ngIf="role.editing"
-                         [minrole]="role">
+                         [minrole]="role"
+                         (doneUpdate)="doneEditRole($event)">
         </app-update-role>
       </div>
     </div>
