@@ -1,12 +1,22 @@
 <app-xunk-spinner *ngIf="!feed || error" [error]="error"></app-xunk-spinner>
 
-<div *ngIf="feed" class="main-div">
-    <mat-form-field class="searchbox">
-      <input type="search"
-            matInput placeholder="Search"
-            (keyup.enter)="search($event)">
-    </mat-form-field>
+<div id="searchbox">
+  <mat-form-field class="searchinput">
+    <input type="search" #box
+      matInput placeholder="Search"
+      (keyup.enter)="search($event)">
+    <mat-hint align="start">Find blog posts </mat-hint>
+  </mat-form-field>
 
+  <button mat-icon-button
+          color="primary"
+          (click)="search(box, true)"
+          style="max-height:37px;">
+      <mat-icon>search</mat-icon>
+  </button>
+</div>
+
+<div *ngIf="feed" class="main-div">
   <ng-container *ngFor="let item of feed">
     <div class="feed-card">
         <div class="title">{{item.title}}</div>

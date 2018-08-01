@@ -82,13 +82,13 @@ export class BlogComponent implements OnInit, OnDestroy {
     }, () => { this.loading = false; });
   }
 
-  search(e) {
+  search(e, click = false) {
     /* Reset */
     this.allLoaded = false;
     this.feed = [];
 
     /* Check if nothing */
-    const val: string = e.target.value;
+    const val: string = click ? e.value : e.target.value;
     if (!val || val.length < 3) {
       this.query = null;
       this.reload();
@@ -97,7 +97,7 @@ export class BlogComponent implements OnInit, OnDestroy {
 
     /* Load query data */
     if (!this.feed || this.loading) { return; }
-    this.query = e.target.value;
+    this.query = val;
     this.reload();
   }
 
