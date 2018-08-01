@@ -110,6 +110,7 @@ export class UpdateRoleComponent implements OnInit {
       obs = this.dataService.FirePOST<IBodyRole>(API.Roles, this.role);
     }
 
+    /* Make the request */
     obs.subscribe(result => {
       this.snackBar.open('Role Updated', 'Dismiss', { duration: 2000 });
       this.doneUpdate.emit(result);
@@ -118,6 +119,20 @@ export class UpdateRoleComponent implements OnInit {
     });
   }
 
+  /* Delete the role */
+  delete() {
+    if (confirm('Delete this role? This action is irreversible')) {
+      this.dataService.FireDELETE(API.Role, { uuid: this.role.id }).subscribe(() => {
+        this.snackBar.open('Role Deleted', 'Dismiss', { duration: 2000 });
+        (this.role as any).deleted = true;
+        this.doneUpdate.emit(this.role);
+      }, (error) => {
+        this.snackBar.open('Deletion Failed!', 'Dismiss', { duration: 2000 });
+      });
+    }
+  }
+
+  /* Toggle inheritability */
   toggleInheritable() {
     this.role.inheritable = !this.role.inheritable;
   }
