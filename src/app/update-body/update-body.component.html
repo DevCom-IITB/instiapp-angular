@@ -47,10 +47,27 @@
     </div>
 
     <div class="full-width-details roles">
-      <span class="rl-header sm">Roles</span>
+      <table><tr>
+        <td><span class="rl-header sm">Roles</span></td>
+        <td width="40px">
+          <button mat-mini-fab
+                *ngIf="this.dataService.HasBodyPermission(this.bodyId, 'Role') && !addingRole"
+                class="edit-role mat-elevation-z1 add-role"
+                (click)="addRole()"
+                color="warn">
+              <mat-icon>add</mat-icon>
+          </button>
+        </td>
+      </tr></table>
+
+      <app-update-role *ngIf="addingRole"
+                       (doneUpdate)="doneEditRole($event)"
+                       [minrole]="toAddRole">
+      </app-update-role>
+
       <div *ngFor="let role of body.roles">
         <ng-container *ngIf="!role.editing">
-          <table style="width: 100%">
+          <table>
             <tr>
               <td><span class="rl-header xs">{{role.name}}</span></td>
               <td width="40px">

@@ -27,6 +27,7 @@ export const API = {
     NewsFeed: 'api/news{?from,num,body,query}',
     NewsFeedReaction: 'api/user-me/unr/{uuid}{?reaction}',
 
+    Roles: 'api/roles',
     Role: 'api/roles/{uuid}',
 
     Mess: 'api/mess',

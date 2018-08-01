@@ -12,8 +12,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UpdateBodyComponent implements OnInit {
 
-  body: IBody;
-  bodyId: string;
+  public body: IBody;
+  public bodyId: string;
+  public addingRole = false;
+  public toAddRole: IBodyRole;
 
   constructor(
     public dataService: DataService,
@@ -79,6 +81,21 @@ export class UpdateBodyComponent implements OnInit {
     role.editing = true;
   }
 
+  /** Add a new role */
+  addRole() {
+    /* Initialize */
+    const role = {} as IBodyRole;
+    role.body = this.bodyId;
+    role.body_detail = this.body;
+    role.permissions = [];
+    role.users_detail = [];
+    role.users = [];
+
+    /* Setup adding */
+    this.toAddRole = role;
+    this.addingRole = true;
+  }
+
   /** Update role */
   doneEditRole(role: IBodyRole) {
     /* Check for cancellations */
@@ -92,8 +109,9 @@ export class UpdateBodyComponent implements OnInit {
     if (index !== -1) {
       this.body.roles[index] = role;
     } else {
-      this.body.roles.push(role);
+      this.body.roles.unshift(role);
     }
+    this.addingRole = false;
   }
 
 }

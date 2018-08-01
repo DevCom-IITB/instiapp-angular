@@ -35,6 +35,14 @@
     z-index: 10;
 }
 
+.add-role {
+    float: right;
+}
+
+table {
+    width: 100%;
+}
+
 .roles {
     margin-bottom: 8px;
 }

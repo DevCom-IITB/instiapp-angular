@@ -36,9 +36,15 @@ export class UpdateRoleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.FireGET<IBodyRole>(API.Role, { uuid: this.minrole.id }).subscribe(result => {
-      this.role = result;
-    });
+    if (this.minrole.editing) {
+      /* Modifying an existing role */
+      this.dataService.FireGET<IBodyRole>(API.Role, { uuid: this.minrole.id }).subscribe(result => {
+        this.role = result;
+      });
+    } else {
+      /* Making a new role */
+      this.role = this.minrole;
+    }
 
     this.explorePeople = this.addForm.valueChanges.pipe(
       startWith(null),
@@ -96,7 +102,15 @@ export class UpdateRoleComponent implements OnInit {
 
   /** PUT the role */
   submit() {
-    this.dataService.FirePUT<IBodyRole>(API.Role, this.role, { uuid: this.role.id }).subscribe(result => {
+    let obs: Observable<IBodyRole>;
+
+    if (this.minrole.id && this.minrole.id !== '') {
+      obs = this.dataService.FirePUT<IBodyRole>(API.Role, this.role, { uuid: this.role.id });
+    } else {
+      obs = this.dataService.FirePOST<IBodyRole>(API.Roles, this.role);
+    }
+
+    obs.subscribe(result => {
       this.snackBar.open('Role Updated', 'Dismiss', { duration: 2000 });
       this.doneUpdate.emit(result);
     }, (error) => {
