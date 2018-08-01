@@ -33,6 +33,10 @@
     background-color: var(--accent-color);
 }
 
+.user-table {
+    width: 100%;
+}
+
 .submit button {
     margin: 8px 0;
 }

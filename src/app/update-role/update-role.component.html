@@ -32,10 +32,19 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  <app-user-card *ngFor="let user of role.users_detail"
-    [profile]="user"
-    [role]="user.ldap_id">
-  </app-user-card>
+  <table class="user-table">
+    <tr *ngFor="let user of role.users_detail">
+      <td>
+        <app-user-card
+          [profile]="user"
+          [role]="user.ldap_id">
+        </app-user-card>
+      </td>
+      <td width="50px">
+        <button mat-icon-button color="warn"><mat-icon>remove_circle</mat-icon></button>
+      </td>
+    </tr>
+  </table>
 
   <div class="submit">
     <button mat-raised-button
