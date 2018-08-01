@@ -31,6 +31,12 @@
     text-decoration: none;
 }
 
+.edit-role {
+    position: absolute;
+    right: 12px;
+    z-index: 10;
+}
+
 .roles {
     margin-bottom: 8px;
 }

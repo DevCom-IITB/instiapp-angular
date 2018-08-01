@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBody } from '../interfaces';
+import { IBody, IBodyRole } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { API } from '../../api';
@@ -69,6 +69,14 @@ export class UpdateBodyComponent implements OnInit {
         this.router.navigate(['org', result.str_id]);
       }
     });
+  }
+
+  /**
+   * Start process to edit a body role
+   * @param role Role to edit
+   */
+  editRole(role: IBodyRole) {
+    alert(role.name);
   }
 
 }
