@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
+const PLACEHOLDER = 'assets/add_image_placeholder.svg';
+
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
@@ -70,6 +72,10 @@ export class AddEventComponent implements OnInit {
       this.close(this.event);
       return;
     }
+
+    /* Preload placeholder image */
+    const img = new Image();
+    img.src = PLACEHOLDER;
 
     /* Load locations */
     this.dataService.GetAllLocations().subscribe(result => {
@@ -325,6 +331,17 @@ export class AddEventComponent implements OnInit {
       window.location.href = '/event/' + event.str_id;
     } else {
       this.router.navigate(['event', event.str_id]);
+    }
+  }
+
+  /**
+   * Gets the image URL or placeholder
+   */
+  getImageUrl() {
+    if (this.event && this.event.image_url && this.event.image_url !== '') {
+      return this.event.image_url;
+    } else {
+      return PLACEHOLDER;
     }
   }
 
