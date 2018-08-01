@@ -1,0 +1,43 @@
+.loader {
+    position:relative;
+    height: 250px;
+    width: 100%;
+}
+
+.main {
+    padding: 4px 0;
+    margin: 4px 0;
+}
+
+.name {
+    font-weight: 200;
+}
+
+.permissions {
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px 0;
+    font-weight: 200;
+    font-size: 1.1em;
+}
+
+.permissions button {
+    line-height: 2em;
+    transition: background-color 0.2s ease;
+    margin-right: 4px;
+    margin-top: 2px;
+}
+
+.permissions button.has {
+    background-color: var(--accent-color);
+}
+
+.full-width {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .permissions button {
+        width: 45%;
+    }
+}

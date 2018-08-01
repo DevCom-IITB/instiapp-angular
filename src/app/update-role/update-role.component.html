@@ -1,0 +1,28 @@
+<div class="loader" *ngIf="!role">
+  <app-xunk-spinner></app-xunk-spinner>
+</div>
+
+<div *ngIf="role" class="main full-width">
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Role Name"
+              [(ngModel)]="role.name"
+              class="rl-header xs name">
+  </mat-form-field>
+
+  <div class="permissions">
+    Permissions<br>
+    <ng-container *ngFor="let perm of possiblePermissions">
+      <button mat-button
+              [class.has]="true">
+        {{ perm.name }}
+      </button>
+    </ng-container>
+  </div>
+
+  <app-user-card *ngFor="let user of role.users_detail"
+    [profile]="user"
+    [role]="user.ldap_id">
+  </app-user-card>
+
+</div>

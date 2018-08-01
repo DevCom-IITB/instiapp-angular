@@ -96,6 +96,8 @@ export interface IBodyRole {
     users: string[];
     users_detail: IUserProfile[];
     events: IEvent[];
+
+    editing: boolean;
 }
 
 export interface INewsEntry {

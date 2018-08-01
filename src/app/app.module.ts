@@ -57,6 +57,7 @@ import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
 import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
 import { NotifyCardComponent } from './notify-card/notify-card.component';
 import { RedirComponent } from './redir/redir.component';
+import { UpdateRoleComponent } from './update-role/update-role.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { RedirComponent } from './redir/redir.component';
     XunkCalendarComponent,
     DesktopSplitComponent,
     NotifyCardComponent,
-    RedirComponent
+    RedirComponent,
+    UpdateRoleComponent
   ],
   imports: [
     BrowserModule,

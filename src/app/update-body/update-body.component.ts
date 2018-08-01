@@ -76,7 +76,11 @@ export class UpdateBodyComponent implements OnInit {
    * @param role Role to edit
    */
   editRole(role: IBodyRole) {
-    alert(role.name);
+    if (role.editing) {
+      role.editing = undefined;
+    } else {
+      role.editing = true;
+    }
   }
 
 }
