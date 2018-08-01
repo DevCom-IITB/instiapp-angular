@@ -12,13 +12,8 @@
     padding: 12px 0 8px 0;
 }
 
-.details-view > div {
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
 .full-width-details {
-    left: 5%;
+    margin-left: 5%;
     width: 90%;
 }
 
@@ -36,9 +31,13 @@
     text-decoration: none;
 }
 
+.roles {
+    margin-bottom: 8px;
+}
+
 @media (max-width: 1200px) {
     .full-width-details {
-        left: 2%;
+        margin-left: 2%;
         width: 96%;
     }
 }
