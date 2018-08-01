@@ -10,22 +10,32 @@
               class="rl-header xs name">
   </mat-form-field>
 
-  <div class="permissions">
-    Permissions<br>
-    <ng-container *ngFor="let perm of possiblePermissions">
-      <button mat-button
-              [class.has]="hasPermission(perm.code)"
-              (click)="togglePermission(perm.code)">
-        {{ perm.name }}
-      </button>
-    </ng-container>
+  <mat-form-field class="full-width with-hint">
+    <input matInput placeholder="Priority"
+              [(ngModel)]="role.priority"
+              type="number">
+    <mat-hint align="start">Smaller number is higher priority</mat-hint>
+  </mat-form-field>
 
-    <br><br>Inheritance<br>
-    <button mat-button
-            [class.hasred]="role.inheritable"
-            (click)="toggleInheritable()">
-      Inheritable
-    </button>
+  <div class="permissions">
+    <div class="with-hint">
+      Permissions<br>
+      <ng-container *ngFor="let perm of possiblePermissions">
+        <button mat-button
+                [class.has]="hasPermission(perm.code)"
+                (click)="togglePermission(perm.code)">
+          {{ perm.name }}
+        </button>
+      </ng-container>
+    </div>
+
+    <div>Inheritance<br>
+      <button mat-button
+              [class.hasred]="role.inheritable"
+              (click)="toggleInheritable()">
+        Inheritable
+      </button>
+    </div>
   </div>
 
   <mat-form-field class="full-width">
