@@ -107,8 +107,11 @@ export class UpdateBodyComponent implements OnInit {
 
     /* Check for cancellations */
     if (role.editing) {
-      this.body.roles.find(m => m.id === role.id).editing = false;
-      if (!role.id) { this.addingRole = false; }
+      if (!role.id) {
+        this.addingRole = false;
+      } else {
+        this.body.roles.find(m => m.id === role.id).editing = false;
+      }
       return;
     }
 

@@ -59,10 +59,16 @@
     <button mat-raised-button
             color="warn"
           (click)="submit()">
-      Update
+      <ng-container *ngIf="role.id">
+        Update
+      </ng-container>
+      <ng-container *ngIf="!role.id">
+        Create
+      </ng-container>
     </button>
 
     <button mat-button color="warn"
+          *ngIf="role.id"
           (click)="delete()">
       Delete
     </button>
