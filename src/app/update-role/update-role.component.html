@@ -19,6 +19,13 @@
         {{ perm.name }}
       </button>
     </ng-container>
+
+    <br><br>Inheritance<br>
+    <button mat-button
+            [class.hasred]="role.inheritable"
+            (click)="toggleInheritable()">
+      Inheritable
+    </button>
   </div>
 
   <mat-form-field class="full-width">

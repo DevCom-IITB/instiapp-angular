@@ -33,6 +33,11 @@
     background-color: var(--accent-color);
 }
 
+.permissions button.hasred {
+    background-color: var(--warn-color);
+    color: white;
+}
+
 .user-table {
     width: 100%;
 }

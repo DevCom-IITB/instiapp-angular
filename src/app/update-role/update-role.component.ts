@@ -99,6 +99,10 @@ export class UpdateRoleComponent implements OnInit {
     });
   }
 
+  toggleInheritable() {
+    this.role.inheritable = !this.role.inheritable;
+  }
+
   /** Cancel the edit */
   cancel() {
     this.role.editing = true;
