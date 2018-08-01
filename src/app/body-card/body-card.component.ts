@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IBody } from '../interfaces';
 
 @Component({
@@ -6,11 +6,18 @@ import { IBody } from '../interfaces';
   templateUrl: './body-card.component.html',
   styleUrls: ['./body-card.component.css']
 })
-export class BodyCardComponent {
+export class BodyCardComponent implements OnInit {
 
   @Input() public body: IBody;
   @Input() public subtitle: string;
 
   constructor() { }
+
+  ngOnInit() {
+    /* Set fallback image explicitly */
+    if (this.body && (!this.body.image_url || this.body.image_url === '')) {
+      this.body.image_url = 'assets/iitb_logo.svg';
+    }
+  }
 
 }

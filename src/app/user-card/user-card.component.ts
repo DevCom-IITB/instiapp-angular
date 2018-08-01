@@ -14,6 +14,10 @@ export class UserCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    /* Set fallback profile pic explicitly */
+    if (this.profile && (!this.profile.profile_pic || this.profile.profile_pic === '')) {
+      this.profile.profile_pic = 'assets/useravatar.svg';
+    }
   }
 
 }
