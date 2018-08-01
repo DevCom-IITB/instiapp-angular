@@ -70,6 +70,9 @@
 h1.app-name {
     margin-left: 8px;
     text-decoration: none;
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sidenav-container {
