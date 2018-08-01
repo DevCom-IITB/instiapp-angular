@@ -65,16 +65,20 @@ export class AppComponent implements OnDestroy, OnInit {
 
     /** Check for update */
     if (environment.production) {
-      this.swUpdate.available.subscribe(event => {
-        const snackBarRef = this.snackBar.open('New version available!', 'Refresh', {
-          duration: 60000,
-        });
+      if (!this.isSandbox) {
+        /* Show a prompt to update */
+        this.swUpdate.available.subscribe(event => {
+          const snackBarRef = this.snackBar.open('New version available!', 'Refresh', {
+            duration: 60000,
+          });
 
-        /* On clicking refresh */
-        snackBarRef.onAction().subscribe(() => {
-          this.swUpdate.activateUpdate().then(() => document.location.reload());
+          /* On clicking refresh */
+          snackBarRef.onAction().subscribe(() => {
+            this.swUpdate.activateUpdate().then(() => document.location.reload());
+          });
         });
-      });
+      }
+      /* Check for new versions */
       this.swUpdate.checkForUpdate();
     }
 
