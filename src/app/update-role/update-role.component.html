@@ -14,7 +14,8 @@
     Permissions<br>
     <ng-container *ngFor="let perm of possiblePermissions">
       <button mat-button
-              [class.has]="true">
+              [class.has]="hasPermission(perm.code)"
+              (click)="togglePermission(perm.code)">
         {{ perm.name }}
       </button>
     </ng-container>

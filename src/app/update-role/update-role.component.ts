@@ -31,4 +31,18 @@ export class UpdateRoleComponent implements OnInit {
     });
   }
 
+  /** Returns true if the role has permission with code */
+  hasPermission(code: string) {
+    return this.role.permissions.includes(code);
+  }
+
+  /** Removes existing permission and vice versa */
+  togglePermission(code: string) {
+    if (this.hasPermission(code)) {
+      const index = this.role.permissions.indexOf(code);
+      this.role.permissions.splice(index, 1);
+    } else {
+      this.role.permissions.push(code);
+    }
+  }
 }
