@@ -224,3 +224,7 @@ mat-form-field, mat-form-field *, .markdown * {
         width: 100%;
     }
 }
+
+.mat-card-header-text {
+    min-width: 90%;
+}
