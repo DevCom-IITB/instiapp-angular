@@ -24,9 +24,17 @@ export class UserDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       const userId = params['id'];
       this.dataService.FireGET<IUserProfile>(API.User, {uuid: userId}).subscribe(result => {
-        this.profile = result;
-        this.events = this.profile.events_going.concat(this.profile.events_interested);
+        /* Initialize */
+        this.events = result.events_going.concat(result.events_interested);
         this.dataService.setTitle(result.name);
+
+        /* Set fallback image */
+        if (!result.profile_pic || result.profile_pic === '') {
+          result.profile_pic = 'assets/useravatar.svg';
+        }
+
+        /* Show the user */
+        this.profile = result;
       }, (e) => {
         this.error = e.status;
       });
