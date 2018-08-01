@@ -56,9 +56,15 @@ export class FeedComponent implements OnInit {
 
   /** Makes the events into containers */
   MakeContainers(events: IEvent[]): IEventContainer[] {
-    /* Populate venues string */
+    /* Initialize */
     for (const event of events) {
+      /* Populate venues string */
       event.venues_str = event.venues.map(v => v.short_name).join(', ');
+
+      /* Set fallback images explictly */
+      if (!event.image_url || event.image_url === '') {
+        event.image_url = event.bodies[0].image_url;
+      }
     }
 
     /** Everything is one on mobile */
@@ -84,6 +90,7 @@ export class FeedComponent implements OnInit {
 
     let prev = {title: this.getDateTitle(events[0]), events: []} as IEventContainer;
     for (const event of events) {
+      /* Same title means same group */
       const title = this.getDateTitle(event);
       if (prev.title !== title) {
         result.push(prev);

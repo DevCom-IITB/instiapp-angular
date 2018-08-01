@@ -18,7 +18,13 @@ export class EventCardComponent implements OnInit {
 
   ngOnInit() {
     if (this.event) {
+      /* Generate venue subtitle */
       this.event.venues_str = this.event.venues.map(v => v.short_name).join(', ');
+
+      /* Set fallback images explictly */
+      if (!this.event.image_url || this.event.image_url === '') {
+        this.event.image_url = this.event.bodies[0].image_url;
+      }
     }
   }
 }
