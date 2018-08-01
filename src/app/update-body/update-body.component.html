@@ -53,10 +53,11 @@
             <tr>
               <td><span class="rl-header xs">{{role.name}}</span></td>
               <td width="40px">
-                <button mat-icon-button
+                <button mat-mini-fab
                     *ngIf="this.dataService.HasBodyPermission(this.bodyId, 'Role')"
-                      class="edit-role"
-                    (click)="editRole(role)">
+                     class="edit-role mat-elevation-z1"
+                    (click)="editRole(role)"
+                     color="warn">
                   <mat-icon>edit</mat-icon>
                 </button>
               </td>
