@@ -1,7 +1,16 @@
 <mat-card mat-ripple
           class="sub-card"
-          *ngIf="profile"
+          *ngIf="profile && !dataService.isSandbox"
           [routerLink]="['/user', profile.ldap_id || profile.id]">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</mat-card>
+
+<mat-card class="sub-card"
+          *ngIf="profile && dataService.isSandbox">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</mat-card>
+
+<ng-template #content>
   <mat-card-header>
     <img mat-card-avatar
          [src]="profile.profile_pic"
@@ -23,4 +32,4 @@
       </ng-template>
     </mat-card-subtitle>
   </mat-card-header>
-</mat-card>
+</ng-template>
