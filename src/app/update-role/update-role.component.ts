@@ -2,9 +2,10 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IBodyRole, IUserProfile } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
-import { FormControl } from '../../../node_modules/@angular/forms';
-import { Observable } from '../../../node_modules/rxjs';
-import { map, startWith, debounceTime, distinctUntilChanged, switchMap } from '../../../node_modules/rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-update-role',
@@ -29,6 +30,7 @@ export class UpdateRoleComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
+    public snackBar: MatSnackBar,
   ) {
     this.addForm = new FormControl();
   }
@@ -95,7 +97,10 @@ export class UpdateRoleComponent implements OnInit {
   /** PUT the role */
   submit() {
     this.dataService.FirePUT<IBodyRole>(API.Role, this.role, { uuid: this.role.id }).subscribe(result => {
+      this.snackBar.open('Role Updated', 'Dismiss', { duration: 2000 });
       this.doneUpdate.emit(result);
+    }, (error) => {
+      this.snackBar.open('Update Failed', 'Dismiss', { duration: 2000 });
     });
   }
 
