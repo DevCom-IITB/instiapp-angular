@@ -51,6 +51,7 @@
         <div>
           <span class="rl-header xs">{{role.name}}</span>
           <button mat-mini-fab
+                 *ngIf="this.dataService.HasBodyPermission(this.bodyId, 'Role')"
                   class="edit-role mat-elevation-z1"
                  (click)="editRole(role)">
               <mat-icon>edit</mat-icon>
