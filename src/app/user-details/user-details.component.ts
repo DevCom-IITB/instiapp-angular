@@ -26,6 +26,8 @@ export class UserDetailsComponent implements OnInit {
       this.dataService.FireGET<IUserProfile>(API.User, {uuid: userId}).subscribe(result => {
         /* Initialize */
         this.events = result.events_going.concat(result.events_interested);
+        result.former_roles.forEach(r => r.name = 'Former ' + r.name);
+        result.roles = result.roles.concat(result.former_roles);
         this.dataService.setTitle(result.name);
 
         /* Set fallback image */

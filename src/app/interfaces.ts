@@ -19,6 +19,7 @@ export interface IUserProfile {
     followed_bodies: IBody[];
     followed_bodies_id: string[];
     roles: IBodyRole[];
+    former_roles: IBodyRole[];
     hostel: string;
 }
 
