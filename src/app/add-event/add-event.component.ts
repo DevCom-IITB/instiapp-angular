@@ -236,6 +236,13 @@ export class AddEventComponent implements OnInit {
     this.ConstructVenuesNames();
     this.timeChanged();
 
+    /* Validate start and end datetimes */
+    if (this.event.start_time >= this.event.end_time) {
+      alert('Event must end after it starts!');
+      this.networkBusy = false;
+      return;
+    }
+
     let obs: Observable<IEvent>;
     if (!this.editing) {
       obs = this.dataService.PostEvent(this.event);
