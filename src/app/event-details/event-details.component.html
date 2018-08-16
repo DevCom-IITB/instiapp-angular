@@ -43,7 +43,7 @@
       <div class="card-header">
         <div>
           <div class="event-name">{{ event.name }}</div>
-          <div class="event-time">{{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}</div>
+          <div class="event-time">{{ dataService.GetEventSubtitle(event) }}</div>
         </div>
 
         <div class="action-buttons">

@@ -10,7 +10,7 @@
     <mat-card-title>{{ event.name }}</mat-card-title>
     <mat-card-subtitle>
       <div id="subtitle">
-        {{ dataService.GetDate(event.start_time) }} | {{ event.venues_str }}
+        {{ dataService.GetEventSubtitle(event) }}
       </div>
     </mat-card-subtitle>
   </mat-card-header>

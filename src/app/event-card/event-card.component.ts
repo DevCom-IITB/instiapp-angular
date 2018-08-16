@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IEvent } from '../interfaces';
 import { DataService } from '../data.service';
 
@@ -17,14 +17,10 @@ export class EventCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.event) {
-      /* Generate venue subtitle */
-      this.event.venues_str = this.event.venues.map(v => v.short_name).join(', ');
-
-      /* Set fallback images explictly */
-      if (!this.event.image_url || this.event.image_url === '') {
-        this.event.image_url = this.event.bodies[0].image_url;
-      }
+    /* Set fallback images explictly */
+    if (this.event && (!this.event.image_url || this.event.image_url === '')) {
+      this.event.image_url = this.event.bodies[0].image_url;
     }
   }
+
 }

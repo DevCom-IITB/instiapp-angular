@@ -22,7 +22,7 @@
                     [src-fallback]="c.events[0].bodies[0].image_url">
 
                 <div> {{ c.events[0].name }} </div>
-                <span class="subhead">{{ dataService.GetDate(c.events[0].start_time) }} | {{ c.events[0].venues_str }}</span>
+                <span class="subhead">{{ dataService.GetEventSubtitle(c.events[0]) }}</span>
             </mat-card>
 
             <app-event-card *ngFor="let event of (nobig ? c.events : c.events.slice(1, c.events.length))"

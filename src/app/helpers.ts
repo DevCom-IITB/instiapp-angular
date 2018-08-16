@@ -1,4 +1,4 @@
-import { DataService } from './data.service';
+import { IEvent } from './interfaces';
 
 export module Helpers {
 
@@ -136,6 +136,32 @@ export module Helpers {
         if (!results) { return null; }
         if (!results[2]) { return ''; }
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    export function GetEventSubtitle(event: IEvent): string {
+        if (event) {
+            /* Generate venue subtitle */
+            event.venues_str = event.venues.map(v => v.short_name).join(', ');
+
+            /* Init times */
+            event.start_time = new Date(event.start_time.toString());
+            event.end_time = new Date(event.end_time.toString());
+
+            /* Check for ongoing/ended events */
+            let subtitleTime = GetDate(event.start_time);
+            const now = new Date();
+            if (now > event.start_time) {
+                if (now < event.end_time) {
+                    subtitleTime = 'Ends ' + GetDate(event.end_time);
+                } else {
+                    subtitleTime = 'Ended | ' + GetDate(event.start_time);
+                }
+            }
+
+            /* Get the subtitle */
+            return subtitleTime + ' | ' + event.venues_str;
+        }
+        return '';
     }
 
 }

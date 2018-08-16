@@ -58,9 +58,6 @@ export class FeedComponent implements OnInit {
   MakeContainers(events: IEvent[]): IEventContainer[] {
     /* Initialize */
     for (const event of events) {
-      /* Populate venues string */
-      event.venues_str = event.venues.map(v => v.short_name).join(', ');
-
       /* Set fallback images explictly */
       if (!event.image_url || event.image_url === '') {
         event.image_url = event.bodies[0].image_url;

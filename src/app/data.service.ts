@@ -365,6 +365,7 @@ export class DataService {
   /* Define any aliases here */
   GetDate = (obj: any) => Helpers.GetDate(obj);
   processMDHTML = (html: string) => Helpers.processMDHTML(html);
+  GetEventSubtitle = (event: IEvent): string =>  Helpers.GetEventSubtitle(event);
 
   /* Getters and setters */
 
