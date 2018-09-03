@@ -25,12 +25,12 @@
   <div class="details-view full-width">
     <div style="display:flex;">
       <mat-form-field class="half-width middle-gap">
-        <input [(ngModel)]="event.start_time" matInput [matDatepicker]="fromPicker" placeholder="From" required>
+        <input (change)="timeChanged()" [(ngModel)]="start_date" matInput [matDatepicker]="fromPicker" placeholder="From" required>
         <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
         <mat-datepicker #fromPicker></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="half-width">
-          <input [(ngModel)]="event.end_time" matInput [matDatepicker]="toPicker" placeholder="To" required>
+          <input (change)="timeChanged()" [(ngModel)]="end_date" matInput [matDatepicker]="toPicker" placeholder="To" required>
           <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
           <mat-datepicker #toPicker></mat-datepicker>
       </mat-form-field>

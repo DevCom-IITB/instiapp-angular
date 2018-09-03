@@ -26,6 +26,9 @@ export class AddEventComponent implements OnInit {
   public start_time = '00:00';
   public end_time = '00:00';
 
+  public start_date: Date;
+  public end_date: Date;
+
   public networkBusy = false;
 
   public bodies: IBody[] = [] as IBody[];
@@ -146,6 +149,8 @@ export class AddEventComponent implements OnInit {
     /* Initialize date-times */
     this.event.start_time = new Date(this.event.start_time);
     this.event.end_time = new Date(this.event.end_time);
+    this.start_date = new Date(this.event.start_time);
+    this.end_date = new Date(this.event.end_time);
     this.start_time = Helpers.GetTimeString(this.event.start_time);
     this.end_time = Helpers.GetTimeString(this.event.end_time);
 
@@ -189,16 +194,20 @@ export class AddEventComponent implements OnInit {
       const date = new Date(params['date']);
       this.event.start_time = date;
       this.event.end_time = date;
+      this.start_date = date;
+      this.end_date = date;
     } else {
       this.event.start_time = new Date();
       this.event.end_time = new Date();
+      this.start_date = new Date();
+      this.end_date = new Date();
     }
   }
 
   /** Uses an extremely ugly hack to set time */
   timeChanged() {
-    this.setTimeFrom(this.event.start_time, this.start_time);
-    this.setTimeFrom(this.event.end_time, this.end_time);
+    this.event.start_time = this.setTimeFrom(this.start_date, this.start_time);
+    this.event.end_time = this.setTimeFrom(this.end_date, this.end_time);
   }
 
   /**
@@ -207,10 +216,11 @@ export class AddEventComponent implements OnInit {
    * @param time Time string HH:MM
    */
   setTimeFrom(date: Date, time: string) {
-    date.setHours(
+    const newDate = new Date(date);
+    newDate.setHours(
       Number(time.substr(0, 2)),
       Number(time.substr(3, 2)));
-    return date;
+    return newDate;
   }
 
   uploadImage(files: FileList) {
