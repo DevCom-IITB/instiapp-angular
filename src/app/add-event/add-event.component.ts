@@ -254,6 +254,12 @@ export class AddEventComponent implements OnInit {
     if (this.assertValidation(this.event.bodies_id.length > 0,
       'No bodies selected!')) { return; }
 
+    /* Validate name length */
+    if (this.assertValidation(
+      this.event.name && this.event.name.length > 0 && this.event.name.length <= 50,
+      'Event name too long/short')) { return; }
+
+    /* Create observable for POST/PUT */
     let obs: Observable<IEvent>;
     if (!this.editing) {
       obs = this.dataService.PostEvent(this.event);
@@ -261,22 +267,24 @@ export class AddEventComponent implements OnInit {
       obs = this.dataService.PutEvent(this.eventId, this.event);
     }
 
+    /* Make the request */
     obs.subscribe(result => {
-      this.snackBar.open('Successful!', 'Dismiss', {
-        duration: 2000,
-      });
-      this.networkBusy = false;
+      this.assertValidation(false, 'Successful!');
 
       /* Add one venue if not present */
       if (this.event.venue_names.length === 0) { this.AddVenue(); }
 
       /* Quit */
       this.close(result);
-    }, () => {
-      this.snackBar.open('An error occured!', 'Dismiss', {
-        duration: 2000,
-      });
-      this.networkBusy = false;
+    }, (result) => {
+      /* Construct error statement */
+      let string_error = '';
+      for (const err of Object.keys(result.error)) {
+        string_error += ' - ' + err + ': ' + result.error[err];
+      }
+
+      /* Display message */
+      this.assertValidation(false, 'Error' + string_error);
     });
   }
 
