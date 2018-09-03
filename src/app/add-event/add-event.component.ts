@@ -247,11 +247,12 @@ export class AddEventComponent implements OnInit {
     this.timeChanged();
 
     /* Validate start and end datetimes */
-    if (this.event.start_time >= this.event.end_time) {
-      alert('Event must end after it starts!');
-      this.networkBusy = false;
-      return;
-    }
+    if (this.assertValidation(this.event.start_time < this.event.end_time,
+      'Event must end after it starts!')) { return; }
+
+    /* Validate non zero bodies */
+    if (this.assertValidation(this.event.bodies_id.length > 0,
+      'No bodies selected!')) { return; }
 
     let obs: Observable<IEvent>;
     if (!this.editing) {
@@ -277,6 +278,17 @@ export class AddEventComponent implements OnInit {
       });
       this.networkBusy = false;
     });
+  }
+
+  /** Show a validation error */
+  assertValidation(condition: boolean, error: string): boolean {
+    if (!condition) {
+      this.snackBar.open(error, 'Dismiss', {
+        duration: 2000
+      });
+      this.networkBusy = false;
+    }
+    return !condition;
   }
 
   /** Delete the open event */
