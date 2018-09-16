@@ -179,7 +179,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Open notifications sheet */
   openNotifications() {
-
     this.bottomSheet.open(NotifyCardComponent);
   }
 }
