@@ -10,7 +10,7 @@
 
 <div class="float-fixed-right-bottom">
     <button mat-fab
-            *ngIf="hasRole"
+            *ngIf="dataService.hasRole()"
             class="mat-elevation-z2"
             [routerLink]="['/add-event']">
         <mat-icon>add</mat-icon>

@@ -12,7 +12,6 @@ import { Subscription } from 'rxjs';
 export class MyEventsComponent implements OnInit, OnDestroy {
   public error: number;
   public containers: IEventContainer[];
-  public hasRole = false;
   public subscription: Subscription;
 
   constructor(
@@ -26,7 +25,6 @@ export class MyEventsComponent implements OnInit, OnDestroy {
     /* Get roles */
     this.dataService.FireGET(API.UserMeRoles).subscribe(result => {
       const roles = result as IBodyRole[];
-      this.hasRole = roles.length > 0;
       this.containers = this.MakeContainers(roles, this.dataService.getFollowedEvents());
 
       /* Update followed events */
