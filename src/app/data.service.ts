@@ -51,6 +51,9 @@ export class DataService {
   /** Running in a sandbox */
   public isSandbox = false;
 
+  /** True when the user is/has just scrolled down */
+  private _scrollingDown = false;
+
   constructor(
     private http: HttpClient,
     public router: Router,
@@ -405,4 +408,15 @@ export class DataService {
     return this.notifications.filter(n => n.unread && n.actor);
   }
 
+  /** Set scrollingDown */
+  setScrollingDown(value: boolean): void {
+    if (this._scrollingDown !== value) {
+      this._scrollingDown = value;
+    }
+  }
+
+  /** Get scrollingDown */
+  isScrollingDown(): boolean {
+    return this._scrollingDown;
+  }
 }

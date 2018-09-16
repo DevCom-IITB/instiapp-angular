@@ -24,6 +24,7 @@ export class AppComponent implements OnDestroy, OnInit {
   public openFlyout = false;
   public _title = TITLE;
   public isSandbox = false;
+  public previousScrollTop = 0;
 
   private _mobileQueryListener: () => void;
 
@@ -174,7 +175,9 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Handle reaching end of page and sidenav on android chrome */
   @HostListener('window:scroll')
   windowScroll() {
-    Helpers.CheckScrollBottom(this.dataService.scrollBottomFunction);
+    const top = Helpers.CheckScrollBottom(this.dataService.scrollBottomFunction);
+    this.dataService.setScrollingDown(top > this.previousScrollTop);
+    this.previousScrollTop = top;
   }
 
   /** Open notifications sheet */

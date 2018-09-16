@@ -34,6 +34,15 @@
     margin-bottom: 2em;
 }
 
+.add-button {
+    transform: translateZ(0);
+    transition: transform 0.2s linear;
+}
+
+.add-button.gone {
+    transform: scale(0.001) translateZ(0);
+}
+
 @media (min-width: 961px) and (max-width: 1200px) {
     .events-list {
         padding: 10px 3% 0 3%;
