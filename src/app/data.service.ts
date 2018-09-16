@@ -389,6 +389,11 @@ export class DataService {
     return this._currentUser;
   }
 
+  /** Returns true if the current user has at least one role */
+  hasRole() {
+    return this.isLoggedIn() && this.getCurrentUser().roles.length > 0;
+  }
+
   /** Set the HTML title */
   setTitle(title: string) {
     this.titleService.setTitle(`InstiApp | ${title}`);
