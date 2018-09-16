@@ -8,9 +8,11 @@
     [nobig]="true">
 </app-feed>
 
-<button mat-fab
-        *ngIf="hasRole"
-        class="float-fixed-right-bottom mat-elevation-z2"
-        [routerLink]="['/add-event']">
-    <mat-icon>add</mat-icon>
-</button>
+<div class="float-fixed-right-bottom">
+    <button mat-fab
+            *ngIf="hasRole"
+            class="mat-elevation-z2"
+            [routerLink]="['/add-event']">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

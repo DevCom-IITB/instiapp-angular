@@ -71,14 +71,16 @@
 
 </app-desktop-split>
 
-<button mat-fab
-        *ngIf="body && dataService.HasBodyPermission(body.id, 'AddE')"
-        [disabled]="!dataService.isLoggedIn()"
-        class="float-fixed-right-bottom mat-elevation-z2"
-        [routerLink]="['/add-event']"
-        [queryParams]="{body: body.id}">
-    <mat-icon>add</mat-icon>
-</button>
+<div class="float-fixed-right-bottom">
+  <button mat-fab
+          *ngIf="body && dataService.HasBodyPermission(body.id, 'AddE')"
+          [disabled]="!dataService.isLoggedIn()"
+          class="mat-elevation-z2"
+          [routerLink]="['/add-event']"
+          [queryParams]="{body: body.id}">
+      <mat-icon>add</mat-icon>
+  </button>
+</div>
 
 <ng-template #information>
   <div class="subsection" *ngIf="body.events.length > 0">
