@@ -68,13 +68,6 @@
     font-size: 0.83em;
 }
 
-.float-fixed-right-bottom {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 5;
-}
-
 /* Desktop styles */
 
 .desktop {

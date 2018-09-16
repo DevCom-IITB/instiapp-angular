@@ -31,10 +31,12 @@
 
 </app-event-sidebar-desktop>
 
-<button mat-fab
-        [disabled]="!dataService.isLoggedIn()"
-        class="float-fixed-right-bottom mat-elevation-z2"
-        [routerLink]="['/add-event']"
-        [queryParams]="{date: dateToDate(selDate).toDateString()}">
-    <mat-icon>add</mat-icon>
-</button>
+<div class="float-fixed-right-bottom">
+    <button mat-fab
+            *ngIf="dataService.hasRole()"
+            class="mat-elevation-z2"
+            [routerLink]="['/add-event']"
+            [queryParams]="{date: dateToDate(selDate).toDateString()}">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

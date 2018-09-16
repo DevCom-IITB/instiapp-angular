@@ -39,17 +39,21 @@ export module Helpers {
     /**
      * Helper for infinite scrolling
      * @param callback void to call when user reaches bottom of scroll
+     * @returns current value of scroll
      */
-    export function CheckScrollBottom(callback: () => any): void {
+    export function CheckScrollBottom(callback: () => any): number {
         /* Work around browser specific implementations
          * Try documentElement scrollHeight, then body and finally give up */
         let maxScroll = document.documentElement.scrollHeight;
         if (maxScroll === 0) { maxScroll = document.body.scrollHeight; }
-        if (maxScroll === 0) { return; }
+        if (maxScroll === 0) { return 0; }
 
+        /* Detect scrolling to bottom */
         if ((window.innerHeight + window.scrollY) >= maxScroll - 60) {
           callback();
         }
+
+        return window.innerHeight + window.scrollY;
     }
 
     /** Try native share and return false if failed */

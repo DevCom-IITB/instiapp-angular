@@ -164,6 +164,13 @@ mat-form-field, mat-form-field *, .markdown * {
     }
 }
 
+.float-fixed-right-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 5;
+}
+
 .overflow-ellipsis {
     white-space: nowrap;
     width: 100%;

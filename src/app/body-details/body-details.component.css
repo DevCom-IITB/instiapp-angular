@@ -47,12 +47,6 @@
     margin-top: 10px;
 }
 
-.float-fixed-right-bottom {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-}
-
 .desktop-right {
     padding: 0 20px;
 }

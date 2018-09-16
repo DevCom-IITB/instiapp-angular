@@ -34,3 +34,13 @@
     </div>
 
 </app-event-sidebar-desktop>
+
+<div class="float-fixed-right-bottom">
+    <button mat-fab
+            *ngIf="dataService.hasRole()"
+            [class.gone]="dataService.isScrollingDown()"
+            class="add-button mat-elevation-z2"
+            [routerLink]="['/add-event']">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
