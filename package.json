@@ -3,14 +3,9 @@
   "version": "0.0.0",
   "license": "MPL-2.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve --hmr --proxy-config proxy.conf.json --host 0.0.0.0",
     "build": "ng build --prod",
-    "build-deploy": "ng build --prod --env=deploy",
-    "build-deploy2": "ng build --prod --env=deploy2 --bh /instiapp/",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
