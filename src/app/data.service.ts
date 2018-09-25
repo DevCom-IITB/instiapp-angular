@@ -399,7 +399,7 @@ export class DataService {
 
   /** Set the HTML title */
   setTitle(title: string) {
-    this.titleService.setTitle(`InstiApp | ${title}`);
+    this.titleService.setTitle(`${title} | InstiApp | IIT Bombay`);
     this._titleSubject.next(title);
   }
 
