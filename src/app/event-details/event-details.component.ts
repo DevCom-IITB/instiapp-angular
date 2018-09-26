@@ -54,8 +54,11 @@ export class EventDetailsComponent implements OnChanges, OnInit {
         result.image_url = result.bodies[0].image_url;
       }
 
-      this.event = result;
-      this.load.emit(true);
+      /** Preload image and mark done */
+      Helpers.preloadImage(result.image_url, () => {
+        this.event = result;
+        this.load.emit(true);
+      });
 
       /* Do not change title in split mode */
       if (!this.desktopMode) {

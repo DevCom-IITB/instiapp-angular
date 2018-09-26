@@ -168,4 +168,19 @@ export module Helpers {
         return '';
     }
 
+    /** Tries to preload an image and calls back when done */
+    export function preloadImage(url: string, callback: any, error: any = null) {
+        /* Skip for invalid URLs */
+        if (url === null || url === '') {
+            callback();
+            return;
+        }
+
+        /* Preload the image */
+        const img = new Image();
+        img.onload = callback;
+        img.onerror = error || callback;
+        img.src = url;
+    }
+
 }
