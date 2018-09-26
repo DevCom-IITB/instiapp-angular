@@ -419,4 +419,9 @@ export class DataService {
   isScrollingDown(): boolean {
     return this._scrollingDown;
   }
+
+  /** Get a resized URL for a static image */
+  getResized(url: string, dim: number): string {
+    return url.replace('api.insti.app/static/', `img.insti.app/static/${dim}/`);
+  }
 }

@@ -4,7 +4,7 @@
           [routerLink]="['/org', body.str_id]">
   <mat-card-header>
     <img mat-card-avatar
-        [src]="body.image_url"
+        [src]="dataService.getResized(body.image_url, 150)"
          src-fallback="assets/iitb_logo.svg"
          class="object-cover" />
     <mat-card-title>{{ body.name }}</mat-card-title>

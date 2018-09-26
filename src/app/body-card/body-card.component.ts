@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IBody } from '../interfaces';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-body-card',
@@ -11,7 +12,9 @@ export class BodyCardComponent implements OnInit {
   @Input() public body: IBody;
   @Input() public subtitle: string;
 
-  constructor() { }
+  constructor(
+    public dataService: DataService,
+  ) { }
 
   ngOnInit() {
     /* Set fallback image explicitly */
