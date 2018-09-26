@@ -11,7 +11,7 @@
       mat-list-item
       (click)="followNotification(notification)">
 
-    <img [src]="notification.image_url"
+    <img [src]="dataService.getResized(notification.image_url, 150)"
          src-fallback="assets/placeholder.png"
          class="object-cover img-circle" />
 
