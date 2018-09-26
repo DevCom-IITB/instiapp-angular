@@ -45,7 +45,9 @@ export class BodyDetailsComponent implements OnInit {
   /** Call the bodies API and show data */
   refresh() {
     this.dataService.FireGET<IBody>(API.Body, {uuid: this.bodyId}).subscribe(result => {
-      this.body = result;
+      Helpers.preloadImage(result.image_url, () => {
+        this.body = result;
+      });
       this.dataService.setTitle(result.name);
     }, (e) => {
       this.error = e.status;
