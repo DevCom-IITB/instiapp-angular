@@ -32,7 +32,7 @@ export class CalendarComponent implements OnInit {
     this.selDate = XunkCalendarModule.getToday();
 
     /* Get dates for filtering (3 months) */
-    this.getEventsForMonth(this.selDate).subscribe(result => {
+    this.fetchEventsForMonth(this.selDate).subscribe(result => {
       this.updateEvents(result.data, this.selDate);
       this.dateChanged(this.selDate);
     }, (e) => {
@@ -139,7 +139,7 @@ export class CalendarComponent implements OnInit {
     const monthstring = JSON.stringify(this.resetMonth(e));
     if (!this.hasEventsMonths.includes(monthstring)) {
       /* Get new events */
-      this.getEventsForMonth(e).subscribe(result => {
+      this.fetchEventsForMonth(e).subscribe(result => {
         this.updateEvents(result.data, e);
       });
     }
@@ -177,7 +177,7 @@ export class CalendarComponent implements OnInit {
   }
 
   /** Get events for month with date */
-  getEventsForMonth(monthObj: any): Observable<IEnumContainer> {
+  fetchEventsForMonth(monthObj: any): Observable<IEnumContainer> {
     /* Get initial and final date objects */
     const monthStart = this.resetMonth(monthObj);
     const initial = this.dateToDate(monthStart);
@@ -186,11 +186,11 @@ export class CalendarComponent implements OnInit {
     final.setMonth(final.getMonth() + 1);
 
     /* Get the events */
-    return this.getEventsForDate(initial, final);
+    return this.fetchEventsForDate(initial, final);
   }
 
   /** Get events between dates */
-  getEventsForDate(initial: Date, final: Date): Observable<IEnumContainer> {
+  fetchEventsForDate(initial: Date, final: Date): Observable<IEnumContainer> {
     const istr = initial.toJSON().toString();
     const fstr = final.toJSON().toString();
     return this.dataService.FireGET<IEnumContainer>(API.EventsFiltered, {start: istr, end: fstr});
