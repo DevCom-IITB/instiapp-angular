@@ -7,6 +7,7 @@
     <div class="full-container">
         <app-xunk-calendar [selectedDate]="selDate"
                     (change)="dateChanged($event)"
+                    (monthChange)="monthChanged($event)"
                     [heatmap]="getHeatMap()"
                     heatMapColor="rgb(255, 235, 59)"
                     primaryColor="#536dfe">

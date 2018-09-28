@@ -3,9 +3,9 @@ import { XunkCalendarModule } from 'xunk-calendar';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { IEvent, IEnumContainer } from '../interfaces';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { Helpers } from '../helpers';
 import { API } from '../../api';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
@@ -17,6 +17,7 @@ export class CalendarComponent implements OnInit {
   public events: IEvent[];
   public selectedEvent: IEvent;
   public error: number;
+  public hasEventsMonths: any[] = [];
 
   constructor(
     public router: Router,
@@ -31,16 +32,8 @@ export class CalendarComponent implements OnInit {
     this.selDate = XunkCalendarModule.getToday();
 
     /* Get dates for filtering (3 months) */
-    const initial = new Date();
-    initial.setMonth(initial.getMonth() - 1);
-    const istr = initial.toJSON().toString();
-
-    const final = new Date();
-    final.setMonth(final.getMonth() + 1);
-    const fstr = final.toJSON().toString();
-
-    this.dataService.FireGET<IEnumContainer>(API.EventsFiltered, {start: istr, end: fstr}).subscribe(result => {
-      this.events = result.data;
+    this.getEventsForMonth(this.selDate).subscribe(result => {
+      this.updateEvents(result.data, this.selDate);
       this.dateChanged(this.selDate);
     }, (e) => {
       this.error = e.status;
@@ -108,6 +101,7 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  /** Convert a custom date object to a Date object */
   dateToDate(date: any): Date {
     const ans = new Date();
     ans.setDate(date.date);
@@ -137,6 +131,69 @@ export class CalendarComponent implements OnInit {
     return Helpers.zeroPad(date.getFullYear(), 4) +
            Helpers.zeroPad((date.getMonth() + 1).toString(), 2) +
            Helpers.zeroPad(date.getDate().toString(), 2);
+  }
+
+  /** Update on changing month */
+  monthChanged(e) {
+    /* Check if we already have the month */
+    const monthstring = JSON.stringify(this.resetMonth(e));
+    if (!this.hasEventsMonths.includes(monthstring)) {
+      /* Get new events */
+      this.getEventsForMonth(e).subscribe(result => {
+        this.updateEvents(result.data, e);
+      });
+    }
+  }
+
+  /** Update events to main directory */
+  updateEvents(events: IEvent[], monthObj: any) {
+    /* Mark that we have this month now */
+    const monthstring = JSON.stringify(this.resetMonth(monthObj));
+    this.hasEventsMonths.push(monthstring);
+
+    /* Check for first update */
+    if (!this.events) {
+      this.events = events;
+      return;
+    }
+
+    /* Get list of ids we already have */
+    const haveIds = this.events.map(e => e.id);
+
+    /* Push all events */
+    for (const event of events) {
+      if (!haveIds.includes(event.id)) {
+        this.events.push(event);
+      }
+    }
+  }
+
+  /** Get a new object with Date of month object to 1 */
+  resetMonth(monthObj: any): any {
+    /** Set date to 1 */
+    const monthStart = {...monthObj};
+    monthStart.date = 1;
+    return monthStart;
+  }
+
+  /** Get events for month with date */
+  getEventsForMonth(monthObj: any): Observable<IEnumContainer> {
+    /* Get initial and final date objects */
+    const monthStart = this.resetMonth(monthObj);
+    const initial = this.dateToDate(monthStart);
+    const final = this.dateToDate(monthStart);
+    initial.setDate(initial.getDate() - 1);
+    final.setMonth(final.getMonth() + 1);
+
+    /* Get the events */
+    return this.getEventsForDate(initial, final);
+  }
+
+  /** Get events between dates */
+  getEventsForDate(initial: Date, final: Date): Observable<IEnumContainer> {
+    const istr = initial.toJSON().toString();
+    const fstr = final.toJSON().toString();
+    return this.dataService.FireGET<IEnumContainer>(API.EventsFiltered, {start: istr, end: fstr});
   }
 
 }

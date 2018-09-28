@@ -33,6 +33,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     /** Emits the new date on change */
     @Output() change: EventEmitter<any> = new EventEmitter();
 
+    /** Emits the new month with date as 1 on change */
+    @Output() monthChange: EventEmitter<any> = new EventEmitter();
+
     private RGB_HM: any;
     private RGB_Primary: any;
     private RGB_Primary_FG: any;
@@ -89,6 +92,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
       this.today = XunkCalendarComponent.getToday();
       this.openPage = {...this.today};
+      this.openPage.date = 1;
       this.selectedDate = {...this.today};
     }
 
@@ -156,6 +160,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
       /* Refresh */
       this.displayCalendar();
+
+      /* Emit event */
+      this.monthChange.emit(this.openPage);
     }
 
     /** Compute the calendar */
