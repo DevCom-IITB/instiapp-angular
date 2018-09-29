@@ -99,7 +99,7 @@ export class AppComponent implements OnDestroy, OnInit {
           for (const notification of result) {
             if (notification.actor_type.includes('event')) {
               notification.title = notification.actor.name;
-              notification.image_url = notification.actor.image_url;
+              notification.image_url = notification.actor.image_url || notification.actor.bodies[0].image_url;
             } else if (notification.actor_type.includes('newsentry')) {
               notification.title = notification.actor.title;
               notification.image_url = notification.actor.body.image_url;
