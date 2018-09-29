@@ -422,6 +422,7 @@ export class DataService {
 
   /** Get a resized URL for a static image */
   getResized(url: string, dim: number): string {
+    if (url === null) { return null; }
     return url.replace('api.insti.app/static/', `img.insti.app/static/${dim}/`);
   }
 }
