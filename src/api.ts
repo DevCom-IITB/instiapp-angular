@@ -13,7 +13,7 @@ export const API = {
     Body: 'api/bodies/{uuid}',
     BodyFollow: 'api/bodies/{uuid}/follow{?action}',
 
-    Locations: 'api/locations',
+    Locations: 'api/locations{?exclude_group}',
 
     PostImage: 'api/upload',
 

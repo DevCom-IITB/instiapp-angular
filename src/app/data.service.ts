@@ -205,8 +205,8 @@ export class DataService {
   }
 
   /** Get all locations */
-  GetAllLocations(): Observable<ILocation[]> {
-    return this.FireGET<ILocation[]>(API.Locations);
+  GetAllLocations(excludeGroup: number = null): Observable<ILocation[]> {
+    return this.FireGET<ILocation[]>(API.Locations, {exclude_group: excludeGroup});
   }
 
   /** Gets the current user if logged in

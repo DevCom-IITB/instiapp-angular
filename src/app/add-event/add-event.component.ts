@@ -81,9 +81,9 @@ export class AddEventComponent implements OnInit {
     img.src = PLACEHOLDER;
 
     /* Load locations */
-    this.dataService.GetAllLocations().subscribe(result => {
+    this.dataService.GetAllLocations(3).subscribe(result => {
       /* Filter out residences */
-      this.venuesList = result.filter(l => l.group_id !== 3);
+      this.venuesList = result;
       this.fuse = new Fuse(this.venuesList, this.fuse_options);
     });
 
