@@ -43,6 +43,7 @@ export class ExploreComponent implements OnInit {
 
   /** Fire the search API */
   search(query: string, noerror: boolean = false) {
+    /* Show all bodies if query is nothing */
     if (query.length === 0) {
       this.bodies = this.allbodies;
       this.users = [];
@@ -51,6 +52,7 @@ export class ExploreComponent implements OnInit {
       return;
     }
 
+    /* Queries have to be at least n characters */
     if (query.length < 3) {
       if (!noerror) {
         this.snackBar.open('Invalid query - At least 3 characters', 'Dismiss', {
@@ -61,9 +63,14 @@ export class ExploreComponent implements OnInit {
     }
 
     this.dataService.FireGET<any>(API.Search, {query: query}).subscribe(result => {
+      /* Check if the search query changed in the meanwhile */
+      if (this.searchQ !== query) { return; }
+
+      /* Update all data */
       this.bodies = result.bodies;
       this.events = result.events;
       this.users = result.users;
+
       if (this.seltab === -1) { this.selectTab(0); }
     });
   }
