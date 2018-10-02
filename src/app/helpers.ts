@@ -163,7 +163,7 @@ export module Helpers {
             }
 
             /* Get the subtitle */
-            return subtitleTime + ' | ' + event.venues_str;
+            return subtitleTime + (event.venues.length > 0 ?  ' | ' + event.venues_str : '');
         }
         return '';
     }
