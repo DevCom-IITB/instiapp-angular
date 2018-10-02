@@ -41,8 +41,19 @@
       </mat-form-field>
 
       <mat-form-field class="full-width-details">
-        <input matInput placeholder="Blog URL - RSS"
+        <input matInput placeholder="Organization URL"
+                  [ngModel]="dataService.getBodyUrl(body)" disabled>
+        <mat-hint align="end">
+          <a href="https://m.me/iitbapp?ref=canonical" target="_blank" class="canonical">
+            Request a change
+          </a>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="full-width-details">
+        <input matInput placeholder="Blog URL"
                   [(ngModel)]="body.blog_url">
+        <mat-hint align="end">RSS/Atom</mat-hint>
       </mat-form-field>
     </div>
 

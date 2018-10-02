@@ -424,4 +424,9 @@ export class DataService {
     if (url === null) { return null; }
     return url.replace('api.insti.app/static/', `img.insti.app/static/${dim}/`);
   }
+
+  /** Get the URL of a body from str_id */
+  getBodyUrl(body: IBody): string {
+    return window.location.origin + '/org/' + body.str_id;
+  }
 }

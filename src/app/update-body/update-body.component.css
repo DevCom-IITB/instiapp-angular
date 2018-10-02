@@ -44,7 +44,17 @@ table {
 }
 
 .roles {
+    margin-top: 8px;
     margin-bottom: 8px;
+}
+
+a.canonical {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a.canonical:hover {
+    color: blue;
 }
 
 @media (max-width: 1200px) {
