@@ -100,14 +100,21 @@ export class AddEventComponent implements OnInit {
     /* Load user tags */
     this.dataService.FireGET<IUserTagCategory[]>(API.UserTags).subscribe(result => {
       this.tagCategoryList = result;
+      this.sortTags();
     });
   }
 
   /** Sorts all bodies by name in place */
   sortBodies() {
-    this.bodies.sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
+    this.bodies.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  /** Sorts all tags by name in place */
+  sortTags() {
+    for (const cat of this.tagCategoryList) {
+      cat.tags.sort((a, b) => a.name.localeCompare(
+        b.name, undefined, {numeric: true, sensitivity: 'base'}));
+    }
   }
 
   /** Loads the data */
