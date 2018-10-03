@@ -91,6 +91,30 @@
       </mat-form-field>
     </div>
 
+    <div class="audience-panel" *ngIf="tagCategoryList">
+      <div class="full-width-details">
+        <div class="label">Target Audience</div>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let cat of tagCategoryList">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ cat.name }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="tag-category">
+              <button mat-button *ngFor="let tag of cat.tags"
+                      [class.has]="hasTag(tag)"
+                      (click)="toggleTag(tag)">
+                {{ tag.name }}
+              </button>
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+
     <div>
       <div class="full-width-details switch">
         <mat-slide-toggle

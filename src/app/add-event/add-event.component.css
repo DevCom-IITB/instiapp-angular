@@ -59,6 +59,24 @@
     margin-bottom: 12px;
 }
 
+.audience-panel { margin-bottom: 15px; }
+.audience-panel .label {
+    margin-bottom: 0.5em;
+    font-weight: 200;
+    font-size: 1.1em;
+}
+
+.tag-category button {
+    line-height: 2em;
+    transition: background-color 0.2s ease;
+    margin-right: 4px;
+    margin-top: 2px;
+}
+
+.tag-category button.has {
+    background-color: var(--accent-color);
+}
+
 @media (max-width: 1200px) {
     .full-width-details {
         left: 1%;

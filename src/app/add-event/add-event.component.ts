@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { IEvent, IBody, ILocation } from '../interfaces';
+import { IEvent, IBody, ILocation, IUserTagCategory, IUserTag } from '../interfaces';
 import * as Fuse from 'fuse.js';
 import { Helpers } from '../helpers';
 import { Observable } from 'rxjs';
@@ -37,6 +37,8 @@ export class AddEventComponent implements OnInit {
   public editing = false;
   public canDelete = false;
   public eventId: string;
+
+  public tagCategoryList: IUserTagCategory[];
 
   /* Fuse config */
   public fuse_options = {
@@ -93,6 +95,11 @@ export class AddEventComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.eventId = params['id'];
       this.refresh();
+    });
+
+    /* Load user tags */
+    this.dataService.FireGET<IUserTagCategory[]>(API.UserTags).subscribe(result => {
+      this.tagCategoryList = result;
     });
   }
 
@@ -182,6 +189,7 @@ export class AddEventComponent implements OnInit {
     this.event.notify = true;
     this.event.bodies_id = [];
     this.event.venues = [] as ILocation[];
+    this.event.user_tags = [];
     this.AddVenue();
     this.initializeQueryDefaults();
   }
@@ -379,6 +387,21 @@ export class AddEventComponent implements OnInit {
       return this.event.image_url;
     } else {
       return PLACEHOLDER;
+    }
+  }
+
+  /** Returns true if the event has this tag attached */
+  hasTag(tag: IUserTag) {
+    return this.event.user_tags.includes(tag.id);
+  }
+
+  /** Toggle a UserTag on the current event */
+  toggleTag(tag: IUserTag) {
+    if (this.hasTag(tag)) {
+      const index = this.event.user_tags.indexOf(tag.id);
+      this.event.user_tags.splice(index, 1);
+    } else {
+      this.event.user_tags.push(tag.id);
     }
   }
 

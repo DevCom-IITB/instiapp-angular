@@ -45,6 +45,7 @@ export interface IEvent {
     user_ues: number;
     weight: number;
     notify: boolean;
+    user_tags: number[];
 }
 
 export interface ILocation {
@@ -145,4 +146,15 @@ export interface INotification {
 export interface IEventContainer {
     title: string;
     events: IEvent[];
+}
+
+export interface IUserTag {
+    id: number;
+    name: string;
+}
+
+export interface IUserTagCategory {
+    id: number;
+    name: string;
+    tags: IUserTag[];
 }

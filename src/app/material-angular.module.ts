@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatRippleModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -41,6 +42,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatRippleModule,
         MatMenuModule,
         MatBottomSheetModule,
+        MatExpansionModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -62,6 +64,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatRippleModule,
         MatMenuModule,
         MatBottomSheetModule,
+        MatExpansionModule,
     ],
 })
 export class MyMaterialClass { }
