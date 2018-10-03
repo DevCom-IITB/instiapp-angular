@@ -1,6 +1,6 @@
-<app-xunk-spinner *ngIf="!event"></app-xunk-spinner>
+<app-xunk-spinner *ngIf="!event || !tagCategoryList"></app-xunk-spinner>
 
-<app-desktop-split *ngIf="event"
+<app-desktop-split *ngIf="event && tagCategoryList"
     [rightLeftBorder]="false"
     [centerRightBorder]="true">
 
