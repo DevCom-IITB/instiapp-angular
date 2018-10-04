@@ -65,6 +65,7 @@
     font-weight: 200;
     font-size: 1.1em;
 }
+.audience-panel .label .sub { font-size: 0.7em; }
 
 .tag-category button {
     line-height: 2em;

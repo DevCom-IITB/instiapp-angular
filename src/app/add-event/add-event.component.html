@@ -93,13 +93,28 @@
 
     <div class="audience-panel" *ngIf="tagCategoryList">
       <div class="full-width-details">
-        <div class="label">Target Audience</div>
+        <div class="label">
+          Restricted Audience
+          <div class="sub">
+            Event will be visible only to selected audiences<br>
+            Do not select anything if the event is open for everyone
+          </div>
+        </div>
         <mat-accordion>
           <mat-expansion-panel *ngFor="let cat of tagCategoryList">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{ cat.name }}
               </mat-panel-title>
+              <mat-panel-description>
+                <ng-container *ngIf="isCategoryRestricted(cat);then restricted else unrestricted"></ng-container>
+                <ng-template #restricted>
+                  <span style="color: red">Restricted</span>
+                </ng-template>
+                <ng-template #unrestricted>
+                  <span style="color: green">All</span>
+                </ng-template>
+              </mat-panel-description>
             </mat-expansion-panel-header>
 
             <div class="tag-category">

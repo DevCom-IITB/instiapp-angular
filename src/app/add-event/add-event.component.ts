@@ -412,4 +412,9 @@ export class AddEventComponent implements OnInit {
     }
   }
 
+  /** Returns true if at least one tag from category */
+  isCategoryRestricted(category: IUserTagCategory): boolean {
+    return category.tags.some(tag => this.hasTag(tag));
+  }
+
 }
