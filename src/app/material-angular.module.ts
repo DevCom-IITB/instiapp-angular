@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatRippleModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -43,6 +44,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatMenuModule,
         MatBottomSheetModule,
         MatExpansionModule,
+        MatBadgeModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -65,6 +67,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatMenuModule,
         MatBottomSheetModule,
         MatExpansionModule,
+        MatBadgeModule,
     ],
 })
 export class MyMaterialClass { }
