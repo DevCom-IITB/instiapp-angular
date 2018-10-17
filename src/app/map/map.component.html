@@ -15,7 +15,9 @@
             [formControl]="searchForm"
             (keyup.enter)="searchChanged($event)">
     <mat-autocomplete name="locsauto" #auto (optionSelected)="searchChanged($event)">
-      <mat-option *ngFor="let loc of filteredOptions | async" [value]="loc.name">{{loc.name}}</mat-option>
+      <mat-option *ngFor="let loc of filteredOptions | async" [value]="loc.name">
+        {{ loc.name }}
+      </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </div>

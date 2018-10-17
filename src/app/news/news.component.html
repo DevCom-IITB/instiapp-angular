@@ -14,8 +14,8 @@
   <ng-container *ngFor="let item of feed">
 
     <div class="feed-card" (click)="openLink(item.link, $event)">
-      <div class="feed-title">{{item.title}}</div>
-      <div class="feed-subtitle">{{item.body.name}} | {{item.published | date:"dd-MMM-yyyy HH:mm"}}</div>
+      <div class="feed-title">{{ item.title }}</div>
+      <div class="feed-subtitle">{{ item.body.name }} | {{ item.published | date:"dd-MMM-yyyy HH:mm" }}</div>
       <markdown [data]="dataService.processMDHTML(item.content)" class="markdown"></markdown>
 
       <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="before">

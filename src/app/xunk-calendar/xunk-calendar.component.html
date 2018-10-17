@@ -1,5 +1,5 @@
 <div class="main">
-  <div class="monthname">{{monthNames[openPage.month]}}</div>
+  <div class="monthname">{{ monthNames[openPage.month] }}</div>
 
   <table class="xunk-calendar">
 
@@ -42,7 +42,7 @@
                   [style.backgroundColor]="getHM(col)"
                   [style.color]="getForeground(col)"
                   (click)="selectDay(col)">
-              <span [style.fontWeight]="isToday(col) ? 'bold' : null">{{col}}</span>
+              <span [style.fontWeight]="isToday(col) ? 'bold' : null">{{ col }}</span>
           </button>
         </td>
     </tr>

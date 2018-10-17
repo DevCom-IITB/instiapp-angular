@@ -15,7 +15,7 @@
               *ngFor="let hostel of hostels"
               (click)="selectHostel(hostel)"
               class="hostel-menu-button">
-        {{hostel.name}}
+        {{ hostel.name }}
     </button>
     </mat-menu>
   </div>
@@ -25,19 +25,19 @@
       <div class="mess-card-head">{{ daysOfWeek[menuday.day] }}</div>
       <div class="time">
         <div class="head">Breakfast</div>
-        <div class="menu">{{menuday.breakfast}}</div>
+        <div class="menu">{{ menuday.breakfast }}</div>
       </div>
       <div class="time">
         <div class="head">Lunch</div>
-        <div class="menu">{{menuday.lunch}}</div>
+        <div class="menu">{{ menuday.lunch }}</div>
       </div>
       <div class="time">
         <div class="head">Snacks</div>
-        <div class="menu">{{menuday.snacks}}</div>
+        <div class="menu">{{ menuday.snacks }}</div>
       </div>
       <div class="time">
         <div class="head">Dinner</div>
-        <div class="menu">{{menuday.dinner}}</div>
+        <div class="menu">{{ menuday.dinner }}</div>
       </div>
     </div>
   </div>
@@ -47,19 +47,19 @@
       <div class="rl-header day">{{ daysOfWeek[menuday.day] }}</div>
       <div class="time">
         <div class="time-head">Breakfast</div>
-        {{menuday.breakfast}}
+        {{ menuday.breakfast }}
       </div>
       <div class="time">
         <div class="time-head">Lunch</div>
-        {{menuday.lunch}}
+        {{ menuday.lunch }}
       </div>
       <div class="time">
         <div class="time-head">Snacks</div>
-        {{menuday.snacks}}
+        {{ menuday.snacks }}
       </div>
       <div class="time">
         <div class="time-head">Dinner</div>
-        {{menuday.dinner}}
+        {{ menuday.dinner }}
       </div>
     </div>
   </div>
