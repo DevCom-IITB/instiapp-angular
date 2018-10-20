@@ -145,7 +145,7 @@ export class AddEventComponent implements OnInit {
         this.initializeBodiesExisting();
         this.sortBodies();
 
-      }, (error) => {
+      }, () => {
         alert('Event not found!');
         this.dataService.navigateBack();
       });

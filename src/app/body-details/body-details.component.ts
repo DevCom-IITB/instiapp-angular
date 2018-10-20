@@ -36,7 +36,7 @@ export class BodyDetailsComponent implements OnInit {
     /* Fire new API! */
     this.dataService.FireGET(API.BodyFollow, {
       uuid: this.body.id, action: this.body.user_follows ? 0 : 1
-    }).subscribe(result => {
+    }).subscribe(() => {
       this.body.user_follows = !this.body.user_follows;
       this.body.followers_count += this.body.user_follows ? 1 : -1;
     });

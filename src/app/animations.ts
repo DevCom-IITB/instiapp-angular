@@ -1,4 +1,4 @@
-import {trigger, animate, style, group, animateChild, query, stagger, transition} from '@angular/animations';
+import {trigger, animate, style, transition} from '@angular/animations';
 
 export const EnterLeft = trigger(
   'enterLeft', [

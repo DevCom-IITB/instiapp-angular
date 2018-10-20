@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IBodyRole, IBody, IEvent, IEventContainer } from '../interfaces';
+import { IBodyRole, IEvent, IEventContainer } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
 import { Subscription } from 'rxjs';

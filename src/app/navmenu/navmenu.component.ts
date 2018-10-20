@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { IUserProfile } from '../interfaces';
 import { Router } from '@angular/router';
 import { API } from '../../api';
 

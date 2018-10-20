@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.authenticating = true;
       const auth_code = params['code'];
       this.dataService.AuthenticateSSO(auth_code).subscribe(() => {
-        this.dataService.GetFillCurrentUser().subscribe(user => {
+        this.dataService.GetFillCurrentUser().subscribe(() => {
           const redir = localStorage.getItem(this.dataService.LOGIN_REDIR);
           if (redir && redir !== '') {
             localStorage.setItem(this.dataService.LOGIN_REDIR, '');

@@ -19,7 +19,6 @@ export module Helpers {
         const date = new Date(obj);
         const day = date.getDate();
         const monthIndex = date.getMonth();
-        const year = date.getFullYear();
         const minutes = date.getMinutes();
         const hours = date.getHours();
         const monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
