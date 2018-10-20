@@ -56,6 +56,7 @@ import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
 import { NotifyCardComponent } from './notify-card/notify-card.component';
 import { RedirComponent } from './redir/redir.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
     DesktopSplitComponent,
     NotifyCardComponent,
     RedirComponent,
-    UpdateRoleComponent
+    UpdateRoleComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
