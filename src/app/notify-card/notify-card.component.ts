@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { INotification } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';

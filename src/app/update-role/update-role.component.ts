@@ -114,7 +114,7 @@ export class UpdateRoleComponent implements OnInit {
     obs.subscribe(result => {
       this.snackBar.open('Role Updated', 'Dismiss', { duration: 2000 });
       this.doneUpdate.emit(result);
-    }, (error) => {
+    }, () => {
       this.snackBar.open('Update Failed', 'Dismiss', { duration: 2000 });
     });
   }
@@ -126,7 +126,7 @@ export class UpdateRoleComponent implements OnInit {
         this.snackBar.open('Role Deleted', 'Dismiss', { duration: 2000 });
         (this.role as any).deleted = true;
         this.doneUpdate.emit(this.role);
-      }, (error) => {
+      }, () => {
         this.snackBar.open('Deletion Failed!', 'Dismiss', { duration: 2000 });
       });
     }

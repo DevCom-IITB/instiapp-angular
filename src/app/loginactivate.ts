@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { DataService } from './data.service';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,6 @@ export class LoginActivate implements CanActivate {
   ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
   ): Observable<boolean>|Promise<boolean>|boolean {
     if (!this.dataService.isLoggedIn() && this.dataService.isInitialized()) {
       const path = route.url.map(u => u.path);

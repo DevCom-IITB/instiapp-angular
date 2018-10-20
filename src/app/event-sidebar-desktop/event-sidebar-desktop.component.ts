@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { DataService } from '../data.service';
 import { EnterRight, EnterLeft } from '../animations';
 
