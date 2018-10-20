@@ -26,7 +26,7 @@ import OlStyleText from 'ol/style/Text';
 import OlStyleStroke from 'ol/style/Stroke';
 import OlStyleFill from 'ol/style/Fill';
 import { defaults as OlInteractionDefaults } from 'ol/interaction';
-import OlControlFullscreen from 'ol/control/Fullscreen';
+import OlControlFullscreen from 'ol/control/FullScreen';
 import { ILocation } from '../interfaces';
 import { API } from '../../api';
 
