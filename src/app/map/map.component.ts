@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import OlMap from 'ol/Map';
-import OlLayerImage from 'ol/Layer/Image';
+import OlLayerImage from 'ol/layer/Image';
 import OlView from 'ol/View';
 import { getCenter as OlExtentGetCenter } from 'ol/extent';
 import OlOverlay from 'ol/Overlay';
@@ -26,7 +26,7 @@ import OlStyleText from 'ol/style/Text';
 import OlStyleStroke from 'ol/style/Stroke';
 import OlStyleFill from 'ol/style/Fill';
 import { defaults as OlInteractionDefaults } from 'ol/interaction';
-import OlControlFullscreen from 'ol/Control/Fullscreen';
+import OlControlFullscreen from 'ol/control/Fullscreen';
 import { ILocation } from '../interfaces';
 import { API } from '../../api';
 
