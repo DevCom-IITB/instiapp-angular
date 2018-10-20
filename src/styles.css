@@ -178,10 +178,6 @@ mat-form-field, mat-form-field *, .markdown * {
     text-overflow: ellipsis;
 }
 
-.mat-tab-body-content {
-    overflow: hidden !important;
-}
-
 .nothing-tab {
     padding: 30px 0;
     width: 100%;

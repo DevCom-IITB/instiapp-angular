@@ -20,7 +20,6 @@ import { MarkdownModule } from 'ngx-markdown';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './routing';
 
-import { XunkCalendarModule } from 'xunk-calendar';
 import { ShareButtonModule } from '@ngx-share/button';
 import { FlyoutModule } from 'ngx-flyout';
 
@@ -45,7 +44,6 @@ import { NewsComponent } from './news/news.component';
 import { ListLoadingComponent } from './list-loading/list-loading.component';
 import { XunkSpinnerComponent } from './xunk-spinner/xunk-spinner.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { LoginActivate } from './loginactivate';
 import { ExploreComponent } from './explore/explore.component';
 import { MessComponent } from './mess/mess.component';
@@ -105,7 +103,6 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
     MarkdownModule.forRoot(),
     FlyoutModule,
 
-    XunkCalendarModule,
     ShareButtonModule.forRoot(),
 
     RouterModule.forRoot([
@@ -139,11 +136,6 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
     ServiceWorkerModule.register(environment.service_worker_url, { enabled: environment.production }),
     MyMaterialClass,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
   ],
   entryComponents: [
     NotifyCardComponent
