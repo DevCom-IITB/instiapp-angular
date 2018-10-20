@@ -13,7 +13,7 @@
 }
 
 .body-cards {
-    padding: 0 20px;
+    padding: 0 2px;
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -33,11 +33,12 @@
 }
 
 .follow-sec {
-    margin: 20px;
+    margin: 2px;
 }
 
 .follow-sec .rl-header {
     margin-bottom: 15px;
+    margin-left: 18px;
 }
 
 @media (max-width: 768px) {

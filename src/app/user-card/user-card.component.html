@@ -1,35 +1,10 @@
-<mat-card mat-ripple
-          class="sub-card"
-          *ngIf="profile && !dataService.isSandbox"
-          [routerLink]="['/user', profile.ldap_id || profile.id]">
-  <ng-container *ngTemplateOutlet="content"></ng-container>
-</mat-card>
+<div class="sub-card"
+     *ngIf="profile && !dataService.isSandbox"
+     mat-ripple
+     [routerLink]="['/user', profile.ldap_id || profile.id]">
 
-<mat-card class="sub-card"
-          *ngIf="profile && dataService.isSandbox">
-  <ng-container *ngTemplateOutlet="content"></ng-container>
-</mat-card>
-
-<ng-template #content>
-  <mat-card-header>
-    <img mat-card-avatar
-         [src]="profile.profile_pic"
-         src-fallback="assets/useravatar.svg"
-         class="object-cover"/>
-    <mat-card-title>{{ profile.name }}</mat-card-title>
-    <mat-card-subtitle>
-      <ng-container *ngIf="!role; else hasrole">
-        <ng-container *ngIf="profile.about; else noAbout">
-            {{ profile.about }}
-          </ng-container>
-          <ng-template #noAbout>
-            <mat-card-subtitle>IITB User</mat-card-subtitle>
-          </ng-template>
-      </ng-container>
-
-      <ng-template #hasrole>
-        {{ role }}
-      </ng-template>
-    </mat-card-subtitle>
-  </mat-card-header>
-</ng-template>
+  <app-card [avatar]="profile.profile_pic"
+            [title]="profile.name"
+            [subtitle]="(role) ? role : profile.ldap_id">
+  </app-card>
+</div>

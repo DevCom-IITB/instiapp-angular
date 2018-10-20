@@ -1,11 +1,11 @@
-import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
-import { XunkCalendarModule } from 'xunk-calendar';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { IEvent, IEnumContainer } from '../interfaces';
 import { Helpers } from '../helpers';
 import { API } from '../../api';
 import { Observable } from 'rxjs';
+import { XunkCalendarComponent } from '../xunk-calendar/xunk-calendar.component';
 
 @Component({
   selector: 'app-calendar',
@@ -29,7 +29,7 @@ export class CalendarComponent implements OnInit {
     this.dataService.setTitle('Calendar');
 
     /* Initialize selected date */
-    this.selDate = XunkCalendarModule.getToday();
+    this.selDate = XunkCalendarComponent.getToday();
 
     /* Get dates for filtering (3 months) */
     this.fetchEventsForMonth(this.selDate).subscribe(result => {

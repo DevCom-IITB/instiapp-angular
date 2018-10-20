@@ -1,0 +1,40 @@
+div.card {
+    padding: 12px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+table.card-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.avatar {
+    width: 50px;
+}
+
+.avatar img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+div.content {
+    margin: 0;
+    margin-left: 5px;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+div.content p {
+    margin: 0.3em 0;
+    width: calc(100% - 2em);
+}
+
+.card-sub-title {
+    color: gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

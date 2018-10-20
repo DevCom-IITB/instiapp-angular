@@ -66,7 +66,6 @@ mat-form-field, mat-form-field *, .markdown * {
 
 .sub-card {
     max-width: 500px;
-    height:40px;
     cursor: pointer;
     box-shadow: none !important;
     margin: 0;
@@ -176,10 +175,6 @@ mat-form-field, mat-form-field *, .markdown * {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.mat-tab-body-content {
-    overflow: hidden !important;
 }
 
 .nothing-tab {

@@ -1,0 +1,22 @@
+<div class="card">
+  <table class="card-table">
+    <tbody>
+      <tr>
+        <td *ngIf="avatar" class="avatar">
+          <img [src]="avatar" />
+        </td>
+
+        <td>
+          <div class="content">
+            <p>
+              {{ title }}
+            </p>
+            <p class="card-sub-title">
+              {{ subtitle }}
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -10,13 +10,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { MatRippleModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatRippleModule } from '@angular/material/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -38,13 +38,13 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatNativeDateModule,
         MatAutocompleteModule,
         MatChipsModule,
-        MatTabsModule,
         MatCheckboxModule,
         MatRippleModule,
         MatMenuModule,
         MatBottomSheetModule,
         MatExpansionModule,
         MatBadgeModule,
+        MatSidenavModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -61,13 +61,13 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatNativeDateModule,
         MatAutocompleteModule,
         MatChipsModule,
-        MatTabsModule,
         MatCheckboxModule,
         MatRippleModule,
         MatMenuModule,
         MatBottomSheetModule,
         MatExpansionModule,
         MatBadgeModule,
+        MatSidenavModule,
     ],
 })
 export class MyMaterialClass { }

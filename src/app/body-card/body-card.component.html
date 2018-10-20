@@ -1,20 +1,10 @@
-<mat-card mat-ripple
-          *ngIf="body"
-          class="sub-card"
-          [routerLink]="['/org', body.str_id]">
-  <mat-card-header>
-    <img mat-card-avatar
-        [src]="dataService.getResized(body.image_url, 150)"
-         src-fallback="assets/iitb_logo.svg"
-         class="object-cover" />
-    <mat-card-title>{{ body.name }}</mat-card-title>
-    <mat-card-subtitle>
-      <ng-container *ngIf="!subtitle; else hassub">
-        {{ body.short_description }}
-      </ng-container>
-      <ng-template #hassub>
-        {{ subtitle }}
-      </ng-template>
-    </mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
+<div class="sub-card"
+     *ngIf="body"
+     mat-ripple
+     [routerLink]="['/org', body.str_id]">
+
+  <app-card [avatar]="dataService.getResized(body.image_url, 150)"
+            [title]="body.name"
+            [subtitle]="(subtitle) ? subtitle : body.short_description">
+  </app-card>
+</div>
