@@ -43,7 +43,7 @@ export class AppComponent implements OnDestroy, OnInit {
       this.openFlyout = true;
       changeDetectorRef.detectChanges();
     };
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+    this.mobileQuery.addListener(this._mobileQueryListener);
 
     /* Check if this is a fake environment */
     const sandbox = Helpers.getParameterByName('sandbox');
@@ -150,7 +150,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Unsubscribe from listeners */
   ngOnDestroy(): void {
-      this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+      this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   /** Gets if the current router outlet state is `base` or `overlay` */
