@@ -66,7 +66,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   filteredOptions: Observable<any[]>;
 
   /* Fuse config */
-  public fuse_options = {
+  public fuse_options: Fuse.FuseOptions<ILocation> = {
     shouldSort: true,
     threshold: 0.3,
     tokenize: true,
