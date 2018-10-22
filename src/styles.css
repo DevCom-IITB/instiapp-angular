@@ -9,6 +9,8 @@ body, .image-background {
     background-color: white;
 }
 
+/* Disable user select for non-input */
+
 * {
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
@@ -17,6 +19,15 @@ body, .image-background {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+mat-form-field, mat-form-field *, .markdown * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 /* Scrollbar */
@@ -40,14 +51,7 @@ body, .image-background {
     background: var(--warn-color);;
 }
 
-mat-form-field, mat-form-field *, .markdown * {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
+/* Flyout styles */
 
 .flyout {
     -webkit-overflow-scrolling: auto;
@@ -64,6 +68,9 @@ mat-form-field, mat-form-field *, .markdown * {
     touch-action: none;
 }
 
+
+/* Sub card styles */
+
 .sub-card {
     max-width: 500px;
     cursor: pointer;
@@ -76,17 +83,13 @@ mat-form-field, mat-form-field *, .markdown * {
     background-color: #fafafa;
 }
 
-.multi-line-text {
-    white-space: pre-line;
-}
-
 .theme-header {
     width: 100%;
     background-color: var(--primary-color);
     margin-bottom: 10px;
 }
 
-.primary-background-color{
+.primary-background-color {
     background-color: var(--primary-color);
     color: white;
 }
@@ -95,27 +98,10 @@ mat-form-field, mat-form-field *, .markdown * {
     width: 100%;
 }
 
-.detail-card {
-    width: 100%;
-    margin: auto;
-    max-width: 500px;
-    background-color: white;
-    overflow-x: hidden;
-}
-
-.detail-card-elem {
-    max-width: 500px;
-    margin: auto;
-}
-
 .img-circle {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%
-}
-
-.grey-text-on-white {
-    color: #777;
 }
 
 /* Markdown */
@@ -157,12 +143,6 @@ mat-form-field, mat-form-field *, .markdown * {
     object-fit: cover;
 }
 
-@media (min-width: 1256px) {
-    .real-center {
-        transform: translateX(-150px);
-    }
-}
-
 .float-fixed-right-bottom {
     position: fixed;
     bottom: 20px;
@@ -175,34 +155,6 @@ mat-form-field, mat-form-field *, .markdown * {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.nothing-tab {
-    padding: 30px 0;
-    width: 100%;
-    font-size: 1.1em;
-    text-align: center;
-    color: #b3b3b3;
-}
-
-.nothing-tab img {
-    width: 40%;
-    display: inline-block;
-}
-
-.nothing-at-all {
-    text-align: center;
-    margin: 0 auto;
-    width: 100%;
-    height: 70vh;
-    padding-top: 10vh;
-    max-width: 600px;
-    color: #737373;
-    font-size: 1.15em;
-}
-
-.nothing-at-all img {
-    width: 70%;
 }
 
 .rl-header {
@@ -225,8 +177,4 @@ mat-form-field, mat-form-field *, .markdown * {
         height: 10px;
         width: 100%;
     }
-}
-
-.mat-card-header-text {
-    min-width: 90%;
 }

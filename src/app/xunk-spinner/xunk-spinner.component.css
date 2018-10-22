@@ -1,0 +1,14 @@
+.nothing-at-all {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 70vh;
+    padding-top: 10vh;
+    max-width: 600px;
+    color: #737373;
+    font-size: 1.15em;
+}
+
+.nothing-at-all img {
+    width: 70%;
+}

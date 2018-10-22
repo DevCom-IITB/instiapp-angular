@@ -148,3 +148,9 @@
         font-size: 1.5em;
     }
 }
+
+@media (min-width: 1256px) {
+    .real-center {
+        transform: translateX(-150px);
+    }
+}
