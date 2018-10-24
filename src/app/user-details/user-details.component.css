@@ -20,7 +20,7 @@
 
 .body {
     display: inline-block;
-    min-width: 300px;
+    width: 320px;
 }
 
 #info-header {
@@ -48,7 +48,7 @@
 
     .body {
         display: block;
-        min-width: auto;
+        width: auto;
     }
 
     .profile-pic {
