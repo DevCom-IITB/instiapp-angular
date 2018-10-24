@@ -60,10 +60,15 @@
 
 .right {
     margin: 20px;
+    margin-bottom: 0;
 }
 
 .right .section {
     margin-bottom: 30px;
+}
+
+.right .section:nth-last-of-type(1) {
+    margin-bottom: 0;
 }
 
 .right .rl-header {
