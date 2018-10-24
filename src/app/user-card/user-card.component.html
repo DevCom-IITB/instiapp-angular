@@ -1,7 +1,8 @@
 <div class="sub-card"
      *ngIf="profile"
      mat-ripple
-     [routerLink]="dataService.isSandbox ? null : ['/user', profile.ldap_id || profile.id]">
+     [routerLink]="['/user', profile.ldap_id || profile.id]"
+     [class.disabled]="dataService.isSandbox">
 
   <app-card [avatar]="profile.profile_pic"
             [title]="profile.name"
