@@ -43,16 +43,12 @@
     }
 
     .margin-card {
-        width: 90%;
+        width: 95%;
     }
 }
 
 @media (max-width: 560px) {
     .searchinput {
         min-width: 80%;
-    }
-
-    .margin-card {
-        width: 90%;
     }
 }
