@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable ,  Subject, noop } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
 import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, INotification } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
@@ -140,27 +140,19 @@ export class DataService {
 
   /** Uploads a static image to the server */
   UploadImage(image: File): Observable<any> {
+    /* Construct upload request */
+    const formData = new FormData();
+    formData.append('picture', image);
+    const uploadReq = new HttpRequest('POST', API.PostImage, formData);
+
+    /* Make upload request and return */
     return Observable.create(observer => {
-      this.GetBase64(image).subscribe(result => {
-        return this.FirePOST(API.PostImage, {picture: result}).subscribe(httpresult => {
-          observer.next(httpresult);
+      this.http.request(uploadReq).subscribe(event => {
+        if (event.type === HttpEventType.Response) {
+          observer.next(event.body);
           observer.complete();
-        }, (error) => observer.error(error));
+        }
       }, (error) => observer.error(error));
-    });
-  }
-
-  /** Returns an observable with the base64 representaion of a file */
-  GetBase64(file: File): Observable<string> {
-    return Observable.create(observer => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = (() => {
-        observer.next(reader.result);
-        observer.complete();
-      });
-
     });
   }
 
