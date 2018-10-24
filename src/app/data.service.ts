@@ -207,7 +207,7 @@ export class DataService {
     return Observable.create(observer => {
       if (!this._currentUser) {
         /* Try to get from localStorage */
-        if (localStorage.getItem(this.LS_USER) !== null) {
+        if (!this.isSandbox && localStorage.getItem(this.LS_USER) !== null) {
           const user = JSON.parse(localStorage.getItem(this.LS_USER));
           this.loginUser(observer, user, false);
           this.updateUser();
@@ -216,7 +216,7 @@ export class DataService {
 
         /* Fire a get */
         this.FireGET<any>(API.LoggedInUser).subscribe(result => {
-          this.loginUser(observer, result.profile, true);
+          this.loginUser(observer, result.profile, !this.isSandbox);
         }, (error) => {
           observer.error(error);
         });
