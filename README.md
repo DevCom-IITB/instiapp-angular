@@ -1,6 +1,7 @@
 # InstiApp-Angular
 Client for IIT Bombay's InstiApp API in Angular 7, deployed at https://insti.app
 
+[![InstiApp](https://insti.app/instiapp-badge-gh.svg)](https://insti.app)
 [![CircleCI](https://circleci.com/gh/pulsejet/iitb-app-angular.svg?style=shield)](https://circleci.com/gh/pulsejet/iitb-app-angular)
 [![Build Status](https://travis-ci.org/pulsejet/iitb-app-angular.svg?branch=master)](https://travis-ci.org/pulsejet/iitb-app-angular)
 
