@@ -105,7 +105,7 @@ import { CardComponent } from './card/card.component';
     MarkdownModule.forRoot(),
     FlyoutModule,
 
-    ShareButtonModule.forRoot(),
+    ShareButtonModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
