@@ -1,0 +1,28 @@
+diff --git ngsw-worker.js ngsw-worker.js
+index 51c431b..8a85ca7 100644
+--- ngsw-worker.js
++++ ngsw-worker.js
+@@ -2015,6 +2015,23 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
+             return __awaiter$5(this, void 0, void 0, function* () {
+                 notification.close();
+                 const options = {};
++
++                let url = 'https://insti.app/';
++                const type = notification.data.type
++                if (type === 'blogentry') {
++                    if (notification.data.extra.indexOf('training') !== -1)
++                        url += 'blog/ImFwaS90cmFpbmluZy1ibG9nez9mcm9tLG51bSxxdWVyeX0i';
++                    else
++                        url += 'blog/ImFwaS9wbGFjZW1lbnQtYmxvZ3s%252FZnJvbSxudW0scXVlcnl9Ig%253D%253D';
++                } else if (type === 'newsentry') {
++                    url += 'news'
++                } else if (type === 'event') {
++                    url += 'event/' + notification.data.id;
++                }
++
++                clients.openWindow(url);
++
++
+                 // The filter uses `name in notification` because the properties are on the prototype so
+                 // hasOwnProperty does not work here
+                 NOTIFICATION_OPTION_NAMES.filter(name => name in notification)
