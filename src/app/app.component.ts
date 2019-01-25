@@ -54,7 +54,7 @@ export class AppComponent implements OnDestroy, OnInit {
     /* Check if sessionid is passed as a query parameter */
     const sessid = Helpers.getParameterByName('sessionid');
     if (sessid) {
-      document.cookie = `sessionid=${sessid}`;
+      document.cookie = `sessionid=${sessid}; path=/`;
     }
   }
 
