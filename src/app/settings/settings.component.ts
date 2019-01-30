@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { IUserProfile } from '../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { API } from '../../api';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-settings',
@@ -32,6 +33,24 @@ export class SettingsComponent implements OnInit {
       this.snackBar.open('Logged out successfully', 'Dismiss', {
         duration: 2000,
       });
+    });
+  }
+
+  /** Toggle show contact number */
+  toggleContact(e: MatSlideToggleChange) {
+    e.source.setDisabledState(true);
+    this.dataService.FirePATCH(API.UserMe, {
+      show_contact_no: e.checked
+    }).subscribe((profile: IUserProfile) => {
+      this.user = profile;
+      this.dataService.updateUser(profile);
+      e.source.setDisabledState(false);
+    }, () => {
+      this.snackBar.open('Updating preferences failed!', 'Dismiss', {
+        duration: 2000,
+      });
+      e.source.checked = this.user.show_contact_no;
+      e.source.setDisabledState(false);
     });
   }
 

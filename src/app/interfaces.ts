@@ -11,6 +11,7 @@ export interface IUserProfile {
     events_interested: IEvent[];
     events_going: IEvent[];
     contact_no: string;
+    show_contact_no: boolean;
     email: string;
     year: number;
     roll_no: string;

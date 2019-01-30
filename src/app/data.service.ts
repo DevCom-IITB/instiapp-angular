@@ -249,14 +249,25 @@ export class DataService {
   }
 
   /** Updates the current user profile */
-  updateUser() {
+  updateUser(profile: IUserProfile = null) {
     if (!this._loggedIn) { return; }
+
+    /* Helper function to update user */
+    const update = (u: IUserProfile) => {
+      this._currentUser = u;
+      this.setLocalStorageUser(this._currentUser);
+      this._loggedInSubject.next(true);
+    };
+
+    /* Check if profile was passed as an argument */
+    if (profile !== null) {
+      update(profile);
+      return;
+    }
 
     /* Update the profile */
     this.FireGET<any>(API.LoggedInUser).subscribe(result => {
-      this._currentUser = result.profile;
-      this.setLocalStorageUser(this._currentUser);
-      this._loggedInSubject.next(true);
+      update(result.profile);
     }, (error) => {
       if (error.status === 401) {
         alert('Your session has expired');
