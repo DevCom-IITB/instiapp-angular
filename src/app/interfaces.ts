@@ -10,6 +10,7 @@ export interface IUserProfile {
     website_url: string;
     events_interested: IEvent[];
     events_going: IEvent[];
+    contact_no: string;
     email: string;
     year: number;
     roll_no: string;

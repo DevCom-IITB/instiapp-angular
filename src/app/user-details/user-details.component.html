@@ -9,8 +9,15 @@
     <div id="info-header">
       <div class="rl-header sm">{{ profile.name }}</div>
       <span class="sub-name">
-        {{ profile.roll_no }}<br>
-        {{ profile.email }}
+        {{ profile.roll_no }}
+
+        <ng-container *ngIf="hasField('email')">
+          <br><a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+        </ng-container>
+
+        <ng-container *ngIf="hasField('contact_no')">
+          <br><a href="tel:{{ profile.contact_no }}">{{ profile.contact_no }}</a>
+        </ng-container>
       </span>
     </div>
   </div>

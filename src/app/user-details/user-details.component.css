@@ -2,6 +2,11 @@
     margin: 7px 0 0 5%;
 }
 
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
 .profile-pic {
     height: 150px;
     width: 150px;
