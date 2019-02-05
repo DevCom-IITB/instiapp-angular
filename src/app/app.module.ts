@@ -116,6 +116,7 @@ import { CardComponent } from './card/card.component';
       { path: 'explore', component: ExploreComponent, data: { state: 'base' } },
       { path: 'mess', component: MessComponent, data: { state: 'base' } },
       { path: 'map', component: MapComponent, data: { state: 'base' } },
+      { path: 'map/:name', component: MapComponent, data: { state: 'base' } },
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },

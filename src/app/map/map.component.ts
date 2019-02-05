@@ -29,6 +29,8 @@ import { defaults as OlInteractionDefaults } from 'ol/interaction';
 import OlControlFullscreen from 'ol/control/FullScreen';
 import { ILocation } from '../interfaces';
 import { API } from '../../api';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Helpers } from '../helpers';
 
 @Component({
   selector: 'app-map',
@@ -54,14 +56,18 @@ export class MapComponent implements OnInit, AfterViewInit {
   /* Helpers */
   @ViewChild('searchbox') searchBoxEl: ElementRef;
   @ViewChild(MatAutocompleteTrigger) autoComplete: MatAutocompleteTrigger;
+
   public maploaded = false;
+  public initialMarker: string = null;
   public pointer = '';
+
   public selLocationAnim;
   public initLocBox = false;
   public showLocBox = false;
   public mobShowLocBox = false;
   public showSearch = false;
   public showResidences = false;
+
   searchForm: FormControl;
   filteredOptions: Observable<any[]>;
 
@@ -83,6 +89,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   public fuse;
 
   constructor(
+    public activatedRoute: ActivatedRoute,
     public dataService: DataService,
     public snackBar: MatSnackBar,
   ) {
@@ -90,6 +97,11 @@ export class MapComponent implements OnInit, AfterViewInit {
     if (!this.dataService.isMobile(560)) {
       this.showSearch = true;
     }
+
+    /* Check for initial marker */
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.initialMarker = params['name'];
+    });
   }
 
   ngOnInit() {
@@ -107,6 +119,14 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.locations = result;
       this.fuse = new Fuse(this.locations, this.fuse_options);
       this.showLoc();
+
+      /* Show initial marker if set */
+      if (this.initialMarker != null) {
+        const locs = this.locations.filter(l => Helpers.getPassable(l.short_name) === this.initialMarker);
+        if (locs.length > 0) {
+          this.selectLocation(locs[0]);
+        }
+      }
     });
   }
 
@@ -309,7 +329,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   }
 
-  selectLocation(loc) {
+  selectLocation(loc: ILocation) {
     /* Set selected location */
     this.selectedLocation = loc;
 
