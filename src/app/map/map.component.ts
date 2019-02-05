@@ -1,10 +1,10 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-
-import { EnterRight } from '../animations';
 import { MatSnackBar, MatAutocompleteTrigger } from '@angular/material';
-import * as Fuse from 'fuse.js';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+
+import * as Fuse from 'fuse.js';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -27,10 +27,12 @@ import OlStyleStroke from 'ol/style/Stroke';
 import OlStyleFill from 'ol/style/Fill';
 import { defaults as OlInteractionDefaults } from 'ol/interaction';
 import OlControlFullscreen from 'ol/control/FullScreen';
+
 import { ILocation } from '../interfaces';
 import { API } from '../../api';
-import { ActivatedRoute, Params } from '@angular/router';
 import { Helpers } from '../helpers';
+import { DataService } from '../data.service';
+import { EnterRight } from '../animations';
 
 @Component({
   selector: 'app-map',
@@ -92,6 +94,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     public activatedRoute: ActivatedRoute,
     public dataService: DataService,
     public snackBar: MatSnackBar,
+    public router: Router,
+    public location: Location,
   ) {
     this.searchForm = new FormControl();
     if (!this.dataService.isMobile(560)) {
@@ -352,6 +356,12 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     /* Set focus */
     this.searchBoxEl.nativeElement.blur();
+
+    /* Set URL */
+    const urlTree = this.router.createUrlTree(
+      [`/map/${Helpers.getPassable(this.selectedLocation.short_name)}`],
+      {relativeTo: this.activatedRoute});
+    this.location.go(urlTree.toString());
   }
 
   /** Move the marker to location */
