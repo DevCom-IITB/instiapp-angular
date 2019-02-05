@@ -321,6 +321,7 @@ export class MapComponent implements OnInit, AfterViewInit {
           this.initLocBox = false;
         }, 250);
         this.moveMarker(-50, -50, false);
+        this.setURL(null);
       }
     });
 
@@ -358,8 +359,17 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.searchBoxEl.nativeElement.blur();
 
     /* Set URL */
+    this.setURL(this.selectedLocation);
+  }
+
+  /**
+   * Set URL to selected location's passable name
+   * @param location Location to set URL to (null for empty)
+   */
+  setURL(location: ILocation) {
+    const urlParam = location != null ? `/${Helpers.getPassable(location.short_name)}` : '';
     const urlTree = this.router.createUrlTree(
-      [`/map/${Helpers.getPassable(this.selectedLocation.short_name)}`],
+      [`/map${urlParam}`],
       {relativeTo: this.activatedRoute});
     this.location.go(urlTree.toString());
   }
