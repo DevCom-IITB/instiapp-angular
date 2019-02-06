@@ -12,14 +12,19 @@
             alt="">
 
       <div class="card-header">
-        <div class="body-name">{{ body.name }}</div>
+        <div class="body-name-container">
+          <div class="body-name">{{ body.name }}</div>
+          <div class="body-short-desc">{{ body.short_description }}</div>
+        </div>
         <div class="action-buttons">
           <button mat-icon-button
+                class="icon-button"
                 *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
                 [routerLink]="['/edit-body', body.id]">
               <mat-icon>edit</mat-icon>
           </button>
           <a mat-icon-button
+            class="icon-button"
             *ngIf="body.website_url && body.website_url !== ''"
             [href]="body.website_url"
             target="_blank"
@@ -27,13 +32,15 @@
             <i class="fas fa-globe fa-lg"></i>
           </a>
           <button mat-icon-button
+                  class="icon-button"
                  *ngIf="body.blog_url"
                  [routerLink]="['/news']"
                  [queryParams]="{body: body.id}">
               <mat-icon>rss_feed</mat-icon>
           </button>
-          <button mat-icon-button
-                (click)="share()">
+          <button class="icon-button"
+                  mat-icon-button
+                  (click)="share()">
               <mat-icon>share</mat-icon>
           </button>
           <br>

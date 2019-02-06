@@ -19,6 +19,11 @@
     outline:none;
 }
 
+.links mat-slide-toggle {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
 mat-icon {
     font-size: 1.2em;
     vertical-align: middle !important;

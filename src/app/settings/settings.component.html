@@ -9,6 +9,13 @@
   </div>
 
   <div class="links">
+    <mat-slide-toggle mat-list-item
+      [checked]='user.show_contact_no'
+      (change)="toggleContact($event)"
+      *ngIf="this.dataService.isLoggedIn() && user">
+      Show contact number
+    </mat-slide-toggle>
+
     <a href="https://gymkhana.iitb.ac.in/sso/user/"
        mat-list-item target="_blank" rel="noopener">
         <mat-icon>account_circle</mat-icon> &nbsp; Update Profile

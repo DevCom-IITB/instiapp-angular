@@ -43,4 +43,8 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
+  hasField(field: string) {
+    return this.profile[field] && this.profile[field].toUpperCase() !== 'N/A';
+  }
+
 }

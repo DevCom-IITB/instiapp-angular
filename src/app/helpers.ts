@@ -182,4 +182,9 @@ export module Helpers {
         img.src = url;
     }
 
+    /** Gets a URL passable string after stripping spaces and special characters */
+    export function getPassable(str: string): string {
+        return str.toLowerCase().replace(' ', '-').replace(/^A-Za-z0-9\\-/, '');
+    }
+
 }

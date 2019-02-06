@@ -1,6 +1,6 @@
 <app-xunk-spinner *ngIf="!maploaded"></app-xunk-spinner>
 
-<div class="main">
+<div class="main" [class.sandbox]="dataService.isSandbox">
   <div [style.cursor]="pointer" id="map" class="map"></div>
   <img id="marker" src="/assets/location-icon.svg">
 </div>

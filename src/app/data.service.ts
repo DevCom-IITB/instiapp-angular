@@ -228,6 +228,11 @@ export class DataService {
     });
   }
 
+  /** Set the local storage profile to argument */
+  setLocalStorageUser(profile: IUserProfile) {
+    localStorage.setItem(this.LS_USER, JSON.stringify(profile));
+  }
+
   /** Helper to log in the user with the given user object */
   loginUser(observer: any, profile: IUserProfile, setLocal: Boolean) {
     this._loggedIn = true;
@@ -235,8 +240,7 @@ export class DataService {
 
     /* Set local storage */
     if (setLocal) {
-      localStorage.setItem(this.LS_USER, JSON.stringify(profile));
-      console.log(this._currentUser.name + ' is logged in');
+      this.setLocalStorageUser(profile);
     }
 
     observer.next(this._currentUser);
@@ -245,13 +249,25 @@ export class DataService {
   }
 
   /** Updates the current user profile */
-  updateUser() {
+  updateUser(profile: IUserProfile = null) {
     if (!this._loggedIn) { return; }
+
+    /* Helper function to update user */
+    const update = (u: IUserProfile) => {
+      this._currentUser = u;
+      this.setLocalStorageUser(this._currentUser);
+      this._loggedInSubject.next(true);
+    };
+
+    /* Check if profile was passed as an argument */
+    if (profile !== null) {
+      update(profile);
+      return;
+    }
 
     /* Update the profile */
     this.FireGET<any>(API.LoggedInUser).subscribe(result => {
-      this._currentUser = result.profile;
-      this._loggedInSubject.next(true);
+      update(result.profile);
     }, (error) => {
       if (error.status === 401) {
         alert('Your session has expired');

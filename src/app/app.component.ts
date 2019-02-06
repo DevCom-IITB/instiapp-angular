@@ -50,6 +50,12 @@ export class AppComponent implements OnDestroy, OnInit {
       this.isSandbox = true;
       this.dataService.isSandbox = true;
     }
+
+    /* Check if sessionid is passed as a query parameter */
+    const sessid = Helpers.getParameterByName('sessionid');
+    if (sessid) {
+      document.cookie = `sessionid=${sessid}; path=/`;
+    }
   }
 
   private toggleSidebar() {
