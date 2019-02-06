@@ -46,7 +46,7 @@ export class ComplaintsHomeComponent implements OnInit {
       let i = 0;
       result.forEach(element => {
         this.reportedTime[i] = moment(element.report_date).format('MMMM Do YYYY');
-        i = i+1;
+        i = i + 1;
         if (element.status.toLowerCase() === 'reported') {
           this.complaintstatusColor.push('red');
         }
@@ -67,11 +67,9 @@ export class ComplaintsHomeComponent implements OnInit {
       result.forEach(element => {
         if (element.status.toLowerCase() === 'reported') {
           this.myComplaintstatusColor.push('red');
-        }
-        else if (element.status.toLowerCase() === 'resolved') {
+        } else if (element.status.toLowerCase() === 'resolved') {
           this.myComplaintstatusColor.push('green');
-        }
-        else if (element.status.toLowerCase() === 'in progress') {
+        } else if (element.status.toLowerCase() === 'in progress') {
           this.myComplaintstatusColor.push('yellow');
         }
       });
@@ -129,7 +127,7 @@ export class ComplaintsHomeComponent implements OnInit {
     else {
       complaint_upvoted = 0;
     }
-    this.dataService.FireGET<IComplaint>(API.UpVote, 
+    this.dataService.FireGET<IComplaint>(API.UpVote,
       { complaintId: complaintId, action: complaint_upvoted === 0 ? 1 : 0 })
       .subscribe(result => {
         this.refresh();
@@ -138,8 +136,7 @@ export class ComplaintsHomeComponent implements OnInit {
           this.snackBar.open('You have upvoted this complaint', 'Dismiss', {
             duration: 2000,
           });
-        }
-        else {
+        } else {
           this.snackBar.open('Your upvote has been removed', 'Dismiss', {
             duration: 2000,
           });

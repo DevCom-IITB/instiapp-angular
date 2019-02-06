@@ -56,11 +56,9 @@ export class DetailedComplaintComponent implements OnInit {
       this.complaintReportedTime = moment(this.detailedComplaint.report_date).format('MMMM Do YYYY');
         if (this.detailedComplaint.status === 'Reported') {
           this.statusColor = 'red';
-        }
-        else if (this.detailedComplaint.status === 'Resolved') {
+        } else if (this.detailedComplaint.status === 'Resolved') {
           this.statusColor = 'green';
-        }
-        else if (this.detailedComplaint.status === 'In progress') {
+        } else if (this.detailedComplaint.status === 'In progress') {
           this.statusColor = 'yellow';
         }
       }, (error) => {
@@ -126,8 +124,7 @@ export class DetailedComplaintComponent implements OnInit {
           this.snackBar.open('You are unsubscribed from this complaint', 'Dismiss', {
             duration: 2000,
           });
-        }
-        else {
+        } else {
           this.snackBar.open('You are subscribed to this complaint', 'Dismiss', {
             duration: 2000,
           });
