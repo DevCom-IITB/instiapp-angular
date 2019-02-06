@@ -13,16 +13,13 @@
 
 .complaint-text {
     color: white;
-    font-weight: bolder
+    font-weight: bolder;
 }   
 
 .complaint-button {
     color: black;
     background-color: yellow;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 50px;
     align-content: center;
     font-weight: bold;
     text-decoration: none;

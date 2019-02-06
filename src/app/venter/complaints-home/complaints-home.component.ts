@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IComplaint } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
-import { ViewEncapsulation } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
 
@@ -10,7 +9,6 @@ import * as moment from 'moment';
   selector: 'app-complaints-home',
   templateUrl: './complaints-home.component.html',
   styleUrls: ['./complaints-home.component.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class ComplaintsHomeComponent implements OnInit {
 
@@ -42,32 +40,32 @@ export class ComplaintsHomeComponent implements OnInit {
     /* Get all the complaints from server*/
     this.dataService.FireGET<IComplaint[]>(API.Complaints).subscribe(result => {
       this.complaints = result;
-      if (this.complaints.length == 0)
-        this.complaintsFlag = true;
+      if (this.complaints.length === 0)
+          this.complaintsFlag = true;
       let i=0;
       result.forEach(element => {
-        this.reportedTime[i] = moment(element.report_date).format("MMMM Do YYYY");
-        i=i+1;
-        if (element.status.toLowerCase() === "reported")
-        this.complaintstatusColor.push('red');
-      else if (element.status.toLowerCase() === "resolved")
-        this.complaintstatusColor.push('green');
-      else if (element.status.toLowerCase() === "in progress")
-        this.complaintstatusColor.push('yellow');
+        this.reportedTime[i] = moment(element.report_date).format('MMMM Do YYYY');
+          i=i+1;
+        if (element.status.toLowerCase() === 'reported')
+            this.complaintstatusColor.push('red');
+        else if (element.status.toLowerCase() === 'resolved')
+            this.complaintstatusColor.push('green');
+        else if (element.status.toLowerCase() === 'in progress')
+            this.complaintstatusColor.push('yellow');
       });
     });
     /* Get the current user complaints from server*/
     this.dataService.FireGET<IComplaint[]>(API.MyComplaints).subscribe(result => {
       this.myComplaints = result;
-      if (this.myComplaints.length == 0)
-        this.myComplaintsFlag = true;
+      if (this.myComplaints.length === 0)
+          this.myComplaintsFlag = true;
       result.forEach(element => {
-        if (element.status.toLowerCase() === "reported")
-        this.myComplaintstatusColor.push('red');
-      else if (element.status.toLowerCase() === "resolved")
-        this.myComplaintstatusColor.push('green');
-      else if (element.status.toLowerCase() === "in progress")
-        this.myComplaintstatusColor.push('yellow');
+        if (element.status.toLowerCase() === 'reported')
+            this.myComplaintstatusColor.push('red');
+        else if (element.status.toLowerCase() === 'resolved')
+            this.myComplaintstatusColor.push('green');
+        else if (element.status.toLowerCase() === 'in progress')
+            this.myComplaintstatusColor.push('yellow');
       });
     });
   }
@@ -94,20 +92,20 @@ export class ComplaintsHomeComponent implements OnInit {
  }
  
   subscribe(complaint_subscribed: number, complaintId: string) {
-    this.dataService.FireGET<IComplaint>(API.SubscribeToComplaint, { complaintId: complaintId, action: complaint_subscribed === 0 ? 1 : 0 }).subscribe(result => {
-      this.refresh();
-      console.log(result);
-      if (complaint_subscribed == 1) {
-        this.snackBar.open('You are unsubscribed from this complaint', 'Dismiss', {
-          duration: 2000,
-        });
-      }
-      else {
-        this.snackBar.open('You are subscribed to this complaint', 'Dismiss', {
-          duration: 2000,
-        });
-      }
-      
+    this.dataService.FireGET<IComplaint>(API.SubscribeToComplaint, 
+        { complaintId: complaintId, action: complaint_subscribed === 0 ? 1 : 0 }).subscribe(result => {
+          this.refresh();
+          console.log(result);
+          if (complaint_subscribed === 1) {
+            this.snackBar.open('You are unsubscribed from this complaint', 'Dismiss', {
+            duration: 2000,
+          });
+        }
+        else {
+          this.snackBar.open('You are subscribed to this complaint', 'Dismiss', {
+            duration: 2000,
+          });
+        } 
     }, (error) => {
       this.snackBar.open(`Subscription Failed - ${error.message}`, 'Dismiss', {
         duration: 2000,
@@ -118,9 +116,9 @@ export class ComplaintsHomeComponent implements OnInit {
   upVote(has_upvoted: boolean, complaintId: string) {
     let complaint_upvoted: number;
     if (has_upvoted === true)
-      complaint_upvoted = 1;
-    else 
-      complaint_upvoted = 0; 
+        complaint_upvoted = 1;
+    else
+        complaint_upvoted = 0;
     this.dataService.FireGET<IComplaint>(API.UpVote, { complaintId: complaintId, action: complaint_upvoted === 0 ? 1 : 0 }).subscribe(result => {
       this.refresh();
       console.log(result);

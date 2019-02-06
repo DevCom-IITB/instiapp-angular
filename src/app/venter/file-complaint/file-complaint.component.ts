@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IComplaint, IComplaintTagUri, IComplaintPost } from '../../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from '../../data.service';
-import { API } from '../../../api'; 
+import { API } from '../../../api';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
@@ -30,7 +30,7 @@ export class FileComplaintComponent implements OnInit {
   public image: string;
   public tag: string;
   public selectedTags: string[] = [];
-  public selectedindex: number = 0;
+  public selectedindex = 0;
 
   constructor(
     public dataService: DataService,
@@ -43,8 +43,8 @@ export class FileComplaintComponent implements OnInit {
     this.option = [];
     this.complaint.latitude = currentLat;
     this.complaint.longitude = currentLong;
-    this.complaint.images =[];
-    this.complaint.location_description = "IIT Area";
+    this.complaint.images = [];
+    this.complaint.location_description = 'IIT Area';
     
   this.dataService.setTitle('Complaints & Suggestions');
   /* Get all the tags from server*/
@@ -73,7 +73,7 @@ export class FileComplaintComponent implements OnInit {
     return true;
   }
 
-  selectImage(index : number) {
+  selectImage(index: number) {
     this.selectedindex = index;
   }
 
@@ -104,14 +104,14 @@ export class FileComplaintComponent implements OnInit {
       return PLACEHOLDER;
     }
   }
-  
+
   addTag() {
-    this.selectedTags.push(this.tag)
-    this.tag = "";
+    this.selectedTags.push(this.tag);
+    this.tag = '';
   }
 
   clearTag(deleteTag: string) {
-    for (let i=0; i<this.selectedTags.length; i++) {
+    for (let i=0; i < this.selectedTags.length; i++) {
       if (this.selectedTags[i] === deleteTag) {
         this.selectedTags.splice(i, 1);
       }
@@ -127,7 +127,7 @@ export class FileComplaintComponent implements OnInit {
     } else {
     this.dataService.FirePOST<IComplaint>(API.Complaints, this.complaint).subscribe(result => {
       console.log(result);
-    })
+    });
     }
   }
 }

@@ -76,7 +76,7 @@ export interface IBody {
     children: IBody[];
     parents: IBody[];
     events: IEvent[];
-    followers_count: number;    
+    followers_count: number;
     roles: IBodyRole[];
     blog_url: string;
     user_follows: boolean;
@@ -162,46 +162,46 @@ export interface IUserTagCategory {
 }
 
 export interface IComplaintTagUri {
-    id: string
-    tag_uri: string
+    id: string;
+    tag_uri: string;
 }
 
 export interface IComplaintComment {
-    id: string
-    time: string
-    comment: string
-    commented_by: IUserProfile
+    id: string;
+    time: string;
+    comment: string;
+    commented_by: IUserProfile;
 }
 
 export interface IComplaint {
     id: string;
-    created_by: IUserProfile
-    description: string
-    suggestions: string
-    location_details: string
-    report_date: string
-    status: string
-    latitude: number
-    longitude: number
-    location_description: string
-    tags: IComplaintTagUri
-    users_up_voted: IUserProfile
-    images: string[]
-    comments: IComplaintComment
-    vote_count: number
-    is_subscribed: number
-    upvoted: boolean
+    created_by: IUserProfile;
+    description: string;
+    suggestions: string;
+    location_details: string;
+    report_date: string;
+    status: string;
+    latitude: number;
+    longitude: number;
+    location_description: string;
+    tags: IComplaintTagUri;
+    users_up_voted: IUserProfile;
+    images: string[];
+    comments: IComplaintComment;
+    vote_count: number;
+    is_subscribed: number;
+    upvoted: boolean;
 }
 
 export interface IComplaintPost {
-    description: string
-    suggestions: string
-    location_details: string
-    latitude: number
-    longitude: number
-    location_description: string
-    tags: string[]
-    images: string[]
+    description: string;
+    suggestions: string;
+    location_details: string;
+    latitude: number;
+    longitude: number;
+    location_description: string;
+    tags: string[];
+    images: string[];
 }
 
 export interface IPostComment {
