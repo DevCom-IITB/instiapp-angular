@@ -54,12 +54,15 @@ export class DetailedComplaintComponent implements OnInit {
         this.detailedComplaint = result;
         console.log(this.detailedComplaint);
       this.complaintReportedTime = moment(this.detailedComplaint.report_date).format('MMMM Do YYYY');
-        if (this.detailedComplaint.status === 'Reported')
-            this.statusColor = 'red';
-        else if (this.detailedComplaint.status === 'Resolved')
-            this.statusColor = 'green';
-        else if (this.detailedComplaint.status === 'In progress')
-            this.statusColor = 'yellow';
+        if (this.detailedComplaint.status === 'Reported') {
+          this.statusColor = 'red';
+        }
+        else if (this.detailedComplaint.status === 'Resolved') {
+          this.statusColor = 'green';
+        }
+        else if (this.detailedComplaint.status === 'In progress') {
+          this.statusColor = 'yellow';
+        }
       }, (error) => {
         if (error.status === 404) {
           alert('Complaint not found');
@@ -75,7 +78,7 @@ export class DetailedComplaintComponent implements OnInit {
   postComment() {
     console.log(this.comment.text);
     console.log(this.comment);
-    this.dataService.FirePOST<IComplaintComment>(API.CommentPost, 
+    this.dataService.FirePOST<IComplaintComment>(API.CommentPost,
       this.comment, { complaintId: this.detailedComplaint.id }).subscribe(result => {
         this.refresh();
         console.log(result);
@@ -85,11 +88,13 @@ export class DetailedComplaintComponent implements OnInit {
 
   upVoteComplaint(has_upvoted: boolean) {
     let complaint_upvoted: number;
-    if (has_upvoted === true)
-        complaint_upvoted = 1;
-    else
-        complaint_upvoted = 0;
-    this.dataService.FireGET<IComplaint>(API.UpVote, 
+    if (has_upvoted === true) {
+      complaint_upvoted = 1;
+    }
+    else {
+      complaint_upvoted = 0;
+    }
+    this.dataService.FireGET<IComplaint>(API.UpVote,
       { complaintId: this.detailedComplaint.id, action: complaint_upvoted === 0 ? 1 : 0 })
       .subscribe(result => {
         this.refresh();
@@ -112,7 +117,7 @@ export class DetailedComplaintComponent implements OnInit {
   }
 
   subscribe(complaint_subscribed: number) {
-    this.dataService.FireGET<IComplaint>(API.SubscribeToComplaint, 
+    this.dataService.FireGET<IComplaint>(API.SubscribeToComplaint,
       { complaintId: this.detailedComplaint.id, action: complaint_subscribed === 0 ? 1 : 0 })
       .subscribe(result => {
         this.refresh();
@@ -122,11 +127,11 @@ export class DetailedComplaintComponent implements OnInit {
             duration: 2000,
           });
         }
-      else {
-        this.snackBar.open('You are subscribed to this complaint', 'Dismiss', {
-          duration: 2000,
-        });
-      }
+        else {
+          this.snackBar.open('You are subscribed to this complaint', 'Dismiss', {
+            duration: 2000,
+          });
+        }
     }, (error) => {
       this.snackBar.open(`Subscription Failed - ${error.message}`, 'Dismiss', {
         duration: 2000,

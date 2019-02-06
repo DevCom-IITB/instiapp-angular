@@ -45,7 +45,7 @@ export class FileComplaintComponent implements OnInit {
     this.complaint.longitude = currentLong;
     this.complaint.images = [];
     this.complaint.location_description = 'IIT Area';
-    
+
   this.dataService.setTitle('Complaints & Suggestions');
   /* Get all the tags from server*/
   this.dataService.FireGET<IComplaintTagUri[]>(API.TagCategories).subscribe(result => {
@@ -53,7 +53,7 @@ export class FileComplaintComponent implements OnInit {
     this.tagCategories.forEach(element => {
       this.option.push(element.tag_uri);
     });
-  })
+  });
   this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -111,7 +111,7 @@ export class FileComplaintComponent implements OnInit {
   }
 
   clearTag(deleteTag: string) {
-    for (let i=0; i < this.selectedTags.length; i++) {
+    for (let i = 0; i < this.selectedTags.length; i++) {
       if (this.selectedTags[i] === deleteTag) {
         this.selectedTags.splice(i, 1);
       }
