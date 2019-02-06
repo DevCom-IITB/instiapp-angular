@@ -1,0 +1,107 @@
+<div class="container" *ngIf="detailedComplaint">
+    <div *ngIf="detailedComplaint.images.length === 0 ">
+        <img style="background-size: cover" src-fallback="assets/add_image_placeholder.svg" src="assets/placeholder_image.svg">
+    </div>
+
+    <div *ngIf="detailedComplaint.images">
+        <div class="slideshow-container">
+            <img *ngFor="let image of detailedComplaint.images; let i=index" [src]="image" [ngClass]="{'image-active': selectedindex == i}" style="max-height: 400px; max-width: 400px;">
+
+            <div style="text-align:center">
+                <span *ngFor="let dot of detailedComplaint.images; let i=index" class="dot" (click)="selectImage(i)" [ngClass]="{'active': selectedindex == i}"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="complaint-creator">
+        <img class="complaint-creator-image" src="{{detailedComplaint.created_by.profile_pic}}" src-fallback="assets/add_image_placeholder.svg">
+        <div style="padding-left:2%">
+            {{ detailedComplaint.created_by.name }}
+        </div>
+        <div class="complaint-time-location">
+            <div>{{ complaintReportedTime }}</div>
+            <div>{{ detailedComplaint.location_description }}</div>
+        </div>
+        <div class="complaint-status" [style.backgroundColor]="statusColor">
+            {{ detailedComplaint.status }}
+        </div>
+    </div>
+    <div class="complaint-divider">
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <div>
+            <div [ngSwitch]="detailedComplaint.is_subscribed" class="subscribe-button">
+                <div *ngSwitchCase="true">
+                    <button (click)="subscribe(detailedComplaint.is_subscribed)" mat-icon-button>
+                        <mat-icon>notifications_active</mat-icon>
+                    </button>
+                </div>
+                <div *ngSwitchCase="false">
+                    <button (click)="subscribe(detailedComplaint.is_subscribed)" mat-icon-button>
+                        <mat-icon>notifications</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="complaint-content">
+                <div class="complaint-card-content"><b>Complaint:</b>
+                    <pre><div class="complaint-description">{{ detailedComplaint.description }}</div></pre>
+                </div>
+            </div>
+            <div *ngIf="detailedComplaint.suggestions">
+                <div class="complaint-card-content"><b>Suggestions:</b>
+                    <div>{{ detailedComplaint.suggestions }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="detailedComplaint.location_details">
+        <div class="complaint-card-content"><b>Location Details:</b>
+            <div>{{ detailedComplaint.location_details }}</div>
+        </div>
+    </div>
+    <div *ngIf="!detailedComplaint.tags">
+        Tags
+        <div>
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of complaintTags" style="padding-top:1%; padding-bottom: 1%; background-color: yellowgreen">{{ tag }}</mat-chip>
+            </mat-chip-list>
+        </div>
+    </div>
+    <br>
+    Comments({{ detailedComplaint.comments.length }})
+    <div class="complaint-card">
+        <mat-card class="card" *ngFor="let complaintComment of detailedComplaint.comments; let i=index">
+            <mat-card-header>
+                <img mat-card-avatar style="background-size: cover" src={{complaintComment.commented_by.profile_pic}}
+                    src-fallback="assets/add_image_placeholder.svg">
+                <mat-card-title>{{ complaintComment.commented_by.name }}</mat-card-title>
+                <mat-card-subtitle>{{ complaintComment.time }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{ complaintComment.text }}
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-form-field>
+        <input type="text" placeholder="Enter Comment" matInput [(ngModel)]="comment.text">
+    </mat-form-field>
+    <button (click)="postComment()" mat-icon-button>
+        <mat-icon>send</mat-icon>
+    </button>
+    <br>
+    UpVotes({{ detailedComplaint.users_up_voted.length }})
+    <div class="complaint-card">
+        <mat-card class="card" *ngFor="let complaintupVote of detailedComplaint.users_up_voted">
+            <mat-card-header>
+                <img mat-card-avatar class="header-image" src={{complaintupVote.profile_pic}} src-fallback="assets/add_image_placeholder.svg">
+                <mat-card-title>{{ complaintupVote.name }}</mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    </div>
+    <br>
+
+    <a button class="upVote-button" (click)="upVoteComplaint(detailedComplaint.upvoted)">
+        UPVOTE
+    </a>
+</div>

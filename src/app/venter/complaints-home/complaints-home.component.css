@@ -1,0 +1,103 @@
+.container {
+    margin-right: 18%;
+    margin-left: 18%;
+}
+
+.toolbar {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        background-color: blue;
+        align-content: center;
+        text-align: center;
+}
+
+.complaint-text {
+    color: white;
+    font-weight: bolder
+}   
+
+.complaint-button {
+    color: black;
+    background-color: yellow;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-content: center;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.complaint-tabs {   
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: auto;
+    text-decoration: none;
+}
+
+.complaint-card {
+    padding: 2.5%;
+    text-decoration: none;
+}
+
+.complaint-divider {
+    padding: 1%;
+    color: royalblue;
+}
+
+ .complaint-card-content {
+     font-size: medium;
+     padding-top: 3%;
+ }
+ 
+ .complaint-description {
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: pre-wrap;
+ }
+
+ .card {
+     margin: auto;
+     margin-top: 5%;
+     margin-bottom: 5%;
+     width: 80%; 
+ }
+ 
+ .footer{
+    position: relative;
+    border-style: solid;
+    text-align: center;
+    margin: auto;
+    border-width: medium;
+    border-color: royalblue;
+    border-bottom-left-radius: 5% 100%;
+    border-bottom-right-radius: 5% 100%;
+    border-top-left-radius: 5% 100%;
+    border-top-right-radius: 5% 100%; 
+}
+
+ .status {
+     float: right;
+     background-color: red;
+     border-width: medium;
+     color: white;
+     padding-left: 2.5%;
+     padding-right: 2.5%;
+     border-bottom-left-radius: 25% 100%;
+     border-bottom-right-radius: 25% 100%;
+     border-top-left-radius: 25% 100%;
+     border-top-right-radius: 25% 100%;
+     font-weight: bold;
+     text-transform: uppercase;
+ }
+
+ .status-color {
+    background-color: lawngreen;
+ }
+
+ @media (max-width: 970px) {
+    .container {
+        margin: 0%;
+    }
+}
+ 

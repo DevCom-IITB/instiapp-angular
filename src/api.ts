@@ -39,5 +39,14 @@ export const API = {
     NotificationsAllRead: 'api/notifications/read',
     WebPushSubscribe: 'api/user-me/subscribe-wp',
 
-    UserTags: 'api/user-tags'
+    UserTags: 'api/user-tags',
+
+    Complaints: 'api/venter/complaints',
+    MyComplaints: 'api/venter/complaints?filter=me',
+    Complaint: 'api/venter/complaints/{complaintId}',
+    UpVote: 'api/venter/complaints/{complaintId}/upvote{?action}',
+    CommentPost: 'api/venter/complaints/{complaintId}/comments',
+    CommentEdit: 'api/venter/comments/{commentId}',
+    TagCategories: 'api/venter/tags',
+    SubscribeToComplaint: 'api/venter/complaints/{complaintId}/subscribe{?action}'
 };

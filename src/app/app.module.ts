@@ -58,6 +58,22 @@ import { RedirComponent } from './redir/redir.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
 import { CardComponent } from './card/card.component';
 
+import { ComplaintsHomeComponent } from './venter/complaints-home/complaints-home.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FileComplaintComponent } from './venter/file-complaint/file-complaint.component';
+import { MatInputModule } from '@angular/material';
+import { AgmCoreModule } from '@agm/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material';
+import { DetailedComplaintComponent } from './venter/detailed-complaint/detailed-complaint.component';
+import { MatDividerModule } from '@angular/material/divider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +107,10 @@ import { CardComponent } from './card/card.component';
     NotifyCardComponent,
     RedirComponent,
     UpdateRoleComponent,
-    CardComponent
+    CardComponent,
+    ComplaintsHomeComponent,
+    FileComplaintComponent,
+    DetailedComplaintComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +119,21 @@ import { CardComponent } from './card/card.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCKNBwrs1UdT2s1jwqOypSzas9Z4s6h4B0'
+    }),
+
+    MatTabsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatDividerModule,
 
     ImgFallbackModule,
     MarkdownModule.forRoot(),
@@ -119,6 +153,10 @@ import { CardComponent } from './card/card.component';
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },
+
+      { path: 'venter/complaints-home', component: ComplaintsHomeComponent, data: { state: 'base' } },
+      { path: 'venter/file-complaint', component: FileComplaintComponent, data: { state: 'base' } },
+      { path: 'venter/detailed-complaint/:id', component: DetailedComplaintComponent, data: { state: 'base' } },
 
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
