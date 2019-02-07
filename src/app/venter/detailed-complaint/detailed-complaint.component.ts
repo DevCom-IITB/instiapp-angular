@@ -88,8 +88,7 @@ export class DetailedComplaintComponent implements OnInit {
     let complaint_upvoted: number;
     if (has_upvoted === true) {
       complaint_upvoted = 1;
-    }
-    else {
+    } else {
       complaint_upvoted = 0;
     }
     this.dataService.FireGET<IComplaint>(API.UpVote,
@@ -101,8 +100,7 @@ export class DetailedComplaintComponent implements OnInit {
           this.snackBar.open('Your upvote has been removed', 'Dismiss', {
             duration: 2000,
           });
-        }
-        else {
+        } else {
           this.snackBar.open('You have upvoted this complaint', 'Dismiss', {
             duration: 2000,
           });

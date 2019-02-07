@@ -49,11 +49,9 @@ export class ComplaintsHomeComponent implements OnInit {
         i = i + 1;
         if (element.status.toLowerCase() === 'reported') {
           this.complaintstatusColor.push('red');
-        }
-        else if (element.status.toLowerCase() === 'resolved') {
+        } else if (element.status.toLowerCase() === 'resolved') {
           this.complaintstatusColor.push('green');
-        }
-        else if (element.status.toLowerCase() === 'in progress') {
+        } else if (element.status.toLowerCase() === 'in progress') {
           this.complaintstatusColor.push('yellow');
         }
       });
@@ -106,8 +104,7 @@ export class ComplaintsHomeComponent implements OnInit {
             this.snackBar.open('You are unsubscribed from this complaint', 'Dismiss', {
             duration: 2000,
           });
-        }
-        else {
+        } else {
           this.snackBar.open('You are subscribed to this complaint', 'Dismiss', {
             duration: 2000,
           });
@@ -123,8 +120,7 @@ export class ComplaintsHomeComponent implements OnInit {
     let complaint_upvoted: number;
     if (has_upvoted === true) {
       complaint_upvoted = 1;
-    }
-    else {
+    } else {
       complaint_upvoted = 0;
     }
     this.dataService.FireGET<IComplaint>(API.UpVote,
