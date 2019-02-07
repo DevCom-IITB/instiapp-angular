@@ -61,7 +61,7 @@ export class FileComplaintComponent implements OnInit {
       );
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: any): string[] {
     const filterValue = value.toLowerCase();
 
     return this.option.filter(option => option.toLowerCase().includes(filterValue));
