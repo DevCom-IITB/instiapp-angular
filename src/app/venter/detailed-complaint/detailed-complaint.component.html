@@ -71,7 +71,7 @@
     <br>
     Comments({{ detailedComplaint.comments.length }})
     <div class="complaint-card">
-        <mat-card class="card" *ngFor="let complaintComment of detailedComplaint.comments; let i=index">
+        <mat-card class="card" *ngFor="let complaintComment of detailedComplaint.comments; let i=index" [routerLink]="['/user', complaintComment.commented_by.id]">
             <mat-card-header>
                 <img mat-card-avatar style="background-size: cover" src={{complaintComment.commented_by.profile_pic}}
                     src-fallback="assets/add_image_placeholder.svg">
@@ -92,7 +92,7 @@
     <br>
     UpVotes({{ detailedComplaint.users_up_voted.length }})
     <div class="complaint-card">
-        <mat-card class="card" *ngFor="let complaintupVote of detailedComplaint.users_up_voted">
+        <mat-card class="card" *ngFor="let complaintupVote of detailedComplaint.users_up_voted" [routerLink]="['/user', complaintupVote.id]">
             <mat-card-header>
                 <img mat-card-avatar class="header-image" src={{complaintupVote.profile_pic}} src-fallback="assets/add_image_placeholder.svg">
                 <mat-card-title>{{ complaintupVote.name }}</mat-card-title>

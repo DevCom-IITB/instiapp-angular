@@ -66,7 +66,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FileComplaintComponent } from './venter/file-complaint/file-complaint.component';
 import { MatInputModule } from '@angular/material';
-import { AgmCoreModule } from '@agm/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
@@ -119,9 +118,6 @@ import { MatDividerModule } from '@angular/material/divider';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCKNBwrs1UdT2s1jwqOypSzas9Z4s6h4B0'
-    }),
 
     MatTabsModule,
     MatCardModule,

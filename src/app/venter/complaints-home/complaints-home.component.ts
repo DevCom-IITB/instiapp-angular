@@ -133,11 +133,11 @@ export class ComplaintsHomeComponent implements OnInit {
         this.refresh();
         console.log(result);
         if (complaint_upvoted === 1) {
-          this.snackBar.open('You have upvoted this complaint', 'Dismiss', {
+          this.snackBar.open('Your upvote has been removed', 'Dismiss', {
             duration: 2000,
           });
         } else {
-          this.snackBar.open('Your upvote has been removed', 'Dismiss', {
+          this.snackBar.open('You have upvoted this complaint', 'Dismiss', {
             duration: 2000,
           });
         }
