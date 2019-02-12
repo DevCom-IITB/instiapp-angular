@@ -45,6 +45,12 @@
     top: 110px;
 }
 
+.location-button {
+    position: fixed;
+    bottom: 100px;
+    right: 8px;
+}
+
 .residences-button {
     position: fixed;
     bottom: 53px;

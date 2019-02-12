@@ -3,6 +3,7 @@
 <div class="main" [class.sandbox]="dataService.isSandbox">
   <div [style.cursor]="pointer" id="map" class="map"></div>
   <img id="marker" src="/assets/location-icon.svg">
+  <img id="user-marker" src="/assets/location-icon.svg">
 </div>
 
 <div id="main-box" class="floating-box mat-elevation-z3"
@@ -47,6 +48,15 @@
        (click)="showSearch = true"
        *ngIf="!showSearch">
   <mat-icon>search</mat-icon>
+</button>
+
+<button mat-mini-fab
+       *ngIf="hasGeolocation()"
+       class="location-button"
+       (click)="getGPS()"
+       [style.color]="followingUser ? 'white' : null"
+       [style.backgroundColor]="followingUser ? '#536dfe' : null">
+  <mat-icon>my_location</mat-icon>
 </button>
 
 <button mat-mini-fab

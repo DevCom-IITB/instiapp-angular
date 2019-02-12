@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBar, MatAutocompleteTrigger } from '@angular/material';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -33,6 +33,7 @@ import { API } from '../../api';
 import { Helpers } from '../helpers';
 import { DataService } from '../data.service';
 import { EnterRight } from '../animations';
+import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-map',
@@ -40,7 +41,7 @@ import { EnterRight } from '../animations';
   styleUrls: ['./map.component.css'],
   animations: [EnterRight]
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /* Data */
   public locations: ILocation[];
@@ -69,6 +70,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   public mobShowLocBox = false;
   public showSearch = false;
   public showResidences = false;
+
+  public geoLocationId: number = null;
+  public geoLocationLast: { pixel_x: number, pixel_y: number} = null;
+  public followingUser = false;
 
   searchForm: FormControl;
   filteredOptions: Observable<any[]>;
@@ -132,6 +137,12 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.geoLocationId != null) {
+      navigator.geolocation.clearWatch(this.geoLocationId);
+    }
   }
 
   /** Show all locations - generate map */
@@ -332,6 +343,10 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.pointer = hit ? 'pointer' : 'move';
     });
 
+    /* Stop following the user on drag */
+    this.map.on('pointerdrag', () => {
+      this.followingUser = false;
+    });
   }
 
   selectLocation(loc: ILocation) {
@@ -375,12 +390,12 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   /** Move the marker to location */
-  moveMarker(x, y, center = true) {
+  moveMarker(x: number, y: number, center = true, markerid = 'marker') {
     const pos: [number, number] = [Number(x), 3575 - Number(y)];
     const marker = new OlOverlay({
       position: pos,
       positioning: 'center-center',
-      element: document.getElementById('marker'),
+      element: document.getElementById(markerid),
       stopEvent: false
     });
     this.map.addOverlay(marker);
@@ -445,7 +460,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     return this.mobShowLocBox ? '80px' : '78vh';
   }
 
-  /** */
+  /** Show/hide residence buildings on map */
   toggleResidences() {
     this.showResidences = !this.showResidences;
     this.vectorLayer.getSource().changed();
@@ -456,6 +471,54 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.snackBar.open(msg, 'Dismiss', {
       duration: 2000,
     });
+  }
+
+  /** Determine if we support geolocation */
+  hasGeolocation(): boolean {
+    return navigator.geolocation ? true : false;
+  }
+
+  /** Setup a location watch */
+  getGPS(): void {
+    if (this.hasGeolocation()) {
+      /* Start following the user */
+      this.followingUser = true;
+
+      /* If we already have permission */
+      if (this.geoLocationId != null) {
+        this.moveGPS(true);
+        return;
+      }
+
+      /* Get permission and setup a watch */
+      this.geoLocationId = navigator.geolocation.watchPosition((position: Position) => {
+        this.updateGPS(position, this);
+      });
+    } else {
+      /* This should ideally never be called */
+      this.snackBar.open('Geolocation is not supported by this browser', 'Dismiss', {
+        duration: 2000,
+      });
+    }
+  }
+
+  /** Show GPS marker on map */
+  updateGPS(position: Position, self: MapComponent): void {
+    const follow = self.followingUser || self.geoLocationLast == null;
+    self.geoLocationLast = Helpers.getMapXY(position);
+    console.log(self.geoLocationLast);
+    self.moveGPS(follow);
+  }
+
+  /** Center the user marker to last known location */
+  moveGPS(center: boolean) {
+    if (this.geoLocationLast == null) { return; }
+    this.moveMarker(
+      this.geoLocationLast.pixel_x,
+      this.geoLocationLast.pixel_y,
+      center,
+      'user-marker'
+    );
   }
 
   /** boolean to boolean string */
