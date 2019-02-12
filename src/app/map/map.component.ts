@@ -384,12 +384,13 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Move the marker to location */
   moveMarker(x: number, y: number, center = true, markerid = 'marker') {
-    const pos: [number, number] = [Number(x), 3575 - Number(y) - 6];
+    const pos: [number, number] = [Number(x), 3575 - Number(y)];
     const marker = new OlOverlay({
       position: pos,
       positioning: 'bottom-center',
       element: document.getElementById(markerid),
-      stopEvent: false
+      stopEvent: false,
+      offset: [0, 6]
     });
     this.map.addOverlay(marker);
 
