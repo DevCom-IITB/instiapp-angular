@@ -9,7 +9,7 @@
 <div id="main-box" class="floating-box mat-elevation-z3"
     [@enterRight]="bstr(true)"
     *ngIf="showSearch">
-  <mat-form-field>
+  <mat-form-field (swiperight)="showSearch = false">
     <input type="search" #searchbox
             matInput placeholder="Search"
             [matAutocomplete]="auto"
