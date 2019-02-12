@@ -505,9 +505,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Show GPS marker on map */
   updateGPS(position: Position, self: MapComponent): void {
     const follow = self.followingUser || self.geoLocationLast == null;
-    self.geoLocationLast = Helpers.getMapXY(position);
-    console.log(self.geoLocationLast);
-    self.moveGPS(follow);
+    const l = Helpers.getMapXY(position);
+    if (l.pixel_x > 0 && l.pixel_y > 0 && l.pixel_x < 5430 && l.pixel_y < 5375) {
+      self.geoLocationLast = l;
+      self.moveGPS(follow);
+    }
   }
 
   /** Center the user marker to last known location */
