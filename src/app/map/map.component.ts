@@ -5,7 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 import * as Fuse from 'fuse.js';
-import { Observable } from 'rxjs';
+import { Observable, noop } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import OlMap from 'ol/Map';
@@ -488,6 +488,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       /* Get permission and setup a watch */
       this.geoLocationId = navigator.geolocation.watchPosition((position: Position) => {
         this.updateGPS(position, this);
+      }, noop, {
+        enableHighAccuracy: true
       });
     } else {
       /* This should ideally never be called */
