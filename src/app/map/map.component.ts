@@ -21,7 +21,7 @@ import OlFeature from 'ol/Feature';
 import OlGeomPoint from 'ol/geom/Point';
 import OlGeomPolygon from 'ol/geom/Polygon';
 import OlStyleStyle from 'ol/style/Style';
-import OlStyleCircle from 'ol/style/Circle';
+import OlStyleIcon from 'ol/style/Icon';
 import OlStyleText from 'ol/style/Text';
 import OlStyleStroke from 'ol/style/Stroke';
 import OlStyleFill from 'ol/style/Fill';
@@ -33,7 +33,6 @@ import { API } from '../../api';
 import { Helpers } from '../helpers';
 import { DataService } from '../data.service';
 import { EnterRight } from '../animations';
-import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-map',
@@ -195,9 +194,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       if (loc.group_id === 1 || loc.group_id === 4 || loc.group_id === 12) {
         icon_color = 'blue';
       } else if (loc.group_id === 3) {
-        icon_color = 'lightgreen';
+        icon_color = 'green';
       } else if (loc.group_id === 2) {
-        icon_color = 'orange';
+        icon_color = 'yellow';
       } else {
         icon_color = 'gray';
       }
@@ -217,15 +216,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
       /* Icon image*/
-      const icon = new OlStyleCircle({
-        radius: 5,
-        stroke: new OlStyleStroke({
-          color: 'white',
-          width: 2
-        }),
-        fill: new OlStyleFill({
-          color: icon_color
-        })
+      const icon = new OlStyleIcon({
+        src: `/assets/map/marker_dot_${icon_color}.png`,
+        scale: 0.2
       });
 
       /* Make style */
