@@ -391,10 +391,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Move the marker to location */
   moveMarker(x: number, y: number, center = true, markerid = 'marker') {
-    const pos: [number, number] = [Number(x), 3575 - Number(y)];
+    const pos: [number, number] = [Number(x), 3575 - Number(y) - 6];
     const marker = new OlOverlay({
       position: pos,
-      positioning: 'center-center',
+      positioning: 'bottom-center',
       element: document.getElementById(markerid),
       stopEvent: false
     });

@@ -14,6 +14,10 @@
     height: 100%;
 }
 
+#marker, #user-marker {
+    height: 60px;
+}
+
 .floating-box {
     background: white;
     position: fixed;
