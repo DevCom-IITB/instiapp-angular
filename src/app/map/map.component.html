@@ -50,11 +50,11 @@
   <mat-icon>search</mat-icon>
 </button>
 
-<button mat-mini-fab
+<button mat-fab
        *ngIf="hasGeolocation()"
        class="fab location-button"
        (click)="getGPS()"
-       [class.sel-button]="followingUser">
+       [class.selbutton]="followingUser && geoLocationLast">
   <mat-icon>my_location</mat-icon>
 </button>
 

@@ -51,11 +51,11 @@
 
 .fab {
     position: fixed;
-    right: 8px;
+    right: 15px;
 }
 
-.fab.location-button { bottom: 100px; }
-.fab.residences-button { bottom: 53px; }
+.fab.location-button { bottom: 15px; }
+.fab.residences-button { bottom: 80px; }
 
 .fab.selbutton {
     color: white;

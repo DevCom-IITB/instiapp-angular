@@ -284,7 +284,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         this.vectorLayer
       ],
       target: 'map',
-      view: this.view
+      view: this.view,
+      controls: []
     });
 
     /* Add controls */
