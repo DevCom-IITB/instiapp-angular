@@ -52,16 +52,15 @@
 
 <button mat-mini-fab
        *ngIf="hasGeolocation()"
-       class="location-button"
+       class="fab location-button"
        (click)="getGPS()"
-       [style.color]="followingUser ? 'white' : null"
-       [style.backgroundColor]="followingUser ? '#536dfe' : null">
+       [class.sel-button]="followingUser">
   <mat-icon>my_location</mat-icon>
 </button>
 
 <button mat-mini-fab
-       class="residences-button"
+       class="fab residences-button"
        (click)="toggleResidences()"
-       [style.backgroundColor]="showResidences ? 'green' : null">
+       [class.selbutton]="showResidences">
   <mat-icon>home</mat-icon>
 </button>

@@ -49,16 +49,17 @@
     top: 110px;
 }
 
-.location-button {
+.fab {
     position: fixed;
-    bottom: 100px;
     right: 8px;
 }
 
-.residences-button {
-    position: fixed;
-    bottom: 53px;
-    right: 8px;
+.fab.location-button { bottom: 100px; }
+.fab.residences-button { bottom: 53px; }
+
+.fab.selbutton {
+    color: white;
+    background-color: var(--primary-color);
 }
 
 .only-mobile {
