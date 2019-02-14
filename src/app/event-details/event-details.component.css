@@ -23,6 +23,7 @@
 .action-buttons {
     margin-left: auto;
     text-align: right;
+    white-space: nowrap;
 }
 
 .u-actions {
