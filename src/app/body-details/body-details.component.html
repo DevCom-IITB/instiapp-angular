@@ -17,12 +17,6 @@
           <div class="body-short-desc">{{ body.short_description }}</div>
         </div>
         <div class="action-buttons">
-          <button mat-icon-button
-                class="icon-button"
-                *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
-                [routerLink]="['/edit-body', body.id]">
-              <mat-icon>edit</mat-icon>
-          </button>
           <a mat-icon-button
             class="icon-button"
             *ngIf="body.website_url && body.website_url !== ''"
@@ -80,13 +74,12 @@
 
 <div class="float-fixed-right-bottom">
   <button mat-fab
-          *ngIf="body && dataService.HasBodyPermission(body.id, 'AddE')"
-          [disabled]="!dataService.isLoggedIn()"
-          class="mat-elevation-z2"
-          [routerLink]="['/add-event']"
-          [queryParams]="{body: body.id}">
-      <mat-icon>add</mat-icon>
-  </button>
+          class="mat-elevation-z2 edit-fab"
+          [class.gone]="dataService.isScrollingDown()"
+          *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
+          [routerLink]="['/edit-body', body.id]">
+        <mat-icon>edit</mat-icon>
+    </button>
 </div>
 
 <ng-template #information>
