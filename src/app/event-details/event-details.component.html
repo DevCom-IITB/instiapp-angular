@@ -37,7 +37,7 @@
           class="mat-elevation-z2 edit-fab"
           [class.gone]="dataService.isScrollingDown()"
           (click)="openEventEdit()"
-          *ngIf="!desktopMode && dataService.CanEditEvent(event)">
+          *ngIf="event && !desktopMode && dataService.CanEditEvent(event)">
       <mat-icon>edit</mat-icon>
   </button>
 </div>

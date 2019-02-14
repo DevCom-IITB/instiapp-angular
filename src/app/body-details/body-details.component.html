@@ -76,7 +76,7 @@
   <button mat-fab
           class="mat-elevation-z2 edit-fab"
           [class.gone]="dataService.isScrollingDown()"
-          *ngIf="dataService.HasBodyPermission(body.id, 'UpdB')"
+          *ngIf="body && dataService.HasBodyPermission(body.id, 'UpdB')"
           [routerLink]="['/edit-body', body.id]">
         <mat-icon>edit</mat-icon>
     </button>
