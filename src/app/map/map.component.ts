@@ -134,7 +134,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showLocBox = false;
       setTimeout(() => {
         this.initLocBox = false;
-      }, 250);
+      }, 230);
       this.setURL(null);
       return;
     }
@@ -143,18 +143,13 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.selectedLocation = loc;
 
     /* No delay on first click */
-    let time = 250;
     if (!this.initLocBox) {
       this.initLocBox = true;
-      time = 0;
     }
 
     /* Show location box */
-    this.showLocBox = false;
-    setTimeout(() => {
-      this.selLocationAnim = loc;
-      this.showLocBox = true;
-    }, time);
+    this.selLocationAnim = loc;
+    this.showLocBox = true;
 
     /* Set focus */
     this.searchBoxEl.nativeElement.blur();
