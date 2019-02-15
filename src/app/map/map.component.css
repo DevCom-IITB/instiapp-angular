@@ -116,7 +116,7 @@
     }
 
     #infobox.expanded {
-        transform: translateY(calc(-100% + 180px));
+        transform: translateY(calc(-100% + 200px));
     }
 
     .fab.translateinfo {
