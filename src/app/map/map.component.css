@@ -40,6 +40,7 @@
     background: white;
     width: 300px;
     z-index: 2;
+    font-family: initial;
 }
 
 #locname {
