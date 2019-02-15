@@ -34,6 +34,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public maploaded = false;
   public initialMarker: string = null;
+  public editing = false;
 
   public selLocationAnim;
   public initLocBox = false;
@@ -228,6 +229,29 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   /** boolean to boolean string */
   bstr(b: boolean) {
     return b ? 'true' : 'false';
+  }
+
+  /** If has institute role to update location */
+  hasUpdateRole() {
+    return (!this.dataService.isMobile()) && this.dataService.HasInstitutePermission('Location');
+  }
+
+  /** PUT a location with an institute role */
+  updateLocation(location: ILocation) {
+    if (!this.editing) {
+      this.editing = true;
+      return;
+    }
+
+    /* Check for role again */
+    if (!this.hasUpdateRole()) { return; }
+
+    /* Fire the PUT request */
+    this.dataService.FirePUT(API.Location, location, {id: location.id}).subscribe(() => {
+      this.snackBar.open('Location Updated', 'Dismiss', { duration: 2000 });
+    }, () => {
+      this.snackBar.open('Updating Failed!', 'Dismiss', { duration: 2000 });
+    });
   }
 
 }

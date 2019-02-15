@@ -26,8 +26,20 @@
     [@enterFade]="bstr(showLocBox)"
      class="infobox mat-elevation-z3"
      [class.expanded]="mobShowLocBox"
+     [class.editing]="editing"
      (panup)="mobileShowLoc(true)"
      (pandown)="mobileShowLoc(false)">
+
+  <div class="edit-loc" *ngIf="editing">
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="selLocationAnim.name" placeholder="Name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput type="text" [(ngModel)]="selLocationAnim.description" rows=8 placeholder="Description">
+      </textarea>
+    </mat-form-field>
+  </div>
 
   <ng-container *ngIf="selLocationAnim">
     <div id="locname"
@@ -41,6 +53,14 @@
           (pandown)="mobileShowLoc(false)">
         {{ selLocationAnim.description }}
     </div>
+
+    <button mat-button
+            class="update-button"
+            color="warn"
+            (click)="updateLocation(selLocationAnim)"
+            *ngIf="hasUpdateRole()">
+        Update
+    </button>
   </ng-container>
 </div>
 

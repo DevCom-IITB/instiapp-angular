@@ -23,6 +23,7 @@ export interface IUserProfile {
     roles: IBodyRole[];
     former_roles: IBodyRole[];
     hostel: string;
+    institute_roles: IInstituteRole[];
 }
 
 export interface IEvent {
@@ -159,4 +160,10 @@ export interface IUserTagCategory {
     id: number;
     name: string;
     tags: IUserTag[];
+}
+
+export interface IInstituteRole {
+    id: string;
+    name: string;
+    permissions: string[];
 }
