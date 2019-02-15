@@ -48,8 +48,9 @@
 }
 
 .description-box {
-    max-height: 60vh;
-    overflow-y: auto
+    max-height: 65vh;
+    overflow-y: auto;
+    white-space: pre-line;
 }
 
 .search-button {
