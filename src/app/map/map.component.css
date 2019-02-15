@@ -114,14 +114,14 @@
 
     #infobox {
         width: 100vw;
-        right: unset; left: 0;
-        top: calc(100vh - 80px);
-        min-height: 100vh;
+        right: unset; left: 0; top: unset;
+        bottom: calc(-90vh + 80px);
+        height: 90vh;
         transition: all 200ms ease;
     }
 
     #infobox.expanded {
-        transform: translateY(calc(-90vh + 170px));
+        transform: translateY(calc(-90vh + 180px));
     }
 
     .fab.translateinfo {
