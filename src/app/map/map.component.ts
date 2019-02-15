@@ -186,6 +186,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
       this.selectLocation(loc);
       InstiMap.moveToLocation(loc);
+      this.mobileShowLoc(false);
     }
   }
 
