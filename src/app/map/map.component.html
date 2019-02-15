@@ -1,7 +1,7 @@
 <app-xunk-spinner *ngIf="!maploaded"></app-xunk-spinner>
 
 <div class="main" [class.sandbox]="dataService.isSandbox">
-  <div [style.cursor]="pointer" id="map" class="map"></div>
+  <div id="map" class="map"></div>
   <img id="marker" src="/assets/map/marker_blue_s.png">
   <img id="user-marker" src="/assets/map/marker_red_s.png">
 </div>
@@ -54,7 +54,7 @@
        *ngIf="hasGeolocation()"
        class="fab location-button"
        (click)="getGPS()"
-       [class.selbutton]="followingUser && geoLocationLast">
+       [class.selbutton]="isFollowingUser() && geoLocationLast()">
   <mat-icon>my_location</mat-icon>
 </button>
 

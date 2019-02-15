@@ -16,6 +16,7 @@
 
 #marker, #user-marker {
     height: 60px;
+    transform: translateY(6px);
 }
 
 .floating-box {
