@@ -1,12 +1,10 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { DataService } from '../data.service';
-import { EnterRight, EnterLeft } from '../animations';
 
 @Component({
   selector: 'app-event-sidebar-desktop',
   templateUrl: './event-sidebar-desktop.component.html',
-  styleUrls: ['./event-sidebar-desktop.component.css'],
-  animations: [EnterRight, EnterLeft]
+  styleUrls: ['./event-sidebar-desktop.component.css']
 })
 export class EventSidebarDesktopComponent implements OnInit, OnChanges {
   showingEventDetails = false;
