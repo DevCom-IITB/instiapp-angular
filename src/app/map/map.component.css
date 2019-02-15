@@ -113,15 +113,15 @@
     }
 
     #infobox {
-        width: 100%;
+        width: 100vw;
         right: unset; left: 0;
-        top: calc(100% - 80px);
+        top: calc(100vh - 80px);
         min-height: 100vh;
         transition: all 200ms ease;
     }
 
     #infobox.expanded {
-        transform: translateY(calc(-100% + 200px));
+        transform: translateY(calc(-90vh + 170px));
     }
 
     .fab.translateinfo {
