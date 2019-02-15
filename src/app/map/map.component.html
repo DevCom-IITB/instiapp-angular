@@ -6,34 +6,36 @@
   <img id="user-marker" src="/assets/map/marker_red_s.png">
 </div>
 
-<div id="main-box" class="floating-box mat-elevation-z3"
-    [@enterRight]="bstr(true)"
+<div id="searchbox" class="mat-elevation-z3"
+    [@enterFade]="bstr(true)"
     *ngIf="showSearch">
-  <mat-form-field (swiperight)="showSearch = false">
-    <input type="search" #searchbox
-            matInput placeholder="Search"
-            [matAutocomplete]="auto"
-            [formControl]="searchForm"
-            (keyup.enter)="searchChanged($event)">
-    <mat-autocomplete name="locsauto" #auto (optionSelected)="searchChanged($event)">
-      <mat-option *ngFor="let loc of filteredOptions | async" [value]="loc.name">
-        {{ loc.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  <input class="search"
+         type="search" #searchbox
+         placeholder="Search"
+         [matAutocomplete]="auto"
+         [formControl]="searchForm"
+         (keyup.enter)="searchChanged($event)">
+  <mat-autocomplete name="locsauto" #auto (optionSelected)="searchChanged($event)">
+    <mat-option *ngFor="let loc of filteredOptions | async" [value]="loc.name">
+      {{ loc.name }}
+    </mat-option>
+  </mat-autocomplete>
 </div>
 
-<div id="loc-box"
+<div id="infobox"
     *ngIf="initLocBox"
-    [@enterRight]="bstr(showLocBox)"
-     class="floating-box mat-elevation-z3"
+    [@enterFade]="bstr(showLocBox)"
+     class="infobox mat-elevation-z3"
+     [class.expanded]="mobShowLocBox"
      (panup)="mobileShowLoc(true)"
-     (pandown)="mobileShowLoc(false)"
-     [style.top]="locBoxTop()">
+     (pandown)="mobileShowLoc(false)">
 
   <ng-container *ngIf="selLocationAnim">
-    <b>{{ selLocationAnim.name }}</b>
-    <br><br>
+    <div id="locname"
+        (panup)="mobileShowLoc(true)"
+        (pandown)="mobileShowLoc(false)">
+          {{ selLocationAnim.name }}
+    </div>
     <div *ngIf="selLocationAnim.description !== ''"
           class="description-box"
           (panup)="mobileShowLoc(true)"
@@ -54,13 +56,15 @@
        *ngIf="hasGeolocation()"
        class="fab location-button"
        (click)="getGPS()"
-       [class.selbutton]="isFollowingUser() && geoLocationLast()">
+       [class.selbutton]="isFollowingUser() && geoLocationLast()"
+       [class.translateinfo]="showLocBox">
   <mat-icon>my_location</mat-icon>
 </button>
 
 <button mat-mini-fab
        class="fab residences-button"
        (click)="toggleResidences()"
-       [class.selbutton]="showResidences">
+       [class.selbutton]="showResidences"
+       [class.translateinfo]="showLocBox">
   <mat-icon>home</mat-icon>
 </button>

@@ -14,13 +14,13 @@ import { ILocation } from '../interfaces';
 import { API } from '../../api';
 import { Helpers } from '../helpers';
 import { DataService } from '../data.service';
-import { EnterRight } from '../animations';
+import { EnterFade } from '../animations';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  animations: [EnterRight]
+  animations: [EnterFade]
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -201,14 +201,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Toggle location showing on mobile */
   mobileShowLoc(show: boolean) {
     this.mobShowLocBox = show;
-  }
-
-  /** Top of location box for mobile */
-  locBoxTop() {
-    if (!this.dataService.isMobile(560)) {
-      return '180px';
-    }
-    return this.mobShowLocBox ? '80px' : '78vh';
   }
 
   /** Show/hide residence buildings on map */
