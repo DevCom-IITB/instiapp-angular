@@ -100,6 +100,11 @@
         background-color: var(--primary-color);
     }
 
+    .search::-webkit-input-placeholder { color: white; }
+    .search::-moz-placeholder { color: white; }
+    .search::-ms-placeholder { color: white; }
+    .search::placeholder { color: white; }
+
     .search {
         padding-top: 0;
         width: 100%;
