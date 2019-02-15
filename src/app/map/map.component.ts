@@ -39,7 +39,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public initLocBox = false;
   public showLocBox = false;
   public mobShowLocBox = false;
-  public showSearch = false;
   public showResidences = false;
 
   searchForm: FormControl;
@@ -70,10 +69,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     public location: Location,
   ) {
     this.searchForm = new FormControl();
-    if (!this.dataService.isMobile(560)) {
-      this.showSearch = true;
-    }
-
     /* Check for initial marker */
     this.activatedRoute.params.subscribe((params: Params) => {
       this.initialMarker = params['name'];

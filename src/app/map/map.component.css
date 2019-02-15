@@ -53,12 +53,6 @@
     white-space: pre-line;
 }
 
-.search-button {
-    position: fixed;
-    right: 8px;
-    top: 110px;
-}
-
 .fab {
     position: fixed;
     right: 15px;

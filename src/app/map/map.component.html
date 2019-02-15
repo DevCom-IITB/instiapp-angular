@@ -7,8 +7,7 @@
 </div>
 
 <div id="searchbox" class="mat-elevation-z3"
-    [@enterFade]="bstr(true)"
-    *ngIf="showSearch">
+    [@enterFade]="bstr(true)">
   <input class="search"
          type="search" #searchbox
          placeholder="Search"
@@ -43,14 +42,7 @@
         {{ selLocationAnim.description }}
     </div>
   </ng-container>
-
 </div>
-
-<button mat-mini-fab class="search-button"
-       (click)="showSearch = true"
-       *ngIf="!showSearch">
-  <mat-icon>search</mat-icon>
-</button>
 
 <button mat-fab
        *ngIf="hasGeolocation()"
