@@ -77,7 +77,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.dataService.setTitle('Map');
+    this.dataService.setTitle('InstiMap');
     this.filteredOptions = this.searchForm.valueChanges.pipe(
       map(result =>
         this.filteredLocations(result)
