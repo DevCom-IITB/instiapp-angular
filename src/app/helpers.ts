@@ -1,37 +1,6 @@
 import { IEvent } from './interfaces';
 
 export module Helpers {
-
-    /** Model to convert lat-lng to pixel coords */
-    const MAP_Xn = 19.133691;
-    const MAP_Yn = 72.916984;
-    const MAP_Zn = 4189;
-    const MAP_Zyn = 1655;
-
-    const MAP_WEIGHTS_X: number[] = [
-        -7.769917472065843,
-        159.26978694839946,
-        244.46989575495544,
-        -6.003894110679995,
-        -0.28864271213341297,
-        0.010398324019718075,
-        4.215508849724247,
-        -0.6078830146963545,
-        -7.0400449629241395
-    ];
-
-    const MAP_WEIGHTS_Y = [
-        14.199431377059842,
-        -158.80601990819815,
-        68.9630034040724,
-        5.796703402034644,
-        1.1348242200568706,
-        0.11891051684489184,
-        -0.2930832938484276,
-        0.1448231125788526,
-        -5.282895700923075
-    ];
-
     /** Get time in HH:MM format from date */
     export function GetTimeString(date: Date) {
         const dt = new Date(date);
@@ -216,29 +185,4 @@ export module Helpers {
     export function getPassable(str: string): string {
         return str.toLowerCase().replace(' ', '-').replace(/^A-Za-z0-9\\-/, '');
     }
-
-    /** Apply regression to get pixel coordinates on InstiMap */
-    export function getMapXY(position: Position): { pixel_x: number, pixel_y: number } {
-         /* Set the origin */
-         const x = (position.coords.latitude - MAP_Xn) * 1000;
-         const y = (position.coords.longitude - MAP_Yn) * 1000;
-
-         /* Apply the model */
-         let A = MAP_WEIGHTS_X;
-         const px = Math.round(
-             MAP_Zn + A[0] + A[1] * x + A[2] * y +
-             A[3] * x * x + A[4] * x * x * y +
-             A[5] * x * x * y * y + A[6] * y * y +
-             A[7] * x * y * y + A[8] * x * y);
-
-         A = MAP_WEIGHTS_Y;
-         const py = Math.round(
-             MAP_Zyn + A[0] + A[1] * x + A[2] * y +
-             A[3] * x * x + A[4] * x * x * y +
-            A[5] * x * x * y * y + A[6] * y * y +
-            A[7] * x * y * y + A[8] * x * y);
-
-        return {pixel_x : px, pixel_y: py};
-    }
-
 }
