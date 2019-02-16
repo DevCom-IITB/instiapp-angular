@@ -106,7 +106,7 @@
     .search::placeholder { color: white; }
 
     .search {
-        padding-top: 0;
+        padding: 8px 20px;
         width: 100%;
         background-color: var(--primary-color);
         color: white;
