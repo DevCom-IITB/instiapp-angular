@@ -5,6 +5,10 @@
     margin-bottom: 0;
 }
 
+.main.loaded {
+    background-color: #666;
+}
+
 .main.sandbox {
     height: 100vh;
 }
