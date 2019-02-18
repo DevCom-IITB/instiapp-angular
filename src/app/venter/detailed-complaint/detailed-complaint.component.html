@@ -1,28 +1,28 @@
 <div class="container" *ngIf="detailedComplaint">
     <div *ngIf="detailedComplaint.images.length === 0 ">
-        <img style="background-size: cover" src-fallback="assets/add_image_placeholder.svg" src="assets/placeholder_image.svg">
+        <img src-fallback="assets/add_image_placeholder.svg" src="assets/placeholder_image.svg">
     </div>
-
     <div *ngIf="detailedComplaint.images">
         <div class="slideshow-container">
-            <img *ngFor="let image of detailedComplaint.images; let i=index" [src]="image" [ngClass]="{'image-active': selectedindex == i}" style="max-height: 400px; max-width: 400px;">
-
-            <div style="text-align:center">
-                <span *ngFor="let dot of detailedComplaint.images; let i=index" class="dot" (click)="selectImage(i)" [ngClass]="{'active': selectedindex == i}"></span>
+            <img *ngFor="let image of detailedComplaint.images; let i=index" [src]="image" 
+                [ngClass]="{'image-active': selectedindex == i}" class="display-image">
+            <div class="image-dot">
+                <span *ngFor="let dot of detailedComplaint.images; let i=index" class="dot" 
+                    (click)="selectImage(i)" [ngClass]="{'active': selectedindex == i}"></span>
             </div>
-
         </div>
     </div>
     <div class="complaint-creator">
-        <img class="complaint-creator-image" src="{{detailedComplaint.created_by.profile_pic}}" src-fallback="assets/add_image_placeholder.svg">
-        <div style="padding-left:2%">
+        <img class="complaint-creator-image" src="{{detailedComplaint.created_by.profile_pic}}" 
+            src-fallback="assets/add_image_placeholder.svg">
+        <div class="complaint-creator-name">
             {{ detailedComplaint.created_by.name }}
         </div>
         <div class="complaint-time-location">
-            <div>{{ complaintReportedTime }}</div>
+            <div>{{ detailedComplaint.reported_date }}</div>
             <div>{{ detailedComplaint.location_description }}</div>
         </div>
-        <div class="complaint-status" [style.backgroundColor]="statusColor">
+        <div class="complaint-status" [style.backgroundColor]="detailedComplaint.status_color">
             {{ detailedComplaint.status }}
         </div>
     </div>
@@ -33,12 +33,12 @@
         <div>
             <div [ngSwitch]="detailedComplaint.is_subscribed" class="subscribe-button">
                 <div *ngSwitchCase="true">
-                    <button (click)="subscribe(detailedComplaint.is_subscribed)" mat-icon-button>
+                    <button (click)="subscribeToComplaint(detailedComplaint.is_subscribed)" mat-icon-button>
                         <mat-icon>notifications_active</mat-icon>
                     </button>
                 </div>
                 <div *ngSwitchCase="false">
-                    <button (click)="subscribe(detailedComplaint.is_subscribed)" mat-icon-button>
+                    <button (click)="subscribeToComplaint(detailedComplaint.is_subscribed)" mat-icon-button>
                         <mat-icon>notifications</mat-icon>
                     </button>
                 </div>
@@ -64,19 +64,36 @@
         Tags
         <div>
             <mat-chip-list>
-                <mat-chip *ngFor="let tag of complaintTags" style="padding-top:1%; padding-bottom: 1%; background-color: yellowgreen">{{ tag }}</mat-chip>
+                <mat-chip *ngFor="let tag of complaintTags" class="complaint-tag">
+                    {{ tag }}
+                </mat-chip>
             </mat-chip-list>
         </div>
     </div>
     <br>
     Comments({{ detailedComplaint.comments.length }})
     <div class="complaint-card">
-        <mat-card class="card" *ngFor="let complaintComment of detailedComplaint.comments; let i=index" [routerLink]="['/user', complaintComment.commented_by.id]">
+        <mat-card class="card" *ngFor="let complaintComment of detailedComplaint.comments; let i=index" 
+            [routerLink]="['/user', complaintComment.commented_by.id]">
             <mat-card-header>
-                <img mat-card-avatar style="background-size: cover" src={{complaintComment.commented_by.profile_pic}}
+                <img mat-card-avatar class="complaint-comment-name" src={{complaintComment.commented_by.profile_pic}}
                     src-fallback="assets/add_image_placeholder.svg">
-                <mat-card-title>{{ complaintComment.commented_by.name }}</mat-card-title>
-                <mat-card-subtitle>{{ complaintComment.time }}</mat-card-subtitle>
+                <mat-card-title>
+                    {{ complaintComment.commented_by.name }}
+                </mat-card-title>
+                <mat-card-subtitle>{{ complaintComment.reported_date }}</mat-card-subtitle>
+                <button *ngIf="complaintComment.commented_by.id==userid" 
+                    class="complaint-comment-buttons"
+                    (click)="[deleteComment(complaintComment.id), onClickEvent($event)]"
+                    mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <button *ngIf="complaintComment.commented_by.id==userid" 
+                    class="complaint-comment-buttons" 
+                    (click)="[openDialog(complaintComment.id, complaintComment.text), onClickEvent($event)]"
+                    mat-icon-button>
+                    <mat-icon>edit</mat-icon>
+                </button>
             </mat-card-header>
             <mat-card-content>
                 {{ complaintComment.text }}
@@ -92,16 +109,18 @@
     <br>
     UpVotes({{ detailedComplaint.users_up_voted.length }})
     <div class="complaint-card">
-        <mat-card class="card" *ngFor="let complaintupVote of detailedComplaint.users_up_voted" [routerLink]="['/user', complaintupVote.id]">
+        <mat-card class="card" *ngFor="let complaintupVote of detailedComplaint.users_up_voted" 
+            [routerLink]="['/user', complaintupVote.id]">
             <mat-card-header>
-                <img mat-card-avatar class="header-image" src={{complaintupVote.profile_pic}} src-fallback="assets/add_image_placeholder.svg">
+                <img mat-card-avatar class="header-image" src={{complaintupVote.profile_pic}} 
+                    src-fallback="assets/add_image_placeholder.svg">
                 <mat-card-title>{{ complaintupVote.name }}</mat-card-title>
             </mat-card-header>
         </mat-card>
     </div>
     <br>
 
-    <a button class="upVote-button" (click)="upVoteComplaint(detailedComplaint.upvoted)">
+    <a mat-raised-button class="upVote-button" (click)="upVoteComplaint(detailedComplaint.upvoted)">
         UPVOTE
     </a>
 </div>

@@ -17,6 +17,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -45,6 +49,10 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatExpansionModule,
         MatBadgeModule,
         MatSidenavModule,
+        MatTabsModule,
+        MatFormFieldModule,
+        MatDividerModule,
+        MatDialogModule
     ],
     exports: [
         ReactiveFormsModule,
@@ -68,6 +76,10 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatExpansionModule,
         MatBadgeModule,
         MatSidenavModule,
+        MatTabsModule,
+        MatFormFieldModule,
+        MatDividerModule,
+        MatDialogModule
     ],
 })
 export class MyMaterialClass { }

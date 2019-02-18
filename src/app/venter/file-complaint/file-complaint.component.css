@@ -1,40 +1,61 @@
 .container {
-    margin-right: 18%;
-    margin-left: 18%;
-    padding-right: 5%;
-    padding-left: 5%;
+  margin: 0 175px;
+  padding: 0 2.5%;
+}
+
+.placeholder-image {
+  display: block;
+  margin: auto;
 }
 
 .input-fields {
-    padding-top: 2%;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  padding-top: 2%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.complaint-description {
+  width: 90%;
+}
+
+.complaint-image {
+  display: none;
+}
+
+.add-image-button {
+  right: true;
 }
 
 mat-form-field {
-    padding-right: 5%;
-    padding-top: 2.5%;
+  padding: 1.5% 0;
 }
 
 .added-tags {
-    padding-right: 5%;
-    padding-bottom: 1%;
-    background: lightgrey;
+  padding: 0 1% 1%;
+  background: lightgrey;
 }
 
 .complaint-button {
-    color: black;
-    background-color: yellow;
-    padding: 10px 50px;
-    align-content: center;
-    font-weight: bold;
-    text-decoration: none;
-    margin: auto;
+  color: black;
+  background-color: yellow;
+  padding: 10px 50px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: auto;
+}
+
+.tag-chip {
+  padding: 1% 0;
+  background-color: yellowgreen;
+}
+
+.add-tag-field {
+  width: 50%;
 }
 
 * {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
+body {margin:0}
 .mySlides {display: none; padding-right: 5%;}
 img {vertical-align: middle; height: 500px;}
 
@@ -47,13 +68,14 @@ img {vertical-align: middle; height: 500px;}
 }
 
 .slideshow-container img{
-    display: none;
-  }
+  display: none;
+}
   
-  .slideshow-container img.image-active {
-    display: block;
-    width: 100%;
-  }
+.slideshow-container img.image-active {
+  display: block;
+  width: 100%;
+  margin: auto;
+}
 
 /* Next & previous buttons */
 .prev, .next {
@@ -69,6 +91,10 @@ img {vertical-align: middle; height: 500px;}
   border-radius: 0 3px 3px 0;
   user-select: none;
   background-color: rgba(0,0,0,0.8);
+}
+
+.image-dot {
+  text-align: center;
 }
 
 /* The dots/bullets/indicators */
@@ -106,40 +132,40 @@ img {vertical-align: middle; height: 500px;}
 }
 
 @media (max-width: 970px) {
-    .container {
-        margin: 0%;
-        padding: 2%;
-    }
+  .container {
+    margin: 0%;
+    padding: 2%;
+  }
 }
 
 @media (max-width: 520px) {
-    .container {
-        margin: 0%;
-        padding: 0%;
-    }
+  .container {
+    margin: 0%;
+    padding: 0%;
+  }
 
-    img {
-        max-width: 100%;
-        max-height: 25%;
-    }
+  img {
+    max-width: 100%;
+    max-height: 25%;
+  }
 
-    .slideshow-container {
-        max-width: 100%;
-        max-height: 20%;
-        position: relative;
-        margin: auto;
-      }
+  .slideshow-container {
+    max-width: 100%;
+    max-height: 20%;
+    position: relative;
+    margin: auto;
+  }
 
-      * {box-sizing: border-box}
-      body {font-family: Verdana, sans-serif; margin:0}
-      .mySlides {display: none;}
-      img {vertical-align: middle; height: 20%;}
+  * {box-sizing: border-box}
+    body {margin:0}
+    .mySlides {display: none;}
+    img {vertical-align: middle; height: 20%;}
 }
 
 @media (max-width: 450px) {
-    .complaint-description {
-        width: 80%;
-    }
+  .complaint-description {
+    width: 80%;
+  }
 }
 
 

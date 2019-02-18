@@ -1,28 +1,41 @@
 .container {
-    margin-right: 18%;
-    margin-left: 18%;
-    padding-right: 5%;
-    padding-left: 5%;
+    margin: 0 175px;
+    padding: 0 5%;
+}
+
+.placeholder-image {
+    background-size: cover;
 }
 
 /* Slideshow container */
+
 .slideshow-container {
     max-width: 500px;
     max-height: 500px;
     position: relative;
     margin: auto;
-  }
-  
-  .slideshow-container img{
-      display: none;
-    }
-    
-    .slideshow-container img.image-active {
-      display: block;
-      width: 100%;
-    }
+}
+
+.display-image {
+    max-height: 400px;
+    max-width: 400px;
+}
+
+.image-dot {
+    text-align: center;
+}
+
+.slideshow-container img {
+    display: none;
+}
+
+.slideshow-container img.image-active {
+    display: block;
+    width: 100%;
+}
 
 /* The dots/bullets/indicators */
+
 .dot {
     cursor: pointer;
     height: 15px;
@@ -32,19 +45,21 @@
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-  }
-  
-  .active, .dot:hover {
+}
+
+.active,
+.dot:hover {
     background-color: #717171;
-  }
-  
-  /* Fading animation */
-  .fade {
+}
+
+/* Fading animation */
+
+.fade {
     -webkit-animation-name: fade;
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
     animation-duration: 1.5s;
-  }
+}
 
 .complaint-card {
     padding: 2.5%;
@@ -52,10 +67,8 @@
 }
 
 .card {
-    margin: auto;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    width: 80%; 
+    width: 80%;
+    margin: 5%;
 }
 
 .complaint-creator {
@@ -64,13 +77,16 @@
     font-size: medium;
 }
 
+.complaint-creator-name {
+    padding-left: 2%;
+}
+
 .complaint-creator-image {
     border-radius: 50%;
     width: 50px;
     height: 50px;
     float: left;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding: 0 2%;
 }
 
 .complaint-time-location {
@@ -80,18 +96,13 @@
 }
 
 .complaint-status {
-     float: right;
-     background-color: red;
-     border-width: medium;
-     color: white;
-     padding-left: 2.5%;
-     padding-right: 2.5%;
-     border-bottom-left-radius: 25% 100%;
-     border-bottom-right-radius: 25% 100%;
-     border-top-left-radius: 25% 100%;
-     border-top-right-radius: 25% 100%;
-     font-weight: bold;
-     text-transform: uppercase;
+    float: right;
+    background-color: red;
+    border-width: medium;
+    color: white;
+    padding: 0 2.5%;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .complaint-divider {
@@ -109,15 +120,26 @@
 }
 
 .complaint-description {
-    font-family: Arial, Helvetica, sans-serif;
     white-space: pre-wrap;
- }
+}
+
+.complaint-tag {
+    padding: 1% 0;
+    background-color: yellowgreen
+}
+
+.complaint-comment-name {
+    background-size: cover;
+}
+
+.complaint-comment-buttons {
+    float: right;
+}
 
 .upVote-button {
     color: black;
     background-color: yellow;
     padding: 10px 50px;
-    align-content: center;
     font-weight: bold;
     text-decoration: none;
 }
@@ -134,18 +156,16 @@
         margin: 0%;
         padding: 0%;
     }
-
     img {
         max-width: 100%;
         max-height: 20%;
     }
-
     .slideshow-container {
         max-width: 100%;
         max-height: 20%;
         position: relative;
         margin: auto;
-      }
+    }
 }
 
 @media (max-width: 470px) {
@@ -154,7 +174,6 @@
         padding: 0%;
         margin: 0%;
     }
-
     .complaint-content {
         padding-top: 5%;
     }

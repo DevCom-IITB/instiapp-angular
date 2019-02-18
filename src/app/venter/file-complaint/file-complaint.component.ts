@@ -6,6 +6,7 @@ import { API } from '../../../api';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
+import { VenterDataService } from '../venter-data.service';
 
 const PLACEHOLDER = 'assets/placeholder_image.svg';
 const currentLat = 19.1310;
@@ -25,7 +26,6 @@ export class FileComplaintComponent implements OnInit {
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
-
   public complaint: IComplaintPost;
   public image: string;
   public tag: string;
@@ -35,6 +35,7 @@ export class FileComplaintComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,
+    public venterDataService: VenterDataService,
   ) { }
 
   ngOnInit() {
@@ -83,14 +84,10 @@ export class FileComplaintComponent implements OnInit {
       this.image = result.picture;
       this.complaint.images.push(this.image);
       this.networkBusy = false;
-      this.snackBar.open('Image Uploaded', 'Dismiss', {
-        duration: 2000,
-      });
+      this.venterDataService.getSnackbar('Image Uploaded', null);
     }, (error) => {
       this.networkBusy = false;
-      this.snackBar.open(`Upload Failed - ${error.status_code}`, 'Dismiss', {
-        duration: 2000,
-      });
+      this.venterDataService.getSnackbar('Upload Failed', error);
     });
   }
 
@@ -121,13 +118,9 @@ export class FileComplaintComponent implements OnInit {
   submitComplaint() {
     this.complaint.tags = this.selectedTags;
     if (this.complaint.description === '') {
-      this.snackBar.open('Please enter a description before submitting the complaint!', 'Dismiss', {
-        duration: 2000,
-      });
+      this.venterDataService.getSnackbar('Please enter a description before submitting the complaint!', null);
     } else {
-    this.dataService.FirePOST<IComplaint>(API.Complaints, this.complaint).subscribe(result => {
-      console.log(result);
-    });
+    this.dataService.FirePOST<IComplaint>(API.Complaints, this.complaint).subscribe(() => {});
     }
   }
 }

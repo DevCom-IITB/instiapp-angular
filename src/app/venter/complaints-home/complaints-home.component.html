@@ -1,150 +1,32 @@
 <div class="container">
     <div class="toolbar">
-        <div class="complaint-text">Nobody taking care of your civic complaints? Be it garbage, water, potholes etc.</div>
+        <div class="complaint-text">
+            Nobody taking care of your civic complaints? Be it garbage, water, potholes etc.
+        </div>
         <br>
-        <a [routerLink]="['/venter/file-complaint']" routerLinkActive="active-link" button class="complaint-button">
+        <a [routerLink]="['/venter/file-complaint']" routerLinkActive="active-link" 
+            button class="complaint-button">
             Vent your issues now!
         </a>
     </div>
     <div class="complaint-tabs">
         <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
             <mat-tab label="Home">
-                <div *ngIf="complaintsFlag" style="text-align: center">
-                    <img src="assets/logo.svg" style="width: 50%">
+                <div *ngIf="complaintsFlag" class="no-complaints-container">
+                    <img src="assets/logo.svg" class="no-complaints-image">
                     <div>No complaints to show</div>
                 </div>
                 <div *ngIf="!complaintsFlag">
-                    <div class="complaint-card">
-                        <ng-container *ngFor="let complaint of complaints; let i = index">
-                            <mat-card class="card" [routerLink]="['/venter/detailed-complaint', complaint.id]">
-                                <div class="status" [style.backgroundColor]="complaintstatusColor[i]">
-                                    {{ complaint.status }}
-                                </div>
-                                <mat-card-header>
-                                    <img mat-card-avatar src="{{complaint.created_by.profile_pic}}" src-fallback="assets/add_image_placeholder.svg">
-                                    <mat-card-title>{{ complaint.created_by.name }}</mat-card-title>
-                                    <mat-card-subtitle>
-                                        <div>{{ reportedTime[i] }}</div>
-                                        <div>{{ complaint.location_description }}</div>
-                                    </mat-card-subtitle>
-                                </mat-card-header>
-                                <div class="complaint-divider">
-                                    <mat-divider></mat-divider>
-                                </div>
-                                <mat-card-content>
-                                    <div>
-                                        <div>
-                                            <div class="complaint-card-content"><b>Complaint:</b></div>
-                                            <pre><div class="complaint-description">{{ complaint.description }}</div></pre>
-                                        </div>
-                                        <div *ngIf="complaint.suggestions">
-                                            <div class="complaint-card-content"><b>Suggestions:</b></div>
-                                            <div>{{ complaint.suggestions }}</div>
-                                        </div>
-                                        <div *ngIf="complaint.location_details">
-                                            <div class="complaint-card-content"><b>Location Details:</b></div>
-                                            <div style="padding-top: 2%">{{ complaint.location_details }}</div>
-                                        </div>
-                                    </div>
-                                </mat-card-content>
-                                <mat-card-footer>
-                                    <div class="footer">
-                                        <div style="display: inline">
-                                            <button (click)="[upVote(complaint.upvoted, complaint.id), onClickEvent($event)]"
-                                                mat-icon-button>
-                                                <mat-icon>arrow_upward</mat-icon>{{ complaint.users_up_voted.length }}
-                                            </button>
-                                        </div>
-                                        <button mat-icon-button style="display: inline">
-                                            <mat-icon>insert_comment</mat-icon>{{ complaint.comments.length }}
-                                        </button>
-                                        <div [ngSwitch]="complaint.is_subscribed" style="display: inline">
-                                            <div *ngSwitchCase="true" style="display: inline">
-                                                <button (click)="[subscribe(complaint.complaint_subscribed), onClickEvent($event)]"
-                                                    mat-icon-button>
-                                                    <mat-icon>notifications_active</mat-icon>
-                                                </button>
-                                            </div>
-                                            <div *ngSwitchCase="false" style="display: inline">
-                                                <button (click)="subscribe(complaint.complaint_subscribed)"
-                                                    mat-icon-button>
-                                                    <mat-icon>notifications</mat-icon>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </mat-card-footer>
-                            </mat-card>
-                        </ng-container>
-                    </div>
+                    <app-complaint-card [complaintList]="complaints"></app-complaint-card>
                 </div>
             </mat-tab>
             <mat-tab label="Me">
-                <div *ngIf="myComplaintsFlag" style="text-align: center">
-                    <img src="assets/logo.svg" style="width: 50%">
+                <div *ngIf="myComplaintsFlag" class="no-complaints-container">
+                    <img src="assets/logo.svg" class="no-complaints-image">
                     <div>No complaints to show</div>
                 </div>
                 <div *ngIf="!myComplaintsFlag">
-                    <div class="complaint-card">
-                        <mat-card class="card" *ngFor="let complaint of myComplaints; let i = index" [routerLink]="['/venter/detailed-complaint', complaint.id]">
-                            <div class="status" [style.backgroundColor]="myComplaintstatusColor[i]">
-                                {{ complaint.status }}
-                            </div>
-                            <mat-card-header>
-                                <img mat-card-avatar src="{{complaint.created_by.profile_pic}}" src-fallback="assets/add_image_placeholder.svg">
-                                <mat-card-title>{{ complaint.created_by.name }}</mat-card-title>
-                                <mat-card-subtitle>{{ complaint.location_description }}</mat-card-subtitle>
-                            </mat-card-header>
-                            <div class="complaint-divider">
-                                <mat-divider></mat-divider>
-                            </div>
-                            <mat-card-content>
-                                <div>
-                                    <div>
-                                        <div class="complaint-card-content"><b>Complaint:</b></div>
-                                        <pre><div class="complaint-description">{{ complaint.description }}</div></pre>
-                                    </div>
-                                    <div *ngIf="complaint.suggestions">
-                                        <div class="complaint-card-content"><b>Suggestions:</b></div>
-                                        <div>{{ complaint.suggestions }}</div>
-                                    </div>
-                                    <div *ngIf="complaint.location_details">
-                                        <div class="complaint-card-content"><b>Location Details:</b></div>
-                                        <div style="padding-top: 2%">{{ complaint.location_details }}</div>
-                                    </div>
-                                </div>
-                            </mat-card-content>
-                            <mat-card-footer>
-                                <div class="footer">
-                                    <div>
-                                        <div class="footer-button-upvote">
-                                            <button (click)="upVote(complaint.vote_count, complaint.id)"
-                                                mat-icon-button>
-                                                <mat-icon>arrow_upward</mat-icon>{{ complaint.users_up_voted.length }}
-                                            </button>
-                                        </div>
-                                        <button mat-icon-button class="footer-button-comment">
-                                            <mat-icon>insert_comment</mat-icon>{{ complaint.comments.length }}
-                                        </button>
-                                        <div [ngSwitch]="complaint.is_subscribed" class="footer-button-subscribe">
-                                            <div *ngSwitchCase="true">
-                                                <button (click)="subscribe(complaint.complaint_subscribed)"
-                                                    mat-icon-button>
-                                                    <mat-icon>notifications_active</mat-icon>
-                                                </button>
-                                            </div>
-                                            <div *ngSwitchCase="false">
-                                                <button (click)="subscribe(complaint.complaint_subscribed)"
-                                                    mat-icon-button>
-                                                    <mat-icon>notifications</mat-icon>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </mat-card-footer>
-                        </mat-card>
-                    </div>
+                    <app-complaint-card [myComplaintsList]="myComplaints"></app-complaint-card>
                 </div>
             </mat-tab>
         </mat-tab-group>

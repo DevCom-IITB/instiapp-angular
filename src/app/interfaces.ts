@@ -169,8 +169,9 @@ export interface IComplaintTagUri {
 export interface IComplaintComment {
     id: string;
     time: string;
-    comment: string;
+    text: string;
     commented_by: IUserProfile;
+    reported_date: string;
 }
 
 export interface IComplaint {
@@ -180,14 +181,16 @@ export interface IComplaint {
     suggestions: string;
     location_details: string;
     report_date: string;
+    reported_date: string;
     status: string;
+    status_color: string;
     latitude: number;
     longitude: number;
     location_description: string;
     tags: IComplaintTagUri;
-    users_up_voted: IUserProfile;
+    users_up_voted: IUserProfile[];
     images: string[];
-    comments: IComplaintComment;
+    comments: IComplaintComment[];
     vote_count: number;
     is_subscribed: number;
     upvoted: boolean;
@@ -207,3 +210,8 @@ export interface IComplaintPost {
 export interface IPostComment {
     text: string;
 }
+
+export interface ICommentDialogData {
+    commentId: string;
+    comment: string;
+  }

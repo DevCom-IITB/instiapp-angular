@@ -59,19 +59,11 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
 import { CardComponent } from './card/card.component';
 
 import { ComplaintsHomeComponent } from './venter/complaints-home/complaints-home.component';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatListModule } from '@angular/material/list';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FileComplaintComponent } from './venter/file-complaint/file-complaint.component';
-import { MatInputModule } from '@angular/material';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material';
 import { DetailedComplaintComponent } from './venter/detailed-complaint/detailed-complaint.component';
-import { MatDividerModule } from '@angular/material/divider';
+import { EditCommentComponent } from './venter/edit-comment/edit-comment.component';
+import { VenterDataService } from './venter/venter-data.service';
+import { ComplaintCardComponent } from './venter/complaint-card/complaint-card.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +102,8 @@ import { MatDividerModule } from '@angular/material/divider';
     ComplaintsHomeComponent,
     FileComplaintComponent,
     DetailedComplaintComponent,
+    EditCommentComponent,
+    ComplaintCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,18 +112,7 @@ import { MatDividerModule } from '@angular/material/divider';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-
-    MatTabsModule,
-    MatCardModule,
-    MatGridListModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatChipsModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatDividerModule,
+    MyMaterialClass,
 
     ImgFallbackModule,
     MarkdownModule.forRoot(),
@@ -150,11 +133,6 @@ import { MatDividerModule } from '@angular/material/divider';
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },
-
-      { path: 'venter/complaints-home', component: ComplaintsHomeComponent, data: { state: 'base' } },
-      { path: 'venter/file-complaint', component: FileComplaintComponent, data: { state: 'base' } },
-      { path: 'venter/detailed-complaint/:id', component: DetailedComplaintComponent, data: { state: 'base' } },
-
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
@@ -165,6 +143,11 @@ import { MatDividerModule } from '@angular/material/divider';
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
+
+      { path: 'venter/complaints-home', component: ComplaintsHomeComponent, data: { state: 'base' } },
+      { path: 'venter/file-complaint', component: FileComplaintComponent, data: { state: 'base' } },
+      { path: 'venter/detailed-complaint/:id', component: DetailedComplaintComponent, data: { state: 'base' } },
+
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },
@@ -175,12 +158,14 @@ import { MatDividerModule } from '@angular/material/divider';
     LayoutModule,
   ],
   entryComponents: [
-    NotifyCardComponent
+    NotifyCardComponent,
+    EditCommentComponent
   ],
   providers: [
     DataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
+    VenterDataService,
   ],
   bootstrap: [AppComponent]
 })
