@@ -23,6 +23,7 @@
 .action-buttons {
     margin-left: auto;
     text-align: right;
+    white-space: nowrap;
 }
 
 .u-actions {
@@ -94,6 +95,15 @@
 
 span.badge {
     font-size: 0.8em;
+}
+
+.edit-fab {
+    transform: translateZ(0);
+    transition: transform 0.2s linear;
+}
+
+.edit-fab.gone {
+    transform: scale(0.001) translateZ(0);
 }
 
 @media (min-width: 768px) {

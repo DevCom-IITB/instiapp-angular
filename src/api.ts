@@ -14,6 +14,7 @@ export const API = {
     BodyFollow: 'api/bodies/{uuid}/follow{?action}',
 
     Locations: 'api/locations{?exclude_group}',
+    Location: 'api/locations/{id}',
 
     PostImage: 'api/upload',
 

@@ -1,7 +1,6 @@
 import { IEvent } from './interfaces';
 
 export module Helpers {
-
     /** Get time in HH:MM format from date */
     export function GetTimeString(date: Date) {
         const dt = new Date(date);
@@ -186,5 +185,4 @@ export module Helpers {
     export function getPassable(str: string): string {
         return str.toLowerCase().replace(' ', '-').replace(/^A-Za-z0-9\\-/, '');
     }
-
 }

@@ -40,8 +40,8 @@
 }
 
 #swipe-right-area {
-    /* Uncomment and set opacity to 0.5 for debugging */
-    /* background-color:green; */
+    /* Set opacity to 0.5 for debugging */
+    background-color: green;
     opacity: 0;
     position: fixed;
     left: 0;

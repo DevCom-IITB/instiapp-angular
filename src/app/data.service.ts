@@ -325,6 +325,18 @@ export class DataService {
     return bodies;
   }
 
+  /** Returns true if the user has the permission for institute */
+  HasInstitutePermission(permission: string): boolean {
+    if (!this.isLoggedIn()) { return false; }
+    return this.GetInstitutePermissions().indexOf(permission) !== -1;
+  }
+
+  /** Get a list of institute permissions the user has */
+  GetInstitutePermissions(): string[] {
+    if (!this.isLoggedIn()) { return []; }
+    return [].concat.apply([], this.getCurrentUser().institute_roles.map(m => m.permissions));
+  }
+
   /** Returns true if the user has the permission for the body */
   HasBodyPermission(bodyid: string, permission: string) {
     return this.GetBodiesWithPermission(permission).map(m => m.id).indexOf(bodyid) !== -1;

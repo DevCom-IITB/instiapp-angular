@@ -21,7 +21,7 @@ body, .image-background {
     user-select: none;
 }
 
-mat-form-field, mat-form-field *, .markdown * {
+mat-form-field, mat-form-field *, .markdown *, input {
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: text;
     -khtml-user-select: text;

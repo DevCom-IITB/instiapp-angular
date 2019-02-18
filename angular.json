@@ -25,8 +25,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/theme.scss",
-              "node_modules/ol/ol.css"
+              "src/theme.scss"
             ],
             "scripts": [
               "node_modules/marked/lib/marked.js"

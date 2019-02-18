@@ -32,6 +32,16 @@
 
 </app-desktop-split>
 
+<div class="float-fixed-right-bottom">
+  <button mat-fab
+          class="mat-elevation-z2 edit-fab"
+          [class.gone]="dataService.isScrollingDown()"
+          (click)="openEventEdit()"
+          *ngIf="event && !desktopMode && dataService.CanEditEvent(event)">
+      <mat-icon>edit</mat-icon>
+  </button>
+</div>
+
 <ng-template #centerlayout>
   <div>
     <div class="theme-header primary-background-color">
@@ -49,7 +59,7 @@
         <div class="action-buttons">
           <button mat-icon-button
                 (click)="openEventEdit()"
-                *ngIf="dataService.CanEditEvent(event)">
+                *ngIf="desktopMode && dataService.CanEditEvent(event)">
               <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button
