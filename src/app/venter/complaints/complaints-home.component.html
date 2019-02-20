@@ -4,7 +4,7 @@
             Nobody taking care of your civic complaints? Be it garbage, water, potholes etc.
         </div>
         <br>
-        <a [routerLink]="['/venter/file-complaint']" routerLinkActive="active-link" 
+        <a [routerLink]="['/venter/file']" routerLinkActive="active-link" 
             button class="complaint-button">
             Vent your issues now!
         </a>
@@ -17,7 +17,9 @@
                     <div>No complaints to show</div>
                 </div>
                 <div *ngIf="!complaintsFlag">
-                    <app-complaint-card [complaintList]="complaints"></app-complaint-card>
+                    <div *ngFor="let complaint of complaints">
+                        <app-complaint-card [complaint]="complaint"></app-complaint-card>
+                    </div>
                 </div>
             </mat-tab>
             <mat-tab label="Me">
@@ -26,7 +28,9 @@
                     <div>No complaints to show</div>
                 </div>
                 <div *ngIf="!myComplaintsFlag">
-                    <app-complaint-card [myComplaintsList]="myComplaints"></app-complaint-card>
+                    <div *ngFor="let complaint of complaints">
+                        <app-complaint-card [complaint]="complaint"></app-complaint-card>
+                    </div>
                 </div>
             </mat-tab>
         </mat-tab-group>

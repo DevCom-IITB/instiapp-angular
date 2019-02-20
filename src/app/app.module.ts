@@ -58,9 +58,9 @@ import { RedirComponent } from './redir/redir.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
 import { CardComponent } from './card/card.component';
 
-import { ComplaintsHomeComponent } from './venter/complaints-home/complaints-home.component';
-import { FileComplaintComponent } from './venter/file-complaint/file-complaint.component';
-import { DetailedComplaintComponent } from './venter/detailed-complaint/detailed-complaint.component';
+import { ComplaintsHomeComponent } from './venter/complaints/complaints-home.component';
+import { FileComplaintComponent } from './venter/file/file-complaint.component';
+import { DetailedComplaintComponent } from './venter/complaint/detailed-complaint.component';
 import { EditCommentComponent } from './venter/edit-comment/edit-comment.component';
 import { VenterDataService } from './venter/venter-data.service';
 import { ComplaintCardComponent } from './venter/complaint-card/complaint-card.component';
@@ -112,7 +112,6 @@ import { ComplaintCardComponent } from './venter/complaint-card/complaint-card.c
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MyMaterialClass,
 
     ImgFallbackModule,
     MarkdownModule.forRoot(),
@@ -133,6 +132,7 @@ import { ComplaintCardComponent } from './venter/complaint-card/complaint-card.c
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },
+
       { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
       { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
@@ -144,9 +144,9 @@ import { ComplaintCardComponent } from './venter/complaint-card/complaint-card.c
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
 
-      { path: 'venter/complaints-home', component: ComplaintsHomeComponent, data: { state: 'base' } },
-      { path: 'venter/file-complaint', component: FileComplaintComponent, data: { state: 'base' } },
-      { path: 'venter/detailed-complaint/:id', component: DetailedComplaintComponent, data: { state: 'base' } },
+      { path: 'venter/complaints', component: ComplaintsHomeComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'venter/file', component: FileComplaintComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'venter/complaint/:id', component: DetailedComplaintComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
 
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
@@ -163,9 +163,9 @@ import { ComplaintCardComponent } from './venter/complaint-card/complaint-card.c
   ],
   providers: [
     DataService,
+    VenterDataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
-    VenterDataService,
   ],
   bootstrap: [AppComponent]
 })

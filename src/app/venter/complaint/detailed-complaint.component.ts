@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { IComplaint, IComplaintComment, IPostComment } from '../../interfaces';
+import { IComplaint, IComplaintComment } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { API } from '../../../api';
@@ -16,11 +16,11 @@ import { VenterDataService } from '../venter-data.service';
 export class DetailedComplaintComponent implements OnInit {
   detailedComplaint: IComplaint;
   public complaintId: string;
-  public comment: IPostComment;
-  public userid: string;
+  public comment: IComplaintComment;
+  public userid: string = null;
   public SubscribeToComplaint: string;
   public selectedindex = 0;
-  public editedComment: IPostComment;
+  public editedComment: IComplaintComment;
 
   constructor(public dataService: DataService,
     public router: Router,
@@ -31,8 +31,8 @@ export class DetailedComplaintComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.comment = {} as IPostComment;
-    this.editedComment = {} as IPostComment;
+    this.comment = {} as IComplaintComment;
+    this.editedComment = {} as IComplaintComment;
     /* Get profile if the user is logged in */
     if (this.dataService.isLoggedIn()) {
       this.getUser();
@@ -55,13 +55,13 @@ export class DetailedComplaintComponent implements OnInit {
     if (this.complaintId) {
       this.dataService.FireGET<IComplaint>(API.Complaint,
         { complaintId: this.complaintId }).subscribe(result => {
-        this.detailedComplaint = result;
-        this.venterDataService.getDetailedComplaintInfo(this.detailedComplaint);
-      }, (error) => {
-        if (error.status === 404) {
-          alert('Complaint not found');
-        }
-      });
+          this.detailedComplaint = result;
+          this.venterDataService.getDetailedComplaintInfo(this.detailedComplaint);
+        }, (error) => {
+          if (error.status === 404) {
+            alert('Complaint not found');
+          }
+        });
     }
   }
 
@@ -94,11 +94,11 @@ export class DetailedComplaintComponent implements OnInit {
   deleteComment(commentId: string) {
     this.dataService.FireDELETE<IComplaintComment>(API.CommentEdit,
       { commentId: commentId }).subscribe(() => {
-      this.refresh();
-      this.venterDataService.getSnackbar('Your comment has been deleted', null);
-    }, (error) => {
-      this.venterDataService.getSnackbar('Delete Failed', error);
-    });
+        this.refresh();
+        this.venterDataService.getSnackbar('Your comment has been deleted', null);
+      }, (error) => {
+        this.venterDataService.getSnackbar('Delete Failed', error);
+      });
   }
 
   openDialog(commentId: string, comment: string) {
@@ -113,14 +113,12 @@ export class DetailedComplaintComponent implements OnInit {
     });
   }
 
-editComment(commentId: string, comment: string) {
-  this.editedComment.text = comment;
-  this.dataService.FirePUT<IComplaintComment>(API.CommentEdit,
-    this.editedComment, { commentId: commentId }).subscribe(() => {
-      this.refresh();
-      this.editedComment.text = '';
-    });
+  editComment(commentId: string, comment: string) {
+    this.editedComment.text = comment;
+    this.dataService.FirePUT<IComplaintComment>(API.CommentEdit,
+      this.editedComment, { commentId: commentId }).subscribe(() => {
+        this.refresh();
+        this.editedComment.text = '';
+      });
+  }
 }
-}
-
-

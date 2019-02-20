@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngIf="complaint.images.length === 0">
-        <img class="placeholder-image" src-fallback="assets/add_image_placeholder.svg" src="assets/placeholder_image.svg">
+        <img class="placeholder-image" src-fallback="assets/add_image_placeholder.svg" src="assets/add_image_placeholder.svg">
     </div>
 
     <div *ngIf="complaint.images">
@@ -63,7 +63,7 @@
     </div>
     <div>
         <button (click)="submitComplaint()" mat-raised-button class="complaint-button" 
-            [routerLink]="['/venter/complaints-home']">Submit
+            [routerLink]="['/venter/complaints']">Submit
         </button>
     </div>
 </div>

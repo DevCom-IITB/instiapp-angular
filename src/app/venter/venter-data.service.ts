@@ -27,13 +27,24 @@ export class VenterDataService {
   }
 
   getStatusColor(complaint: IComplaint) {
-    if (complaint.status.toLowerCase() === 'reported') {
-      complaint.status_color = 'red';
-    } else if (complaint.status.toLowerCase() === 'resolved') {
-      complaint.status_color = 'green';
-    } else if (complaint.status.toLowerCase() === 'in progress') {
-      complaint.status_color = 'yellow';
-    }
+    switch (complaint.status.toLowerCase()) {
+      case 'reported': {
+        complaint.status_color = 'red';
+         break;
+      }
+      case 'resolved': {
+        complaint.status_color = 'green';
+         break;
+      }
+      case 'in progress': {
+        complaint.status_color = 'yellow';
+        break;
+     }
+      default: {
+        complaint.status_color = 'red';
+         break;
+      }
+   }
   }
 
   getComplaintReportedTime(complaint: IComplaint) {
@@ -60,8 +71,7 @@ export class VenterDataService {
 
   subscribeToComplaint(complaint_subscribed: number, complaintId: string) {
     this.dataService.FireGET<IComplaint>(API.SubscribeToComplaint,
-        { complaintId: complaintId, action: complaint_subscribed === 0 ? 1 : 0 }).subscribe(result => {
-          console.log(result);
+        { complaintId: complaintId, action: complaint_subscribed === 0 ? 1 : 0 }).subscribe(() => {
           if (complaint_subscribed === 1) {
             this.getSnackbar('You are unsubscribed from this complaint', null);
             this.snackBar.open('', 'Dismiss', {
@@ -84,8 +94,7 @@ export class VenterDataService {
     }
     this.dataService.FireGET<IComplaint>(API.UpVote,
       { complaintId: complaintId, action: complaint_upvoted === 0 ? 1 : 0 })
-      .subscribe(result => {
-        console.log(result);
+      .subscribe(() => {
         if (complaint_upvoted === 1) {
           this.getSnackbar('Your upvote has been removed', null);
         } else {

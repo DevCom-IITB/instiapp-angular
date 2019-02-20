@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { ICommentDialogData } from '../../interfaces';
+import { IComplaintComment } from '../../interfaces';
 
 @Component({
   selector: 'app-edit-comment',
@@ -11,7 +11,7 @@ export class EditCommentComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditCommentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ICommentDialogData,
+    @Inject(MAT_DIALOG_DATA) public data: IComplaintComment,
   ) { }
 
   ngOnInit() {
@@ -20,5 +20,4 @@ export class EditCommentComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

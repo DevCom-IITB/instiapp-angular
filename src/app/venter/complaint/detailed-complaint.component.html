@@ -1,6 +1,6 @@
 <div class="container" *ngIf="detailedComplaint">
     <div *ngIf="detailedComplaint.images.length === 0 ">
-        <img src-fallback="assets/add_image_placeholder.svg" src="assets/placeholder_image.svg">
+        <img src-fallback="assets/add_image_placeholder.svg" src="assets/add_image_placeholder.svg">
     </div>
     <div *ngIf="detailedComplaint.images">
         <div class="slideshow-container">
@@ -88,7 +88,7 @@
                     mat-icon-button>
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button *ngIf="complaintComment.commented_by.id==userid" 
+                <button *ngIf="complaintComment.commented_by.id===userid" 
                     class="complaint-comment-buttons" 
                     (click)="[openDialog(complaintComment.id, complaintComment.text), onClickEvent($event)]"
                     mat-icon-button>

@@ -1,5 +1,5 @@
-<div class="complaint-card" *ngFor="let complaint of complaintList; let i = index">
-  <mat-card class="card" [routerLink]="['/venter/detailed-complaint', complaint.id]">
+<div class="complaint-card">
+  <mat-card class="card" [routerLink]="['/venter/complaint', complaint.id]">
     <div class="status" [style.backgroundColor]="complaint.status_color">
       {{ complaint.status }}
     </div>

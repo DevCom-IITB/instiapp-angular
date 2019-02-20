@@ -11,8 +11,7 @@ import { VenterDataService } from '../venter-data.service';
 })
 export class ComplaintCardComponent implements OnInit {
 
-  @Input() complaintList: IComplaint[];
-  @Input() myComplaintsList: IComplaint[];
+  @Input() complaint: IComplaint;
   constructor(
     public dataService: DataService,
     public venterDataService: VenterDataService,
@@ -22,15 +21,10 @@ export class ComplaintCardComponent implements OnInit {
   }
 
   refresh() {
-    /* Get all the complaints from server*/
-    this.dataService.FireGET<IComplaint[]>(API.Complaints).subscribe(result => {
-      this.complaintList = result;
-      this.venterDataService.getComplaintInfo(this.complaintList);
-    });
-    /* Get the current user complaints from server*/
-    this.dataService.FireGET<IComplaint[]>(API.MyComplaints).subscribe(result => {
-      this.myComplaintsList = result;
-      this.venterDataService.getComplaintInfo(this.myComplaintsList);
+    /* Get complaint from server*/
+    this.dataService.FireGET<IComplaint>(API.Complaint, { complaintId: this.complaint.id }).subscribe(result => {
+      this.complaint = result;
+      this.venterDataService.getDetailedComplaintInfo(this.complaint);
     });
   }
 

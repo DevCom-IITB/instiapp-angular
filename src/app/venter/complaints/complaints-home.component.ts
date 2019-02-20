@@ -12,8 +12,8 @@ import { VenterDataService } from '../venter-data.service';
 })
 export class ComplaintsHomeComponent implements OnInit {
 
-  public complaints = {} as IComplaint[];
-  public myComplaints = {} as IComplaint[];
+  public complaints: IComplaint[] = [];
+  public myComplaints: IComplaint[] = [];
   public userid: string;
   public myComplaintsFlag: boolean;
   public complaintsFlag: boolean;
@@ -25,8 +25,6 @@ export class ComplaintsHomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.complaints = [];
-    this.myComplaints = [];
     /* Get profile if the user is logged in */
     if (this.dataService.isLoggedIn()) {
       this.getUser();

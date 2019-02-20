@@ -162,7 +162,7 @@ export interface IUserTagCategory {
     tags: IUserTag[];
 }
 
-export interface IComplaintTagUri {
+export interface IComplaintTag {
     id: string;
     tag_uri: string;
 }
@@ -188,7 +188,7 @@ export interface IComplaint {
     latitude: number;
     longitude: number;
     location_description: string;
-    tags: IComplaintTagUri;
+    tags: IComplaintTag;
     users_up_voted: IUserProfile[];
     images: string[];
     comments: IComplaintComment[];
@@ -208,14 +208,6 @@ export interface IComplaintPost {
     images: string[];
 }
 
-export interface IPostComment {
-    text: string;
-}
-
-export interface ICommentDialogData {
-    commentId: string;
-    comment: string;
-  }
 export interface IInstituteRole {
     id: string;
     name: string;

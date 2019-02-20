@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IComplaint, IComplaintTagUri, IComplaintPost } from '../../interfaces';
+import { IComplaint, IComplaintTag, IComplaintPost } from '../../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { VenterDataService } from '../venter-data.service';
 
-const PLACEHOLDER = 'assets/placeholder_image.svg';
+const PLACEHOLDER = 'assets/add_image_placeholder.svg';
 const currentLat = 19.1310;
 const currentLong = 72.9077;
 
@@ -21,7 +21,7 @@ export class FileComplaintComponent implements OnInit {
 
   public networkBusy = false;
 
-  tagCategories: IComplaintTagUri[];
+  tagCategories: IComplaintTag[];
   option: string[];
 
   myControl = new FormControl();
@@ -49,7 +49,7 @@ export class FileComplaintComponent implements OnInit {
 
   this.dataService.setTitle('Complaints & Suggestions');
   /* Get all the tags from server*/
-  this.dataService.FireGET<IComplaintTagUri[]>(API.TagCategories).subscribe(result => {
+  this.dataService.FireGET<IComplaintTag[]>(API.TagCategories).subscribe(result => {
     this.tagCategories = result;
     this.tagCategories.forEach(element => {
       this.option.push(element.tag_uri);
@@ -120,7 +120,7 @@ export class FileComplaintComponent implements OnInit {
     if (this.complaint.description === '') {
       this.venterDataService.getSnackbar('Please enter a description before submitting the complaint!', null);
     } else {
-    this.dataService.FirePOST<IComplaint>(API.Complaints, this.complaint).subscribe(() => {});
+      this.dataService.FirePOST<IComplaint>(API.Complaints, this.complaint).subscribe(() => {});
     }
   }
 }
