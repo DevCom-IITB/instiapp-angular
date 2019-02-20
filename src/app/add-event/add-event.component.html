@@ -99,8 +99,8 @@
             Event will be visible only to selected audiences<br>
             Do not select anything if the event is open for everyone<br>
             Current estimated reach:
-            <mat-spinner *ngIf="!reach" class="spinner" diameter="14"></mat-spinner>
-            <ng-container *ngIf="reach">{{ reach }}</ng-container>
+            <mat-spinner *ngIf="reach === null" class="spinner" diameter="14"></mat-spinner>
+            <ng-container *ngIf="reach !== null">{{ reach }}</ng-container>
           </div>
         </div>
         <mat-accordion>
