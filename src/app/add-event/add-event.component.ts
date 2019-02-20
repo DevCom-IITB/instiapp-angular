@@ -37,6 +37,7 @@ export class AddEventComponent implements OnInit {
   public editing = false;
   public canDelete = false;
   public eventId: string;
+  public reach: number;
 
   public tagCategoryList: IUserTagCategory[];
 
@@ -144,6 +145,7 @@ export class AddEventComponent implements OnInit {
         this.initializeEvent();
         this.initializeBodiesExisting();
         this.sortBodies();
+        this.updateReach();
 
       }, () => {
         alert('Event not found!');
@@ -199,6 +201,7 @@ export class AddEventComponent implements OnInit {
     this.event.user_tags = [];
     this.AddVenue();
     this.initializeQueryDefaults();
+    this.updateReach();
   }
 
   /** Initializes defaults from query parameters */
@@ -410,6 +413,15 @@ export class AddEventComponent implements OnInit {
     } else {
       this.event.user_tags.push(tag.id);
     }
+    this.updateReach();
+  }
+
+  /** Update reach count */
+  updateReach() {
+    this.reach = null;
+    this.dataService.FirePOST<any>(API.UserTagsReach, this.event.user_tags).subscribe(result => {
+      this.reach = result.count;
+    });
   }
 
   /** Returns true if at least one tag from category */

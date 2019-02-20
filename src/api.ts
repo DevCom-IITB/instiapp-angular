@@ -40,5 +40,6 @@ export const API = {
     NotificationsAllRead: 'api/notifications/read',
     WebPushSubscribe: 'api/user-me/subscribe-wp',
 
-    UserTags: 'api/user-tags'
+    UserTags: 'api/user-tags',
+    UserTagsReach: 'api/user-tags/reach'
 };

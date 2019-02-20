@@ -97,7 +97,10 @@
           Restricted Audience
           <div class="sub">
             Event will be visible only to selected audiences<br>
-            Do not select anything if the event is open for everyone
+            Do not select anything if the event is open for everyone<br>
+            Current estimated reach:
+            <mat-spinner *ngIf="!reach" class="spinner" diameter="14"></mat-spinner>
+            <ng-container *ngIf="reach">{{ reach }}</ng-container>
           </div>
         </div>
         <mat-accordion>

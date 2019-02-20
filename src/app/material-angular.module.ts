@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -45,6 +46,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatExpansionModule,
         MatBadgeModule,
         MatSidenavModule,
+        MatProgressSpinnerModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -68,6 +70,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatExpansionModule,
         MatBadgeModule,
         MatSidenavModule,
+        MatProgressSpinnerModule,
     ],
 })
 export class MyMaterialClass { }
