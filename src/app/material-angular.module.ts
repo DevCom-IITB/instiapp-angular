@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -52,7 +53,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatTabsModule,
         MatFormFieldModule,
         MatDividerModule,
-        MatDialogModule
+        MatDialogModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         ReactiveFormsModule,
@@ -79,7 +81,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatTabsModule,
         MatFormFieldModule,
         MatDividerModule,
-        MatDialogModule
+        MatDialogModule,
+        MatProgressSpinnerModule
     ],
 })
 export class MyMaterialClass { }

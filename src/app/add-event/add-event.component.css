@@ -78,6 +78,11 @@
     background-color: var(--accent-color);
 }
 
+.spinner {
+    display: inline;
+    margin-left: 4px;
+}
+
 @media (max-width: 1200px) {
     .full-width-details {
         left: 1%;
