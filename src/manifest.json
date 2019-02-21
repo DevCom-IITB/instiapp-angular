@@ -1,6 +1,7 @@
 {
     "name": "InstiApp",
     "short_name": "InstiApp",
+    "description": "The front page of all student activities at IIT Bombay",
     "start_url": "feed",
     "display": "standalone",
     "theme_color": "#536dfe",
