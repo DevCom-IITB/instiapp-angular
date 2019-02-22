@@ -142,15 +142,22 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Subscribe to push notifications */
   subscribeNotifications() {
-    /* Push notifications */
-    this.swPush.requestSubscription({
-      serverPublicKey: environment.VAPID_PUBLIC_KEY
-    })
-    .then(sub => {
-      console.log(JSON.stringify(sub));
-      this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
-    })
-    .catch(err => console.error('Could not subscribe to notifications', err));
+    /* Try to get existing subscription */
+    this.swPush.subscription.subscribe((esub: PushSubscription) => {
+      if (esub === null) {
+        /* Request a subscription if none found */
+        this.swPush.requestSubscription({
+          serverPublicKey: environment.VAPID_PUBLIC_KEY
+        })
+        .then(sub => {
+          this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
+        })
+        .catch(err => console.error('Could not subscribe to notifications', err));
+      } else {
+        /* Notify the server */
+        this.dataService.FirePOST(API.WebPushSubscribe, esub).subscribe();
+      }
+    });
   }
 
   /** Unsubscribe from listeners */
