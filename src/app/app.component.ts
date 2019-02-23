@@ -10,6 +10,7 @@ import { INotification } from './interfaces';
 import { API } from '../api';
 import { MatBottomSheet } from '@angular/material';
 import { NotifyCardComponent } from './notify-card/notify-card.component';
+import { WinRT } from './windows';
 
 const TITLE = 'InstiApp';
 
@@ -43,6 +44,9 @@ export class AppComponent implements OnDestroy, OnInit {
       changeDetectorRef.detectChanges();
     };
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    /* Initialize if we are in WinRT */
+    WinRT.init();
 
     /* Check if this is a fake environment */
     const sandbox = Helpers.getParameterByName('sandbox');
