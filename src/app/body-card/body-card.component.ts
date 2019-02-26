@@ -19,7 +19,7 @@ export class BodyCardComponent implements OnInit {
   ngOnInit() {
     /* Set fallback image explicitly */
     if (this.body && (!this.body.image_url || this.body.image_url === '')) {
-      this.body.image_url = 'assets/iitb_logo.svg';
+      this.body.image_url = 'assets/lotus_placeholder.png';
     }
   }
 
