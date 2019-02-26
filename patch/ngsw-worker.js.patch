@@ -1,10 +1,11 @@
 --- ngsw-worker.js.orig	1985-10-26 13:45:00.000000000 +0530
-+++ ngsw-worker.js	2019-02-26 18:55:33.399888700 +0530
-@@ -2023,6 +2023,24 @@
++++ ngsw-worker.js	2019-02-26 19:11:54.542765000 +0530
+@@ -2023,6 +2023,30 @@
              return __awaiter$5(this, void 0, void 0, function* () {
                  notification.close();
                  const options = {};
 +
++                // Construct the URL
 +                let url = 'https://insti.app/';
 +                const type = notification.data.type
 +                if (type === 'blogentry') {
@@ -17,10 +18,15 @@
 +                } else if (type === 'event') {
 +                    url += 'event/' + notification.data.id;
 +                }
-+                url += '?notif=' + notification.notification_id;
 +
++                // Add notification id if present
++                const notifid = notification.data.notification_id;
++                if (notifid !== undefined && notifid !== null && notifid !== '') {
++                    url += '?notif=' + notifid;
++                }
++
++                // Open a new window
 +                clients.openWindow(url);
-+
 +
                  // The filter uses `name in notification` because the properties are on the prototype so
                  // hasOwnProperty does not work here
