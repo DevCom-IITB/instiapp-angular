@@ -16,6 +16,8 @@ table.card-table {
 .avatar img {
     height: 50px;
     width: 50px;
+    background: url('assets/lotus_placeholder.png') no-repeat;
+    background-size: contain;
 }
 
 div.content {
