@@ -19,6 +19,9 @@ body, .image-background {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    scrollbar-color: var(--primary-color) white;
+    scrollbar-width: thin;
 }
 
 mat-form-field, mat-form-field *, .markdown *, input {
