@@ -1,8 +1,6 @@
-diff --git ngsw-worker.js ngsw-worker.js
-index 51c431b..8a85ca7 100644
---- ngsw-worker.js
-+++ ngsw-worker.js
-@@ -2015,6 +2015,23 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
+--- ngsw-worker.js.orig	1985-10-26 13:45:00.000000000 +0530
++++ ngsw-worker.js	2019-02-26 18:55:33.399888700 +0530
+@@ -2023,6 +2023,24 @@
              return __awaiter$5(this, void 0, void 0, function* () {
                  notification.close();
                  const options = {};
@@ -19,6 +17,7 @@ index 51c431b..8a85ca7 100644
 +                } else if (type === 'event') {
 +                    url += 'event/' + notification.data.id;
 +                }
++                url += '?notif=' + notification.notification_id;
 +
 +                clients.openWindow(url);
 +

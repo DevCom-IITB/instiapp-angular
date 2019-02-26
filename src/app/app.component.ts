@@ -55,6 +55,17 @@ export class AppComponent implements OnDestroy, OnInit {
       this.dataService.isSandbox = true;
     }
 
+    /* Mark notification as read if followed */
+    const notifid = Helpers.getParameterByName('notif');
+    if (notifid && notifid !== null && notifid !== '') {
+      const sub = this.dataService.loggedInObservable.subscribe(status => {
+        if (status) {
+          this.dataService.FireGET(API.NotificationRead, { id: notifid }).subscribe();
+          sub.unsubscribe();
+        }
+      });
+    }
+
     /* Check if sessionid is passed as a query parameter */
     const sessid = Helpers.getParameterByName('sessionid');
     if (sessid) {
