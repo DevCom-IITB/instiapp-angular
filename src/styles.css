@@ -22,6 +22,7 @@ body, .image-background {
 
     scrollbar-color: var(--primary-color) white;
     scrollbar-width: thin;
+    -ms-overflow-style: none;
 }
 
 mat-form-field, mat-form-field *, .markdown *, input {
