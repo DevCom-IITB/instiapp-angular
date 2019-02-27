@@ -86,7 +86,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     /** Check for update */
     if (environment.production) {
-      if (!this.isSandbox) {
+      if (!this.isSandbox && !WinRT.is()) {
         /* Show a prompt to update */
         this.swUpdate.available.subscribe(() => {
           const snackBarRef = this.snackBar.open('New version available!', 'Refresh', {
