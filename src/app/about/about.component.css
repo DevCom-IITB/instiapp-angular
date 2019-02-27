@@ -27,7 +27,7 @@ a:hover {
     font-size: 1.6em;
     text-align: center;
     width: 100%;
-    font-family: 'Russo One', sans-serif;
+    font-weight: 200;
 }
 
 .section {
@@ -47,7 +47,6 @@ img {
 td, div {
     text-align: center;
     vertical-align: middle;
-    font-weight: bold;
 }
 
 .core-dev {
