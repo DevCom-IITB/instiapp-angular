@@ -1,4 +1,6 @@
-/// <reference types="@types/winrt-uwp" />
+/// <reference types='@types/winrt-uwp' />
+
+import { noop } from 'rxjs';
 
 export module WinRT {
     export function is(): boolean {
@@ -40,5 +42,11 @@ export module WinRT {
             p.request.data.setWebLink(new Windows.Foundation.Uri(url));
         });
         Windows.ApplicationModel.DataTransfer.DataTransferManager.showShareUI();
+    }
+
+    /** Open URI */
+    export function openUri(uri: string): void {
+        const wUri = new Windows.Foundation.Uri(uri);
+        Windows.System.Launcher.launchUriAsync(wUri).then(noop);
     }
 }

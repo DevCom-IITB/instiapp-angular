@@ -59,7 +59,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   /** Open link in new window */
   openLink(link: string, event: any) {
     if (!event.target.classList || !Array.from(event.target.classList).includes('noprop')) {
-      window.open(link);
+      Helpers.openWindow(link);
     }
   }
 

@@ -75,6 +75,15 @@ export module Helpers {
         return false;
     }
 
+    /** Open a new tab or window */
+    export function openWindow(url: string): void {
+        if (WinRT.is()) {
+            WinRT.openUri(url);
+        } else {
+            window.open(url);
+        }
+    }
+
     /**
      * Strips insecure HTTP img tags, replacing with alt from string
      * @param html valid HTML string
