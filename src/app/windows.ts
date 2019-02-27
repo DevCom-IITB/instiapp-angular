@@ -30,4 +30,15 @@ export module WinRT {
 
         return true;
     }
+
+    /** Share a URL with the native function */
+    export function nativeShare(title: string, text: string, url: string): void {
+        const dataTransferManager = Windows.ApplicationModel.DataTransfer.DataTransferManager.getForCurrentView();
+        dataTransferManager.addEventListener('datarequested', (p) => {
+            p.request.data.properties.title = title;
+            p.request.data.properties.description = text;
+            p.request.data.setWebLink(new Windows.Foundation.Uri(url));
+        });
+        Windows.ApplicationModel.DataTransfer.DataTransferManager.showShareUI();
+    }
 }

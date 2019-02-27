@@ -1,5 +1,6 @@
 import { IEvent } from './interfaces';
 import { noop } from 'rxjs';
+import { WinRT } from './windows';
 
 export module Helpers {
     /** Get time in HH:MM format from date */
@@ -56,9 +57,12 @@ export module Helpers {
     }
 
     /** Try native share and return false if failed */
-    export function NativeShare(title, text, url) {
+    export function NativeShare(title: string, text: string, url: string) {
         const nav: any = navigator;
-        if (nav.share) {
+        if (WinRT.is()) {
+            WinRT.nativeShare(title, text, url);
+            return true;
+        } else if (nav.share) {
             nav.share({
                 title: title,
                 text: text,
