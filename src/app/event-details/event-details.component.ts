@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { Helpers } from '../helpers';
 import { API } from '../../api';
+import { WinRT } from '../windows';
 
 @Component({
   selector: 'app-event-details',
@@ -80,12 +81,15 @@ export class EventDetailsComponent implements OnChanges, OnInit {
       if (status === 0) {
         if (this.event.user_ues === 1) { this.event.interested_count--; }
         if (this.event.user_ues === 2) { this.event.going_count--; }
+        WinRT.updateAppointments([this.event], true);
       } else if (status === 1) {
         if (this.event.user_ues !== 1) { this.event.interested_count++; }
         if (this.event.user_ues === 2) { this.event.going_count--; }
+        WinRT.updateAppointments([this.event], true);
       } else if (status === 2) {
         if (this.event.user_ues !== 2) { this.event.going_count++; }
         if (this.event.user_ues === 1) { this.event.interested_count--; }
+        WinRT.updateAppointments([this.event]);
       }
 
       /* Update UES */

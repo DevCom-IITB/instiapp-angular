@@ -9,6 +9,7 @@ import { API } from '../api';
 import { Location } from '@angular/common';
 import { Helpers } from './helpers';
 import { Title } from '@angular/platform-browser';
+import { WinRT } from './windows';
 
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -268,6 +269,9 @@ export class DataService {
     /* Update the profile */
     this.FireGET<any>(API.LoggedInUser).subscribe(result => {
       update(result.profile);
+
+      /* Update calendar on WinRT */
+      WinRT.updateAppointments(result.profile.events_going);
     }, (error) => {
       if (error.status === 401) {
         alert('Your session has expired');
