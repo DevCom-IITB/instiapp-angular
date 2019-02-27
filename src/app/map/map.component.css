@@ -44,7 +44,7 @@
     background: white;
     width: 300px;
     z-index: 2;
-    font-family: initial;
+    font-family: 'Segoe UI' initial;
 }
 
 #infobox.editing {
