@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { environment } from '../../environments/environment';
 
 export const TITLE = 'About';
 
@@ -9,6 +10,8 @@ export const TITLE = 'About';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
+
+  public VERSION = environment.VERSION;
 
   constructor(
     public dataService: DataService
