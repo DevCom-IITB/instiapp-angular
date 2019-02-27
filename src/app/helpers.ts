@@ -1,4 +1,5 @@
 import { IEvent } from './interfaces';
+import { noop } from 'rxjs';
 
 export module Helpers {
     /** Get time in HH:MM format from date */
@@ -63,8 +64,8 @@ export module Helpers {
                 text: text,
                 url: url,
             })
-            .then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing', error));
+            .then(noop)
+            .catch((error) => console.error('Error sharing', error));
             return true;
         }
         return false;
