@@ -162,9 +162,6 @@ export class AppComponent implements OnDestroy, OnInit {
       if (sub === null ) {
         /* No subscription found */
         this.requestNotificationSubscription();
-      } else if (sub.expirationTime < (new Date()).getTime()) {
-        /* Subscription expired */
-        sub.unsubscribe().then(() => this.requestNotificationSubscription());
       } else {
         /* (Re)Notify the server */
         this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
