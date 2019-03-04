@@ -83,14 +83,12 @@
 
       <div class="follow-div">
         <button mat-button
-                class="follow-button"
               [class.following]="event.user_ues === 1"
               (click)="markUES(1);"
               [disabled]="!dataService.isLoggedIn()">
           Interested <span class="badge">{{ event.interested_count }}</span>
         </button>
         <button mat-button
-                class="follow-button"
               [class.following]="event.user_ues === 2"
               (click)="markUES(2);"
               [disabled]="!dataService.isLoggedIn()">

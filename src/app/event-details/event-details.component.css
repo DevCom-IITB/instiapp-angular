@@ -81,7 +81,7 @@
     margin: -0.6em 0.4em 0.1em 0;
 }
 
-.follow-button {
+.follow-div button {
     line-height: 2em;
     transition: background-color 0.2s ease;
     margin-left: 4px;
