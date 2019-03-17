@@ -127,7 +127,7 @@ export class UpdateRoleComponent implements OnInit {
         (this.role as any).deleted = true;
         this.doneUpdate.emit(this.role);
       }, () => {
-        this.snackBar.open('Deletion Failed!', 'Dismiss', { duration: 2000 });
+        this.snackBar.open('Deletion Failed! Note that you may not delete roles held by people in the past.', 'Dismiss');
       });
     }
   }
