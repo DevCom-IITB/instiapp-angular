@@ -109,9 +109,4 @@ export class FeedComponent implements OnInit {
     }
     return 'More';
   }
-
-  /** Get thumbnail for big image */
-  getBigCroppedImg(url: string): string {
-    return this.dataService.getCropped(url, 500, 250);
-  }
 }

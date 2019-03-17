@@ -17,9 +17,9 @@
 
                 <img mat-card-image
                      class="head-img"
-                    [src]="getBigCroppedImg(c.events[0].image_url)" alt=""
+                    [src]="c.events[0].image_url" alt=""
                     (click)=OpenEvent(c.events[0])
-                    [src-fallback]="getBigCroppedImg(c.events[0].bodies[0].image_url)">
+                    [src-fallback]="c.events[0].bodies[0].image_url">
 
                 <div> {{ c.events[0].name }} </div>
                 <span class="subhead">{{ dataService.GetEventSubtitle(c.events[0]) }}</span>
