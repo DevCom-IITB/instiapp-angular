@@ -101,6 +101,7 @@ export interface IBodyRole {
     users: string[];
     users_detail: IUserProfile[];
     events: IEvent[];
+    priority: number;
 
     editing: boolean;
 }
