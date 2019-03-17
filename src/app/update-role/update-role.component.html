@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <mat-form-field class="full-width">
+  <mat-form-field class="full-width add-person">
     <input #roll matInput #addBox
             placeholder="Add Person"
            [matAutocomplete]="auto"
@@ -47,6 +47,8 @@
     <mat-autocomplete name="personauto" #auto (optionSelected)="addPerson($event)">
       <mat-option *ngFor="let person of explorePeople | async" [value]="person">{{ person.name }}</mat-option>
     </mat-autocomplete>
+
+    <mat-hint align="start">Enter a name or roll number</mat-hint>
   </mat-form-field>
 
   <table class="user-table">

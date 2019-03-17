@@ -54,6 +54,10 @@
     width: 100%;
 }
 
+.add-person {
+    margin-bottom: 2px;
+}
+
 @media (max-width: 600px) {
     .permissions button {
         width: 45%;
