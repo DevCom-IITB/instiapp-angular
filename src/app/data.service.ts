@@ -445,8 +445,13 @@ export class DataService {
 
   /** Get a resized URL for a static image */
   getResized(url: string, dim: number): string {
+    return this.getCropped(url, dim, dim);
+  }
+
+  /** Get a cropped URL for a static image */
+  getCropped(url: string, w: number, h: number): string {
     if (url === null) { return null; }
-    return url.replace('api.insti.app/static/', `img.insti.app/static/crop/${dim}/${dim}/`);
+    return url.replace('api.insti.app/static/', `img.insti.app/static/crop/${w}/${h}/`);
   }
 
   /** Get the URL of a body from str_id */
