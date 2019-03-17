@@ -10,7 +10,8 @@
 
 .head-img {
     object-fit: cover;
-    max-height: 250px;
+    height: 250px;
+    background-color: #f5f5f5;
 }
 
 .header {
