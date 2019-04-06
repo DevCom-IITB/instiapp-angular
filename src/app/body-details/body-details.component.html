@@ -39,7 +39,7 @@
           </button>
           <br>
           <button mat-button
-                  class="follow-button"
+                  class="body-follow-button"
                   [class.following]="body.user_follows"
                  (click)="markFollow()"
                  [disabled]="!dataService.isLoggedIn()">
