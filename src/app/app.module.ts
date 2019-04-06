@@ -58,6 +58,13 @@ import { RedirComponent } from './redir/redir.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
 import { CardComponent } from './card/card.component';
 
+import { ComplaintsHomeComponent } from './venter/complaints/complaints-home.component';
+import { FileComplaintComponent } from './venter/file/file-complaint.component';
+import { DetailedComplaintComponent } from './venter/complaint/detailed-complaint.component';
+import { EditCommentComponent } from './venter/edit-comment/edit-comment.component';
+import { VenterDataService } from './venter/venter-data.service';
+import { ComplaintCardComponent } from './venter/complaint-card/complaint-card.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +98,12 @@ import { CardComponent } from './card/card.component';
     NotifyCardComponent,
     RedirComponent,
     UpdateRoleComponent,
-    CardComponent
+    CardComponent,
+    ComplaintsHomeComponent,
+    FileComplaintComponent,
+    DetailedComplaintComponent,
+    EditCommentComponent,
+    ComplaintCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -131,6 +143,11 @@ import { CardComponent } from './card/card.component';
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
+
+      { path: 'venter/complaints', component: ComplaintsHomeComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'venter/file', component: FileComplaintComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'venter/complaint/:id', component: DetailedComplaintComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },
@@ -141,10 +158,12 @@ import { CardComponent } from './card/card.component';
     LayoutModule,
   ],
   entryComponents: [
-    NotifyCardComponent
+    NotifyCardComponent,
+    EditCommentComponent
   ],
   providers: [
     DataService,
+    VenterDataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
   ],

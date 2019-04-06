@@ -163,6 +163,52 @@ export interface IUserTagCategory {
     tags: IUserTag[];
 }
 
+export interface IComplaintTag {
+    id: string;
+    tag_uri: string;
+}
+
+export interface IComplaintComment {
+    id: string;
+    time: string;
+    text: string;
+    commented_by: IUserProfile;
+    reported_date: string;
+}
+
+export interface IComplaint {
+    id: string;
+    created_by: IUserProfile;
+    description: string;
+    suggestions: string;
+    location_details: string;
+    report_date: string;
+    reported_date: string;
+    status: string;
+    status_color: string;
+    latitude: number;
+    longitude: number;
+    location_description: string;
+    tags: IComplaintTag;
+    users_up_voted: IUserProfile[];
+    images: string[];
+    comments: IComplaintComment[];
+    vote_count: number;
+    is_subscribed: number;
+    upvoted: boolean;
+}
+
+export interface IComplaintPost {
+    description: string;
+    suggestions: string;
+    location_details: string;
+    latitude: number;
+    longitude: number;
+    location_description: string;
+    tags: string[];
+    images: string[];
+}
+
 export interface IInstituteRole {
     id: string;
     name: string;

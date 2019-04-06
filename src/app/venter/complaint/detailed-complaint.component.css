@@ -1,0 +1,180 @@
+.container {
+    margin: 0 175px;
+    padding: 0 5%;
+}
+
+.placeholder-image {
+    background-size: cover;
+}
+
+/* Slideshow container */
+
+.slideshow-container {
+    max-width: 500px;
+    max-height: 500px;
+    position: relative;
+    margin: auto;
+}
+
+.display-image {
+    max-height: 400px;
+    max-width: 400px;
+}
+
+.image-dot {
+    text-align: center;
+}
+
+.slideshow-container img {
+    display: none;
+}
+
+.slideshow-container img.image-active {
+    display: block;
+    width: 100%;
+}
+
+/* The dots/bullets/indicators */
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+.complaint-card {
+    padding: 2.5%;
+    text-decoration: none;
+}
+
+.card {
+    width: 80%;
+    margin: 5%;
+}
+
+.complaint-creator {
+    color: black;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.complaint-creator-name {
+    padding-left: 2%;
+}
+
+.complaint-creator-image {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    float: left;
+    padding: 0 2%;
+}
+
+.complaint-time-location {
+    color: darkgrey;
+    font-size: small;
+    padding-left: 2%;
+}
+
+.complaint-status {
+    float: right;
+    background-color: red;
+    border-width: medium;
+    color: white;
+    padding: 0 2.5%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.complaint-divider {
+    padding: 2.5%;
+    color: royalblue;
+}
+
+.subscribe-button {
+    float: right;
+}
+
+.complaint-card-content {
+    font-size: medium;
+    padding-bottom: 3%;
+}
+
+.complaint-description {
+    white-space: pre-wrap;
+}
+
+.complaint-tag {
+    padding: 1% 0;
+    background-color: yellowgreen
+}
+
+.complaint-comment-name {
+    background-size: cover;
+}
+
+.complaint-comment-buttons {
+    float: right;
+}
+
+.upVote-button {
+    color: black;
+    background-color: yellow;
+    padding: 10px 50px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+@media (max-width: 970px) {
+    .container {
+        margin: 0%;
+        padding: 2%;
+    }
+}
+
+@media (max-width: 520px) {
+    .container {
+        margin: 0%;
+        padding: 0%;
+    }
+    img {
+        max-width: 100%;
+        max-height: 20%;
+    }
+    .slideshow-container {
+        max-width: 100%;
+        max-height: 20%;
+        position: relative;
+        margin: auto;
+    }
+}
+
+@media (max-width: 470px) {
+    .subscribe-button {
+        float: right;
+        padding: 0%;
+        margin: 0%;
+    }
+    .complaint-content {
+        padding-top: 5%;
+    }
+}

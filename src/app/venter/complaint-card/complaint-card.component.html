@@ -1,0 +1,73 @@
+<div class="complaint-card">
+  <mat-card class="card" [routerLink]="['/venter/complaint', complaint.id]">
+    <div class="status" [style.backgroundColor]="complaint.status_color">
+      {{ complaint.status }}
+    </div>
+    <mat-card-header>
+      <img mat-card-avatar src="{{complaint.created_by.profile_pic}}" 
+        src-fallback="assets/add_image_placeholder.svg">
+      <mat-card-title>{{ complaint.created_by.name }}</mat-card-title>
+      <mat-card-subtitle>
+        <div>{{ complaint.reported_date }}</div>
+        <div>{{ complaint.location_description }}</div>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <span class="complaint-divider">
+      <mat-divider></mat-divider>
+    </span>
+    <mat-card-content>
+      <div>
+        <div>
+          <div class="complaint-card-content"><b>Complaint:</b></div>
+          <pre><div class="complaint-description">{{ complaint.description }}</div></pre>
+        </div>
+        <div *ngIf="complaint.suggestions">
+          <div class="complaint-card-content"><b>Suggestions:</b></div>
+          <div>{{ complaint.suggestions }}</div>
+        </div>
+        <div *ngIf="complaint.location_details">
+          <div class="complaint-card-content"><b>Location Details:</b></div>
+          <div class="complaint-location-details">{{ complaint.location_details }}</div>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="complaint-divider">
+      <mat-divider></mat-divider>
+    </div>
+    <mat-card-footer>
+      <div class="footer">
+        <div class="footer-button-container">
+          <div *ngIf="complaint.upvoted" class="complaint-upvote-active, footer-button-container">
+            <button (click)="[upVoteComplaint(complaint.upvoted, complaint.id), onClickEvent($event)]"
+              class="complaint-upvote-active" mat-icon-button>
+              <mat-icon>arrow_upward</mat-icon>{{ complaint.users_up_voted.length }}
+            </button>
+          </div>
+          <div *ngIf="!complaint.upvoted" class="footer-button-container">
+            <button (click)="[upVoteComplaint(complaint.upvoted, complaint.id), onClickEvent($event)]" 
+              mat-icon-button>
+              <mat-icon>arrow_upward</mat-icon>{{ complaint.users_up_voted.length }}
+            </button>
+          </div>
+        </div>
+        <button mat-icon-button class="footer-button-container">
+          <mat-icon>insert_comment</mat-icon>{{ complaint.comments.length }}
+        </button>
+        <div class="footer-button-container">
+          <div *ngIf="complaint.is_subscribed" class="footer-button-container">
+            <button (click)="[subscribeToComplaint(complaint.complaint_subscribed), onClickEvent($event)]"
+              mat-icon-button>
+              <mat-icon>notifications_active</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="!complaint.is_subscribed" class="footer-button-container">
+            <button (click)="[subscribeToComplaint(complaint.complaint_subscribed), onClickEvent($event)]"
+              mat-icon-button>
+              <mat-icon>notifications</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>

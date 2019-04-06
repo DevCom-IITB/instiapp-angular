@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="toolbar">
+        <div class="complaint-text">
+            Nobody taking care of your civic complaints? Be it garbage, water, potholes etc.
+        </div>
+        <br>
+        <a [routerLink]="['/venter/file']" routerLinkActive="active-link" 
+            button class="complaint-button">
+            Vent your issues now!
+        </a>
+    </div>
+    <div class="complaint-tabs">
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+            <mat-tab label="Home">
+                <div *ngIf="complaintsFlag" class="no-complaints-container">
+                    <img src="assets/logo.svg" class="no-complaints-image">
+                    <div>No complaints to show</div>
+                </div>
+                <div *ngIf="!complaintsFlag">
+                    <div *ngFor="let complaint of complaints">
+                        <app-complaint-card [complaint]="complaint"></app-complaint-card>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Me">
+                <div *ngIf="myComplaintsFlag" class="no-complaints-container">
+                    <img src="assets/logo.svg" class="no-complaints-image">
+                    <div>No complaints to show</div>
+                </div>
+                <div *ngIf="!myComplaintsFlag">
+                    <div *ngFor="let complaint of complaints">
+                        <app-complaint-card [complaint]="complaint"></app-complaint-card>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

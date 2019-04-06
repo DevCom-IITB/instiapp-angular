@@ -1,0 +1,48 @@
+.complaint-card {
+    text-decoration: none;
+}
+
+.complaint-divider {
+    padding: 1%;
+}
+
+.complaint-card-content {
+    font-size: medium;
+    padding-top: 3%;
+}
+
+.complaint-description {
+    white-space: pre-wrap;
+}
+
+.complaint-location-details {
+    padding-top: 2%;
+}
+
+.card {
+    margin: 5%;
+    width: 80%;
+}
+
+.footer {
+    position: relative;
+    text-align: center;
+}
+
+.footer-button-container {
+    display: inline;
+}
+
+.complaint-upvote-active {
+    color: #536dfe;
+}
+
+.status {
+    float: right;
+    background-color: red;
+    border-width: medium;
+    color: white;
+    padding: 0 2.5%;
+    font-weight: bold;
+    text-transform: uppercase;
+}

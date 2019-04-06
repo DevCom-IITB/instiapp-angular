@@ -1,0 +1,169 @@
+.container {
+  margin: 0 175px;
+  padding: 0 2.5%;
+}
+
+.placeholder-image {
+  display: block;
+  margin: auto;
+}
+
+.input-fields {
+  padding-top: 2%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.complaint-description {
+  width: 90%;
+}
+
+.complaint-image {
+  display: none;
+}
+
+.add-image-button {
+  right: true;
+}
+
+mat-form-field {
+  padding: 1.5% 0;
+}
+
+.added-tags {
+  padding: 0 1% 1%;
+  background: lightgrey;
+}
+
+.complaint-button {
+  color: black;
+  background-color: yellow;
+  padding: 10px 50px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: auto;
+}
+
+.tag-chip {
+  padding: 1% 0;
+  background-color: yellowgreen;
+}
+
+.add-tag-field {
+  width: 50%;
+}
+
+* {box-sizing: border-box}
+body {margin:0}
+.mySlides {display: none; padding-right: 5%;}
+img {vertical-align: middle; height: 500px;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 500px;
+  max-height: 500px;
+  position: relative;
+  margin: auto;
+}
+
+.slideshow-container img{
+  display: none;
+}
+  
+.slideshow-container img.image-active {
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -5%;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.image-dot {
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@media (max-width: 970px) {
+  .container {
+    margin: 0%;
+    padding: 2%;
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 25%;
+  }
+
+  .slideshow-container {
+    max-width: 100%;
+    max-height: 20%;
+    position: relative;
+    margin: auto;
+  }
+
+  * {box-sizing: border-box}
+    body {margin:0}
+    .mySlides {display: none;}
+    img {vertical-align: middle; height: 20%;}
+}
+
+@media (max-width: 450px) {
+  .complaint-description {
+    width: 80%;
+  }
+}

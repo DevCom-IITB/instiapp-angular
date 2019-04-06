@@ -1,0 +1,41 @@
+.container {
+    margin: 0 175px;
+}
+
+.toolbar {
+    padding: 150px 0;
+    background-color: #536dfe;
+    text-align: center;
+}
+
+.complaint-text {
+    color: white;
+    font-weight: bolder;
+}
+
+.complaint-button {
+    color: black;
+    background-color: yellow;
+    padding: 10px 50px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.complaint-tabs {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.no-complaints-container {
+    text-align: center;
+}
+
+.no-complaints-image {
+    width: 50%;
+}
+
+@media (max-width: 970px) {
+    .container {
+        margin: 0%;
+    }
+}

@@ -1,0 +1,69 @@
+<div class="container">
+    <div *ngIf="complaint.images.length === 0">
+        <img class="placeholder-image" src-fallback="assets/add_image_placeholder.svg" src="assets/add_image_placeholder.svg">
+    </div>
+
+    <div *ngIf="complaint.images">
+        <div class="slideshow-container">
+            <img *ngFor="let image of complaint.images; let i=index" [src]="image" [ngClass]="{'image-active': selectedindex == i}">
+
+            <div class="image-dot">
+                <span *ngFor="let dot of complaint.images; let i=index" class="dot" (click)="selectImage(i)" 
+                    [ngClass]="{'active': selectedindex == i}">
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="input-fields">  
+        <mat-form-field>
+            <input matInput type="text" class="complaint-description" 
+                placeholder="Enter Description" [(ngModel)]="complaint.description">
+            <input class="complaint-image" type="file" accept="image/*" #file id="file" (change)="uploadImage($event.target.files)">
+            <button (click)="file.click()" class="add-image-button" mat-icon-button>
+                <mat-icon>add_a_photo</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" placeholder="Enter Suggestions (if any)" [(ngModel)]="complaint.suggestions">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" placeholder="Enter Location Details" [(ngModel)]="complaint.location_details">
+        </mat-form-field>
+    </div>
+    <div>
+        <div class="added-tags">
+            "Added Tags"
+        </div>
+        <mat-chip-list>
+            <mat-chip *ngFor="let selectedTag of selectedTags">
+                {{ selectedTag }}
+                <button (click)="clearTag(selectedTag)" mat-icon-button>
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+    <div>
+        <mat-form-field>
+            <input type="text" placeholder="Add Tags" aria-label="Number" matInput [formControl]="myControl"
+                [matAutocomplete]="auto" [(ngModel)]="tag">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="addTag()">
+                    {{ option }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <button (click)="addTag()" mat-icon-button>
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div>
+        <button (click)="submitComplaint()" mat-raised-button class="complaint-button" 
+            [routerLink]="['/venter/complaints']">Submit
+        </button>
+    </div>
+</div>
