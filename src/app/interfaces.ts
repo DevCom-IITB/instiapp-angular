@@ -102,7 +102,7 @@ export interface IBodyRole {
     users_detail: IUserProfile[];
     events: IEvent[];
     priority: number;
-
+    year: string;
     editing: boolean;
 }
 
