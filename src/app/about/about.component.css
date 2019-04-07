@@ -84,6 +84,10 @@ td, div {
     height: 120px;
 }
 
+#version {
+    margin-bottom: 1em;
+}
+
 /* Core */
 #varun { background-image: url("https://insti.app/team-pics/varun.jpg") }
 #sajal { background-image: url("https://insti.app/team-pics/sajal.jpg"); }
