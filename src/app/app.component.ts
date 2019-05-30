@@ -8,7 +8,7 @@ import { SwUpdate, SwPush } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { INotification } from './interfaces';
 import { API } from '../api';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NotifyCardComponent } from './notify-card/notify-card.component';
 import { WinRT } from './windows';
 
