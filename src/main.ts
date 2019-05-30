@@ -8,7 +8,7 @@ import { hmrBootstrap } from './hmr';
 
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
 
-import 'zone.js'
+import 'zone.js';
 
 if (environment.production) {
   enableProdMode();
