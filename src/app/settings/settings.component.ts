@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { IUserProfile } from '../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { API } from '../../api';
-import { MatSlideToggleChange } from '@angular/material';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-settings',

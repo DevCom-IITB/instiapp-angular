@@ -3,7 +3,7 @@ import { INotification } from '../interfaces';
 import { DataService } from '../data.service';
 import { API } from '../../api';
 import { Router } from '@angular/router';
-import { MatBottomSheetRef } from '@angular/material';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 const ACTOR_TYPE_EVENT = 'event';
 

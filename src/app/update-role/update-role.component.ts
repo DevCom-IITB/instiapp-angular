@@ -4,8 +4,8 @@ import { DataService } from '../data.service';
 import { API } from '../../api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { startWith, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-role',
@@ -47,7 +47,6 @@ export class UpdateRoleComponent implements OnInit {
     }
 
     this.explorePeople = this.addForm.valueChanges.pipe(
-      startWith(null),
       debounceTime(200),
       distinctUntilChanged(),
       switchMap(val => {
@@ -58,7 +57,7 @@ export class UpdateRoleComponent implements OnInit {
 
   /** Return an observable with explored profiles */
   explore(query: string): Observable<IUserProfile[]> {
-    return Observable.create(observer => {
+    return new Observable(observer => {
       if (!query || query.length < 3) {
         observer.next([]);
         observer.complete();

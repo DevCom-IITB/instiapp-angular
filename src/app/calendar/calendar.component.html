@@ -37,7 +37,7 @@
             *ngIf="dataService.hasRole()"
             class="mat-elevation-z2"
             [routerLink]="['/add-event']"
-            [queryParams]="{date: dateToDate(selDate).toDateString()}">
+            [queryParams]="{date: xdateToDate(selDate).toDateString()}">
         <mat-icon>add</mat-icon>
     </button>
 </div>

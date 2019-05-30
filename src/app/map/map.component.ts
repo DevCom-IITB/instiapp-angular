@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
-import { MatSnackBar, MatAutocompleteTrigger } from '@angular/material';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -29,8 +30,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public selectedLocation: ILocation;
 
   /* Helpers */
-  @ViewChild('searchbox') searchBoxEl: ElementRef;
-  @ViewChild(MatAutocompleteTrigger) autoComplete: MatAutocompleteTrigger;
+  @ViewChild('searchbox', { static: true }) searchBoxEl: ElementRef;
+  @ViewChild(MatAutocompleteTrigger, { static: true }) autoComplete: MatAutocompleteTrigger;
 
   public maploaded = false;
   public initialMarker: string = null;

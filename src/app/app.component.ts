@@ -8,7 +8,7 @@ import { SwUpdate, SwPush } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { INotification } from './interfaces';
 import { API } from '../api';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NotifyCardComponent } from './notify-card/notify-card.component';
 import { WinRT } from './windows';
 
@@ -43,7 +43,7 @@ export class AppComponent implements OnDestroy, OnInit {
       this.openFlyout = true;
       changeDetectorRef.detectChanges();
     };
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
 
     /* Initialize if we are in WinRT */
     WinRT.init();
@@ -181,7 +181,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Unsubscribe from listeners */
   ngOnDestroy(): void {
-      this.mobileQuery.removeListener(this._mobileQueryListener);
+      this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 
   /** Gets if the current router outlet state is `base` or `overlay` */

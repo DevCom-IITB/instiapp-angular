@@ -147,7 +147,7 @@ export class DataService {
     const uploadReq = new HttpRequest('POST', API.PostImage, formData);
 
     /* Make upload request and return */
-    return Observable.create(observer => {
+    return new Observable(observer => {
       this.http.request(uploadReq).subscribe(event => {
         if (event.type === HttpEventType.Response) {
           observer.next(event.body);
@@ -172,7 +172,7 @@ export class DataService {
   /** Fills the event with uuid into the cache and returns it */
   FillGetEvent(uuid: string): Observable<IEvent> {
     const index = this.eventsDetailed.findIndex(m => m.id === uuid);
-    return Observable.create(observer => {
+    return new Observable(observer => {
       if (index === -1) {
         this.GetEvent(uuid).subscribe(result => {
           this.eventsDetailed.push(result);
@@ -205,7 +205,7 @@ export class DataService {
    * The result is cached
    */
   GetFillCurrentUser(): Observable<IUserProfile> {
-    return Observable.create(observer => {
+    return new Observable(observer => {
       if (!this._currentUser) {
         /* Try to get from localStorage */
         if (!this.isSandbox && localStorage.getItem(this.LS_USER) !== null) {
