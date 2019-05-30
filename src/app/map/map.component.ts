@@ -29,8 +29,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public selectedLocation: ILocation;
 
   /* Helpers */
-  @ViewChild('searchbox') searchBoxEl: ElementRef;
-  @ViewChild(MatAutocompleteTrigger) autoComplete: MatAutocompleteTrigger;
+  @ViewChild('searchbox', { static: true }) searchBoxEl: ElementRef;
+  @ViewChild(MatAutocompleteTrigger, { static: true }) autoComplete: MatAutocompleteTrigger;
 
   public maploaded = false;
   public initialMarker: string = null;
