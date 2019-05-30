@@ -52,14 +52,14 @@ export class CalendarComponent implements OnInit {
   /** Get events for the date */
   GetDateEvents(date: any): IEvent[] {
     const selEvents: IEvent[] = [] as IEvent[];
+    const cDate: Date = this.dateToDate(date);
+
     /* Add events for the date */
     for (const event of this.events) {
-      const start_date = new Date(event.start_time);
-      const end_date = new Date(event.end_time);
-      if (date.month === start_date.getMonth() &&
-          date.year === start_date.getFullYear() &&
-          (start_date.getDate() <= date.date && end_date.getDate() >= date.date)
-        ) {
+      const start_date = this.zeroTime(new Date(event.start_time));
+      const end_date = this.zeroTime(new Date(event.end_time));
+
+      if (start_date <= cDate && end_date >= cDate) {
           selEvents.push(event);
       }
     }
@@ -103,11 +103,13 @@ export class CalendarComponent implements OnInit {
 
   /** Convert a custom date object to a Date object */
   dateToDate(date: any): Date {
-    const ans = new Date();
-    ans.setDate(date.date);
-    ans.setMonth(date.month);
-    ans.setFullYear(date.year);
-    return ans;
+    return this.zeroTime(new Date(date.year, date.month, date.date));
+  }
+
+  /** Sets the time of date to zero for comparison */
+  zeroTime(date: Date): Date {
+    date.setHours(0, 0, 0, 0);
+    return date;
   }
 
   /** Gets the heat map for all events */
