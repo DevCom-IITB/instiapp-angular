@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "es5",
+    "module": "es2015",
     "types": ["node"]
   },
   "exclude": [
