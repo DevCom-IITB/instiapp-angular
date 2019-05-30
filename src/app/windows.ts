@@ -100,7 +100,7 @@ export module WinRT {
             });
         };
 
-        return Observable.create(observer => {
+        return new Observable(observer => {
             getAppointmentStore().then(store => {
                 store.getAppointmentCalendarAsync(localStorage.getItem(LS_KEY)).then(cal => {
                     if (!nomore && cal === null)  {

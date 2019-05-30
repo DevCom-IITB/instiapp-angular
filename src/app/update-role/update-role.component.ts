@@ -58,7 +58,7 @@ export class UpdateRoleComponent implements OnInit {
 
   /** Return an observable with explored profiles */
   explore(query: string): Observable<IUserProfile[]> {
-    return Observable.create(observer => {
+    return new Observable(observer => {
       if (!query || query.length < 3) {
         observer.next([]);
         observer.complete();
