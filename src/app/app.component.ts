@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, HostListener } from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
 import { DataService } from './data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Helpers } from './helpers';
@@ -20,7 +19,7 @@ const TITLE = 'InstiApp';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnDestroy, OnInit {
-  mobileQuery: MediaQueryList;
+  mobileQuery: any;
   public openFlyout = false;
   public _title = TITLE;
   public isSandbox = false;
@@ -30,7 +29,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher,
     public dataService: DataService,
     public router: Router,
     public snackBar: MatSnackBar,
@@ -38,12 +36,12 @@ export class AppComponent implements OnDestroy, OnInit {
     private swPush: SwPush,
     private bottomSheet: MatBottomSheet,
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 960px)');
+    this.mobileQuery = window.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => {
       this.openFlyout = true;
       changeDetectorRef.detectChanges();
     };
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+    this.mobileQuery.addListener(this._mobileQueryListener);
 
     /* Initialize if we are in WinRT */
     WinRT.init();
@@ -181,7 +179,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Unsubscribe from listeners */
   ngOnDestroy(): void {
-      this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+      this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   /** Gets if the current router outlet state is `base` or `overlay` */
