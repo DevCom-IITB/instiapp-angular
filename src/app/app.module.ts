@@ -40,12 +40,12 @@ import { UserCardComponent } from './card/user-card/user-card.component';
 import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 
 // Components
-import { MyShareButtonsComponent } from './components/my-share-buttons/my-share-buttons.component';
-import { ListLoadingComponent } from './components/list-loading/list-loading.component';
-import { XunkSpinnerComponent } from './components/xunk-spinner/xunk-spinner.component';
-import { XunkCalendarComponent } from './components/xunk-calendar/xunk-calendar.component';
-import { RedirComponent } from './components/redir/redir.component';
-import { UpdateRoleComponent } from './components/update-role/update-role.component';
+import { MyShareButtonsComponent } from './comp/my-share-buttons/my-share-buttons.component';
+import { ListLoadingComponent } from './comp/list-loading/list-loading.component';
+import { XunkSpinnerComponent } from './comp/xunk-spinner/xunk-spinner.component';
+import { XunkCalendarComponent } from './comp/xunk-calendar/xunk-calendar.component';
+import { RedirComponent } from './comp/redir/redir.component';
+import { UpdateRoleComponent } from './comp/update-role/update-role.component';
 
 import { BodyDetailsComponent } from './body-details/body-details.component';
 import { MyEventsComponent } from './my-events/my-events.component';
