@@ -94,6 +94,7 @@ export interface IBodyRole {
     id: string;
     name: string;
     inheritable: boolean;
+    official_post: boolean;
     body: string;
     body_detail: IBody;
     bodies: IBody[];

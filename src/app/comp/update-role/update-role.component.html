@@ -1,0 +1,100 @@
+<div class="loader" *ngIf="!role">
+  <app-xunk-spinner></app-xunk-spinner>
+</div>
+
+<div *ngIf="role" class="main full-width">
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Role Name"
+              [(ngModel)]="role.name"
+              class="rl-header xs name">
+  </mat-form-field>
+
+  <mat-form-field class="full-width with-hint">
+    <input matInput placeholder="Priority"
+              [(ngModel)]="role.priority"
+              type="number">
+    <mat-hint align="start">Smaller number is higher priority</mat-hint>
+  </mat-form-field>
+
+  <div class="permissions">
+    <div class="with-hint">
+      Permissions<br>
+      <ng-container *ngFor="let perm of possiblePermissions">
+        <button mat-button
+                [class.has]="hasPermission(perm.code)"
+                (click)="togglePermission(perm.code)">
+          {{ perm.name }}
+        </button>
+      </ng-container>
+    </div>
+
+    <div>Characteristics<br>
+      <button mat-button
+              [class.hasred]="role.inheritable"
+              (click)="toggleInheritable()">
+        Inheritable
+      </button>
+
+      <button mat-button
+              [class.hasred]="role.official_post"
+              (click)="toggleOfficialPost()">
+        Official Post
+      </button>
+    </div>
+  </div>
+
+  <mat-form-field class="full-width add-person">
+    <input #roll matInput #addBox
+            placeholder="Add Person"
+           [matAutocomplete]="auto"
+           [formControl]="addForm">
+
+    <mat-autocomplete name="personauto" #auto (optionSelected)="addPerson($event)">
+      <mat-option *ngFor="let person of explorePeople | async" [value]="person">{{ person.name }}</mat-option>
+    </mat-autocomplete>
+
+    <mat-hint align="start">Enter a name or roll number</mat-hint>
+  </mat-form-field>
+
+  <table class="user-table">
+    <tr *ngFor="let user of role.users_detail">
+      <td>
+        <app-user-card
+          [profile]="user"
+          [role]="user.ldap_id">
+        </app-user-card>
+      </td>
+      <td width="40px">
+        <button mat-icon-button color="warn" (click)="removePerson(user)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <div class="submit">
+    <button mat-raised-button
+            color="warn"
+          (click)="submit()">
+      <ng-container *ngIf="role.id">
+        Update
+      </ng-container>
+      <ng-container *ngIf="!role.id">
+        Create
+      </ng-container>
+    </button>
+
+    <button mat-button color="warn"
+          *ngIf="role.id"
+          (click)="delete()">
+      Delete
+    </button>
+
+    <button mat-button
+          (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+
+</div>

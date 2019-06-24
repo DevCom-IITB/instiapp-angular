@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable ,  Subject, noop } from 'rxjs';
+import { Observable, Subject, noop } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
 import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, INotification } from './interfaces';
 import { Router } from '@angular/router';
@@ -11,12 +11,20 @@ import { Helpers } from './helpers';
 import { Title } from '@angular/platform-browser';
 import { WinRT } from './windows';
 
+/** Headers for injection for quick use */
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 
+/** The hoste the app is being served on */
 const HOST = environment.host;
+
+/** Absolute SSO redirection URL */
 const SSO_REDIR = HOST + 'login'; /* Has to be absolute URL */
+
+/** SSO host address */
 const SSOHOST = environment.sso_host;
+
+/** SSO client id */
 const CLIENT_ID = environment.sso_client_id;
 
 /** Main data service */

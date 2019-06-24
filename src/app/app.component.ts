@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 import { INotification } from './interfaces';
 import { API } from '../api';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { NotifyCardComponent } from './notify-card/notify-card.component';
+import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 import { WinRT } from './windows';
 
 const TITLE = 'InstiApp';
@@ -36,6 +36,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private swPush: SwPush,
     private bottomSheet: MatBottomSheet,
   ) {
+    /* Open flyout on screen type change */
     this.mobileQuery = window.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => {
       this.openFlyout = true;
