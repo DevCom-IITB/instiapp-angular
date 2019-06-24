@@ -35,6 +35,12 @@
               (click)="toggleInheritable()">
         Inheritable
       </button>
+
+      <button mat-button
+              [class.hasred]="role.official_post"
+              (click)="toggleOfficialPost()">
+        Official Post
+      </button>
     </div>
   </div>
 
