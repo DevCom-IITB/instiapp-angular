@@ -1,36 +1,50 @@
+// Angular imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AppComponent } from './app.component';
-
-import { environment } from '../environments/environment';
-
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
+import { LayoutModule } from '@angular/cdk/layout';
 
-import { MyMaterialClass } from './material-angular.module';
+// Basic app imports
+import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
 
+// Dependencies
 import 'hammerjs';
 import { ImgFallbackModule } from 'ngx-img-fallback';
 import { MarkdownModule } from 'ngx-markdown';
-import { RouteReuseStrategy } from '@angular/router';
-import { CustomReuseStrategy } from './routing';
-
 import { ShareButtonModule } from '@ngx-share/button';
 import { FlyoutModule } from 'ngx-flyout';
 
-import { NavmenuComponent } from './layout/navmenu/navmenu.component';
-import { FeedComponent } from './feed/feed.component';
+// Extra modules
+import { CustomReuseStrategy } from './routing';
+import { MyMaterialClass } from './material-angular.module';
+import { LoginActivate } from './loginactivate';
+
+// Services
 import { DataService } from './data.service';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { AddEventComponent } from './add-event/add-event.component';
-import { LoginComponent } from './login/login.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
+
+// Pages
+import { FeedComponent } from './page/feed/feed.component';
+import { EventDetailsComponent } from './page/event-details/event-details.component';
+import { CalendarComponent } from './page/calendar/calendar.component';
+import { AddEventComponent } from './page/add-event/add-event.component';
+import { UserDetailsComponent } from './page/user-details/user-details.component';
+import { BodyDetailsComponent } from './page/body-details/body-details.component';
+import { UpdateBodyComponent } from './page/update-body/update-body.component';
+import { BlogComponent } from './page/blog/blog.component';
+import { NewsComponent } from './page/news/news.component';
+import { ExploreComponent } from './page/explore/explore.component';
+import { MessComponent } from './page/mess/mess.component';
+import { MapComponent } from './page/map/map.component';
+import { QuickLinksComponent } from './page/quick-links/quick-links.component';
+import { SettingsComponent } from './page/settings/settings.component';
+import { AboutComponent } from './page/settings/about/about.component';
 
 // Cards
 import { CardComponent } from './card/card.component';
@@ -46,23 +60,12 @@ import { XunkSpinnerComponent } from './comp/xunk-spinner/xunk-spinner.component
 import { XunkCalendarComponent } from './comp/xunk-calendar/xunk-calendar.component';
 import { RedirComponent } from './comp/redir/redir.component';
 import { UpdateRoleComponent } from './comp/update-role/update-role.component';
+import { LoginComponent } from './comp/login/login.component';
 
 // Layout components
 import { EventSidebarDesktopComponent } from './layout/event-sidebar-desktop/event-sidebar-desktop.component';
 import { DesktopSplitComponent } from './layout/desktop-split/desktop-split.component';
-
-import { BodyDetailsComponent } from './body-details/body-details.component';
-import { UpdateBodyComponent } from './update-body/update-body.component';
-import { BlogComponent } from './blog/blog.component';
-import { NewsComponent } from './news/news.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { LoginActivate } from './loginactivate';
-import { ExploreComponent } from './explore/explore.component';
-import { MessComponent } from './mess/mess.component';
-import { MapComponent } from './map/map.component';
-import { QuickLinksComponent } from './quick-links/quick-links.component';
-import { SettingsComponent } from './settings/settings.component';
-import { AboutComponent } from './about/about.component';
+import { NavmenuComponent } from './layout/navmenu/navmenu.component';
 
 @NgModule({
   declarations: [
