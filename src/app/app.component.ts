@@ -36,6 +36,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private swPush: SwPush,
     private bottomSheet: MatBottomSheet,
   ) {
+    /* Open flyout on screen type change */
     this.mobileQuery = window.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => {
       this.openFlyout = true;
