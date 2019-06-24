@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IUserProfile } from '../interfaces';
-import { DataService } from '../data.service';
+import { IUserProfile } from '../../interfaces';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-user-card',

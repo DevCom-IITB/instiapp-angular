@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IEvent } from '../interfaces';
-import { DataService } from '../data.service';
+import { IEvent } from '../../interfaces';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-event-card',

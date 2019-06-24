@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IBody } from '../interfaces';
-import { DataService } from '../data.service';
+import { IBody } from '../../interfaces';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-body-card',

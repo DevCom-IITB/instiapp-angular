@@ -31,10 +31,15 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { EventCardComponent } from './event-card/event-card.component';
-import { BodyCardComponent } from './body-card/body-card.component';
+
+// Cards
+import { CardComponent } from './card/card.component';
+import { EventCardComponent } from './card/event-card/event-card.component';
+import { BodyCardComponent } from './card/body-card/body-card.component';
+import { UserCardComponent } from './card/user-card/user-card.component';
+import { NotifyCardComponent } from './card/notify-card/notify-card.component';
+
 import { BodyDetailsComponent } from './body-details/body-details.component';
-import { UserCardComponent } from './user-card/user-card.component';
 import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
@@ -53,10 +58,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
 import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
 import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
-import { NotifyCardComponent } from './notify-card/notify-card.component';
 import { RedirComponent } from './redir/redir.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
-import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
