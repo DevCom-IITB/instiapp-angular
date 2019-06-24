@@ -87,9 +87,6 @@ export class UpdateBodyComponent implements OnInit {
     const role = {} as IBodyRole;
     role.body = this.bodyId;
     role.body_detail = this.body;
-    role.permissions = [];
-    role.users_detail = [];
-    role.users = [];
 
     /* Setup adding */
     this.toAddRole = role;

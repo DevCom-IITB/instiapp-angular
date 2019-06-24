@@ -44,6 +44,11 @@ export class UpdateRoleComponent implements OnInit {
     } else {
       /* Making a new role */
       this.role = this.minrole;
+      this.role.users_detail = [];
+      this.role.users = [];
+      this.role.permissions = this.possiblePermissions.map(p => p.code);
+      this.role.inheritable = true;
+      this.role.official_post = true;
     }
 
     this.explorePeople = this.addForm.valueChanges.pipe(
