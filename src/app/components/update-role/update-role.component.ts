@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { IBodyRole, IUserProfile } from '../interfaces';
-import { DataService } from '../data.service';
-import { API } from '../../api';
+import { IBodyRole, IUserProfile } from '../../interfaces';
+import { DataService } from '../../data.service';
+import { API } from '../../../api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';

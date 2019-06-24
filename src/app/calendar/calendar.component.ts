@@ -5,7 +5,7 @@ import { IEvent, IEnumContainer } from '../interfaces';
 import { Helpers } from '../helpers';
 import { API } from '../../api';
 import { Observable } from 'rxjs';
-import { XunkCalendarComponent } from '../xunk-calendar/xunk-calendar.component';
+import { XunkCalendarComponent } from '../components/xunk-calendar/xunk-calendar.component';
 
 interface XDate {
   date: number;

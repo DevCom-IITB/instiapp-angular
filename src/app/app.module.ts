@@ -39,15 +39,20 @@ import { BodyCardComponent } from './card/body-card/body-card.component';
 import { UserCardComponent } from './card/user-card/user-card.component';
 import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 
+// Components
+import { MyShareButtonsComponent } from './components/my-share-buttons/my-share-buttons.component';
+import { ListLoadingComponent } from './components/list-loading/list-loading.component';
+import { XunkSpinnerComponent } from './components/xunk-spinner/xunk-spinner.component';
+import { XunkCalendarComponent } from './components/xunk-calendar/xunk-calendar.component';
+import { RedirComponent } from './components/redir/redir.component';
+import { UpdateRoleComponent } from './components/update-role/update-role.component';
+
 import { BodyDetailsComponent } from './body-details/body-details.component';
-import { MyShareButtonsComponent } from './my-share-buttons/my-share-buttons.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
 import { BlogComponent } from './blog/blog.component';
 import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
 import { NewsComponent } from './news/news.component';
-import { ListLoadingComponent } from './list-loading/list-loading.component';
-import { XunkSpinnerComponent } from './xunk-spinner/xunk-spinner.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginActivate } from './loginactivate';
 import { ExploreComponent } from './explore/explore.component';
@@ -56,10 +61,7 @@ import { MapComponent } from './map/map.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
-import { XunkCalendarComponent } from './xunk-calendar/xunk-calendar.component';
 import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
-import { RedirComponent } from './redir/redir.component';
-import { UpdateRoleComponent } from './update-role/update-role.component';
 
 @NgModule({
   declarations: [
