@@ -23,7 +23,7 @@ import { CustomReuseStrategy } from './routing';
 import { ShareButtonModule } from '@ngx-share/button';
 import { FlyoutModule } from 'ngx-flyout';
 
-import { NavmenuComponent } from './navmenu/navmenu.component';
+import { NavmenuComponent } from './layout/navmenu/navmenu.component';
 import { FeedComponent } from './feed/feed.component';
 import { DataService } from './data.service';
 import { EventDetailsComponent } from './event-details/event-details.component';
@@ -47,10 +47,13 @@ import { XunkCalendarComponent } from './comp/xunk-calendar/xunk-calendar.compon
 import { RedirComponent } from './comp/redir/redir.component';
 import { UpdateRoleComponent } from './comp/update-role/update-role.component';
 
+// Layout components
+import { EventSidebarDesktopComponent } from './layout/event-sidebar-desktop/event-sidebar-desktop.component';
+import { DesktopSplitComponent } from './layout/desktop-split/desktop-split.component';
+
 import { BodyDetailsComponent } from './body-details/body-details.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
 import { BlogComponent } from './blog/blog.component';
-import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
 import { NewsComponent } from './news/news.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginActivate } from './loginactivate';
@@ -60,7 +63,6 @@ import { MapComponent } from './map/map.component';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
-import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
 
 @NgModule({
   declarations: [
