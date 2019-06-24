@@ -48,7 +48,6 @@ import { RedirComponent } from './comp/redir/redir.component';
 import { UpdateRoleComponent } from './comp/update-role/update-role.component';
 
 import { BodyDetailsComponent } from './body-details/body-details.component';
-import { MyEventsComponent } from './my-events/my-events.component';
 import { UpdateBodyComponent } from './update-body/update-body.component';
 import { BlogComponent } from './blog/blog.component';
 import { EventSidebarDesktopComponent } from './event-sidebar-desktop/event-sidebar-desktop.component';
@@ -78,7 +77,6 @@ import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
     BodyDetailsComponent,
     UserCardComponent,
     MyShareButtonsComponent,
-    MyEventsComponent,
     UpdateBodyComponent,
     BlogComponent,
     EventSidebarDesktopComponent,
@@ -117,7 +115,6 @@ import { DesktopSplitComponent } from './desktop-split/desktop-split.component';
       { path: 'feed', component: FeedComponent, data: { state: 'base' } },
       { path: 'news', component: NewsComponent, data: { state: 'base' } },
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
-      { path: 'my-events', component: MyEventsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'explore', component: ExploreComponent, data: { state: 'base' } },
       { path: 'mess', component: MessComponent, data: { state: 'base' } },
       { path: 'map', component: MapComponent, data: { state: 'base' } },
