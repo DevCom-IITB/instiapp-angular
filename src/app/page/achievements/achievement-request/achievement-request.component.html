@@ -1,10 +1,12 @@
 <mat-card class="mat-elevation-z0">
   <mat-card-header>
     <img mat-card-avatar [src]="getImage()">
-    <mat-card-title>{{ achievement.description }}</mat-card-title>
+    <mat-card-title>{{ achievement.title }}</mat-card-title>
     <mat-card-subtitle> {{ getSubtitle() }} </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    <p *ngIf="achievement.description">{{ achievement.description }}</p>
+    <p *ngIf="achievement.admin_note">Admin note: {{ achievement.admin_note }}</p>
     <p>Status: <span [style.color]="getStatus()[1]" class="status">{{ getStatus()[0] }}</span></p>
 
     <ng-container *ngIf="user && canVerify()">
