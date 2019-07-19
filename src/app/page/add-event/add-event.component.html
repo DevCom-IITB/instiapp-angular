@@ -107,6 +107,17 @@
               <mat-panel-title>
                 {{ offer.title ?  offer.title : 'Untitled Achievement' }}
               </mat-panel-title>
+              <mat-panel-description>
+                <ng-container *ngIf="offer.stat > 0">
+                  <ng-container *ngIf="offer.stat === 1; then success else fail"></ng-container>
+                </ng-container>
+                <ng-template #success>
+                  <span style="color: green">Success</span>
+                </ng-template>
+                <ng-template #fail>
+                  <span style="color: red">Fail</span>
+                </ng-template>
+              </mat-panel-description>
             </mat-expansion-panel-header>
 
             <app-achievement-offer-make [offer]="offer" [bodies]="bodies"></app-achievement-offer-make>

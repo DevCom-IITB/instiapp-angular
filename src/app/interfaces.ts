@@ -50,6 +50,7 @@ export interface IEvent {
     weight: number;
     notify: boolean;
     user_tags: number[];
+    offered_achievements: IOfferedAchievement[];
 }
 
 export interface ILocation {
@@ -196,4 +197,6 @@ export interface IOfferedAchievement {
     description: string;
     event: string;
     body: string;
+    priority: number;
+    stat: number;
 }

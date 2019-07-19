@@ -149,6 +149,9 @@ export class AddEventComponent implements OnInit {
         this.sortBodies();
         this.updateReach();
 
+        this.offeredAchievements = this.event.offered_achievements;
+        this.event.offered_achievements = null;
+
       }, () => {
         alert('Event not found!');
         this.dataService.navigateBack();
@@ -294,8 +297,14 @@ export class AddEventComponent implements OnInit {
       /* Add one venue if not present */
       if (this.event.venue_names.length === 0) { this.AddVenue(); }
 
-      /* Quit */
-      this.close(result);
+      /* Update offers and quit */
+      this.goOffers(result);
+
+      /* Set editing to true */
+      this.event.id = result.id;
+      this.event.str_id = result.id;
+      this.eventId = result.id;
+      this.editing = true;
     }, (result) => {
       /* Construct error statement */
       let string_error = '';
@@ -433,7 +442,10 @@ export class AddEventComponent implements OnInit {
 
   /** Add a new offered achievement */
   addOffer(): void {
-    const offer = {} as IOfferedAchievement;
+    const offer = {
+      title: 'Untitled Achievement',
+      stat: 0,
+    } as IOfferedAchievement;
     if (this.event.bodies_id.length > 0) {
       offer.body = this.event.bodies_id[0];
     }
@@ -442,8 +454,66 @@ export class AddEventComponent implements OnInit {
 
   /** Remove an offer */
   removeOffer(offer: IOfferedAchievement): void {
-    const index = this.offeredAchievements.indexOf(offer);
-    this.offeredAchievements.splice(index, 1);
+    const spl = () => {
+      const index = this.offeredAchievements.indexOf(offer);
+      this.offeredAchievements.splice(index, 1);
+    };
+
+    /* Check if the offer actually exists */
+    if (offer.id && offer.id !== '') {
+      if (confirm('Remove this achievement? This is irreversible!')) {
+        this.dataService.FireDELETE(API.AchievementOffer, { id: offer.id }).subscribe(() => {
+          spl();
+        }, error => {
+          this.snackBar.open(`Failed to delete achievement: ${error.message}`);
+        });
+      }
+    } else {
+      spl();
+    }
+  }
+
+  /** Create or update achievement offers and quit */
+  goOffers(result: IEvent): void {
+    this.event.offered_achievements = [];
+    for (const offer of this.offeredAchievements) {
+      /* Set ID from event */
+      offer.event = result.id;
+      offer.priority = this.offeredAchievements.indexOf(offer);
+
+      /* Get the observable */
+      let obs: Observable<IOfferedAchievement>;
+      if (offer.id && offer.id !== '') {
+        obs = this.dataService.FirePUT<IOfferedAchievement>(API.AchievementOffer, offer, { id: offer.id });
+      } else {
+        obs = this.dataService.FirePOST<IOfferedAchievement>(API.AchievementsOffer, offer);
+      }
+
+      /* Fire the call */
+      obs.subscribe(res => {
+        this.pushOffer(res);
+        res.stat = 1;
+        this.offeredAchievements[res.priority] = res;
+
+        if (this.event.offered_achievements.length === this.offeredAchievements.length) {
+          this.close(result);
+        }
+      }, () => {
+        this.snackBar.open(`Achievement ${offer.title} failed. The event was updated.`, 'Dismiss', { duration: 2000 });
+        offer.stat = 2;
+      });
+    }
+  }
+
+  /** Pushes offer into the event */
+  pushOffer(offer: IOfferedAchievement): void {
+    /* Push or replace */
+    const i = this.event.offered_achievements.map(o => o.id).indexOf(offer.id);
+    if (i !== -1) {
+      this.event.offered_achievements[i] = offer;
+    } else {
+      this.event.offered_achievements.push(offer);
+    }
   }
 
 }
