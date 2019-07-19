@@ -69,6 +69,7 @@ import { DesktopSplitComponent } from './layout/desktop-split/desktop-split.comp
 import { NavmenuComponent } from './layout/navmenu/navmenu.component';
 import { AchievementRequestComponent } from './page/achievements/achievement-request/achievement-request.component';
 import { AchievementNewComponent } from './page/achievements/achievement-new/achievement-new.component';
+import { SearchBoxComponent } from './comp/search-box/search-box.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { AchievementNewComponent } from './page/achievements/achievement-new/ach
     AchievementsComponent,
     AchievementRequestComponent,
     AchievementNewComponent,
+    SearchBoxComponent,
   ],
   imports: [
     BrowserModule,

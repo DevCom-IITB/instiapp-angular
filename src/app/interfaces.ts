@@ -172,7 +172,9 @@ export interface IInstituteRole {
 
 export interface IAchievement {
     id: string;
+    title: string;
     description: string;
+    admin_note: string;
     body_detail: IBody;
     dismissed: boolean;
     verified: boolean;

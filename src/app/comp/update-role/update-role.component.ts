@@ -2,9 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IBodyRole, IUserProfile } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -17,8 +15,6 @@ export class UpdateRoleComponent implements OnInit {
   @Input() minrole: IBodyRole;
   @Output() public doneUpdate = new EventEmitter<IBodyRole>();
   role: IBodyRole;
-  addForm: FormControl;
-  explorePeople: Observable<IUserProfile[]>;
 
   possiblePermissions = [
     {name: 'Add Event', code: 'AddE'},
@@ -31,9 +27,7 @@ export class UpdateRoleComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,
-  ) {
-    this.addForm = new FormControl();
-  }
+  ) {}
 
   ngOnInit() {
     if (this.minrole.editing) {
@@ -50,37 +44,15 @@ export class UpdateRoleComponent implements OnInit {
       this.role.inheritable = true;
       this.role.official_post = true;
     }
-
-    this.explorePeople = this.addForm.valueChanges.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      switchMap(val => {
-        return this.explore(val);
-      })
-    );
-  }
-
-  /** Return an observable with explored profiles */
-  explore(query: string): Observable<IUserProfile[]> {
-    return new Observable(observer => {
-      if (!query || query.length < 3) {
-        observer.next([]);
-        observer.complete();
-      } else {
-        this.dataService.FireGET<any>(API.Search, { query: query }).subscribe(result => {
-            observer.next(result.users);
-            observer.complete();
-        }, (error) => observer.error(error));
-      }
-    });
   }
 
   /** Add a person to a role from an autocomplete event */
   addPerson(event: any) {
-    const person: IUserProfile = event.option.value;
-    this.role.users_detail.push(person);
-    this.role.users.push(person.id);
-    this.addForm.setValue('');
+    if(event.option) {
+      const person: IUserProfile = event.option.value;
+      this.role.users_detail.push(person);
+      this.role.users.push(person.id);
+    }
   }
 
   /** Remove a user from role */

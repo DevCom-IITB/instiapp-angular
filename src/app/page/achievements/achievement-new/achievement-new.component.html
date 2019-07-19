@@ -1,3 +1,42 @@
-<p>
-  achievement-new works!
-</p>
+<div>
+    <div class="rl-header sm full-width-details main-title">
+        Verification Request
+    </div>
+
+    <div class="full-width-details field">
+        <mat-form-field class="full-width">
+        <input matInput placeholder="Title" #title
+                    [(ngModel)]="achievement.title">
+        <mat-hint align="end">{{ title.value.length }} / 50</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Description"
+                    [(ngModel)]="achievement.description" rows=4>
+            </textarea>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Admin Note"
+                    [(ngModel)]="achievement.admin_note" rows=4>
+            </textarea>
+        </mat-form-field>
+
+        <app-search-box exploreProp="bodies"
+                        placeholder="Verifying Authority"
+                        hint="Enter an organisation's name"
+                        (change)="setBody($event)">
+        </app-search-box>
+
+        <app-body-card *ngIf="achievement.body_detail"
+                       [body]="achievement.body_detail"
+                       [route]="[]">
+        </app-body-card>
+
+        <button mat-raised-button color="accent"
+                class="full-width go"
+                (click)="go()">
+                Request Verification
+        </button>
+    </div>
+</div>
