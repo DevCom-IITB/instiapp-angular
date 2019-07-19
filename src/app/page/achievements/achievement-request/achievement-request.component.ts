@@ -70,11 +70,11 @@ export class AchievementRequestComponent implements OnInit {
           p => p.indexOf('VerA') !== -1);
   }
 
-  /** Verify or un-verify an achievement */
-  public verify(): void {
+  /** Verify, dismiss or un-verify an achievement */
+  public dismiss(verify: boolean): void {
     const request  = {...this.achievement};
     request.body = this.achievement.body_detail.id;
-    request.verified = !request.verified;
+    request.verified = verify && !request.verified;
     request.dismissed = true;
     this.dataService.FirePUT<IAchievement>(API.Achievement, request, { id: request.id }).subscribe(res => {
       for (const k in res) {
