@@ -107,7 +107,7 @@ span.badge {
 }
 
 .achievements {
-    padding: 10px;
+    padding: 5px;
     max-width: calc(94% - 20px);
 }
 
@@ -118,5 +118,11 @@ span.badge {
 @media (min-width: 768px) {
     .follow-div {
         margin-top: -1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        margin-left: 10px;
     }
 }

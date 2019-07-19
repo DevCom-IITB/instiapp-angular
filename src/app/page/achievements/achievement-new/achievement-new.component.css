@@ -1,3 +1,8 @@
+.main {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 .main-title {
     margin-top: 20px;
     margin-bottom: 5px;

@@ -122,12 +122,14 @@
 </ng-template>
 
 <ng-template #achievements>
-  <div *ngIf="event.offered_achievements && event.offered_achievements.length > 0" class="achievements">
+  <div class="section" *ngIf="event.offered_achievements && event.offered_achievements.length > 0">
     <div class="rl-header sm">Achievements</div>
-    <div mat-ripple *ngFor="let oa of event.offered_achievements"
-         [routerLink]="['/achievement-new', oa.id]" class="offer-card">
-      <app-card [title]="oa.title" [subtitle]="oa.description">
-      </app-card>
+    <div class="achievements">
+      <div mat-ripple *ngFor="let oa of event.offered_achievements"
+          [routerLink]="['/achievement-new', oa.id]" class="offer-card">
+        <app-card [title]="oa.title" [subtitle]="oa.description">
+        </app-card>
+      </div>
     </div>
   </div>
 </ng-template>
