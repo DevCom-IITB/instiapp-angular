@@ -302,7 +302,11 @@ export class AddEventComponent implements OnInit {
       if (this.event.venue_names.length === 0) { this.AddVenue(); }
 
       /* Update offers and quit */
-      this.goOffers(result);
+      if (this.offeredAchievements.length > 0) {
+        this.goOffers(result);
+      } else {
+        this.close(result);
+      }
 
       /* Set editing to true */
       this.event.id = result.id;
