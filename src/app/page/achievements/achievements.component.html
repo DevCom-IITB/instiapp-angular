@@ -19,7 +19,10 @@
             {{ this.bodyId ? 'Verify' : 'Your Achievements' }}
         </div>
         <div *ngFor="let achievement of achievements">
-            <app-achievement-request [achievement]="achievement" (del)="delete(achievement)"></app-achievement-request>
+            <app-achievement-request [achievement]="achievement"
+                                     (del)="delete(achievement)"
+                                     [user]="bodyId ? true : false">
+            </app-achievement-request>
         </div>
     </div>
 

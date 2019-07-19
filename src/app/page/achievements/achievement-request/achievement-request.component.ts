@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IAchievement } from '../../../interfaces';
+import { DataService } from '../../../data.service';
+import { API } from '../../../../api';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-achievement-request',
@@ -17,7 +20,10 @@ export class AchievementRequestComponent implements OnInit {
   /** Triggered on deletion */
   @Output() del: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    public dataService: DataService,
+    public snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit() {
   }
@@ -54,5 +60,32 @@ export class AchievementRequestComponent implements OnInit {
       return this.achievement.user.profile_pic;
     }
     return this.achievement.body_detail.image_url;
+  }
+
+  /** Check if user can verify this achievement */
+  public canVerify(): boolean {
+    return this.dataService.getCurrentUser().roles.filter(
+      r => r.body === this.achievement.body_detail.id).map(
+        r => r.permissions).some(
+          p => p.indexOf('VerA') !== -1);
+  }
+
+  /** Verify or un-verify an achievement */
+  public verify(): void {
+    const request  = {...this.achievement};
+    request.body = this.achievement.body_detail.id;
+    request.verified = !request.verified;
+    request.dismissed = true;
+    this.dataService.FirePUT<IAchievement>(API.Achievement, request, { id: request.id }).subscribe(res => {
+      for (const k in res) {
+        if (res.hasOwnProperty(k)) {
+          this.achievement[k] = res[k];
+        }
+      }
+    }, error => {
+      this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
+        duration: 2000,
+      });
+    });
   }
 }

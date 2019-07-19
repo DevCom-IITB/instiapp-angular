@@ -69,7 +69,7 @@ export class AchievementsComponent implements OnInit {
   /** Gets a list of bodies for which the user can verify */
   public getVerifiableBodies(): IBody[] {
     return this.dataService.getCurrentUser().roles.filter(r => {
-      return r.permissions.indexOf('VerA') !== -1
+      return r.permissions.indexOf('VerA') !== -1;
     }).map(r => r.body_detail);
   }
 }
