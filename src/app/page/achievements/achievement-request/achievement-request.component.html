@@ -1,8 +1,8 @@
 <mat-card class="mat-elevation-z0">
   <mat-card-header>
-    <img mat-card-avatar [src]="achievement.body_detail.image_url">
+    <img mat-card-avatar [src]="getImage()">
     <mat-card-title>{{ achievement.description }}</mat-card-title>
-    <mat-card-subtitle>{{ achievement.body_detail.name }}</mat-card-subtitle>
+    <mat-card-subtitle> {{ getSubtitle() }} </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>Status: <span [style.color]="getStatus()[1]" class="status">{{ getStatus()[0] }}</span></p>

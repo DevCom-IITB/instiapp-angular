@@ -131,6 +131,7 @@ import { AchievementNewComponent } from './page/achievements/achievement-new/ach
       { path: 'map', component: MapComponent, data: { state: 'base' } },
       { path: 'map/:name', component: MapComponent, data: { state: 'base' } },
       { path: 'achievements', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'achievements/:body', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'achievement-new', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },

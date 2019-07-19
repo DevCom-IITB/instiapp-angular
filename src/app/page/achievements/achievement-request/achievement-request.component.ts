@@ -8,6 +8,9 @@ import { IAchievement } from '../../../interfaces';
 })
 export class AchievementRequestComponent implements OnInit {
 
+  /** Set to true to view user information */
+  @Input() public user = false;
+
   /** Main achievement object */
   @Input() public achievement: IAchievement;
 
@@ -37,4 +40,19 @@ export class AchievementRequestComponent implements OnInit {
     }
   }
 
+  /** Get card subtitle */
+  public getSubtitle() {
+    if (this.user && this.achievement.user) {
+      return this.achievement.user.name;
+    }
+    return this.achievement.body_detail.name;
+  }
+
+  /** Get card avatar */
+  public getImage() {
+    if (this.user && this.achievement.user) {
+      return this.achievement.user.profile_pic;
+    }
+    return this.achievement.body_detail.image_url;
+  }
 }
