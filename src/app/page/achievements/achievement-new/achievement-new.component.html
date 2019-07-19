@@ -22,6 +22,17 @@
             </textarea>
         </mat-form-field>
 
+        <app-search-box exploreProp="events"
+                        placeholder="Event (optional)"
+                        hint="Search for an InstiApp event"
+                        (change)="setEvent($event)">
+        </app-search-box>
+
+        <app-event-card *ngIf="achievement.event_detail"
+                       [event]="achievement.event_detail"
+                       [overrideClick]="true">
+        </app-event-card>
+
         <app-search-box exploreProp="bodies"
                         placeholder="Verifying Authority"
                         hint="Enter an organisation's name"

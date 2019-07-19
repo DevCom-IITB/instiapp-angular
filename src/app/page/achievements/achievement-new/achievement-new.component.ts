@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../data.service';
-import { IAchievement, IBody } from '../../../interfaces';
+import { IAchievement, IBody, IEvent } from '../../../interfaces';
 import { API } from '../../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -34,6 +34,17 @@ export class AchievementNewComponent implements OnInit {
       const body: IBody = event.option.value;
       this.achievement.body_detail = body;
       this.achievement.body = body.id;
+    }
+  }
+
+  /** Set event from an autocomplete event */
+  setEvent(event: any): void {
+    if (event.option) {
+      const ievent: IEvent = event.option.value;
+      this.achievement.event_detail = ievent;
+      this.achievement.event = ievent.id;
+      this.achievement.body = ievent.bodies[0].id;
+      this.achievement.body_detail = ievent.bodies[0];
     }
   }
 

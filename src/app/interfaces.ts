@@ -176,10 +176,16 @@ export interface IAchievement {
     title: string;
     description: string;
     admin_note: string;
-    body_detail: IBody;
+
     dismissed: boolean;
     verified: boolean;
-    user: IUserProfile;
-    body: string;
     verified_by: string;
+
+    user: IUserProfile;
+
+    body: string;
+    body_detail: IBody;
+
+    event: string;
+    event_detail: IEvent;
 }
