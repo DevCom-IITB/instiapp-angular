@@ -19,7 +19,7 @@ export class AchievementCardComponent implements OnInit {
 
   ngOnInit() {
     if (!this.achievement) {
-      return
+      return;
     }
 
     /* Set fallback image explicitly */

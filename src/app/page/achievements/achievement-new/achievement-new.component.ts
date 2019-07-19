@@ -30,7 +30,7 @@ export class AchievementNewComponent implements OnInit {
 
   /** Set body from an autocomplete event */
   setBody(event: any): void {
-    if(event.option) {
+    if (event.option) {
       const body: IBody = event.option.value;
       this.achievement.body_detail = body;
       this.achievement.body = body.id;
@@ -40,11 +40,11 @@ export class AchievementNewComponent implements OnInit {
   /** Fire the request */
   go(): void {
     this.dataService.FirePOST<IAchievement>(API.Achievements, this.achievement).subscribe(() => {
-      this.snackBar.open('Your request has been recorded', 'Dismiss', { duration: 2000 })
+      this.snackBar.open('Your request has been recorded', 'Dismiss', { duration: 2000 });
       this.achievement = {} as IAchievement;
       this.router.navigate(['/achievements']);
     }, err => {
-      this.snackBar.open(`There was an error: ${err.message}`, 'Dismiss')
+      this.snackBar.open(`There was an error: ${err.message}`, 'Dismiss');
     });
   }
 }

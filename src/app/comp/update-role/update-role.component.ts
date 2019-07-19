@@ -48,7 +48,7 @@ export class UpdateRoleComponent implements OnInit {
 
   /** Add a person to a role from an autocomplete event */
   addPerson(event: any) {
-    if(event.option) {
+    if (event.option) {
       const person: IUserProfile = event.option.value;
       this.role.users_detail.push(person);
       this.role.users.push(person.id);

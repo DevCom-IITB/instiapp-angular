@@ -12,11 +12,11 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 })
 export class SearchBoxComponent implements OnInit {
 
-  @Input() exploreProp = "users";
-  @Input() displayProp = "name";
-  @Input() placeholder = "Add Person";
-  @Input() hint = "Enter a name or roll number";
-  @Output() change = new EventEmitter<any>()
+  @Input() exploreProp = 'users';
+  @Input() displayProp = 'name';
+  @Input() placeholder = 'Add Person';
+  @Input() hint = 'Enter a name or roll number';
+  @Output() change = new EventEmitter<any>();
 
   addForm: FormControl;
   exploreObs: Observable<any[]>;
