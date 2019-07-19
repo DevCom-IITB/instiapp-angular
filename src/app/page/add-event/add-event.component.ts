@@ -282,6 +282,10 @@ export class AddEventComponent implements OnInit {
       this.event.name && this.event.name.length > 0 && this.event.name.length <= 50,
       'Event name too long/short')) { return; }
 
+    /* Validate achievements */
+    if (this.assertValidation(this.offeredAchievements.every(o => this.isValidOffer(o)),
+      'You have some invalid achievements!')) { return; }
+
     /* Create observable for POST/PUT */
     let obs: Observable<IEvent>;
     if (!this.editing) {
@@ -516,4 +520,15 @@ export class AddEventComponent implements OnInit {
     }
   }
 
+  /** Validates achievement offer */
+  isValidOffer(offer: IOfferedAchievement): boolean {
+    if (!offer.title || offer.title.length === 0 || offer.title.length > 50 ||
+        !offer.body || offer.body.length === 0) {
+      offer.stat = 2;
+      return false;
+    }
+
+    offer.stat = 0;
+    return true;
+  }
 }
