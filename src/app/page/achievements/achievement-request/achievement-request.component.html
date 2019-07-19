@@ -7,7 +7,7 @@
   <mat-card-content>
     <p>Status: <span [style.color]="getStatus()[1]" class="status">{{ getStatus()[0] }}</span></p>
 
-    <ng-container *ngIf="canVerify()">
+    <ng-container *ngIf="user && canVerify()">
       <button mat-raised-button color="primary" (click)="dismiss(true)">
         {{ achievement.verified ? 'Unverify' : 'Verify' }}
       </button>
