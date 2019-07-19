@@ -5,7 +5,7 @@
     <mat-card-subtitle> {{ getSubtitle() }} </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <p *ngIf="user && achievement.event_detail">For: <b>{{ achievement.event_detail.name }}</b></p>
+    <p *ngIf="achievement.event_detail">For: <b>{{ achievement.event_detail.name }}</b></p>
 
     <p *ngIf="achievement.description">{{ achievement.description }}</p>
     <p *ngIf="achievement.admin_note">Admin note: {{ achievement.admin_note }}</p>
