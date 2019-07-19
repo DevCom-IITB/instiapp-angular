@@ -71,6 +71,7 @@ import { AchievementRequestComponent } from './page/achievements/achievement-req
 import { AchievementNewComponent } from './page/achievements/achievement-new/achievement-new.component';
 import { SearchBoxComponent } from './comp/search-box/search-box.component';
 import { AchievementCardComponent } from './card/achievement-card/achievement-card.component';
+import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { AchievementCardComponent } from './card/achievement-card/achievement-ca
     AchievementNewComponent,
     SearchBoxComponent,
     AchievementCardComponent,
+    AchievementOfferMakeComponent,
   ],
   imports: [
     BrowserModule,

@@ -189,3 +189,11 @@ export interface IAchievement {
     event: string;
     event_detail: IEvent;
 }
+
+export interface IOfferedAchievement {
+    id: string;
+    title: string;
+    description: string;
+    event: string;
+    body: string;
+}

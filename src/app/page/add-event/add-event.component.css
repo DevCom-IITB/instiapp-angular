@@ -83,6 +83,10 @@
     margin-left: 4px;
 }
 
+.float-right {
+    float: right;
+}
+
 @media (max-width: 1200px) {
     .full-width-details {
         left: 1%;

@@ -92,6 +92,31 @@
     </div>
 
     <div class="audience-panel" *ngIf="tagCategoryList">
+        <div class="full-width-details">
+          <div class="label tag-category">
+            Offered Achievements
+            <button mat-button class="has float-right" (click)="addOffer()">Add</button>
+            <div class="sub">
+              Make your event stand out
+            </div>
+          </div>
+
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let offer of offeredAchievements">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ offer.title ?  offer.title : 'Untitled Achievement' }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <app-achievement-offer-make [offer]="offer" [bodies]="bodies"></app-achievement-offer-make>
+            <button mat-button class="float-right" (click)="removeOffer(offer)">Remove</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+
+    <div class="audience-panel" *ngIf="tagCategoryList">
       <div class="full-width-details">
         <div class="label">
           Restricted Audience

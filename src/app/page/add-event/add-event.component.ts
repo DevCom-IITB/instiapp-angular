@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { IEvent, IBody, ILocation, IUserTagCategory, IUserTag } from '../../interfaces';
+import { IEvent, IBody, ILocation, IUserTagCategory, IUserTag, IOfferedAchievement } from '../../interfaces';
 import * as Fuse from 'fuse.js';
 import { Helpers } from '../../helpers';
 import { Observable } from 'rxjs';
@@ -40,6 +40,8 @@ export class AddEventComponent implements OnInit {
   public reach: number;
 
   public tagCategoryList: IUserTagCategory[];
+
+  public offeredAchievements = [] as IOfferedAchievement[];
 
   /* Fuse config */
   public fuse_options: Fuse.FuseOptions<ILocation> = {
@@ -427,6 +429,21 @@ export class AddEventComponent implements OnInit {
   /** Returns true if at least one tag from category */
   isCategoryRestricted(category: IUserTagCategory): boolean {
     return category.tags.some(tag => this.hasTag(tag));
+  }
+
+  /** Add a new offered achievement */
+  addOffer(): void {
+    const offer = {} as IOfferedAchievement;
+    if (this.event.bodies_id.length > 0) {
+      offer.body = this.event.bodies_id[0];
+    }
+    this.offeredAchievements.push(offer);
+  }
+
+  /** Remove an offer */
+  removeOffer(offer: IOfferedAchievement): void {
+    const index = this.offeredAchievements.indexOf(offer);
+    this.offeredAchievements.splice(index, 1);
   }
 
 }
