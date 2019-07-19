@@ -1,0 +1,10 @@
+<div class="sub-card"
+     *ngIf="achievement"
+     mat-ripple
+     [routerLink]="route">
+
+  <app-card [avatar]="dataService.getResized(achievement.body_detail.image_url, 150)"
+            [title]="achievement.title"
+            [subtitle]="achievement.body_detail.name">
+  </app-card>
+</div>

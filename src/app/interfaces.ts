@@ -24,6 +24,7 @@ export interface IUserProfile {
     former_roles: IBodyRole[];
     hostel: string;
     institute_roles: IInstituteRole[];
+    achievements: IAchievement[];
 }
 
 export interface IEvent {

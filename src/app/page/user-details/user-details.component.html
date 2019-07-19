@@ -33,6 +33,15 @@
 
   <div>
     <div class="follow-sec">
+      <div class="rl-header sm">Achievements</div>
+      <div class="body-cards" *ngIf="profile.achievements.length > 0">
+        <app-achievement-card *ngFor="let ach of profile.achievements"
+                      class="body" [achievement]="ach">
+        </app-achievement-card>
+      </div>
+    </div>
+
+    <div class="follow-sec">
       <div class="rl-header sm">Following</div>
       <app-body-card
         *ngFor="let body of profile.followed_bodies"

@@ -70,6 +70,7 @@ import { NavmenuComponent } from './layout/navmenu/navmenu.component';
 import { AchievementRequestComponent } from './page/achievements/achievement-request/achievement-request.component';
 import { AchievementNewComponent } from './page/achievements/achievement-new/achievement-new.component';
 import { SearchBoxComponent } from './comp/search-box/search-box.component';
+import { AchievementCardComponent } from './card/achievement-card/achievement-card.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { SearchBoxComponent } from './comp/search-box/search-box.component';
     AchievementRequestComponent,
     AchievementNewComponent,
     SearchBoxComponent,
+    AchievementCardComponent,
   ],
   imports: [
     BrowserModule,
