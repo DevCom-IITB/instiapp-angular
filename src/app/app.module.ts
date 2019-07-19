@@ -139,6 +139,7 @@ import { AchievementOfferMakeComponent } from './page/achievements/achievement-o
       { path: 'achievements', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'achievements/:body', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'achievement-new', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'achievement-new/:offer', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../data.service';
-import { IAchievement, IBody, IEvent } from '../../../interfaces';
+import { IAchievement, IBody, IEvent, IOfferedAchievement } from '../../../interfaces';
 import { API } from '../../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-achievement-new',
@@ -15,10 +15,14 @@ export class AchievementNewComponent implements OnInit {
   /** Main object to edit */
   achievement = {} as IAchievement;
 
+  /** ID of offer if present */
+  offerId: string;
+
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,
     public router: Router,
+    public activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -26,6 +30,18 @@ export class AchievementNewComponent implements OnInit {
     if (this.dataService.isMobile()) {
       this.dataService.setTitle('Achievement Request');
     }
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.offerId = params['offer'];
+      if (this.offerId && this.offerId !== '') {
+        this.dataService.FireGET<IOfferedAchievement>(API.AchievementOffer, { id: this.offerId }).subscribe(r => {
+          this.achievement.body = r.body;
+          this.achievement.event = r.event;
+          this.achievement.title = r.title;
+          this.achievement.description = r.description;
+        });
+      }
+    });
   }
 
   /** Set body from an autocomplete event */
