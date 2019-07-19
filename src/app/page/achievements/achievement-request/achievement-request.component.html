@@ -1,0 +1,11 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-header>
+    <img mat-card-avatar [src]="achievement.body_detail.image_url">
+    <mat-card-title>{{ achievement.description }}</mat-card-title>
+    <mat-card-subtitle>{{ achievement.body_detail.name }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Status: <span [style.color]="getStatus()[1]" class="status">{{ getStatus()[0] }}</span></p>
+    <button mat-button color="warn" (click)="delete()">Delete</button>
+  </mat-card-content>
+</mat-card>

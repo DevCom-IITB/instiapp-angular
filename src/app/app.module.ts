@@ -67,6 +67,8 @@ import { LoginComponent } from './comp/login/login.component';
 import { EventSidebarDesktopComponent } from './layout/event-sidebar-desktop/event-sidebar-desktop.component';
 import { DesktopSplitComponent } from './layout/desktop-split/desktop-split.component';
 import { NavmenuComponent } from './layout/navmenu/navmenu.component';
+import { AchievementRequestComponent } from './page/achievements/achievement-request/achievement-request.component';
+import { AchievementNewComponent } from './page/achievements/achievement-new/achievement-new.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +104,8 @@ import { NavmenuComponent } from './layout/navmenu/navmenu.component';
     UpdateRoleComponent,
     CardComponent,
     AchievementsComponent,
+    AchievementRequestComponent,
+    AchievementNewComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,6 +131,7 @@ import { NavmenuComponent } from './layout/navmenu/navmenu.component';
       { path: 'map', component: MapComponent, data: { state: 'base' } },
       { path: 'map/:name', component: MapComponent, data: { state: 'base' } },
       { path: 'achievements', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'achievement-new', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },

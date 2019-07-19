@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IUserProfile } from '../../interfaces';
-import { ActivatedRoute, Params } from '@angular/router';
+import { IAchievement } from '../../interfaces';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
 
@@ -10,6 +10,10 @@ import { API } from '../../../api';
   styleUrls: ['./achievements.component.css']
 })
 export class AchievementsComponent implements OnInit {
+  /** Main achievements array */
+  public achievements: IAchievement[];
+
+  /** Error to show if requests fail */
   public error: number;
 
   constructor(
@@ -18,13 +22,22 @@ export class AchievementsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const userId = params['id'];
-      this.dataService.FireGET<IUserProfile>(API.User, {uuid: userId}).subscribe(() => {
+    /* Set title */
+    this.dataService.setTitle('Achievements');
 
-      }, (e) => {
-        this.error = e.status;
-      });
+    /* Get achievements for user */
+    this.dataService.FireGET<IAchievement[]>(API.Achievements).subscribe(result => {
+      this.achievements = result;
+    }, (e) => {
+      this.error = e.status;
+    });
+  }
+
+  /** Delete an achievement */
+  public delete(achievement: IAchievement) {
+    const index = this.achievements.indexOf(achievement);
+    this.dataService.FireDELETE(API.Achievement, { id: achievement.id}).subscribe(() => {
+      this.achievements.splice(index, 1);
     });
   }
 }

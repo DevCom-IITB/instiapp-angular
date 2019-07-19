@@ -169,3 +169,14 @@ export interface IInstituteRole {
     name: string;
     permissions: string[];
 }
+
+export interface IAchievement {
+    id: string;
+    description: string;
+    body_detail: IBody;
+    dismissed: boolean;
+    verified: boolean;
+    user: IUserProfile;
+    body: string;
+    verified_by: string;
+}
