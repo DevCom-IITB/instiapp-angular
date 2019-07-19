@@ -3,6 +3,7 @@ import { DataService } from '../../../data.service';
 import { IAchievement, IBody } from '../../../interfaces';
 import { API } from '../../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-achievement-new',
@@ -17,6 +18,7 @@ export class AchievementNewComponent implements OnInit {
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,
+    public router: Router,
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class AchievementNewComponent implements OnInit {
     this.dataService.FirePOST<IAchievement>(API.Achievements, this.achievement).subscribe(() => {
       this.snackBar.open('Your request has been recorded', 'Dismiss', { duration: 2000 })
       this.achievement = {} as IAchievement;
+      this.router.navigate(['/achievements']);
     }, err => {
       this.snackBar.open(`There was an error: ${err.message}`, 'Dismiss')
     });
