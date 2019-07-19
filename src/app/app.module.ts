@@ -45,6 +45,7 @@ import { MapComponent } from './page/map/map.component';
 import { QuickLinksComponent } from './page/quick-links/quick-links.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { AboutComponent } from './page/settings/about/about.component';
+import { AchievementsComponent } from './page/achievements/achievements.component';
 
 // Cards
 import { CardComponent } from './card/card.component';
@@ -99,7 +100,8 @@ import { NavmenuComponent } from './layout/navmenu/navmenu.component';
     NotifyCardComponent,
     RedirComponent,
     UpdateRoleComponent,
-    CardComponent
+    CardComponent,
+    AchievementsComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,6 +126,7 @@ import { NavmenuComponent } from './layout/navmenu/navmenu.component';
       { path: 'mess', component: MessComponent, data: { state: 'base' } },
       { path: 'map', component: MapComponent, data: { state: 'base' } },
       { path: 'map/:name', component: MapComponent, data: { state: 'base' } },
+      { path: 'achievements', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },
