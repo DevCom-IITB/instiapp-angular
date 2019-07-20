@@ -99,7 +99,7 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
     const resource = document.createElement('script');
     resource.async = false;
     const script = document.getElementsByTagName('script')[0];
-    resource.src = 'https://unpkg.com/otplib@^10.0.0/otplib-browser.js';
+    resource.src = '/assets/otplib-browser.min.js';
     script.parentNode.insertBefore(resource, script);
 
     const regen = () => {
