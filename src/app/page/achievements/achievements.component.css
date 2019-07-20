@@ -1,5 +1,7 @@
 .achievements {
-    margin: 10px;
+    margin: 0 auto;
+    max-width: 560px;
+    padding: 15px;
 }
 
 .main-title {
