@@ -109,7 +109,7 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
         this.totpQR = this.makeQR(newTotp);
       }
       this.totpTime = this.otplib.authenticator.timeUsed() * (10 / 3);
-    }
+    };
 
     resource.addEventListener('load', () => {
       this.otplib = window['otplib'];
