@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, HostListener, NgZone } from '@angular/core';
 import { DataService } from './data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Helpers } from './helpers';
@@ -35,6 +35,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private swUpdate: SwUpdate,
     private swPush: SwPush,
     private bottomSheet: MatBottomSheet,
+    public zone: NgZone,
   ) {
     /* Open flyout on screen type change */
     this.mobileQuery = window.matchMedia('(max-width: 960px)');
@@ -70,6 +71,9 @@ export class AppComponent implements OnDestroy, OnInit {
     if (sessid) {
       document.cookie = `sessionid=${sessid}; path=/`;
     }
+
+    /** Expose to the world */
+    window['angularAppComponentRef'] = this;
   }
 
   private toggleSidebar() {
@@ -181,6 +185,9 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Unsubscribe from listeners */
   ngOnDestroy(): void {
       this.mobileQuery.removeListener(this._mobileQueryListener);
+
+      /* Remove the context */
+      window['angularAppComponentRef'] = null;
   }
 
   /** Gets if the current router outlet state is `base` or `overlay` */
@@ -213,5 +220,12 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Open notifications sheet */
   openNotifications() {
     this.bottomSheet.open(NotifyCardComponent);
+  }
+
+  /** Navigate to a URL (exposed) */
+  extNavigateURL(url: string): void {
+    this.zone.run(() => {
+      this.router.navigateByUrl(url);
+    });
   }
 }

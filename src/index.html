@@ -116,5 +116,17 @@
   </app-root>
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+
+  <script>
+    function jumpToUrl(url) {
+      url = new URL(url);
+      if (!window.angularAppComponentRef || url.hostname !== window.location.hostname) {
+        window.location.href = url;
+        return true;
+      }
+      window.angularAppComponentRef.extNavigateURL(url.pathname + url.search)
+      return true;
+    }
+  </script>
 </body>
 </html>
