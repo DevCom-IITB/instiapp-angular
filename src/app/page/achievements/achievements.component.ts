@@ -19,6 +19,9 @@ export class AchievementsComponent implements OnInit {
   /** Body ID for verifying */
   public bodyId: string;
 
+  /** Message to show when empty */
+  public emptyMessage: string;
+
   constructor(
     public activatedRoute: ActivatedRoute,
     public dataService: DataService,
@@ -44,6 +47,9 @@ export class AchievementsComponent implements OnInit {
   public refreshUser(): void {
     this.dataService.FireGET<IAchievement[]>(API.Achievements).subscribe(result => {
       this.achievements = result;
+      if (result.length === 0) {
+        this.emptyMessage = 'No achievements yet\nLet\'s change that!';
+      }
     }, (e) => {
       this.error = e.status;
     });
@@ -53,6 +59,9 @@ export class AchievementsComponent implements OnInit {
   public refreshBody(bodyId: string): void {
     this.dataService.FireGET<IAchievement[]>(API.BodyAchievement, { id: bodyId }).subscribe(result => {
       this.achievements = result;
+      if (result.length === 0) {
+        this.emptyMessage = 'Nothing to verify here!';
+      }
     }, (e) => {
       this.error = e.status;
     });

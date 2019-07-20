@@ -15,7 +15,7 @@
             </app-body-card>
         </div>
 
-        <div class="rl-header sm main-title">
+        <div class="rl-header sm main-title" *ngIf="achievements.length > 0 && getVerifiableBodies().length > 0">
             {{ this.bodyId ? 'Verify' : 'Your Achievements' }}
         </div>
         <div *ngFor="let achievement of achievements">
@@ -23,6 +23,16 @@
                                      (del)="delete(achievement)"
                                      [user]="bodyId ? true : false">
             </app-achievement-request>
+        </div>
+
+        <div class="nothing-here" *ngIf="emptyMessage">
+            <div class="image">
+                <img src="assets/error/basketball-gray.png" />
+                <br/><br/>
+                <span style="white-space: pre">
+                    {{ emptyMessage }}
+                </span>
+            </div>
         </div>
     </div>
 

@@ -8,3 +8,21 @@
     margin: 10px 25px;
     margin-top: 15px;
 }
+
+.nothing-here {
+    color: gray;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 200;
+    line-height: 1.4em;
+}
+
+.nothing-here .image {
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.nothing-here img {
+    max-width: 45%;
+}
