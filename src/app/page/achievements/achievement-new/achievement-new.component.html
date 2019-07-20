@@ -1,0 +1,101 @@
+<app-xunk-spinner *ngIf="!achievement || showQR === -1"></app-xunk-spinner>
+
+<div class="main" *ngIf="showQR === 0 && achievement">
+    <div *ngIf="secret">
+        <div class="rl-header sm full-width-details main-title">
+            Claim QR
+        </div>
+        <button mat-raised-button color="warn" class="qrbtn" (click)="showQR=1" [disabled]="!this.otplib">
+            Dynamic QR
+        </button>
+        <button mat-raised-button color="primary" class="qrbtn" (click)="showQR=2">
+            Static QR
+        </button>
+    </div>
+
+    <div class="rl-header sm full-width-details main-title">
+        Verification Request
+    </div>
+
+    <div class="full-width-details field">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Title" #title [disabled]="offerId"
+                        [(ngModel)]="achievement.title" required>
+            <mat-hint align="end">{{ title.value.length }} / 50</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Description" [disabled]="offerId"
+                    [(ngModel)]="achievement.description" rows=4>
+            </textarea>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Admin Note"
+                    [(ngModel)]="achievement.admin_note" rows=4>
+            </textarea>
+        </mat-form-field>
+
+        <app-search-box exploreProp="events"
+                        placeholder="Event (optional)"
+                        hint="Search for an InstiApp event"
+                        (change)="setEvent($event)"
+                        *ngIf="!offerId">
+        </app-search-box>
+
+        <app-event-card *ngIf="achievement.event_detail"
+                       [event]="achievement.event_detail"
+                       [overrideClick]="true">
+        </app-event-card>
+
+        <app-search-box exploreProp="bodies"
+                        placeholder="Verifying Authority"
+                        hint="Enter an organisation's name"
+                        (change)="setBody($event)"
+                        *ngIf="!offerId">
+        </app-search-box>
+
+        <app-body-card *ngIf="achievement.body_detail"
+                       [body]="achievement.body_detail"
+                       [route]="[]">
+        </app-body-card>
+
+        <button mat-raised-button color="accent"
+                class="full-width go"
+                (click)="go()">
+                Request Verification
+        </button>
+    </div>
+</div>
+
+<div class="main" *ngIf="showQR === 1">
+    <img [src]="totpQR" class="qr" />
+
+    <mat-progress-spinner
+        diameter="40"
+        class="spinner"
+        color="primary"
+        [value]="totpTime">
+    </mat-progress-spinner>
+</div>
+
+<div class="main" *ngIf="showQR === 2">
+    <img [src]="secretQR" class="qr" />
+</div>
+
+<div class="anim" *ngIf="showQR === 3">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+        <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+        <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+    </svg>
+    <p class="success">{{ resultMessage }}</p>
+</div>
+
+<div class="anim" *ngIf="showQR === 4">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+        <circle class="path circle" fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+        <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+        <line class="path line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+    </svg>
+    <p class="error">That didn't work :(</p>
+</div>

@@ -18,6 +18,7 @@
       <div class="markdown">
         <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
       </div>
+      <ng-container *ngTemplateOutlet="achievements"></ng-container>
     </div>
 
     <div class="section">
@@ -102,9 +103,12 @@
     </div>
 
     <div class="event-body">
-      <div class="description markdown" *ngIf="desktopMode || dataService.isMobile()">
-        <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
-      </div>
+      <ng-container *ngIf="desktopMode || dataService.isMobile()">
+        <div class="description markdown">
+          <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
+        </div>
+        <ng-container *ngTemplateOutlet="achievements"></ng-container>
+      </ng-container>
 
       <!-- Bodies conducting the event -->
       <div class="bodies">
@@ -112,6 +116,19 @@
             *ngFor="let body of event.bodies"
             [body]="body">
         </app-body-card>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #achievements>
+  <div class="section" *ngIf="event.offered_achievements && event.offered_achievements.length > 0">
+    <div class="rl-header sm" *ngIf="!desktopMode">Achievements</div>
+    <div class="achievements">
+      <div mat-ripple *ngFor="let oa of event.offered_achievements"
+          [routerLink]="['/achievement-new', oa.id]" class="offer-card">
+        <app-card [title]="oa.title" [subtitle]="oa.description">
+        </app-card>
       </div>
     </div>
   </div>

@@ -11,6 +11,7 @@ export class BodyCardComponent implements OnInit {
 
   @Input() public body: IBody;
   @Input() public subtitle: string;
+  @Input() public route: string[];
 
   constructor(
     public dataService: DataService,
@@ -20,6 +21,11 @@ export class BodyCardComponent implements OnInit {
     /* Set fallback image explicitly */
     if (this.body && (!this.body.image_url || this.body.image_url === '')) {
       this.body.image_url = 'assets/lotus_placeholder.png';
+    }
+
+    /** Set router link */
+    if (!this.route) {
+      this.route = ['/org', this.body.str_id];
     }
   }
 

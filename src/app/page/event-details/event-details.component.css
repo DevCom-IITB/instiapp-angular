@@ -106,8 +106,23 @@ span.badge {
     transform: scale(0.001) translateZ(0);
 }
 
+.achievements {
+    padding: 5px;
+    max-width: calc(94% - 20px);
+}
+
+.offer-card {
+    cursor: pointer;
+}
+
 @media (min-width: 768px) {
     .follow-div {
         margin-top: -1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        margin-left: 10px;
     }
 }

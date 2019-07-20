@@ -1,0 +1,31 @@
+<mat-card class="mat-elevation-z0">
+  <mat-card-header>
+    <img mat-card-avatar [src]="getImage()">
+    <mat-card-title>{{ achievement.title }}</mat-card-title>
+    <mat-card-subtitle> {{ getSubtitle() }} </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p *ngIf="achievement.event_detail">For: <b>{{ achievement.event_detail.name }}</b></p>
+
+    <p *ngIf="achievement.description">{{ achievement.description }}</p>
+    <p *ngIf="achievement.admin_note">Admin note: {{ achievement.admin_note }}</p>
+
+    <p>Status: <span [style.color]="getStatus()[1]" class="status">{{ getStatus()[0] }}</span></p>
+
+    <ng-container *ngIf="user && canVerify()">
+      <button mat-raised-button color="primary" (click)="dismiss(true)">
+        {{ achievement.verified ? 'Unverify' : 'Verify' }}
+      </button>
+
+      <button mat-raised-button color="accent" (click)="dismiss(false)"
+              [disabled]="achievement.dismissed">
+        Dismiss
+      </button>
+
+      <button mat-button color="warn" (click)="delete()">
+        Delete
+      </button>
+    </ng-container>
+  </mat-card-content>
+</mat-card>
+<hr/>

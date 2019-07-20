@@ -45,6 +45,7 @@ import { MapComponent } from './page/map/map.component';
 import { QuickLinksComponent } from './page/quick-links/quick-links.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { AboutComponent } from './page/settings/about/about.component';
+import { AchievementsComponent } from './page/achievements/achievements.component';
 
 // Cards
 import { CardComponent } from './card/card.component';
@@ -66,6 +67,11 @@ import { LoginComponent } from './comp/login/login.component';
 import { EventSidebarDesktopComponent } from './layout/event-sidebar-desktop/event-sidebar-desktop.component';
 import { DesktopSplitComponent } from './layout/desktop-split/desktop-split.component';
 import { NavmenuComponent } from './layout/navmenu/navmenu.component';
+import { AchievementRequestComponent } from './page/achievements/achievement-request/achievement-request.component';
+import { AchievementNewComponent } from './page/achievements/achievement-new/achievement-new.component';
+import { SearchBoxComponent } from './comp/search-box/search-box.component';
+import { AchievementCardComponent } from './card/achievement-card/achievement-card.component';
+import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +105,13 @@ import { NavmenuComponent } from './layout/navmenu/navmenu.component';
     NotifyCardComponent,
     RedirComponent,
     UpdateRoleComponent,
-    CardComponent
+    CardComponent,
+    AchievementsComponent,
+    AchievementRequestComponent,
+    AchievementNewComponent,
+    SearchBoxComponent,
+    AchievementCardComponent,
+    AchievementOfferMakeComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,6 +136,10 @@ import { NavmenuComponent } from './layout/navmenu/navmenu.component';
       { path: 'mess', component: MessComponent, data: { state: 'base' } },
       { path: 'map', component: MapComponent, data: { state: 'base' } },
       { path: 'map/:name', component: MapComponent, data: { state: 'base' } },
+      { path: 'achievements', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'achievements/:body', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'achievement-new', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'achievement-new/:offer', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },

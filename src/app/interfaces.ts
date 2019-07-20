@@ -24,6 +24,7 @@ export interface IUserProfile {
     former_roles: IBodyRole[];
     hostel: string;
     institute_roles: IInstituteRole[];
+    achievements: IAchievement[];
 }
 
 export interface IEvent {
@@ -49,6 +50,7 @@ export interface IEvent {
     weight: number;
     notify: boolean;
     user_tags: number[];
+    offered_achievements: IOfferedAchievement[];
 }
 
 export interface ILocation {
@@ -168,4 +170,34 @@ export interface IInstituteRole {
     id: string;
     name: string;
     permissions: string[];
+}
+
+export interface IAchievement {
+    id: string;
+    title: string;
+    description: string;
+    admin_note: string;
+
+    dismissed: boolean;
+    verified: boolean;
+    verified_by: string;
+
+    user: IUserProfile;
+
+    body: string;
+    body_detail: IBody;
+
+    event: string;
+    event_detail: IEvent;
+}
+
+export interface IOfferedAchievement {
+    id: string;
+    title: string;
+    description: string;
+    event: string;
+    body: string;
+    priority: number;
+    secret: string;
+    stat: number;
 }

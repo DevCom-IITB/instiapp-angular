@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { IEvent, IBody, ILocation, IUserTagCategory, IUserTag } from '../../interfaces';
+import { IEvent, IBody, ILocation, IUserTagCategory, IUserTag, IOfferedAchievement } from '../../interfaces';
 import * as Fuse from 'fuse.js';
 import { Helpers } from '../../helpers';
 import { Observable } from 'rxjs';
@@ -40,6 +40,8 @@ export class AddEventComponent implements OnInit {
   public reach: number;
 
   public tagCategoryList: IUserTagCategory[];
+
+  public offeredAchievements = [] as IOfferedAchievement[];
 
   /* Fuse config */
   public fuse_options: Fuse.FuseOptions<ILocation> = {
@@ -146,6 +148,9 @@ export class AddEventComponent implements OnInit {
         this.initializeBodiesExisting();
         this.sortBodies();
         this.updateReach();
+
+        this.offeredAchievements = this.event.offered_achievements;
+        this.event.offered_achievements = null;
 
       }, () => {
         alert('Event not found!');
@@ -277,6 +282,10 @@ export class AddEventComponent implements OnInit {
       this.event.name && this.event.name.length > 0 && this.event.name.length <= 50,
       'Event name too long/short')) { return; }
 
+    /* Validate achievements */
+    if (this.assertValidation(this.offeredAchievements.every(o => this.isValidOffer(o)),
+      'You have some invalid achievements!')) { return; }
+
     /* Create observable for POST/PUT */
     let obs: Observable<IEvent>;
     if (!this.editing) {
@@ -292,8 +301,18 @@ export class AddEventComponent implements OnInit {
       /* Add one venue if not present */
       if (this.event.venue_names.length === 0) { this.AddVenue(); }
 
-      /* Quit */
-      this.close(result);
+      /* Update offers and quit */
+      if (this.offeredAchievements.length > 0) {
+        this.goOffers(result);
+      } else {
+        this.close(result);
+      }
+
+      /* Set editing to true */
+      this.event.id = result.id;
+      this.event.str_id = result.id;
+      this.eventId = result.id;
+      this.editing = true;
     }, (result) => {
       /* Construct error statement */
       let string_error = '';
@@ -429,4 +448,91 @@ export class AddEventComponent implements OnInit {
     return category.tags.some(tag => this.hasTag(tag));
   }
 
+  /** Add a new offered achievement */
+  addOffer(): void {
+    const offer = {
+      title: 'Untitled Achievement',
+      stat: 0,
+    } as IOfferedAchievement;
+    if (this.event.bodies_id.length > 0) {
+      offer.body = this.event.bodies_id[0];
+    }
+    this.offeredAchievements.push(offer);
+  }
+
+  /** Remove an offer */
+  removeOffer(offer: IOfferedAchievement): void {
+    const spl = () => {
+      const index = this.offeredAchievements.indexOf(offer);
+      this.offeredAchievements.splice(index, 1);
+    };
+
+    /* Check if the offer actually exists */
+    if (offer.id && offer.id !== '') {
+      if (confirm('Remove this achievement? This is irreversible!')) {
+        this.dataService.FireDELETE(API.AchievementOffer, { id: offer.id }).subscribe(() => {
+          spl();
+        }, error => {
+          this.snackBar.open(`Failed to delete achievement: ${error.message}`);
+        });
+      }
+    } else {
+      spl();
+    }
+  }
+
+  /** Create or update achievement offers and quit */
+  goOffers(result: IEvent): void {
+    this.event.offered_achievements = [];
+    for (const offer of this.offeredAchievements) {
+      /* Set ID from event */
+      offer.event = result.id;
+      offer.priority = this.offeredAchievements.indexOf(offer);
+
+      /* Get the observable */
+      let obs: Observable<IOfferedAchievement>;
+      if (offer.id && offer.id !== '') {
+        obs = this.dataService.FirePUT<IOfferedAchievement>(API.AchievementOffer, offer, { id: offer.id });
+      } else {
+        obs = this.dataService.FirePOST<IOfferedAchievement>(API.AchievementsOffer, offer);
+      }
+
+      /* Fire the call */
+      obs.subscribe(res => {
+        this.pushOffer(res);
+        res.stat = 1;
+        this.offeredAchievements[res.priority] = res;
+
+        if (this.event.offered_achievements.length === this.offeredAchievements.length) {
+          this.close(result);
+        }
+      }, () => {
+        this.snackBar.open(`Achievement ${offer.title} failed. The event was updated.`, 'Dismiss', { duration: 2000 });
+        offer.stat = 2;
+      });
+    }
+  }
+
+  /** Pushes offer into the event */
+  pushOffer(offer: IOfferedAchievement): void {
+    /* Push or replace */
+    const i = this.event.offered_achievements.map(o => o.id).indexOf(offer.id);
+    if (i !== -1) {
+      this.event.offered_achievements[i] = offer;
+    } else {
+      this.event.offered_achievements.push(offer);
+    }
+  }
+
+  /** Validates achievement offer */
+  isValidOffer(offer: IOfferedAchievement): boolean {
+    if (!offer.title || offer.title.length === 0 || offer.title.length > 50 ||
+        !offer.body || offer.body.length === 0) {
+      offer.stat = 2;
+      return false;
+    }
+
+    offer.stat = 0;
+    return true;
+  }
 }

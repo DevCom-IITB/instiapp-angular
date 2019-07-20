@@ -1,0 +1,10 @@
+<div class="sub-card"
+     *ngIf="achievement"
+     mat-ripple
+     [routerLink]="route">
+
+  <app-card [avatar]="avatar"
+            [title]="achievement.title"
+            [subtitle]="subtitle">
+  </app-card>
+</div>

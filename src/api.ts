@@ -41,5 +41,11 @@ export const API = {
     WebPushSubscribe: 'api/user-me/subscribe-wp',
 
     UserTags: 'api/user-tags',
-    UserTagsReach: 'api/user-tags/reach'
+    UserTagsReach: 'api/user-tags/reach',
+
+    Achievements: 'api/achievements',
+    Achievement: 'api/achievements/{id}',
+    BodyAchievement: 'api/achievements-body/{id}',
+    AchievementsOffer: 'api/achievements-offer',
+    AchievementOffer: 'api/achievements-offer/{id}',
 };

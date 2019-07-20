@@ -1,7 +1,7 @@
 <div class="sub-card"
      *ngIf="body"
      mat-ripple
-     [routerLink]="['/org', body.str_id]">
+     [routerLink]="route">
 
   <app-card [avatar]="dataService.getResized(body.image_url, 150)"
             [title]="body.name"
