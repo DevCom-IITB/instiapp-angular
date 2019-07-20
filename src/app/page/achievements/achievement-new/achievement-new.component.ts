@@ -102,16 +102,21 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
     resource.src = 'https://unpkg.com/otplib@^10.0.0/otplib-browser.js';
     script.parentNode.insertBefore(resource, script);
 
+    const regen = () => {
+      const newTotp = this.otplib.authenticator.generate(this.secret);
+      if (newTotp !== this.totp) {
+        this.totp = newTotp;
+        this.totpQR = this.makeQR(newTotp);
+      }
+      this.totpTime = this.otplib.authenticator.timeUsed() * (10 / 3);
+    }
+
     resource.addEventListener('load', () => {
       this.otplib = window['otplib'];
+      regen();
       this.totpInterval = setInterval(() => {
         if (this.showQR === 1) {
-          const newTotp = this.otplib.authenticator.generate(this.secret);
-          if (newTotp !== this.totp) {
-            this.totp = newTotp;
-            this.totpQR = this.makeQR(newTotp);
-          }
-          this.totpTime = this.otplib.authenticator.timeUsed() * (10 / 3);
+          regen();
         }
       }, 500);
     });
