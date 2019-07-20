@@ -127,7 +127,7 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
     const typeNumber = 11;
     const errorCorrectionLevel = 'H';
     const qr = QRCode(typeNumber, errorCorrectionLevel);
-    qr.addData(`${window.location.pathname}?s=${secret}`);
+    qr.addData(`${location.protocol}//${location.host}${location.pathname}?s=${secret}`);
     qr.make();
     return qr.createDataURL(20);
   }
