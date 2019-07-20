@@ -26,9 +26,13 @@
     margin-left: 30px;
 }
 
+.qrbox {
+  text-align: center;
+}
+
 .qr {
     max-height: 80vh;
-    max-width: 80vw
+    max-width: 80vw;
 }
 
 .spinner {

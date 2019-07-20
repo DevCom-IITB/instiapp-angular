@@ -68,7 +68,7 @@
     </div>
 </div>
 
-<div class="main" *ngIf="showQR === 1">
+<div class="main qrbox" *ngIf="showQR === 1">
     <img [src]="totpQR" class="qr" />
 
     <mat-progress-spinner
@@ -79,7 +79,7 @@
     </mat-progress-spinner>
 </div>
 
-<div class="main" *ngIf="showQR === 2">
+<div class="main qrbox" *ngIf="showQR === 2">
     <img [src]="secretQR" class="qr" />
 </div>
 

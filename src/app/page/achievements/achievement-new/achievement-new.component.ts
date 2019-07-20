@@ -14,7 +14,7 @@ import * as QRCode from 'qrcode-generator';
 export class AchievementNewComponent implements OnInit, OnDestroy {
 
   /** Main object to edit */
-  achievement = {} as IAchievement;
+  achievement: IAchievement;
 
   /** Secret */
   secret: string;
@@ -54,6 +54,7 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
 
       /* Check if we have offer ID */
       if (!(this.offerId && this.offerId !== '')) {
+        this.achievement = {} as IAchievement;
         return;
       }
 
@@ -79,10 +80,12 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
   /** Load the offer */
   loadOffer(): void {
     this.dataService.FireGET<IOfferedAchievement>(API.AchievementOffer, { id: this.offerId }).subscribe(r => {
-      this.achievement.body = r.body;
-      this.achievement.event = r.event;
-      this.achievement.title = r.title;
-      this.achievement.description = r.description;
+      this.achievement = {
+        body: r.body,
+        event: r.event,
+        title: r.title,
+        description: r.description
+      } as IAchievement;
 
       /* Check if we have the secret */
       if (r.secret && r.secret !== '') {
