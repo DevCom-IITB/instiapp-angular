@@ -22,6 +22,7 @@ export class UpdateRoleComponent implements OnInit {
     {name: 'Delete Event', code: 'DelE'},
     {name: 'Update Body', code: 'UpdB'},
     {name: 'Modify Roles', code: 'Role'},
+    {name: 'Verify Achievements', code: 'VerA'},
   ];
 
   constructor(
