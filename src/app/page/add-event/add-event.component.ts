@@ -451,7 +451,6 @@ export class AddEventComponent implements OnInit {
   /** Add a new offered achievement */
   addOffer(): void {
     const offer = {
-      title: 'Untitled Achievement',
       stat: 0,
     } as IOfferedAchievement;
     if (this.event.bodies_id.length > 0) {
