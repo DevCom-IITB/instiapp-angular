@@ -22,8 +22,9 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
   /** ID of offer if present */
   offerId: string;
 
-  /** Show the QR code = 1 static = 2 */
+  /** Show the QR code = 1 static = 2 result = 3*/
   showQR = 0;
+  resultMessage = '';
 
   /** Otplib */
   otplib: any;
@@ -50,46 +51,22 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.offerId = params['offer'];
-      if (this.offerId && this.offerId !== '') {
-        this.dataService.FireGET<IOfferedAchievement>(API.AchievementOffer, { id: this.offerId }).subscribe(r => {
-          this.achievement.body = r.body;
-          this.achievement.event = r.event;
-          this.achievement.title = r.title;
-          this.achievement.description = r.description;
 
-          /* Check if we have the secret */
-          if (r.secret && r.secret !== '') {
-            this.secret = r.secret;
-            this.secretQR = this.makeQR(r.secret);
-
-            /* Load OTP library */
-            const resource = document.createElement('script');
-            resource.async = false;
-            const script = document.getElementsByTagName('script')[0];
-            resource.src = 'https://unpkg.com/otplib@^10.0.0/otplib-browser.js';
-            script.parentNode.insertBefore(resource, script);
-
-            resource.addEventListener('load', () => {
-              this.otplib = window['otplib'];
-              this.totpInterval = setInterval(() => {
-                if (this.showQR === 1) {
-                  const newTotp = this.otplib.authenticator.generate(r.secret);
-                  if (newTotp !== this.totp) {
-                    this.totp = newTotp;
-                    this.totpQR = this.makeQR(newTotp);
-                  }
-                  this.totpTime = this.otplib.authenticator.timeUsed() * (10 / 3);
-                }
-              }, 500);
-
-              /* this.dataService.FirePOST(API.AchievementOffer, {
-                secret:  }, {id: this.offerId}).subscribe((res: any) => {
-                  this.snackBar.open(res.message, 'Dismiss', { duration: 2000 });
-                }); */
-            });
-          }
-        });
+      /* Check if we have offer ID */
+      if (!(this.offerId && this.offerId !== '')) {
+        return;
       }
+
+      /* Check for secret */
+      this.activatedRoute.queryParams.subscribe(qparams => {
+        const secret = qparams['s'];
+        if (!secret || secret === '') {
+          this.loadOffer();
+        } else {
+          this.showQR = -1;
+          this.trySecret(secret);
+        }
+      });
     });
   }
 
@@ -97,6 +74,47 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
     if (this.totpInterval) {
       clearInterval(this.totpInterval);
     }
+  }
+
+  /** Load the offer */
+  loadOffer(): void {
+    this.dataService.FireGET<IOfferedAchievement>(API.AchievementOffer, { id: this.offerId }).subscribe(r => {
+      this.achievement.body = r.body;
+      this.achievement.event = r.event;
+      this.achievement.title = r.title;
+      this.achievement.description = r.description;
+
+      /* Check if we have the secret */
+      if (r.secret && r.secret !== '') {
+        this.secret = r.secret;
+        this.secretQR = this.makeQR(r.secret);
+        this.loadSecret();
+      }
+    });
+  }
+
+  /** Load and setup secret stuff ;) */
+  loadSecret() {
+    /* Load OTP library */
+    const resource = document.createElement('script');
+    resource.async = false;
+    const script = document.getElementsByTagName('script')[0];
+    resource.src = 'https://unpkg.com/otplib@^10.0.0/otplib-browser.js';
+    script.parentNode.insertBefore(resource, script);
+
+    resource.addEventListener('load', () => {
+      this.otplib = window['otplib'];
+      this.totpInterval = setInterval(() => {
+        if (this.showQR === 1) {
+          const newTotp = this.otplib.authenticator.generate(this.secret);
+          if (newTotp !== this.totp) {
+            this.totp = newTotp;
+            this.totpQR = this.makeQR(newTotp);
+          }
+          this.totpTime = this.otplib.authenticator.timeUsed() * (10 / 3);
+        }
+      }, 500);
+    });
   }
 
   /** Make QR code from data */
@@ -107,6 +125,19 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
     qr.addData(data);
     qr.make();
     return qr.createDataURL(20);
+  }
+
+  /** Tries to use the secret to get an achievement */
+  trySecret(secret: string) {
+    this.dataService.FirePOST(API.AchievementOffer, {
+      secret: secret
+    }, { id: this.offerId }).subscribe((res: any) => {
+      this.showQR = 3;
+      this.resultMessage = res.message;
+    }, err => {
+      this.showQR = 4;
+      this.resultMessage = err.message;
+    });
   }
 
   /** Set body from an autocomplete event */
