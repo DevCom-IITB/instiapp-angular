@@ -1,4 +1,16 @@
-<div class="main">
+<div class="main" *ngIf="showQR === 0">
+    <div *ngIf="secret">
+        <div class="rl-header sm full-width-details main-title">
+            Claim QR
+        </div>
+        <button mat-raised-button color="warn" class="qrbtn" (click)="showQR=1" [disabled]="!this.otplib">
+            Dynamic QR
+        </button>
+        <button mat-raised-button color="primary" class="qrbtn" (click)="showQR=2">
+            Static QR
+        </button>
+    </div>
+
     <div class="rl-header sm full-width-details main-title">
         Verification Request
     </div>
@@ -52,4 +64,19 @@
                 Request Verification
         </button>
     </div>
+</div>
+
+<div class="main" *ngIf="showQR === 1">
+    <img [src]="totpQR" class="qr" />
+
+    <mat-progress-spinner
+        diameter="40"
+        class="spinner"
+        color="primary"
+        [value]="totpTime">
+    </mat-progress-spinner>
+</div>
+
+<div class="main" *ngIf="showQR === 2">
+    <img [src]="secretQR" class="qr" />
 </div>

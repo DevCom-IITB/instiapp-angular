@@ -20,3 +20,18 @@
 .go {
     margin-top: 10px;
 }
+
+.qrbtn {
+    margin: 10px 0;
+    margin-left: 30px;
+}
+
+.qr {
+    max-height: 80vh;
+    max-width: 80vw
+}
+
+.spinner {
+    position: fixed;
+    right: 15px; bottom: 15px;
+}

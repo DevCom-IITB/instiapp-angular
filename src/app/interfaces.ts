@@ -198,5 +198,6 @@ export interface IOfferedAchievement {
     event: string;
     body: string;
     priority: number;
+    secret: string;
     stat: number;
 }
