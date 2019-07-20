@@ -142,9 +142,11 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
     }, { id: this.offerId }).subscribe((res: any) => {
       this.showQR = 3;
       this.resultMessage = res.message;
+      this.achievement = {} as IAchievement;
     }, err => {
       this.showQR = 4;
       this.resultMessage = err.message;
+      this.achievement = {} as IAchievement;
     });
   }
 
