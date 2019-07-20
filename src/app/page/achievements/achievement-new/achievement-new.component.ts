@@ -181,6 +181,10 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
 
   /** Fire the request */
   go(): void {
+    if (!confirm('Proceed with requesting verification?')) {
+      return;
+    }
+
     this.dataService.FirePOST<IAchievement>(API.Achievements, this.achievement).subscribe(() => {
       this.snackBar.open('Your request has been recorded', 'Dismiss', { duration: 2000 });
       this.achievement = {} as IAchievement;
