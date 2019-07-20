@@ -63,6 +63,12 @@ export class DataService {
   /** True when the user is/has just scrolled down */
   private _scrollingDown = false;
 
+  /** Achievement offer types cache */
+  private achievementOfferTypes: {
+    name: string,
+    code: string
+  }[];
+
   constructor(
     private http: HttpClient,
     public router: Router,
@@ -465,5 +471,21 @@ export class DataService {
   /** Get the URL of a body from str_id */
   getBodyUrl(body: IBody): string {
     return window.location.origin + '/org/' + body.str_id;
+  }
+
+  /** Get (and cache) list of types of achievement offers */
+  getAchievementOfferTypes(): Observable<any[]> {
+    return new Observable(observer => {
+      if (this.achievementOfferTypes) {
+        observer.next(this.achievementOfferTypes);
+        observer.complete();
+      } else {
+        this.FireGET('/assets/achievements/list.json').subscribe((res: any) => {
+          this.achievementOfferTypes = res.types;
+          observer.next(this.achievementOfferTypes);
+          observer.complete();
+        }, (error) => observer.error(error));
+      }
+    });
   }
 }

@@ -452,6 +452,7 @@ export class AddEventComponent implements OnInit {
   addOffer(): void {
     const offer = {
       stat: 0,
+      generic: 'generic',
     } as IOfferedAchievement;
     if (this.event.bodies_id.length > 0) {
       offer.body = this.event.bodies_id[0];

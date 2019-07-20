@@ -20,4 +20,13 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-select [(ngModel)]="offer.generic" placeholder="Type" required>
+      <mat-option *ngFor="let type of offerTypes"
+                  [value]="type.code">
+        {{ type.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </ng-container>
