@@ -64,10 +64,7 @@ export class AchievementRequestComponent implements OnInit {
 
   /** Check if user can verify this achievement */
   public canVerify(): boolean {
-    return this.dataService.getCurrentUser().roles.filter(
-      r => r.body === this.achievement.body_detail.id).map(
-        r => r.permissions).some(
-          p => p.indexOf('VerA') !== -1);
+    return this.dataService.HasBodyPermission(this.achievement.body, 'VerA');
   }
 
   /** Verify, dismiss or un-verify an achievement */
