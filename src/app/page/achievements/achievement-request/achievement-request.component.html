@@ -12,6 +12,13 @@
 
     <p>Status: <span [style.color]="getStatus()[1]" class="status">{{ getStatus()[0] }}</span></p>
 
+    <mat-slide-toggle mat-list-item
+      [checked]='achievement.hidden'
+      (change)="toggleHidden($event)"
+      *ngIf="!user">
+        Hidden
+    </mat-slide-toggle>
+
     <ng-container *ngIf="user && canVerify()">
       <button mat-raised-button color="primary" (click)="dismiss(true)">
         {{ achievement.verified ? 'Unverify' : 'Verify' }}

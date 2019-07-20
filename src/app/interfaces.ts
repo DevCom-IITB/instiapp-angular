@@ -178,6 +178,7 @@ export interface IAchievement {
     description: string;
     admin_note: string;
 
+    hidden: boolean;
     dismissed: boolean;
     verified: boolean;
     verified_by: string;

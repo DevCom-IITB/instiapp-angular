@@ -3,6 +3,7 @@ import { IAchievement } from '../../../interfaces';
 import { DataService } from '../../../data.service';
 import { API } from '../../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-achievement-request',
@@ -83,6 +84,22 @@ export class AchievementRequestComponent implements OnInit {
       this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
         duration: 2000,
       });
+    });
+  }
+
+  /** Toggle hidden with PATCH */
+  public toggleHidden(e: MatSlideToggleChange) {
+    e.source.setDisabledState(true);
+    this.dataService.FirePATCH(API.Achievement, {
+      hidden: e.checked
+    }, { id: this.achievement.id }).subscribe(() => {
+      e.source.setDisabledState(false);
+    }, () => {
+      this.snackBar.open('Updating preference failed!', 'Dismiss', {
+        duration: 2000,
+      });
+      e.source.checked = this.achievement.hidden;
+      e.source.setDisabledState(false);
     });
   }
 }
