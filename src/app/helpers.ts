@@ -199,4 +199,18 @@ export module Helpers {
     export function getPassable(str: string): string {
         return str.toLowerCase().replace(' ', '-').replace(/^A-Za-z0-9\\-/, '');
     }
+
+    /** Creates and downloads a file synchronously */
+    export function downloadFile(filename: string, text: string, mime = 'text/plain') {
+        const element = document.createElement('a');
+        element.setAttribute('href', `data:${mime};charset=utf-8,${encodeURIComponent(text)}`);
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+      }
 }

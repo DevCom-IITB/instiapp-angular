@@ -5,13 +5,28 @@
         <div class="rl-header sm full-width-details main-title">
             Claim QR
         </div>
-        <button mat-raised-button color="warn" class="qrbtn" (click)="showQR=1" [disabled]="!this.otplib">
-            Dynamic QR
-        </button>
-        <button mat-raised-button color="primary" class="qrbtn" (click)="showQR=2">
-            Static QR
-        </button>
+
+        <div class="secret-buttons">
+            <button mat-raised-button color="warn" class="qrbtn" (click)="showQR=1" [disabled]="!this.otplib">
+                Dynamic QR
+            </button>
+            <button mat-raised-button color="primary" class="qrbtn" (click)="showQR=2">
+                Static QR
+            </button>
+            <button mat-raised-button color="primary" class="qrbtn" (click)="csv()">
+                Download CSV
+            </button>
+        </div>
     </div>
+
+    <ng-container *ngIf="users && users.length > 0">
+        <div class="rl-header sm full-width-details main-title">
+            Unlocked by
+        </div>
+        <div class="users">
+            <app-user-card [profile]="user" *ngFor="let user of users"></app-user-card>
+        </div>
+    </ng-container>
 
     <div class="rl-header sm full-width-details main-title">
         Verification Request

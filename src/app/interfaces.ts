@@ -201,5 +201,6 @@ export interface IOfferedAchievement {
     priority: number;
     secret: string;
     generic: string;
+    users: IUserProfile[];
     stat: number;
 }

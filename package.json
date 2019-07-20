@@ -34,6 +34,7 @@
     "fuse.js": "^3.4.5",
     "hammerjs": "^2.0.8",
     "instimapweb": "^1.0.9",
+    "json2csv": "^4.5.2",
     "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
     "ngx-flyout": "^1.0.0",

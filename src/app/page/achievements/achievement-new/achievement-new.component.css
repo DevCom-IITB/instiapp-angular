@@ -22,8 +22,12 @@
 }
 
 .qrbtn {
-    margin: 10px 0;
-    margin-left: 30px;
+    margin: 3px 0;
+    margin-left: 15px;
+}
+
+.secret-buttons {
+  margin: 3px 15px;
 }
 
 .qrbox {
@@ -38,6 +42,11 @@
 .spinner {
     position: fixed;
     right: 15px; bottom: 15px;
+}
+
+.users {
+  max-width: 560px;
+  margin: 0 auto;
 }
 
 

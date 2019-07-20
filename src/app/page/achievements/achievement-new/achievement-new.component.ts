@@ -1,9 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../data.service';
-import { IAchievement, IBody, IEvent, IOfferedAchievement } from '../../../interfaces';
+import { IAchievement, IBody, IEvent, IOfferedAchievement, IUserProfile } from '../../../interfaces';
 import { API } from '../../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Helpers } from '../../../helpers';
+import { Parser } from 'json2csv';
+import * as moment from 'moment';
 import * as QRCode from 'qrcode-generator';
 
 @Component({
@@ -15,6 +18,9 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
 
   /** Main object to edit */
   achievement: IAchievement;
+
+  /** Users from offer */
+  users: IUserProfile[];
 
   /** Secret */
   secret: string;
@@ -86,6 +92,9 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
         title: r.title,
         description: r.description
       } as IAchievement;
+
+      /* Get the users */
+      this.users = r.users;
 
       /* Check if we have the secret */
       if (r.secret && r.secret !== '') {
@@ -179,5 +188,14 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
     }, err => {
       this.snackBar.open(`There was an error: ${err.message}`, 'Dismiss');
     });
+  }
+
+  /** Make and download CSV data */
+  csv(): void {
+    const parser = new Parser();
+    const csv = parser.parse(this.users);
+    const timeStr = moment(new Date()).format('YYYYMMDD_hhmm');
+    const filename = `${this.achievement.title.replace(' ', '')}_${timeStr}.csv`;
+    Helpers.downloadFile(filename, csv, 'text/csv');
   }
 }
