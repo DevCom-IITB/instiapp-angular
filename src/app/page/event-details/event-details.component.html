@@ -112,7 +112,10 @@
 
       <!-- Bodies conducting the event -->
       <div class="bodies">
-          <app-body-card
+        <ng-container *ngIf="desktopMode">
+          <ng-container *ngTemplateOutlet="achievements"></ng-container>
+        </ng-container>
+        <app-body-card
             *ngFor="let body of event.bodies"
             [body]="body">
         </app-body-card>
@@ -122,14 +125,10 @@
 </ng-template>
 
 <ng-template #achievements>
-  <div class="section" *ngIf="event.offered_achievements && event.offered_achievements.length > 0">
-    <div class="rl-header sm" *ngIf="!desktopMode">Achievements</div>
-    <div class="achievements">
-      <div mat-ripple *ngFor="let oa of event.offered_achievements"
-          [routerLink]="['/achievement-new', oa.id]" class="offer-card">
-        <app-card [title]="oa.title" [subtitle]="oa.description">
-        </app-card>
-      </div>
-    </div>
+  <div mat-ripple *ngFor="let oa of event.offered_achievements"
+    [routerLink]="['/achievement-new', oa.id]" class="">
+    <app-card [title]="oa.title" [subtitle]="oa.description"
+              [avatar]="'/assets/achievements/' + oa.generic + '.svg'">
+    </app-card>
   </div>
 </ng-template>

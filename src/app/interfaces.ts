@@ -199,5 +199,6 @@ export interface IOfferedAchievement {
     body: string;
     priority: number;
     secret: string;
+    generic: string;
     stat: number;
 }
