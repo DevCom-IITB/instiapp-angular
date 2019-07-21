@@ -90,7 +90,8 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
         body: r.body,
         event: r.event,
         title: r.title,
-        description: r.description
+        description: r.description,
+        offer: r.id
       } as IAchievement;
 
       /* Get the users */

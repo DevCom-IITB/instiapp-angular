@@ -190,6 +190,8 @@ export interface IAchievement {
 
     event: string;
     event_detail: IEvent;
+
+    offer: string;
 }
 
 export interface IOfferedAchievement {
