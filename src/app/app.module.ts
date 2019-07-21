@@ -72,6 +72,7 @@ import { AchievementNewComponent } from './page/achievements/achievement-new/ach
 import { SearchBoxComponent } from './comp/search-box/search-box.component';
 import { AchievementCardComponent } from './card/achievement-card/achievement-card.component';
 import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
+import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { AchievementOfferMakeComponent } from './page/achievements/achievement-o
     SearchBoxComponent,
     AchievementCardComponent,
     AchievementOfferMakeComponent,
+    QrScanComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,12 +136,16 @@ import { AchievementOfferMakeComponent } from './page/achievements/achievement-o
       { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
       { path: 'explore', component: ExploreComponent, data: { state: 'base' } },
       { path: 'mess', component: MessComponent, data: { state: 'base' } },
+
       { path: 'map', component: MapComponent, data: { state: 'base' } },
       { path: 'map/:name', component: MapComponent, data: { state: 'base' } },
+
       { path: 'achievements', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'achievements/:body', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'achievement-new', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'achievement-new/:offer', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      { path: 'qr-scan', component: QrScanComponent, data: { state: 'base' } },
+
       { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
       { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },

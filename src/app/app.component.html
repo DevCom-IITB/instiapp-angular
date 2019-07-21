@@ -30,6 +30,12 @@
     </button>
 
     <button mat-icon-button
+            *ngIf="dataService.showQRButton"
+            [routerLink]="['/qr-scan']">
+            <img src="/assets/qrcode.svg" />
+    </button>
+
+    <button mat-icon-button
             (click)="openNotifications()"
             *ngIf="dataService.isLoggedIn() && dataService.notifications">
         <mat-icon *ngIf="dataService.getUnreadNotifications().length > 0"

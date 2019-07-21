@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IAchievement, IBody } from '../../interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
+import QrScanner from 'qr-scanner';
 
 @Component({
   selector: 'app-achievements',
   templateUrl: './achievements.component.html',
   styleUrls: ['./achievements.component.css']
 })
-export class AchievementsComponent implements OnInit {
+export class AchievementsComponent implements OnInit, OnDestroy {
   /** Main achievements array */
   public achievements: IAchievement[];
 
@@ -31,6 +32,11 @@ export class AchievementsComponent implements OnInit {
     /* Set title */
     this.dataService.setTitle('Achievements');
 
+    /* Make the QR button visible if we have camera */
+    QrScanner.hasCamera().then(has => {
+      this.dataService.showQRButton = has;
+    });
+
     /* Check if we are verifying */
     this.activatedRoute.params.subscribe((params: Params) => {
       this.bodyId = params['body'];
@@ -41,6 +47,10 @@ export class AchievementsComponent implements OnInit {
         this.refreshBody(this.bodyId);
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.dataService.showQRButton = false;
   }
 
   /** Get achievements for user */

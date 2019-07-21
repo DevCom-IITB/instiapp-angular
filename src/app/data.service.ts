@@ -69,6 +69,9 @@ export class DataService {
     code: string
   }[];
 
+  /** Show or hide QR code button */
+  public showQRButton = false;
+
   constructor(
     private http: HttpClient,
     public router: Router,
