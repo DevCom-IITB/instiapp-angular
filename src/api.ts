@@ -33,7 +33,7 @@ export const API = {
 
     Mess: 'api/mess',
 
-    Search: 'api/search{?query}',
+    Search: 'api/search{?query,types}',
 
     Notifications: 'api/notifications',
     NotificationRead: 'api/notifications/read/{id}',

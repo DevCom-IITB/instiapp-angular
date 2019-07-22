@@ -44,7 +44,7 @@ export class SearchBoxComponent implements OnInit {
         observer.next([]);
         observer.complete();
       } else {
-        this.dataService.FireGET<any>(API.Search, { query: query }).subscribe(result => {
+        this.dataService.FireGET<any>(API.Search, { query: query, types: this.exploreProp }).subscribe(result => {
             observer.next(result[this.exploreProp]);
             observer.complete();
         }, (error) => observer.error(error));
