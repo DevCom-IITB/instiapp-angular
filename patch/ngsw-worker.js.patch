@@ -1,6 +1,6 @@
---- ngsw-worker.js.orig	1985-10-26 13:45:00.000000000 +0530
-+++ ngsw-worker.js	2019-02-26 19:11:54.542765000 +0530
-@@ -2023,6 +2023,30 @@
+--- ngsw-worker.js.orig	2019-07-24 20:37:33.000000000 +0900
++++ ngsw-worker.js	2019-07-24 20:38:04.000000000 +0900
+@@ -2041,6 +2041,30 @@
              return __awaiter$5(this, void 0, void 0, function* () {
                  notification.close();
                  const options = {};
