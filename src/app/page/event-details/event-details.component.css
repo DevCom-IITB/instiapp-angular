@@ -111,6 +111,11 @@ span.badge {
     max-width: calc(94% - 20px);
 }
 
+.achievement {
+    cursor: pointer;
+    outline: none;
+}
+
 .offer-card {
     cursor: pointer;
 }

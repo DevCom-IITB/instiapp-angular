@@ -126,7 +126,7 @@
 
 <ng-template #achievements>
   <div mat-ripple *ngFor="let oa of event.offered_achievements"
-    [routerLink]="['/achievement-new', oa.id]" class="">
+    [routerLink]="['/achievement-new', oa.id]" class="achievement">
     <app-card [title]="oa.title" [subtitle]="oa.description"
               [avatar]="'/assets/achievements/' + oa.generic + '.png'">
     </app-card>
