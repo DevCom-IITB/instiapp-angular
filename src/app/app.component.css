@@ -74,7 +74,3 @@ h1.app-name {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-.sidenav-container {
-    height: 100%;
-}

@@ -15,7 +15,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -45,7 +44,6 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatBottomSheetModule,
         MatExpansionModule,
         MatBadgeModule,
-        MatSidenavModule,
         MatProgressSpinnerModule,
     ],
     exports: [
@@ -69,7 +67,6 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatBottomSheetModule,
         MatExpansionModule,
         MatBadgeModule,
-        MatSidenavModule,
         MatProgressSpinnerModule,
     ],
 })
