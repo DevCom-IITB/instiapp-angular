@@ -19,7 +19,7 @@ import 'hammerjs';
 import { ImgFallbackModule } from 'ngx-img-fallback';
 import { MarkdownModule } from 'ngx-markdown';
 import { ShareButtonModule } from '@ngx-share/button';
-import { FlyoutModule } from 'ngx-flyout';
+import { FlyoutModule } from 'ngx-flyout-ivy';
 
 // Extra modules
 import { CustomReuseStrategy } from './routing';
