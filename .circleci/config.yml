@@ -32,15 +32,16 @@ jobs:
       - run: npm install
       - run: npm prune
 
+      # Deploy
+      - run:
+          name: Build
+          command: npm run build
+
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # Deploy
-      - run:
-          name: Build
-          command: npm run build
       - run:
           name: Deploy
           command: chmod 777 deploy.sh && ./deploy.sh
