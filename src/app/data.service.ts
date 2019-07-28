@@ -337,7 +337,7 @@ export class DataService {
     for (const role of this._currentUser.roles) {
       if ((role.permissions.includes(permission))) {
         for (const body of role.bodies) {
-          if (!bodies.map(m => m.id).includes(role.body)) {
+          if (!bodies.map(m => m.id).includes(body.id)) {
             bodies.push(body);
           }
         }
