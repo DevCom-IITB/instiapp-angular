@@ -5,13 +5,25 @@
     [event]="selectedEvent">
 
     <div class="full-container">
-        <app-xunk-calendar [selectedDate]="selDate"
+        <div class="monthname">{{ xcalendar.monthNames[xcalendar.openPage.month] }}</div>
+        <div class="xunk-calendar-head">
+            <button mat-icon-button (click)="xcalendar.changeMonth(1)" class="month-button">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+            <button mat-icon-button (click)="xcalendar.changeMonth(-1)" class="month-button">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+
+        <xunk-calendar #xcalendar
+                    [showHeader]="false"
+                    [selectedDate]="selDate"
                     (change)="dateChanged($event)"
                     (monthChange)="monthChanged($event)"
                     [heatmap]="getHeatMap()"
                     heatMapColor="rgb(255, 235, 59)"
                     primaryColor="#536dfe">
-        </app-xunk-calendar>
+        </xunk-calendar>
 
         <mat-chip-list class="mat-chip-list-stacked">
             <mat-chip color="accent" selected="true" id="head-chip">

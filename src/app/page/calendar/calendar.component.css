@@ -4,6 +4,21 @@
     background-color: white;
 }
 
+.xunk-calendar-head {
+    width: 100%;             /* fill all space */
+}
+
+.monthname {
+    font-size: 2.4em;
+    font-weight: 300;
+    margin-left: 25px;
+}
+
+.month-button {
+    float: right;
+    margin-left: 5px;
+}
+
 #head-chip {
     width: 180px;
     margin-top: 10px;

@@ -22,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { XunkCalendarModule } from 'xunk-calendar';
+
 @NgModule({
     imports: [
         ReactiveFormsModule,
@@ -45,6 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatExpansionModule,
         MatBadgeModule,
         MatProgressSpinnerModule,
+        XunkCalendarModule,
     ],
     exports: [
         ReactiveFormsModule,
@@ -68,6 +71,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatExpansionModule,
         MatBadgeModule,
         MatProgressSpinnerModule,
+        XunkCalendarModule,
     ],
 })
 export class MyMaterialClass { }

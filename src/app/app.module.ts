@@ -58,7 +58,6 @@ import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 import { MyShareButtonsComponent } from './comp/my-share-buttons/my-share-buttons.component';
 import { ListLoadingComponent } from './comp/list-loading/list-loading.component';
 import { XunkSpinnerComponent } from './comp/xunk-spinner/xunk-spinner.component';
-import { XunkCalendarComponent } from './comp/xunk-calendar/xunk-calendar.component';
 import { RedirComponent } from './comp/redir/redir.component';
 import { UpdateRoleComponent } from './comp/update-role/update-role.component';
 import { LoginComponent } from './comp/login/login.component';
@@ -101,7 +100,6 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     QuickLinksComponent,
     SettingsComponent,
     AboutComponent,
-    XunkCalendarComponent,
     DesktopSplitComponent,
     NotifyCardComponent,
     RedirComponent,
