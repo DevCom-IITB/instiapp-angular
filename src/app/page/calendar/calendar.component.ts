@@ -5,7 +5,7 @@ import { IEvent, IEnumContainer } from '../../interfaces';
 import { Helpers } from '../../helpers';
 import { API } from '../../../api';
 import { Observable } from 'rxjs';
-import { XunkCalendarComponent } from '../../comp/xunk-calendar/xunk-calendar.component';
+import { XunkCalendarModule} from 'xunk-calendar';
 
 interface XDate {
   date: number;
@@ -35,7 +35,7 @@ export class CalendarComponent implements OnInit {
     this.dataService.setTitle('Calendar');
 
     /* Initialize selected date */
-    this.selDate = XunkCalendarComponent.getToday();
+    this.selDate = XunkCalendarModule.getToday();
 
     /* Get dates for filtering (3 months) */
     this.fetchEventsForMonth(this.selDate).subscribe(result => {
