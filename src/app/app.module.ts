@@ -18,7 +18,6 @@ import { environment } from '../environments/environment';
 import 'hammerjs';
 import { ImgFallbackModule } from 'ngx-img-fallback';
 import { MarkdownModule } from 'ngx-markdown';
-import { ShareButtonModule } from '@ngx-share/button';
 import { FlyoutModule } from 'ngx-flyout-ivy';
 
 // Extra modules
@@ -55,7 +54,6 @@ import { UserCardComponent } from './card/user-card/user-card.component';
 import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 
 // Components
-import { MyShareButtonsComponent } from './comp/my-share-buttons/my-share-buttons.component';
 import { ListLoadingComponent } from './comp/list-loading/list-loading.component';
 import { XunkSpinnerComponent } from './comp/xunk-spinner/xunk-spinner.component';
 import { RedirComponent } from './comp/redir/redir.component';
@@ -87,7 +85,6 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     BodyCardComponent,
     BodyDetailsComponent,
     UserCardComponent,
-    MyShareButtonsComponent,
     UpdateBodyComponent,
     BlogComponent,
     EventSidebarDesktopComponent,
@@ -124,8 +121,6 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     ImgFallbackModule,
     MarkdownModule.forRoot(),
     FlyoutModule,
-
-    ShareButtonModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'feed', pathMatch: 'full' },

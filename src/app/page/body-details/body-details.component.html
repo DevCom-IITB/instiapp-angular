@@ -23,7 +23,7 @@
             [href]="body.website_url"
             target="_blank"
             rel="noopener">
-            <i class="fas fa-globe fa-lg"></i>
+            <mat-icon>public</mat-icon>
           </a>
           <button mat-icon-button
                   class="icon-button"
@@ -46,10 +46,6 @@
             FOLLOW <span class="badge">{{ body.followers_count }}</span>
           </button>
         </div>
-      </div>
-
-      <div class="share-div" *ngIf="shareShowing">
-          <app-my-share-buttons></app-my-share-buttons>
       </div>
     </div>
 

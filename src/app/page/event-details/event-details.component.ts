@@ -19,7 +19,6 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   @Output() public load = new EventEmitter<boolean>();
 
   public event: IEvent;
-  public shareShowing = false;
   public error: number;
   @Input() public desktopMode = false;
 
@@ -102,10 +101,9 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.navigateBack();
   }
 
+  /** Trigger the native share or show share prompt */
   share() {
-    if (!Helpers.NativeShare(this.event.name, `Check out ${this.event.name} at InstiApp!`, this.shareUrl())) {
-      this.shareShowing = !this.shareShowing;
-    }
+    Helpers.NativeShare(this.event.name, `Check out ${this.event.name} at InstiApp!`, this.shareUrl());
   }
 
   /** Get the sharing url */
