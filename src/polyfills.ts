@@ -19,6 +19,7 @@
  */
 
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
+/*
 import 'core-js/es/symbol';
 import 'core-js/es/object';
 import 'core-js/es/function';
@@ -33,13 +34,10 @@ import 'core-js/es/regexp';
 import 'core-js/es/map';
 import 'core-js/es/weak-map';
 import 'core-js/es/set';
+*/
 
 // Polyfills for ES7
 import 'core-js/es/string';
-
-// Polyfill CSS variables for IE 11
-import cssVars from 'css-vars-ponyfill';
-cssVars();
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
