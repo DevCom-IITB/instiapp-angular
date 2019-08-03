@@ -15,7 +15,6 @@ export class BodyDetailsComponent implements OnInit {
 
   public body: IBody;
   public bodyId: string;
-  public shareShowing = false;
   public error: number;
 
   constructor(
@@ -54,12 +53,14 @@ export class BodyDetailsComponent implements OnInit {
     });
   }
 
-  /** Trigger the native share or show share buttons */
+  /** Trigger the native share or show share prompt */
   share() {
-    if (!Helpers.NativeShare(
-        this.body.name, `Check out ${this.body.name} at InstiApp!`, `${environment.host}org/${this.body.str_id}`)) {
-      this.shareShowing = !this.shareShowing;
-    }
+    Helpers.NativeShare(this.body.name, `Check out ${this.body.name} at InstiApp!`, this.shareUrl());
+  }
+
+  /** Get the sharing url */
+  shareUrl(): string {
+    return  `${environment.host}org/${this.body.str_id}`;
   }
 
 }

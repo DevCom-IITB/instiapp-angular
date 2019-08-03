@@ -57,7 +57,7 @@ export module Helpers {
     }
 
     /** Try native share and return false if failed */
-    export function NativeShare(title: string, text: string, url: string) {
+    export function NativeShare(title: string, text: string, url: string, fallback: boolean = true) {
         const nav: any = navigator;
         if (WinRT.is()) {
             WinRT.nativeShare(title, text, url);
@@ -71,6 +71,11 @@ export module Helpers {
             .then(noop)
             .catch((error) => console.error('Error sharing', error));
             return true;
+        }
+
+        /* Fallback to clipboard prompt */
+        if (fallback) {
+            window.prompt('Copy to clipboard: Ctrl+C, Enter', url);
         }
         return false;
     }

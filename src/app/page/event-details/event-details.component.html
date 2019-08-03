@@ -73,7 +73,7 @@
             [href]="event.website_url"
             target="_blank"
             rel="noopener">
-            <i class="fas fa-globe fa-lg"></i>
+            <mat-icon>public</mat-icon>
           </a>
           <button mat-icon-button
                   (click)="share()">
@@ -95,10 +95,6 @@
               [disabled]="!dataService.isLoggedIn()">
           Going <span class="badge">{{ event.going_count }}</span>
         </button>
-      </div>
-
-      <div class="share-div" *ngIf="shareShowing">
-          <app-my-share-buttons [url]="shareUrl()"></app-my-share-buttons>
       </div>
     </div>
 
