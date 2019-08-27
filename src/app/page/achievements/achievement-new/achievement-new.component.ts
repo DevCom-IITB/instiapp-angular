@@ -197,6 +197,10 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
 
   /** Make and download CSV data */
   csv(): void {
+    if (this.dataService.isSandbox) {
+      alert('Use https://insti.app in browser to download CSV');
+      return;
+    }
     const parser = new Parser();
     const csv = parser.parse(this.users);
     const timeStr = moment(new Date()).format('YYYYMMDD_hhmm');
