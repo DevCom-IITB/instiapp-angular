@@ -103,7 +103,9 @@
         <div class="description markdown">
           <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
         </div>
-        <ng-container *ngTemplateOutlet="achievements"></ng-container>
+        <ng-container *ngIf="!desktopMode">
+          <ng-container *ngTemplateOutlet="achievements"></ng-container>
+        </ng-container>
       </ng-container>
 
       <!-- Bodies conducting the event -->
