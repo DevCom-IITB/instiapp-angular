@@ -10,6 +10,7 @@ export class CardComponent implements OnInit {
   @Input() public avatar: string;
   @Input() public title = '';
   @Input() public subtitle = '';
+  @Input() public badge: string;
 
   constructor() { }
 
