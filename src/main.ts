@@ -15,6 +15,7 @@ if (environment.production) {
   if (module[ 'hot' ]) {
     hmrBootstrap(module, bootstrap);
   } else {
+    bootstrap();
     console.error('HMR is not enabled for webpack-dev-server!');
     console.log('Are you using the --hmr flag for ng serve?');
   }

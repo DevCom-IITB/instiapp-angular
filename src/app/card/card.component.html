@@ -16,6 +16,10 @@
             </p>
           </div>
         </td>
+
+        <td *ngIf="badge" class="badge">
+          <img [src]="badge" class="img-circle object-cover" />
+        </td>
       </tr>
     </tbody>
   </table>

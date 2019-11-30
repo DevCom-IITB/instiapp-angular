@@ -38,3 +38,12 @@ div.content p {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.badge {
+    width: 30px;
+    padding-right: 5px;
+}
+
+.badge img {
+    height: 20px; width: 20px;
+}

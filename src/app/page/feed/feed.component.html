@@ -23,6 +23,11 @@
 
                 <div> {{ c.events[0].name }} </div>
                 <span class="subhead">{{ dataService.GetEventSubtitle(c.events[0]) }}</span>
+
+                <img *ngIf="c.events[0].offered_achievements.length > 0"
+                      class="badge img-circle object-cover"
+                      src="assets/badge-medal.png" />
+
             </mat-card>
 
             <app-event-card *ngFor="let event of (nobig ? c.events : c.events.slice(1, c.events.length))"

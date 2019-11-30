@@ -44,6 +44,11 @@
     transform: scale(0.001) translateZ(0);
 }
 
+.badge {
+    width: 20px; height: 20px;
+    float: right;
+}
+
 @media (min-width: 961px) and (max-width: 1200px) {
     .events-list {
         padding: 10px 3% 0 3%;

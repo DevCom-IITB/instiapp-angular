@@ -5,6 +5,7 @@
 
   <app-card [avatar]="dataService.getResized(event.image_url, 150)"
             [title]="event.name"
-            [subtitle]="dataService.GetEventSubtitle(event)">
+            [subtitle]="dataService.GetEventSubtitle(event)"
+            [badge]="getBadge()">
   </app-card>
 </div>

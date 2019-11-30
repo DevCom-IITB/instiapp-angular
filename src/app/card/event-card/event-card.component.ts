@@ -23,4 +23,9 @@ export class EventCardComponent implements OnInit {
     }
   }
 
+  /** Get the badge for the event */
+  getBadge() {
+    return this.event.offered_achievements.length > 0 ? 'assets/badge-medal.png' : null;
+  }
+
 }
