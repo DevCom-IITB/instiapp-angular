@@ -6,7 +6,7 @@
                  const options = {};
 +
 +                // Construct the URL
-+                let url = 'https://insti.app/';
++                let url = 'https://www.insti.app/';
 +                const type = notification.data.type
 +                if (type === 'blogentry') {
 +                    if (notification.data.extra.indexOf('training') !== -1)

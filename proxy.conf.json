@@ -1,7 +1,7 @@
 {
     "/api/**": {
       "target": {
-          "host": "insti.app",
+          "host": "www.insti.app",
           "protocol": "https:",
           "port": 443
         },
