@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>InstiApp | IIT Bombay</title>
+  <base href="/">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#536dfe">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#536dfe">
+  <meta name="msapplication-TileImage" content="assets/icons/ms-icon-144x144.png">
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="no">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <meta name="description" content="InstiApp IIT Bombay">
+  <meta property="og:description" content="InstiApp IIT Bombay" />
+
+  <meta property="og:title" content="InstiApp" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.insti.app" />
+  <meta property="og:image" content="https://www.insti.app/assets/logo.png" />
+  <meta property="og:site_name" content="InstiApp">
+<link rel="stylesheet" href="styles.bc7fe990081e90fb7bdc.css"></head>
+
+<body>
+  <style>
+    html {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --primary-color: #536dfe;
+      --accent-color: #ffd740;
+      --warn-color: #ff5722;
+      --primary-dark: #0043ca;
+    }
+
+    body {
+      background-color: white;
+      margin: 0;
+    }
+
+    .loading-fader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 120px;
+      width: 40px;
+      transform: translate(-50%, calc(-50%));
+      z-index: 100;
+    }
+
+    .loading-fader > img {
+      height: 88px;
+      transform-origin: bottom;
+      opacity: 0.15;
+      position: absolute;
+      -webkit-animation: spinner 2s infinite ease-in-out;
+      animation: spinner 2s infinite ease-in-out;
+    }
+
+    .p1 { transform: rotate(67deg); }
+    .p2 { transform: rotate(45deg); }
+    .p3 { transform: rotate(20deg); }
+    .p4 { transform: rotate(00deg); }
+    .p5 { transform: rotate(-20deg); }
+    .p6 { transform: rotate(-45deg); }
+    .p7 { transform: rotate(-67deg); }
+
+    .loading-fader .p7 { -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
+    .loading-fader .p6 { -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
+    .loading-fader .p5 { -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
+    .loading-fader .p4 { -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
+    .loading-fader .p3 { -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
+    .loading-fader .p2 { -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
+    .loading-fader .p1 { -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
+
+    @keyframes spinner {
+      0% { opacity: 0.15;}
+      25% { opacity: 0.55; }
+      50% { opacity: 0.4; }
+      70% { opacity: 0.15; }
+      100% { opacity: 0.15; }
+    }
+  </style>
+
+  <app-root>
+    <div class="loading-fader">
+      <img class="p1" src="assets/petal.svg">
+      <img class="p2" src="assets/petal.svg">
+      <img class="p3" src="assets/petal.svg">
+      <img class="p4" src="assets/petal.svg">
+      <img class="p5" src="assets/petal.svg">
+      <img class="p6" src="assets/petal.svg">
+      <img class="p7" src="assets/petal.svg">
+    </div>
+  </app-root>
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+
+  <script>
+    function jumpToUrl(url) {
+      url = new URL(url);
+      if (!window.angularAppComponentRef || url.hostname !== window.location.hostname) {
+        window.location.href = url;
+        return true;
+      }
+      window.angularAppComponentRef.extNavigateURL(url.pathname + url.search)
+      return true;
+    }
+    window.jumpToUrl = jumpToUrl;
+  </script>
+<script src="runtime.689ba4fd6cadb82c1ac2.js" defer></script><script src="polyfills-es5.00801761356d8336d108.js" nomodule defer></script><script src="polyfills.44214fe684dbc7496064.js" defer></script><script src="scripts.ff89bbd26e044df9f81f.js" defer></script><script src="main.a2398eec2644e7467c8d.js" defer></script></body>
+</html>

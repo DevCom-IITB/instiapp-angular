@@ -1,0 +1,28 @@
+{
+    "types": [
+        {
+            "code": "generic",
+            "name": "Unspecified"
+        },
+        {
+            "code": "participation",
+            "name": "Participation"
+        },
+        {
+            "code": "gold-medal",
+            "name": "First"
+        },
+        {
+            "code": "silver-medal",
+            "name": "Second"
+        },
+        {
+            "code": "bronze-medal",
+            "name": "Third"
+        },
+        {
+            "code": "medal",
+            "name": "Special"
+        }
+    ]
+}
