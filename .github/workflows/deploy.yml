@@ -32,7 +32,8 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
 
-    - run: |
+    - name: Build
+      run: |
         npm install
         npm run build
         chmod 777 patch.sh && ./patch.sh

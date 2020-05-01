@@ -2,7 +2,8 @@
 Client for IIT Bombay's InstiApp in Angular 9, deployed at https://insti.app
 
 [![InstiApp](https://insti.app/instiapp-badge-gh.svg)](https://insti.app)
-[![Deploy](https://github.com/pulsejet/iitb-app-angular/workflows/Deploy/badge.svg)](https://github.com/pulsejet/iitb-app-angular/actions)
+[![Build](https://github.com/pulsejet/iitb-app-angular/workflows/Build/badge.svg)](https://github.com/pulsejet/iitb-app-angular/actions)
+[![Deploy](https://github.com/pulsejet/iitb-app-angular/workflows/Deploy/badge.svg)](https://github.com/pulsejet/iitb-app-angular/tree/built)
 
 [![dependencies Status](https://david-dm.org/pulsejet/iitb-app-angular/status.svg)](https://david-dm.org/pulsejet/iitb-app-angular)
 [![devDependencies Status](https://david-dm.org/pulsejet/iitb-app-angular/dev-status.svg)](https://david-dm.org/pulsejet/iitb-app-angular?type=dev)
