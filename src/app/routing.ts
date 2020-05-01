@@ -1,5 +1,5 @@
 import { RouteReuseStrategy, DetachedRouteHandle, ActivatedRouteSnapshot } from '@angular/router';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CustomReuseStrategy implements RouteReuseStrategy {
