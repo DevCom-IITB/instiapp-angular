@@ -2,8 +2,7 @@
 Client for IIT Bombay's InstiApp in Angular 9, deployed at https://insti.app
 
 [![InstiApp](https://insti.app/instiapp-badge-gh.svg)](https://insti.app)
-[![CircleCI](https://circleci.com/gh/pulsejet/iitb-app-angular.svg?style=shield)](https://circleci.com/gh/pulsejet/iitb-app-angular)
-[![Build Status](https://travis-ci.org/pulsejet/iitb-app-angular.svg?branch=master)](https://travis-ci.org/pulsejet/iitb-app-angular)
+[![Deploy](https://github.com/pulsejet/iitb-app-angular/workflows/Deploy/badge.svg)](https://github.com/pulsejet/iitb-app-angular/actions)
 
 [![dependencies Status](https://david-dm.org/pulsejet/iitb-app-angular/status.svg)](https://david-dm.org/pulsejet/iitb-app-angular)
 [![devDependencies Status](https://david-dm.org/pulsejet/iitb-app-angular/dev-status.svg)](https://david-dm.org/pulsejet/iitb-app-angular?type=dev)
@@ -13,6 +12,9 @@ Client for IIT Bombay's InstiApp in Angular 9, deployed at https://insti.app
 
 ## Setup
 All dependencies can be installed with `npm install`. To serve the application with hot module reloading, use `npm run start`. For an optimized production build, do `npm run build`.
+
+## CI Built Files
+GitHub actions will automatically build and push to the `built` branch.
 
 ## Contributing
 All contribution guidelines mentioned in [the API repository](https://github.com/wncc/IITBapp) are also valid for this repository. One other requirement is that linting should not fail during builds.
