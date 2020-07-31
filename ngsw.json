@@ -1,21 +1,24 @@
 {
   "configVersion": 1,
-  "timestamp": 1596177644189,
+  "timestamp": 1596189372218,
   "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.a2398eec2644e7467c8d.js",
-        "/polyfills-es5.00801761356d8336d108.js",
-        "/polyfills.44214fe684dbc7496064.js",
-        "/runtime.689ba4fd6cadb82c1ac2.js",
-        "/scripts.ff89bbd26e044df9f81f.js",
-        "/styles.bc7fe990081e90fb7bdc.css"
+        "/main.c8d8ef0b4bab28b387f4.js",
+        "/polyfills-es5.f5475ef480a27891a330.js",
+        "/polyfills.d513f2bc7203f0302452.js",
+        "/runtime.e227d1a0e31cbccbf8ec.js",
+        "/scripts.0281b7cdacbb84a40750.js",
+        "/styles.c7d449becfc27eea016b.css"
       ],
       "patterns": []
     },
@@ -23,6 +26,9 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "/assets/achievements/bronze-medal.png",
         "/assets/achievements/bronze-medal_dark.png",
@@ -109,6 +115,9 @@
       "maxSize": 20,
       "maxAge": 3600000,
       "timeoutMs": 4000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "version": 1
     }
   ],
@@ -183,13 +192,13 @@
     "/assets/sadcloud.svg": "21165d82d4b3d3521f23442cb54f0cfd2949fcfb",
     "/assets/useravatar.svg": "085f2e8f8205b1fcc2830984ef0a47d7ffed89de",
     "/favicon.ico": "d6f5b640fbbdf13cf59735ce13cc467fccbd893b",
-    "/index.html": "d204c3a5850f8c91039db997d4e4360501d3e220",
-    "/main.a2398eec2644e7467c8d.js": "c70d22207e87bf388559924560ffb2b2a18ab391",
-    "/polyfills-es5.00801761356d8336d108.js": "ca17c07f41560bf961e788a2129740d68bb5e948",
-    "/polyfills.44214fe684dbc7496064.js": "9dda89b8287b326edfcefd67053797c79fa5f86f",
-    "/runtime.689ba4fd6cadb82c1ac2.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/scripts.ff89bbd26e044df9f81f.js": "cd1e08eacfc12f52766fe57fc97fc5493025cfa6",
-    "/styles.bc7fe990081e90fb7bdc.css": "48e6d8a805a9bf30592d494ec44a720598a34423"
+    "/index.html": "62caabcbdae63d01ae2c4aea40f2f9f4d2fa4e69",
+    "/main.c8d8ef0b4bab28b387f4.js": "06ad78e31850d878cefb7a25d91fe9fa97fe187d",
+    "/polyfills-es5.f5475ef480a27891a330.js": "79fa4c989cdee1317bde0a48931d0c3cc28ae36c",
+    "/polyfills.d513f2bc7203f0302452.js": "6d8de3617c56bf784a824ddc2d2b3416c9a617f0",
+    "/runtime.e227d1a0e31cbccbf8ec.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/scripts.0281b7cdacbb84a40750.js": "4ca57915c64636fd33c092166fef232d2f5f5752",
+    "/styles.c7d449becfc27eea016b.css": "8a04c90ca98e0b475f57fafb90e6e286e60500a8"
   },
   "navigationUrls": [
     {
