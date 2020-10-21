@@ -21,14 +21,6 @@ export class QuickLinksComponent implements OnInit {
 
   public sections: LinkContainer[] = [
     {
-      title: 'CMS',
-      links: [
-        { href: 'https://gymkhana.iitb.ac.in/cms_new/', icon: 'warning', text: 'CMS' },
-        { href: 'https://support.iitb.ac.in', icon: 'warning', text: 'CMS - Maintainance' },
-        { href: 'https://help-cc.iitb.ac.in/', icon: 'warning', text: 'CMS - Network' },
-      ],
-    },
-    {
       title: 'Academic',
       links: [
         { href: 'https://asc.iitb.ac.in', icon: 'book', text: 'ASC' },
@@ -52,8 +44,8 @@ export class QuickLinksComponent implements OnInit {
     {
       title: 'Services',
       links: [
+        { href: 'https://sso.iitb.ac.in/', icon: 'account_box', text: 'SSO Login' },
         { href: 'https://webmail.iitb.ac.in', icon: 'email', text: 'WebMail' },
-        { href: 'https://gpo.iitb.ac.in', icon: 'email', text: 'GPO' },
         { href: 'https://camp.iitb.ac.in/', icon: 'account_box', text: 'CAMP' },
         { href: 'http://msstore.iitb.ac.in/', icon: 'shopping_cart', text: 'Microsoft Store' },
         { href: 'https://home.iitb.ac.in/', icon: 'cloud', text: 'BigHome Cloud' },
@@ -63,6 +55,7 @@ export class QuickLinksComponent implements OnInit {
     {
       title: 'Misc',
       links: [
+        { href: 'https://access.iitb.ac.in/', icon: 'phone', text: 'CC Access Portal' },
         { href: 'https://portal.iitb.ac.in/TelephoneDirectory/', icon: 'phone', text: 'Intercom Extensions' },
         { href: 'http://www.iitb.ac.in/hospital/', icon: 'local_hospital', text: 'Hospital' },
         { href: 'https://www.cc.iitb.ac.in/engservices/engaccessingiitffromoutside/19-vpn', icon: 'vpn_lock', text: 'VPN Guide' },
