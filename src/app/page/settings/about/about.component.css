@@ -84,17 +84,23 @@ td, div {
     height: 120px;
 }
 
+/* Maintainer */
+#aakash { background-image: url("https://www.insti.app/team-pics/aakash.jpg") }
+
 /* Core */
 #varun { background-image: url("https://www.insti.app/team-pics/varun.jpg") }
 #sajal { background-image: url("https://www.insti.app/team-pics/sajal.jpg"); }
 
+/* Ideation */
 #nihal { background-image: url("https://www.insti.app/team-pics/nihal.jpg"); }
 #ydidwania { background-image: url("https://www.insti.app/team-pics/ydidwania.jpg"); }
 #cheeku { background-image: url("https://www.insti.app/team-pics/cheeku.jpg"); }
 #sarthak { background-image: url("https://www.insti.app/team-pics/sarthak.jpg"); }
 
+/* Design */
 #soham { background-image: url("https://www.insti.app/team-pics/soham.jpg"); }
 
+/* Developers */ 
 #mrunmayi { background-image: url("https://www.insti.app/team-pics/mrunmayi.jpg"); }
 #owais { background-image: url("https://www.insti.app/team-pics/owais.jpg"); }
 #hrushikesh { background-image: url("https://www.insti.app/team-pics/hrushikesh.jpg"); }
@@ -103,6 +109,7 @@ td, div {
 #mayu { background-image: url("https://www.insti.app/team-pics/mayu.jpg"); }
 #maitreya { background-image: url("https://www.insti.app/team-pics/maitreya.jpg"); }
 
+/* Alumni */
 #tomar { background-image: url("https://www.insti.app/team-pics/tomar.jpg"); }
 #bijoy { background-image: url("https://www.insti.app/team-pics/bijoy.jpg"); }
 #dheerendra { background-image: url("https://www.insti.app/team-pics/dheerendra.jpg"); }
