@@ -59,6 +59,7 @@ export class QuickLinksComponent implements OnInit {
         { href: 'https://portal.iitb.ac.in/TelephoneDirectory/', icon: 'phone', text: 'Intercom Extensions' },
         { href: 'http://www.iitb.ac.in/hospital/', icon: 'local_hospital', text: 'Hospital' },
         { href: 'https://www.cc.iitb.ac.in/engservices/engaccessingiitffromoutside/19-vpn', icon: 'vpn_lock', text: 'VPN Guide' },
+        { href: 'https://www.iitb-bandhu.com/', icon: 'emoji_people', text: 'Bandhu IITB' },
       ]
     }
   ];
