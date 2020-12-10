@@ -59,17 +59,18 @@
       margin: 0;
     }
 
-    .loading-fader {
+    .instiapp-loading-fader {
       position: absolute;
       top: 50%;
       left: 50%;
       height: 120px;
       width: 40px;
-      transform: translate(-50%, calc(-50%));
+      transform: translate(-50%, -50%);
       z-index: 100;
+      visibility: visible;
     }
 
-    .loading-fader > img {
+    .instiapp-loading-fader > img {
       height: 88px;
       transform-origin: bottom;
       opacity: 0.15;
@@ -78,13 +79,13 @@
       animation: spinner 2s infinite ease-in-out;
     }
 
-    .loading-fader .logo-instiapp-7 { transform: rotate(-67deg); -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
-    .loading-fader .logo-instiapp-6 { transform: rotate(-45deg); -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
-    .loading-fader .logo-instiapp-5 { transform: rotate(-20deg); -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
-    .loading-fader .logo-instiapp-4 { transform: rotate(00deg); -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
-    .loading-fader .logo-instiapp-3 { transform: rotate(20deg); -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
-    .loading-fader .logo-instiapp-2 { transform: rotate(45deg); -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
-    .loading-fader .logo-instiapp-1 { transform: rotate(67deg); -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
+    .instiapp-loading-fader .logo-instiapp-7 { transform: rotate(-67deg); -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
+    .instiapp-loading-fader .logo-instiapp-6 { transform: rotate(-45deg); -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
+    .instiapp-loading-fader .logo-instiapp-5 { transform: rotate(-20deg); -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
+    .instiapp-loading-fader .logo-instiapp-4 { transform: rotate(00deg); -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
+    .instiapp-loading-fader .logo-instiapp-3 { transform: rotate(20deg); -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
+    .instiapp-loading-fader .logo-instiapp-2 { transform: rotate(45deg); -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
+    .instiapp-loading-fader .logo-instiapp-1 { transform: rotate(67deg); -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
 
     @keyframes spinner {
       0% { opacity: 0.15;}
@@ -95,17 +96,17 @@
     }
   </style>
 
-  <app-root>
-    <div class="loading-fader">
-      <img class="logo-instiapp-1" src="assets/petal.svg">
-      <img class="logo-instiapp-2" src="assets/petal.svg">
-      <img class="logo-instiapp-3" src="assets/petal.svg">
-      <img class="logo-instiapp-4" src="assets/petal.svg">
-      <img class="logo-instiapp-5" src="assets/petal.svg">
-      <img class="logo-instiapp-6" src="assets/petal.svg">
-      <img class="logo-instiapp-7" src="assets/petal.svg">
-    </div>
-  </app-root>
+  <app-root></app-root>
+
+  <div class="instiapp-loading-fader">
+    <img class="logo-instiapp-1" src="assets/petal.svg">
+    <img class="logo-instiapp-2" src="assets/petal.svg">
+    <img class="logo-instiapp-3" src="assets/petal.svg">
+    <img class="logo-instiapp-4" src="assets/petal.svg">
+    <img class="logo-instiapp-5" src="assets/petal.svg">
+    <img class="logo-instiapp-6" src="assets/petal.svg">
+    <img class="logo-instiapp-7" src="assets/petal.svg">
+  </div>
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
 
@@ -120,6 +121,22 @@
       return true;
     }
     window.jumpToUrl = jumpToUrl;
+
+    var instiAppSpinnerStack = [];
+    var instiAppSpinner = document.querySelector('.instiapp-loading-fader');
+    window.pushInstiAppSpinner = function(iden) {
+      if (instiAppSpinnerStack.indexOf(iden) !== -1) return;
+      instiAppSpinnerStack.push(iden);
+      instiAppSpinner.style.visibility = 'visible';
+    }
+    window.popInstiAppSpinner = function(iden) {
+      const i = instiAppSpinnerStack.indexOf(iden);
+      if (i === -1) return;
+      instiAppSpinnerStack.splice(i , 1);
+      if (instiAppSpinnerStack.length === 0) {
+        instiAppSpinner.style.visibility = 'hidden';
+      }
+    }
   </script>
 </body>
 </html>

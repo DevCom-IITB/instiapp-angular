@@ -1,13 +1,3 @@
-<div class="loading-fader" *ngIf="!error">
-  <img class="logo-instiapp-1" src="assets/petal.svg">
-  <img class="logo-instiapp-2" src="assets/petal.svg">
-  <img class="logo-instiapp-3" src="assets/petal.svg">
-  <img class="logo-instiapp-4" src="assets/petal.svg">
-  <img class="logo-instiapp-5" src="assets/petal.svg">
-  <img class="logo-instiapp-6" src="assets/petal.svg">
-  <img class="logo-instiapp-7" src="assets/petal.svg">
-</div>
-
 <div class="nothing-at-all" *ngIf="error">
   <img [src]="getError().img"><br>
   <span style="white-space: pre"> {{ getError().m }} </span>

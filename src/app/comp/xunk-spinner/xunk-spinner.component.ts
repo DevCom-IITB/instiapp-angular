@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-xunk-spinner',
   templateUrl: './xunk-spinner.component.html',
   styleUrls: ['./xunk-spinner.component.css']
 })
-export class XunkSpinnerComponent {
+export class XunkSpinnerComponent implements OnInit, OnChanges, OnDestroy {
 
   /** Set to true to display error message */
   @Input() public error;
@@ -24,6 +24,24 @@ export class XunkSpinnerComponent {
   };
 
   constructor() { }
+
+  ngOnInit() {
+    if (!this.error) {
+      (<any>window).pushInstiAppSpinner(this);
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.error?.currentValue) {
+      (<any>window).popInstiAppSpinner(this);
+    } else {
+      (<any>window).pushInstiAppSpinner(this);
+    }
+  }
+
+  ngOnDestroy() {
+    (<any>window).popInstiAppSpinner(this);
+  }
 
   getError() {
     if (!this.error) { return { img: '', m: ''}; }
