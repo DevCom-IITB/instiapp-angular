@@ -27,20 +27,35 @@ export class XunkSpinnerComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     if (!this.error) {
-      (<any>window).pushInstiAppSpinner(this);
+      this.pushSpinner();
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.error?.currentValue) {
-      (<any>window).popInstiAppSpinner(this);
+      this.popSpinner();
     } else {
-      (<any>window).pushInstiAppSpinner(this);
+      this.pushSpinner();
     }
   }
 
   ngOnDestroy() {
-    (<any>window).popInstiAppSpinner(this);
+    this.popSpinner();
+  }
+
+  pushSpinner() {
+    if ((<any>window).instiAppSpinnerStack.indexOf(this) !== -1) return;
+    (<any>window).instiAppSpinnerStack.push(this);
+    (<any>window).instiAppSpinner.style.visibility = 'visible';
+  }
+
+  popSpinner() {
+    const i = (<any>window).instiAppSpinnerStack.indexOf(this);
+    if (i === -1) return;
+    (<any>window).instiAppSpinnerStack.splice(i , 1);
+    if ((<any>window).instiAppSpinnerStack.length === 0) {
+      (<any>window).instiAppSpinner.style.visibility = 'hidden';
+    }
   }
 
   getError() {
