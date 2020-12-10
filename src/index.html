@@ -59,7 +59,7 @@
       margin: 0;
     }
 
-    #instiapp-loading-fader {
+    #instiapp-global-spinner {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -70,7 +70,7 @@
       visibility: visible;
     }
 
-    #instiapp-loading-fader > img {
+    .instiapp-spinner > img {
       height: 88px;
       transform-origin: bottom;
       opacity: 0.15;
@@ -79,13 +79,13 @@
       animation: spinner 2s infinite ease-in-out;
     }
 
-    #instiapp-loading-fader .logo-instiapp-7 { transform: rotate(-67deg); -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
-    #instiapp-loading-fader .logo-instiapp-6 { transform: rotate(-45deg); -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
-    #instiapp-loading-fader .logo-instiapp-5 { transform: rotate(-20deg); -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
-    #instiapp-loading-fader .logo-instiapp-4 { transform: rotate(00deg); -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
-    #instiapp-loading-fader .logo-instiapp-3 { transform: rotate(20deg); -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
-    #instiapp-loading-fader .logo-instiapp-2 { transform: rotate(45deg); -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
-    #instiapp-loading-fader .logo-instiapp-1 { transform: rotate(67deg); -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
+    .instiapp-spinner .petal-7 { transform: rotate(-67deg); -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
+    .instiapp-spinner .petal-6 { transform: rotate(-45deg); -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
+    .instiapp-spinner .petal-5 { transform: rotate(-20deg); -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
+    .instiapp-spinner .petal-4 { transform: rotate(00deg); -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
+    .instiapp-spinner .petal-3 { transform: rotate(20deg); -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
+    .instiapp-spinner .petal-2 { transform: rotate(45deg); -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
+    .instiapp-spinner .petal-1 { transform: rotate(67deg); -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
 
     @keyframes spinner {
       0% { opacity: 0.15;}
@@ -98,14 +98,14 @@
 
   <app-root></app-root>
 
-  <div id="instiapp-loading-fader">
-    <img class="logo-instiapp-1" src="assets/petal.svg">
-    <img class="logo-instiapp-2" src="assets/petal.svg">
-    <img class="logo-instiapp-3" src="assets/petal.svg">
-    <img class="logo-instiapp-4" src="assets/petal.svg">
-    <img class="logo-instiapp-5" src="assets/petal.svg">
-    <img class="logo-instiapp-6" src="assets/petal.svg">
-    <img class="logo-instiapp-7" src="assets/petal.svg">
+  <div id="instiapp-global-spinner" class="instiapp-spinner">
+    <img class="petal-1" src="assets/petal.svg">
+    <img class="petal-2" src="assets/petal.svg">
+    <img class="petal-3" src="assets/petal.svg">
+    <img class="petal-4" src="assets/petal.svg">
+    <img class="petal-5" src="assets/petal.svg">
+    <img class="petal-6" src="assets/petal.svg">
+    <img class="petal-7" src="assets/petal.svg">
   </div>
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
@@ -121,8 +121,6 @@
       return true;
     }
     window.jumpToUrl = jumpToUrl;
-    window.instiAppSpinnerStack = [];
-    window.instiAppSpinner = document.getElementById('instiapp-loading-fader');
   </script>
 </body>
 </html>
