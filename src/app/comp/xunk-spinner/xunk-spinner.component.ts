@@ -48,14 +48,14 @@ export class XunkSpinnerComponent implements OnInit, OnChanges, OnDestroy {
       (<any>window).instiAppGlobalSpinnerStack = [];
     }
 
-    if ((<any>window).instiAppGlobalSpinnerStack.indexOf(this) !== -1) return;
+    if ((<any>window).instiAppGlobalSpinnerStack.indexOf(this) !== -1) { return; }
     (<any>window).instiAppGlobalSpinnerStack.push(this);
     document.getElementById('instiapp-global-spinner').style.visibility = 'visible';
   }
 
   popSpinner() {
     const i = (<any>window).instiAppGlobalSpinnerStack?.indexOf(this) ?? -1;
-    if (i === -1) return;
+    if (i === -1) { return; }
     (<any>window).instiAppGlobalSpinnerStack.splice(i , 1);
     if ((<any>window).instiAppGlobalSpinnerStack.length === 0) {
       document.getElementById('instiapp-global-spinner').style.visibility = 'hidden';
