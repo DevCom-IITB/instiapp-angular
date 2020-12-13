@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-xunk-spinner',
   templateUrl: './xunk-spinner.component.html',
   styleUrls: ['./xunk-spinner.component.css']
 })
-export class XunkSpinnerComponent {
+export class XunkSpinnerComponent implements OnInit, OnChanges, OnDestroy {
 
   /** Set to true to display error message */
   @Input() public error;
@@ -24,6 +24,43 @@ export class XunkSpinnerComponent {
   };
 
   constructor() { }
+
+  ngOnInit() {
+    if (!this.error) {
+      this.pushSpinner();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.error?.currentValue) {
+      this.popSpinner();
+    } else {
+      this.pushSpinner();
+    }
+  }
+
+  ngOnDestroy() {
+    this.popSpinner();
+  }
+
+  pushSpinner() {
+    if (!(<any>window).instiAppGlobalSpinnerStack) {
+      (<any>window).instiAppGlobalSpinnerStack = [];
+    }
+
+    if ((<any>window).instiAppGlobalSpinnerStack.indexOf(this) !== -1) { return; }
+    (<any>window).instiAppGlobalSpinnerStack.push(this);
+    document.getElementById('instiapp-global-spinner').style.visibility = 'visible';
+  }
+
+  popSpinner() {
+    const i = (<any>window).instiAppGlobalSpinnerStack?.indexOf(this) ?? -1;
+    if (i === -1) { return; }
+    (<any>window).instiAppGlobalSpinnerStack.splice(i , 1);
+    if ((<any>window).instiAppGlobalSpinnerStack.length === 0) {
+      document.getElementById('instiapp-global-spinner').style.visibility = 'hidden';
+    }
+  }
 
   getError() {
     if (!this.error) { return { img: '', m: ''}; }

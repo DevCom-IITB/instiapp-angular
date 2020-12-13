@@ -59,18 +59,31 @@
       margin: 0;
     }
 
-    .loading-fader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 120px;
-      width: 40px;
-      transform: translate(-50%, calc(-50%));
-      z-index: 100;
+    #instiapp-global-spinner {
+      position: fixed;
+      top: 50%; left: 50%;
+      height: 88px; width: 88px;
+      transform: translateY(-50%);
+      z-index: 200;
+      visibility: visible;
     }
 
-    .loading-fader > img {
-      height: 88px;
+    #instiapp-global-spinner.list-spinner {
+      top: unset; bottom: 10%;
+      height: 35px; width: 35px;
+    }
+
+    .instiapp-spinner > .petal-bg {
+      background-color: white;
+      width: 230%;
+      height: 230%;
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%, -25%);
+    }
+
+    .instiapp-spinner > img {
+      height: 100%;
       transform-origin: bottom;
       opacity: 0.15;
       position: absolute;
@@ -78,21 +91,13 @@
       animation: spinner 2s infinite ease-in-out;
     }
 
-    .logo-instiapp-1 { transform: rotate(67deg); }
-    .logo-instiapp-2 { transform: rotate(45deg); }
-    .logo-instiapp-3 { transform: rotate(20deg); }
-    .logo-instiapp-4 { transform: rotate(00deg); }
-    .logo-instiapp-5 { transform: rotate(-20deg); }
-    .logo-instiapp-6 { transform: rotate(-45deg); }
-    .logo-instiapp-7 { transform: rotate(-67deg); }
-
-    .loading-fader .logo-instiapp-7 { -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
-    .loading-fader .logo-instiapp-6 { -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
-    .loading-fader .logo-instiapp-5 { -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
-    .loading-fader .logo-instiapp-4 { -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
-    .loading-fader .logo-instiapp-3 { -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
-    .loading-fader .logo-instiapp-2 { -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
-    .loading-fader .logo-instiapp-1 { -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
+    .instiapp-spinner .petal-7 { transform: translateX(-50%) rotate(-67deg); -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
+    .instiapp-spinner .petal-6 { transform: translateX(-50%) rotate(-45deg); -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
+    .instiapp-spinner .petal-5 { transform: translateX(-50%) rotate(-20deg); -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
+    .instiapp-spinner .petal-4 { transform: translateX(-50%) rotate(00deg); -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
+    .instiapp-spinner .petal-3 { transform: translateX(-50%) rotate(20deg); -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
+    .instiapp-spinner .petal-2 { transform: translateX(-50%) rotate(45deg); -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
+    .instiapp-spinner .petal-1 { transform: translateX(-50%) rotate(67deg); -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
 
     @keyframes spinner {
       0% { opacity: 0.15;}
@@ -101,19 +106,24 @@
       70% { opacity: 0.15; }
       100% { opacity: 0.15; }
     }
+
+    /* need to specify this here - workaround for static page width */
+    * { scrollbar-width: thin; }
+    ::-webkit-scrollbar { width: 6px; }
   </style>
 
-  <app-root>
-    <div class="loading-fader">
-      <img class="logo-instiapp-1" src="assets/petal.svg">
-      <img class="logo-instiapp-2" src="assets/petal.svg">
-      <img class="logo-instiapp-3" src="assets/petal.svg">
-      <img class="logo-instiapp-4" src="assets/petal.svg">
-      <img class="logo-instiapp-5" src="assets/petal.svg">
-      <img class="logo-instiapp-6" src="assets/petal.svg">
-      <img class="logo-instiapp-7" src="assets/petal.svg">
-    </div>
-  </app-root>
+  <app-root></app-root>
+
+  <div id="instiapp-global-spinner" class="instiapp-spinner">
+    <div class="petal-bg"></div>
+    <img class="petal-1" src="assets/petal.svg">
+    <img class="petal-2" src="assets/petal.svg">
+    <img class="petal-3" src="assets/petal.svg">
+    <img class="petal-4" src="assets/petal.svg">
+    <img class="petal-5" src="assets/petal.svg">
+    <img class="petal-6" src="assets/petal.svg">
+    <img class="petal-7" src="assets/petal.svg">
+  </div>
 
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
 

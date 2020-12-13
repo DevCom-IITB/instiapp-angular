@@ -20,7 +20,7 @@ body, .image-background {
     user-select: none;
 
     scrollbar-color: var(--primary-color) white;
-    scrollbar-width: thin;
+    scrollbar-width: thin;  /* also change in index.html */
     -ms-overflow-style: none;
 }
 
@@ -35,7 +35,7 @@ mat-form-field, mat-form-field *, .markdown *, input {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 6px;  /* also change in index.html */
     height: 6px;
 }
 
