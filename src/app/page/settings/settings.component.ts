@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
-import { IUserProfile } from '../../interfaces';
+import { IUserProfile, INotification } from '../../interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { API } from '../../../api';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+// import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-settings',
@@ -34,6 +35,25 @@ export class SettingsComponent implements OnInit {
         duration: 2000,
       });
     });
+  }
+
+  testnotify() {
+    return this.dataService.FireGET<INotification[]>(API.TestNotification).subscribe(result => {
+      for (const notification of result) {
+        if (notification.actor_type.includes('event')) {
+          notification.title = notification.actor.name;
+          notification.image_url = notification.actor.image_url || notification.actor.bodies[0].image_url;
+        } else if (notification.actor_type.includes('newsentry')) {
+          notification.title = notification.actor.title;
+          notification.image_url = notification.actor.body.image_url;
+        } else if (notification.actor_type.includes('blogentry')) {
+          notification.title = notification.actor.title;
+          notification.image_url = '/../../assets/logo.png';
+        }
+      }
+      this.dataService.notifications = result;
+    });
+  
   }
 
   /** Toggle show contact number */
