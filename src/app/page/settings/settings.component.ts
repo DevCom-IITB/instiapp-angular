@@ -52,8 +52,7 @@ export class SettingsComponent implements OnInit {
         }
       }
       this.dataService.notifications = result;
-    });
-  
+    });  
   }
 
   /** Toggle show contact number */
