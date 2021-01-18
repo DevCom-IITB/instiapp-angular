@@ -33,10 +33,9 @@
        mat-list-item
       *ngIf="this.dataService.isLoggedIn()">
         <mat-icon>exit_to_app</mat-icon> &nbsp; Logout
-    </a>
-    
+    </a>    
     <a style="cursor: pointer"
-      (click)="testnotify()"
+      (click)="TestNotify()"
        mat-list-item
       *ngIf="this.dataService.isLoggedIn()">
         <mat-icon>notifications_active</mat-icon> &nbsp; Test Notification
@@ -44,3 +43,4 @@
   </div>
 
 </div>
+
