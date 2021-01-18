@@ -37,9 +37,9 @@ export class SettingsComponent implements OnInit {
   }
 
   /** Test the Notification */
-  TestNotify() {
-    return this.dataService.FireGET(API.TestNotification).subscribe(() => {
-    });  
+  testNotify() {
+    return this.dataService.FireGET(API.TestNotification).subscribe(() => {   
+    });   
   }
 
   /** Toggle show contact number */
