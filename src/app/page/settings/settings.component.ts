@@ -38,8 +38,8 @@ export class SettingsComponent implements OnInit {
 
   /** Test the Notification */
   testNotify() {
-    return this.dataService.FireGET(API.TestNotification).subscribe(() => {      
-    }) ;  
+    return this.dataService.FireGET(API.TestNotification).subscribe(() => {
+    });
   }
 
   /** Toggle show contact number */
