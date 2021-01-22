@@ -20,6 +20,12 @@
        mat-list-item target="_blank" rel="noopener">
         <mat-icon>account_circle</mat-icon> &nbsp; Update Profile
     </a>
+    <a style="cursor: pointer"
+      (click)="testNotify()"
+       mat-list-item
+      *ngIf="this.dataService.isLoggedIn()">
+        <mat-icon>notifications_active</mat-icon> &nbsp; Test Notification
+    </a>
     <a href="https://www.insti.app/feedback"
        mat-list-item target="_blank" rel="noopener">
         <mat-icon>feedback</mat-icon> &nbsp; Feedback
@@ -34,12 +40,6 @@
       *ngIf="this.dataService.isLoggedIn()">
         <mat-icon>exit_to_app</mat-icon> &nbsp; Logout
     </a>    
-    <a style="cursor: pointer"
-      (click)="testNotify()"
-       mat-list-item
-      *ngIf="this.dataService.isLoggedIn()">
-        <mat-icon>notifications_active</mat-icon> &nbsp; Test Notification
-    </a>
   </div>
 
 </div>
