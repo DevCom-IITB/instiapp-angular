@@ -38,7 +38,7 @@ export class SettingsComponent implements OnInit {
 
   /** Test the Notification */
   testNotify() {
-    return this.dataService.FireGET(API.TestNotification).subscribe( res => {
+    return this.dataService.FireGET(API.TestNotification).subscribe( () => {
       this.snackBar.open('Notification Sent', 'Dismiss', {
         duration: 2000,
       }); },
