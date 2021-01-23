@@ -36,6 +36,24 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  /** Test the Notification */
+  testNotify() {
+    return this.dataService.FireGET(API.TestNotification).subscribe( () => {
+      this.snackBar.open('Notification Sent', 'Dismiss', {
+        duration: 2000,
+      }); },
+      err => {
+        if (err.status === 429) {
+          this.snackBar.open('Too Soon, retry after 15 mins', 'Dismiss', {
+            duration: 2000,
+          });
+        } else {
+          console.log(err);
+        }
+      }
+    );
+  }
+
   /** Toggle show contact number */
   toggleContact(e: MatSlideToggleChange) {
     e.source.setDisabledState(true);
