@@ -491,4 +491,9 @@ export class DataService {
       }
     });
   }
+
+  AuthenticateGLogin(code: string) {
+    return this.FireGET(API.GLogin, {code: code, redir: SSO_REDIR});
+  }
+
 }

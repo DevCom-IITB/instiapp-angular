@@ -59,6 +59,7 @@ import { XunkSpinnerComponent } from './comp/xunk-spinner/xunk-spinner.component
 import { RedirComponent } from './comp/redir/redir.component';
 import { UpdateRoleComponent } from './comp/update-role/update-role.component';
 import { LoginComponent } from './comp/login/login.component';
+import { GLoginComponent } from './comp/glogin/glogin.component';
 
 // Layout components
 import { EventSidebarDesktopComponent } from './layout/event-sidebar-desktop/event-sidebar-desktop.component';
@@ -80,6 +81,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     CalendarComponent,
     AddEventComponent,
     LoginComponent,
+    GLoginComponent,
     UserDetailsComponent,
     EventCardComponent,
     BodyCardComponent,
@@ -153,6 +155,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
+      { path: 'glogin', component: GLoginComponent, data: { state: 'base' } },
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },

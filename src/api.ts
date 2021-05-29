@@ -20,6 +20,7 @@ export const API = {
 
     LoggedInUser: 'api/login/get-user',
     Login: 'api/login{?code,redir}',
+    GLogin: 'api/g-login{?code,redir}',
     Logout: 'api/logout',
 
     PlacementBlog: 'api/placement-blog{?from,num,query}',

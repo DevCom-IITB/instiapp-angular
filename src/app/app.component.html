@@ -24,6 +24,12 @@
 
     <div class="fill-space"></div>
     <button mat-button
+            (click)="glogin()"
+            *ngIf="!this.dataService.isLoggedIn()">
+        Google Log In
+    </button>
+
+    <button mat-button
             (click)="login()"
             *ngIf="!this.dataService.isLoggedIn()">
         Log In
