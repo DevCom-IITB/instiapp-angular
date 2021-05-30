@@ -206,12 +206,8 @@ export class AppComponent implements OnDestroy, OnInit {
       const path = [this.router.url];
       localStorage.setItem(this.dataService.LOGIN_REDIR, this.dataService.EncodeObject(path));
     }
-    const endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
-    const clientid = '283642720122-426e6bgmqi7hbh6pf1q2jjsbee4o2lh1.apps.googleusercontent.com';
-    const redir = 'http://localhost:4200/glogin';
-    const scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid';
 
-    window.location.href = `${endpoint}?client_id=${clientid}&response_type=code&scope=${scope}&redirect_uri=${redir}`;
+    window.location.href = this.dataService.GetGoogleURL();
   }
 
 

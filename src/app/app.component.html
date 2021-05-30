@@ -24,7 +24,7 @@
 
     <div class="fill-space"></div>
     <button mat-button
-            (click)="glogin()"
+            [routerLink]="['/glogin']"
             *ngIf="!this.dataService.isLoggedIn()">
         Google Log In
     </button>
