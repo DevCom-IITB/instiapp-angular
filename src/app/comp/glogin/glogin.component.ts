@@ -26,10 +26,8 @@ export class GLoginComponent implements OnInit {
       this.router.navigate(['feed']);
       return;
     }
-
     const params = this.activatedRoute.snapshot.queryParams;
     if (params.hasOwnProperty('code')) {
-      console.log('code', params['code']);
       this.authenticating = true;
       const auth_code = params['code'];
       this.dataService.AuthenticateGLogin(auth_code).subscribe(() => {
@@ -44,7 +42,6 @@ export class GLoginComponent implements OnInit {
           }
         });
       }, (e) => {
-        console.log(e);
         this.error = e.status;
       });
     } else {
