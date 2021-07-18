@@ -1,13 +1,43 @@
+.special-feed-card {
+    
+        
+    overflow: auto;
+    font-size: 0.9em;
+    margin-bottom: 2.5em;
+    /* background-color: rgb(151, 178, 212); */
+    border-radius: 10px 15px 15px 10px;
+    color: #fff;
+	padding: 8px;
+    font-weight: bold;
+	/* display: inline-block; */
+	border-radius: 5px;
+	animation: blinkingBackground 2s infinite;
+    
+}
+
+@keyframes blinkingBackground{
+    0%		{ background-color: #b6c3cf;}
+    /* 25%		{ background-color: #98b0da;} */
+    100%		{ background-color: #85b3ff;}
+    /* 75%		{ background-color: #6ba2ff;} */
+    /* 100%	{ background-color: #5e99ff;} */
+}
+    		
+
+
+
 .main-div {
     margin: 0 auto;
     margin-top: 1.4em;
     width: 90%;
+
 }
 
 .feed-card {
     overflow: auto;
     font-size: 0.9em;
     margin-bottom: 2.5em;
+    
 }
 
 #searchbox {
@@ -22,6 +52,12 @@
 .title {
     font-family: 'Roboto';
     font-weight: 300;
+    font-size: 1.5em;
+}
+
+.special-title {
+    font-family: 'Roboto';
+    font-weight: 2000;
     font-size: 1.5em;
 }
 
