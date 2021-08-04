@@ -27,6 +27,7 @@
     "instimapweb": "^1.0.9",
     "json2csv": "^4.5.4",
     "material-design-icons": "^3.0.1",
+    "material-icons": "^1.1.0",
     "moment": "^2.24.0",
     "ngx-flyout-ivy": "^1.1.1",
     "ngx-img-fallback": "^1.3.4",

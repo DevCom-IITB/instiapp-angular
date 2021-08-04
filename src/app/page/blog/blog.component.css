@@ -1,3 +1,19 @@
+.special-feed-card {
+    /* special-feed-card is to achieve different formating and appearence for pinned blog post */
+    overflow: auto;
+    font-size: 0.9em;
+    margin-bottom: 2.5em;
+    border-radius: 10px 15px 15px 10px;
+    color: #070707;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #b6c3cf; 
+}
+
+.mat-icon {
+    vertical-align: middle;
+}
+
 .main-div {
     margin: 0 auto;
     margin-top: 1.4em;
@@ -22,6 +38,13 @@
 .title {
     font-family: 'Roboto';
     font-weight: 300;
+    font-size: 1.5em;
+}
+
+.special-title {
+    /* change formating for title in pinned blogs */
+    font-family: 'Roboto';
+    font-weight: 2000;
     font-size: 1.5em;
 }
 

@@ -18,8 +18,12 @@
 
 <div *ngIf="feed" class="main-div">
   <ng-container *ngFor="let item of feed">
-    <div class="feed-card">
-        <div class="title">{{ item.title }}</div>
+    <div [ngClass]="{
+                 'feed-card': item.pinnned== 0, 
+                 'special-feed-card': item.pinned== 1 }">
+        <div [ngClass]="{
+                 'title': item.pinned== 0, 
+                 'special-title': item.pinned== 1}"><mat-icon *ngIf="item.pinnned== 1">push_pin</mat-icon>{{ item.title }}</div>
         {{ item.published | date:"dd-MMM-yyyy HH:mm" }}
         <div [innerHTML]="dataService.processMDHTML(item.content | markdown)" class="markdown"></div>
     </div>
