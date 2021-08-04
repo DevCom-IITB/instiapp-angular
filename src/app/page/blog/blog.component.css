@@ -5,11 +5,9 @@
     margin-bottom: 2.5em;
     border-radius: 10px 15px 15px 10px;
     color: #070707;
-	padding: 8px;
-	border-radius: 5px;
-    background-color: #b6c3cf;;
-	
-    
+	  padding: 8px;
+	  border-radius: 5px;
+    background-color: #b6c3cf; 
 }
 
 .mat-icon {
@@ -26,7 +24,6 @@
     overflow: auto;
     font-size: 0.9em;
     margin-bottom: 2.5em;
-    
 }
 
 #searchbox {
