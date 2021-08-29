@@ -45,6 +45,7 @@ import { QuickLinksComponent } from './page/quick-links/quick-links.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { AboutComponent } from './page/settings/about/about.component';
 import { AchievementsComponent } from './page/achievements/achievements.component';
+import { QuerySearchComponent } from './page/query-search/query-search.component';
 
 // Cards
 import { CardComponent } from './card/card.component';
@@ -109,6 +110,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     AchievementCardComponent,
     AchievementOfferMakeComponent,
     QrScanComponent,
+    QuerySearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -150,6 +152,8 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
       { path: 'event/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
       { path: 'user/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
+
+      { path: 'query-search', component: QuerySearchComponent, data: { state: 'base' } },
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
