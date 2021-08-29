@@ -18,6 +18,34 @@
   </ng-container>
 </div>
 <app-xunk-spinner *ngIf="error" [error]="error"></app-xunk-spinner>
+<div class="new-query-box" *ngIf="dataService.isLoggedIn()">
+  <mat-card>
+    <mat-card-title>Couldn't find what you're looking for ?</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div>
+        <mat-form-field color="accent"  class="query-input">
+          <input [(ngModel)]="new_query.question" matInput required
+                name="new_query_question" placeholder="Question" class="query-input">
+          <mat-hint align="start">Enter your query</mat-hint>
+        </mat-form-field>
+        </div>
+        <div>
+        <mat-form-field color="accent"  class="query-input">
+          <input [(ngModel)]="new_query.category" matInput
+                name="new_query_category" placeholder="Category"> 
+          <mat-hint align="start">Enter your query category e.g Acacdemics, Sports</mat-hint>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <div>
+        <button mat-raised-button color="primary" (click)="submitNewQuery()" style="max-height:37px;">Submit query</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
 <div *ngIf="noResults" class="main-div">
   No answers found for your question right now :(
 </div>

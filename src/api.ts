@@ -35,6 +35,7 @@ export const API = {
 
     Search: 'api/search{?query,types}',
     Query: 'api/query{?query}',
+    AddNewQuery: 'api/query',
 
     Notifications: 'api/notifications',
     NotificationRead: 'api/notifications/read/{id}',

@@ -15,6 +15,16 @@
     white-space: nowrap;
 }
 
+.new-query-box {
+    margin: 10px 5%;
+    max-width: 60%;
+}
+
+.query-input{
+    min-width: 60%;
+    margin-top: 2%;
+}
+
 .searchinput {
     min-width: 40%;
 }
