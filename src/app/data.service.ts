@@ -104,6 +104,9 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FireGET<T>(uriTemplate: string, options: any = {}): Observable<T> {
+    console.log(options);
+    console.log(uriTemplate);
+    console.log(this.FillURITemplate(HOST + uriTemplate, options));
     return this.http.get<T>(this.FillURITemplate(HOST + uriTemplate, options));
   }
 
