@@ -1,0 +1,48 @@
+.main-div {
+    margin: 0 auto;
+    margin-top: 1.4em;
+    width: 90%;
+}
+
+.feed-card {
+    overflow: auto;
+    font-size: 0.9em;
+    margin-bottom: 2.5em;
+}
+
+#searchbox {
+    margin: 10px 5%;
+    white-space: nowrap;
+}
+
+.searchinput {
+    min-width: 40%;
+}
+
+.title {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+@media (min-width: 768px) {
+    .feed-card {
+        margin-bottom: 3.5em;
+    }
+
+    .title {
+        font-size: 1.85em
+    }
+}
+
+@media (max-width: 768px) {
+    .searchinput {
+        min-width: 60%;
+    }
+}
+
+@media (max-width: 560px) {
+    .searchinput {
+        min-width: 80%;
+    }
+}
