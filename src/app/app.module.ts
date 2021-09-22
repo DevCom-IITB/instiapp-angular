@@ -158,7 +158,7 @@ import { ExternalBlogComponent } from './page/external/blog.component';
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
-      {path: 'external', component:ExternalBlogComponent, data:{ state: 'base' }},
+      {path: 'external', component:ExternalBlogComponent, data:{ state: 'base' }, canActivate: [LoginActivate] },
       { path: '**', redirectTo: 'feed' },
     ]),
 
