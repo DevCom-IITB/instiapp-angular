@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../data.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Helpers } from '../../helpers';
 import { noop } from 'rxjs';
 import { API } from '../../../api';
@@ -24,7 +24,7 @@ export class ExternalBlogComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
+    // this.activatedRoute.params.subscribe((params: Params) => {
       
       this.dataService.setTitle('External Blog');
       this.dataService.FireGET<any[]>(API.external).subscribe(result => {
@@ -52,7 +52,7 @@ export class ExternalBlogComponent implements OnInit, OnDestroy {
       //     this.error = e.status;
       //   });
       // }
-    });
+    // });
 
     /** Lazy load on scroll to bottom */
     this.dataService.scrollBottomFunction = () => { this.lazyLoad(); };
