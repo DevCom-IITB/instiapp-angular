@@ -23,36 +23,13 @@ export class ExternalBlogComponent implements OnInit, OnDestroy {
     public activatedRoute: ActivatedRoute,
   ) { }
 
-  ngOnInit() {
-    // this.activatedRoute.params.subscribe((params: Params) => {
-      
+  ngOnInit() {      
       this.dataService.setTitle('External Blog');
       this.dataService.FireGET<any[]>(API.external).subscribe(result => {
         this.feed = result;
       }, (e) => {
         this.error = e.status;
       });
-
-      // if (params['blog']) {
-      //   this.blog_url = this.dataService.DecodeObject(params['blog']);
-
-      //   /* Set title depending on blog */
-      //   if (this.blog_url === API.PlacementBlog) {
-      //     this.dataService.setTitle('Placement Blog');
-      //   } else if (this.blog_url === API.TrainingBlog) {
-      //     this.dataService.setTitle('Internship Blog');
-      //   } else {
-      //     this.dataService.setTitle('Blog');
-      //   }
-
-      //   /* Get feed */
-      //   this.dataService.FireGET<any[]>(this.blog_url).subscribe(result => {
-      //     this.feed = result;
-      //   }, (e) => {
-      //     this.error = e.status;
-      //   });
-      // }
-    // });
 
     /** Lazy load on scroll to bottom */
     this.dataService.scrollBottomFunction = () => { this.lazyLoad(); };
