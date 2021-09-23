@@ -14,6 +14,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   public feed;
   loading = false;
   allLoaded = false;
+  external = false;
   blog_url: string;
   error: number;
   query: string = null;
@@ -33,6 +34,9 @@ export class BlogComponent implements OnInit, OnDestroy {
           this.dataService.setTitle('Placement Blog');
         } else if (this.blog_url === API.TrainingBlog) {
           this.dataService.setTitle('Internship Blog');
+        } else if(this.blog_url == API.external) {
+          this.dataService.setTitle('External Blog');
+          this.external = true;
         } else {
           this.dataService.setTitle('Blog');
         }

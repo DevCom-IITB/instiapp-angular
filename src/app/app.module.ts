@@ -71,8 +71,6 @@ import { AchievementCardComponent } from './card/achievement-card/achievement-ca
 import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
 import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 
-import { ExternalBlogComponent } from './page/external/blog.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,7 +109,6 @@ import { ExternalBlogComponent } from './page/external/blog.component';
     AchievementCardComponent,
     AchievementOfferMakeComponent,
     QrScanComponent,
-    ExternalBlogComponent,
   ],
   imports: [
     BrowserModule,
@@ -158,7 +155,6 @@ import { ExternalBlogComponent } from './page/external/blog.component';
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
-      {path: 'external', component:ExternalBlogComponent, data:{ state: 'base' }, canActivate: [LoginActivate] },
       { path: '**', redirectTo: 'feed' },
     ]),
 
