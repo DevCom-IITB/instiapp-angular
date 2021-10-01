@@ -46,6 +46,12 @@
     <mat-icon>work</mat-icon> &nbsp; Internship Blog
 </a>
 
+<a [routerLink]="['/blog/' +  dataService.EncodeObject(api.external)]"
+   routerLinkActive="active-link"
+   mat-list-item>
+    <mat-icon>work</mat-icon> &nbsp; External Blog
+</a>
+
 
 <a [routerLink]="['/calendar']"
    routerLinkActive="active-link"

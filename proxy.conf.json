@@ -1,9 +1,9 @@
 {
     "/api/**": {
       "target": {
-          "host": "www.insti.app",
-          "protocol": "https:",
-          "port": 443
+        "host": "www.insti.app",
+        "protocol": "https:",
+        "port": 443
         },
       "secure": false,
       "changeOrigin": true,
