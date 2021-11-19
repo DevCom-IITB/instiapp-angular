@@ -1,8 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../../../data.service';
-import { IAchievement, IUserProfile } from '../../../interfaces';
+
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, ActivatedRoute } from '@angular/router';
+import { API } from '../../../../api';
+// import { API } from '../../../../api';
+
+import { DataService } from '../../../data.service';
+
+
 
 
 
@@ -11,13 +15,35 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './query-new.component.html',
   styleUrls: ['./query-new.component.css']
 })
-export class QueryNewComponent implements OnInit, OnDestroy {
+export class QueryNewComponent implements OnInit {
 
   /** Main object to edit */
-  achievement: IAchievement;
+  new_query = {
+    question: "",
+    category: "",
+  }
+  catagory: string[];
+  selectedYears: any[];
+  selected: any[];
+  years: any[];
+  loading: boolean = false;
+  filtered = [];
+  search_url: string;
+  new_query_url: string;
+  query: string = "";
+  noResults: boolean;
+  error: number;
+  filter_string: string;
+  finalarray: any[];
+  equals(objOne, objTwo) {
+    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
+      return objOne.id === objTwo.id;
+    }
+  }
+
 
   /** Users from offer */
-  users: IUserProfile[];
+  // users: IUserProfile[];
 
   /** Secret */
   secret: string;
@@ -25,30 +51,30 @@ export class QueryNewComponent implements OnInit, OnDestroy {
   /** ID of offer if present */
   offerId: string;
 
-  search_url: string;
-  new_query_url: string;
+
 
 
   /** Show the QR code = 1 static = 2 result = 3*/
   showQR = 0;
-  resultMessage = '';
+  resultMessage = 'You have successfully posted the question';
 
   /** Otplib */
   otplib: any;
 
   /** Current TOTP */
+  totp = '000000';
+  totpInterval: NodeJS.Timeout;
+  totpTime = 0;
+  totpQR = '';
+  secretQR = '';
 
 
-  new_query = {
-    question: "",
-    category: "",
-  }
 
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,
-    public router: Router,
-    public activatedRoute: ActivatedRoute,
+
+
   ) { }
 
   ngOnInit() {
@@ -56,6 +82,15 @@ export class QueryNewComponent implements OnInit, OnDestroy {
     if (this.dataService.isMobile()) {
       this.dataService.setTitle('FAQs');
     }
+    this.years = [
+      'Catagories',
+      'Acadamic',
+      'SMP',
+      'Sports',
+      'Cultural',
+      'Technical'
+
+    ]
   }
 
 
@@ -65,6 +100,9 @@ export class QueryNewComponent implements OnInit, OnDestroy {
       clearInterval(this.totpInterval);
     }
   }
+
+
+
 
   /** Fire the request */
 
@@ -83,7 +121,9 @@ export class QueryNewComponent implements OnInit, OnDestroy {
   // }
 
   submitNewQuery() {
-    this.dataService.FirePOST<any>(this.new_query_url, this.new_query).subscribe(result => {
+
+
+    this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.error) {
         this.snackBar.open(result.error, '', { duration: 3000 })
@@ -91,7 +131,8 @@ export class QueryNewComponent implements OnInit, OnDestroy {
       else {
         this.new_query.question = "";
         this.new_query.category = "";
-        this.snackBar.open("Some error occured.Please try again :(", '', { duration: 3000 })
+        this.snackBar.open("Query subbmitted.", '', { duration: 3000 })
+        console.log(this.new_query.category)
       }
     }, (e) => {
       this.snackBar.open(e.message, '', { duration: 3000 })

@@ -34,8 +34,9 @@ export const API = {
     Mess: 'api/mess',
 
     Search: 'api/search{?query,types}',
-    Query: 'api/query{?query}',
-    AddNewQuery: 'api/query',
+    Query: 'api/query{?query,filter}',
+
+    AddNewQuery: 'api/query/add',
 
     Notifications: 'api/notifications',
     NotificationRead: 'api/notifications/read/{id}',

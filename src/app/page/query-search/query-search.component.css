@@ -1,3 +1,10 @@
+.query_search {
+    margin: 0 auto;
+    max-width: 560px;
+    padding: 15px;
+}
+
+
 .main-div {
     margin: 0 auto;
     margin-top: 1.4em;
@@ -9,9 +16,24 @@
     font-size: 0.9em;
     margin-bottom: 2.5em;
 }
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 0.3;
+    /* margin: 3px 5%;
+    white-space: nowrap; */
+
+}
 
 #searchbox {
     margin: 10px 5%;
+    white-space: nowrap;
+}
+
+#filter-drop-down {
+    margin: 1px .6%;
     white-space: nowrap;
 }
 
@@ -25,8 +47,20 @@
     margin-top: 2%;
 }
 
+
+.filter-select{
+    min-width: 10%; 
+}
 .searchinput {
-    min-width: 40%;
+    min-width: 60%;
+}
+
+.filter {
+    margin: 10px 5%;
+    white-space: nowrap;
+    color: red;
+    text-emphasis-color: red;
+
 }
 
 .title {

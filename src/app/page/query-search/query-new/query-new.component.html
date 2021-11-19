@@ -11,10 +11,16 @@
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field color="accent" class="query-input">
-          <input [(ngModel)]="new_query.category" matInput name="new_query_category" placeholder="Category">
-          <mat-hint align="start">Enter your query category e.g Acacdemics, Sports</mat-hint>
-        </mat-form-field>
+        <mat-list-item id="filter-drop-down" role="listitem">
+          <mat-form-field class="select-form">
+            <mat-select placeholder="FILTER" name="year" class="filter-select" [(ngModel)]="new_query.category"
+              [compareWith]="equals" #yearSelect>
+              <mat-option *ngFor="let year of years" [value]="year">
+                {{year}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-list-item>
       </div>
     </mat-card-content>
     <mat-divider></mat-divider>
