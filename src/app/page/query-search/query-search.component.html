@@ -1,13 +1,50 @@
 <div id="searchbox">
   <mat-form-field class="searchinput">
     <input type="search" #box matInput placeholder="Search" (keyup.enter)="search()" [(ngModel)]="query">
-    <mat-hint align="start">Type your question</mat-hint>
+    <mat-hint align ="start">Type your question</mat-hint>
   </mat-form-field>
+
+
 
   <button mat-icon-button color="primary" (click)="search()" style="max-height:37px;">
     <mat-icon>search</mat-icon>
   </button>
-</div>
+
+
+
+
+
+ 
+  <mat-list-item class="primary-imenu-item" role="listitem">
+    <mat-form-field class="select-form">
+        <mat-select 
+        placeholder="Years" 
+        name="year" 
+        class="filter-select" 
+        [(ngModel)]="selectedYears" 
+        [compareWith]="equals"
+        multiple 
+        #yearSelect>
+          <mat-option disabled="disabled" class="filter-option">
+            <button 
+            mat-raised-button 
+            class="mat-accent fill text-sm" 
+            (click)="deselectAll(yearSelect)">
+            Deselect All
+            </button> 
+            
+          </mat-option>
+          <mat-option *ngFor="let year of years" [value]="year">
+            {{year.viewValue}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </mat-list-item>
+
+
+
+
+ 
 
 <div *ngIf="answers.length" class="main-div">
   <ng-container *ngFor="let item of answers">
