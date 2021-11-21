@@ -50,7 +50,7 @@ export class QuerySearchComponent implements OnInit {
 
     this.years = [
 
-      { id: 1, viewValue: "Acadamic" },
+      { id: 1, viewValue: "Academic" },
       { id: 2, viewValue: "SMP" },
       { id: 3, viewValue: "Sports" },
       { id: 4, viewValue: "Cultural" },
@@ -76,7 +76,7 @@ export class QuerySearchComponent implements OnInit {
 
     console.log(this.finalarray) // printing filtered array
 
-    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, filter: this.filter_string }).subscribe(result => {
+    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, category: this.filter_string }).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.length === 0) { this.noResults = true; }
 

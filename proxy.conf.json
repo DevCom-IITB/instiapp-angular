@@ -1,12 +1,13 @@
 {
   "/api/**": {
     "target": {
-      "host": "localhost",
+      "host": "10.105.177.19",
       "protocol": "http:",
-      "port": 8000
+      "port": 8080
     },
     "secure": false,
     "changeOrigin": true,
-    "logLevel": "debug"
+    "logLevel": "debug",
+    "useWSL": true
   }
 }
