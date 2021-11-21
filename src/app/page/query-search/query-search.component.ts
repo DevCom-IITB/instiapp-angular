@@ -66,8 +66,8 @@ export class QuerySearchComponent implements OnInit {
     this.answers = [];
     this.noResults = false;
     this.error = 0;
-    this.finalarray = this.selectedYears.map(function (id) {
-      return id.id;
+    this.finalarray = this.selectedYears.map(function (viewValue) {
+      return viewValue.viewValue;
     });
 
     this.filter_string = this.finalarray.toString();
@@ -76,7 +76,7 @@ export class QuerySearchComponent implements OnInit {
 
     console.log(this.finalarray) // printing filtered array
 
-    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, filter: this.finalarray }).subscribe(result => {
+    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, filter: this.filter_string }).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.length === 0) { this.noResults = true; }
 

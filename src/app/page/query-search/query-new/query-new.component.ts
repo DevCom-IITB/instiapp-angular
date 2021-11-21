@@ -83,7 +83,7 @@ export class QueryNewComponent implements OnInit {
       this.dataService.setTitle('FAQs');
     }
     this.years = [
-      'Catagories',
+      'Filter/ALL',
       'Acadamic',
       'SMP',
       'Sports',

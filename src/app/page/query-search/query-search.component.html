@@ -78,8 +78,8 @@
 
   </div>
   <div right class="desktop-right">
-    <!-- <div *ngIf="dataService.isLoggedIn()">
-      <mat-card>
+    <div>
+      <!--   <mat-card>
         <mat-card-title>Couldn't find what you're looking for ?</mat-card-title>
         <mat-divider></mat-divider>
         <mat-card-content>
@@ -104,10 +104,10 @@
               query</button>
           </div>
         </mat-card-actions>
-      </mat-card>
-    </div> -->
+      </mat-card>-->
+    </div>
 
-    <app-query-new></app-query-new>
+    <app-query-new *ngIf="dataService.isLoggedIn()"></app-query-new>
 
   </div>
 
