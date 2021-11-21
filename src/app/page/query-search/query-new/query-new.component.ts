@@ -131,7 +131,7 @@ export class QueryNewComponent implements OnInit {
       else {
         this.new_query.question = "";
         this.new_query.category = "";
-        this.snackBar.open("Query subbmitted.", '', { duration: 3000 })
+        this.snackBar.open("Query submitted.", '', { duration: 3000 })
         console.log(this.new_query.category)
       }
     }, (e) => {
