@@ -49,44 +49,27 @@ export class QuerySearchComponent implements OnInit {
     this.new_query_url = API.AddNewQuery;
 
     this.years = [
-
       { id: 1, viewValue: "Academic" },
       { id: 2, viewValue: "SMP" },
       { id: 3, viewValue: "Sports" },
       { id: 4, viewValue: "Cultural" },
       { id: 5, viewValue: "Technical" }
     ];
-    this.dataService.FireGET<any[]>(this.search_url, {}).subscribe(result => {
-      /* We're done infinite scrolling if nothing is returned */
-      if (result.length === 0) { this.noResults = true; }
-
-      /* Add to current list */
-      this.answers = result;
-
-      this.loading = false;
-    }, (e) => {
-      this.loading = false;
-      this.error = e.status;
-    });
-    // this.search();
+    this.search();
   }
 
   search() {
-
 
     this.loading = true;
     this.answers = [];
     this.noResults = false;
     this.error = 0;
-    this.finalarray = this.selectedYears.map(function (viewValue) {
+    this.finalarray = this.selectedYears? this.selectedYears.map(function (viewValue) {
       return viewValue.viewValue;
-    });
+    }) : null;
 
-    this.filter_string = this.finalarray.toString();
-    console.log(this.filter_string)
+    this.filter_string = this.finalarray? this.finalarray.toString() : null;
     // this.filtered needs to be sent to api to filter out queries.. it contains all the filter option selected by the user
-
-    console.log(this.finalarray) // printing filtered array
 
     this.dataService.FireGET<any[]>(this.search_url, { query: this.query, category: this.filter_string }).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
@@ -110,8 +93,6 @@ export class QuerySearchComponent implements OnInit {
   submitNewQuery() {
     this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
-
-
 
       if (result.error) {
         this.snackBar.open(result.error, '', { duration: 3000 })
