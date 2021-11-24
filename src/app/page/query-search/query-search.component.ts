@@ -55,8 +55,20 @@ export class QuerySearchComponent implements OnInit {
       { id: 3, viewValue: "Sports" },
       { id: 4, viewValue: "Cultural" },
       { id: 5, viewValue: "Technical" }
-    ]
-    this.search();
+    ];
+    this.dataService.FireGET<any[]>(this.search_url, {}).subscribe(result => {
+      /* We're done infinite scrolling if nothing is returned */
+      if (result.length === 0) { this.noResults = true; }
+
+      /* Add to current list */
+      this.answers = result;
+
+      this.loading = false;
+    }, (e) => {
+      this.loading = false;
+      this.error = e.status;
+    });
+    // this.search();
   }
 
   search() {
