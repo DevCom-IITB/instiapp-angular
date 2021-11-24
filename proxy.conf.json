@@ -1,13 +1,12 @@
 {
-  "/api/**": {
-    "target": {
-      "host": "10.105.177.19",
-      "protocol": "http:",
-      "port": 8080
-    },
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug",
-    "useWSL": true
-  }
+    "/api/**": {
+      "target": {
+        "host": "www.insti.app",
+        "protocol": "https:",
+        "port": 443
+        },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "info"
+    }
 }
