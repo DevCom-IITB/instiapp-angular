@@ -3,9 +3,7 @@
 <div *ngIf="profile" class="main">
   <!-- Head information -->
   <div id="head">
-    <img [src]="profile.profile_pic"
-         src-fallback="assets/useravatar.svg"
-         class="profile-pic img-circle object-cover">
+    <img [src]="profile.profile_pic" src-fallback="assets/useravatar.svg" class="profile-pic img-circle object-cover">
     <div id="info-header">
       <div class="rl-header sm">{{ profile.name }}</div>
       <span class="sub-name">
@@ -24,10 +22,7 @@
 
   <!-- Roles -->
   <div class="body-cards" *ngIf="profile.roles.length > 0">
-    <app-body-card *ngFor="let role of profile.roles"
-                  [body]="role.body_detail"
-                  [subtitle]="role.name"
-                  class="body">
+    <app-body-card *ngFor="let role of profile.roles" [body]="role.body_detail" [subtitle]="role.name" class="body">
     </app-body-card>
   </div>
 
@@ -35,26 +30,36 @@
     <div class="follow-sec">
       <div class="rl-header sm">Achievements</div>
       <div class="body-cards" *ngIf="profile.achievements.length > 0">
-        <app-achievement-card *ngFor="let ach of profile.achievements"
-                      class="body" [achievement]="ach">
+        <app-achievement-card *ngFor="let ach of profile.achievements" class="body" [achievement]="ach">
         </app-achievement-card>
       </div>
     </div>
 
     <div class="follow-sec">
       <div class="rl-header sm">Following</div>
-      <app-body-card
-        *ngFor="let body of profile.followed_bodies"
-        [body]="body">
+      <app-body-card *ngFor="let body of profile.followed_bodies" [body]="body">
       </app-body-card>
     </div>
 
     <div class="follow-sec">
       <div class="rl-header sm">Events</div>
-      <app-event-card
-          *ngFor="let event of events"
-          [event]="event">
+      <app-event-card *ngFor="let event of events" [event]="event">
       </app-event-card>
+    </div>
+
+    <div ngif=class="follow-sec">
+      <div class="rl-header sm">Intrests</div>
+      <div>
+        <app-search-box exploreProp="interests" displayProp="title" placeholder="New Interest" hint="Enter a Interest"
+          (change)="setInterest($event)">
+        </app-search-box> -->
+
+        <app-card *ngFor="let interest of interests" [title]=interest.title>
+        </app-card>
+
+
+      </div>
+
     </div>
   </div>
 </div>
