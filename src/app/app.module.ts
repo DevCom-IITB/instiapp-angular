@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouteReuseStrategy } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // Basic app imports
 import { AppComponent } from './app.component';
@@ -71,6 +72,7 @@ import { QueryNewComponent } from './page/query-search/query-new/query-new.compo
 import { SearchBoxComponent } from './comp/search-box/search-box.component';
 import { AchievementCardComponent } from './card/achievement-card/achievement-card.component';
 import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
+import { SkillsNewComponent } from './page/achievements/skills-new/skills-new.component';
 import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 
 @NgModule({
@@ -88,6 +90,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     BodyDetailsComponent,
     UserCardComponent,
     UpdateBodyComponent,
+    SkillsNewComponent,
     BlogComponent,
     EventSidebarDesktopComponent,
     NewsComponent,
@@ -108,6 +111,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     AchievementRequestComponent,
     AchievementNewComponent,
     SearchBoxComponent,
+
     AchievementCardComponent,
     AchievementOfferMakeComponent,
     QrScanComponent,
@@ -117,6 +121,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
   imports: [
     BrowserModule,
 
+    MatTabsModule,
     CommonModule,
     HttpClientModule,
     FormsModule,
@@ -176,7 +181,9 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     DataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
+
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,
+    QuerySearchComponent]
 })
 export class AppModule { }

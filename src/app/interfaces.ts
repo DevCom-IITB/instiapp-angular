@@ -22,9 +22,11 @@ export interface IUserProfile {
     followed_bodies_id: string[];
     roles: IBodyRole[];
     former_roles: IBodyRole[];
+    interest: IInterest[];
     hostel: string;
     institute_roles: IInstituteRole[];
     achievements: IAchievement[];
+    skills: ISkill[];
 }
 
 export interface IEvent {
@@ -66,6 +68,10 @@ export interface ILocation {
     lat: number;
     lng: number;
     reusable: boolean;
+}
+
+export interface IInterest {
+    title: string;
 }
 
 export interface IBody {
@@ -181,6 +187,7 @@ export interface IAchievement {
     hidden: boolean;
     dismissed: boolean;
     verified: boolean;
+    isSkill: boolean;
     verified_by: string;
 
     user: IUserProfile;
@@ -192,6 +199,18 @@ export interface IAchievement {
     event_detail: IEvent;
 
     offer: string;
+
+}
+
+export interface ISkill {
+    id: string;
+    title: string;
+    dismissed: boolean;
+    verified: boolean;
+    verified_by: string;
+
+    user: IUserProfile;
+
 }
 
 export interface IOfferedAchievement {

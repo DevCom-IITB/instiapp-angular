@@ -1,9 +1,9 @@
 {
   "/api/**": {
     "target": {
-      "host": "10.105.177.19",
+      "host": "localhost",
       "protocol": "http:",
-      "port": 8080
+      "port": 8000
     },
     "secure": false,
     "changeOrigin": true,

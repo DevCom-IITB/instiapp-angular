@@ -1,17 +1,14 @@
 <app-xunk-spinner *ngIf="!achievements" [error]="error"></app-xunk-spinner>
 
-<app-desktop-split
-  *ngIf="achievements"
-  [rightLeftBorder]="false"
-  [centerRightBorder]="true">
+<app-desktop-split *ngIf="achievements" [rightLeftBorder]="false" [centerRightBorder]="true">
 
     <div center class="achievements">
         <div class="bodies" *ngIf="!bodyId && getVerifiableBodies().length > 0">
             <div class="rl-header sm main-title">
-              Verify
+                Verify
             </div>
-            <app-body-card *ngFor="let body of getVerifiableBodies()"
-                           [body]="body" [route]="['/achievements', body.id]">
+            <app-body-card *ngFor="let body of getVerifiableBodies()" [body]="body"
+                [route]="['/achievements', body.id]">
             </app-body-card>
         </div>
 
@@ -19,16 +16,15 @@
             {{ this.bodyId ? 'Verify' : 'Your Achievements' }}
         </div>
         <div *ngFor="let achievement of achievements">
-            <app-achievement-request [achievement]="achievement"
-                                     (del)="delete(achievement)"
-                                     [user]="bodyId ? true : false">
+            <app-achievement-request [achievement]="achievement" (del)="delete(achievement)"
+                [user]="bodyId ? true : false">
             </app-achievement-request>
         </div>
 
         <div class="nothing-here" *ngIf="emptyMessage">
             <div class="image">
                 <img src="assets/error/basketball-gray.png" />
-                <br/><br/>
+                <br /><br />
                 <span style="white-space: pre">
                     {{ emptyMessage }}
                 </span>
@@ -37,18 +33,32 @@
     </div>
 
     <div right class="desktop-right">
-        <app-achievement-new *ngIf="!dataService.isMobile()"></app-achievement-new>
+
+
+        <!-- <app-achievement-new *ngIf="!dataService.isMobile()"></app-achievement-new> -->
+        <mat-tab-group>
+            <mat-tab label="First">
+                <app-achievement-new *ngIf="!dataService.isMobile()"></app-achievement-new>
+            </mat-tab>
+            <mat-tab label="Second">
+                <app-skills-new *ngIf="!dataService.isMobile()"></app-skills-new>
+
+
+            </mat-tab>
+            <!-- <mat-tab label="third">
+                <app-achievement-new *ngIf="!dataService.isMobile()"></app-achievement-new>
+            </mat-tab> -->
+
+        </mat-tab-group>
+
     </div>
 
 </app-desktop-split>
 
 
 <div class="float-fixed-right-bottom">
-  <button mat-fab
-          class="mat-elevation-z2 edit-fab"
-          [class.gone]="dataService.isScrollingDown()"
-          *ngIf="dataService.isMobile()"
-          [routerLink]="['/achievement-new']">
+    <button mat-fab class="mat-elevation-z2 edit-fab" [class.gone]="dataService.isScrollingDown()"
+        *ngIf="dataService.isMobile()" [routerLink]="['/achievement-new']">
         <mat-icon>add</mat-icon>
     </button>
 </div>
