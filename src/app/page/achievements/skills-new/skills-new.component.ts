@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../data.service';
-import { IAchievement } from '../../../interfaces';
+import { IAchievement, IBody } from '../../../interfaces';
 import { API } from '../../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -34,12 +34,6 @@ export class SkillsNewComponent implements OnInit, OnDestroy {
 
     this.skill = {} as IAchievement;
 
-
-
-
-
-
-
   }
 
   ngOnDestroy() {
@@ -55,10 +49,12 @@ export class SkillsNewComponent implements OnInit, OnDestroy {
   /** Set skill from an autocomplete Skills */
   setSkill(event: any): void {
     if (event.option) {
-      console.log(event.option.value.title)
+      
+      const body: IBody = event.option.value.body;
       this.skill.title = event.option.value.title;
       this.skill.isSkill = true;
-      this.skill.body = event.option.value.body;
+      this.skill.body = body.id;
+      this.skill.body_detail = body;
 
       console.log(this.skill)
     }

@@ -12,7 +12,10 @@
         (change)="setSkill($event)">
     </app-search-box>
 
-    <app-body-card *ngIf="skill" [body]="skill.body" [route]="[]">
+    <div *ngIf="skill.title">
+            {{ skill.title }}
+    </div>
+    <app-body-card *ngIf="skill.body_detail" [body]="skill.body_detail" [route]="[]">
     </app-body-card>
 
     <button mat-raised-button color="accent" class="full-width go" (click)="go()">
