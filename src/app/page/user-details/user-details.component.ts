@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUserProfile, IEvent, IInterest } from '../../interfaces';
+import { IUserProfile, IEvent } from '../../interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
@@ -14,8 +14,8 @@ export class UserDetailsComponent implements OnInit {
   public profile: IUserProfile;
   public events: IEvent[];
   public error: number;
-  public interest: IInterest;
-  public interests: IInterest[];
+  // public interest: IInterest;
+  // public interests: IInterest[];
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -28,7 +28,7 @@ export class UserDetailsComponent implements OnInit {
       this.dataService.FireGET<IUserProfile>(API.User, { uuid: userId }).subscribe(result => {
         /* Initialize */
         this.events = result.events_going.concat(result.events_interested);
-        this.interests = result.interest;
+        // this.interests = result.interest;
         result.former_roles.forEach(r => r.name = `Former ${r.name} ${r.year}`);
         result.roles = result.roles.concat(result.former_roles);
         this.dataService.setTitle(result.name);
@@ -51,14 +51,14 @@ export class UserDetailsComponent implements OnInit {
   }
 
 
-  setInterest(event: any): void {
-    if (event.option) {
-      console.log(event.option.value.title)
-      this.interest.title = event.option.value.title;
+  // setInterest(event: any): void {
+  //   if (event.option) {
+  //     console.log(event.option.value.title)
+  //     this.interest.title = event.option.value.title;
 
 
-      // fire a request to add this interest as a interest of the loged in user
-    }
-  }
+  //     // fire a request to add this interest as a interest of the loged in user
+  //   }
+  // }
 
 }

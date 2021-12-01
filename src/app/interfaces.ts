@@ -22,7 +22,7 @@ export interface IUserProfile {
     followed_bodies_id: string[];
     roles: IBodyRole[];
     former_roles: IBodyRole[];
-    interest: IInterest[];
+    interests: IInterest[];
     hostel: string;
     institute_roles: IInstituteRole[];
     achievements: IAchievement[];
