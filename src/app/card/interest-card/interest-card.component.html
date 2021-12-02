@@ -9,11 +9,10 @@
           <td>
             <div class="content">
               <p>
-                {{ interest.title }}
+                {{ interest.title }} <button class="close" mat-button (click)="onNoClick(interest)">X</button>
               </p>
               <div class="fixed-bottom">
-                <button class="close" [style.background-color]="toggle ? 'green' : 'red'" mat-button
-                  (click)="onNoClick(interest)">X</button>
+
               </div>
 
             </div>

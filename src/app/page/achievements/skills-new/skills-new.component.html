@@ -3,7 +3,7 @@
 <div class="main">
 
 
-    <div class="rl-header sm full-width-details main-title">
+    <div class="rl-header ">
         Skill Verification
     </div>
 
@@ -13,7 +13,7 @@
     </app-search-box>
 
     <div *ngIf="skill.title">
-            {{ skill.title }}
+        {{ skill.title }}
     </div>
     <app-body-card *ngIf="skill.body_detail" [body]="skill.body_detail" [route]="[]">
     </app-body-card>

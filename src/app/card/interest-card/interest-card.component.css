@@ -31,6 +31,7 @@ table.card-table {
 
 .close{
     scale: 0.5;
+    color: red;
 }
 
 .avatar img {
