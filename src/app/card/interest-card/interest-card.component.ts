@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IInterest } from '../../interfaces';
 import { DataService } from '../../data.service';
+import { UserDetailsComponent } from '../../page/user-details/user-details.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-interest-card',
@@ -14,10 +17,14 @@ export class InterestCardComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
+    public activateRoute: ActivatedRoute,
+    public snakbar: MatSnackBar,
+    public router: Router,
   ) { }
 
   ngOnInit() {
     /* Set fallback images explictly */
+
 
   }
 
@@ -26,8 +33,16 @@ export class InterestCardComponent implements OnInit {
     // return this.event.offered_achievements.length > 0 ? 'assets/badge-medal.png' : null;
   }
 
-  onNoClick() {
-    console.log("deleted")
-  }
+  onNoClick(interest: IInterest) {
+    let myCompOneObj = new UserDetailsComponent(this.activateRoute, this.dataService, this.snakbar, this.router);
+    // console.log(interest)
+    myCompOneObj.deleteInterest(interest);
 
+
+    console.log("deleted kya? yes")
+
+
+  }
 }
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, Self } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IUserProfile, IEvent, IInterest } from '../../interfaces';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataService } from '../../data.service';
@@ -19,10 +19,17 @@ export class UserDetailsComponent implements OnInit {
 
   interests: IInterest[];
 
+  deleteInterest(interest: IInterest) {
+    console.log("on delete command")
+    console.log(interest)
 
 
 
+    this.dataService.FireDELETE(API.DelInterest, { id: interest.title }).subscribe(() => {
 
+    });
+    console.log("deleted")
+  }
   constructor(
     public activatedRoute: ActivatedRoute,
     public dataService: DataService,
@@ -90,7 +97,6 @@ export class UserDetailsComponent implements OnInit {
     }
   }
 
-  // fire a request to add this interest as a interest of the loged in user
 }
 
 
