@@ -71,6 +71,7 @@ export interface ILocation {
 }
 
 export interface IInterest {
+    id: string;
     title: string;
 }
 

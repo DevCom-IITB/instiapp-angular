@@ -47,15 +47,16 @@
       </app-event-card>
     </div>
 
-    <div ngif=class="follow-sec">
+    <div class="follow-sec">
       <div class="rl-header sm">Intrests</div>
       <div>
-        <!-- <app-search-box exploreProp="interests" displayProp="title" placeholder="New Interest" hint="Enter a Interest"
+        <app-search-box exploreProp="interests" displayProp="title" placeholder="New Interest" hint="Enter a Interest"
           (change)="setInterest($event)">
-        </app-search-box> --> -->
+        </app-search-box>
 
-        <!-- <app-card *ngFor="let interest of interests" [title]=interest.title>
-        </app-card> -->
+        <app-interest-card *ngFor="let interest of interests" [interest]=interest>
+
+        </app-interest-card>
 
 
       </div>

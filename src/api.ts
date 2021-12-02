@@ -53,4 +53,5 @@ export const API = {
     BodyAchievement: 'api/achievements-body/{id}',
     AchievementsOffer: 'api/achievements-offer',
     AchievementOffer: 'api/achievements-offer/{id}',
+    Interest: 'api/interests'
 };

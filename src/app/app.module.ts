@@ -54,6 +54,7 @@ import { EventCardComponent } from './card/event-card/event-card.component';
 import { BodyCardComponent } from './card/body-card/body-card.component';
 import { UserCardComponent } from './card/user-card/user-card.component';
 import { NotifyCardComponent } from './card/notify-card/notify-card.component';
+import { InterestCardComponent } from './card/interest-card/interest-card.component';
 
 // Components
 import { ListLoadingComponent } from './comp/list-loading/list-loading.component';
@@ -107,6 +108,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     RedirComponent,
     UpdateRoleComponent,
     CardComponent,
+    InterestCardComponent,
     AchievementsComponent,
     AchievementRequestComponent,
     AchievementNewComponent,
