@@ -16,6 +16,7 @@ export class UserDetailsComponent implements OnInit {
   public profile: IUserProfile;
   public events: IEvent[];
   public error: number;
+  public interestBoxVisible: Boolean;
 
   interests: IInterest[];
 
@@ -28,9 +29,13 @@ export class UserDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
+
     this.interest = {} as IInterest;
     this.activatedRoute.params.subscribe((params: Params) => {
       const userId = params['id'];
+      this.interestBoxVisible = this.dataService.canEditInterest(userId);
       this.dataService.FireGET<IUserProfile>(API.User, { uuid: userId }).subscribe(result => {
         /* Initialize */
         this.events = result.events_going.concat(result.events_interested);
@@ -73,6 +78,8 @@ export class UserDetailsComponent implements OnInit {
   hasField(field: string) {
     return this.profile[field] && this.profile[field].toUpperCase() !== 'N/A';
   }
+
+
 
 
   setInterest(event: any): void {

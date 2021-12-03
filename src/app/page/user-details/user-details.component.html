@@ -53,11 +53,11 @@
     </div>
   </div>
   <div class="interest_search">
-    <app-search-box exploreProp="interests" displayProp="title" placeholder="New Interest" hint="Enter a Interest"
-      (change)="setInterest($event)">
+    <app-search-box *ngIf="interestBoxVisible" exploreProp="interests" displayProp="title" placeholder="New Interest"
+      hint="Enter a Interest" (change)="setInterest($event)">
     </app-search-box>
 
-    <app-interest-card *ngFor="let interest of interests" [interest]=interest>
+    <app-interest-card *ngFor="let interest of interests" [interest]=interest [canDelete]=interestBoxVisible>
 
     </app-interest-card>
 

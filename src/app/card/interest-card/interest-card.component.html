@@ -9,7 +9,8 @@
           <td>
             <div class="content">
               <p>
-                {{ interest.title }} <button class="close" mat-button (click)="onNoClick(interest)">X</button>
+                {{ interest.title }} <button *ngIf=canDelete class="close" mat-button
+                  (click)="onNoClick(interest)">X</button>
               </p>
               <div class="fixed-bottom">
 

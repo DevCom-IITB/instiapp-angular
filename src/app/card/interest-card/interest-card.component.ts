@@ -14,6 +14,7 @@ export class InterestCardComponent implements OnInit {
 
   @Input() interest: IInterest;
   @Input() overrideClick = false;
+  @Input() canDelete = false;
 
   constructor(
     public dataService: DataService,
@@ -25,7 +26,7 @@ export class InterestCardComponent implements OnInit {
   ngOnInit() {
     /* Set fallback images explictly */
 
-
+    console.log(this.canDelete)
   }
 
   /** Get the badge for the event */

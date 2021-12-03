@@ -491,4 +491,16 @@ export class DataService {
       }
     });
   }
+
+  canEditInterest(roll: String): boolean {
+    console.log(roll, this._currentUser.ldap_id)
+
+    if (!this._loggedIn) { return false }
+
+    else if (roll == this._currentUser.ldap_id) {
+      return true
+    }
+    return false;
+
+  }
 }
