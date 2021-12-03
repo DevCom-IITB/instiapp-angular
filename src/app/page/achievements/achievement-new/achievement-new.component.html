@@ -62,6 +62,8 @@
         <app-event-card *ngIf="achievement.event_detail" [event]="achievement.event_detail" [overrideClick]="true">
         </app-event-card>
 
+        <br>
+
         <app-search-box exploreProp="bodies" placeholder="Verifying Authority" hint="Enter an organisation's name"
             (change)="setBody($event)" *ngIf="!offerId">
         </app-search-box>

@@ -49,18 +49,19 @@
 
     <div class="follow-sec">
       <div class="rl-header sm">Intrests</div>
-      <div>
-        <app-search-box exploreProp="interests" displayProp="title" placeholder="New Interest" hint="Enter a Interest"
-          (change)="setInterest($event)">
-        </app-search-box>
-
-        <app-interest-card *ngFor="let interest of interests" [interest]=interest>
-
-        </app-interest-card>
-
-
-      </div>
 
     </div>
   </div>
+  <div class="interest_search">
+    <app-search-box exploreProp="interests" displayProp="title" placeholder="New Interest" hint="Enter a Interest"
+      (change)="setInterest($event)">
+    </app-search-box>
+
+    <app-interest-card *ngFor="let interest of interests" [interest]=interest>
+
+    </app-interest-card>
+
+
+  </div>
+
 </div>

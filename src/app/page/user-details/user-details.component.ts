@@ -19,17 +19,7 @@ export class UserDetailsComponent implements OnInit {
 
   interests: IInterest[];
 
-  deleteInterest(interest: IInterest) {
-    console.log("on delete command")
-    console.log(interest)
 
-
-
-    this.dataService.FireDELETE(API.DelInterest, { id: interest.title }).subscribe(() => {
-
-    });
-    console.log("deleted")
-  }
   constructor(
     public activatedRoute: ActivatedRoute,
     public dataService: DataService,
@@ -63,6 +53,23 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
+  deleteInterest(interest: IInterest) {
+    console.log("on delete command")
+    console.log(interest)
+
+
+
+    this.dataService.FireDELETE(API.DelInterest, { id: interest.title }).subscribe(() => {
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentUrl]);
+        console.log(currentUrl);
+      });
+
+    });
+    console.log("deleted")
+  }
+
   hasField(field: string) {
     return this.profile[field] && this.profile[field].toUpperCase() !== 'N/A';
   }
@@ -89,6 +96,12 @@ export class UserDetailsComponent implements OnInit {
 
         this.snackBar.open('Your request has been recorded', 'Dismiss', { duration: 2000 });
         this.interest = {} as IInterest;
+
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
+          console.log(currentUrl);
+        });
       }, err => {
         console.log(this.interest.id)
         this.snackBar.open(`There was harsh error: ${err.message}`, 'Dismiss');
