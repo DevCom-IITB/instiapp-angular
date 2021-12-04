@@ -1,0 +1,29 @@
+<app-xunk-spinner *ngIf="authenticating || error" [error]="error"></app-xunk-spinner>
+
+<div class="main" *ngIf="!authenticating && !error">
+    <div class="head">
+      Enter the OTP sent to your Email to continue.
+    </div>
+    
+    <form [formGroup]="otpForm"
+        (ngSubmit)="onSubmit()">
+        <mat-form-field class="input-box" appearance="fill">
+            <mat-label>OTP</mat-label>
+            <input matInput id = "otp" type = "text" formControlName="otp">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button
+        type = "button"
+        color="accent"
+        class="login-button"
+        (click)="verifyOTP()">
+        Verify OTP
+    </button>
+    <button mat-raised-button
+        type="button"
+        color="warn"
+        class="login-button"
+        (click)="resendOTP()">
+        Resend OTP
+    </button>
+</div>

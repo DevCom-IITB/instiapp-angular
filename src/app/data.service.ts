@@ -311,6 +311,21 @@ export class DataService {
     return this.FireGET(API.Login, {code: code, redir: SSO_REDIR});
   }
 
+  /** Send LDAP to to backend */
+  SendLDAP(ldap: string) {
+    return this.FireGET(API.Alumni, {ldap: ldap});
+  }
+
+  /** Send OTP to backend and verify */
+  SendOTP(ldap: string, otp: string) {
+    return this.FireGET(API.AlumniOTP, {ldap: ldap, otp: otp});
+  }
+
+  /** Resend OTP if requested by user */
+  ResendOTP(ldap: string) {
+    return this.FireGET(API.ResendAlumniOTP, {ldap: ldap});
+  }
+
   /** Logout the current user */
   Logout() {
     return this.FireGET(API.Logout).subscribe(() => {

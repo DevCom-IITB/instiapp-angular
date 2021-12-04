@@ -45,6 +45,8 @@ import { QuickLinksComponent } from './page/quick-links/quick-links.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { AboutComponent } from './page/settings/about/about.component';
 import { AchievementsComponent } from './page/achievements/achievements.component';
+import { AlumniComponent } from './page/alumni-login/alumni-login.component';
+import { OTPComponent } from './page/alumni-otp/alumni-otp.component';
 
 // Cards
 import { CardComponent } from './card/card.component';
@@ -109,6 +111,8 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     AchievementCardComponent,
     AchievementOfferMakeComponent,
     QrScanComponent,
+    AlumniComponent,
+    OTPComponent,
   ],
   imports: [
     BrowserModule,
@@ -153,6 +157,8 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
+      { path: 'alumni', component: AlumniComponent, data: { state: 'base'}},
+      { path: 'alumni-otp', component: OTPComponent, data: { state: 'base'}},
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },

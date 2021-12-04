@@ -1,0 +1,21 @@
+.main {
+    margin: 30px;
+}
+
+.head {
+    font-weight: 200;
+    font-size: 1.35em;
+    width: 100%;
+    max-width: 440px;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    width: 150px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.input-box {
+    width: 40%;
+}
