@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 
 
+
 @Component({
   selector: 'app-query-search',
   templateUrl: './query-search.component.html',
@@ -17,9 +18,8 @@ export class QuerySearchComponent implements OnInit {
   public answers = [];
   finalarray: String[];
   filters = new FormControl();
-  selectedYears: any[];
   selected: any[];
-  years: any[];
+  categories: any[];
   loading: boolean = false;
   filtered = [];
   search_url: string;
@@ -28,6 +28,8 @@ export class QuerySearchComponent implements OnInit {
   noResults: boolean;
   error: number;
   filter_string: string;
+  selectedCategories: any[];
+  query_category: string;
   equals(objOne, objTwo) {
     if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
       return objOne.id === objTwo.id;
@@ -47,30 +49,27 @@ export class QuerySearchComponent implements OnInit {
     this.dataService.setTitle('Find Answers');
     this.search_url = API.Query;
     this.new_query_url = API.AddNewQuery;
-
-    this.years = [
-      { id: 1, viewValue: "Academic" },
-      { id: 2, viewValue: "SMP" },
-      { id: 3, viewValue: "Sports" },
-      { id: 4, viewValue: "Cultural" },
-      { id: 5, viewValue: "Technical" }
-    ];
+    this.query_category = API.QueryCatagory;
+    this.dataService.FireGET<any[]>(this.query_category).subscribe(result => {
+      this.categories = result
+    }, (e) => {
+      this.loading = false;
+      this.error = e.status;
+    });
     this.search();
   }
 
   search() {
 
+
     this.loading = true;
     this.answers = [];
     this.noResults = false;
     this.error = 0;
-    this.finalarray = this.selectedYears? this.selectedYears.map(function (viewValue) {
-      return viewValue.viewValue;
-    }) : null;
 
-    this.filter_string = this.finalarray? this.finalarray.toString() : null;
+
+    this.filter_string = this.selectedCategories ? this.selectedCategories.toString() : null;
     // this.filtered needs to be sent to api to filter out queries.. it contains all the filter option selected by the user
-
     this.dataService.FireGET<any[]>(this.search_url, { query: this.query, category: this.filter_string }).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.length === 0) { this.noResults = true; }
@@ -86,7 +85,7 @@ export class QuerySearchComponent implements OnInit {
   }
 
   deselectAll(select: MatSelect) {
-    this.selectedYears = [];
+    this.selectedCategories = [];
     select.value = [];
   }
 

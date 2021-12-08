@@ -35,6 +35,7 @@ export const API = {
 
     Search: 'api/search{?query,types}',
     Query: 'api/query{?query,category}',
+    QueryCatagory: 'api/query/categories',
 
     AddNewQuery: 'api/query/add',
 
