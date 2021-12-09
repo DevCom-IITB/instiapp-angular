@@ -24,7 +24,7 @@ export class QuerySearchComponent implements OnInit {
   filtered = [];
   search_url: string;
   new_query_url: string;
-  query: string = "";
+  query: string = '';
   noResults: boolean;
   error: number;
   filter_string: string;
@@ -37,14 +37,12 @@ export class QuerySearchComponent implements OnInit {
   }
 
   new_query = {
-    question: "",
-    category: "",
+    question: '',
+    category: '',
   }
-
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,) { }
-
   ngOnInit(): void {
     this.dataService.setTitle('Find Answers');
     this.search_url = API.Query;
@@ -94,21 +92,18 @@ export class QuerySearchComponent implements OnInit {
       /* We're done infinite scrolling if nothing is returned */
 
       if (result.error) {
-        this.snackBar.open(result.error, '', { duration: 3000 })
+        this.snackBar.open(result.error, '', { duration: 3000 });
       }
       else {
-        this.new_query.question = "";
-        this.new_query.category = "";
-        this.snackBar.open("Some error occured.Please try again :(", '', { duration: 3000 })
+        this.new_query.question = '';
+        this.new_query.category = '';
+        this.snackBar.open('Some error occured.Please try again :(', '', { duration: 3000 });
       }
     }, (e) => {
-      this.snackBar.open(e.message, '', { duration: 3000 })
+      this.snackBar.open(e.message, '', { duration: 3000 });
     });
   }
 
 
 
 }
-
-
-
