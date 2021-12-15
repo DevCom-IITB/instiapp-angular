@@ -5,11 +5,6 @@ import { API } from '../../../../api';
 // import { API } from '../../../../api';
 
 import { DataService } from '../../../data.service';
-
-
-
-
-
 @Component({
   selector: 'app-query-new',
   templateUrl: './query-new.component.html',
@@ -19,8 +14,8 @@ export class QueryNewComponent implements OnInit {
 
   /** Main object to edit */
   new_query = {
-    question: "",
-    category: "",
+    question: '',
+    category: '',
   }
   catagory: string[];
   selectedYears: any[];
@@ -30,7 +25,7 @@ export class QueryNewComponent implements OnInit {
   filtered = [];
   search_url: string;
   new_query_url: string;
-  query: string = "";
+  query: string = '';
   noResults: boolean;
   error: number;
   filter_string: string;
@@ -50,10 +45,6 @@ export class QueryNewComponent implements OnInit {
 
   /** ID of offer if present */
   offerId: string;
-
-
-
-
   /** Show the QR code = 1 static = 2 result = 3*/
   showQR = 0;
   resultMessage = 'You have successfully posted the question';
@@ -67,14 +58,9 @@ export class QueryNewComponent implements OnInit {
   totpTime = 0;
   totpQR = '';
   secretQR = '';
-
-
-
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,
-
-
   ) { }
 
   ngOnInit() {
@@ -89,24 +75,14 @@ export class QueryNewComponent implements OnInit {
       'Sports',
       'Cultural',
       'Technical'
-
     ]
   }
-
-
-
   ngOnDestroy() {
     if (this.totpInterval) {
       clearInterval(this.totpInterval);
     }
   }
-
-
-
-
   /** Fire the request */
-
-
   // /** Make and download CSV data */
   // csv(): void {
   //   if (this.dataService.isSandbox) {
@@ -119,9 +95,7 @@ export class QueryNewComponent implements OnInit {
   //   const filename = `${this.achievement.title.replace(' ', '')}_${timeStr}.csv`;
   //   Helpers.downloadFile(filename, csv, 'text/csv');
   // }
-
   submitNewQuery() {
-
 
     this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
@@ -129,8 +103,8 @@ export class QueryNewComponent implements OnInit {
         this.snackBar.open(result.error, '', { duration: 3000 })
       }
       else {
-        this.new_query.question = "";
-        this.new_query.category = "";
+        this.new_query.question = '';
+        this.new_query.category = '';
         this.snackBar.open("Query submitted.", '', { duration: 3000 })
         console.log(this.new_query.category)
       }
