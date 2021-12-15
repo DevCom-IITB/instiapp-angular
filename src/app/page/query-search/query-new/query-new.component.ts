@@ -16,16 +16,16 @@ export class QueryNewComponent implements OnInit {
   new_query = {
     question: '',
     category: '',
-  }
+  };
   catagory: string[];
   selectedYears: any[];
   selected: any[];
   years: any[];
-  loading: boolean = false;
+  loading: false;
   filtered = [];
   search_url: string;
   new_query_url: string;
-  query: string = '';
+  query: '';
   noResults: boolean;
   error: number;
   filter_string: string;
@@ -36,28 +36,8 @@ export class QueryNewComponent implements OnInit {
     }
   }
 
-
-  /** Users from offer */
-  // users: IUserProfile[];
-
-  /** Secret */
-  secret: string;
-
-  /** ID of offer if present */
-  offerId: string;
-  /** Show the QR code = 1 static = 2 result = 3*/
-  showQR = 0;
   resultMessage = 'You have successfully posted the question';
 
-  /** Otplib */
-  otplib: any;
-
-  /** Current TOTP */
-  totp = '000000';
-  totpInterval: NodeJS.Timeout;
-  totpTime = 0;
-  totpQR = '';
-  secretQR = '';
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,
@@ -78,9 +58,7 @@ export class QueryNewComponent implements OnInit {
     ]
   }
   ngOnDestroy() {
-    if (this.totpInterval) {
-      clearInterval(this.totpInterval);
-    }
+
   }
   /** Fire the request */
   // /** Make and download CSV data */
