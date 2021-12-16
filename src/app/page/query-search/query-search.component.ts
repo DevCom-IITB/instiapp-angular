@@ -20,7 +20,7 @@ export class QuerySearchComponent implements OnInit {
   filters = new FormControl();
   selected: any[];
   categories: any[];
-  loading: boolean = false;
+  loading: false;
   filtered = [];
   search_url: string;
   new_query_url: string;
