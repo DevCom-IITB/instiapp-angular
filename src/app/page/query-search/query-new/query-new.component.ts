@@ -30,13 +30,14 @@ export class QueryNewComponent implements OnInit {
   error: number;
   filter_string: string;
   finalarray: any[];
+  resultMessage = 'You have successfully posted the question';
+
+
   equals(objOne, objTwo) {
     if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
       return objOne.id === objTwo.id;
     }
   }
-
-  resultMessage = 'You have successfully posted the question';
 
   constructor(
     public dataService: DataService,
@@ -58,21 +59,7 @@ export class QueryNewComponent implements OnInit {
     ]
   }
   ngOnDestroy() {
-
   }
-  /** Fire the request */
-  // /** Make and download CSV data */
-  // csv(): void {
-  //   if (this.dataService.isSandbox) {
-  //     alert('Use https://insti.app in browser to download CSV');
-  //     return;
-  //   }
-  //   const parser = new Parser();
-  //   const csv = parser.parse(this.users);
-  //   const timeStr = moment(new Date()).format('YYYYMMDD_hhmm');
-  //   const filename = `${this.achievement.title.replace(' ', '')}_${timeStr}.csv`;
-  //   Helpers.downloadFile(filename, csv, 'text/csv');
-  // }
   submitNewQuery() {
 
     this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe(result => {
