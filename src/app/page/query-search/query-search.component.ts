@@ -24,22 +24,23 @@ export class QuerySearchComponent implements OnInit {
   filtered = [];
   search_url: string;
   new_query_url: string;
-  query: string = '';
+  query: '';
   noResults: boolean;
   error: number;
   filter_string: string;
   selectedCategories: any[];
   query_category: string;
+  new_query = {
+    question: '',
+    category: '',
+  };
   equals(objOne, objTwo) {
     if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
       return objOne.id === objTwo.id;
     }
   }
 
-  new_query = {
-    question: '',
-    category: '',
-  }
+
   constructor(
     public dataService: DataService,
     public snackBar: MatSnackBar,) { }
@@ -49,7 +50,7 @@ export class QuerySearchComponent implements OnInit {
     this.new_query_url = API.AddNewQuery;
     this.query_category = API.QueryCatagory;
     this.dataService.FireGET<any[]>(this.query_category).subscribe(result => {
-      this.categories = result
+      this.categories = result;
     }, (e) => {
       this.loading = false;
       this.error = e.status;
@@ -93,8 +94,7 @@ export class QuerySearchComponent implements OnInit {
 
       if (result.error) {
         this.snackBar.open(result.error, '', { duration: 3000 });
-      }
-      else {
+      } else {
         this.new_query.question = '';
         this.new_query.category = '';
         this.snackBar.open('Some error occured.Please try again :(', '', { duration: 3000 });
@@ -103,7 +103,4 @@ export class QuerySearchComponent implements OnInit {
       this.snackBar.open(e.message, '', { duration: 3000 });
     });
   }
-
-
-
 }

@@ -56,7 +56,7 @@ export class QueryNewComponent implements OnInit {
       'Sports',
       'Cultural',
       'Technical'
-    ]
+    ];
   }
   ngOnDestroy() {
   }
@@ -65,16 +65,15 @@ export class QueryNewComponent implements OnInit {
     this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe(result => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.error) {
-        this.snackBar.open(result.error, '', { duration: 3000 })
-      }
-      else {
+        this.snackBar.open(result.error, '', { duration: 3000 });
+      } else {
         this.new_query.question = '';
         this.new_query.category = '';
-        this.snackBar.open("Query submitted.", '', { duration: 3000 })
-        console.log(this.new_query.category)
+        this.snackBar.open('Query submitted.', '', { duration: 3000 });
+        console.log(this.new_query.category);
       }
     }, (e) => {
-      this.snackBar.open(e.message, '', { duration: 3000 })
+      this.snackBar.open(e.message, '', { duration: 3000 });
     });
   }
 }
