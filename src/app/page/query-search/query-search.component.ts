@@ -43,7 +43,8 @@ export class QuerySearchComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    public snackBar: MatSnackBar,) { }
+    public snackBar: MatSnackBar,) {
+  };
   ngOnInit(): void {
     this.dataService.setTitle('Find Answers');
     this.search_url = API.Query;
