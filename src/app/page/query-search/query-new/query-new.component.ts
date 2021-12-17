@@ -60,14 +60,14 @@ export class QueryNewComponent implements OnInit {
     this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe((result) => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.error) {
-        this.snackBar.open(result.error.toString(), '', { duration: 3000 });
+        this.snackBar.open('Some error occured.', 'Dismiss', { duration: 3000 });
       } else {
         this.new_query.question = '';
         this.new_query.category = '';
         this.snackBar.open('Query submitted.', 'Dismiss', { duration: 3000 });
       }
-    }, (e) => {
-      this.snackBar.open(e.message.toString(), 'Dismiss', { duration: 3000 });
+    }, () => {
+      this.snackBar.open('Some error occured.', 'Dismiss', { duration: 3000 });
     });
   }
 }

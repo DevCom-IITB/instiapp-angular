@@ -11,7 +11,7 @@
       <mat-list-item id="filter-drop-down" role="listitem">
         <mat-form-field class="select-form">
           <mat-select placeholder="FILTER" name="year" class="filter-select" [(ngModel)]="selectedCategories"
-            [compareWith]="dataservice.equals" multiple #yearSelect>
+            [compareWith]="dataService.equals" multiple #yearSelect>
             <mat-option disabled="disabled" class="filter-option">
               <button mat-raised-button class="mat-accent fill text-sm" (click)="deselectAll(yearSelect)">
                 Deselect All
