@@ -58,7 +58,6 @@ export class QueryNewComponent implements OnInit {
   }
 
   submitNewQuery() {
-
     this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe((result) => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.error) {
