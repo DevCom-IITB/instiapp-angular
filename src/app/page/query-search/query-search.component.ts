@@ -43,15 +43,15 @@ export class QuerySearchComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    public snackBar: MatSnackBar,) {
-  };
+    public snackBar: MatSnackBar,
+    ) { }
   ngOnInit(): void {
     this.loading = true;
     this.dataService.setTitle('Find Answers');
     this.search_url = API.Query;
     this.new_query_url = API.AddNewQuery;
     this.query_category = API.QueryCatagory;
-    this.dataService.FireGET<any[]>(this.query_category).subscribe(result => {
+    this.dataService.FireGET<any[]>(this.query_category).subscribe((result) => {
       this.categories = result;
     }, (e) => {
       this.loading = false;
@@ -71,7 +71,7 @@ export class QuerySearchComponent implements OnInit {
 
     this.filter_string = this.selectedCategories ? this.selectedCategories.toString() : null;
     // this.filtered needs to be sent to api to filter out queries.. it contains all the filter option selected by the user
-    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, category: this.filter_string }).subscribe(result => {
+    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, category: this.filter_string }).subscribe((result) => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.length === 0) { this.noResults = true; }
 
@@ -91,7 +91,7 @@ export class QuerySearchComponent implements OnInit {
   }
 
   submitNewQuery() {
-    this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe(result => {
+    this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe((result) => {
       /* We're done infinite scrolling if nothing is returned */
 
       if (result.error) {
