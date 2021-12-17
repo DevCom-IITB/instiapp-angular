@@ -491,4 +491,11 @@ export class DataService {
       }
     });
   }
+
+  /** Simple function to compare two objects  */
+  equals(objOne, objTwo) {
+    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
+      return objOne.id === objTwo.id;
+    }
+  }
 }

@@ -31,12 +31,6 @@ export class QuerySearchComponent implements OnInit {
     question: '',
     category: '',
   };
-  equals(objOne, objTwo) {
-    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
-      return objOne.id === objTwo.id;
-    }
-  }
-
 
   constructor(
     public dataService: DataService,
@@ -85,21 +79,5 @@ export class QuerySearchComponent implements OnInit {
   deselectAll(select: MatSelect) {
     this.selectedCategories = [];
     select.value = [];
-  }
-
-  submitNewQuery() {
-    this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe((result) => {
-      /* We're done infinite scrolling if nothing is returned */
-
-      if (result.error) {
-        this.snackBar.open(result.error.toString(), '', { duration: 3000 });
-      } else {
-        this.new_query.question = '';
-        this.new_query.category = '';
-        this.snackBar.open('Some error occured. Please try again :(', 'Dismiss', { duration: 3000 });
-      }
-    }, (e) => {
-      this.snackBar.open(e.message.toString(), 'Dismiss', { duration: 3000 });
-    });
   }
 }

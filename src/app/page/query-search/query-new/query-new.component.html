@@ -13,7 +13,7 @@
       <div>
         <mat-list-item id="filter-drop-down" role="listitem">
           <mat-form-field class="select-form">
-            <mat-select name="year" class="filter-select" [(ngModel)]="new_query.category" [compareWith]="equals"
+            <mat-select name="year" class="filter-select" [(ngModel)]="new_query.category" [compareWith]="dataService.equals"
               #yearSelect>
 
               <mat-option *ngFor="let year of years" [value]="year">
