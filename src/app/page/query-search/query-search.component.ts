@@ -20,7 +20,7 @@ export class QuerySearchComponent implements OnInit {
   filters = new FormControl();
   selected: any[];
   categories: any[];
-  loading: false;
+  loading: boolean;
   filtered = [];
   search_url: string;
   new_query_url: string;
@@ -46,6 +46,7 @@ export class QuerySearchComponent implements OnInit {
     public snackBar: MatSnackBar,) {
   };
   ngOnInit(): void {
+    this.loading = true;
     this.dataService.setTitle('Find Answers');
     this.search_url = API.Query;
     this.new_query_url = API.AddNewQuery;
