@@ -2,16 +2,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { API } from '../../../../api';
-// import { API } from '../../../../api';
-
 import { DataService } from '../../../data.service';
+
 @Component({
   selector: 'app-query-new',
   templateUrl: './query-new.component.html',
   styleUrls: ['./query-new.component.css']
 })
 export class QueryNewComponent implements OnInit {
-
   /** Main object to edit */
   new_query = {
     question: '',
@@ -58,20 +56,20 @@ export class QueryNewComponent implements OnInit {
       'Technical'
     ];
   }
-  
+
   submitNewQuery() {
 
     this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe((result) => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.error) {
-        this.snackBar.open(result.error, '', { duration: 3000 });
+        this.snackBar.open(result.error.toString(), '', { duration: 3000 });
       } else {
         this.new_query.question = '';
         this.new_query.category = '';
-        this.snackBar.open('Query submitted.', '', { duration: 3000 });
+        this.snackBar.open('Query submitted.', 'Dismiss', { duration: 3000 });
       }
     }, (e) => {
-      this.snackBar.open(e.message, '', { duration: 3000 });
+      this.snackBar.open(e.message.toString(), 'Dismiss', { duration: 3000 });
     });
   }
 }

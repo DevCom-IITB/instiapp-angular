@@ -5,13 +5,10 @@ import { DataService } from '../../data.service';
 import { FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 
-
-
 @Component({
   selector: 'app-query-search',
   templateUrl: './query-search.component.html',
   styleUrls: ['./query-search.component.css']
-
 })
 export class QuerySearchComponent implements OnInit {
 
@@ -95,14 +92,14 @@ export class QuerySearchComponent implements OnInit {
       /* We're done infinite scrolling if nothing is returned */
 
       if (result.error) {
-        this.snackBar.open(result.error, '', { duration: 3000 });
+        this.snackBar.open(result.error.toString(), '', { duration: 3000 });
       } else {
         this.new_query.question = '';
         this.new_query.category = '';
-        this.snackBar.open('Some error occured.Please try again :(', '', { duration: 3000 });
+        this.snackBar.open('Some error occured. Please try again :(', 'Dismiss', { duration: 3000 });
       }
     }, (e) => {
-      this.snackBar.open(e.message, '', { duration: 3000 });
+      this.snackBar.open(e.message.toString(), 'Dismiss', { duration: 3000 });
     });
   }
 }
