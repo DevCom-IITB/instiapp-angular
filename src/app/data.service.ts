@@ -183,7 +183,7 @@ export class DataService {
 
   /** Get detailed information on an event */
   GetEvent(uuid: string): Observable<IEvent> {
-    return this.FireGET<IEvent>(API.Event, {uuid: uuid});
+    return this.FireGET<IEvent>(API.Event, { uuid: uuid });
   }
 
   /** Fills the event with uuid into the cache and returns it */
@@ -210,12 +210,12 @@ export class DataService {
   }
 
   PutEvent(id: string, body: any): Observable<IEvent> {
-    return this.FirePUT<IEvent>(API.Event, body, {uuid: id});
+    return this.FirePUT<IEvent>(API.Event, body, { uuid: id });
   }
 
   /** Get all locations */
   GetAllLocations(excludeGroup: number = null): Observable<ILocation[]> {
-    return this.FireGET<ILocation[]>(API.Locations, {exclude_group: excludeGroup});
+    return this.FireGET<ILocation[]>(API.Locations, { exclude_group: excludeGroup });
   }
 
   /** Gets the current user if logged in
@@ -308,7 +308,7 @@ export class DataService {
 
   /** Tries to authenticate with the given code */
   AuthenticateSSO(code: string) {
-    return this.FireGET(API.Login, {code: code, redir: SSO_REDIR});
+    return this.FireGET(API.Login, { code: code, redir: SSO_REDIR });
   }
 
   /** Logout the current user */
@@ -385,12 +385,12 @@ export class DataService {
 
   /** Mark a UNR for the current user */
   MarkUNR(news: INewsEntry, reaction: number) {
-    return this.FireGET(API.NewsFeedReaction, {uuid: news.id, reaction: reaction});
+    return this.FireGET(API.NewsFeedReaction, { uuid: news.id, reaction: reaction });
   }
 
   /** Gets concatenated going and interested events for current User */
   getFollowedEvents(): IEvent[] {
-    if (!this._loggedIn) { return []  as IEvent[]; }
+    if (!this._loggedIn) { return [] as IEvent[]; }
     return this._currentUser.events_going.concat(
       this._currentUser.events_interested);
   }
@@ -408,7 +408,7 @@ export class DataService {
   /* Define any aliases here */
   GetDate = (obj: any) => Helpers.GetDate(obj);
   processMDHTML = (html: string) => Helpers.processMDHTML(html);
-  GetEventSubtitle = (event: IEvent): string =>  Helpers.GetEventSubtitle(event);
+  GetEventSubtitle = (event: IEvent): string => Helpers.GetEventSubtitle(event);
 
   /* Getters and setters */
 
@@ -490,5 +490,12 @@ export class DataService {
         }, (error) => observer.error(error));
       }
     });
+  }
+
+  /** Simple function to compare two objects  */
+  equals(objOne, objTwo) {
+    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
+      return objOne.id === objTwo.id;
+    }
   }
 }

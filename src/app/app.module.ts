@@ -45,6 +45,7 @@ import { QuickLinksComponent } from './page/quick-links/quick-links.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { AboutComponent } from './page/settings/about/about.component';
 import { AchievementsComponent } from './page/achievements/achievements.component';
+import { QuerySearchComponent } from './page/query-search/query-search.component';
 
 // Cards
 import { CardComponent } from './card/card.component';
@@ -66,6 +67,7 @@ import { DesktopSplitComponent } from './layout/desktop-split/desktop-split.comp
 import { NavmenuComponent } from './layout/navmenu/navmenu.component';
 import { AchievementRequestComponent } from './page/achievements/achievement-request/achievement-request.component';
 import { AchievementNewComponent } from './page/achievements/achievement-new/achievement-new.component';
+import { QueryNewComponent } from './page/query-search/query-new/query-new.component';
 import { SearchBoxComponent } from './comp/search-box/search-box.component';
 import { AchievementCardComponent } from './card/achievement-card/achievement-card.component';
 import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
@@ -109,6 +111,8 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     AchievementCardComponent,
     AchievementOfferMakeComponent,
     QrScanComponent,
+    QuerySearchComponent,
+    QueryNewComponent,
   ],
   imports: [
     BrowserModule,
@@ -150,6 +154,9 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
       { path: 'event/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
       { path: 'user/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
       { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
+
+      { path: 'query-search', component: QuerySearchComponent, data: { state: 'base' } },
+      { path: 'query-new', component: QueryNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },

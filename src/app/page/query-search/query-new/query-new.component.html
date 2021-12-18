@@ -1,0 +1,36 @@
+<div>
+  <mat-card>
+    <mat-card-title>Couldn't find what you're looking for ?</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div>
+        <mat-form-field color="accent" class="query-input">
+          <input [(ngModel)]="new_query.question" matInput required name="new_query_question" placeholder="Question"
+            class="query-input">
+          <mat-hint align="start">Enter your query</mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-list-item id="filter-drop-down" role="listitem">
+          <mat-form-field class="select-form">
+            <mat-select name="year" class="filter-select" [(ngModel)]="new_query.category" [compareWith]="dataService.equals"
+              #yearSelect>
+
+              <mat-option *ngFor="let year of years" [value]="year">
+                {{year}}
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
+        </mat-list-item>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <div>
+        <button mat-raised-button color="primary" (click)="submitNewQuery()" style="max-height:37px;">Submit
+          query</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
