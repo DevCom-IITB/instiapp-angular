@@ -32,7 +32,7 @@ export class OTPComponent implements OnInit {
       this.router.navigate(['feed']);
       return;
     }
-    this.route.url.subscribe( value => {
+    this.route.url.subscribe((value) => {
       this.ldap = value[0].parameters['ldap'];
     });
   }
