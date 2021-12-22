@@ -4,8 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { API } from '../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
-import { CommonModule } from '@angular/common';  
-import { BrowserModule } from '@angular/platform-browser';
 export const TITLE = 'Alumni Login';
 
 @Component({

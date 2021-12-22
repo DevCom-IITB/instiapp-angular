@@ -3,8 +3,6 @@ import { DataService } from '../../data.service';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CommonModule } from '@angular/common';  
-import { BrowserModule } from '@angular/platform-browser';
 export const TITLE = 'Alumni OTP';
 
 @Component({
