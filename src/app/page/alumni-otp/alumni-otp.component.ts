@@ -38,6 +38,7 @@ export class OTPComponent implements OnInit {
   }
 
   verifyOTP(): void {
+    this.authenticating = true;
     this.dataService.SendOTP(this.ldap, this.otpForm.value.otp).subscribe((status) => {
       if (status['error_status'] === false) {
         // performs login
@@ -51,11 +52,13 @@ export class OTPComponent implements OnInit {
           this.router.navigate(['alumni']);
         }
       }
+      this.authenticating = false;
     });
     this.otpForm.reset();
   }
 
   resendOTP(): void {
+    this.authenticating = true;
     this.dataService.ResendOTP(this.ldap).subscribe((status) => {
       if (status['error_status'] === false) {
         this.router.navigate(['alumni-otp', {ldap: this.ldap}]);
@@ -64,6 +67,7 @@ export class OTPComponent implements OnInit {
         this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });
         this.router.navigate(['alumni']);
       }
+      this.authenticating = false;
     });
   }
 }

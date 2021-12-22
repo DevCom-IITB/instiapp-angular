@@ -34,6 +34,7 @@ export class AlumniComponent implements OnInit {
   }
 
   redirToOTP(): void {
+    this.authenticating =  true;
     this.dataService.SendLDAP(this.ldapForm.value.ldap).subscribe((value) => {
       if (value['exist'] === false) {
         // display error with ldap
@@ -46,6 +47,7 @@ export class AlumniComponent implements OnInit {
         }
         this.router.navigate(['alumni-otp', {ldap: value['ldap']}]);
       }
+      this.authenticating = false;
     });
     this.ldapForm.reset();
   }
