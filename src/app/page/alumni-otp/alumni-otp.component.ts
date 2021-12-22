@@ -18,11 +18,11 @@ export class OTPComponent implements OnInit {
     otp: ''
   });
   constructor(
-    public route: ActivatedRoute,
     public dataService: DataService,
-    public snackBar: MatSnackBar,
+    public route: ActivatedRoute,
     public router: Router,
     public formBuilder: FormBuilder,
+    public snackBar: MatSnackBar,
   ) { }
 
   /** Initialize initial list wiht API call */
@@ -40,17 +40,10 @@ export class OTPComponent implements OnInit {
   verifyOTP(): void {
     this.dataService.SendOTP(this.ldap, this.otpForm.value.otp).subscribe((status) => {
       if (status['error_status'] === false) {
-        this.dataService.GetFillCurrentUser().subscribe(() => {
-          const redir = localStorage.getItem(this.dataService.LOGIN_REDIR);
-          if (redir && redir !== '') {
-            localStorage.setItem(this.dataService.LOGIN_REDIR, '');
-            const rpath: any[] = this.dataService.DecodeObject(redir);
-            this.router.navigate(rpath);
-          } else {
-            this.router.navigate(['feed']);
-          }
-        });
+        // performs login
+        this.dataService.performLogin();
       } else {
+        // displays message
         this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });
         if (status['msg'] === 'Wrong OTP, retry') {
           this.router.navigate(['alumni-otp', {ldap: this.ldap}]);
@@ -67,6 +60,7 @@ export class OTPComponent implements OnInit {
       if (status['error_status'] === false) {
         this.router.navigate(['alumni-otp', {ldap: this.ldap}]);
       } else {
+        // if latest OTP is invalid now we navigate back to alumni
         this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });
         this.router.navigate(['alumni']);
       }

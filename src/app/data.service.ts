@@ -513,4 +513,18 @@ export class DataService {
       return objOne.id === objTwo.id;
     }
   }
+
+  /** Fills user and naviagtes user */
+  performLogin() {
+    this.GetFillCurrentUser().subscribe(() => {
+      const redir = localStorage.getItem(this.LOGIN_REDIR);
+      if (redir && redir !== '') {
+        localStorage.setItem(this.LOGIN_REDIR, '');
+        const rpath: any[] = this.DecodeObject(redir);
+        this.router.navigate(rpath);
+      } else {
+        this.router.navigate(['feed']);
+      }
+    });
+  }
 }

@@ -18,11 +18,11 @@ export class AlumniComponent implements OnInit {
     ldap: ''
   });
   constructor(
-    public activatedRoute: ActivatedRoute,
+    public router: Router,
     public dataService: DataService,
     public snackBar: MatSnackBar,
-    public router: Router,
     public formBuilder: FormBuilder,
+    public activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -36,6 +36,7 @@ export class AlumniComponent implements OnInit {
   redirToOTP(): void {
     this.dataService.SendLDAP(this.ldapForm.value.ldap).subscribe((value) => {
       if (value['exist'] === false) {
+        // display error with ldap
         this.snackBar.open(value['msg'], 'Dismiss', { duration: 2000});
         this.router.navigate(['alumni']);
       } else {
