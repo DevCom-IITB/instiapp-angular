@@ -24,7 +24,7 @@ export class OTPComponent implements OnInit {
     public router: Router,
     public formBuilder: FormBuilder,
   ) { }
-  
+
   /** Initialize initial list wiht API call */
   ngOnInit() {
     this.dataService.setTitle('Alumni OTP');
@@ -35,11 +35,11 @@ export class OTPComponent implements OnInit {
     this.route.url.subscribe( value => {
       this.ldap = value[0].parameters['ldap'];
     });
-  }  
+  }
 
   verifyOTP(): void {
     this.dataService.SendOTP(this.ldap, this.otpForm.value.otp).subscribe((status) => {
-      if (status['error_status'] == false) {
+      if (status['error_status'] === false) {
         this.dataService.GetFillCurrentUser().subscribe(() => {
           const redir = localStorage.getItem(this.dataService.LOGIN_REDIR);
           if (redir && redir !== '') {
@@ -50,13 +50,11 @@ export class OTPComponent implements OnInit {
             this.router.navigate(['feed']);
           }
         });
-      }
-      else {
+      } else {
         this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });
-        if (status['msg'] == 'Wrong OTP, retry') {
+        if (status['msg'] === 'Wrong OTP, retry') {
           this.router.navigate(['alumni-otp', {ldap: this.ldap}]);
-        }
-        else {
+        } else {
           this.router.navigate(['alumni']);
         }
       }
@@ -66,13 +64,12 @@ export class OTPComponent implements OnInit {
 
   resendOTP(): void {
     this.dataService.ResendOTP(this.ldap).subscribe((status) => {
-      if (status['error_status'] == false) {
-        this.router.navigate(['alumni-otp', {ldap: this.ldap}])
-      }
-      else {
+      if (status['error_status'] === false) {
+        this.router.navigate(['alumni-otp', {ldap: this.ldap}]);
+      } else {
         this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });
-        this.router.navigate(['alumni'])
+        this.router.navigate(['alumni']);
       }
-    })
+    });
   }
 }

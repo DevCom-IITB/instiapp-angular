@@ -210,7 +210,7 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   alumniLogin() {
-    this.router.navigate(['/alumni'])
+    this.router.navigate(['/alumni']);
   }
 
   /** Handle reaching end of page and sidenav on android chrome */

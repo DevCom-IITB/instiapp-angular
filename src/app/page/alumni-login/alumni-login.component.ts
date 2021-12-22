@@ -34,19 +34,18 @@ export class AlumniComponent implements OnInit {
   }
 
   redirToOTP(): void {
-    this.dataService.SendLDAP(this.ldapForm.value.ldap).subscribe((value)=>{
-      if (value['exist'] == false) {
+    this.dataService.SendLDAP(this.ldapForm.value.ldap).subscribe((value) => {
+      if (value['exist'] === false) {
         this.snackBar.open(value['msg'], 'Dismiss', { duration: 2000});
-        this.router.navigate(['alumni'])
-      }
-      else {
+        this.router.navigate(['alumni']);
+      } else {
         // OTP already sent before
-        if (value['msg'] != 'fine') {
+        if (value['msg'] !== 'fine') {
           this.snackBar.open(value['msg'], 'Dismiss', { duration: 2000});
         }
         this.router.navigate(['alumni-otp', {ldap: value['ldap']}]);
       }
-    })
+    });
     this.ldapForm.reset();
   }
 }
