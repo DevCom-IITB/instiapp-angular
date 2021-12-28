@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { IEvent, IBody, ILocation, IUserTagCategory, IUserTag, IOfferedAchievement } from '../../interfaces';
+import { IEvent, IBody, ILocation, IUserTagCategory, IUserTag, IOfferedAchievement, IInterest } from '../../interfaces';
 import * as Fuse from 'fuse.js';
 import { Helpers } from '../../helpers';
 import { Observable } from 'rxjs';
@@ -42,6 +42,8 @@ export class AddEventComponent implements OnInit {
   public tagCategoryList: IUserTagCategory[];
 
   public offeredAchievements = [] as IOfferedAchievement[];
+  public fuse;
+  public interest: IInterest;
 
   /* Fuse config */
   public fuse_options: Fuse.FuseOptions<ILocation> = {
@@ -58,7 +60,7 @@ export class AddEventComponent implements OnInit {
     ]
   };
 
-  public fuse;
+
 
   constructor(
     public dataService: DataService,
@@ -80,6 +82,9 @@ export class AddEventComponent implements OnInit {
       this.close(this.event);
       return;
     }
+    this.event = {} as IEvent;
+    this.event.event_interest = [] as IInterest[];
+    this.interest = {} as IInterest;
 
     /* Preload placeholder image */
     const img = new Image();
@@ -116,7 +121,7 @@ export class AddEventComponent implements OnInit {
   sortTags() {
     for (const cat of this.tagCategoryList) {
       cat.tags.sort((a, b) => a.name.localeCompare(
-        b.name, undefined, {numeric: true, sensitivity: 'base'}));
+        b.name, undefined, { numeric: true, sensitivity: 'base' }));
     }
   }
 
@@ -162,6 +167,25 @@ export class AddEventComponent implements OnInit {
     }
   }
 
+  setInterest(click: any): void {
+
+    var interest = {} as IInterest;
+
+    interest.id = click.option.value.id;
+
+
+    // this.event.event_interest.push(this.interest);
+    // this.interest = {} as IInterest;
+    // this.event.event_interest.push([params])
+    if (this.event.event_interest) {
+      this.event.event_interest.push(interest.id);
+      console.log(this.event.event_interest);
+    } else {
+      this.event.event_interest = [];
+      this.event.event_interest.push(interest.id);
+    }
+  }
+
   /** Initializes constants for an existing event */
   initializeEvent() {
     /* Check if user can delete the event */
@@ -184,7 +208,7 @@ export class AddEventComponent implements OnInit {
     for (const body of this.event.bodies) {
       /* Remove if already present */
       const currIndex = this.bodies.map(m => m.id).indexOf(body.id);
-      if (currIndex !== -1 ) {
+      if (currIndex !== -1) {
         this.bodies.splice(currIndex, 1);
       }
 
@@ -339,7 +363,7 @@ export class AddEventComponent implements OnInit {
   /** Delete the open event */
   delete() {
     if (confirm('Are you sure you want to delete this event? This action is irreversible!')) {
-      this.dataService.FireDELETE(API.Event, {uuid: this.eventId}).subscribe(() => {
+      this.dataService.FireDELETE(API.Event, { uuid: this.eventId }).subscribe(() => {
         this.snackBar.open('Event Deleted!', 'Dismiss', {
           duration: 2000,
         });
@@ -527,7 +551,7 @@ export class AddEventComponent implements OnInit {
   /** Validates achievement offer */
   isValidOffer(offer: IOfferedAchievement): boolean {
     if (!offer.title || offer.title.length === 0 || offer.title.length > 50 ||
-        !offer.body || offer.body.length === 0) {
+      !offer.body || offer.body.length === 0) {
       offer.stat = 2;
       return false;
     }
