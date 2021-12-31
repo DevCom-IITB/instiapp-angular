@@ -35,6 +35,7 @@ export const API = {
 
     Search: 'api/search{?query,types}',
     Query: 'api/query{?query,category}',
+    QueryCatagory: 'api/query/categories',
 
     AddNewQuery: 'api/query/add',
 
@@ -55,4 +56,5 @@ export const API = {
     AchievementOffer: 'api/achievements-offer/{id}',
     Interest: 'api/interests',
     DelInterest: 'api/interests/{id}'
+    external: 'api/external-blog{?from,num,query}',
 };

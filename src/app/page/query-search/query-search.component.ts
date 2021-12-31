@@ -5,57 +5,49 @@ import { DataService } from '../../data.service';
 import { FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 
-
 @Component({
   selector: 'app-query-search',
   templateUrl: './query-search.component.html',
   styleUrls: ['./query-search.component.css']
-
 })
 export class QuerySearchComponent implements OnInit {
 
   public answers = [];
   finalarray: String[];
   filters = new FormControl();
-  selectedYears: any[];
   selected: any[];
-  years: any[];
-  loading: boolean = false;
+  categories: any[];
+  loading: boolean;
   filtered = [];
   search_url: string;
   new_query_url: string;
-  query: string = "";
+  query: '';
   noResults: boolean;
   error: number;
   filter_string: string;
-  equals(objOne, objTwo) {
-    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
-      return objOne.id === objTwo.id;
-    }
-  }
-
+  selectedCategories: any[];
+  query_category: string;
   new_query = {
-    question: "",
-    category: "",
-  }
+    question: '',
+    category: '',
+  };
 
   constructor(
     public dataService: DataService,
-    public snackBar: MatSnackBar,) { }
-
+    public snackBar: MatSnackBar,
+    ) { }
   ngOnInit(): void {
+    this.loading = true;
     this.dataService.setTitle('Find Answers');
     this.search_url = API.Query;
     this.new_query_url = API.AddNewQuery;
-
-    this.years = [
-
-      { id: 1, viewValue: "Academic" },
-      { id: 2, viewValue: "SMP" },
-      { id: 3, viewValue: "Sports" },
-      { id: 4, viewValue: "Cultural" },
-      { id: 5, viewValue: "Technical" }
-    ]
+    this.query_category = API.QueryCatagory;
+    this.dataService.FireGET<any[]>(this.query_category).subscribe((result) => {
+      this.categories = result;
+    }, (e) => {
+      this.loading = false;
+      this.error = e.status;
+    });
     this.search();
   }
 
@@ -66,17 +58,11 @@ export class QuerySearchComponent implements OnInit {
     this.answers = [];
     this.noResults = false;
     this.error = 0;
-    this.finalarray = this.selectedYears.map(function (viewValue) {
-      return viewValue.viewValue;
-    });
 
-    this.filter_string = this.finalarray.toString();
-    console.log(this.filter_string)
+
+    this.filter_string = this.selectedCategories ? this.selectedCategories.toString() : null;
     // this.filtered needs to be sent to api to filter out queries.. it contains all the filter option selected by the user
-
-    console.log(this.finalarray) // printing filtered array
-
-    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, category: this.filter_string }).subscribe(result => {
+    this.dataService.FireGET<any[]>(this.search_url, { query: this.query, category: this.filter_string }).subscribe((result) => {
       /* We're done infinite scrolling if nothing is returned */
       if (result.length === 0) { this.noResults = true; }
 
@@ -91,32 +77,7 @@ export class QuerySearchComponent implements OnInit {
   }
 
   deselectAll(select: MatSelect) {
-    this.selectedYears = [];
+    this.selectedCategories = [];
     select.value = [];
   }
-
-  submitNewQuery() {
-    this.dataService.FirePOST<any>(API.AddNewQuery, this.new_query).subscribe(result => {
-      /* We're done infinite scrolling if nothing is returned */
-
-
-
-      if (result.error) {
-        this.snackBar.open(result.error, '', { duration: 3000 })
-      }
-      else {
-        this.new_query.question = "";
-        this.new_query.category = "";
-        this.snackBar.open("Some error occured.Please try again :(", '', { duration: 3000 })
-      }
-    }, (e) => {
-      this.snackBar.open(e.message, '', { duration: 3000 })
-    });
-  }
-
-
-
 }
-
-
-

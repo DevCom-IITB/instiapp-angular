@@ -21,13 +21,21 @@ export class QuickLinksComponent implements OnInit {
 
   public sections: LinkContainer[] = [
     {
+      title: 'DevCom',
+      links: [
+        { href: 'https://gymkhana.iitb.ac.in/lap', icon: 'book', text: 'Leave Portal' },
+        { href: 'https://resume.devcom-iitb.org', icon: 'book', text: 'Resume Portal' },
+        { href: 'https://ams.iitb.ac.in', icon: 'book', text: 'AMS' },
+      ],
+    },
+    {
       title: 'Academic',
       links: [
         { href: 'https://asc.iitb.ac.in', icon: 'book', text: 'ASC' },
         { href: 'https://portal.iitb.ac.in/asc', icon: 'book', text: 'ASC - External' },
         { href: 'https://moodle.iitb.ac.in', icon: 'book', text: 'Moodle' },
-        { href: 'http://placements.iitb.ac.in/internship/login.jsp', icon: 'school', text: 'Internship Login' },
-        { href: 'http://placements.iitb.ac.in/placements/login.jsp', icon: 'school', text: 'Placement Login' },
+        { href: 'https://campus.placements.iitb.ac.in/auth/student/login', icon: 'school', text: 'Internship Login' },
+        { href: 'https://campus.placements.iitb.ac.in/auth/student/login', icon: 'school', text: 'Placement Login' },
         { href: 'http://www.library.iitb.ac.in/', icon: 'local_library', text: 'Central Library' },
       ],
     },
@@ -53,7 +61,7 @@ export class QuickLinksComponent implements OnInit {
       ],
     },
     {
-      title: 'Misc',
+      title: 'Miscellaneous',
       links: [
         { href: 'https://access.iitb.ac.in/', icon: 'phone', text: 'CC Access Portal' },
         { href: 'https://portal.iitb.ac.in/TelephoneDirectory/', icon: 'phone', text: 'Intercom Extensions' },

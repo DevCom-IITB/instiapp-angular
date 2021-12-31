@@ -501,6 +501,10 @@ export class DataService {
       return true
     }
     return false;
-
   }
+
+  equals(objOne, objTwo) {
+    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
+      return objOne.id === objTwo.id;
+    }
 }

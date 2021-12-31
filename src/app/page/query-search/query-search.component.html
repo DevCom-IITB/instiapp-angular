@@ -1,67 +1,29 @@
 <app-desktop-split [rightLeftBorder]="false" [centerRightBorder]="true">
-
-
-
-
-
   <div center>
-
-
-
     <div id="searchbox">
       <mat-form-field class="searchinput">
         <input type="search" #box matInput placeholder="Search" (keyup.enter)="search()" [(ngModel)]="query">
         <mat-hint align="start">Type your question</mat-hint>
       </mat-form-field>
-
-
-
       <button mat-icon-button color="primary" (click)="search()" style="max-height:34px;">
         <mat-icon>search</mat-icon>
       </button>
-
-
       <mat-list-item id="filter-drop-down" role="listitem">
         <mat-form-field class="select-form">
-          <mat-select placeholder="FILTER" name="year" class="filter-select" [(ngModel)]="selectedYears"
-            [compareWith]="equals" multiple #yearSelect>
+          <mat-select placeholder="FILTER" name="year" class="filter-select" [(ngModel)]="selectedCategories"
+            [compareWith]="dataService.equals" multiple #yearSelect>
             <mat-option disabled="disabled" class="filter-option">
               <button mat-raised-button class="mat-accent fill text-sm" (click)="deselectAll(yearSelect)">
                 Deselect All
               </button>
-
             </mat-option>
-            <mat-option *ngFor="let year of years" [value]="year">
-              {{year.viewValue}}
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{category}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </mat-list-item>
-
-
-
-      <!-- <mat-list-item id="filter-drop-down" class="flex-child" role="listitem">
-        <mat-form-field class="select-form">
-          <mat-select placeholder="FILTER" name="year" class="filter-select" [(ngModel)]="selectedYears"
-            [compareWith]="equals" multiple #yearSelect>
-            <mat-option disabled="disabled" class="filter-option">
-              <button mat-raised-button class="mat-accent fill text-sm" (click)="deselectAll(yearSelect)">
-                Deselect All
-              </button>
-
-            </mat-option>
-            <mat-option *ngFor="let year of years" [value]="year">
-              {{year.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-list-item> -->
-
-
-
     </div>
-
-
     <div *ngIf="answers.length" class="main-div">
       <ng-container *ngFor="let item of answers">
         <div class="feed-card">
@@ -70,55 +32,21 @@
         </div>
       </ng-container>
     </div>
-
     <div *ngIf="noResults" class="main-div">
       No answers found for your question right now :(
     </div>
     <app-xunk-spinner *ngIf="error" [error]="error"></app-xunk-spinner>
-
   </div>
   <div right class="desktop-right">
     <div>
-      <!--   <mat-card>
-        <mat-card-title>Couldn't find what you're looking for ?</mat-card-title>
-        <mat-divider></mat-divider>
-        <mat-card-content>
-          <div>
-            <mat-form-field color="accent" class="query-input">
-              <input [(ngModel)]="new_query.question" matInput required name="new_query_question" placeholder="Question"
-                class="query-input">
-              <mat-hint align="start">Enter your query</mat-hint>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field color="accent" class="query-input">
-              <input [(ngModel)]="new_query.category" matInput name="new_query_category" placeholder="Category">
-              <mat-hint align="start">Enter your query category e.g Acacdemics, Sports</mat-hint>
-            </mat-form-field>
-          </div>
-        </mat-card-content>
-        <mat-divider></mat-divider>
-        <mat-card-actions>
-          <div>
-            <button mat-raised-button color="primary" (click)="submitNewQuery()" style="max-height:37px;">Submit
-              query</button>
-          </div>
-        </mat-card-actions>
-      </mat-card>-->
     </div>
-
     <app-query-new *ngIf="dataService.isLoggedIn()"></app-query-new>
-
   </div>
-
-
 </app-desktop-split>
-
 <div class="float-fixed-right-bottom">
   <button mat-fab class="mat-elevation-z2 edit-fab" [class.gone]="dataService.isScrollingDown()"
     *ngIf="dataService.isMobile()" [routerLink]="['/query-new']">
     <mat-icon>add</mat-icon>
   </button>
 </div>
-
 <app-list-loading *ngIf="loading"></app-list-loading>
