@@ -53,6 +53,8 @@ export interface IEvent {
     notify: boolean;
     user_tags: number[];
     offered_achievements: IOfferedAchievement[];
+    event_interest: IInterest[];
+    interests_id: string[];
 }
 
 export interface ILocation {

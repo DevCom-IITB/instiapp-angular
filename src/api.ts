@@ -55,6 +55,6 @@ export const API = {
     AchievementsOffer: 'api/achievements-offer',
     AchievementOffer: 'api/achievements-offer/{id}',
     Interest: 'api/interests',
-    DelInterest: 'api/interests/{id}'
+    DelInterest: 'api/interests/{id}',
     external: 'api/external-blog{?from,num,query}',
 };

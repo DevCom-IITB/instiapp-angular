@@ -59,8 +59,8 @@ export class UserDetailsComponent implements OnInit {
   }
 
   deleteInterest(interest: IInterest) {
-    console.log("on delete command")
-    console.log(interest)
+    // console.log("on delete command")
+    // console.log(interest)
 
 
 
@@ -72,7 +72,7 @@ export class UserDetailsComponent implements OnInit {
       });
 
     });
-    console.log("deleted")
+    // console.log("deleted")
   }
 
   hasField(field: string) {

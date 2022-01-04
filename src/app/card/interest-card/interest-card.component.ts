@@ -15,6 +15,7 @@ export class InterestCardComponent implements OnInit {
   @Input() interest: IInterest;
   @Input() overrideClick = false;
   @Input() canDelete = false;
+  @Input() deleteMethod: Function;
 
   constructor(
     public dataService: DataService,
@@ -26,7 +27,7 @@ export class InterestCardComponent implements OnInit {
   ngOnInit() {
     /* Set fallback images explictly */
 
-    console.log(this.canDelete)
+    // console.log(this.canDelete)s
   }
 
   /** Get the badge for the event */
@@ -35,14 +36,13 @@ export class InterestCardComponent implements OnInit {
   }
 
   onNoClick(interest: IInterest) {
+    if(this.deleteMethod){
+      this.deleteMethod(interest);
+      return;
+    }
     let myCompOneObj = new UserDetailsComponent(this.activateRoute, this.dataService, this.snakbar, this.router);
     // console.log(interest)
     myCompOneObj.deleteInterest(interest);
-
-
-    console.log("deleted kya? yes")
-
-
   }
 }
 

@@ -43,7 +43,6 @@ export class AddEventComponent implements OnInit {
 
   public offeredAchievements = [] as IOfferedAchievement[];
   public fuse;
-  public interest: IInterest;
 
   /* Fuse config */
   public fuse_options: Fuse.FuseOptions<ILocation> = {
@@ -76,15 +75,26 @@ export class AddEventComponent implements OnInit {
     return this.fuse.search(name).slice(0, 10);
   }
 
+  get deleteInterestFunc(){
+    return this.deleteInterest.bind(this);
+  }
+
+  deleteInterest(interest: IInterest){
+    this.event.event_interest = this.event.event_interest.filter(function (e) {
+      return e.id !== interest.id;
+    });
+
+    this.event.interests_id = this.event.interests_id.filter(function(e) {
+      return e !== interest.id;
+    });
+  }
+
   ngOnInit() {
     if (!this.dataService.isLoggedIn()) {
       alert('Please login to continue!');
       this.close(this.event);
       return;
     }
-    this.event = {} as IEvent;
-    this.event.event_interest = [] as IInterest[];
-    this.interest = {} as IInterest;
 
     /* Preload placeholder image */
     const img = new Image();
@@ -142,6 +152,8 @@ export class AddEventComponent implements OnInit {
         /* Set data */
         this.event = result;
 
+        console.log(result)
+
         /* Check if the user can edit the event */
         if (!this.dataService.CanEditEvent(this.event)) {
           alert('You do not have sufficient privileges to edit this event!');
@@ -172,18 +184,16 @@ export class AddEventComponent implements OnInit {
     var interest = {} as IInterest;
 
     interest.id = click.option.value.id;
+    interest.title = click.option.value.title;
 
 
     // this.event.event_interest.push(this.interest);
     // this.interest = {} as IInterest;
     // this.event.event_interest.push([params])
-    if (this.event.event_interest) {
-      this.event.event_interest.push(interest.id);
-      console.log(this.event.event_interest);
-    } else {
-      this.event.event_interest = [];
-      this.event.event_interest.push(interest.id);
-    }
+
+    this.event.event_interest.push(interest);
+    // console.log(this.event.event_interest);
+    this.event.interests_id.push(interest.id);
   }
 
   /** Initializes constants for an existing event */
@@ -231,6 +241,7 @@ export class AddEventComponent implements OnInit {
     this.AddVenue();
     this.initializeQueryDefaults();
     this.updateReach();
+    this.event.event_interest = [] as IInterest[];
   }
 
   /** Initializes defaults from query parameters */

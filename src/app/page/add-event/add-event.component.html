@@ -77,15 +77,14 @@
         </mat-form-field>
       </div>
 
-      <div class="interest_search">
-        <app-search-box exploreProp="interests" displayProp="title" placeholder="Interested to be notified"
-          hint="Enter a Interest" (change)="setInterest($event)">
-        </app-search-box>
+      <div class="full-width-details">
+          <app-search-box exploreProp="interests" displayProp="title" placeholder="Interested to be notified"
+            hint="Enter a Interest" (change)="setInterest($event)">
+          </app-search-box>
 
-        <app-interest-card *ngFor="let interest of interests" [interest]=interest [canDelete]=true>
+          <app-interest-card *ngFor="let interest of event.event_interest" [interest]=interest [canDelete]=true [deleteMethod]="deleteInterestFunc">
 
         </app-interest-card>
-
 
       </div>
 

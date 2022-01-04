@@ -507,4 +507,5 @@ export class DataService {
     if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
       return objOne.id === objTwo.id;
     }
+  }
 }
