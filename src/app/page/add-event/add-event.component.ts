@@ -190,10 +190,22 @@ export class AddEventComponent implements OnInit {
     // this.event.event_interest.push(this.interest);
     // this.interest = {} as IInterest;
     // this.event.event_interest.push([params])
-
-    this.event.event_interest.push(interest);
-    // console.log(this.event.event_interest);
-    this.event.interests_id.push(interest.id);
+    
+    if(this.event.event_interest){
+      if(!this.event.interests_id.find((id)=>{
+        // console.log(id);
+        return id === interest.id;
+      })){
+        this.event.event_interest.push(interest);
+        // console.log(this.event.event_interest);
+        this.event.interests_id.push(interest.id);
+      }
+    }
+    else {
+      this.event.event_interest = [interest];
+      // console.log(this.event.event_interest);
+      this.event.interests_id = [interest.id];
+    }
   }
 
   /** Initializes constants for an existing event */
@@ -241,7 +253,6 @@ export class AddEventComponent implements OnInit {
     this.AddVenue();
     this.initializeQueryDefaults();
     this.updateReach();
-    this.event.event_interest = [] as IInterest[];
   }
 
   /** Initializes defaults from query parameters */
