@@ -49,14 +49,14 @@ export class SkillsNewComponent implements OnInit, OnDestroy {
   /** Set skill from an autocomplete Skills */
   setSkill(event: any): void {
     if (event.option) {
-      
+
       const body: IBody = event.option.value.body;
       this.skill.title = event.option.value.title;
       this.skill.isSkill = true;
       this.skill.body = body.id;
       this.skill.body_detail = body;
 
-      console.log(this.skill)
+      // console.log(this.skill)
     }
   }
 

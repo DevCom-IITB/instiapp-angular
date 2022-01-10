@@ -36,11 +36,11 @@ export class InterestCardComponent implements OnInit {
   }
 
   onNoClick(interest: IInterest) {
-    if(this.deleteMethod){
+    if (this.deleteMethod) {
       this.deleteMethod(interest);
       return;
     }
-    let myCompOneObj = new UserDetailsComponent(this.activateRoute, this.dataService, this.snakbar, this.router);
+    const myCompOneObj = new UserDetailsComponent(this.activateRoute, this.dataService, this.snakbar, this.router);
     // console.log(interest)
     myCompOneObj.deleteInterest(interest);
   }

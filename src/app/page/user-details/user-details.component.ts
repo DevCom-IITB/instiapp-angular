@@ -40,7 +40,7 @@ export class UserDetailsComponent implements OnInit {
         /* Initialize */
         this.events = result.events_going.concat(result.events_interested);
         this.interests = result.interests;
-        console.log(this.interests)
+        // console.log(this.interests)
         result.former_roles.forEach(r => r.name = `Former ${r.name} ${r.year}`);
         result.roles = result.roles.concat(result.former_roles);
         this.dataService.setTitle(result.name);
@@ -65,7 +65,7 @@ export class UserDetailsComponent implements OnInit {
 
 
     this.dataService.FireDELETE(API.DelInterest, { id: interest.title }).subscribe(() => {
-      let currentUrl = this.router.url;
+      const currentUrl = this.router.url;
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate([currentUrl]);
         console.log(currentUrl);
@@ -85,11 +85,11 @@ export class UserDetailsComponent implements OnInit {
   setInterest(event: any): void {
 
     if (event.option) {
-      console.log(event.option.value.title)
+      // console.log(event.option.value.title)
       // console.log(this.interest)
       this.interest.title = event.option.value.title;
       this.interest.id = event.option.value.id;
-      console.log(event.option.value)
+      // console.log(event.option.value)
 
       // this.dataService.FirePOST(API.Interest, event.option.value.id).subscribe(() => {
       //   this.snackBar.open('Your request has been recorded', 'Dismiss', { duration: 2000 });
@@ -104,13 +104,13 @@ export class UserDetailsComponent implements OnInit {
         this.snackBar.open('Your request has been recorded', 'Dismiss', { duration: 2000 });
         this.interest = {} as IInterest;
 
-        let currentUrl = this.router.url;
+        const currentUrl = this.router.url;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
       }, err => {
-        console.log(this.interest.id)
+        // console.log(this.interest.id)
         this.snackBar.open(`There was harsh error: ${err.message}`, 'Dismiss');
 
       });

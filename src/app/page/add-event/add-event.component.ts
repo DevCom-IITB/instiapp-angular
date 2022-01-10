@@ -75,11 +75,11 @@ export class AddEventComponent implements OnInit {
     return this.fuse.search(name).slice(0, 10);
   }
 
-  get deleteInterestFunc(){
+  get deleteInterestFunc() {
     return this.deleteInterest.bind(this);
   }
 
-  deleteInterest(interest: IInterest){
+  deleteInterest(interest: IInterest) {
     this.event.event_interest = this.event.event_interest.filter(function (e) {
       return e.id !== interest.id;
     });
@@ -152,7 +152,7 @@ export class AddEventComponent implements OnInit {
         /* Set data */
         this.event = result;
 
-        console.log(result)
+        // console.log(result)
 
         /* Check if the user can edit the event */
         if (!this.dataService.CanEditEvent(this.event)) {
@@ -181,27 +181,26 @@ export class AddEventComponent implements OnInit {
 
   setInterest(click: any): void {
 
-    var interest = {} as IInterest;
-
-    interest.id = click.option.value.id;
-    interest.title = click.option.value.title;
+    const interest = {
+      id: click.option.value.id,
+      title: click.option.value.title
+    } as IInterest;
 
 
     // this.event.event_interest.push(this.interest);
     // this.interest = {} as IInterest;
     // this.event.event_interest.push([params])
-    
-    if(this.event.event_interest){
-      if(!this.event.interests_id.find((id)=>{
+
+    if (this.event.event_interest) {
+      if (!this.event.interests_id.find((id) => {
         // console.log(id);
         return id === interest.id;
-      })){
+      })) {
         this.event.event_interest.push(interest);
         // console.log(this.event.event_interest);
         this.event.interests_id.push(interest.id);
       }
-    }
-    else {
+    } else {
       this.event.event_interest = [interest];
       // console.log(this.event.event_interest);
       this.event.interests_id = [interest.id];

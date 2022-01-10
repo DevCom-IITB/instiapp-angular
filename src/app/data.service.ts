@@ -493,12 +493,13 @@ export class DataService {
   }
 
   canEditInterest(roll: String): boolean {
-    console.log(roll, this._currentUser.ldap_id)
+    // console.log(roll, this._currentUser.ldap_id)
 
-    if (!this._loggedIn) { return false }
-
-    else if (roll == this._currentUser.ldap_id) {
-      return true
+    if (!this._loggedIn) {
+      return false;
+    }
+    if (roll === this._currentUser.ldap_id) {
+      return true;
     }
     return false;
   }
