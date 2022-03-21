@@ -80,7 +80,7 @@ export class AchievementsComponent implements OnInit, OnDestroy {
   /** Delete an achievement */
   public delete(achievement: IAchievement): void {
     const index = this.achievements.indexOf(achievement);
-    this.dataService.FireDELETE(API.Achievement, { id: achievement.id}).subscribe(() => {
+    this.dataService.FireDELETE(API.Achievement, { id: achievement.id }).subscribe(() => {
       this.achievements.splice(index, 1);
     });
   }

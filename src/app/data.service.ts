@@ -492,7 +492,18 @@ export class DataService {
     });
   }
 
-  /** Simple function to compare two objects  */
+  canEditInterest(roll: String): boolean {
+    // console.log(roll, this._currentUser.ldap_id)
+
+    if (!this._loggedIn) {
+      return false;
+    }
+    if (roll === this._currentUser.ldap_id) {
+      return true;
+    }
+    return false;
+  }
+
   equals(objOne, objTwo) {
     if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
       return objOne.id === objTwo.id;

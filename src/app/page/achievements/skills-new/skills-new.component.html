@@ -1,0 +1,24 @@
+<!-- <app-xunk-spinner *ngIf="!skill "></app-xunk-spinner> -->
+
+<div class="main">
+
+
+    <div class="rl-header ">
+        Skill Verification
+    </div>
+
+
+    <app-search-box exploreProp="skills" displayProp="title" placeholder="New Skill" hint="Enter a Skill"
+        (change)="setSkill($event)">
+    </app-search-box>
+
+    <div *ngIf="skill.title">
+        {{ skill.title }}
+    </div>
+    <app-body-card *ngIf="skill.body_detail" [body]="skill.body_detail" [route]="[]">
+    </app-body-card>
+
+    <button mat-raised-button color="accent" class="full-width go" (click)="go()">
+        Request Skill Verification
+    </button>
+</div>
