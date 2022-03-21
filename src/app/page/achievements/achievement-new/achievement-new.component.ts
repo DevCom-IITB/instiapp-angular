@@ -166,6 +166,7 @@ export class AchievementNewComponent implements OnInit, OnDestroy {
       const body: IBody = event.option.value;
       this.achievement.body_detail = body;
       this.achievement.body = body.id;
+      this.achievement.isSkill = false;
     }
   }
 

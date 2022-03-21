@@ -28,6 +28,17 @@ a {
     width: 320px;
 }
 
+.nhui{
+    width: 50%;
+    background-color: powderblue;
+}
+.interest_search
+{
+    width: 40%;
+    padding-left: 2%;
+
+}
+
 #info-header {
     margin: 20px 0 0 0;
 }

@@ -1,8 +1,5 @@
 <mat-form-field class="full-width add-person">
-  <input #roll matInput #addBox
-        [placeholder]="placeholder"
-        [matAutocomplete]="auto"
-        [formControl]="addForm">
+  <input #roll matInput #addBox [placeholder]="placeholder" [matAutocomplete]="auto" [formControl]="addForm">
 
   <mat-autocomplete name="personauto" #auto (optionSelected)="selected($event)">
     <mat-option *ngFor="let thing of exploreObs | async" [value]="thing">{{ thing[displayProp] }}</mat-option>
