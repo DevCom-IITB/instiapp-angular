@@ -1,0 +1,22 @@
+<app-xunk-spinner *ngIf="authenticating || error" [error]="error"></app-xunk-spinner>
+
+<div class="main" *ngIf="!authenticating && !error">
+    <div class="head">
+      Enter your LDAP ID to continue.
+    </div>
+    
+    <form [formGroup]="ldapForm"
+        (ngSubmit)="onSubmit()">
+        <mat-form-field class="input-box" appearance="fill">
+            <mat-label>LDAP</mat-label>
+            <input matInput id = "ldap" type = "text" formControlName="ldap">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button
+            type = "button"
+            color="accent"
+            class="login-button"
+            (click)="redirToOTP()">
+            Send OTP
+    </button>
+</div>

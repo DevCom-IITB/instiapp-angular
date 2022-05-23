@@ -209,6 +209,10 @@ export class AppComponent implements OnDestroy, OnInit {
     window.location.href = this.dataService.GetLoginURL();
   }
 
+  alumniLogin() {
+    this.router.navigate(['/alumni']);
+  }
+
   /** Handle reaching end of page and sidenav on android chrome */
   @HostListener('window:scroll')
   windowScroll() {

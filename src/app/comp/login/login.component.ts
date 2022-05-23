@@ -32,16 +32,7 @@ export class LoginComponent implements OnInit {
       this.authenticating = true;
       const auth_code = params['code'];
       this.dataService.AuthenticateSSO(auth_code).subscribe(() => {
-        this.dataService.GetFillCurrentUser().subscribe(() => {
-          const redir = localStorage.getItem(this.dataService.LOGIN_REDIR);
-          if (redir && redir !== '') {
-            localStorage.setItem(this.dataService.LOGIN_REDIR, '');
-            const rpath: any[] = this.dataService.DecodeObject(redir);
-            this.router.navigate(rpath);
-          } else {
-            this.router.navigate(['feed']);
-          }
-        });
+        this.dataService.performLogin();
       }, (e) => {
         console.log(e);
         this.error = e.status;

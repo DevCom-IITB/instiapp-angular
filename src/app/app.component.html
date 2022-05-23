@@ -29,6 +29,12 @@
         Log In
     </button>
 
+    <button mat-button
+            (click)="alumniLogin()"
+            *ngIf="!this.dataService.isLoggedIn()">
+        Alumni Login
+    </button>
+
     <button mat-icon-button
             *ngIf="dataService.showQRButton"
             [routerLink]="['/qr-scan']">

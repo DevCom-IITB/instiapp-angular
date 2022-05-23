@@ -311,6 +311,21 @@ export class DataService {
     return this.FireGET(API.Login, { code: code, redir: SSO_REDIR });
   }
 
+  /** Send LDAP to to backend */
+  SendLDAP(ldap: string) {
+    return this.FireGET(API.Alumni, {ldap: ldap});
+  }
+
+  /** Send OTP to backend and verify */
+  SendOTP(ldap: string, otp: string) {
+    return this.FireGET(API.AlumniOTP, {ldap: ldap, otp: otp});
+  }
+
+  /** Resend OTP if requested by user */
+  ResendOTP(ldap: string) {
+    return this.FireGET(API.ResendAlumniOTP, {ldap: ldap});
+  }
+
   /** Logout the current user */
   Logout() {
     return this.FireGET(API.Logout).subscribe(() => {
@@ -508,5 +523,19 @@ export class DataService {
     if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
       return objOne.id === objTwo.id;
     }
+  }
+
+  /** Fills user and naviagtes user */
+  performLogin() {
+    this.GetFillCurrentUser().subscribe(() => {
+      const redir = localStorage.getItem(this.LOGIN_REDIR);
+      if (redir && redir !== '') {
+        localStorage.setItem(this.LOGIN_REDIR, '');
+        const rpath: any[] = this.DecodeObject(redir);
+        this.router.navigate(rpath);
+      } else {
+        this.router.navigate(['feed']);
+      }
+    });
   }
 }

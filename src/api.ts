@@ -21,6 +21,9 @@ export const API = {
     LoggedInUser: 'api/login/get-user',
     Login: 'api/login{?code,redir}',
     Logout: 'api/logout',
+    Alumni: 'api/alumniLogin{?ldap}',
+    AlumniOTP: 'api/alumniOTP{?ldap,otp}',
+    ResendAlumniOTP: 'api/resendAlumniOTP{?ldap}',
 
     PlacementBlog: 'api/placement-blog{?from,num,query}',
     TrainingBlog: 'api/training-blog{?from,num,query}',
