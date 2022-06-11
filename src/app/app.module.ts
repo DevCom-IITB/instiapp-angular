@@ -77,6 +77,7 @@ import { AchievementCardComponent } from './card/achievement-card/achievement-ca
 import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
 import { SkillsNewComponent } from './page/achievements/skills-new/skills-new.component';
 import { QrScanComponent } from './page/qr-scan/qr-scan.component';
+import { InsightDisscussionForumComponent } from './page/insight-disscussion-forum/insight-disscussion-forum.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     OTPComponent,
     QuerySearchComponent,
     QueryNewComponent,
+    InsightDisscussionForumComponent,
   ],
   imports: [
     BrowserModule,
