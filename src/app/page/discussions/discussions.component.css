@@ -6,3 +6,22 @@
 .searchinput {
     min-width: 40%;
 }
+
+.margin-card {
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    width: 42%;
+    margin-bottom: 0.5em;
+    margin-left: 1%;
+    display: inline-block;
+}
+
+.section-main {
+    width: 96%;
+    margin-left: 4%;
+}
+
+.header {
+    margin-bottom: 0.5em;
+    margin-top: 0.3em;
+}

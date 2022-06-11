@@ -78,6 +78,7 @@ import { AchievementOfferMakeComponent } from './page/achievements/achievement-o
 import { SkillsNewComponent } from './page/achievements/skills-new/skills-new.component';
 import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 import { DiscussionsComponent } from './page/discussions/discussions.component';
+import { GroupCardComponent } from './card/group-card/group-card.component';
 
 @NgModule({
   declarations: [
@@ -116,8 +117,9 @@ import { DiscussionsComponent } from './page/discussions/discussions.component';
     AchievementRequestComponent,
     AchievementNewComponent,
     SearchBoxComponent,
-
+    
     AchievementCardComponent,
+    GroupCardComponent,
     AchievementOfferMakeComponent,
     QrScanComponent,
     AlumniComponent,

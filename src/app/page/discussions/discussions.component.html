@@ -42,21 +42,27 @@
 <div id="searchbox">
   <mat-form-field class="searchinput">
       <input matInput type="search"
-              name="search" [(ngModel)]="searchQ"
-              (keyup)="search(searchQ, true)"
+              name="search"
               placeholder="Search">
       <mat-hint align="start">Find Groups </mat-hint>
   </mat-form-field>
 
   <button mat-icon-button
           color="primary"
-          (click)="search(searchQ)"
           style="max-height:37px;">
       <mat-icon>search</mat-icon>
   </button>
 </div>
 
-<div class="rl-header header" [hidden]="seltab !== -1">
-  Explore
-</div>
 
+<div class="section-main">
+
+    <div class="rl-header header">
+        Groups
+    </div>
+
+    <div class="margin-card">
+        <app-group-card></app-group-card>
+    </div>
+
+</div>
