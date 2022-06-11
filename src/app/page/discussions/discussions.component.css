@@ -1,0 +1,8 @@
+#searchbox {
+    margin: 10px 5%;
+    white-space: nowrap;
+}
+
+.searchinput {
+    min-width: 40%;
+}

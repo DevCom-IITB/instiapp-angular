@@ -1,0 +1,62 @@
+<!-- <div class="container-fluid" style="padding: 10px 200px 0px 20px;">
+<nav class="navbar" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Groups</span>
+    </div>
+</nav>
+</div>
+
+<div class="container-fluid" style="padding: 0px 200px 10px 20px;">
+<nav class="navbar" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Go</button>
+        </form>
+    </div>
+</nav>
+</div>
+
+<div class="container-fluid" style="padding: 10px 200px 5px 20px;" >
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">IDF</h5>
+        </div>
+        <p class="mb-1">Followers: 300</p>
+    </a>
+</div>
+</div>
+
+<div class="container-fluid" style="padding: 1px 200px 10px 20px;">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Hostel Forum</h5>
+            </div>
+            <p class="mb-1">Followers: 700</p>
+        </a>
+    </div>
+</div> -->
+
+<div id="searchbox">
+  <mat-form-field class="searchinput">
+      <input matInput type="search"
+              name="search" [(ngModel)]="searchQ"
+              (keyup)="search(searchQ, true)"
+              placeholder="Search">
+      <mat-hint align="start">Find Groups </mat-hint>
+  </mat-form-field>
+
+  <button mat-icon-button
+          color="primary"
+          (click)="search(searchQ)"
+          style="max-height:37px;">
+      <mat-icon>search</mat-icon>
+  </button>
+</div>
+
+<div class="rl-header header" [hidden]="seltab !== -1">
+  Explore
+</div>
+

@@ -77,7 +77,7 @@ import { AchievementCardComponent } from './card/achievement-card/achievement-ca
 import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
 import { SkillsNewComponent } from './page/achievements/skills-new/skills-new.component';
 import { QrScanComponent } from './page/qr-scan/qr-scan.component';
-import { InsightDisscussionForumComponent } from './page/insight-disscussion-forum/insight-disscussion-forum.component';
+import { DiscussionsComponent } from './page/discussions/discussions.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +124,7 @@ import { InsightDisscussionForumComponent } from './page/insight-disscussion-for
     OTPComponent,
     QuerySearchComponent,
     QueryNewComponent,
-    InsightDisscussionForumComponent,
+    DiscussionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -170,6 +170,8 @@ import { InsightDisscussionForumComponent } from './page/insight-disscussion-for
 
       { path: 'query-search', component: QuerySearchComponent, data: { state: 'base' } },
       { path: 'query-new', component: QueryNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+
+      { path: 'discussions', component: DiscussionsComponent, data: {state: 'base'}},
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
