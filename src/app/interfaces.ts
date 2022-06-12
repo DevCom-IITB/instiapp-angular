@@ -228,3 +228,24 @@ export interface IOfferedAchievement {
     users: IUserProfile[];
     stat: number;
 }
+
+export interface IGroup{
+    
+    id: string;
+    title: string;
+    body: string;
+    post_by:IUserProfile;
+   
+    hidden: boolean;
+    dismissed: boolean;
+    verified: boolean;
+    verified_by: string;
+    user: IUserProfile;
+    
+    comment: string;
+    comment_by: IUserProfile;
+
+    reply: string;
+    reply_by: IUserProfile;
+
+}
