@@ -234,5 +234,5 @@ export interface IGroup{
     id: string;
     title: string;
     body: string;
-    post_by:IUserProfile;
+    created_by:IUserProfile;
 }

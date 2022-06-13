@@ -1,8 +1,10 @@
 <div class="sub-card"
+     *ngIf="group"
      mat-ripple>
 
-  <app-card title="InsightDiscussionForum"
-            subtitle="Followers: 8000">
+  <app-card [title]="group.title"
+            [subtitle]= "group.body"
+  >
   </app-card>
 </div>
 
