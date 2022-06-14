@@ -1,16 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IGroup, IUserProfile } from '../../interfaces';
+import { DataService } from '../../data.service';
+
+const TITLE = 'Discussions';
 
 @Component({
   selector: 'app-insight-disscussion-forum',
   templateUrl: './discussions.component.html',
   styleUrls: ['./discussions.component.css']
 })
+
+
 export class DiscussionsComponent implements OnInit {
   @Input() public groups: IGroup[];
   @Input() public user: IUserProfile[];
-  constructor() { }
 
+  constructor(
+    public dataService: DataService,
+  ){}
+
+  
   ngOnInit(){
     this.populateDummyGroups();
     // this.user[0].name='Insight';
@@ -24,6 +33,7 @@ export class DiscussionsComponent implements OnInit {
     // this.groups[1].title='Devcom Discussion Forum';
     // this.groups[1].body='Followers - 4000';
     // this.groups[1].created_by = this.user[1];
+    this.dataService.setTitle(TITLE);
   }
 
   populateDummyGroups(){
