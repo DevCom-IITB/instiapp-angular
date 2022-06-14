@@ -231,7 +231,7 @@ export interface IOfferedAchievement {
 
 export interface IGroup{
     
-    id: string;
+    id: number;
     title: string;
     body: string;
     created_by:IUserProfile;

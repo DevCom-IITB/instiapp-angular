@@ -35,13 +35,13 @@ export class DiscussionsComponent implements OnInit {
     } as IUserProfile;
 
     const group1: IGroup = {
-      id:'1',
+      id:1,
       title:'Insight Discussion Forum',
       body: '4000 Following',
       created_by:dummy_creator
     }
     const group2: IGroup = {
-      id:'2',
+      id:2,
       title:'DevCom Roxx',
       body: '7b Following',
       created_by:dummy_creator
