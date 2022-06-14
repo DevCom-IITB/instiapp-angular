@@ -54,14 +54,16 @@
   </button>
 </div>
 
-<div class="section-main" ngIf = "groups">
+<div class="section-main" *ngIf = "groups">
     <div class="rl-header header">
         Groups
     </div>
     
-    <div *ngFor="let group of groups" class="margin-card">
-        <app-group-card [group]="group">    
-        </app-group-card>
+    <div>
+        <div *ngFor="let group of groups" class="margin-card">
+            <app-group-card [group]="group">    
+            </app-group-card>
+        </div>
     </div>
 
 </div>

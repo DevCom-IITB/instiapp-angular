@@ -27,6 +27,9 @@ export class DiscussionsComponent implements OnInit {
   }
 
   populateDummyGroups(){
+    if (this.groups === undefined){
+      this.groups = new Array<IGroup>();
+    }
     const dummy_creator = {
       name: "DevCom_Admin",
     } as IUserProfile;
