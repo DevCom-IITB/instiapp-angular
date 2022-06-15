@@ -38,13 +38,15 @@ export class DiscussionsComponent implements OnInit {
       id:'1',
       title:'Insight Discussion Forum',
       body: '4000 Following',
-      created_by:dummy_creator
+      created_by:dummy_creator,
+      image_url: './assets/icons/apple-icon.png'
     }
     const group2: IGroup = {
       id:'2',
       title:'DevCom Roxx',
       body: '7b Following',
-      created_by:dummy_creator
+      created_by:dummy_creator,
+      image_url: './assets/icons/apple-icon.png'
     }
 
     this.groups.push(group1);

@@ -235,4 +235,5 @@ export interface IGroup{
     title: string;
     body: string;
     created_by:IUserProfile;
+    image_url: string;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IGroup } from '../../interfaces';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-group-card',
@@ -8,7 +9,9 @@ import { IGroup } from '../../interfaces';
 })
 export class GroupCardComponent implements OnInit {
    @Input() group: IGroup;
-  constructor() { }
+   constructor(
+    public dataService: DataService,
+  ) { }
 
   ngOnInit(): void {
   }
