@@ -80,6 +80,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 import { DiscussionsComponent } from './page/discussions/discussions.component';
 import { GroupCardComponent } from './card/group-card/group-card.component';
 import { PostComponent } from './card/post/post.component';
+import { AddPostComponent } from './page/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { PostComponent } from './card/post/post.component';
     QueryNewComponent,
     DiscussionsComponent,
     PostComponent,
+    AddPostComponent,
   ],
   imports: [
     BrowserModule,

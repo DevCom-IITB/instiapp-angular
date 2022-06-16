@@ -1,0 +1,8 @@
+#container_add_images{
+    border: dotted 1px gray;
+}
+
+#tagged_container{
+    border-radius: 5px;
+    border: 1px black ;
+}
