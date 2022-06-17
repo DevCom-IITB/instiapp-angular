@@ -178,6 +178,7 @@ import { AddPostComponent } from './page/add-post/add-post.component';
       { path: 'query-new', component: QueryNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
 
       { path: 'discussions', component: DiscussionsComponent, data: {state: 'base'}},
+      { path: 'add-post', component: AddPostComponent, data: {state: 'base'}},
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
