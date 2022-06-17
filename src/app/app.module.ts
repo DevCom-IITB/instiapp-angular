@@ -79,7 +79,7 @@ import { SkillsNewComponent } from './page/achievements/skills-new/skills-new.co
 import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 import { DiscussionsComponent } from './page/discussions/discussions.component';
 import { GroupCardComponent } from './card/group-card/group-card.component';
-import { PostComponent } from './card/post/post.component';
+import { PostCardComponent } from './card/post-card/post-card.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +128,7 @@ import { PostComponent } from './card/post/post.component';
     QuerySearchComponent,
     QueryNewComponent,
     DiscussionsComponent,
-    PostComponent,
+    PostCardComponent,
   ],
   imports: [
     BrowserModule,
