@@ -230,10 +230,15 @@ export interface IOfferedAchievement {
 }
 
 export interface IGroup{
-    
     id: number;
     title: string;
     body: string;
     created_by:IUserProfile;
     image_url: string;
+}
+export interface IPost{
+    id: string;
+    author: IUserProfile;
+    post_date: Date;
+    content: string;
 }

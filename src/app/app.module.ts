@@ -80,6 +80,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 import { DiscussionsComponent } from './page/discussions/discussions.component';
 import { GroupCardComponent } from './card/group-card/group-card.component';
 import { PostCardComponent } from './card/post-card/post-card.component';
+import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.component';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { PostCardComponent } from './card/post-card/post-card.component';
     QueryNewComponent,
     DiscussionsComponent,
     PostCardComponent,
+    GroupFeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -176,6 +178,7 @@ import { PostCardComponent } from './card/post-card/post-card.component';
       { path: 'query-new', component: QueryNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
 
       { path: 'discussions', component: DiscussionsComponent, data: {state: 'base'}},
+      { path: 'group-feed/:id', component: GroupFeedComponent, data: {state: 'base'}},
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
