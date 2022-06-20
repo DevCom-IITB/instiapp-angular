@@ -12,7 +12,7 @@ export class GroupFeedComponent implements OnInit {
   @Input() public groupId: number = -1;
   @Input() public group: IGroup;
 
-  private posts: IPost[];
+  public posts: IPost[];
 
   private dummyContent: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -26,13 +26,13 @@ export class GroupFeedComponent implements OnInit {
     this.dataService.setInitialized();
 
     
-
     if (this.groupId == -1){
       this.activatedRoute.params.subscribe((params:Params)=>{
         this.groupId = params['id'];
         this.refresh()
       })
     }
+    this.dataService.setTitle(`Group ${this.groupId} Feed`)
     
     this.loadDummyGroupData();
     this.loadDummyPosts();    
@@ -67,7 +67,13 @@ export class GroupFeedComponent implements OnInit {
 
     this.posts = new Array<IPost>();
     for(let i=0; i<20;i++){
-      this.posts.push(dum_post);
+      // this.posts.push(dum_post);
+      this.posts.push({
+        id:"p6Af92I",
+        author: dum_user,
+        post_date: new Date("2022-06-23"),
+        content: `A lot of content ${Math.floor(Math.random()*100)}`,
+      } as IPost);
     }
   }
 

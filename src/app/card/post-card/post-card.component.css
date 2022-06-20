@@ -1,0 +1,11 @@
+mat-card {
+    background-color: transparent;
+}
+
+#subtitle {
+    max-width: 85%;
+    height:fit-content;
+    white-space: normal;
+    overflow: hidden;
+    word-wrap: break-word;
+}
