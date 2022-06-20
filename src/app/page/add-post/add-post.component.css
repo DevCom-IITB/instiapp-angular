@@ -1,0 +1,54 @@
+#main_container{
+    padding:12px 48px 12px 48px;
+    height:100%;
+}
+
+#text_post_content{
+    border-radius: 8px;
+    width:100%;
+    min-height: 144px;
+}
+
+#container_add_images{
+    border: dashed 2px gray;
+    border-radius: 16px;
+}
+
+#tagged_container{
+    border-radius: 8px;
+    border: 2px solid black ;
+}
+
+#submit_btn{
+    width:40%;
+}
+
+.tag{
+    display: inline-block;
+}
+
+.margin-mv{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+.margin-lv{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.padding-mv{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.padding-mh{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.padding-lv{
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.center-text{
+    text-align: center;
+}
