@@ -81,6 +81,7 @@ import { DiscussionsComponent } from './page/discussions/discussions.component';
 import { GroupCardComponent } from './card/group-card/group-card.component';
 import { PostCardComponent } from './card/post-card/post-card.component';
 import { AddPostComponent } from './page/add-post/add-post.component';
+import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { AddPostComponent } from './page/add-post/add-post.component';
     DiscussionsComponent,
     PostCardComponent,
     AddPostComponent,
+    GroupFeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -179,6 +181,7 @@ import { AddPostComponent } from './page/add-post/add-post.component';
 
       { path: 'discussions', component: DiscussionsComponent, data: {state: 'base'}},
       { path: 'add-post', component: AddPostComponent, data: {state: 'base'}},
+      { path: 'group-feed/:id', component: GroupFeedComponent, data: {state: 'base'}},
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },

@@ -2,8 +2,8 @@
      *ngIf="post"
      mat-ripple>
 
-  <app-card [title]="post.title"
-            [subtitle]= "post.body"
+  <app-card [title]="post.author.name"
+            [subtitle]= "post.content"
   >
 
   </app-card>

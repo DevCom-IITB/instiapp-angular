@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IDPost } from '../../interfaces';
+import { Component, OnInit, Input } from '@angular/core';
+import { IPost } from '../../interfaces';
 import { DataService } from '../../data.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { DataService } from '../../data.service';
   styleUrls: ['./post-card.component.css']
 })
 export class PostCardComponent implements OnInit {
-  @Input() post: IDPost;
+  @Input() post: IPost;
    constructor(
     public dataService: DataService,) { 
     

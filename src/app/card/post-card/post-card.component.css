@@ -4,7 +4,8 @@ mat-card {
 
 #subtitle {
     max-width: 85%;
+    height:fit-content;
+    white-space: normal;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
 }
