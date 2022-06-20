@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { range } from 'rxjs';
+import { DataService } from '../../../data.service';
 import { IGroup, IPost, IUserProfile } from '../../../interfaces';
 
 @Component({
@@ -18,10 +18,15 @@ export class GroupFeedComponent implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public dataService: DataService
   ) {}
 
   ngOnInit(): void {
+    this.dataService.setInitialized();
+
+    
+
     if (this.groupId == -1){
       this.activatedRoute.params.subscribe((params:Params)=>{
         this.groupId = params['id'];
