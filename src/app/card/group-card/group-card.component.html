@@ -1,13 +1,88 @@
-<div class="sub-card"
-     *ngIf="group"
-     mat-ripple>
+<div class="block" *ngIf="group" mat-ripple>
 
-  <app-card [title]="group.title"
-            [subtitle]= "group.body"
-            [avatar]="group.image_url"
-  >
 
-  </app-card>
+  <ng-component
+    style="background-image: linear-gradient(rgba(0,0,0, 0.3) 100%, rgba(0,0,0, 0.3) 100%), url({{group.cover_image}})"
+    class="my-card__media">
+
+  </ng-component>
+  <div class="mdc-card__media-content">
+
+
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <!-- <app-card [title]="group.name" [subtitle]="group.about" [avatar]="group.logo_image"
+              [followers]="group.followers_count"> -->
+
+
+            <div class="card">
+              <table class="card-table">
+                <tbody>
+                  <tr>
+                    <td class="avatar">
+                      <img [src]="group.logo_image" class="img-circle object-cover" />
+                    </td>
+
+                    <td class="content">
+
+                      <p class="title">
+                        {{ group.name }}
+                      </p>
+
+
+                      <p class="followers">
+                        {{ group.followers_count }} followers . 2 posts Today
+                      </p>
+
+                      <p class="about">
+                        {{ group.about }}
+                      </p>
+
+                    </td>
+
+
+
+
+
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          </td>
+
+          <td>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon class="icon_more">more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>people</mat-icon><span>Join</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>share</mat-icon><span>Share</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>push_pin</mat-icon><span>Pin</span>
+              </button>
+            </mat-menu>
+
+          </td>
+
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
 </div>
 
 <!-- <div class="card">

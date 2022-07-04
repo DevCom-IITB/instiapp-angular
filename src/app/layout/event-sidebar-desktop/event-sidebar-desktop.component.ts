@@ -8,11 +8,15 @@ import { DataService } from '../../data.service';
 })
 export class EventSidebarDesktopComponent implements OnInit, OnChanges {
   showingEventDetails = false;
+  showingGroupDetails = false;
   animedEventDetails = false;
   hiddenEventDetails = true;
   eventDetailsId;
+  groupDetailsId;
 
   @Input() event;
+  @Input() group;
+  @Input() isgrouppage;
 
   constructor(
     public dataService: DataService,
@@ -22,8 +26,13 @@ export class EventSidebarDesktopComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (!this.event) { return; }
-    this.EventDetailsPane();
+
+    if (this.event) { this.EventDetailsPane(); }
+    if (this.isgrouppage || this.group) { this.GroupDetailsPane(); }
+
+    if (!this.event && !this.group) { return; }
+
+
   }
 
   /** Open or update the side event-details pane */
@@ -31,6 +40,12 @@ export class EventSidebarDesktopComponent implements OnInit, OnChanges {
     /* Open the bar for the first time */
     this.showingEventDetails = true;
     this.eventDetailsId = this.event.id;
+  }
+
+  GroupDetailsPane() {
+    this.showingGroupDetails = true;
+    this.groupDetailsId = this.group.id;
+
   }
 
   /** boolean to boolean string */

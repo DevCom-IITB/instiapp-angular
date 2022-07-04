@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div *ngFor="let post of posts">
         <app-post-card
             [post]="post"
@@ -6,4 +6,29 @@
 
         </app-post-card>
     </div>
-</div>
+</div> -->
+
+<app-desktop-split *ngIf="posts" [rightLeftBorder]="false" [centerRightBorder]="true">
+
+    <div center class="spaces">
+
+        <div class="rl-header sm main-title">
+            {{ 'Spaces' }}
+        </div>
+        <div *ngFor="let post of posts">
+            <app-post-card [post]="post">
+
+            </app-post-card>
+        </div>
+
+
+    </div>
+
+    <div right class="desktop-right">
+
+
+
+
+    </div>
+
+</app-desktop-split>

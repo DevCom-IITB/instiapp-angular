@@ -1,13 +1,17 @@
-<app-desktop-split>
+<app-desktop-split [isGroup]="isgrouppage">
     <div center>
         <ng-content></ng-content>
     </div>
 
     <div right *ngIf="showingEventDetails">
-        <app-event-details
-            [eventId]="eventDetailsId"
-            noCenter="true"
-            [desktopMode]="true">
+        <app-event-details [eventId]="eventDetailsId" noCenter="true" [desktopMode]="true">
         </app-event-details>
+
+
+    </div>
+
+    <div right *ngIf="showingGroupDetails">
+        <app-group-details [groupId]="groupDetailsId" noCenter="true" [desktopMode]="true">
+        </app-group-details>
     </div>
 </app-desktop-split>

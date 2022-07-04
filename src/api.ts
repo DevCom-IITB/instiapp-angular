@@ -13,6 +13,9 @@ export const API = {
     Body: 'api/bodies/{uuid}',
     BodyFollow: 'api/bodies/{uuid}/follow{?action}',
 
+    Communities: 'api/communities',
+    Community: 'api/communities/{uuid}',
+
     Locations: 'api/locations{?exclude_group}',
     Location: 'api/locations/{id}',
 

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IGroup, IUserProfile } from '../../interfaces';
+import { ICommunity, IUserProfile } from '../../interfaces';
 import { DataService } from '../../data.service';
+import { Router } from '@angular/router';
+import { API } from '../../../api';
 
 const TITLE = 'Discussions';
 
@@ -12,59 +14,48 @@ const TITLE = 'Discussions';
 
 
 export class DiscussionsComponent implements OnInit {
-  @Input() public groups: IGroup[];
+  @Input() public groups: ICommunity[];
+  @Input() public allgroups: ICommunity[];
   @Input() public user: IUserProfile[];
+  public selectedGroup: ICommunity;
+  public error: number;
+
 
   constructor(
     public dataService: DataService,
-  ){}
+    public router: Router,
 
-  
-  ngOnInit(){
-    this.populateDummyGroups();
-    // this.user[0].name='Insight';
-    // this.groups[0].id = '1';
-    // this.groups[0].title='Insight Discussion Forum';
-    // this.groups[0].body='Followers - 3000';
-    // this.groups[0].created_by = this.user[0];
+  ) { }
 
-    // this.user[1].name='DevCom';
-    // this.groups[1].id = '2';
-    // this.groups[1].title='Devcom Discussion Forum';
-    // this.groups[1].body='Followers - 4000';
-    // this.groups[1].created_by = this.user[1];
+
+  ngOnInit() {
+
     this.dataService.setTitle(TITLE);
+
+    this.dataService.FireGET<ICommunity[]>(API.Communities).subscribe(result => {
+      this.groups = result;
+      this.allgroups = result;
+    }, (e) => {
+      this.error = e.status;
+    });
+
+
   }
 
-  populateDummyGroups(){
-    if (this.groups === undefined){
-      this.groups = new Array<IGroup>();
-    }
-    const dummy_creator = {
-      name: "DevCom_Admin",
-    } as IUserProfile;
 
-    const group1: IGroup = {
-      id:1,
-      title:'Insight Discussion Forum',
-      body: '4000 Following',
-      created_by:dummy_creator,
-      image_url: './assets/icons/apple-icon.png'
-    }
-    const group2: IGroup = {
-      id:2,
-      title:'DevCom Roxx',
-      body: '7b Following',
-      created_by:dummy_creator,
-      image_url: './assets/icons/apple-icon.png'
-    }
-
-    this.groups.push(group1);
-    this.groups.push(group2);
-  }
 
   getBodies() {
-     return this.groups;
+    return this.groups;
+  }
+
+  over(group: ICommunity) {
+
+    // adding route
+    if (this.dataService.isMobile()) {
+      this.router.navigate(['group', group.id]);
+    } else {
+      this.selectedGroup = group;
+    }
   }
 
 }

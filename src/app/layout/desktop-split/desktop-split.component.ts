@@ -13,6 +13,7 @@ export class DesktopSplitComponent {
    *  2 = hide right
    */
   @Input() public hideOnMobile = 2;
+  @Input() public isGroup = false;
 
   /** True for right border on center element */
   @Input() public centerRightBorder = false;

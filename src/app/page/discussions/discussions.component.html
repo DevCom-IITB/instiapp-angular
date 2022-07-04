@@ -39,31 +39,69 @@
     </div>
 </div> -->
 
-<div id="searchbox">
-  <mat-form-field class="searchinput">
-      <input matInput type="search"
-              name="search"
-              placeholder="Search">
-      <mat-hint align="start">Find Groups</mat-hint>
-  </mat-form-field>
+<app-xunk-spinner *ngIf="!groups"></app-xunk-spinner>
 
-  <button mat-icon-button
-          color="primary"
-          style="max-height:37px;">
-      <mat-icon>search</mat-icon>
-  </button>
-</div>
+<div class="main">
+    <app-event-sidebar-desktop *ngIf="groups" [isgrouppage]="true" [group]="selectedGroup">
 
-<div class="section-main" *ngIf = "groups">
+
+        <div id="searchbox">
+            <mat-form-field class="searchinput">
+                <input matInput type="search" name="search" placeholder="Search">
+                <mat-hint align="start">Find Groups</mat-hint>
+            </mat-form-field>
+
+            <button mat-icon-button color="primary" style="max-height:37px;">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+
+        <!-- <div class="section-main" *ngIf="groups">
     <div class="rl-header header">
         Groups
     </div>
-    
+
     <div>
         <div *ngFor="let group of groups" class="margin-card">
-            <app-group-card [group]="group">    
+            <app-group-card [group]="group">
             </app-group-card>
         </div>
     </div>
+
+</div> -->
+
+
+
+
+
+
+
+
+
+        <ng-container *ngIf="groups">
+
+            <app-communitypost-card></app-communitypost-card>
+            <ng-container *ngFor="let group of groups" class="margin-card">
+                <div on-mouseover='over(group)'>
+
+                    <app-group-card [group]="group">
+                    </app-group-card>
+                </div>
+            </ng-container>
+        </ng-container>
+
+
+
+
+        <div right class="desktop-right">
+
+
+
+
+        </div>
+
+
+
+    </app-event-sidebar-desktop>
 
 </div>

@@ -229,16 +229,35 @@ export interface IOfferedAchievement {
     stat: number;
 }
 
-export interface IGroup{
-    id: number;
-    title: string;
-    body: string;
-    created_by:IUserProfile;
-    image_url: string;
+export interface ICommunity {
+    id: string,
+    name: string,
+    followers_count: number,
+    about: string,
+    logo_image: string,
+    cover_image: string,
+    description: string,
+    created_at: Date,
+    updated_at: Date,
+    is_user_following: boolean,
+    posts: ICommunityPost[],
+    roles: IBodyRole[],
+    str_id: string,
+
 }
-export interface IPost{
-    id: string;
-    author: IUserProfile;
-    post_date: Date;
-    content: string;
+
+
+export interface ICommunityPost {
+    id: string,
+    strId: string,
+    comments: ICommunityPost[],
+    content: string,
+    commentsCount: number,
+    imageUrl: string[],
+    postedBy: IUserProfile,
+    reactionCount: any[],
+    timeOfCreation: Date,
+    timeOfModification: Date,
+    userReaction: number,
+    mostLikedComment: ICommunityPost,
 }

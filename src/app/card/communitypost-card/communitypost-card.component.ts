@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  selector: 'app-communitypost-card',
+  templateUrl: './communitypost-card.component.html',
+  styleUrls: ['./communitypost-card.component.css']
 })
-export class CardComponent implements OnInit {
+export class CommunityPostCardComponent implements OnInit {
 
   @Input() public avatar: string;
   @Input() public title = '';

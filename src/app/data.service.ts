@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, noop } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
-import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, INotification } from './interfaces';
+import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, INotification, ICommunity } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
@@ -33,6 +33,7 @@ export class DataService {
 
   /** Detailed events */
   public eventsDetailed: IEvent[] = [] as IEvent[];
+  public groupDetailed: ICommunity[] = [] as ICommunity[];
 
   /** If user is logged in */
   private _initialized = false;
@@ -186,6 +187,11 @@ export class DataService {
     return this.FireGET<IEvent>(API.Event, { uuid: uuid });
   }
 
+  GetCommunity(uuid: string): Observable<ICommunity> {
+    return this.FireGET<ICommunity>(API.Community, { uuid: uuid });
+  }
+
+
   /** Fills the event with uuid into the cache and returns it */
   FillGetEvent(uuid: string): Observable<IEvent> {
     const index = this.eventsDetailed.findIndex(m => m.id === uuid);
@@ -200,6 +206,24 @@ export class DataService {
         });
       } else {
         observer.next(this.eventsDetailed[index]);
+        observer.complete();
+      }
+    });
+  }
+
+  FillGetCommunity(uuid: string): Observable<ICommunity> {
+    const index = this.groupDetailed.findIndex(m => m.id === uuid);
+    return new Observable(observer => {
+      if (index === -1) {
+        this.GetCommunity(uuid).subscribe(result => {
+          this.groupDetailed.push(result);
+          observer.next(result);
+          observer.complete();
+        }, (error) => {
+          observer.error(error);
+        });
+      } else {
+        observer.next(this.groupDetailed[index]);
         observer.complete();
       }
     });
@@ -313,17 +337,17 @@ export class DataService {
 
   /** Send LDAP to to backend */
   SendLDAP(ldap: string) {
-    return this.FireGET(API.Alumni, {ldap: ldap});
+    return this.FireGET(API.Alumni, { ldap: ldap });
   }
 
   /** Send OTP to backend and verify */
   SendOTP(ldap: string, otp: string) {
-    return this.FireGET(API.AlumniOTP, {ldap: ldap, otp: otp});
+    return this.FireGET(API.AlumniOTP, { ldap: ldap, otp: otp });
   }
 
   /** Resend OTP if requested by user */
   ResendOTP(ldap: string) {
-    return this.FireGET(API.ResendAlumniOTP, {ldap: ldap});
+    return this.FireGET(API.ResendAlumniOTP, { ldap: ldap });
   }
 
   /** Logout the current user */

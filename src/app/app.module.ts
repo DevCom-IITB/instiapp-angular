@@ -57,6 +57,7 @@ import { BodyCardComponent } from './card/body-card/body-card.component';
 import { UserCardComponent } from './card/user-card/user-card.component';
 import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 import { InterestCardComponent } from './card/interest-card/interest-card.component';
+import { CommunityPostCardComponent } from './card/communitypost-card/communitypost-card.component';
 
 // Components
 import { ListLoadingComponent } from './comp/list-loading/list-loading.component';
@@ -82,6 +83,7 @@ import { GroupCardComponent } from './card/group-card/group-card.component';
 import { PostCardComponent } from './card/post-card/post-card.component';
 import { AddPostComponent } from './page/add-post/add-post.component';
 import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.component';
+import { GroupDetailsComponent } from './page/group-details/group-details.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,7 @@ import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.com
     UserDetailsComponent,
     EventCardComponent,
     BodyCardComponent,
+    CommunityPostCardComponent,
     BodyDetailsComponent,
     UserCardComponent,
     UpdateBodyComponent,
@@ -120,7 +123,8 @@ import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.com
     AchievementRequestComponent,
     AchievementNewComponent,
     SearchBoxComponent,
-    
+    GroupDetailsComponent,
+
     AchievementCardComponent,
     GroupCardComponent,
     AchievementOfferMakeComponent,
@@ -179,14 +183,15 @@ import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.com
       { path: 'query-search', component: QuerySearchComponent, data: { state: 'base' } },
       { path: 'query-new', component: QueryNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
 
-      { path: 'discussions', component: DiscussionsComponent, data: {state: 'base'}},
-      { path: 'add-post', component: AddPostComponent, data: {state: 'base'}},
-      { path: 'group-feed/:id', component: GroupFeedComponent, data: {state: 'base'}},
+      { path: 'discussions', component: DiscussionsComponent, data: { state: 'base' } },
+      { path: 'group/:id', component: GroupDetailsComponent, data: { state: 'overlay' } },
+      { path: 'add-post', component: AddPostComponent, data: { state: 'base' } },
+      { path: 'group-feed/:id', component: GroupFeedComponent, data: { state: 'base' } },
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
-      { path: 'alumni', component: AlumniComponent, data: { state: 'base'}},
-      { path: 'alumni-otp', component: OTPComponent, data: { state: 'base'}},
+      { path: 'alumni', component: AlumniComponent, data: { state: 'base' } },
+      { path: 'alumni-otp', component: OTPComponent, data: { state: 'base' } },
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },

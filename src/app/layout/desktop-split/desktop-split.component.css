@@ -6,7 +6,8 @@
     }
 }
 
-.right-comp, .center-comp {
+.right-comp,
+.center-comp {
     background-color: white;
 }
 
@@ -27,6 +28,23 @@
         position: fixed;
     }
 
+    .center-comp-group {
+        position: relative;
+        width: 63%;
+        float: left;
+        min-height: calc(100vh - 64px);
+        background: #E8ECF2;
+    }
+
+    .right-comp-group {
+        left: calc(((100vw - 240px) * (2/3)) + 240px);
+        /* top: 64px; */
+        height: calc(100vh - 64px);
+        width: calc(100vw - 240px - (100vw - 240px) * (2/3));
+        overflow-y: scroll;
+        position: fixed;
+    }
+
     .rightborder {
         border-right: 2px solid lightgray;
     }
@@ -41,6 +59,11 @@
         left: calc(60vw);
         width: calc(40vw);
     }
+
+    .right-comp-group {
+        left: calc(70vw);
+        width: calc(30vw);
+    }
 }
 
 @media (max-width: 960px) {
@@ -48,4 +71,9 @@
         left: 50vw;
         width: 50vw;
     }
+
+    /* .right-comp-group {
+        left: calc(70vw);
+        width: calc(30vw);
+    } */
 }

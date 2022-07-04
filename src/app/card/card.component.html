@@ -11,15 +11,22 @@
             <p>
               {{ title }}
             </p>
+            <p *ngIf="followers" class="followers_posts">
+              {{ followers }} followers
+            </p>
             <p class="card-sub-title">
               {{ subtitle }}
             </p>
           </div>
         </td>
 
+
         <td *ngIf="badge" class="badge">
           <img [src]="badge" class="img-circle object-cover" />
         </td>
+
+
+
       </tr>
     </tbody>
   </table>

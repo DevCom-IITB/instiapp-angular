@@ -1,0 +1,163 @@
+div.postmain {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+    background: white;
+    /* margin: 5px; */
+}
+
+.avatar {
+    width: 0px;
+}
+
+.avatar img {
+    height: 38px;
+    width: 38px;
+    background: url('assets/lotus_placeholder.png') no-repeat;
+    background-size: contain;
+}
+
+.user_date {
+    left: 10px;
+}
+
+.user {
+    position: relative;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    /* line-height: 140%; */
+
+}
+
+.date {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    color: #767881;
+}
+
+p {
+    margin: 2px;
+}
+
+.content {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    /* or 20px */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.25px;
+
+    color: #000000c2;
+    margin-bottom: 16px;
+
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.reactions {
+    background: #8c98a9;
+    border-radius: 18px;
+    display: initial;
+    overflow: auto;
+    padding: 5px;
+}
+
+table {
+    table-layout: auto;
+}
+
+tr,
+td {
+    white-space: nowrap;
+}
+
+.noBorder {
+    border: 0px;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.noResponse {
+    display: inline-block;
+
+}
+
+.share {
+    display: inline-block;
+    position: relative;
+}
+
+.comments {
+    position: relative;
+    left: 26.25px;
+    display: inline-block;
+}
+
+.emoji {
+
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px;
+}
+
+.footer {
+    /* display: flex;
+    flex-direction: row; */
+    /* width: 100%; */
+
+
+    padding: 10px;
+    margin: -10px;
+
+    border-radius: 15px;
+    box-shadow: 0px 3px 25px -18px #000000;
+    /* margin: 5px; */
+}
+
+.images {
+
+    background: #F6F7F8;
+    padding-top: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: inherit;
+    display: block;
+
+}
+
+.footer div {
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+
+.inline {
+    display: inline;
+}
