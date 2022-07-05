@@ -65,8 +65,6 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
       // });
 
       this.group = result;
-      console.log(this.group.coverImg);
-      console.log(this.group.logoImg);
 
       /* Do not change title in split mode */
       if (!this.desktopMode) {
