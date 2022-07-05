@@ -7,18 +7,19 @@
         </app-post-card>
     </div>
 </div> -->
+<app-xunk-spinner *ngIf="!posts"></app-xunk-spinner>
 
 <app-desktop-split *ngIf="posts" [rightLeftBorder]="false" [centerRightBorder]="true">
 
     <div center class="spaces">
 
-        <div class="rl-header sm main-title">
+        <!-- <div class="rl-header sm main-title">
             {{ 'Spaces' }}
-        </div>
+        </div> -->
         <div *ngFor="let post of posts">
-            <app-post-card [post]="post">
+            <app-communitypost-card [post]="post">
 
-            </app-post-card>
+            </app-communitypost-card>
         </div>
 
 

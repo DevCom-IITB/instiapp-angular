@@ -27,6 +27,8 @@ export class GroupFeedComponent implements OnInit {
 
     this.populateDummyData();
 
+    console.log(this.posts);
+
   }
 
   populateDummyData(): void{
@@ -47,6 +49,7 @@ export class GroupFeedComponent implements OnInit {
         commentsCount: Math.floor(Math.random()*1000),
         postedBy: posting_user,
         timeOfCreation: new Date(2010+Math.floor(Math.random()*20), 1+Math.floor(Math.random()*12),1+Math.floor(Math.random()*28)),
+        reactionCount: Array.from({length:4}, ()=>Math.floor(Math.random()*20)),
       } as ICommunityPost;
 
       this.posts.push(tempPost);
