@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { noop } from 'rxjs';
 import { API } from '../../../../api';
 import { DataService } from '../../../data.service';
 import { ICommunity, ICommunityPost, IUserProfile } from '../../../interfaces';
@@ -29,7 +30,12 @@ export class GroupFeedComponent implements OnInit {
   ngOnInit(): void {
 
     this.populateDummyData();
+    this.dataService.scrollBottomFunction = () => {this.loadMoreDummyPosts();}
 
+  }
+
+  ngOnDestroy(): void {
+    this.dataService.scrollBottomFunction = noop;
   }
 
   populateDummyGroupData(): void{
@@ -59,6 +65,10 @@ export class GroupFeedComponent implements OnInit {
     this.populateDummyGroupData();
     this.posts = new Array<ICommunityPost>();
 
+    this.loadMoreDummyPosts();
+  }
+
+  loadMoreDummyPosts(): void {
     let dummy_content_size = this.dummy_text.length;
 
     let posting_user = {
@@ -79,6 +89,7 @@ export class GroupFeedComponent implements OnInit {
 
       this.posts.push(tempPost);
     }
+   
   }
 
 }
