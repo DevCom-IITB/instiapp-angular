@@ -84,6 +84,7 @@ import { PostCardComponent } from './card/post-card/post-card.component';
 import { AddPostComponent } from './page/add-post/add-post.component';
 import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.component';
 import { GroupDetailsComponent } from './page/group-details/group-details.component';
+import { PostViewComponent } from './page/discussions/post-view/post-view.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { GroupDetailsComponent } from './page/group-details/group-details.compon
     PostCardComponent,
     AddPostComponent,
     GroupFeedComponent,
+    PostViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -187,6 +189,7 @@ import { GroupDetailsComponent } from './page/group-details/group-details.compon
       { path: 'group/:id', component: GroupDetailsComponent, data: { state: 'overlay' } },
       { path: 'add-post', component: AddPostComponent, data: { state: 'base' } },
       { path: 'group-feed/:id', component: GroupFeedComponent, data: { state: 'base' } },
+      { path: 'view-post/:id', component: PostViewComponent, data: { state: 'base'}},
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
