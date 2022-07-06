@@ -84,6 +84,7 @@ import { PostCardComponent } from './card/post-card/post-card.component';
 import { AddPostComponent } from './page/add-post/add-post.component';
 import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.component';
 import { GroupDetailsComponent } from './page/group-details/group-details.component';
+import { DesktopSplitDynamicComponent } from './layout/desktop-split-dynamic/desktop-split-dynamic.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { GroupDetailsComponent } from './page/group-details/group-details.compon
     PostCardComponent,
     AddPostComponent,
     GroupFeedComponent,
+    DesktopSplitDynamicComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,42 @@
+#split-container{
+    display: flex;
+}
+
+.right-comp,
+.center-comp {
+    background-color: white;
+}
+
+@media (max-width: 767px) {
+
+    .center-comp {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .center-comp {
+        position: relative;
+        width: 50%;
+        float: left;
+        min-height: calc(100vh - 64px);
+    }
+
+    .right-comp {
+        left: calc(((100vw - 240px) / 2) + 240px);
+        top: 64px;
+        height: calc(100vh - 64px);
+        width: calc(100vw - 240px - (100vw - 240px) / 2);
+        overflow-y: scroll;
+        position: fixed;
+    }
+
+    .rightborder {
+        border-right: 2px solid lightgray;
+    }
+
+    .leftborder {
+        border-left: 2px solid lightgray;
+    }
+}
