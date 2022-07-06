@@ -14,6 +14,7 @@ export class DesktopSplitComponent {
    */
   @Input() public hideOnMobile = 2;
   @Input() public isGroup = false;
+  @Input() public center_width_percentage = 50;
 
   /** True for right border on center element */
   @Input() public centerRightBorder = false;
@@ -24,5 +25,12 @@ export class DesktopSplitComponent {
   constructor(
     public dataService: DataService,
   ) { }
+
+  ngOnInit(){
+    if(this.center_width_percentage === undefined)
+      this.center_width_percentage=70;
+    if (this.center_width_percentage < 0 || this.center_width_percentage > 100) 
+      this.center_width_percentage=50;
+  }
 
 }

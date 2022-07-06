@@ -1,4 +1,5 @@
-<div [ngClass]="{'center-comp' : !isGroup, 'center-comp-group' : isGroup }"
+<div class="center-comp" 
+  [ngStyle]="{ 'width': center_width_percentage+'%' }"
   [hidden]="hideOnMobile === 1 && dataService.isMobile()" [class.rightborder]="centerRightBorder">
   <ng-content select="[center]"></ng-content>
 </div>

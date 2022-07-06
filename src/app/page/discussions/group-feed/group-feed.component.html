@@ -9,7 +9,7 @@
 </div> -->
 <app-xunk-spinner *ngIf="!posts"></app-xunk-spinner>
 
-<app-desktop-split *ngIf="posts" [rightLeftBorder]="false" [centerRightBorder]="true">
+<app-event-sidebar-desktop *ngIf="posts" [isgrouppage]="true" [group]="group">
 
     <div center class="spaces">
 
@@ -25,11 +25,5 @@
 
     </div>
 
-    <div right class="desktop-right">
 
-
-
-
-    </div>
-
-</app-desktop-split>
+</app-event-sidebar-desktop>
