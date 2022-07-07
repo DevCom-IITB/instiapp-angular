@@ -9,8 +9,8 @@
     <tr>
 
       <td align="left" class="avatar">
-        <ng-container *ngIf="post.postedBy.profile_pic; else default_avatar">
-          <img [src]="post.postedBy.profile_pic" class="img-circle object-cover">
+        <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
+          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover">
         </ng-container>
         <ng-template #default_avatar>
           <img src="assets/logo.png" class="img-circle object-cover" />
@@ -18,7 +18,7 @@
       </td>
 
       <td class="user_date">
-        <p class="user">{{ post.postedBy.name }}</p>
+        <p class="user">{{ post.posted_by.name }}</p>
         <p class="date"> {{ printable_date }}</p>
       </td>
       <td align="right">
@@ -40,7 +40,7 @@
     <!-- <img
       src="https://media.pitchfork.com/photos/620e81cad8bc62857b465cc3/2:1/w_2560%2Cc_limit/Stranger-Things-Season-4.jpg"
       class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;"> -->
-    <ng-container *ngFor="let imgUrl of post.imageUrl">
+    <ng-container *ngFor="let imgUrl of post.image_url">
       <img
         [src]="imgUrl"
         class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
@@ -91,6 +91,14 @@
 
       </tr>
     </table>
+
+    <ng-container *ngIf="show_comment_thread" >
+      <div class="comment-thread-container">
+        <ng-container *ngFor="let comment of post.comments">
+          <app-communitypost-card [post]="comment" show_comment_thread="true"></app-communitypost-card>
+        </ng-container>
+      </div>
+    </ng-container>
   </div>
 
 </div>

@@ -9,6 +9,7 @@ import { ICommunityPost } from '../../interfaces';
 export class CommunityPostCardComponent implements OnInit {
 
   @Input() public post: ICommunityPost;
+  @Input() public show_comment_thread: boolean;
 
   // @Input() public avatar: string;
   // @Input() public title = '';
@@ -19,16 +20,20 @@ export class CommunityPostCardComponent implements OnInit {
   public printable_date: String;
   public num_reactions: number = 0;
 
-  constructor() { }
+  constructor() {
+    this.show_comment_thread = false; // might make the erroneous behaviour of always keeping that at false
+   }
 
   ngOnInit() {
-    this.printable_date = this.post.timeOfCreation.toLocaleDateString(undefined, {
+    this.printable_date = this.post.time_of_creation.toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
     })
 
-    this.num_reactions += this.post.reactionCount.reduce((a,b)=>a+b,0)
+    this.num_reactions += this.post.reaction_count.reduce((a,b)=>a+b,0)
+
+
   }
 
 }

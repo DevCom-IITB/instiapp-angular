@@ -65,13 +65,13 @@ export class GroupFeedComponent implements OnInit {
     for(let i=0;i<20;i++){
       let tempPost = {
         id: "some_unique_id",
-        strId: "temporary_id",
+        str_id: "temporary_id",
         comments:[],
         content: this.dummy_text.slice(0,Math.floor(Math.random()*dummy_content_size)),
-        commentsCount: Math.floor(Math.random()*1000),
-        postedBy: posting_user,
-        timeOfCreation: new Date(2010+Math.floor(Math.random()*20), 1+Math.floor(Math.random()*12),1+Math.floor(Math.random()*28)),
-        reactionCount: Array.from({length:4}, ()=>Math.floor(Math.random()*20)),
+        comments_count: Math.floor(Math.random()*1000),
+        posted_by: posting_user,
+        time_of_creation: new Date(2010+Math.floor(Math.random()*20), 1+Math.floor(Math.random()*12),1+Math.floor(Math.random()*28)),
+        reaction_count: Array.from({length:4}, ()=>Math.floor(Math.random()*20)),
       } as ICommunityPost;
 
       this.posts.push(tempPost);

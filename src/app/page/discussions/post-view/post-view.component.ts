@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { API } from '../../../../api';
 import { DataService } from '../../../data.service';
-import { ICommunityPost, IUserProfile } from '../../../interfaces';
+import { ICommunity, ICommunityPost, IUserProfile } from '../../../interfaces';
 
 @Component({
   selector: 'app-post-view',
@@ -10,6 +11,9 @@ import { ICommunityPost, IUserProfile } from '../../../interfaces';
 export class PostViewComponent implements OnInit {
 
   @Input() public post: ICommunityPost;
+  @Input() public group: ICommunity;
+
+  private error;
 
   private dummy_text: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -22,6 +26,13 @@ export class PostViewComponent implements OnInit {
   }
 
   populateDummyData(): void {
+    this.dataService.FireGET<ICommunity[]>(API.Communities).subscribe(result => {
+      this.group = result[0];
+      this.dataService.setTitle(this.group.name);
+    },(e) => {
+      this.error = e.status;
+    })
+
     let comment_list = this.getDummyCommentList();
 
     let posting_user = {
@@ -34,7 +45,7 @@ export class PostViewComponent implements OnInit {
         id: "id",
         str_id: "str_id",
         thread_rank: 1,
-        comments:[],
+        comments: comment_list,
         content: this.dummy_text.slice(0,Math.floor(Math.random()*dummy_content_size)),
         comments_count: Math.floor(Math.random()*1000),
         posted_by: posting_user,

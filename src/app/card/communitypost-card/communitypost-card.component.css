@@ -161,3 +161,9 @@ span {
 .inline {
     display: inline;
 }
+
+.comment-thread-container {
+    display: inline-block;
+    border-left: 1px solid rgb(184, 182, 182);
+    padding-left: 12px;
+}
