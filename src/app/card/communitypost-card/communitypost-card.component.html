@@ -9,12 +9,17 @@
     <tr>
 
       <td align="left" class="avatar">
-        <img src="assets/logo.png" class="img-circle object-cover" />
+        <ng-container *ngIf="post.postedBy.profile_pic; else default_avatar">
+          <img [src]="post.postedBy.profile_pic" class="img-circle object-cover">
+        </ng-container>
+        <ng-template #default_avatar>
+          <img src="assets/logo.png" class="img-circle object-cover" />
+        </ng-template>
       </td>
 
       <td class="user_date">
-        <p class="user">Purab Pathak</p>
-        <p class="date"> 29th March</p>
+        <p class="user">{{ post.postedBy.name }}</p>
+        <p class="date"> {{ printable_date }}</p>
       </td>
       <td align="right">
         <mat-icon class="icon_more">more_vert</mat-icon>
@@ -24,9 +29,7 @@
 
   <table width="100%">
     <p class="content">
-      What steps are being taken by the HA council to ensure that there is any form of cheap transportation on campus?
-      There are very few mybyks, and only autos exist now for moving around the campus. Is there something new being
-      implemented or shuttles reinstated or number of mybyks being increased? Please update here in the comments
+    {{ post.content }}
     </p>
 
   </table>
@@ -34,9 +37,14 @@
   <div class="images">
 
 
-    <img
+    <!-- <img
       src="https://media.pitchfork.com/photos/620e81cad8bc62857b465cc3/2:1/w_2560%2Cc_limit/Stranger-Things-Season-4.jpg"
-      class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
+      class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;"> -->
+    <ng-container *ngFor="let imgUrl of post.imageUrl">
+      <img
+        [src]="imgUrl"
+        class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
+    </ng-container>
 
 
   </div>
@@ -58,7 +66,7 @@
 
 
           <div class="noResponse">
-            <span> 15</span>
+            <span> {{ num_reactions }}</span>
           </div>
 
 

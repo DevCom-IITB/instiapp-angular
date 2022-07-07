@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-desktop-split',
-  templateUrl: './desktop-split.component.html',
-  styleUrls: ['./desktop-split.component.css']
+  selector: 'app-desktop-split-dynamic',
+  templateUrl: './desktop-split-dynamic.component.html',
+  styleUrls: ['./desktop-split-dynamic.component.css']
 })
-export class DesktopSplitComponent {
+export class DesktopSplitDynamicComponent implements OnInit {
 
   /** 0 = no hiding
    *  1 = hide center
@@ -14,7 +14,7 @@ export class DesktopSplitComponent {
    */
   @Input() public hideOnMobile = 2;
   @Input() public isGroup = false;
-  @Input() public center_width_percentage = 50;
+  @Input() public center_width_percentage;
 
   /** True for right border on center element */
   @Input() public centerRightBorder = false;
@@ -28,7 +28,7 @@ export class DesktopSplitComponent {
 
   ngOnInit(){
     if(this.center_width_percentage === undefined)
-      this.center_width_percentage=70;
+      this.center_width_percentage=50;
     if (this.center_width_percentage < 0 || this.center_width_percentage > 100) 
       this.center_width_percentage=50;
   }
