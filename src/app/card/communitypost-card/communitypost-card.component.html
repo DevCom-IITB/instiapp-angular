@@ -3,7 +3,12 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<div class="postmain">
+<div 
+  class="postmain"
+  [ngStyle]="{
+    'border-radius.px': post_border_radius 
+  }"
+>
   <table width="100%">
 
     <tr>
@@ -13,21 +18,21 @@
           <img 
             [src]="post.posted_by.profile_pic" 
             class="img-circle object-cover"
-            [ngStyle]="{ 'left': '-38px' }"
+            [ngStyle]="{ 'left': pic_offset }"
           >
         </ng-container>
         <ng-template #default_avatar>
           <img 
             src="assets/logo.png" 
             class="img-circle object-cover"
-            [ngStyle]="{ 'left.px': pic_name_offset }"
+            [ngStyle]="{ 'left.px': pic_offset }"
           >
         </ng-template>
       </td>
 
       <td 
         class="user_date"
-        [ngStyle]="{ 'left.px': pic_name_offset }"
+        [ngStyle]="{ 'left.px': name_offset }"
       >
         <p class="user">{{ post.posted_by.name }}</p>
         <p class="date"> {{ printable_date }}</p>
@@ -45,7 +50,7 @@
 
   </table>
 
-  <div class="images">
+  <div *ngIf="render_images" class="images">
 
 
     <!-- <img
@@ -82,8 +87,11 @@
 
 
 
-          <div class="comments noResponse">
+          <div *ngIf="is_rank_one" class="comments noResponse">
             <img class="emoji noResponse" src='assets/icons/comment.png' alt='x'>
+          </div>
+          <div *ngIf="!is_rank_one" class="comments noResponse">
+            <mat-icon class="emoji noResponse">reply</mat-icon>
           </div>
 
 
@@ -103,12 +111,18 @@
       </tr>
     </table>
 
-    <div *ngIf="show_comment_thread" class="comment-thread-container">
-      <div class="comment-thread-subcontainer">
-        <ng-container *ngFor="let comment of post.comments">
-          <app-communitypost-card [post]="comment" show_comment_thread="true"></app-communitypost-card>
-        </ng-container>
-      </div>
+    
+  </div>
+
+  <div *ngIf="show_comment_thread && is_rank_one" class="comment-input-container">
+    <input id="comment-content-input" placeholder="Add a comment...">
+  </div>
+
+  <div *ngIf="show_comment_thread" class="comment-thread-container">
+    <div class="comment-thread-subcontainer">
+      <ng-container *ngFor="let comment of post.comments">
+        <app-communitypost-card [post]="comment" show_comment_thread="true"></app-communitypost-card>
+      </ng-container>
     </div>
   </div>
 

@@ -13,7 +13,6 @@ export class PostViewComponent implements OnInit {
   @Input() public post: ICommunityPost;
   @Input() public group: ICommunity;
 
-  private error;
 
   private dummy_text: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -30,7 +29,7 @@ export class PostViewComponent implements OnInit {
       this.group = result[0];
       this.dataService.setTitle(this.group.name);
     },(e) => {
-      this.error = e.status;
+      console.log(e);
     })
 
     let comment_list = this.getDummyCommentList();

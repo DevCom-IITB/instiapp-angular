@@ -19,13 +19,24 @@ export class CommunityPostCardComponent implements OnInit {
 
   public printable_date: String;
   public num_reactions: number = 0;
-  public pic_name_offset: number;
+  
+  public pic_offset: number;
+  public name_offset: number;
+
+  public post_border_radius: number;
+  
+  public is_rank_one: boolean;
+  public render_images: boolean;
 
   constructor() {
     this.show_comment_thread = false; // might make the erroneous behaviour of always keeping that at false
    }
 
   ngOnInit() {
+    this.initialiseVariables();
+  }
+
+  initialiseVariables(){
     this.printable_date = this.post.time_of_creation.toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'short',
@@ -34,13 +45,20 @@ export class CommunityPostCardComponent implements OnInit {
 
     if(this.post.reaction_count == null) this.post.reaction_count = [0,0,0,0,0]; // Maybe a different default is preferred?
     this.num_reactions += this.post.reaction_count.reduce((a,b)=>a+b,0)
+    
+    this.is_rank_one = (this.post.thread_rank == 1);
 
-    if (this.post.thread_rank > 1){
-      this.pic_name_offset = -38;
+    if (!this.is_rank_one){
+      this.pic_offset = -46;
+      this.name_offset = -38;
+      this.post_border_radius = 0;
     } else{
-      this.pic_name_offset = 0;
+      this.pic_offset = 0;
+      this.name_offset = 0;
+      this.post_border_radius = 15;
     }
-    console.log(`pic_name_offset set to ${this.pic_name_offset}`);
+
+    this.render_images = (this.post.image_url.length > 0);
   }
 
 }

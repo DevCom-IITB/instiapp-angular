@@ -5,7 +5,7 @@ div.postmain {
     align-items: center;
     padding: 10px;
     margin: 10px;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     background: white;
     /* margin: 5px; */
 }
@@ -17,6 +17,9 @@ div.postmain {
 .avatar img {
     position: relative;
 
+    border: 4px solid white;
+    border-radius: 500px; /* any ridiculously large radius would work for making a circle, apparently*/
+    
     height: 38px;
     width: 38px;
     background: url('assets/lotus_placeholder.png') no-repeat;
@@ -76,7 +79,7 @@ p {
 }
 
 .reactions {
-    background: #8c98a9;
+    background: #E4E8EE;
     border-radius: 18px;
     display: initial;
     overflow: auto;
@@ -138,8 +141,8 @@ span {
     padding: 10px;
     margin: -10px;
 
-    border-radius: 15px;
-    box-shadow: 0px 3px 25px -18px #000000;
+    /* border-radius: 15px; */
+    box-shadow: 0px 3px 30px -18px #000000;
     /* margin: 5px; */
 }
 
@@ -164,12 +167,42 @@ span {
     display: inline;
 }
 
+.comment-input-container {
+    background-color: #E8ECF2;
+    /* background-color: #0c326b; */
+    box-sizing: border-box;
+
+    padding: 10px;
+    margin: 6px -10px;
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+
+    height: 56px;
+
+    position:relative;
+}
+
+
+#comment-content-input {
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    
+    width: 100%;
+    height: 36px;
+    
+    padding: 6px 9px;
+    
+    border-radius: 5px;
+    border: 0px solid white;
+}
+
 .comment-thread-container {
     padding-left: 12px;
 }
 
 .comment-thread-subcontainer {
-    display: inline-block;
-    border-left: 1px solid rgb(184, 182, 182);
-    padding-left: 6px;
+    border-left: 2px solid rgb(184, 182, 182);
+    /* padding-left: 6px; */
 }
