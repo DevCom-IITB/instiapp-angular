@@ -66,6 +66,7 @@ export class GroupFeedComponent implements OnInit {
       let tempPost = {
         id: "some_unique_id",
         str_id: "temporary_id",
+        thread_rank: 1,
         comments:[],
         content: this.dummy_text.slice(0,Math.floor(Math.random()*dummy_content_size)),
         comments_count: Math.floor(Math.random()*1000),
