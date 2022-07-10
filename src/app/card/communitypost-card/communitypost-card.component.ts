@@ -45,7 +45,10 @@ export class CommunityPostCardComponent implements OnInit {
       day: 'numeric'
     })
 
-    if(this.post.reaction_count == null) this.post.reaction_count = [0,0,0,0,0]; // Maybe a different default is preferred?
+    if(this.post.reaction_count == null) this.post.reaction_count = [0,0,0,0,0,0]; // Maybe a different default is preferred?
+
+    
+
     this.num_reactions += this.post.reaction_count.reduce((a,b)=>a+b,0)
     
     this.is_rank_one = (this.post.thread_rank == 1);
@@ -68,5 +71,4 @@ export class CommunityPostCardComponent implements OnInit {
   toggleShowInput(){
     this.show_comment_input = !this.show_comment_input;
   }
-
 }

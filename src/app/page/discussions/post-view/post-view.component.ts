@@ -68,7 +68,7 @@ export class PostViewComponent implements OnInit {
       profile_pic: "https://d1z88p83zuviay.cloudfront.net/ProductVariantThumbnailImages/e18724f0-fa0e-4d68-a1b1-15aa47d3b950_425x425.jpg",
     } as IUserProfile;    
 
-    let dummy_content_size = this.dummy_text.length;
+    let dummy_content_size = Math.floor(this.dummy_text.length/2);
 
     for(let i=0; i<4; i++){
       let temp_post = {
