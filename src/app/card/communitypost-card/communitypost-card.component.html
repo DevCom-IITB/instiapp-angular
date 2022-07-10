@@ -18,7 +18,7 @@
           <img 
             [src]="post.posted_by.profile_pic" 
             class="img-circle object-cover"
-            [ngStyle]="{ 'left': pic_offset }"
+            [ngStyle]="{ 'left.px': pic_offset }"
           >
         </ng-container>
         <ng-template #default_avatar>
@@ -38,7 +38,7 @@
         <p class="date"> {{ printable_date }}</p>
       </td>
       <td align="right">
-        <mat-icon class="icon_more">more_vert</mat-icon>
+        <mat-icon class="icon_more clickable">more_vert</mat-icon>
       </td>
     </tr>
   </table>
@@ -69,11 +69,12 @@
       <tr>
         <td>
           <div class="inline">
-            <img class="emoji noResponse" src='assets/emojis/like.png' alt='x'>
+            <img class="emoji noResponse clickable" src='assets/emojis/like.png' alt='x'>
+            <!-- <mat-icon class="emoji noResponse clickable gray-fill-btn">thumb_up</mat-icon> -->
           </div>
 
 
-          <div class="reactions">
+          <div class="reactions clickable">
             <img class="emoji noResponse" src='assets/emojis/loveeye_emoji.png' alt='x'>
             <img class="emoji noResponse" src='assets/emojis/angry_emoji.png' alt='x'>
             <img class="emoji noResponse" src='assets/emojis/laugh_emoji.png' alt='x'>
@@ -87,11 +88,16 @@
 
 
 
-          <div *ngIf="is_rank_one" class="comments noResponse">
+          <div *ngIf="is_rank_one" class="comments noResponse clickable">
             <img class="emoji noResponse" src='assets/icons/comment.png' alt='x'>
+            <!-- <mat-icon class="emoji noResponse gray-fill-btn">comment</mat-icon> -->
           </div>
-          <div *ngIf="!is_rank_one" class="comments noResponse">
-            <mat-icon class="emoji noResponse">reply</mat-icon>
+          <div
+            *ngIf="!is_rank_one" 
+            (click)="toggleShowInput()"
+            class="comments noResponse clickable"
+            clickable>
+            <mat-icon class="emoji noResponse gray-fill-btn">reply</mat-icon>
           </div>
 
 
@@ -99,7 +105,7 @@
 
 
         <td align="right">
-          <mat-icon class="icon_more">share</mat-icon>
+          <mat-icon class="icon_more clickable">share</mat-icon>
         </td>
 
 
@@ -114,7 +120,7 @@
     
   </div>
 
-  <div *ngIf="show_comment_thread && is_rank_one" class="comment-input-container">
+  <div *ngIf="show_comment_input" class="comment-input-container">
     <input id="comment-content-input" placeholder="Add a comment...">
   </div>
 

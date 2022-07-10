@@ -28,6 +28,8 @@ export class CommunityPostCardComponent implements OnInit {
   public is_rank_one: boolean;
   public render_images: boolean;
 
+  public show_comment_input: boolean;
+
   constructor() {
     this.show_comment_thread = false; // might make the erroneous behaviour of always keeping that at false
    }
@@ -58,7 +60,13 @@ export class CommunityPostCardComponent implements OnInit {
       this.post_border_radius = 15;
     }
 
-    this.render_images = (this.post.image_url.length > 0);
+    this.render_images = (this.post.image_url?.length > 0);
+
+    this.show_comment_input = this.is_rank_one && this.show_comment_thread;
+  }
+
+  toggleShowInput(){
+    this.show_comment_input = !this.show_comment_input;
   }
 
 }
