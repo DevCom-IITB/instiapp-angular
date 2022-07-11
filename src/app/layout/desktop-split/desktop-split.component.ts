@@ -27,10 +27,13 @@ export class DesktopSplitComponent {
   ) { }
 
   ngOnInit(){
+    // this.vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     if(this.center_width_percentage === undefined)
-      this.center_width_percentage=70;
+      this.center_width_percentage=50;
     if (this.center_width_percentage < 0 || this.center_width_percentage > 100) 
       this.center_width_percentage=50;
+
+    document.documentElement.style.setProperty('--cw_frac', (this.center_width_percentage/100)+'');
   }
 
 }

@@ -1,3 +1,7 @@
+:root{
+    --cw_frac: 0.5;
+}
+
 @media (max-width: 767px) {
     .center-comp {
         margin: 0 auto;
@@ -14,16 +18,16 @@
 @media (min-width: 768px) {
     .center-comp {
         position: relative;
-        width: 50%;
+        width: calc(var(--cw_frac)*100%);
         float: left;
         min-height: calc(100vh - 64px);
     }
 
     .right-comp {
-        left: calc(((100vw - 240px) / 2) + 240px);
+        left: calc(((100vw - 240px) * var(--cw_frac)) + 240px);
         top: 64px;
         height: calc(100vh - 64px);
-        width: calc(100vw - 240px - (100vw - 240px) / 2);
+        width: calc(100vw - 240px - (100vw - 240px) * var(--cw_frac));
         overflow-y: scroll;
         position: fixed;
     }
