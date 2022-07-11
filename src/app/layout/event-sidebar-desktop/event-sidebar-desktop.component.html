@@ -1,4 +1,4 @@
-<app-desktop-split [isGroup]="isgrouppage" center_width_percentage="63">
+<app-desktop-split [isGroup]="isgrouppage">
     <div center>
         <ng-content></ng-content>
     </div>
@@ -10,8 +10,8 @@
 
     </div>
 
-    <div right *ngIf="showingGroupDetails">
+    <!-- <div right *ngIf="showingGroupDetails">
         <app-group-details [groupId]="groupDetailsId" noCenter="true" [desktopMode]="true">
         </app-group-details>
-    </div>
+    </div> -->
 </app-desktop-split>

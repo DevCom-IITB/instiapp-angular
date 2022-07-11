@@ -17,7 +17,7 @@ export class DiscussionsComponent implements OnInit {
   @Input() public groups: ICommunity[];
   @Input() public allgroups: ICommunity[];
   @Input() public user: IUserProfile[];
-  public selectedGroup: ICommunity;
+  public selected_group: ICommunity;
   public error: number;
 
 
@@ -54,7 +54,7 @@ export class DiscussionsComponent implements OnInit {
     if (this.dataService.isMobile()) {
       this.router.navigate(['group', group.id]);
     } else {
-      this.selectedGroup = group;
+      this.selected_group = group;
     }
   }
 

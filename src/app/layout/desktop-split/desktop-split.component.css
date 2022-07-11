@@ -24,15 +24,15 @@
     }
 
     .right-comp {
-        left: calc(((100vw - 240px) * var(--cw_frac)) + 240px);
+        left: calc(((100vw - 240px) * (var(--cw_frac))) + 240px);
         top: 64px;
         height: calc(100vh - 64px);
-        width: calc(100vw - 240px - (100vw - 240px) * var(--cw_frac));
+        width: calc((100vw - 240px) * (1 - var(--cw_frac)));
         overflow-y: scroll;
         position: fixed;
     }
 
-    .center-comp-group {
+    /* .center-comp-group {
         position: relative;
         width: 63%;
         float: left;
@@ -42,12 +42,12 @@
 
     .right-comp-group {
         left: calc(((100vw - 240px) * (2/3)) + 240px);
-        /* top: 64px; */
-        height: calc(100vh - 64px);
+        top: 64px; */
+    /*  height: calc(100vh - 64px);
         width: calc(100vw - 240px - (100vw - 240px) * (2/3));
         overflow-y: scroll;
         position: fixed;
-    }
+    } */
 
     .rightborder {
         border-right: 2px solid lightgray;
@@ -60,20 +60,20 @@
 
 @media (min-width: 1200px) {
     .right-comp {
-        left: calc(60vw);
-        width: calc(40vw);
+        left: calc(20vw + 80vw * var(--cw_frac));
+        width: calc(80vw * (1 - var(--cw_frac)));
     }
-
+/* 
     .right-comp-group {
         left: calc(70vw);
         width: calc(30vw);
-    }
+    } */
 }
 
 @media (max-width: 960px) {
     .right-comp {
-        left: 50vw;
-        width: 50vw;
+        left: calc(100vw * var(--cw_frac));
+        width: calc(100vw * (1 - var(--cw_frac)));
     }
 
     /* .right-comp-group {

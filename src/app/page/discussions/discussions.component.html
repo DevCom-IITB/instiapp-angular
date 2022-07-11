@@ -1,106 +1,36 @@
-<!-- <div class="container-fluid" style="padding: 10px 200px 0px 20px;">
-<nav class="navbar" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">Groups</span>
-    </div>
-</nav>
-</div>
-
-<div class="container-fluid" style="padding: 0px 200px 10px 20px;">
-<nav class="navbar" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Go</button>
-        </form>
-    </div>
-</nav>
-</div>
-
-<div class="container-fluid" style="padding: 10px 200px 5px 20px;" >
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">IDF</h5>
-        </div>
-        <p class="mb-1">Followers: 300</p>
-    </a>
-</div>
-</div>
-
-<div class="container-fluid" style="padding: 1px 200px 10px 20px;">
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Hostel Forum</h5>
-            </div>
-            <p class="mb-1">Followers: 700</p>
-        </a>
-    </div>
-</div> -->
-
 <app-xunk-spinner *ngIf="!groups"></app-xunk-spinner>
 
 <div class="main">
-    <app-event-sidebar-desktop *ngIf="groups" [isgrouppage]="true" [group]="selectedGroup">
+    <app-desktop-split *ngIf="groups" center_width_percentage="62.5">
+            <div center>
+                <div id="searchbox">
+                    <mat-form-field class="searchinput">
+                        <input matInput type="search" name="search" placeholder="Search">
+                        <mat-hint align="start">Find Groups</mat-hint>
+                    </mat-form-field>
 
+                    <button mat-icon-button color="primary" style="max-height:37px;">
+                        <mat-icon>search</mat-icon>
+                    </button>
+            </div>
 
-        <div id="searchbox">
-            <mat-form-field class="searchinput">
-                <input matInput type="search" name="search" placeholder="Search">
-                <mat-hint align="start">Find Groups</mat-hint>
-            </mat-form-field>
+            <ng-container *ngIf="groups">
 
-            <button mat-icon-button color="primary" style="max-height:37px;">
-                <mat-icon>search</mat-icon>
-            </button>
-        </div>
+                <ng-container *ngFor="let group of groups" class="margin-card">
+                    <div on-mouseover='over(group)'>
 
-        <!-- <div class="section-main" *ngIf="groups">
-    <div class="rl-header header">
-        Groups
-    </div>
-
-    <div>
-        <div *ngFor="let group of groups" class="margin-card">
-            <app-group-card [group]="group">
-            </app-group-card>
-        </div>
-    </div>
-
-</div> -->
-
-
-
-
-
-
-
-
-
-        <ng-container *ngIf="groups">
-
-            <ng-container *ngFor="let group of groups" class="margin-card">
-                <div on-mouseover='over(group)'>
-
-                    <app-group-card [group]="group">
-                    </app-group-card>
-                </div>
+                        <app-group-card [group]="group">
+                        </app-group-card>
+                    </div>
+                </ng-container>
             </ng-container>
-        </ng-container>
 
+        </div>
 
-
-
-        <!-- <div right class="desktop-right">
-
-
-
-
-        </div> -->
-
-
-
-    </app-event-sidebar-desktop>
+        <div right>
+            <app-group-details *ngIf="selected_group" [groupId]="selected_group.id" noCenter="true" [desktopMode]="true">
+            </app-group-details>
+        </div>
+    </app-desktop-split>
 
 </div>
