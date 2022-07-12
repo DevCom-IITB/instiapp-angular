@@ -190,9 +190,9 @@ span {
     padding: 10px;
     margin: 6px -10px;
 
-    flex: none;
+    /* flex: none;
     order: 2;
-    flex-grow: 0;
+    flex-grow: 0; */
 
     height: 56px;
 
@@ -221,4 +221,25 @@ span {
 .comment-thread-subcontainer {
     border-left: 1px solid #C7C7C7;
     /* padding-left: 6px; */
+}
+
+.btn_view-more-comments{
+    margin: -10px;
+    margin-top: 0px;
+    padding: 6px 0px;
+
+    /* border: 1px solid red; */
+    box-shadow: 0px -7px 29px -13px #0A0E32;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #47484D;
+
+    border-radius: 0 0 15px 15px;
+}
+
+.btn_view-more-comments p{
+    font: 12px 'Roboto';
 }

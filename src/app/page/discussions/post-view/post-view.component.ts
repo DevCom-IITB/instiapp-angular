@@ -32,7 +32,7 @@ export class PostViewComponent implements OnInit {
       console.log(e);
     })
 
-    let comment_list = this.getDummyCommentList(4);
+    let comment_list = this.getDummyCommentList(1);
 
     let posting_user = {
       name: "Dheer Banker",
