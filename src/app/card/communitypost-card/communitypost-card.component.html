@@ -93,13 +93,16 @@
 
 
 
-          <div *ngIf="is_rank_one" class="comments noResponse clickable">
+          <div *ngIf="is_rank_one" (click)=onCommentButtonClicked() class="comments noResponse clickable">
             <img class="emoji noResponse" src='assets/icons/comment.png' alt='x'>
             <!-- <mat-icon class="emoji noResponse gray-fill-btn">comment</mat-icon> -->
+            <div class="noResponse">
+              <span> {{ post.comments_count }}</span>
+            </div>
           </div>
           <div
             *ngIf="!is_rank_one" 
-            (click)="toggleShowInput()"
+            (click)=onReplyClicked()
             class="comments noResponse clickable"
             clickable>
             <mat-icon class="emoji noResponse gray-fill-btn">reply</mat-icon>
@@ -137,7 +140,7 @@
     </div>
   </div>
 
-  <div *ngIf="more_comments" class="btn_view-more-comments clickable">
+  <div *ngIf="more_comments && show_comment_thread" (click)=onViewMoreClicked() class="btn_view-more-comments clickable">
     <p>View more comments</p>
   </div>
 </div>
