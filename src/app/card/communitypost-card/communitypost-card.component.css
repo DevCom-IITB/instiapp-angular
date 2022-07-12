@@ -182,6 +182,37 @@ span {
     display: inline;
 }
 
+div.ghost-main {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    margin: 0px 10px;
+    background: white;
+}
+.ghost-content-container{
+    position: relative;
+
+
+    vertical-align: middle;
+}
+p.ghost-content{
+    display:block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    margin-left: 6px;
+    padding: 12px 6px;
+
+    background-color: #F0F2F7;
+
+    color: #5E6067;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 14px;
+}
+
 .comment-input-container {
     background-color: #E8ECF2;
     /* background-color: #0c326b; */

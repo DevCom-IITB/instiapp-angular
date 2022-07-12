@@ -10,6 +10,7 @@ export class CommunityPostCardComponent implements OnInit {
 
   @Input() public post: ICommunityPost;
   @Input() public show_comment_thread: boolean;
+  @Input() public ghost: boolean;
 
   // @Input() public avatar: string;
   // @Input() public title = '';
@@ -39,6 +40,12 @@ export class CommunityPostCardComponent implements OnInit {
 
   ngOnInit() {
     this.initialiseVariables();
+
+    if(!this.is_rank_one && this.post.comments_count > 0 && this.post.comments.length <= 0){
+      this.loadMoreComments();
+    }
+
+    // console.log(`isGhost (${this.ghost}) : rank ${this.post.thread_rank}: ${this.post.comments.length} comments loaded`)
   }
 
   initialiseVariables(){
@@ -50,13 +57,17 @@ export class CommunityPostCardComponent implements OnInit {
 
     if(this.post.reaction_count == null) this.post.reaction_count = [0,0,0,0,0,0]; // Maybe a different default is preferred?
 
-    this.show_comment_thread = false; // might make the erroneous behaviour of always keeping that at false
+    if(this.show_comment_thread === undefined)
+      this.show_comment_thread = false;
+
+    if(this.ghost === undefined)
+      this.ghost = false;
     
     this.num_reactions += this.post.reaction_count.reduce((a,b)=>a+b,0)
     
     this.is_rank_one = (this.post.thread_rank == 1);
     
-    this.more_comments = this.is_rank_one; // Default should be false, change that after testing
+    this.more_comments = (this.post.comments.length < this.post.comments_count);
 
     if (!this.is_rank_one){
       this.pic_offset = -46;
@@ -71,6 +82,7 @@ export class CommunityPostCardComponent implements OnInit {
     this.render_images = (this.post.image_url?.length > 0);
 
     this.show_comment_input = this.is_rank_one && this.show_comment_thread;
+    // console.log(`${this.post.thread_rank} rank: ${this.post.comments_count} comments`)
   }
 
   onViewMoreClicked(): void{
@@ -87,7 +99,7 @@ export class CommunityPostCardComponent implements OnInit {
   }
 
   loadMoreComments(): void{
-    if(!this.more_comments) return;
+    if(!this.more_comments || this.ghost) return;
 
     this.loadDummyComments();
   }
@@ -95,7 +107,8 @@ export class CommunityPostCardComponent implements OnInit {
 
     let posting_user = {
       name: "Melon Musk ",
-      profile_pic: "https://d1z88p83zuviay.cloudfront.net/ProductVariantThumbnailImages/e18724f0-fa0e-4d68-a1b1-15aa47d3b950_425x425.jpg",
+      // profile_pic: "https://d1z88p83zuviay.cloudfront.net/ProductVariantThumbnailImages/e18724f0-fa0e-4d68-a1b1-15aa47d3b950_425x425.jpg",
+      profile_pic: "https://img-getpocket.cdn.mozilla.net/404x202/filters:format(jpeg):quality(60):no_upscale():strip_exif()/https%3A%2F%2Fs3.amazonaws.com%2Fpocket-curatedcorpusapi-prod-images%2Fe61c1b7e-11b4-492b-83b5-48adb8761c20.jpeg",
     } as IUserProfile;    
 
     let dummy_content_size = Math.floor(this.dummy_text.length/2);
@@ -110,6 +123,7 @@ export class CommunityPostCardComponent implements OnInit {
         comments: [],
         content: this.dummy_text.slice(0,Math.floor(Math.random()*dummy_content_size)),
         comments_count: Math.floor(Math.random()*100),
+        // comments_count: 12,
         posted_by: posting_user,
         time_of_creation: new Date(2010+Math.floor(Math.random()*20), 1+Math.floor(Math.random()*12),1+Math.floor(Math.random()*28)),
       } as ICommunityPost;

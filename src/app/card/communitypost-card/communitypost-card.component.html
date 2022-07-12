@@ -3,7 +3,37 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
+<div *ngIf="ghost" class="ghost-main">
+
+  <table width="100%" style="table-layout: fixed;">
+    <tr>
+      <td align="left" class="avatar">
+        <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
+          <img 
+            [src]="post.posted_by.profile_pic" 
+            class="img-circle object-cover"
+            [ngStyle]="{ 'left.px': pic_offset }"
+          >
+        </ng-container>
+        <ng-template #default_avatar>
+          <img 
+            src="assets/logo.png" 
+            class="img-circle object-cover"
+          >
+        </ng-template>
+      </td>
+
+      <td 
+        class="ghost-content-container"
+      >
+        <p class="ghost-content">{{ post.content }}</p>
+      </td>
+    </tr>
+  </table>
+</div>
+
 <div 
+  *ngIf="!ghost"
   class="postmain"
   [ngStyle]="{
     'border-radius.px': post_border_radius 
@@ -132,10 +162,16 @@
     <input id="comment-content-input" placeholder="Add a comment...">
   </div>
 
+  <div *ngIf="!is_rank_one && !show_comment_thread && post.comments.length > 0" class="comment-thread-container">
+    <div class="comment-thread-subcontainer">
+      <app-communitypost-card [post]="post.comments[0]" ghost="true"></app-communitypost-card>
+    </div>
+  </div>
+
   <div *ngIf="show_comment_thread" class="comment-thread-container">
     <div class="comment-thread-subcontainer">
       <ng-container *ngFor="let comment of post.comments">
-        <app-communitypost-card [post]="comment" show_comment_thread="true"></app-communitypost-card>
+        <app-communitypost-card [post]="comment"></app-communitypost-card>
       </ng-container>
     </div>
   </div>
