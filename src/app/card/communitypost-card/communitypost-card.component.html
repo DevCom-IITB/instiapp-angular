@@ -103,17 +103,18 @@
       <tr>
         <td>
           <div class="inline">
-            <img class="emoji noResponse clickable" src='assets/emojis/like.png' alt='x'>
+            <!-- <img class="emoji noResponse clickable" (click)="onAddReactionClicked()" src='assets/emojis/like.png' alt='x'> -->
+            <img class="emoji noResponse clickable" (click)="onAddReactionClicked()" src='assets/emojis/add_reaction.svg' alt='x'>
             <!-- <mat-icon class="emoji noResponse clickable gray-fill-btn">thumb_up</mat-icon> -->
           </div>
 
 
-          <div class="reactions clickable">
-            <img class="emoji noResponse" src='assets/emojis/loveeye_emoji.png' alt='x'>
-            <img class="emoji noResponse" src='assets/emojis/angry_emoji.png' alt='x'>
-            <img class="emoji noResponse" src='assets/emojis/laugh_emoji.png' alt='x'>
-            <img class="emoji noResponse" src='assets/emojis/sad_emoji.png' alt='x'>
-            <img class="emoji noResponse" src='assets/emojis/wow_emoji.png' alt='x'>
+          <div *ngIf="num_reactions" class="reactions">
+            <img *ngIf="post.reaction_count[1]" class="emoji noResponse clickable" (click)=onReactionClicked(1) src='assets/emojis/loveeye_emoji.png' alt='x'>
+            <img *ngIf="post.reaction_count[2]" class="emoji noResponse clickable" (click)=onReactionClicked(2) src='assets/emojis/angry_emoji.png' alt='x'>
+            <img *ngIf="post.reaction_count[3]" class="emoji noResponse clickable" (click)=onReactionClicked(3) src='assets/emojis/laugh_emoji.png' alt='x'>
+            <img *ngIf="post.reaction_count[4]" class="emoji noResponse clickable" (click)=onReactionClicked(4) src='assets/emojis/sad_emoji.png' alt='x'>
+            <img *ngIf="post.reaction_count[5]" class="emoji noResponse clickable" (click)=onReactionClicked(5) src='assets/emojis/wow_emoji.png' alt='x'>
           </div>
 
 
@@ -135,7 +136,8 @@
             (click)=onReplyClicked()
             class="comments noResponse clickable"
             clickable>
-            <mat-icon class="emoji noResponse gray-fill-btn">reply</mat-icon>
+            <!-- <mat-icon class="emoji noResponse gray-fill-btn">reply</mat-icon> -->
+            <img class="emoji noResponse gray-fill-btn" src="assets/reply.svg" alt="x">
           </div>
 
 
@@ -143,7 +145,7 @@
 
 
         <td align="right">
-          <mat-icon class="icon_more clickable">share</mat-icon>
+          <mat-icon (click)=onShareClicked() class="icon_more clickable">share</mat-icon>
         </td>
 
 

@@ -18,6 +18,7 @@ export class CommunityPostCardComponent implements OnInit {
   // @Input() public badge: string;
   // @Input() public followers: '';
 
+
   public printable_date: String;
   public num_reactions: number = 0;
   
@@ -93,6 +94,13 @@ export class CommunityPostCardComponent implements OnInit {
     this.show_comment_thread = true;
   }
 
+  onAddReactionClicked(): void{
+    console.log(`add reaction button clicked`)
+  }
+  onReactionClicked(reaction_index: number): void{
+    console.log(`reaction with index ${reaction_index} clicked`)
+  }
+
   onCommentButtonClicked(): void{
     this.show_comment_input = !this.show_comment_input;
     this.show_comment_thread = this.show_comment_input;
@@ -140,5 +148,9 @@ export class CommunityPostCardComponent implements OnInit {
 
   onReplyClicked(): void{
     this.show_comment_input = !this.show_comment_input;
+  }
+
+  onShareClicked(): void{
+    console.log("share button clicked")
   }
 }

@@ -70,6 +70,8 @@ p {
     line-height: 140%;
     /* or 20px */
 
+    padding: 0px 6px;
+
     display: flex;
     align-items: center;
     letter-spacing: 0.25px;
@@ -193,7 +195,6 @@ div.ghost-main {
 .ghost-content-container{
     position: relative;
 
-
     vertical-align: middle;
 }
 p.ghost-content{
@@ -203,7 +204,7 @@ p.ghost-content{
     text-overflow: ellipsis;
 
     margin-left: 6px;
-    padding: 12px 6px;
+    padding: 12px;
 
     background-color: #F0F2F7;
 
