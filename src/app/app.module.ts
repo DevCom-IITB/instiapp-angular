@@ -86,6 +86,7 @@ import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.com
 import { GroupDetailsComponent } from './page/group-details/group-details.component';
 import { PostViewComponent } from './page/discussions/post-view/post-view.component';
 import { ClosePopupComponent } from './page/discussions/add-post/close-popup/close-popup.component';
+import { ModeratorPageComponent } from './page/discussions/moderator-page/moderator-page.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { ClosePopupComponent } from './page/discussions/add-post/close-popup/clo
     GroupFeedComponent,
     PostViewComponent,
     ClosePopupComponent,
+    ModeratorPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -192,6 +194,7 @@ import { ClosePopupComponent } from './page/discussions/add-post/close-popup/clo
       { path: 'add-post', component: AddPostComponent, data: { state: 'base' } },
       { path: 'group-feed/:id', component: GroupFeedComponent, data: { state: 'base' } },
       { path: 'view-post/:id', component: PostViewComponent, data: { state: 'base'}},
+      { path: 'moderator-page', component:ModeratorPageComponent, data: { state: 'base'} },
 
       { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
