@@ -6,7 +6,7 @@
 }
 
 .mod_btn{
-  border: 1px solid gray;
+  border: 2px solid gray;
   border-radius: 20px;
   width: max-content;
   height: min-content; 
@@ -14,6 +14,7 @@
   display: inline-block; 
   margin-top: 10px;
   margin-bottom: 7px;
+
 }
 
 .mod_btn:hover{
@@ -23,4 +24,21 @@
 
 .mod_btn:hover span {
     color: blue;
+}
+
+.spaces{
+    background-color: #E8ECF2;
+    padding: 12px 6px;
+    position:absolute;
+
+    box-sizing: border-box;
+
+    width:100%;
+    height:100%;
+
+    overflow: scroll;
+}
+
+.main-title{
+    margin: 12px 0px 0px 12px;
 }
