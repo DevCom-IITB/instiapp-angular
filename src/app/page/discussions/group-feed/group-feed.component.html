@@ -9,13 +9,13 @@
 </div> -->
 <app-xunk-spinner *ngIf="!posts"></app-xunk-spinner>
 
-<app-event-sidebar-desktop *ngIf="posts" [isgrouppage]="true" [group]="group">
+<!-- <app-event-sidebar-desktop *ngIf="posts" [isgrouppage]="true" [group]="group">
 
     <div center class="spaces">
 
-        <!-- <div class="rl-header sm main-title">
+        <div class="rl-header sm main-title">
             {{ 'Spaces' }}
-        </div> -->
+        </div>
         <div *ngFor="let post of posts">
             <app-communitypost-card [post]="post">
 
@@ -30,7 +30,34 @@
 <mat-icon>mode_edit</mat-icon>
 </button>
    
-</app-event-sidebar-desktop>
+</app-event-sidebar-desktop> -->
+
+<app-desktop-split *ngIf="posts" center_width_percentage="62.5">
+        <div center>
+            <div (scroll)="onScroll($event)" class="spaces">
+
+                <!-- <div class="rl-header sm main-title">
+                    {{ 'Spaces' }}
+                </div> -->
+                <div *ngFor="let post of posts">
+                    <app-communitypost-card [post]="post">
+
+                    </app-communitypost-card>
+                </div>
 
 
+            </div>
+            
+            <button mat-mini-fab
+            class="float_btn"
+            (click)=onCreate()>
+                <mat-icon>mode_edit</mat-icon>
+            </button>
+        </div>
+
+        <div right>
+            <app-group-details *ngIf="group" [groupId]="group.id" noCenter="true" [desktopMode]="true">
+            </app-group-details>
+        </div>
+    </app-desktop-split>
 

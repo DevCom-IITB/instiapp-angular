@@ -17,6 +17,8 @@ export class GroupFeedComponent implements OnInit {
 
   public posts: ICommunityPost[];
 
+  private LOAD_SCROLL_THRESHOLD: number = 0.9;
+
 
   private dummy_text: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -32,12 +34,12 @@ export class GroupFeedComponent implements OnInit {
   ngOnInit(): void {
 
     this.populateDummyData();
-    this.dataService.scrollBottomFunction = () => {this.loadMoreDummyPosts();}
+    // this.dataService.scrollBottomFunction = () => {this.loadMoreDummyPosts();}
 
   }
 
   ngOnDestroy(): void {
-    this.dataService.scrollBottomFunction = noop;
+    // this.dataService.scrollBottomFunction = noop;
   }
 
   populateDummyGroupData(): void{
@@ -66,6 +68,12 @@ export class GroupFeedComponent implements OnInit {
     dialogConfig.position = {top:'70px' };
     dialogConfig.panelClass= 'custom-container';
     this.dialog.open(AddPostComponent,dialogConfig);
+  }
+
+  onScroll(event: any){
+    if(event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight*this.LOAD_SCROLL_THRESHOLD){
+      this.loadMoreDummyPosts();
+    }
   }
 
   loadMoreDummyPosts(): void {
