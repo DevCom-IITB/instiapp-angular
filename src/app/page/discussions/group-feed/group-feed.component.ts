@@ -3,6 +3,8 @@ import { noop } from 'rxjs';
 import { API } from '../../../../api';
 import { DataService } from '../../../data.service';
 import { ICommunity, ICommunityPost, IUserProfile } from '../../../interfaces';
+import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
+import { AddPostComponent } from '../add-post/add-post.component';
 
 @Component({
   selector: 'app-group-feed',
@@ -23,7 +25,8 @@ export class GroupFeedComponent implements OnInit {
 
   constructor(
     // private activatedRoute: ActivatedRoute,
-    public dataService: DataService
+    public dataService: DataService,
+    private dialog : MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +56,16 @@ export class GroupFeedComponent implements OnInit {
     this.posts = new Array<ICommunityPost>();
 
     this.loadMoreDummyPosts();
+  }
+
+  onCreate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = "80%";
+    dialogConfig.height = "60%";
+    dialogConfig.position = {top:'70px' };
+    dialogConfig.panelClass= 'custom-container';
+    this.dialog.open(AddPostComponent,dialogConfig);
   }
 
   loadMoreDummyPosts(): void {

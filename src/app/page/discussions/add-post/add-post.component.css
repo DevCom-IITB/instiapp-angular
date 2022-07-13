@@ -1,0 +1,111 @@
+.head-card {
+    height: 34px;
+    margin-top: -10px;
+    padding: 16px;
+    display: flex;
+}
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: -3px;
+    flex: 0 0 40px;
+}
+
+#ldap {
+    color: #eee;
+    font-size: 10pt;
+}
+
+
+#searchbox {
+    margin: 10px;
+    white-space: nowrap;
+}
+
+.searchinput {
+    min-width: 60%;
+}
+
+#post_container{
+    border-radius: 8px;
+    border: 1px solid black;
+    width:100%;
+    min-height: 150px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-gap: 20px;
+    
+}
+
+.grid-container_location {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-gap: 20px;
+    
+}
+
+#container{
+    border-radius: 8px;
+    border: 1px solid black;
+    height: min-content;
+    margin: 4px;
+
+}
+
+#hidden-container{
+    padding: 0px;
+    margin: 2px;
+    height: min-content;
+}
+
+.taggables{
+    border-radius: 20px;
+    padding: 2px;
+    margin: 2px;
+    background:transparent;
+    display: inline;
+    border: 2px solid gray ;
+}
+
+#submit_btn{
+    width:100px;
+    background-color:#0D4BA8;
+    border-radius: 20px;
+    color: white;
+    margin: 10px;
+}
+#link_btn{
+    width: 0px;
+    margin:1px;
+    background-color:gray;
+}
+
+.bottom_button{
+    display: "flex"; 
+    height: "80px";
+    justify-content: "space-between"
+}
+
+.float {
+    position: fixed;
+    left: 15px;
+    transition: all 250ms ease;
+}
+
+.margin-sv{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.padding-sv{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.center-text{
+    text-align: center;
+}

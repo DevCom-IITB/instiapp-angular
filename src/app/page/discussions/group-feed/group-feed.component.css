@@ -6,3 +6,10 @@
 .main-title{
     margin: 12px 0px 0px 12px;
 }
+
+.float_btn {
+    position: fixed;
+    right: 15px;
+    top: 20px;
+    transition: all 250ms ease;
+}

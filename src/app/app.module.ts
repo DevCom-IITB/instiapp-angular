@@ -81,10 +81,11 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
 import { DiscussionsComponent } from './page/discussions/discussions.component';
 import { GroupCardComponent } from './card/group-card/group-card.component';
 import { PostCardComponent } from './card/post-card/post-card.component';
-import { AddPostComponent } from './page/add-post/add-post.component';
+import { AddPostComponent } from './page/discussions/add-post/add-post.component';
 import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.component';
 import { GroupDetailsComponent } from './page/group-details/group-details.component';
 import { PostViewComponent } from './page/discussions/post-view/post-view.component';
+import { ClosePopupComponent } from './page/discussions/add-post/close-popup/close-popup.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,7 @@ import { PostViewComponent } from './page/discussions/post-view/post-view.compon
     AddPostComponent,
     GroupFeedComponent,
     PostViewComponent,
+    ClosePopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -205,7 +207,8 @@ import { PostViewComponent } from './page/discussions/post-view/post-view.compon
     LayoutModule,
   ],
   entryComponents: [
-    NotifyCardComponent
+    NotifyCardComponent,
+    AddPostComponent,
   ],
   providers: [
     DataService,

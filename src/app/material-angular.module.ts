@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatRippleModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -47,6 +48,7 @@ import { XunkCalendarModule } from 'xunk-calendar';
         MatExpansionModule,
         MatBadgeModule,
         MatProgressSpinnerModule,
+        MatDialogModule,
         XunkCalendarModule,
     ],
     exports: [
@@ -71,6 +73,7 @@ import { XunkCalendarModule } from 'xunk-calendar';
         MatExpansionModule,
         MatBadgeModule,
         MatProgressSpinnerModule,
+        MatDialogModule,
         XunkCalendarModule,
     ],
 })

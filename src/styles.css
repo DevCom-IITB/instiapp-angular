@@ -175,6 +175,11 @@ mat-form-field, mat-form-field *, .markdown *, input {
 .rl-header.sm {font-size: 2em;}
 .rl-header.xs { font-size: 1.4em; }
 
+/* For Create-Post & Close-popup Dialogbox  */
+.custom-container .mat-dialog-container {
+    border-radius: 20px !important;
+ }
+
 @media (max-width: 768px) {
     .rl-header { font-size: 1.5em; }
     .rl-header.sm { font-size: 1.3em; }

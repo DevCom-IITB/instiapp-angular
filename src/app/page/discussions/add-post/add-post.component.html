@@ -1,0 +1,112 @@
+<h1 style="text-align:center;">Create Post</h1>
+    
+<div id="post_container">       
+     <div class="head-card" >
+         <img class="profile-pic img-circle object-cover"
+              [src]="profilePic"
+              src-fallback="assets/useravatar.svg">
+         <div class="overflow-ellipsis">
+             {{ userName }}
+             <div id="ldap">{{ ldap }}</div>
+         </div>
+     </div>
+     <textarea style="width:95%;min-height: 80px; border:none; display:block; margin-left:auto; margin-right:auto;" 
+     name="text" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' 
+     placeholder="Write your post ..."></textarea>
+</div>
+
+<div id="container" class="margin-sv padding-sv center-text">
+    <p>Added Images</p>
+</div>
+
+<div id="container">
+ <div id="hidden-container" class="grid-container">
+       <div class="grid-child" style="padding:5px; text-align:center" >
+         <h2>Tags</h2>
+       </div>
+        <div id="searchbox" class="grid-child" >
+           
+            <button mat-icon-button
+                color="primary"
+                style="max-height:37px;">
+                <mat-icon>search</mat-icon>
+             </button>
+        
+              <mat-form-field class="searchinput">
+                  <input matInput type="search"
+                          name="search"
+                          placeholder="Search People or Institue Bodies">
+              </mat-form-field>
+        </div>  
+              
+    </div>
+    <div id="hidden-container" class="padding-sv">
+      <div class="taggables" *ngFor="let taggable of taggables">
+          <span>{{ taggable }}</span>
+          <span> ✕</span>
+      </div>
+    </div>
+</div>      
+
+<div id="container" class="grid-container_location">
+    <div class="grid-child" style="padding:5px; text-align:center" ><h2>Location</h2></div>               
+    <div id="searchbox" class="grid-child">
+      <button mat-icon-button
+          color="primary"
+          style="max-height:37px;">
+          <mat-icon>search</mat-icon>
+       </button>
+  
+        <mat-form-field class="searchinput">
+            <input matInput type="search"
+                    name="search"
+                    placeholder="Search location around Campus">
+        </mat-form-field>
+   </div>
+   <div class="grid-child" style="padding:5px; text-align:center; color:blue;" ><h3>Use Maps</h3></div>
+      
+</div>
+
+
+<div id="container" class="grid-container">
+    <div class="grid-child" style="padding:5px; text-align:center" ><h2>Interests</h2></div>              
+    <div id="searchbox" class="grid-child">
+        <button mat-icon-button
+                color="primary"
+                style="max-height:37px;">
+            <mat-icon>search</mat-icon>
+        </button>
+        <mat-form-field class="searchinput">
+            <input matInput type="search"
+                    name="search"
+                    placeholder="Search for an Interest">
+        </mat-form-field>
+      
+        
+    </div>        
+</div>
+
+
+<mat-dialog-actions>
+<div class="bottom_button">
+    <button
+        mat-raised-button
+        class="margin-sv"
+        id="submit_btn" 
+        (click)="onPost()">
+        Post
+    </button>
+    <button
+      mat-button
+      class="margin-sv"
+      id="link_btn">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      class="margin-sv"
+      id="link_btn">
+      <mat-icon>link</mat-icon>
+    </button>
+</div>
+</mat-dialog-actions>
