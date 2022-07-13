@@ -248,11 +248,19 @@ p.ghost-content{
     padding-left: 12px;
     margin-right: -20px;
 }
-
 .comment-thread-subcontainer {
     border-left: 1px solid #C7C7C7;
     /* padding-left: 6px; */
 }
+/* .comment-rank-indicator{
+    display:block;
+    position:relative;
+    top:60px;
+    height: calc(100% - 60px);
+    left:0;
+    width: 2px;
+    background-color: rgba(0,0,0,0.1);
+} */
 
 .btn_view-more-comments{
     margin: -10px;

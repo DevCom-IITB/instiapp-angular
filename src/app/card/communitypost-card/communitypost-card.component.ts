@@ -89,6 +89,10 @@ export class CommunityPostCardComponent implements OnInit {
     this.loadMoreComments();
   }
 
+  onGhostClicked(): void{
+    this.show_comment_thread = true;
+  }
+
   onCommentButtonClicked(): void{
     this.show_comment_input = !this.show_comment_input;
     this.show_comment_thread = this.show_comment_input;

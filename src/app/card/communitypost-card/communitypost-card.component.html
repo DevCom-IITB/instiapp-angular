@@ -162,7 +162,11 @@
     <input id="comment-content-input" placeholder="Add a comment...">
   </div>
 
-  <div *ngIf="!is_rank_one && !show_comment_thread && post.comments.length > 0" class="comment-thread-container">
+  <div 
+    *ngIf="!is_rank_one && !show_comment_thread && post.comments.length > 0"
+     class="comment-thread-container clickable"
+     (click)=onGhostClicked()
+  >
     <div class="comment-thread-subcontainer">
       <app-communitypost-card [post]="post.comments[0]" ghost="true"></app-communitypost-card>
     </div>
