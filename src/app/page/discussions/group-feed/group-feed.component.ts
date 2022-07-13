@@ -93,7 +93,7 @@ export class GroupFeedComponent implements OnInit {
         comments_count: Math.floor(Math.random()*1000),
         posted_by: posting_user,
         time_of_creation: new Date(2010+Math.floor(Math.random()*20), 1+Math.floor(Math.random()*12),1+Math.floor(Math.random()*28)),
-        reaction_count: Array.from({length:4}, ()=>Math.floor(Math.random()*20)),
+        reaction_count: Array.from({length:6}, ()=>Math.floor(Math.random()*20)),
       } as ICommunityPost;
 
       this.posts.push(tempPost);
