@@ -4,6 +4,7 @@ import { DataService } from '../../../data.service';
 import { ICommunity, ICommunityPost, IUserProfile } from '../../../interfaces';
 import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
 import { AddPostComponent } from '../add-post/add-post.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-group-feed',
@@ -11,7 +12,7 @@ import { AddPostComponent } from '../add-post/add-post.component';
   styleUrls: ['./group-feed.component.css']
 })
 export class GroupFeedComponent implements OnInit {
-  @Input() public groupId: number = -1;
+  @Input() public groupId: string;
   @Input() public group: ICommunity;
 
   public posts: ICommunityPost[];
@@ -28,37 +29,47 @@ export class GroupFeedComponent implements OnInit {
     // private activatedRoute: ActivatedRoute,
     public dataService: DataService,
     private dialog : MatDialog,
+    public activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    if (!this.groupId) {
+      this.activatedRoute.params.subscribe((params: Params) => {
+        this.groupId = params['id'];
+        this.refresh();
+      });
+    }
 
-    this.populateDummyData();
+    // this.populateGroupAndPosts();
+    // this.populateDummyData();
     // this.dataService.scrollBottomFunction = () => {this.loadMoreDummyPosts();}
 
+  }
+
+  ngOnChanges(){
+    this.refresh();
   }
 
   ngOnDestroy(): void {
     // this.dataService.scrollBottomFunction = noop;
   }
 
-  populateDummyGroupData(): void{
-    this.dataService.FireGET<ICommunity[]>(API.Communities).subscribe(result => {
-      this.group = result[0];
-      this.dataService.setTitle(this.group.name);
-    },(e) => {
-      console.log(e)
-      // Handle this error
-    })
+  refresh(){
+    this.group = null;
+    this.posts = null;
 
+   this.populateGroupAndPosts(); 
+  }
+  populateGroupAndPosts(): void{
+    this.dataService.FillGetCommunity(this.groupId).subscribe(result => {
+      this.group = result;
+      this.posts = this.group.posts;
+    });
   }
 
-  populateDummyData(): void{
-    this.populateDummyGroupData();
-    this.posts = new Array<ICommunityPost>();
 
-    this.loadMoreDummyPosts();
-  }
 
+  
   onCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
@@ -68,20 +79,37 @@ export class GroupFeedComponent implements OnInit {
     dialogConfig.panelClass= 'custom-container';
     this.dialog.open(AddPostComponent,dialogConfig);
   }
-
+  
   onScroll(event: any){
     if(event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight*this.LOAD_SCROLL_THRESHOLD){
       this.loadMoreDummyPosts();
     }
   }
-
+  
+  populateDummyGroupData(): void{
+    this.dataService.FireGET<ICommunity[]>(API.Communities).subscribe(result => {
+      this.group = result[0];
+      this.dataService.setTitle(this.group.name);
+    },(e) => {
+      console.log(e)
+      // Handle this error
+    })
+  
+  }
+  
+  populateDummyData(): void{
+    this.populateDummyGroupData();
+    this.posts = new Array<ICommunityPost>();
+  
+    this.loadMoreDummyPosts();
+  }
   loadMoreDummyPosts(): void {
     let dummy_content_size = this.dummy_text.length;
-
+    
     let posting_user = {
       name: "Dheer Banker",
     } as IUserProfile;
-
+    
     for(let i=0;i<20;i++){
       let tempPost = {
         id: "some_unique_id",
@@ -94,11 +122,11 @@ export class GroupFeedComponent implements OnInit {
         time_of_creation: new Date(2010+Math.floor(Math.random()*20), 1+Math.floor(Math.random()*12),1+Math.floor(Math.random()*28)),
         reaction_count: Array.from({length:6}, ()=>Math.floor(Math.random()*20)),
       } as ICommunityPost;
-
+      
       this.posts.push(tempPost);
     }
-  
+    
     // console.log(`Loaded 20 more posts`)
   }
-
+  
 }
