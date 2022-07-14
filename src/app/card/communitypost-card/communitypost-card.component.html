@@ -94,16 +94,14 @@
 
   <div *ngIf="render_images" class="images">
 
-
     <!-- <img
       src="https://media.pitchfork.com/photos/620e81cad8bc62857b465cc3/2:1/w_2560%2Cc_limit/Stranger-Things-Season-4.jpg"
       class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;"> -->
-    <ng-container *ngFor="let imgUrl of post.image_url">
-      <img
-        [src]="imgUrl"
-        class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
-    </ng-container>
-
+      <ng-container *ngFor="let imgUrl of post.image_url">
+        <img
+          [src]="imgUrl"
+          class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
+      </ng-container>
 
   </div>
   <div 
@@ -120,11 +118,11 @@
 
 
           <div *ngIf="num_reactions" class="reactions">
-            <img *ngIf="post.reaction_count[1]" class="emoji noResponse clickable" (click)=onReactionClicked(1) src='assets/emojis/loveeye_emoji.png' alt='x'>
-            <img *ngIf="post.reaction_count[2]" class="emoji noResponse clickable" (click)=onReactionClicked(2) src='assets/emojis/angry_emoji.png' alt='x'>
-            <img *ngIf="post.reaction_count[3]" class="emoji noResponse clickable" (click)=onReactionClicked(3) src='assets/emojis/laugh_emoji.png' alt='x'>
-            <img *ngIf="post.reaction_count[4]" class="emoji noResponse clickable" (click)=onReactionClicked(4) src='assets/emojis/sad_emoji.png' alt='x'>
-            <img *ngIf="post.reaction_count[5]" class="emoji noResponse clickable" (click)=onReactionClicked(5) src='assets/emojis/wow_emoji.png' alt='x'>
+            <img *ngIf="post.reactions_count[1]" class="emoji noResponse clickable" (click)=onReactionClicked(1) src='assets/emojis/loveeye_emoji.png' alt='x'>
+            <img *ngIf="post.reactions_count[2]" class="emoji noResponse clickable" (click)=onReactionClicked(2) src='assets/emojis/angry_emoji.png' alt='x'>
+            <img *ngIf="post.reactions_count[3]" class="emoji noResponse clickable" (click)=onReactionClicked(3) src='assets/emojis/laugh_emoji.png' alt='x'>
+            <img *ngIf="post.reactions_count[4]" class="emoji noResponse clickable" (click)=onReactionClicked(4) src='assets/emojis/sad_emoji.png' alt='x'>
+            <img *ngIf="post.reactions_count[5]" class="emoji noResponse clickable" (click)=onReactionClicked(5) src='assets/emojis/wow_emoji.png' alt='x'>
           </div>
 
 

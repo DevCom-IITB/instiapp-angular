@@ -44,7 +44,9 @@ export class CommunityPostCardComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log(this.post);
     this.initialiseVariables();
+
 
     if(!this.is_rank_one && this.post.comments_count > 0 && this.post.comments.length <= 0){
       this.loadMoreComments();
@@ -54,13 +56,13 @@ export class CommunityPostCardComponent implements OnInit {
   }
 
   initialiseVariables(){
-    this.printable_date = this.post.time_of_creation.toLocaleDateString(undefined, {
+    this.printable_date = new Date(this.post.time_of_creation).toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
-    })
+    });
 
-    if(this.post.reaction_count == null) this.post.reaction_count = [0,0,0,0,0,0]; // Maybe a different default is preferred?
+    if(this.post.reactions_count == null) this.post.reactions_count = [0,0,0,0,0,0]; // Maybe a different default is preferred?
 
     if(this.show_comment_thread === undefined)
       this.show_comment_thread = false;
@@ -70,10 +72,13 @@ export class CommunityPostCardComponent implements OnInit {
     
     this.is_moderator = true; //Note: Change this to true only for testing purposes
 
-    this.num_reactions += this.post.reaction_count.reduce((a,b)=>a+b,0)
+    // this.num_reactions += this.post.reactions_count.reduce((a,b)=>a+b,0)
+    this.num_reactions = this.post.reactions_count[0]+this.post.reactions_count[1]+this.post.reactions_count[2]+this.post.reactions_count[3]+this.post.reactions_count[4]+this.post.reactions_count[5];
     
     this.is_rank_one = (this.post.thread_rank == 1);
     
+    if(this.post.comments === undefined) this.post.comments = [];
+
     this.more_comments = (this.post.comments.length < this.post.comments_count);
 
     if (!this.is_rank_one){

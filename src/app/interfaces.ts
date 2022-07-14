@@ -257,7 +257,7 @@ export interface ICommunityPost {
     comments_count: number,
     image_url: string[],
     posted_by: IUserProfile,
-    reaction_count: any[],
+    reactions_count: any[],
     time_of_creation: Date,
     time_of_modification: Date,
     user_reaction: number,

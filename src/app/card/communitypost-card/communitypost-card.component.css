@@ -172,6 +172,19 @@ span {
     margin-bottom: inherit;
     display: block;
 
+    max-height: 600px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+}
+img.img-responsive{
+    max-height:50vh;
+    max-width: 50vh;
+
+    height: auto;
+    width: auto;
+    margin: 12px;
 }
 
 .footer div {
