@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { Helpers } from '../../helpers';
 import { ICommunityPost, IUserProfile } from '../../interfaces';
 
 @Component({
@@ -18,6 +20,8 @@ export class CommunityPostCardComponent implements OnInit {
   // @Input() public badge: string;
   // @Input() public followers: '';
 
+
+  public is_moderator: boolean;
 
   public printable_date: String;
   public num_reactions: number = 0;
@@ -64,6 +68,8 @@ export class CommunityPostCardComponent implements OnInit {
     if(this.ghost === undefined)
       this.ghost = false;
     
+    this.is_moderator = true; //Note: Change this to true only for testing purposes
+
     this.num_reactions += this.post.reaction_count.reduce((a,b)=>a+b,0)
     
     this.is_rank_one = (this.post.thread_rank == 1);
@@ -109,12 +115,31 @@ export class CommunityPostCardComponent implements OnInit {
       this.loadMoreComments();
     }
   }
-
   loadMoreComments(): void{
     if(!this.more_comments || this.ghost) return;
 
     this.loadDummyComments();
   }
+  
+  onReplyClicked(): void{
+    this.show_comment_input = !this.show_comment_input;
+  }
+  
+  onShareClicked(): void{
+    Helpers.NativeShare(`Post by ${this.post.posted_by.name}`, `Check out this post by ${this.post.posted_by.name} at InstiApp!`, this.getPostUrl());
+  }
+  
+  onFeaturePinClicked(): void{
+    console.log(`user is moderator: ${this.is_moderator}; feature pin option selected`);
+  }
+
+  getPostUrl(): string{
+    return  `${environment.host}org/${this.post.str_id}`;
+  }
+
+// Dummy data generating code below this point: REMOVE on production
+
+
   loadDummyComments(){ // Only for testing/demo purposes. Delete when API connection done.
 
     let posting_user = {
@@ -144,13 +169,5 @@ export class CommunityPostCardComponent implements OnInit {
     }
 
     this.more_comments = (this.post.comments.length<this.post.comments_count);
-  }
-
-  onReplyClicked(): void{
-    this.show_comment_input = !this.show_comment_input;
-  }
-
-  onShareClicked(): void{
-    console.log("share button clicked")
   }
 }

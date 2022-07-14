@@ -70,7 +70,17 @@
         > {{ printable_date }}</p>
       </td>
       <td align="right">
-        <mat-icon class="icon_more clickable">more_vert</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon class="icon_more">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button *ngIf="is_moderator" (click)=onFeaturePinClicked() mat-menu-item>
+            <!-- TODO: Keep a dynamic text and icon for this. If already pinned, change to 'unpin' text and icon -->
+            <mat-icon>pin</mat-icon>
+            <!-- <img src="assets/pin.svg"> -->
+            <span>Pin to featured</span>
+          </button>
+        </mat-menu>
       </td>
     </tr>
   </table>
@@ -147,11 +157,6 @@
         <td align="right">
           <mat-icon (click)=onShareClicked() class="icon_more clickable">share</mat-icon>
         </td>
-
-
-
-
-
 
 
       </tr>
