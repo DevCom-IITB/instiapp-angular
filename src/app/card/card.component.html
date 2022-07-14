@@ -14,7 +14,7 @@
             <p *ngIf="followers" class="followers_posts">
               {{ followers }} followers
             </p>
-            <p class="card-sub-title">
+            <p *ngIf="subtitle" class="card-sub-title">
               {{ subtitle }}
             </p>
           </div>

@@ -307,3 +307,11 @@ body {
     background-color: aliceblue;
     border-radius: 20px;
 }
+
+
+.role-container{
+    margin: 12px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #E8ECF2;
+}

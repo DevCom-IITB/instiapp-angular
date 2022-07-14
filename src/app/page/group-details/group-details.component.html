@@ -65,8 +65,19 @@
         <p class="tabText">{{group.description}}</p>
       </mat-tab>
       <mat-tab label="People">
-        <p class="tabText">hello
-        </p>
+
+        <ng-container *ngFor="let role of group.body.roles">
+          
+          <div class="role-container">
+            <h4>{{ role.name }}</h4>
+            <app-user-card *ngFor="let user of role.users_detail"
+                          [profile]="user"
+                          role="">
+            </app-user-card>
+          </div>
+
+
+        </ng-container>
 
       </mat-tab>
 
