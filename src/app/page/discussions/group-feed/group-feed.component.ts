@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { noop } from 'rxjs';
 import { API } from '../../../../api';
 import { DataService } from '../../../data.service';
 import { ICommunity, ICommunityPost, IUserProfile } from '../../../interfaces';

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
-import { ICommunity } from '../../interfaces';
+import { IBody, ICommunity } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { API } from '../../../api';
 
 @Component({
   selector: 'app-group-details',
@@ -74,9 +75,20 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
       this.load.emit(false);
       this.error = e.status;
     });
+  }
 
-
-
+  onJoinClicked(): void{
+    this.followBody(this.group.body);
+  }
+  followBody(body: IBody) {
+    if (!this.dataService.isLoggedIn()) { alert('Login first!'); return; }
+    /* Fire new API! */
+    this.dataService.FireGET(API.BodyFollow, {
+      uuid: body.id, action: body.user_follows ? 0 : 1
+    }).subscribe(() => {
+      body.user_follows = !body.user_follows;
+      body.followers_count += body.user_follows ? 1 : -1;
+    });
   }
   // /** Call the events API and show data */
   // refresh() {

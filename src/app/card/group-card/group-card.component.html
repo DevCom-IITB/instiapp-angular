@@ -1,4 +1,4 @@
-<div class="block" *ngIf="group" mat-ripple>
+<div class="block clickable" *ngIf="group" mat-ripple>
 
 
   <ng-component
@@ -42,11 +42,6 @@
 
                     </td>
 
-
-
-
-
-
                   </tr>
                 </tbody>
               </table>
@@ -61,13 +56,13 @@
             </button>
 
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>
+              <button (click)=onJoinClicked() mat-menu-item>
                 <mat-icon>people</mat-icon><span>Join</span>
               </button>
-              <button mat-menu-item>
+              <button (click)=onShareClicked() mat-menu-item>
                 <mat-icon>share</mat-icon><span>Share</span>
               </button>
-              <button mat-menu-item>
+              <button (click)=onPinClicked() mat-menu-item>
                 <mat-icon>push_pin</mat-icon><span>Pin</span>
               </button>
             </mat-menu>

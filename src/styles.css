@@ -166,6 +166,10 @@ mat-form-field, mat-form-field *, .markdown *, input {
     text-overflow: ellipsis;
 }
 
+.clickable{
+    cursor:pointer;
+}
+
 .rl-header {
     /* Responsive light header */
     font-weight: 200;
