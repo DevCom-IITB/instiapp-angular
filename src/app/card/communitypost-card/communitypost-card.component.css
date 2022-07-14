@@ -170,7 +170,9 @@ span {
     margin-left: -10px;
     margin-right: -10px;
     margin-bottom: inherit;
-    display: block;
+    /* display: block; */
+
+    vertical-align: middle;
 
     max-height: 600px;
     overflow-x: scroll;
@@ -184,7 +186,7 @@ img.img-responsive{
 
     height: auto;
     width: auto;
-    margin: 12px;
+    margin: auto 12px;
 }
 
 .footer div {

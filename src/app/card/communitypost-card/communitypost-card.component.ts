@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { DataService } from '../../data.service';
 import { Helpers } from '../../helpers';
 import { ICommunityPost, IUserProfile } from '../../interfaces';
 
@@ -40,7 +41,9 @@ export class CommunityPostCardComponent implements OnInit {
 
   private dummy_text: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-  constructor() {
+  constructor(
+    public dataService: DataService,
+  ) {
    }
 
   ngOnInit() {
@@ -70,7 +73,7 @@ export class CommunityPostCardComponent implements OnInit {
     if(this.ghost === undefined)
       this.ghost = false;
     
-    this.is_moderator = true; //Note: Change this to true only for testing purposes
+    this.is_moderator = false; //Note: Change this to true only for testing purposes
 
     // this.num_reactions += this.post.reactions_count.reduce((a,b)=>a+b,0)
     this.num_reactions = this.post.reactions_count[0]+this.post.reactions_count[1]+this.post.reactions_count[2]+this.post.reactions_count[3]+this.post.reactions_count[4]+this.post.reactions_count[5];
@@ -123,7 +126,11 @@ export class CommunityPostCardComponent implements OnInit {
   loadMoreComments(): void{
     if(!this.more_comments || this.ghost) return;
 
-    this.loadDummyComments();
+    this.dataService.fillGetPost(this.post.id).subscribe(result => {
+      this.post = result;
+      this.more_comments = (this.post.comments.length<this.post.comments_count);
+    })
+    // this.loadDummyComments();
   }
   
   onReplyClicked(): void{

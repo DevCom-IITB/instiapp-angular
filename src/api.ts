@@ -15,6 +15,7 @@ export const API = {
 
     Communities: 'api/communities',
     Community: 'api/communities/{uuid}',
+    CommunityPost: 'api/communityposts/{uuid}',
 
     Locations: 'api/locations{?exclude_group}',
     Location: 'api/locations/{id}',
