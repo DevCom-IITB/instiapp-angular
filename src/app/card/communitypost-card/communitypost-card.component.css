@@ -37,6 +37,8 @@ div.postmain {
 
 .user_date {
     position: relative;
+
+    width: max-content;
 }
 
 .user {
@@ -56,6 +58,15 @@ div.postmain {
     font-size: 12px;
     line-height: 140%;
     color: #767881;
+}
+
+.status-indicator {
+    border: 2px solid;
+    border-radius: 24px;
+
+    width: max-content;
+    height: 100%;
+    padding: 6px;
 }
 
 p {

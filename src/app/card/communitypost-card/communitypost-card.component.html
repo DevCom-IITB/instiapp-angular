@@ -69,6 +69,25 @@
           class="date"
         > {{ printable_date }}</p>
       </td>
+
+      <td
+        *ngIf="post.status !== undefined && post.status !== 1"
+      >
+      <div 
+        class="status-indicator"
+        *ngIf="post.status == 0"
+        style="border-color: #f7b100;"
+      >
+        <p style="color: #f7b100;">Pending</p>
+      </div>
+      <div 
+        class="status-indicator"
+        *ngIf="post.status == 2"
+        style="border-color: red;"
+      >
+        <p style="color: red;">Rejected</p>
+      </div>
+      </td>
       <td align="right">
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon class="icon_more">more_vert</mat-icon>

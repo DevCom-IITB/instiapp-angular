@@ -262,4 +262,5 @@ export interface ICommunityPost {
     time_of_modification: Date,
     user_reaction: number,
     most_liked_comment: ICommunityPost,
+    status: number,
 }
