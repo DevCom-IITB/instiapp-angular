@@ -68,8 +68,8 @@ export class GroupFeedComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
     dialogConfig.width = "80%";
-    dialogConfig.height = "60%";
-    dialogConfig.position = {top:'70px' };
+    dialogConfig.height = "80%";
+    // dialogConfig.position = {top:'70px' };
     dialogConfig.panelClass= 'custom-container';
     this.dialog.open(AddPostComponent,dialogConfig);
   }
