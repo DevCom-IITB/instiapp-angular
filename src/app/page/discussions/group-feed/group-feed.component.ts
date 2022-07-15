@@ -22,7 +22,6 @@ export class GroupFeedComponent implements OnInit {
 
   private dummy_text: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-  // private dummyContent: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 
   constructor(
@@ -39,10 +38,6 @@ export class GroupFeedComponent implements OnInit {
         this.refresh();
       });
     }
-
-    // this.populateGroupAndPosts();
-    // this.populateDummyData();
-    // this.dataService.scrollBottomFunction = () => {this.loadMoreDummyPosts();}
 
   }
 
@@ -64,12 +59,11 @@ export class GroupFeedComponent implements OnInit {
     this.dataService.FillGetCommunity(this.groupId).subscribe(result => {
       this.group = result;
       this.posts = this.group.posts;
+
+      this.dataService.setTitle(this.group.name);
     });
   }
 
-
-
-  
   onCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
@@ -125,8 +119,6 @@ export class GroupFeedComponent implements OnInit {
       
       this.posts.push(tempPost);
     }
-    
-    // console.log(`Loaded 20 more posts`)
   }
   
 }

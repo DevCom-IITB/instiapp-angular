@@ -29,7 +29,7 @@ export class AddPostComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dataService.setTitle("Create post")
+    // this.dataService.setTitle("Create post")
     this.populateDummyData();
   }
 

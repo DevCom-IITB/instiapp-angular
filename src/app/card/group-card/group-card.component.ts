@@ -49,6 +49,6 @@ export class GroupCardComponent implements OnInit {
 
 
   getGroupUrl(): string{
-    return  `${environment.host}org/${this.group.str_id}`;
+    return  `${environment.host}group-feed/${this.group.str_id}`;
   }
 }

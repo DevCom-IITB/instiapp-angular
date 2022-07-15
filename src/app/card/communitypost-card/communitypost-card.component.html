@@ -43,7 +43,7 @@
 
     <tr>
 
-      <td align="left" class="avatar">
+      <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
         <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
           <img 
             [src]="post.posted_by.profile_pic" 
@@ -64,7 +64,7 @@
         class="user_date"
         [ngStyle]="{ 'left.px': name_offset }"
       >
-        <p class="user">{{ post.posted_by.name }}</p>
+        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.posted_by.name }}</p>
         <p 
           class="date"
         > {{ printable_date }}</p>
@@ -79,6 +79,14 @@
             <mat-icon>pin</mat-icon>
             <!-- <img src="assets/pin.svg"> -->
             <span>Pin to featured</span>
+          </button>
+          <button *ngIf="posted_by_current_user" (click)=onEditClicked() mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit Post</span>
+          </button>
+          <button *ngIf="posted_by_current_user || is_moderator" (click)=onDeleteClicked() mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delet Post</span>
           </button>
         </mat-menu>
       </td>

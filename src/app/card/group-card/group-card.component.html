@@ -17,7 +17,7 @@
               [followers]="group.followers_count"> -->
 
 
-            <div class="card">
+            <div class="card" [routerLink]="['/group-feed', group.str_id]" (click)=onGroupClicked()>
               <table class="card-table">
                 <tbody>
                   <tr>

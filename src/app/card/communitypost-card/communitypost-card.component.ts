@@ -15,13 +15,6 @@ export class CommunityPostCardComponent implements OnInit {
   @Input() public show_comment_thread: boolean;
   @Input() public ghost: boolean;
 
-  // @Input() public avatar: string;
-  // @Input() public title = '';
-  // @Input() public subtitle = '';
-  // @Input() public badge: string;
-  // @Input() public followers: '';
-
-
   public is_moderator: boolean;
 
   public printable_date: String;
@@ -37,6 +30,8 @@ export class CommunityPostCardComponent implements OnInit {
 
   public show_comment_input: boolean;
   public more_comments: boolean;
+
+  public posted_by_current_user: boolean;
 
 
   private dummy_text: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
@@ -54,8 +49,6 @@ export class CommunityPostCardComponent implements OnInit {
     if(!this.is_rank_one && this.post.comments_count > 0 && this.post.comments.length <= 0){
       this.loadMoreComments();
     }
-
-    // console.log(`isGhost (${this.ghost}) : rank ${this.post.thread_rank}: ${this.post.comments.length} comments loaded`)
   }
 
   initialiseVariables(){
@@ -64,6 +57,11 @@ export class CommunityPostCardComponent implements OnInit {
       month: 'short',
       day: 'numeric'
     });
+
+    this.posted_by_current_user = false;
+    let cur_user = this.dataService.getCurrentUser();
+    if(cur_user !== undefined)
+      this.posted_by_current_user = (this.dataService.getCurrentUser().id === this.post.posted_by.id);
 
     if(this.post.reactions_count == null) this.post.reactions_count = [0,0,0,0,0,0]; // Maybe a different default is preferred?
 
@@ -84,15 +82,9 @@ export class CommunityPostCardComponent implements OnInit {
 
     this.more_comments = (this.post.comments.length < this.post.comments_count);
 
-    if (!this.is_rank_one){
-      this.pic_offset = -46;
-      this.name_offset = -38;
-      this.post_border_radius = 0;
-    } else{
-      this.pic_offset = 0;
-      this.name_offset = 0;
-      this.post_border_radius = 15;
-    }
+    this.pic_offset = this.is_rank_one ? 0 : -46;
+    this.name_offset = this.is_rank_one ? 0 : -38;
+    this.post_border_radius = this.is_rank_one ? 15 : 0;
 
     this.render_images = (this.post.image_url?.length > 0);
 
@@ -108,10 +100,10 @@ export class CommunityPostCardComponent implements OnInit {
     this.show_comment_thread = true;
   }
 
-  onAddReactionClicked(): void{
+  onAddReactionClicked(): void{ //TODO: Implement this
     console.log(`add reaction button clicked`)
   }
-  onReactionClicked(reaction_index: number): void{
+  onReactionClicked(reaction_index: number): void{ //TODO: Implement this
     console.log(`reaction with index ${reaction_index} clicked`)
   }
 
@@ -141,12 +133,18 @@ export class CommunityPostCardComponent implements OnInit {
     Helpers.NativeShare(`Post by ${this.post.posted_by.name}`, `Check out this post by ${this.post.posted_by.name} at InstiApp!`, this.getPostUrl());
   }
   
-  onFeaturePinClicked(): void{
+  onFeaturePinClicked(): void{//TODO: Implement this
     console.log(`user is moderator: ${this.is_moderator}; feature pin option selected`);
+  }
+  onEditClicked(): void{//TODO: Implement this
+    console.log(`current user posted: ${this.posted_by_current_user}; edit post clicked`);
+  }
+  onDeleteClicked(): void{//TODO: Implement this (not done right now because I don't wanna accidentally delete a post made with so much of hardwork :( ) anytime
+    console.log(`current user posted: ${this.posted_by_current_user}; user is moderator: ${this.is_moderator}; delete post clicked`);
   }
 
   getPostUrl(): string{
-    return  `${environment.host}org/${this.post.str_id}`;
+    return  `${environment.host}view-post/${this.post.str_id}`;
   }
 
 // Dummy data generating code below this point: REMOVE on production
