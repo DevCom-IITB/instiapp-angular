@@ -16,7 +16,9 @@
         </div>
     </div>
 
-    <textarea id="post-content-input" placeholder="Write your post…"></textarea>
+    <textarea 
+    matInput [(ngModel)]="addpost.description" rows=4 required
+    id="post-content-input" placeholder="Write your post…"></textarea>
 
     <div id="image-container" *ngIf="images">
         <ng-container *ngFor="let image of images">
@@ -41,6 +43,14 @@
                 <mat-form-field style="width:100%;">
                     <mat-icon matPrefix class="search-icon">search</mat-icon>
                     <input id="tag-input" class="taggable-search" placeholder="Search People or Institute Bodies" matInput>
+                    <mat-option *ngFor="let body of getBodies()"
+                       [value]="body.id">
+                       {{ body.name }}
+                    </mat-option>
+                    <mat-option *ngFor="let user of getPeople()"
+                       [value]="body.id">
+                       {{ body.name }}
+                    </mat-option>
                 </mat-form-field>
             </div>
         </div>

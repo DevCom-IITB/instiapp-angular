@@ -263,4 +263,9 @@ export interface ICommunityPost {
     user_reaction: number,
     most_liked_comment: ICommunityPost,
     status: number,
+    description: string,
+    tag_user : IUserProfile[],
+    tag_location : ILocation[],
+    tag_body : IBody[],
+    interests : IInterest[],
 }
