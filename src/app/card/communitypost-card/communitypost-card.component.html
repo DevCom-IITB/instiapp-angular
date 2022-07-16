@@ -109,7 +109,7 @@
           </button>
           <button *ngIf="posted_by_current_user || is_moderator" (click)=onDeleteClicked() mat-menu-item>
             <mat-icon>delete</mat-icon>
-            <span>Delet Post</span>
+            <span>Delete Post</span>
           </button>
         </mat-menu>
       </td>
@@ -143,17 +143,31 @@
         <td>
           <div class="inline">
             <!-- <img class="emoji noResponse clickable" (click)="onAddReactionClicked()" src='assets/emojis/like.png' alt='x'> -->
-            <img class="emoji noResponse clickable" (click)="onAddReactionClicked()" src='assets/emojis/add_reaction.svg' alt='x'>
+            <img class="emoji noResponse clickable" [matMenuTriggerFor]="reactMenu" (click)="onAddReactionClicked()" src='assets/emojis/add_reaction.svg' alt='x'>
             <!-- <mat-icon class="emoji noResponse clickable gray-fill-btn">thumb_up</mat-icon> -->
           </div>
+          <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="after">
+            <ng-container
+              *ngFor="let reaction of all_reactions">
+              <button
+                mat-icon-button
+                (click)="onReactionClicked(reaction.id);"
+              >
+              <img class="emoji noResponse" [src]="reaction.link">
+              </button>
+            </ng-container>
+          </mat-menu>
 
 
           <div *ngIf="num_reactions" class="reactions">
-            <img *ngIf="post.reactions_count[1]" class="emoji noResponse clickable" (click)=onReactionClicked(1) src='assets/emojis/loveeye_emoji.png' alt='x'>
+            <ng-container *ngFor="let reaction of all_reactions">
+              <img *ngIf="post.reactions_count[reaction.id]" class="emoji noResponse clickable" (click)="onReactionClicked(reaction.id);" [src]="reaction.link">
+            </ng-container>
+            <!-- <img *ngIf="post.reactions_count[1]" class="emoji noResponse clickable" (click)=onReactionClicked(1) src='assets/emojis/loveeye_emoji.png' alt='x'>
             <img *ngIf="post.reactions_count[2]" class="emoji noResponse clickable" (click)=onReactionClicked(2) src='assets/emojis/angry_emoji.png' alt='x'>
             <img *ngIf="post.reactions_count[3]" class="emoji noResponse clickable" (click)=onReactionClicked(3) src='assets/emojis/laugh_emoji.png' alt='x'>
             <img *ngIf="post.reactions_count[4]" class="emoji noResponse clickable" (click)=onReactionClicked(4) src='assets/emojis/sad_emoji.png' alt='x'>
-            <img *ngIf="post.reactions_count[5]" class="emoji noResponse clickable" (click)=onReactionClicked(5) src='assets/emojis/wow_emoji.png' alt='x'>
+            <img *ngIf="post.reactions_count[5]" class="emoji noResponse clickable" (click)=onReactionClicked(5) src='assets/emojis/wow_emoji.png' alt='x'> -->
           </div>
 
 

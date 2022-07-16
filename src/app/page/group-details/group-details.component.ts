@@ -25,7 +25,7 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
     public router: Router,
   ) { }
 
-  /** Refresh the component whenever passed eventId changes */
+  /** Refresh the component whenever passed groupId changes */
   ngOnChanges() {
     this.refresh();
   }
@@ -37,18 +37,15 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
 
     if (!this.groupId) {
       this.activatedRoute.params.subscribe((params: Params) => {
-        this.refresh();
+        // this.refresh();
         this.groupId = params['id'];
-        this.refresh();
       });
     } else {
       this.desktopMode = true;
     }
-
+    
+    this.refresh();
   }
-
-
-
 
   refresh() {
 
@@ -86,8 +83,8 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
     this.dataService.FireGET(API.BodyFollow, {
       uuid: body.id, action: body.user_follows ? 0 : 1
     }).subscribe(() => {
-      body.user_follows = !body.user_follows;
-      body.followers_count += body.user_follows ? 1 : -1;
+      this.group.is_user_following = !this.group.is_user_following;
+      this.group.followers_count += this.group.is_user_following ? 1 : -1;
     });
   }
   // /** Call the events API and show data */

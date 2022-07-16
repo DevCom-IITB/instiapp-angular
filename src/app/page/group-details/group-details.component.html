@@ -49,13 +49,32 @@
 
           <td class="fb-profile-text">
             <h1>{{group.name}}</h1>
-            <h2>{{group.followers}} Followers . 2 Posts Today</h2>
+            <!-- <h2>{{ group.followers_count }} followers . 2 Posts Today</h2> -->
+            <h2>{{ group.followers_count }} followers</h2>
           </td>
         </tr>
       </table>
     </div>
     <div class="container join_button_cont">
-      <button class="join_button clickable" (click)=onJoinClicked()>Join</button>
+      <ng-container
+        *ngIf="group.is_user_following else join_state_btn">
+        <button 
+          class="join_button clickable" 
+          (click)=onJoinClicked()
+          style="background-color:red;"
+          >
+          Leave 
+        </button>
+      </ng-container>
+      <ng-template #join_state_btn>
+        <button 
+          class="join_button clickable" 
+          (click)=onJoinClicked()
+          style="background-color: #435FFE;"
+          >
+          Join
+        </button>
+      </ng-template>
     </div>
   </div>
 

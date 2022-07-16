@@ -34,6 +34,11 @@
 
 <app-desktop-split *ngIf="posts" center_width_percentage="62.5">
         <div center>
+            <div id="tab-container">
+                <ng-container *ngFor="let tab of tabs">
+
+                </ng-container>
+            </div>            
             <div (scroll)="onScroll($event)" class="spaces">
 
                 <!-- <div class="rl-header sm main-title">

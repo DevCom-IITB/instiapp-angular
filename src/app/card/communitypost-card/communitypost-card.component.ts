@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { API } from '../../../api';
 import { environment } from '../../../environments/environment';
 import { DataService } from '../../data.service';
 import { Helpers } from '../../helpers';
@@ -33,6 +34,14 @@ export class CommunityPostCardComponent implements OnInit {
 
   public posted_by_current_user: boolean;
 
+  public all_reactions = [
+    {id: 0, link: 'assets/emojis/like.png', 'i': 'thumbsup'},
+    {id: 1, link: 'assets/emojis/loveeye_emoji.png', 'i': 'heart'},
+    {id: 2, link: 'assets/emojis/laugh_emoji.png', 'i': 'laughing'},
+    {id: 3, link: 'assets/emojis/wow_emoji.png', 'i': 'open_mouth'},
+    {id: 4, link: 'assets/emojis/sad_emoji.png', 'i': 'disappointed'},
+    {id: 5, link: 'assets/emojis/angry_emoji.png', 'i': 'angry'},
+  ]
 
   private dummy_text: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -107,6 +116,33 @@ export class CommunityPostCardComponent implements OnInit {
   }
   onReactionClicked(reaction_index: number): void{ //TODO: Implement this
     console.log(`reaction with index ${reaction_index} clicked`)
+
+    if(this.post.user_reaction !== reaction_index){
+      this.dataService.FireGET(API.CommunityPostReaction, {uuid: this.post.id, reaction: reaction_index}).subscribe(
+        () => {
+          console.log(`reaction with index ${reaction_index} successfully marked`);
+
+          this.post.reactions_count[this.post.user_reaction]--;
+          this.post.user_reaction = reaction_index;
+          this.post.reactions_count[reaction_index]++;
+        }, 
+        error =>{
+          console.log(`reaction with index ${reaction_index} log failed: ${ error }`);
+        }
+      );
+    } else{
+      this.dataService.FireGET(API.CommunityPostReaction, {uuid: this.post.id, reaction: -1}).subscribe(
+        () => {
+          console.log(`reaction with index ${reaction_index} successfully UNmarked`)
+
+          this.post.reactions_count[this.post.user_reaction]--;
+          this.post.user_reaction = -1;
+        },
+        error =>{
+          console.log(`reaction with index ${reaction_index} log failed: ${error}`);
+        }
+      )
+    }
   }
 
   onCommentButtonClicked(): void{
