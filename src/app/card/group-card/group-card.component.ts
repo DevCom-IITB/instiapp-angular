@@ -14,6 +14,7 @@ import { API } from '../../../api';
 })
 export class GroupCardComponent implements OnInit {
   @Input() group: ICommunity;
+  public group_body: IBody;
   @Input() public route: string[];
   constructor(
     public dataService: DataService,
@@ -27,10 +28,16 @@ export class GroupCardComponent implements OnInit {
       this.route = ['/group', this.group.id];
     }
 
+    this.dataService.FireGET<IBody>(API.Body, {uuid: this.group.body}).subscribe(result => {
+      this.group_body = result;
+    }, (e) => {
+      console.log(`couldn't load body: ${ e }`)
+    });
+
   }
 
   onJoinClicked(): void{
-    this.followBody(this.group.body);
+    this.followBody(this.group_body);
   }
   followBody(body: IBody) {
     if (!this.dataService.isLoggedIn()) { alert('Login first!'); return; }
@@ -38,8 +45,8 @@ export class GroupCardComponent implements OnInit {
     this.dataService.FireGET(API.BodyFollow, {
       uuid: body.id, action: body.user_follows ? 0 : 1
     }).subscribe(() => {
-      body.user_follows = !body.user_follows;
-      body.followers_count += body.user_follows ? 1 : -1;
+      this.group.is_user_following = !this.group.is_user_following;
+      this.group.followers_count += this.group.is_user_following ? 1 : -1;
     });
   }
 

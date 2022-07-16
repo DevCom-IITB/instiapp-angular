@@ -19,6 +19,7 @@ export class GroupFeedComponent implements OnInit {
 
   public is_approval_moderator: boolean;
 
+  public selected_tab: number;
   public tabs=[
     { id:0, name:"All", show: true },
     { id:1, name:"Your Posts", show: false },
@@ -39,13 +40,15 @@ export class GroupFeedComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.selected_tab = 0;
+
     if (!this.groupId) {
       this.activatedRoute.params.subscribe((params: Params) => {
         this.groupId = params['id'];
         this.refresh();
       });
 
-      this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body.id, 'AppP');
+      this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP');
     }
 
   }
@@ -67,12 +70,24 @@ export class GroupFeedComponent implements OnInit {
     this.populateGroupAndPosts(); 
   }
   populateGroupAndPosts(): void{
-    this.dataService.FillGetCommunity(this.groupId).subscribe(result => {
-      this.group = result;
-      this.posts = this.group.posts;
+    switch(this.selected_tab){
+      case 0:
+        this.dataService.FillGetCommunity(this.groupId).subscribe(result => {
+          this.group = result;
+          this.posts = this.group.posts;
 
-      // this.dataService.setTitle(this.group.name);
-    });
+          // this.dataService.setTitle(this.group.name);
+        });
+        break;
+      case 1:
+        //populate posts of the current user
+        
+        break;
+      case 2:
+        //populate pending posts for the moderator
+        break;
+
+    }
   }
 
   updateTabs(): void{
@@ -94,6 +109,10 @@ export class GroupFeedComponent implements OnInit {
     if(event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight*this.LOAD_SCROLL_THRESHOLD){
       this.loadMoreDummyPosts();
     }
+  }
+
+  onTabClicked(tab_id: number): void{
+    this.selected_tab = tab_id;
   }
   
   populateDummyGroupData(): void{

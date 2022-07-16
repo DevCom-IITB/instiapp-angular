@@ -33,7 +33,8 @@
 
 
                       <p class="followers">
-                        {{ group.followers_count }} followers . 2 posts Today
+                        <!-- {{ group.followers_count }} followers . 2 posts Today -->
+                        {{ group.followers_count }} followers
                       </p>
 
                       <p class="about">
@@ -57,7 +58,12 @@
 
             <mat-menu #menu="matMenu">
               <button (click)=onJoinClicked() mat-menu-item>
-                <mat-icon>people</mat-icon><span>Join</span>
+                <ng-container *ngIf="group.is_user_following">
+                  <mat-icon>people</mat-icon><span>Join</span>
+                </ng-container>
+                <ng-container *ngIf="!group.is_user_following">
+                  <mat-icon>people</mat-icon><span>Leave</span>
+                </ng-container>
               </button>
               <button (click)=onShareClicked() mat-menu-item>
                 <mat-icon>share</mat-icon><span>Share</span>

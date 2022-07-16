@@ -36,7 +36,11 @@
         <div center>
             <div id="tab-container">
                 <ng-container *ngFor="let tab of tabs">
-
+                    <ng-container *ngIf="tab.show">
+                        <div class="tab clickable" (click)="onTabClicked(tab.id);" [ngClass]="{ 'selected-tab': selected_tab==tab.id }">
+                            {{ tab.name }}
+                        </div>
+                    </ng-container>
                 </ng-container>
             </div>            
             <div (scroll)="onScroll($event)" class="spaces">

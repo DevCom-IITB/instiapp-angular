@@ -16,6 +16,7 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
   @Output() public load = new EventEmitter<boolean>();
 
   public group: ICommunity;
+  public group_body: IBody;
   public error: number;
   @Input() public desktopMode = false;
 
@@ -72,10 +73,16 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
       this.load.emit(false);
       this.error = e.status;
     });
+
+    this.dataService.FireGET<IBody>(API.Body, {uuid: this.group.body}).subscribe(result => {
+      this.group_body = result;
+    }, (e) => {
+      this.error = e.status;
+    });
   }
 
   onJoinClicked(): void{
-    this.followBody(this.group.body);
+    this.followBody(this.group_body);
   }
   followBody(body: IBody) {
     if (!this.dataService.isLoggedIn()) { alert('Login first!'); return; }

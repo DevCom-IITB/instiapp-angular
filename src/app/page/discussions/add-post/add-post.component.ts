@@ -28,7 +28,7 @@ export class AddPostComponent implements OnInit {
   public searchQ: string;
   public users: IUserProfile[];
   
-  addpost: ICommunityPost;
+  public addpost: ICommunityPost;
   @Input() taggables: String[];
   @Input() bodies = [] as IBody[];
   @Input() interests = [] as IInterest[];
@@ -51,9 +51,10 @@ export class AddPostComponent implements OnInit {
     this.getUser();
     
     let user = this.dataService.getCurrentUser();
-    if(user !== undefined) this.profilePic = user.profile_pic;
-
-
+    if(user !== undefined) {
+      this.userName = user.name;
+      this.profilePic = user.profile_pic;
+    };
   }
 
   getUser() {

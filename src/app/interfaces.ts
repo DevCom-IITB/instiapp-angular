@@ -232,7 +232,7 @@ export interface IOfferedAchievement {
 export interface ICommunity {
     id: string,
     name: string,
-    body: IBody,
+    body: string,
     followers_count: number,
     about: string,
     logo_image: string,
