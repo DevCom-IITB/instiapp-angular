@@ -255,7 +255,7 @@ export interface ICommunityPost {
     comments: ICommunityPost[],
     content: string,
     comments_count: number,
-    image_url: string[],
+    image_url: string,
     posted_by: IUserProfile,
     reactions_count: any[],
     time_of_creation: Date,
@@ -263,4 +263,8 @@ export interface ICommunityPost {
     user_reaction: number,
     most_liked_comment: ICommunityPost,
     status: number,
+    tag_user : IUserProfile[],
+    tag_location : ILocation[],
+    tag_body : IBody[],
+    interests : IInterest[],
 }

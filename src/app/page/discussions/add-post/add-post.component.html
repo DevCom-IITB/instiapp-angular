@@ -16,7 +16,9 @@
         </div>
     </div>
 
-    <textarea id="post-content-input" placeholder="Write your post…"></textarea>
+    <textarea 
+    matInput [(ngModel)]="addpost.content" rows=4 required
+    id="post-content-input" placeholder="Write your post…"></textarea>
 
     <div id="image-container" *ngIf="images">
         <ng-container *ngFor="let image of images">
@@ -40,7 +42,18 @@
             <div class="tag-search-container">
                 <mat-form-field style="width:100%;">
                     <mat-icon matPrefix class="search-icon">search</mat-icon>
-                    <input id="tag-input" class="taggable-search" placeholder="Search People or Institute Bodies" matInput>
+                    <input id="tag-input" class="taggable-search" 
+                    placeholder="Search People or Institute Bodies" 
+                    matInput name="search" [(ngModel)]="searchQ"
+                    (keyup)="search(searchQ)">
+                    <mat-option *ngFor="let body of getBodies()"
+                       [value]="body.id">
+                       {{ body.name }}
+                    </mat-option>
+                    <mat-option *ngFor="let user of getPeople()"
+                       [value]="user.id">
+                       {{ user.name }}
+                    </mat-option>
                 </mat-form-field>
             </div>
         </div>
@@ -72,7 +85,8 @@
             <div class="tag-search-container">
                 <mat-form-field style="width:100%;">
                     <mat-icon matPrefix class="search-icon">search</mat-icon>
-                    <input id="interest-input" class="taggable-search" placeholder="Search for some interests" matInput>
+                    <input id="interest-input" class="taggable-search" 
+                    placeholder="Search for some interests" matInput>
                 </mat-form-field>
             </div>
         </div>
@@ -92,6 +106,10 @@
                 mat-icon-button
                 class="margin-sv"
                 id="link_btn">
+                <input style="display:none;" type="file" accept="image/*" #file id="file"
+                (change)="uploadImage($event.target.files)">
+                <img class="header-image" [src]="getImageUrl()"
+                (click)="file.click()">
             <mat-icon>attach_file</mat-icon>
             </button>
             <button
