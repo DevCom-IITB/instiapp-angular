@@ -5,10 +5,10 @@
 
     <div id="user-container">
          <img class="profile-pic img-circle object-cover"
-              [src]="profilePic"
+              [src]="current_user.profile_pic"
               src-fallback="assets/useravatar.svg">
          <div id="username-container">
-             <span style="font: 14px 'Roboto';"><b>{{ userName }}</b></span>
+             <span style="font: 14px 'Roboto';"><b>{{ current_user.name }}</b></span>
              <div id="public-indicator">
                  <mat-icon style="height:14px;width:14px;font-size:14px;">public</mat-icon>
                  <span style="margin-left: 2px;">Public</span>
@@ -45,22 +45,35 @@
                     <input id="tag-input" class="taggable-search" 
                     placeholder="Search People or Institute Bodies" 
                     matInput name="search" [(ngModel)]="searchQ"
-                    (keyup)="search(searchQ)">
-                    <mat-option *ngFor="let body of getBodies()"
+                    (keyup)="search(searchQ)"
+                    [matAutocomplete]="tag_suggestions">
+
+                    <mat-autocomplete #tag_suggestions="matAutocomplete">
+                        <mat-option *ngFor="let body of tag_bodies" (click)="addTag(body, body.name, 'body'); clearTagInput();" [value]="body.name">
+                            {{ body.name }}
+                        </mat-option>
+                        <mat-option *ngFor="let user of tag_users" (click)="addTag(user, user.name,'user'); clearTagInput();" [value]="user.name">
+                            {{ user.name }}
+                        </mat-option>
+                        <mat-option *ngFor="let event of tag_events" (click)="addTag(event, event.name,'event'); clearTagInput();" [value]="event.name">
+                            {{ event.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <!-- <mat-option *ngFor="let body of getBodies()"
                        [value]="body.id">
                        {{ body.name }}
                     </mat-option>
                     <mat-option *ngFor="let user of getPeople()"
                        [value]="user.id">
                        {{ user.name }}
-                    </mat-option>
+                    </mat-option> -->
                 </mat-form-field>
             </div>
         </div>
         <div>
-            <div class="tagged" *ngFor="let taggable of taggables">
-                <span>{{ taggable }}</span>
-                <mat-icon style="height:16px;width:16px;font-size:16px;">close</mat-icon>
+            <div class="tagged" *ngFor="let tag of tagged">
+                <span>{{ tag.name }}</span>
+                <mat-icon class="clickable" (click)="removeTag(tag);" style="height:16px;width:16px;font-size:16px;">close</mat-icon>
             </div>
         </div>
     </div>

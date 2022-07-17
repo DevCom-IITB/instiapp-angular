@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../../../data.service';
-import { ICommunityPost, IBody, IInterest, IUserProfile } from '../../../interfaces';
+import { ICommunityPost, IBody, IInterest, IUserProfile, IEvent } from '../../../interfaces';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,9 +18,8 @@ const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
   styleUrls: ['./add-post.component.css']
 })
 export class AddPostComponent implements OnInit {
-  public userName = DEFAULT_USERNAME;
-  public ldap = DEFAULT_LDAP;
-  public profilePic = DEFAULT_PROFILE_PIC;
+  public current_user: IUserProfile = {} as IUserProfile;
+
   content_border = 'none';
   public networkBusy = false;
 
@@ -29,10 +28,14 @@ export class AddPostComponent implements OnInit {
   public users: IUserProfile[];
   
   public addpost: ICommunityPost = {} as ICommunityPost;
-  @Input() taggables: String[];
   @Input() bodies = [] as IBody[];
   @Input() interests = [] as IInterest[];
   @Input() location: ILocation;
+  
+  public tagged: any[] = [];
+  public tag_users: IUserProfile[];
+  public tag_events: IEvent[];
+  public tag_bodies: IBody[];
 
   
   constructor(
@@ -47,16 +50,10 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {
     // this.dataService.setTitle("Create post")
-    this.populateDummyData();
+    // this.populateDummyData();
     this.getUser();
     
     
-    let user = this.dataService.getCurrentUser();
-    if(user !== undefined) {
-      this.userName = user.name;
-      this.profilePic = user.profile_pic;
-    };
-
     this.addpost = {
       reactions_count: {
         0: 0,
@@ -68,25 +65,30 @@ export class AddPostComponent implements OnInit {
       },
       comments_count: 0,
       thread_rank: 1,
-      posted_by: user,
+      posted_by: this.current_user,
     } as ICommunityPost;
   }
 
   getUser() {
+    this.current_user.name = DEFAULT_USERNAME;
+    this.current_user.profile_pic = DEFAULT_PROFILE_PIC;
+
     this.dataService.GetFillCurrentUser().subscribe(user => {
-      this.userName = user.name;
-      this.ldap = user.roll_no;
-      this.profilePic = user.profile_pic;
+      // this.userName = user.name;
+      // this.ldap = user.roll_no;
+      // this.profilePic = user.profile_pic;
+
+      this.current_user = user;
     });
   }
 
   populateDummyData(): void{
-    this.taggables = new Array<String>();
+    this.tagged = new Array<String>();
 
-    this.taggables.push("ISHA");
-    this.taggables.push("GSCA");
-    this.taggables.push("EESA");
-    this.taggables.push("DevCom");
+    // this.tagged.push("ISHA");
+    // this.tagged.push("GSCA");
+    // this.tagged.push("EESA");
+    // this.tagged.push("DevCom");
 
     this.images = new Array<string>();
     if(this.addpost.image_url){
@@ -95,16 +97,46 @@ export class AddPostComponent implements OnInit {
     }
   }
 
-  search(query: string,) {
+  search(query: string,): void {
+    if(query.length >= 3){
+      this.dataService.FireGET<any>(API.Search, {query: query}).subscribe(result => {
+        /* Check if the search query changed in the meanwhile */
+        if (this.searchQ !== query) { return; }
 
-    this.dataService.FireGET<any>(API.Search, {query: query}).subscribe(result => {
-      /* Check if the search query changed in the meanwhile */
-      if (this.searchQ !== query) { return; }
+        /* Update all data */
+        this.tag_bodies = result.bodies;
+        this.tag_users = result.users;
+        this.tag_events = result.events;
+      });
+    }
+  }
 
-      /* Update all data */
-      this.bodies = result.bodies;
-      this.users = result.users;
-    });
+  addTag(taggable: any, name: string, type: string){
+    let tag_to_push = {
+      id: taggable.id,
+      name: name,
+      data: taggable,
+      type: type,
+    };
+
+    if(this.searchTagInTagged(tag_to_push) === -1)
+      this.tagged.push(tag_to_push);
+  }
+  removeTag(target_tag: any){
+    let target_index = this.searchTagInTagged(target_tag); 
+
+    if(target_index !== -1) this.tagged.splice(target_index,1);
+  }
+  searchTagInTagged(tag: any): number{
+    let target_index = -1;
+    for(let i=0; i<this.tagged.length; i++){
+      if(tag.id === this.tagged[i].id && tag.type === this.tagged[i].type) target_index = i;
+    }
+
+    return target_index;
+  }
+  clearTagInput(){
+    this.searchQ="";
   }
 
 
