@@ -24,6 +24,7 @@ export class GroupFeedComponent implements OnInit {
     { id:0, name:"All", show: true },
     { id:1, name:"Your Posts", show: false },
     { id:2, name:"Pending", show: false },
+    { id:3, name:"Reported", show:false },
   ];
 
   private LOAD_SCROLL_THRESHOLD: number = 0.9;
@@ -47,8 +48,6 @@ export class GroupFeedComponent implements OnInit {
         this.groupId = params['id'];
         this.refresh();
       });
-
-      this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP');
     }
 
   }
@@ -73,8 +72,13 @@ export class GroupFeedComponent implements OnInit {
     switch(this.selected_tab){
       case 0:
         this.dataService.FillGetCommunity(this.groupId).subscribe(result => {
+          //Note: This piece of code shows why the group and group posts should be obtained separately
           this.group = result;
           this.posts = this.group.posts;
+          
+          this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP');
+          console.log(`current user is approval moderator: ${this.is_approval_moderator}`);
+          this.updateTabs();
 
           // this.dataService.setTitle(this.group.name);
         });
@@ -93,6 +97,7 @@ export class GroupFeedComponent implements OnInit {
   updateTabs(): void{
     if(this.dataService.isLoggedIn()) this.tabs[1].show=true;
     if(this.is_approval_moderator) this.tabs[2].show=true;
+    this.dataService.HasBodyPermission
   }
 
   onCreate() {

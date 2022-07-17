@@ -135,10 +135,33 @@
       </ng-container>
 
   </div>
-  <div 
-    class="footer" 
-  >
-    <table width=100%>
+  <div class="footer">
+    <div
+      class="approve-action-container"
+      *ngIf="post.status === 0 && is_moderator"
+    >
+      <button mat-button class="btn-disapprove">Disapprove</button>
+      <button mat-button class="btn-approve">Approve</button>
+    </div>
+    <div
+      class="report-action-container"
+      *ngIf="post.status === 3 && is_moderator"
+    >
+      <button mat-button class="btn-ignore">Ignore</button>
+      <button mat-button class="btn-remove">Remove</button>
+      <br>
+      <button mat-button class="btn-view-details">View Report Details</button>
+    </div>
+    <div
+      class="hide-action-container"
+      *ngIf="post.status === 4 && is_moderator">
+      <button mat-button class="btn-unhide">Unhide</button>
+    </div>
+
+    <table
+      *ngIf="post.status === undefined || post.status === 1"
+      width=100%
+    >
       <tr>
         <td>
           <div class="inline">

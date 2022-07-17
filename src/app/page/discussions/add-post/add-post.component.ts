@@ -9,7 +9,6 @@ import { API } from '../../../../api';
 import { ILocation } from 'instimapweb';
 
 const DEFAULT_USERNAME = 'Anonymous';
-const DEFAULT_LDAP = 'IITB User';
 const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
 
 @Component({

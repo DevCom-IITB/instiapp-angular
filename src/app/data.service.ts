@@ -212,6 +212,9 @@ export class DataService {
     });
   }
 
+  /** Gets community with id=uuid
+   * Checks cache first and caches the community if not cached
+   */
   FillGetCommunity(uuid: string): Observable<ICommunity> {
     const index = this.groupDetailed.findIndex(m => m.id === uuid);
     return new Observable(observer => {

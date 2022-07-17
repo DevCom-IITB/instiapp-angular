@@ -17,6 +17,15 @@ export class CommunityPostCardComponent implements OnInit {
   @Input() public ghost: boolean;
   @Input() public featured: boolean;
 
+  /**
+   * status codes mapping
+   * 0: Pending Approval
+   * 1: Approved
+   * 2: Rejected
+   * 3: Reported
+   * 4: Hidden
+   */
+
   public is_moderator: boolean;
 
   public printable_date: String;
@@ -74,6 +83,7 @@ export class CommunityPostCardComponent implements OnInit {
       this.posted_by_current_user = (this.dataService.getCurrentUser().id === this.post.posted_by.id);
 
     if(this.post.reactions_count == null) this.post.reactions_count = [0,0,0,0,0,0]; // Maybe a different default is preferred?
+    if(this.post.status === undefined) this.post.status = 1;
 
     if(this.show_comment_thread === undefined)
       this.show_comment_thread = false;
@@ -84,7 +94,11 @@ export class CommunityPostCardComponent implements OnInit {
     if(this.featured === undefined)
       this.featured = false; 
     
-    this.is_moderator = false; //Note: Change this to true only for testing purposes
+    this.is_moderator = false;
+
+    // this.is_moderator=true;
+    // this.post.status=4;
+
 
     // this.num_reactions += this.post.reactions_count.reduce((a,b)=>a+b,0)
     this.num_reactions = this.post.reactions_count[0]+this.post.reactions_count[1]+this.post.reactions_count[2]+this.post.reactions_count[3]+this.post.reactions_count[4]+this.post.reactions_count[5];
