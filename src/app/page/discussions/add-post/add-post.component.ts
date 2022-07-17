@@ -28,7 +28,7 @@ export class AddPostComponent implements OnInit {
   public searchQ: string;
   public users: IUserProfile[];
   
-  public addpost: ICommunityPost;
+  public addpost: ICommunityPost = {} as ICommunityPost;
   @Input() taggables: String[];
   @Input() bodies = [] as IBody[];
   @Input() interests = [] as IInterest[];
@@ -50,11 +50,26 @@ export class AddPostComponent implements OnInit {
     this.populateDummyData();
     this.getUser();
     
+    
     let user = this.dataService.getCurrentUser();
     if(user !== undefined) {
       this.userName = user.name;
       this.profilePic = user.profile_pic;
     };
+
+    this.addpost = {
+      reactions_count: {
+        0: 0,
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+      },
+      comments_count: 0,
+      thread_rank: 1,
+      posted_by: user,
+    } as ICommunityPost;
   }
 
   getUser() {
@@ -74,8 +89,9 @@ export class AddPostComponent implements OnInit {
     this.taggables.push("DevCom");
 
     this.images = new Array<string>();
-    if(this.addpost.image_url !==null){
-      this.images.push("this.addpost.image_url")
+    if(this.addpost.image_url){
+      // this.images.push("this.addpost.image_url")
+      Array.prototype.push.apply(this.images, this.addpost.image_url.split(","));
     }
   }
 
@@ -135,8 +151,10 @@ export class AddPostComponent implements OnInit {
 
 
   onPost(){
+    this.populateNewPostData();
+
     this.dataService.FirePOST<ICommunityPost>(API.CommunityAddPost, this.addpost).subscribe(() => {
-    this.addpost = {} as ICommunityPost;
+      this.addpost = {} as ICommunityPost;
     });
 
     this.dialogRef.close();
@@ -148,6 +166,12 @@ export class AddPostComponent implements OnInit {
     dialogConfig.position = {top:'200px' };
     dialogConfig.panelClass= 'custom-container';
     this.dialog.open(ClosePopupComponent, dialogConfig);
+  }
+  populateNewPostData(): void{
+    this.addpost.time_of_creation = new Date();
+    this.addpost.time_of_modification = this.addpost.time_of_creation;
+    this.addpost.user_reaction = -1;
+    this.addpost.status = 0;
   }
 
 }

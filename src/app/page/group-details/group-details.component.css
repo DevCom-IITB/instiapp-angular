@@ -299,13 +299,17 @@ body {
     border: 2px solid silver;
     display: flex;
     align-items: center;
-    overflow: hidden;
 }
 
-.featured-post {
+.featured-container {
     text-align: center;
     background-color: aliceblue;
     border-radius: 20px;
+}
+.featured-post-container{
+    white-space: nowrap;
+
+    overflow: scroll;
 }
 
 
@@ -313,5 +317,15 @@ body {
     margin: 12px;
     padding: 12px;
     border-radius: 6px;
-    border: 1px solid #E8ECF2;
+    border: 1px solid #e8ecf2;
+}
+.role-name{
+    margin: -12px;
+    margin-bottom: 6px;
+    padding: 18px;
+
+    font: 14px 'Roboto';
+    font-weight: 600;
+
+    border-bottom: 1px solid #e8ecf2;
 }

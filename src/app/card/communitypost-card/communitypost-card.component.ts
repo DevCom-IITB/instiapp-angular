@@ -15,6 +15,7 @@ export class CommunityPostCardComponent implements OnInit {
   @Input() public post: ICommunityPost;
   @Input() public show_comment_thread: boolean;
   @Input() public ghost: boolean;
+  @Input() public featured: boolean;
 
   public is_moderator: boolean;
 
@@ -79,6 +80,9 @@ export class CommunityPostCardComponent implements OnInit {
 
     if(this.ghost === undefined)
       this.ghost = false;
+
+    if(this.featured === undefined)
+      this.featured = false; 
     
     this.is_moderator = false; //Note: Change this to true only for testing purposes
 

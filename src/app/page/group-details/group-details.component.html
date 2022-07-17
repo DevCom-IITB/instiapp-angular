@@ -78,6 +78,18 @@
     </div>
   </div>
 
+  <div class="featured-container">
+    <h4 style="padding-top: 9px; padding-bottom: 9px;  font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;">Featured</h4>
+    <div class="scroll-container featured-post-container">
+      <ng-container *ngFor="let featured of featured_posts">
+        <app-communitypost-card featured="true"></app-communitypost-card>
+      </ng-container>
+    </div>
+  </div>
+
   <div class="container">
     <mat-tab-group mat-stretch-tabs class="tabs">
       <mat-tab label="About">
@@ -85,11 +97,11 @@
       </mat-tab>
       <mat-tab label="People">
 
-        hola
-        <!-- <ng-container *ngFor="let role of group.body.roles">
+        <!-- hola -->
+        <ng-container *ngFor="let role of group_body.roles">
           
           <div class="role-container">
-            <h4>{{ role.name }}</h4>
+            <div class="role-name">{{ role.name }}</div>
             <app-user-card *ngFor="let user of role.users_detail"
                           [profile]="user"
                           role="">
@@ -98,7 +110,7 @@
 
 
         </ng-container>
- -->
+
       </mat-tab>
 
       <!-- <mat-tab label="third">
@@ -107,51 +119,6 @@
 
     </mat-tab-group>
   </div>
-
-  <div class=featured-post>
-    <h4 style="padding-top: 9px; padding-bottom: 9px;  font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;">Featured</h4>
-    <div class="scroll-container" style="overflow: auto">
-      <div>
-        {{ group.title }}
-      </div>
-
-      <div>
-        {{ group.title }}
-      </div>
-      <div>
-        {{ group.title }}
-      </div>
-      <div>
-        {{ group.title }}
-      </div>
-      <div>
-        {{ group.title }}
-      </div>
-      <div>
-        {{ group.title }}
-      </div>
-
-      <div>
-        {{ group.title }}
-      </div>
-      <div>
-        {{ group.title }}
-      </div>
-      <div>
-        {{ group.title }}
-      </div>
-      <div>
-        {{ group.title }}
-      </div>
-    </div>
-  </div>
-
-
-
-
 
 </ng-template>
 

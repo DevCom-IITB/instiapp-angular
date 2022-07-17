@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
-import { IBody, ICommunity } from '../../interfaces';
+import { IBody, ICommunity, ICommunityPost } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { API } from '../../../api';
@@ -17,6 +17,9 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
 
   public group: ICommunity;
   public group_body: IBody;
+
+  public featured_posts: ICommunityPost[];
+
   public error: number;
   @Input() public desktopMode = false;
 
