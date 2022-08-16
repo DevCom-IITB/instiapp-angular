@@ -6,13 +6,21 @@
     <div id="user-container">
         <img class="profile-pic img-circle object-cover" [src]="current_user.profile_pic"
             src-fallback="assets/useravatar.svg">
-        <div id="username-container">
+        <div id="username-container" *ngIf="!anonymous" >
             <span style="font: 14px 'Roboto';"><b>{{ current_user.name }}</b></span>
-            <div id="public-indicator">
+            <div id="public-indicator" class="clickable" (click)="toggleanon()">
                 <mat-icon style="height:14px;width:14px;font-size:14px;">public</mat-icon>
                 <span style="margin-left: 2px;">Public</span>
-            </div>
+            </div>   
         </div>
+        <div id="username-container" *ngIf="anonymous" >
+            <span style="font: 14px 'Roboto';"><b>{{ current_user.name }}</b></span>
+            <div id="public-indicator" class="clickable" (click)="toggleanon()" style="background-color:grey;">
+                <mat-icon style="height:14px;width:14px;font-size:14px;">sentiment_neutral</mat-icon>
+                <span style="margin-left: 2px;">Anonymous</span>
+            </div>   
+        </div>
+
     </div>
 
     <textarea matInput [(ngModel)]="addpost.content" rows=4 required id="post-content-input"

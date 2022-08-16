@@ -23,6 +23,7 @@ export class AddPostComponent implements OnInit {
 
   content_border = 'none';
   public networkBusy = false;
+  anonymous: boolean = false;
 
   public images: string[];
   public searchQ: string;
@@ -221,6 +222,10 @@ export class AddPostComponent implements OnInit {
     if (this.networkBusy) { return false; }
     this.networkBusy = true;
     return true;
+  }
+
+  toggleanon(){
+   this.anonymous = !this.anonymous;
   }
 
 
