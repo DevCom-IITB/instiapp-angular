@@ -53,6 +53,17 @@ export class GroupFeedComponent implements OnInit {
         this.refresh();
       });
     }
+    this.dataService.FillGetCommunity(this.groupId).subscribe(result => {
+      //Note: This piece of code shows why the group and group posts should be obtained separately
+
+      this.group = result;
+
+      this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP');
+      this.updateTabs();
+
+      // this.posts = this.group.posts;
+
+    });
 
 
   }
@@ -76,18 +87,12 @@ export class GroupFeedComponent implements OnInit {
     switch (this.selected_tab) {
       case 0:
 
-        this.dataService.FillGetCommunity(this.groupId).subscribe(result => {
-          //Note: This piece of code shows why the group and group posts should be obtained separately
-
-          this.group = result;
-          this.posts = this.group.posts;
-
-          this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP');
-          this.updateTabs();
-
-          // this.posts = this.group.posts;
-
+        this.posts = null
+        this.dataService.FireGET<any>(API.CommunityAddPost, { status: 1 }).subscribe(result => {
+          this.posts = result.data;
         });
+
+
         break;
 
       case 1:

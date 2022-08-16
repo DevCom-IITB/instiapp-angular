@@ -96,7 +96,7 @@ export class CommunityPostCardComponent implements OnInit {
       day: 'numeric'
     });
     this.user_rxn_type = this.post.user_reaction !== -1 ? this.all_reactions[this.post.user_reaction].link : null;
-
+    this.is_pending = this.post.status == 0;
     this.posted_by_current_user = false;
     let cur_user = this.dataService.getCurrentUser();
     if (cur_user !== undefined)
@@ -114,7 +114,7 @@ export class CommunityPostCardComponent implements OnInit {
     if (this.featured === undefined)
       this.featured = false;
 
-    this.is_moderator = false;
+    // this.is_moderator = false;
 
     // this.is_moderator=true;
     // this.post.status=4;

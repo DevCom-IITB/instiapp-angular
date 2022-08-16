@@ -160,10 +160,10 @@
 
   </div>
   <div class="footer">
-    <div class="approve-action-container" *ngIf="post.status === 0 && is_moderator">
+    <!-- <div class="approve-action-container" *ngIf="post.status === 0 && is_moderator">
       <button mat-button class="btn-disapprove">Disapprove</button>
       <button mat-button class="btn-approve">Approve</button>
-    </div>
+    </div> -->
     <div class="report-action-container" *ngIf="post.status === 3 && is_moderator">
       <button mat-button class="btn-ignore">Ignore</button>
       <button mat-button class="btn-remove">Remove</button>
@@ -234,9 +234,9 @@
 
   </div>
   <div *ngIf="is_rank_one && is_moderator && is_pending " class="footer">
-    <div class="moderator_controls">
-      <button mat-button (click)=onApproveClicked()>Approve</button>
-      <button mat-button (click)=onRejectClicked()>Reject</button>
+    <div class="approve-action-container">
+      <button mat-button class="btn-approve" (click)=onApproveClicked()>Approve</button>
+      <button mat-button class="btn-disapprove" (click)=onRejectClicked()>Reject</button>
     </div>
   </div>
 
