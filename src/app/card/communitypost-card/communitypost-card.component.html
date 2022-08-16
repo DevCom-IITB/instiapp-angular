@@ -5,7 +5,7 @@
 
 
 
-<div *ngIf="ghost" class="hidden-main">
+<div *ngIf="ghost && show_post" class="hidden-main">
 
   <table width="100%" style="table-layout: fixed;">
     <tr>
@@ -25,7 +25,7 @@
   </table>
 </div>
 
-<div *ngIf="featured" class="ghost-main">
+<div *ngIf="featured show_post" class="ghost-main">
 
   <table width="100%" style="table-layout: fixed;">
     <tr>
@@ -77,7 +77,7 @@
 
 </div>
 
-<div *ngIf="!ghost && !featured" class="postmain" [ngStyle]="{
+<div *ngIf="!ghost && !featured && show_post" class="postmain" [ngStyle]="{
     'border-radius.px': post_border_radius 
   }">
   <table width="100%">

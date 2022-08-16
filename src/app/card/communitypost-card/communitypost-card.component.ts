@@ -23,6 +23,7 @@ export class CommunityPostCardComponent implements OnInit {
   @Input() public is_moderator: boolean;
 
   public current_user: IUserProfile = {} as IUserProfile;
+  public show_post: boolean = true;
 
 
   /**
@@ -261,6 +262,7 @@ export class CommunityPostCardComponent implements OnInit {
     if (this.posted_by_current_user || this.is_moderator) {
       this.dataService.FirePUT<any>(API.CommunityModerationAction, {}, { action: 'delete', uuid: this.post.id }).subscribe(res => {
         console.log(res);
+        this.show_post = false;
       }, error => {
         console.log(error);
 
@@ -280,6 +282,7 @@ export class CommunityPostCardComponent implements OnInit {
     // this.dataService.FirePUT(API.CommunityModeration, { uuid: this.post.id, status: 1 }).subscribe();
     this.dataService.FirePUT(API.CommunityModeration, { status: 1 }, { uuid: this.post.id }).subscribe(res => {
       console.log(res);
+      this.show_post = false;
     }, error => {
       console.log(error);
 
