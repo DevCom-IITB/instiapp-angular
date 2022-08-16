@@ -52,7 +52,7 @@ export class DiscussionsComponent implements OnInit {
 
     // adding route
     if (this.dataService.isMobile()) {
-      this.router.navigate(['group', group.id]);
+      // this.router.navigate(['group', group.id]);
     } else {
       this.selected_group = group;
     }

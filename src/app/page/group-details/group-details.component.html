@@ -68,47 +68,48 @@
       </ng-template>
     </div>
   </div>
-
-  <div class="featured-container">
-    <h4 style="padding-top: 9px; padding-bottom: 9px;  font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;">Featured</h4>
-    <div class="scroll-container featured-post-container ">
-      <ng-container *ngFor="let featured of featured_posts">
-        <app-communitypost-card [featured]="true" [post]="featured"></app-communitypost-card>
-
-      </ng-container>
-    </div>
-  </div>
-
+  
   <div class="container">
     <mat-tab-group mat-stretch-tabs class="tabs">
       <mat-tab label="About">
         <p class="tabText">{{group.description}}</p>
       </mat-tab>
       <mat-tab label="People">
-
+        
         <!-- hola -->
         <ng-container *ngFor="let role of group.roles">
-
+          
           <div class="role-container">
             <div class="role-name">{{ role.name }}</div>
             <app-user-card *ngFor="let user of role.users_detail" [profile]="user" role="">
             </app-user-card>
           </div>
-
-
+          
+          
         </ng-container>
-
+        
       </mat-tab>
-
+      
       <!-- <mat-tab label="third">
         <app-achievement-new *ngIf="!dataService.isMobile()"></app-achievement-new>
-    </mat-tab> -->
-
+      </mat-tab> -->
+      
     </mat-tab-group>
+
   </div>
+  
+    <div class="featured-container">
+      <h4 style="padding-top: 9px; padding-bottom: 9px;  font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;">Featured</h4>
+      <div class="scroll-container featured-post-container ">
+        <ng-container *ngFor="let featured of featured_posts">
+          <app-communitypost-card [featured]="true" [post]="featured"></app-communitypost-card>
+  
+        </ng-container>
+      </div>
+    </div>
 
 </ng-template>
 
