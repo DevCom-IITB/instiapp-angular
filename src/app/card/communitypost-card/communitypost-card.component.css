@@ -367,7 +367,10 @@ p.ghost-content {
 
     padding: 10px;
     margin: 6px -10px;
+
     display: flex;
+    align-content: center;
+    justify-content: center;
 
     /* flex: none;
     order: 2;
@@ -470,4 +473,12 @@ p.hidden-content {
     font-family: 'Roboto';
     font-style: normal;
     font-size: 14px;
+}
+
+#send-comment-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 6px;
 }

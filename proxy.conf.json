@@ -1,12 +1,12 @@
 {
-  "/api/**": {
-    "target": {
-      "host": "localhost:4200",
-      "protocol": "http:",
-      "port": 8000
-    },
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "info"
-  }
+    "/api/**": {
+      "target": {
+        "host": "localhost",
+        "protocol": "http:",
+        "port": 8000
+        },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "info"
+    }
 }

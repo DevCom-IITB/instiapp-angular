@@ -242,9 +242,9 @@
 
   <div *ngIf="show_comment_input" class="comment-input-container">
     <input (keydown.enter)="onCommentSubmit()" matInput [(ngModel)]="content" required id="comment-content-input"
-      placeholder="Add a commpent...">
+      placeholder="Add a comment...">
 
-    <button (click)=onCommentSubmit()>Submit</button>
+    <div id="send-comment-btn" class="clickable" (click)=onCommentSubmit()><mat-icon>send</mat-icon></div>
   </div>
 
   <div *ngIf="!is_rank_one && !show_comment_thread && post.comments_count > 0"
