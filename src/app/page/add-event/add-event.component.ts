@@ -84,7 +84,7 @@ export class AddEventComponent implements OnInit {
       return e.id !== interest.id;
     });
 
-    this.event.interests_id = this.event.interests_id.filter(function(e) {
+    this.event.interests_id = this.event.interests_id.filter(function (e) {
       return e !== interest.id;
     });
   }
@@ -293,6 +293,9 @@ export class AddEventComponent implements OnInit {
 
   uploadImage(files: FileList) {
     if (!this.MarkNetworkBusy()) { return; }
+    console.log("files");
+    console.log(files[0]);
+
 
     this.dataService.UploadImage(files[0]).subscribe(result => {
       this.event.image_url = result.picture;

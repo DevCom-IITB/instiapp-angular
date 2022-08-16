@@ -1,0 +1,11 @@
+.full_search {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.full-width-post {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+}

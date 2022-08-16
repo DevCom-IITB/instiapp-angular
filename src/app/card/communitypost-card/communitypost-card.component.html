@@ -3,94 +3,119 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<div *ngIf="ghost" class="ghost-main">
+
+
+<div *ngIf="ghost" class="hidden-main">
 
   <table width="100%" style="table-layout: fixed;">
     <tr>
       <td align="left" class="avatar">
         <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-          <img 
-            [src]="post.posted_by.profile_pic" 
-            class="img-circle object-cover"
-            [ngStyle]="{ 'left.px': pic_offset }"
-          >
+          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
         </ng-container>
         <ng-template #default_avatar>
-          <img 
-            src="assets/logo.png" 
-            class="img-circle object-cover"
-          >
+          <img src="assets/logo.png" class="img-circle object-cover">
         </ng-template>
       </td>
 
-      <td 
-        class="ghost-content-container"
-      >
-        <p class="ghost-content">{{ post.content }}</p>
+      <td class="hidden-content-container">
+        <p class="hidden-content">{{ post.content }}</p>
       </td>
     </tr>
   </table>
 </div>
 
-<div 
-  *ngIf="!ghost"
-  class="postmain"
-  [ngStyle]="{
+<div *ngIf="featured" class="ghost-main">
+
+  <table width="100%" style="table-layout: fixed;">
+    <tr>
+
+
+      <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
+        <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
+          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+        </ng-container>
+        <ng-template #default_avatar>
+          <img src="assets/logo.png" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+        </ng-template>
+      </td>
+      <td class="user_date" style="left: 44px; text-align: left;">
+        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.posted_by.name }}</p>
+        <p class="date"> {{ printable_date }}</p>
+      </td>
+    </tr>
+  </table>
+
+
+  <table width="100%">
+    <td class=" ghost-content-container">
+      <div *ngIf="!render_images">
+        <p class="ghost-content">
+          {{ post.content }}
+        </p>
+      </div>
+
+      <div *ngIf="render_images">
+        <p class="ghost-content" style="-webkit-line-clamp: 2;">
+          {{ post.content }}
+        </p>
+      </div>
+    </td>
+
+  </table>
+  <div *ngIf="render_images" class="images">
+
+    <!-- <img
+      src="https://media.pitchfork.com/photos/620e81cad8bc62857b465cc3/2:1/w_2560%2Cc_limit/Stranger-Things-Season-4.jpg"
+      class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;"> -->
+    <ng-container *ngFor="let imgUrl of post.image_url">
+      <img [src]="imgUrl" class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
+    </ng-container>
+
+  </div>
+
+
+</div>
+
+<div *ngIf="!ghost && !featured" class="postmain" [ngStyle]="{
     'border-radius.px': post_border_radius 
-  }"
->
+  }">
   <table width="100%">
 
     <tr>
 
       <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
         <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-          <img 
-            [src]="post.posted_by.profile_pic" 
-            class="img-circle object-cover"
-            [ngStyle]="{ 'left.px': pic_offset }"
-          >
+          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
         </ng-container>
         <ng-template #default_avatar>
-          <img 
-            src="assets/logo.png" 
-            class="img-circle object-cover"
-            [ngStyle]="{ 'left.px': pic_offset }"
-          >
+          <img src="assets/logo.png" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
         </ng-template>
       </td>
 
-      <td 
-        class="user_date"
-        [ngStyle]="{ 'left.px': name_offset }"
-      >
+      <td class="user_date" [ngStyle]="{ 'left.px': name_offset }">
         <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.posted_by.name }}</p>
-        <p 
-          class="date"
-        > {{ printable_date }}</p>
+        <p class="date"> {{ printable_date }}</p>
       </td>
 
-      <td *ngIf="post.status !== undefined && post.status !== 1">
-        <ng-container [ngSwitch]="post.status">
+      <td *ngIf="post.status !== undefined && (post.status !== 1 || post.deleted)">
+        <ng-container *ngIf="post.deleted; else statusBadge">
+          <div class="status-indicator" style="border-color: red;">
+            <p style="color: red;">Deleted</p>
+          </div>
+        </ng-container>
+        <ng-template #statusBadge [ngSwitch]="post.status">
           <ng-container *ngSwitchCase="0">
-            <div 
-              class="status-indicator"
-              *ngIf="post.status == 0"
-              style="border-color: #f7b100;"
-            >
+            <div class="status-indicator" *ngIf="post.status == 0" style="border-color: #f7b100;">
               <p style="color: #f7b100;">Pending</p>
             </div>
           </ng-container>
           <ng-container *ngSwitchCase="2">
-            <div 
-              class="status-indicator"
-              *ngIf="post.status == 2"
-              style="border-color: red;"
-            >
+            <div class="status-indicator" *ngIf="post.status == 2" style="border-color: red;">
               <p style="color: red;">Rejected</p>
             </div>
           </ng-container>
-        </ng-container>
+        </ng-template>
       </td>
       <td align="right">
         <button mat-button [matMenuTriggerFor]="menu">
@@ -99,11 +124,12 @@
         <mat-menu #menu="matMenu">
           <button *ngIf="is_moderator" (click)=onFeaturePinClicked() mat-menu-item>
             <!-- TODO: Keep a dynamic text and icon for this. If already pinned, change to 'unpin' text and icon -->
-            <mat-icon>pin</mat-icon>
+            <mat-icon>offline_pin</mat-icon>
             <!-- <img src="assets/pin.svg"> -->
-            <span>Pin to featured</span>
+            <span *ngIf="!post.featured">Pin to Featured</span>
+            <span *ngIf="post.featured">Unpin from Featured</span>
           </button>
-          <button *ngIf="posted_by_current_user" (click)=onEditClicked() mat-menu-item>
+          <button *ngIf="posted_by_current_user && is_rank_one" (click)=onEditClicked() mat-menu-item>
             <mat-icon>edit</mat-icon>
             <span>Edit Post</span>
           </button>
@@ -118,7 +144,7 @@
 
   <table width="100%">
     <p class="content">
-    {{ post.content }}
+      {{ post.content }}
     </p>
 
   </table>
@@ -128,55 +154,40 @@
     <!-- <img
       src="https://media.pitchfork.com/photos/620e81cad8bc62857b465cc3/2:1/w_2560%2Cc_limit/Stranger-Things-Season-4.jpg"
       class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;"> -->
-      <ng-container *ngFor="let imgUrl of post.image_url">
-        <img
-          [src]="imgUrl"
-          class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
-      </ng-container>
+    <ng-container *ngFor="let imgUrl of post.image_url">
+      <img [src]="imgUrl" class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
+    </ng-container>
 
   </div>
   <div class="footer">
-    <div
-      class="approve-action-container"
-      *ngIf="post.status === 0 && is_moderator"
-    >
+    <div class="approve-action-container" *ngIf="post.status === 0 && is_moderator">
       <button mat-button class="btn-disapprove">Disapprove</button>
       <button mat-button class="btn-approve">Approve</button>
     </div>
-    <div
-      class="report-action-container"
-      *ngIf="post.status === 3 && is_moderator"
-    >
+    <div class="report-action-container" *ngIf="post.status === 3 && is_moderator">
       <button mat-button class="btn-ignore">Ignore</button>
       <button mat-button class="btn-remove">Remove</button>
       <br>
       <button mat-button class="btn-view-details">View Report Details</button>
     </div>
-    <div
-      class="hide-action-container"
-      *ngIf="post.status === 4 && is_moderator">
+    <div class="hide-action-container" *ngIf="post.status === 4 && is_moderator">
       <button mat-button class="btn-unhide">Unhide</button>
     </div>
 
-    <table
-      *ngIf="post.status === undefined || post.status === 1"
-      width=100%
-    >
+    <table *ngIf="post.status === undefined || post.status === 1" width=100%>
       <tr>
         <td>
           <div class="inline">
             <!-- <img class="emoji noResponse clickable" (click)="onAddReactionClicked()" src='assets/emojis/like.png' alt='x'> -->
-            <img class="emoji noResponse clickable" [matMenuTriggerFor]="reactMenu" (click)="onAddReactionClicked()" src='assets/emojis/add_reaction.svg' alt='x'>
+            <img class="emoji noResponse clickable" [matMenuTriggerFor]="reactMenu" (click)="onAddReactionClicked()"
+              [src]="post.user_reaction !== -1 ? user_rxn_type :add_image_url" alt='x'>
+            <!-- "user_rxn_type !== -1 ? user_rxn_type :add_image_url" -->
             <!-- <mat-icon class="emoji noResponse clickable gray-fill-btn">thumb_up</mat-icon> -->
           </div>
           <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="after">
-            <ng-container
-              *ngFor="let reaction of all_reactions">
-              <button
-                mat-icon-button
-                (click)="onReactionClicked(reaction.id);"
-              >
-              <img class="emoji noResponse" [src]="reaction.link">
+            <ng-container *ngFor="let reaction of all_reactions">
+              <button mat-icon-button (click)="onReactionClicked(reaction.id);">
+                <img class="emoji noResponse" [src]="reaction.link">
               </button>
             </ng-container>
           </mat-menu>
@@ -184,13 +195,9 @@
 
           <div *ngIf="num_reactions" class="reactions">
             <ng-container *ngFor="let reaction of all_reactions">
-              <img *ngIf="post.reactions_count[reaction.id]" class="emoji noResponse clickable" (click)="onReactionClicked(reaction.id);" [src]="reaction.link">
+              <img *ngIf="post.reactions_count[reaction.id]" class="emoji noResponse clickable"
+                (click)="onReactionClicked(reaction.id);" [src]="reaction.link">
             </ng-container>
-            <!-- <img *ngIf="post.reactions_count[1]" class="emoji noResponse clickable" (click)=onReactionClicked(1) src='assets/emojis/loveeye_emoji.png' alt='x'>
-            <img *ngIf="post.reactions_count[2]" class="emoji noResponse clickable" (click)=onReactionClicked(2) src='assets/emojis/angry_emoji.png' alt='x'>
-            <img *ngIf="post.reactions_count[3]" class="emoji noResponse clickable" (click)=onReactionClicked(3) src='assets/emojis/laugh_emoji.png' alt='x'>
-            <img *ngIf="post.reactions_count[4]" class="emoji noResponse clickable" (click)=onReactionClicked(4) src='assets/emojis/sad_emoji.png' alt='x'>
-            <img *ngIf="post.reactions_count[5]" class="emoji noResponse clickable" (click)=onReactionClicked(5) src='assets/emojis/wow_emoji.png' alt='x'> -->
           </div>
 
 
@@ -207,11 +214,7 @@
               <span> {{ post.comments_count }}</span>
             </div>
           </div>
-          <div
-            *ngIf="!is_rank_one" 
-            (click)=onReplyClicked()
-            class="comments noResponse clickable"
-            clickable>
+          <div *ngIf="!is_rank_one" (click)=onReplyClicked() class="comments noResponse clickable" clickable>
             <!-- <mat-icon class="emoji noResponse gray-fill-btn">reply</mat-icon> -->
             <img class="emoji noResponse gray-fill-btn" src="assets/reply.svg" alt="x">
           </div>
@@ -228,20 +231,26 @@
       </tr>
     </table>
 
-    
+
+  </div>
+  <div *ngIf="is_rank_one && is_moderator && is_pending " class="footer">
+    <div class="moderator_controls">
+      <button mat-button (click)=onApproveClicked()>Approve</button>
+      <button mat-button (click)=onRejectClicked()>Reject</button>
+    </div>
   </div>
 
   <div *ngIf="show_comment_input" class="comment-input-container">
-    <input id="comment-content-input" placeholder="Add a comment...">
+    <input (keydown.enter)="onCommentSubmit()" matInput [(ngModel)]="content" required id="comment-content-input"
+      placeholder="Add a commpent...">
+
+    <button (click)=onCommentSubmit()>Submit</button>
   </div>
 
-  <div 
-    *ngIf="!is_rank_one && !show_comment_thread && post.comments.length > 0"
-     class="comment-thread-container clickable"
-     (click)=onGhostClicked()
-  >
+  <div *ngIf="!is_rank_one && !show_comment_thread && post.comments_count > 0"
+    class="comment-thread-container clickable" (click)=onGhostClicked()>
     <div class="comment-thread-subcontainer">
-      <app-communitypost-card [post]="post.comments[0]" ghost="true"></app-communitypost-card>
+      <app-communitypost-card [post]="post.most_liked_comment" ghost="true"></app-communitypost-card>
     </div>
   </div>
 
@@ -253,7 +262,8 @@
     </div>
   </div>
 
-  <div *ngIf="more_comments && show_comment_thread" (click)=onViewMoreClicked() class="btn_view-more-comments clickable">
+  <div *ngIf="more_comments && show_comment_thread" (click)=onViewMoreClicked()
+    class="btn_view-more-comments clickable">
     <p>View more comments</p>
   </div>
 </div>

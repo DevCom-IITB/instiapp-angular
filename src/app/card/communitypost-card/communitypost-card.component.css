@@ -1,8 +1,8 @@
-.clickable{
+.clickable {
     cursor: pointer;
 }
 
-.gray-fill-btn{
+.gray-fill-btn {
     color: #767881;
 }
 
@@ -13,8 +13,20 @@ div.postmain {
     align-items: center;
     padding: 10px;
     margin: 10px;
+    background: white;
+    /* margin: 5px; */
+}
+
+div.postmain_feature {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    padding: 10px;
+    margin: 10px;
     /* border-radius: 15px; */
     background: white;
+    width: 332px;
     /* margin: 5px; */
 }
 
@@ -27,8 +39,9 @@ div.postmain {
 
     border: 4px solid white;
     /* border: 4px solid black; */
-    border-radius: 500px; /* any ridiculously large radius would work for making a circle, apparently*/
-    
+    border-radius: 500px;
+    /* any ridiculously large radius would work for making a circle, apparently*/
+
     height: 38px;
     width: 38px;
     background: url('assets/lotus_placeholder.png') no-repeat;
@@ -39,6 +52,7 @@ div.postmain {
     position: relative;
 
     width: max-content;
+
 }
 
 .user {
@@ -89,6 +103,7 @@ p {
 
     color: #000000c2;
     margin-bottom: 16px;
+
 
 }
 
@@ -279,8 +294,9 @@ span {
     white-space: nowrap;
 
 }
-img.img-responsive{
-    max-height:50vh;
+
+img.img-responsive {
+    max-height: 50vh;
     max-width: 50vh;
 
     height: auto;
@@ -303,16 +319,144 @@ div.ghost-main {
     justify-content: space-between;
     align-items: center;
     padding: 0px 10px;
+    margin: 0px 5px;
+    background: white;
+    overflow: hidden;
+    width: 323px;
+    border-radius: 10px;
+
+}
+
+.ghost-content-container {
+    position: relative;
+
+
+    display: block;
+
+}
+
+p.ghost-content {
+    display: block;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+
+    margin-left: 6px;
+    /* padding: 12px; */
+
+    /* background-color: #F0F2F7; */
+
+    color: #5E6067;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 14px;
+
+
+
+
+    display: -webkit-box;
+
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.comment-input-container {
+    background-color: #E8ECF2;
+    /* background-color: #0c326b; */
+    box-sizing: border-box;
+
+    padding: 10px;
+    margin: 6px -10px;
+    display: flex;
+
+    /* flex: none;
+    order: 2;
+    flex-grow: 0; */
+
+    height: 56px;
+
+    position: relative;
+}
+
+
+#comment-content-input {
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 36px;
+
+    padding: 6px 9px;
+
+    border-radius: 5px;
+    border: 0px solid white;
+}
+
+.comment-thread-container {
+    padding-left: 12px;
+    margin-right: -20px;
+}
+
+.comment-thread-subcontainer {
+    border-left: 1px solid #C7C7C7;
+    /* padding-left: 6px; */
+}
+
+/* .comment-rank-indicator{
+    display:block;
+    position:relative;
+    top:60px;
+    height: calc(100% - 60px);
+    left:0;
+    width: 2px;
+    background-color: rgba(0,0,0,0.1);
+} */
+
+.btn_view-more-comments {
+    margin: -10px;
+    margin-top: 0px;
+    padding: 6px 0px;
+
+    /* border: 1px solid red; */
+    box-shadow: 0px -7px 29px -13px #0A0E32;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #47484D;
+
+    border-radius: 0 0 15px 15px;
+}
+
+.btn_view-more-comments p {
+    font: 12px 'Roboto';
+}
+
+
+
+
+
+
+
+
+div.hidden-main {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
     margin: 0px 10px;
     background: white;
 }
-.ghost-content-container{
+
+.hidden-content-container {
     position: relative;
 
     vertical-align: middle;
 }
-p.ghost-content{
-    display:block;
+
+p.hidden-content {
+    display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -326,74 +470,4 @@ p.ghost-content{
     font-family: 'Roboto';
     font-style: normal;
     font-size: 14px;
-}
-
-.comment-input-container {
-    background-color: #E8ECF2;
-    /* background-color: #0c326b; */
-    box-sizing: border-box;
-
-    padding: 10px;
-    margin: 6px -10px;
-
-    /* flex: none;
-    order: 2;
-    flex-grow: 0; */
-
-    height: 56px;
-
-    position:relative;
-}
-
-
-#comment-content-input {
-    background-color: #FFFFFF;
-    box-sizing: border-box;
-    
-    width: 100%;
-    height: 36px;
-    
-    padding: 6px 9px;
-    
-    border-radius: 5px;
-    border: 0px solid white;
-}
-
-.comment-thread-container {
-    padding-left: 12px;
-    margin-right: -20px;
-}
-.comment-thread-subcontainer {
-    border-left: 1px solid #C7C7C7;
-    /* padding-left: 6px; */
-}
-/* .comment-rank-indicator{
-    display:block;
-    position:relative;
-    top:60px;
-    height: calc(100% - 60px);
-    left:0;
-    width: 2px;
-    background-color: rgba(0,0,0,0.1);
-} */
-
-.btn_view-more-comments{
-    margin: -10px;
-    margin-top: 0px;
-    padding: 6px 0px;
-
-    /* border: 1px solid red; */
-    box-shadow: 0px -7px 29px -13px #0A0E32;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: #47484D;
-
-    border-radius: 0 0 15px 15px;
-}
-
-.btn_view-more-comments p{
-    font: 12px 'Roboto';
 }

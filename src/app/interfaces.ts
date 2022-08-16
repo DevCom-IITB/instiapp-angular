@@ -244,6 +244,7 @@ export interface ICommunity {
     posts: ICommunityPost[],
     roles: IBodyRole[],
     str_id: string,
+    featured_posts: ICommunityPost[],
 
 }
 
@@ -255,7 +256,7 @@ export interface ICommunityPost {
     comments: ICommunityPost[],
     content: string,
     comments_count: number,
-    image_url: string,
+    image_url: string[],
     posted_by: IUserProfile,
     reactions_count: any,
     time_of_creation: Date,
@@ -263,8 +264,12 @@ export interface ICommunityPost {
     user_reaction: number,
     most_liked_comment: ICommunityPost,
     status: number,
-    tag_user : IUserProfile[],
-    tag_location : ILocation[],
-    tag_body : IBody[],
-    interests : IInterest[],
+    tag_user: IUserProfile[],
+    tag_location: ILocation[],
+    tag_body: IBody[],
+    deleted: boolean,
+    interests: IInterest[],
+    community: ICommunity,
+    parent: string,
+    featured: boolean,
 }

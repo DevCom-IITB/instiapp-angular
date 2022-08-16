@@ -15,9 +15,11 @@ export const API = {
 
     Communities: 'api/communities',
     Community: 'api/communities/{uuid}',
-    CommunityAddPost: 'api/communityposts',
+    CommunityAddPost: 'api/communityposts{?status}',
     CommunityPost: 'api/communityposts/{uuid}',
     CommunityPostReaction: 'api/user-me/ucpr/{uuid}{?reaction}',
+    CommunityModeration: 'api/communityposts/moderator/{uuid}',
+    CommunityModerationAction: 'api/communityposts/{action}/{uuid}',
 
     Locations: 'api/locations{?exclude_group}',
     Location: 'api/locations/{id}',

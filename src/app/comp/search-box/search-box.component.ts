@@ -18,6 +18,7 @@ export class SearchBoxComponent implements OnInit {
   @Input() hint = 'Enter a name or roll number';
   @Output() change = new EventEmitter<any>();
 
+
   addForm: FormControl;
   exploreObs: Observable<any[]>;
 
@@ -28,6 +29,8 @@ export class SearchBoxComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.exploreObs = this.addForm.valueChanges.pipe(
       debounceTime(200),
       distinctUntilChanged(),
@@ -45,8 +48,8 @@ export class SearchBoxComponent implements OnInit {
         observer.complete();
       } else {
         this.dataService.FireGET<any>(API.Search, { query: query, types: this.exploreProp }).subscribe(result => {
-            observer.next(result[this.exploreProp]);
-            observer.complete();
+          observer.next(result[this.exploreProp]);
+          observer.complete();
         }, (error) => observer.error(error));
       }
     });

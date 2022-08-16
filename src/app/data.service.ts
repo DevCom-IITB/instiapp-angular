@@ -233,11 +233,11 @@ export class DataService {
     });
   }
 
-  fillGetPost(uuid: string): Observable<ICommunityPost>{
+  fillGetPost(uuid: string): Observable<ICommunityPost> {
     const index = this.postDetailed.findIndex(m => m.id === uuid);
     return new Observable(observer => {
-      if (index === -1){
-        this.FireGET<ICommunityPost>(API.CommunityPost, {uuid: uuid}).subscribe(result => {
+      if (index === -1) {
+        this.FireGET<ICommunityPost>(API.CommunityPost, { uuid: uuid }).subscribe(result => {
           this.postDetailed.push(result);
           observer.next(result);
           observer.complete()

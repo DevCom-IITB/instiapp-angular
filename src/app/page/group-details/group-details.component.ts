@@ -47,7 +47,7 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
     } else {
       this.desktopMode = true;
     }
-    
+
     this.refresh();
   }
 
@@ -67,6 +67,7 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
       // });
 
       this.group = result;
+      this.featured_posts = result.featured_posts;
 
       /* Do not change title in split mode */
       if (!this.desktopMode) {
@@ -77,14 +78,14 @@ export class GroupDetailsComponent implements OnChanges, OnInit {
       this.error = e.status;
     });
 
-    this.dataService.FireGET<IBody>(API.Body, {uuid: this.group.body}).subscribe(result => {
+    this.dataService.FireGET<IBody>(API.Body, { uuid: this.group.body }).subscribe(result => {
       this.group_body = result;
     }, (e) => {
       this.error = e.status;
     });
   }
 
-  onJoinClicked(): void{
+  onJoinClicked(): void {
     this.followBody(this.group_body);
   }
   followBody(body: IBody) {
