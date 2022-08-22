@@ -137,6 +137,10 @@
             <mat-icon>delete</mat-icon>
             <span>Delete Post</span>
           </button>
+          <button (click)=onShareClicked() *ngIf="post.status == 1"mat-menu-item>
+            <mat-icon>share</mat-icon>
+            <span>Share Post</span>
+          </button>
         </mat-menu>
       </td>
     </tr>
