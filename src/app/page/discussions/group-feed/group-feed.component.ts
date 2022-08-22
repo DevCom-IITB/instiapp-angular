@@ -57,6 +57,7 @@ export class GroupFeedComponent implements OnInit {
       //Note: This piece of code shows why the group and group posts should be obtained separately
 
       this.group = result;
+      this.dataService.setTitle(this.group.name);
 
       this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP');
       this.updateTabs();
