@@ -5,6 +5,8 @@ import { ICommunity, ICommunityPost } from '../../../interfaces';
 import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
 import { AddPostComponent } from '../add-post/add-post.component';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-group-feed',
@@ -42,10 +44,14 @@ export class GroupFeedComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
 
     public changeDetectorRef: ChangeDetectorRef,
-  ) { }
+    private titleService:Title,
+  ) {  
+    this.titleService.setTitle(this.group.name);
+  }
 
   ngOnInit(): void {
     this.selected_tab = 0;
+
 
     if (!this.groupId) {
       this.activatedRoute.params.subscribe((params: Params) => {
