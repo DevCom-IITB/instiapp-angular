@@ -3,25 +3,28 @@
         <p style="font: 20px 'Roboto';"><b>Create Post</b></p>
     </div>
 
-    <div id="user-container">
+    <div id="user-container" *ngIf="!anonymous">
         <img class="profile-pic img-circle object-cover" [src]="anonymous ? 'assets/logo.png' : current_user.profile_pic"
             src-fallback="assets/useravatar.svg">
-        <div id="username-container" *ngIf="!anonymous" >
+        <div id="username-container"  >
             <span style="font: 14px 'Roboto';"><b>{{ current_user.name }}</b></span>
             <div id="public-indicator" class="clickable" (click)="toggleAnon()">
                 <mat-icon style="height:14px;width:14px;font-size:14px;">public</mat-icon>
                 <span style="margin-left: 2px;">Public</span>
             </div>   
         </div>
-        <div id="username-container" *ngIf="anonymous" >
-            <span style="font: 14px 'Roboto';"><b>Anonymous</b></span>
-            <div id="public-indicator" class="clickable" (click)="toggleAnon()" style="background-color:lightgrey;">
-                <mat-icon style="height:14px;width:14px;font-size:14px;">sentiment_neutral</mat-icon>
-                <span style="margin-left: 2px;">Anonymous</span>
-            </div>   
-        </div>
-
     </div>
+
+        <div id="user-container" *ngIf="anonymous">
+            <img class="profile-pic img-circle object-cover" src ="assets/anonymous_pic.jpg">
+         <div id="username-container" >
+            <span style="font: 14px 'Roboto';"><b>Anonymous</b></span>
+            <div id="public-indicator" class="clickable" (click)="toggleAnon()" style="background-color:black;">
+                <mat-icon style="height:14px;width:14px;font-size:14px; color:white;">sentiment_neutral</mat-icon>
+                <span style="margin-left: 2px; color:white;">Anonymous</span>
+            </div>   
+         </div>
+        </div>
 
     <textarea matInput [(ngModel)]="addpost.content" rows=4 required id="post-content-input"
         placeholder="Write your post…"></textarea>
