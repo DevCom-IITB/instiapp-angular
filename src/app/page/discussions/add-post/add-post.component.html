@@ -4,18 +4,18 @@
     </div>
 
     <div id="user-container">
-        <img class="profile-pic img-circle object-cover" [src]="current_user.profile_pic"
+        <img class="profile-pic img-circle object-cover" [src]="anonymous ? 'assets/logo.png' : current_user.profile_pic"
             src-fallback="assets/useravatar.svg">
         <div id="username-container" *ngIf="!anonymous" >
             <span style="font: 14px 'Roboto';"><b>{{ current_user.name }}</b></span>
-            <div id="public-indicator" class="clickable" (click)="toggleanon()">
+            <div id="public-indicator" class="clickable" (click)="toggleAnon()">
                 <mat-icon style="height:14px;width:14px;font-size:14px;">public</mat-icon>
                 <span style="margin-left: 2px;">Public</span>
             </div>   
         </div>
         <div id="username-container" *ngIf="anonymous" >
-            <span style="font: 14px 'Roboto';"><b>{{ current_user.name }}</b></span>
-            <div id="public-indicator" class="clickable" (click)="toggleanon()" style="background-color:grey;">
+            <span style="font: 14px 'Roboto';"><b>Anonymous</b></span>
+            <div id="public-indicator" class="clickable" (click)="toggleAnon()" style="background-color:lightgrey;">
                 <mat-icon style="height:14px;width:14px;font-size:14px;">sentiment_neutral</mat-icon>
                 <span style="margin-left: 2px;">Anonymous</span>
             </div>   
@@ -86,20 +86,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="tagging-container">
-        <div class="tagging-container-header">
-            <div class="tag-type-container">
-                <p><b>Location</b></p>
-            </div>
-            <div class="tag-search-container">
-                <mat-form-field style="width:100%;">
-                    <mat-icon matPrefix class="search-icon">search</mat-icon>
-                    <input id="location-input" class="taggable-search" placeholder="Search location around the campus"
-                        matInput>
-                </mat-form-field>
-            </div>
-        </div>
-    </div> -->
 
     <div class="tagging-container">
         <div class="tagging-container-header">
@@ -108,12 +94,9 @@
             </div>
             <div class="tag-search-container">
                 <app-search-box style="
-                    width: -webkit-fill-available;" exploreProp="interests" displayProp="title"
+                    width: 100%;" exploreProp="interests" displayProp="title"
                     placeholder="Search for interests" hint="" (change)="setInterest($event)">
                 </app-search-box>
-
-
-
 
 
             </div>
@@ -125,12 +108,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
 
 
     <mat-dialog-actions>

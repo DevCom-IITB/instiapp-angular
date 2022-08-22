@@ -138,8 +138,6 @@ export class AddPostComponent implements OnInit {
 
       console.log(this.interest.title)
 
-
-
       if (this.searchTagInTaggedI(this.interest) === -1) {
         console.log("pushing");
 
@@ -215,8 +213,6 @@ export class AddPostComponent implements OnInit {
     this.searchQ = "";
   }
 
-
-
   /** Tries to mark the network as busy */
   MarkNetworkBusy(): Boolean {
     if (this.networkBusy) { return false; }
@@ -224,14 +220,9 @@ export class AddPostComponent implements OnInit {
     return true;
   }
 
-  toggleanon(){
+  toggleAnon(){
    this.anonymous = !this.anonymous;
   }
-
-
-
-
-
 
   uploadImage(files: FileList) {
     if (!this.MarkNetworkBusy()) { return; }
@@ -261,14 +252,13 @@ export class AddPostComponent implements OnInit {
 
   onPost() {
     this.populateNewPostData();
-    // console.log(this.community.id);
+    if(this.anonymous) this.addpost.posted_by.anonymous = true;
+
     this.addpost.tag_body = this.tagged_bodies;
     this.addpost.tag_user = this.tagged_users;
 
     console.log(this.addpost.image_url);
     console.log(this.addpost);
-
-
 
     this.addpost.interests = this.tagged_interests;
 
