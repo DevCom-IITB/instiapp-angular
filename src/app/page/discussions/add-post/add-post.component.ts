@@ -2,9 +2,9 @@ import { Component, OnInit, Input, ChangeDetectorRef, Inject } from '@angular/co
 import { DataService } from '../../../data.service';
 import { ICommunityPost, IBody, IInterest, IUserProfile, IEvent, ICommunity } from '../../../interfaces';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
+//import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClosePopupComponent } from './close-popup/close-popup.component';
+//import { ClosePopupComponent } from './close-popup/close-popup.component';
 
 import { API } from '../../../../api';
 import { ILocation } from 'instimapweb';
@@ -50,7 +50,7 @@ export class AddPostComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    private dialog: MatDialog,
+    //private dialog: MatDialog,
     public dialogRef: MatDialogRef<AddPostComponent>,
     public changeDetectorRef: ChangeDetectorRef,
     public snackBar: MatSnackBar,
@@ -275,14 +275,16 @@ export class AddPostComponent implements OnInit {
     }
 
     this.dialogRef.close();
+    this.snackBar.open('Sent for Verification', 'Dismiss', {
+      duration: 3000,})
 
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = false;
-    dialogConfig.width = "30%";
-    dialogConfig.height = "20%";
-    dialogConfig.position = { top: '200px' };
-    dialogConfig.panelClass = 'custom-container';
-    this.dialog.open(ClosePopupComponent, dialogConfig);
+    //const dialogConfig = new MatDialogConfig();
+    //dialogConfig.autoFocus = false;
+    //dialogConfig.width = "30%";
+    //dialogConfig.height = "20%";
+    //dialogConfig.position = { top: '200px' };
+    //dialogConfig.panelClass = 'custom-container';
+    //this.dialog.open(ClosePopupComponent, dialogConfig);
   }
   populateNewPostData(): void {
     this.addpost.time_of_creation = new Date();
