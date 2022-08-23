@@ -27,7 +27,6 @@ export interface IUserProfile {
     institute_roles: IInstituteRole[];
     achievements: IAchievement[];
     skills: ISkill[];
-    anonymous: boolean;
 }
 
 export interface IEvent {
@@ -273,4 +272,5 @@ export interface ICommunityPost {
     community: ICommunity,
     parent: string,
     featured: boolean,
+    anonymous: boolean,
 }

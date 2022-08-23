@@ -49,3 +49,4 @@ src/environments/environment.ts
 
 # TODO files
 *.todo
+src/environments/environment.ts

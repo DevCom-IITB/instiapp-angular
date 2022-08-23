@@ -252,8 +252,8 @@ export class AddPostComponent implements OnInit {
 
   onPost() {
     this.populateNewPostData();
-    if(this.anonymous) 
-    {this.addpost.posted_by.anonymous = true;}
+
+    this.addpost.anonymous = this.anonymous;
 
     this.addpost.tag_body = this.tagged_bodies;
     this.addpost.tag_user = this.tagged_users;

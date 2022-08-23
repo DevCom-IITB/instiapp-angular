@@ -5,7 +5,6 @@ import { ICommunity, ICommunityPost } from '../../../interfaces';
 import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
 import { AddPostComponent } from '../add-post/add-post.component';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -44,9 +43,8 @@ export class GroupFeedComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
 
     public changeDetectorRef: ChangeDetectorRef,
-    private titleService:Title,
   ) {  
-    this.titleService.setTitle(this.group.name);
+  
   }
 
   ngOnInit(): void {
@@ -65,7 +63,7 @@ export class GroupFeedComponent implements OnInit {
       this.group = result;
       this.dataService.setTitle(this.group.name);
 
-      this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP');
+      this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP'); //ModC
       this.updateTabs();
 
       // this.posts = this.group.posts;
