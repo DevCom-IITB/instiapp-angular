@@ -133,14 +133,32 @@
             <mat-icon>edit</mat-icon>
             <span>Edit Post</span>
           </button>
-          <button *ngIf="posted_by_current_user || is_moderator" (click)=onDeleteClicked() mat-menu-item>
+          <button *ngIf="(posted_by_current_user || is_moderator) && is_rank_one" (click)=onDeleteClicked() mat-menu-item>
             <mat-icon>delete</mat-icon>
             <span>Delete Post</span>
           </button>
-          <button (click)=onShareClicked() *ngIf="post.status == 1"mat-menu-item>
+          <button (click)=onShareClicked() *ngIf="post.status == 1 && is_rank_one"mat-menu-item>
             <mat-icon>share</mat-icon>
             <span>Share Post</span>
           </button>
+
+          <button *ngIf="(posted_by_current_user || is_moderator) && !is_rank_one" (click)=onDeleteClicked() mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete Comment</span>
+          </button>
+          <button (click)=onShareClicked() *ngIf="post.status == 1 && !is_rank_one"mat-menu-item>
+            <mat-icon>share</mat-icon>
+            <span>Share Post</span>
+          </button>
+          <button (click)=onReportClicked() *ngIf="post.status == 1 && !is_rank_one && !has_user_reported"mat-menu-item>
+            <mat-icon>report</mat-icon>
+            <span>Report Comment</span>
+          </button>
+          <button (click)=onReportClicked() *ngIf="post.status == 1 && !is_rank_one && has_user_reported"mat-menu-item>
+            <mat-icon>report</mat-icon>
+            <span>Unreport Comment</span>
+          </button>
+
         </mat-menu>
       </td>
     </tr>
