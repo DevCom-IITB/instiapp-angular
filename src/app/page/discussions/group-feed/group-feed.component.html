@@ -50,7 +50,10 @@
                     {{ 'Spaces' }}
                 </div> -->
             <div *ngFor="let post of posts">
-                <app-communitypost-card [post]="post" [is_moderator]="is_approval_moderator">
+                <app-communitypost-card [post]="post" 
+                    [is_approval_moderator]="is_approval_moderator" 
+                    [is_comment_moderator]="is_comment_moderator"
+                >
 
                 </app-communitypost-card>
             </div>

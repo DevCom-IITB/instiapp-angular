@@ -85,16 +85,21 @@
     <tr>
 
       <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
-        <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+        <ng-container *ngIf="post.anonymous; else non_anon">
+            <img src="assets/anonymous_pic.jpg" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
         </ng-container>
-        <ng-template #default_avatar>
-          <img src="assets/logo.png" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+        <ng-template #non_anon>
+          <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
+            <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+          </ng-container>
+          <ng-template #default_avatar>
+            <img src="assets/logo.png" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+          </ng-template>
         </ng-template>
       </td>
 
       <td class="user_date" [ngStyle]="{ 'left.px': name_offset }">
-        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.posted_by.name }}</p>
+        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.anonymous ? "Anonymous" : post.posted_by.name }}</p>
         <p class="date"> {{ printable_date }}</p>
       </td>
 
@@ -122,7 +127,7 @@
           <mat-icon class="icon_more">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button *ngIf="is_moderator" (click)=onFeaturePinClicked() mat-menu-item>
+          <button *ngIf="is_approval_moderator" (click)=onFeaturePinClicked() mat-menu-item>
             <!-- TODO: Keep a dynamic text and icon for this. If already pinned, change to 'unpin' text and icon -->
             <mat-icon>offline_pin</mat-icon>
             <!-- <img src="assets/pin.svg"> -->
@@ -133,7 +138,7 @@
             <mat-icon>edit</mat-icon>
             <span>Edit Post</span>
           </button>
-          <button *ngIf="posted_by_current_user || is_moderator" (click)=onDeleteClicked() mat-menu-item>
+          <button *ngIf="posted_by_current_user || is_comment_moderator" (click)=onDeleteClicked() mat-menu-item>
             <mat-icon>delete</mat-icon>
             <span>Delete Post</span>
           </button>
@@ -168,13 +173,13 @@
       <button mat-button class="btn-disapprove">Disapprove</button>
       <button mat-button class="btn-approve">Approve</button>
     </div> -->
-    <div class="report-action-container" *ngIf="post.status === 3 && is_moderator">
+    <div class="report-action-container" *ngIf="post.status === 3 && is_approval_moderator">
       <button mat-button class="btn-ignore">Ignore</button>
       <button mat-button class="btn-remove">Remove</button>
       <br>
       <button mat-button class="btn-view-details">View Report Details</button>
     </div>
-    <div class="hide-action-container" *ngIf="post.status === 4 && is_moderator">
+    <div class="hide-action-container" *ngIf="post.status === 4 && is_approval_moderator">
       <button mat-button class="btn-unhide">Unhide</button>
     </div>
 
@@ -237,7 +242,7 @@
 
 
   </div>
-  <div *ngIf="is_rank_one && is_moderator && is_pending " class="footer">
+  <div *ngIf="is_rank_one && is_approval_moderator && is_pending " class="footer">
     <div class="approve-action-container">
       <button mat-button class="btn-approve" (click)=onApproveClicked()>Approve</button>
       <button mat-button class="btn-disapprove" (click)=onRejectClicked()>Reject</button>

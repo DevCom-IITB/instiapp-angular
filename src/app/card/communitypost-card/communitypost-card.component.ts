@@ -20,7 +20,9 @@ export class CommunityPostCardComponent implements OnInit {
   @Input() public show_comment_thread: boolean;
   @Input() public ghost: boolean;
   @Input() public featured: boolean;
-  @Input() public is_moderator: boolean;
+  @Input() public is_approval_moderator: boolean;
+  @Input() public is_comment_moderator: boolean;
+
 
   public current_user: IUserProfile = {} as IUserProfile;
   public show_post: boolean = true;
@@ -115,21 +117,13 @@ export class CommunityPostCardComponent implements OnInit {
     if (this.featured === undefined)
       this.featured = false;
 
-    // this.is_moderator = false;
-
-    // this.is_moderator=true;
-    // this.post.status=4;
-
 
     if (this.post.content.startsWith("dfgvfdbdb")) {
       console.log("Deleted")
       console.log(this.post.deleted);
     }
 
-    // console.log(this.is_moderator);
-    // this.num_reactions += this.post.reactions_count.reduce((a,b)=>a+b,0)
     this.num_reactions = this.post.reactions_count[0] + this.post.reactions_count[1] + this.post.reactions_count[2] + this.post.reactions_count[3] + this.post.reactions_count[4] + this.post.reactions_count[5];
-    // console.log(this.post.thread_rank);
 
     this.is_rank_one = (this.post.thread_rank == 1);
 
@@ -141,7 +135,6 @@ export class CommunityPostCardComponent implements OnInit {
     this.name_offset = this.is_rank_one ? 0 : -38;
     this.post_border_radius = this.is_rank_one ? 15 : 0;
 
-    // this.render_images = false;
     if (this.post.image_url !== undefined && this.post.image_url !== null)
       this.render_images = (this.post.image_url.length > 0);
     else
@@ -259,7 +252,7 @@ export class CommunityPostCardComponent implements OnInit {
   onDeleteClicked(): void {//TODO: Implement this (not done right now because I don't wanna accidentally delete a post made with so much of hardwork :( ) anytime
     // console.log(`current user posted: ${this.posted_by_current_user}; user is moderator: ${this.is_moderator}; delete post clicked`);
 
-    if (this.posted_by_current_user || this.is_moderator) {
+    if (this.posted_by_current_user || this.is_comment_moderator) {
       this.dataService.FirePUT<any>(API.CommunityModerationAction, {}, { action: 'delete', uuid: this.post.id }).subscribe(res => {
         console.log(res);
         this.show_post = false;

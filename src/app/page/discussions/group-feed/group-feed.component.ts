@@ -22,6 +22,7 @@ export class GroupFeedComponent implements OnInit {
   public posts: ICommunityPost[];
 
   public is_approval_moderator: boolean;
+  public is_comment_moderator: boolean;
 
   public selected_tab: number;
   public tabs = [
@@ -64,10 +65,9 @@ export class GroupFeedComponent implements OnInit {
       this.dataService.setTitle(this.group.name);
 
       this.is_approval_moderator = this.dataService.HasBodyPermission(this.group.body, 'AppP'); //ModC
+      this.is_comment_moderator = this.dataService.HasBodyPermission(this.group.body, 'ModC'); //ModC
+
       this.updateTabs();
-
-      // this.posts = this.group.posts;
-
     });
 
 
