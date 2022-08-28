@@ -5,7 +5,8 @@
 
 
 
-<div *ngIf="ghost && show_post" class="hidden-main">
+<!-- Ghost post card (seen when loading sub-comments of a post/comment) -->
+<!-- <div *ngIf="ghost && show_post" class="hidden-main">
 
   <table width="100%" style="table-layout: fixed;">
     <tr>
@@ -23,14 +24,20 @@
       </td>
     </tr>
   </table>
-</div>
+</div> -->
+<ng-container *ngIf="ghost && show_post">
+  <app-ghost-post
+    [post_content]="post.content"
+    [poster_pic_path]="post.posted_by.profile_pic"
+  >
+  </app-ghost-post>
+</ng-container>
 
-<div *ngIf="featured show_post" class="ghost-main">
+<!-- Featured Post (seen in the featured section) -->
+<!-- <div *ngIf="featured show_post" class="ghost-main">
 
   <table width="100%" style="table-layout: fixed;">
     <tr>
-
-
       <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
         <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
           <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
@@ -65,9 +72,6 @@
   </table>
   <div *ngIf="render_images" class="images">
 
-    <!-- <img
-      src="https://media.pitchfork.com/photos/620e81cad8bc62857b465cc3/2:1/w_2560%2Cc_limit/Stranger-Things-Season-4.jpg"
-      class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;"> -->
     <ng-container *ngFor="let imgUrl of post.image_url">
       <img [src]="imgUrl" class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
     </ng-container>
@@ -75,8 +79,14 @@
   </div>
 
 
-</div>
+</div> -->
+<ng-container *ngIf="featured && show_post">
+  <app-featured-post [post]="post">
 
+  </app-featured-post>
+</ng-container>
+
+<!-- Normal Post (which appears on the group feed and is the most common post) -->
 <div *ngIf="!ghost && !featured && show_post" class="postmain" [ngStyle]="{
     'border-radius.px': post_border_radius 
   }">
@@ -182,9 +192,6 @@
 
   </div>
   <div class="footer">
-      <button mat-button class="btn-disapprove">Disapprove</button>
-      <button mat-button class="btn-approve">Approve</button>
-    </div> -->
     <div class="report-action-container" *ngIf="post.status === 3 && is_approval_moderator">
       <button mat-button class="btn-ignore">Ignore</button>
       <button mat-button class="btn-remove">Remove</button>
@@ -261,7 +268,7 @@
     </div>
   </div>
 
-  <div *ngIf="!is_rank_one && is_moderator " class="footer">
+  <div *ngIf="!is_rank_one && is_approval_moderator " class="footer">
     <div class="approve-action-container">
       <button mat-button class="btn-approve" (click)=onIgnoreClicked()>Ignore</button>
       <button mat-button class="btn-disapprove" (click)=onRejectClicked()>Delete</button>

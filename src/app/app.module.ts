@@ -87,6 +87,8 @@ import { GroupDetailsComponent } from './page/group-details/group-details.compon
 import { PostViewComponent } from './page/discussions/post-view/post-view.component';
 import { ClosePopupComponent } from './page/discussions/add-post/close-popup/close-popup.component';
 import { ModeratorPageComponent } from './page/discussions/moderator-page/moderator-page.component';
+import { GhostPostComponent } from './card/communitypost-card/ghost-post/ghost-post.component';
+import { FeaturedPostComponent } from './card/communitypost-card/featured-post/featured-post.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +145,8 @@ import { ModeratorPageComponent } from './page/discussions/moderator-page/modera
     PostViewComponent,
     ClosePopupComponent,
     ModeratorPageComponent,
+    GhostPostComponent,
+    FeaturedPostComponent,
   ],
   imports: [
     BrowserModule,

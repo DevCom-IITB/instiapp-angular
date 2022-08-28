@@ -143,10 +143,6 @@ export class CommunityPostCardComponent implements OnInit {
       this.render_images = false;
 
     this.show_comment_input = this.is_rank_one && this.show_comment_thread;
-
-
-    // this.post.status = 2; //FIXIT: Remove this line after testing
-    // console.log(`${this.post.thread_rank} rank: ${this.post.comments_count} comments`)
   }
 
   onViewMoreClicked(): void {

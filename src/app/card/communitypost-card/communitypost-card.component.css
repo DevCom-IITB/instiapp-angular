@@ -342,21 +342,14 @@ p.ghost-content {
     text-overflow: ellipsis;
 
     margin-left: 6px;
-    /* padding: 12px; */
-
-    /* background-color: #F0F2F7; */
 
     color: #5E6067;
     font-family: 'Roboto';
     font-style: normal;
     font-size: 14px;
 
-
-
-
     display: -webkit-box;
 
-    /* number of lines to show */
     -webkit-box-orient: vertical;
 }
 
@@ -443,7 +436,7 @@ p.ghost-content {
 
 
 
-div.hidden-main {
+/* div.hidden-main {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -473,7 +466,7 @@ p.hidden-content {
     font-family: 'Roboto';
     font-style: normal;
     font-size: 14px;
-}
+} */
 
 #send-comment-btn{
     display: flex;
