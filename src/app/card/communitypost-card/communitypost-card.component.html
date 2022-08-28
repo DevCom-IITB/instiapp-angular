@@ -270,7 +270,7 @@
 
   <div *ngIf="!is_rank_one && is_approval_moderator " class="footer">
     <div class="approve-action-container">
-      <button mat-button class="btn-approve" (click)=onIgnoreClicked()>Ignore</button>
+      <button mat-button class="btn-approve" (click)=onApproveClicked()>Ignore</button>
       <button mat-button class="btn-disapprove" (click)=onRejectClicked()>Delete</button>
     </div>
   </div>
@@ -300,5 +300,4 @@
   <div *ngIf="more_comments && show_comment_thread" (click)=onViewMoreClicked()
     class="btn_view-more-comments clickable">
     <p>View more comments</p>
-  </div>
 </div>
