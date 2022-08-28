@@ -261,6 +261,13 @@
     </div>
   </div>
 
+  <div *ngIf="!is_rank_one && is_moderator " class="footer">
+    <div class="approve-action-container">
+      <button mat-button class="btn-approve" (click)=onIgnoreClicked()>Ignore</button>
+      <button mat-button class="btn-disapprove" (click)=onRejectClicked()>Delete</button>
+    </div>
+  </div>
+
   <div *ngIf="show_comment_input" class="comment-input-container">
     <input (keydown.enter)="onCommentSubmit()" matInput [(ngModel)]="content" required id="comment-content-input"
       placeholder="Add a comment...">
