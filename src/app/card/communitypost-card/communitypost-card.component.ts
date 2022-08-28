@@ -291,9 +291,6 @@ export class CommunityPostCardComponent implements OnInit {
     });
   }
 
-  onIgnoreClicked() {
-    console.log("jaa bhai maak kiya");
-  }
 
   onRejectClicked() {
     this.post.status = 2;
