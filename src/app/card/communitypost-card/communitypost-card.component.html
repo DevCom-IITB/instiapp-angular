@@ -128,9 +128,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <button *ngIf="is_approval_moderator" (click)=onFeaturePinClicked() mat-menu-item>
-            <!-- TODO: Keep a dynamic text and icon for this. If already pinned, change to 'unpin' text and icon -->
             <mat-icon>offline_pin</mat-icon>
-            <!-- <img src="assets/pin.svg"> -->
             <span *ngIf="!post.featured">Pin to Featured</span>
             <span *ngIf="post.featured">Unpin from Featured</span>
           </button>
@@ -138,14 +136,29 @@
             <mat-icon>edit</mat-icon>
             <span>Edit Post</span>
           </button>
-          <button *ngIf="posted_by_current_user || is_comment_moderator" (click)=onDeleteClicked() mat-menu-item>
+          <button *ngIf="posted_by_current_user || (is_approval_moderator && is_rank_one) || (is_comment_moderator && !is_rank_one)" 
+            (click)=onDeleteClicked() mat-menu-item>
             <mat-icon>delete</mat-icon>
-            <span>Delete Post</span>
+            <span>{{ is_rank_one ? 'Delete Post' : 'Delete Comment' }}</span>
           </button>
-          <button (click)=onShareClicked() *ngIf="post.status == 1"mat-menu-item>
+          <button (click)=onShareClicked() *ngIf="post.status == 1 && is_rank_one"mat-menu-item>
             <mat-icon>share</mat-icon>
             <span>Share Post</span>
           </button>
+
+          <button (click)=onShareClicked() *ngIf="post.status == 1 && !is_rank_one"mat-menu-item>
+            <mat-icon>share</mat-icon>
+            <span>Share Post</span>
+          </button>
+          <button (click)=onReportClicked() *ngIf="post.status == 1 && !is_rank_one && !has_user_reported"mat-menu-item>
+            <mat-icon>report</mat-icon>
+            <span>Report Comment</span>
+          </button>
+          <button (click)=onReportClicked() *ngIf="post.status == 1 && !is_rank_one && has_user_reported"mat-menu-item>
+            <mat-icon>report</mat-icon>
+            <span>Unreport Comment</span>
+          </button>
+
         </mat-menu>
       </td>
     </tr>
@@ -169,7 +182,6 @@
 
   </div>
   <div class="footer">
-    <!-- <div class="approve-action-container" *ngIf="post.status === 0 && is_moderator">
       <button mat-button class="btn-disapprove">Disapprove</button>
       <button mat-button class="btn-approve">Approve</button>
     </div> -->

@@ -273,4 +273,6 @@ export interface ICommunityPost {
     parent: string,
     featured: boolean,
     anonymous: boolean,
+    has_user_reported: boolean,
+    reported_by: IUserProfile[],
 }

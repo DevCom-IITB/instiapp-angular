@@ -116,12 +116,20 @@ export class GroupFeedComponent implements OnInit {
         //populate pending posts for the moderator
         break;
 
+        case 3:
+          this.posts = null
+          this.dataService.FireGET<any>(API.CommunityAddPost, { status: 3}).subscribe(result =>{
+            this.posts = result.data;
+          });
+
+         break;
+
     }
   }
 
   updateTabs(): void {
     if (this.dataService.isLoggedIn()) this.tabs[1].show = true;
-    if (this.is_approval_moderator) this.tabs[2].show = true;
+    if (this.is_approval_moderator) {this.tabs[2].show = true; this.tabs[3].show = true};
     this.dataService.HasBodyPermission
   }
 

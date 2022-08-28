@@ -57,6 +57,8 @@ export class CommunityPostCardComponent implements OnInit {
   public user_rxn_type: string;
 
   public posted_by_current_user: boolean;
+  
+  has_user_reported: boolean = false;
 
   public content: string;
 
@@ -226,6 +228,17 @@ export class CommunityPostCardComponent implements OnInit {
 
   onShareClicked(): void {
     Helpers.NativeShare(`Post by ${this.post.posted_by.name}`, `Check out this post by ${this.post.posted_by.name} at InstiApp!`, this.getPostUrl());
+  }
+
+  onReportClicked() {
+   this.has_user_reported =!this.has_user_reported;
+
+   this.dataService.FirePUT<any>(API.CommunityModerationAction, {}, { action: 'report', uuid: this.post.id }).subscribe(res => {
+    console.log(res);
+  }, error => {
+    console.log(error);
+
+  });
   }
 
   onFeaturePinClicked(): void {
