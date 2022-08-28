@@ -301,6 +301,11 @@ export class CommunityPostCardComponent implements OnInit {
 
     });
   }
+
+  onIgnoreClicked() {
+    console.log("jaa bhai maak kiya");
+  }
+
   onRejectClicked() {
     this.post.status = 2;
     this.dataService.FirePUT(API.CommunityModeration, { status: 2 }, { uuid: this.post.id }).subscribe(res => {
