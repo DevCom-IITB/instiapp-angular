@@ -22,7 +22,7 @@ export class CommunityPostCardComponent implements OnInit {
   @Input() public featured: boolean;
   @Input() public is_approval_moderator: boolean;
   @Input() public is_comment_moderator: boolean;
-
+  @Input() public is_nested: boolean;
 
   public current_user: IUserProfile = {} as IUserProfile;
   public show_post: boolean = true;
@@ -107,6 +107,7 @@ export class CommunityPostCardComponent implements OnInit {
     if (cur_user !== undefined)
       this.posted_by_current_user = (this.dataService.getCurrentUser().id === this.post.posted_by.id);
 
+    if(this.is_nested == undefined) this.is_nested = false;
     if (this.post.reactions_count == null) this.post.reactions_count = [0, 0, 0, 0, 0, 0]; // Maybe a different default is preferred?
     if (this.post.status === undefined) this.post.status = 1;
 
@@ -133,9 +134,12 @@ export class CommunityPostCardComponent implements OnInit {
 
     this.more_comments = (this.post.comments.length < this.post.comments_count);
 
-    this.pic_offset = this.is_rank_one ? 0 : -46;
-    this.name_offset = this.is_rank_one ? 0 : -38;
-    this.post_border_radius = this.is_rank_one ? 15 : 0;
+    // this.pic_offset = this.is_rank_one ? 0 : -46;
+    // this.name_offset = this.is_rank_one ? 0 : -38;
+    // this.post_border_radius = this.is_rank_one ? 15 : 0;
+    this.pic_offset = !this.is_rank_one && this.is_nested ? -46 : 0;
+    this.name_offset = !this.is_rank_one && this.is_nested ? -38 : 0;
+    this.post_border_radius = !this.is_rank_one && this.is_nested ? 0 : 15;
 
     if (this.post.image_url !== undefined && this.post.image_url !== null)
       this.render_images = (this.post.image_url.length > 0);

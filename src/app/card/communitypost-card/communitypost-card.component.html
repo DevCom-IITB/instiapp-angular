@@ -6,25 +6,6 @@
 
 
 <!-- Ghost post card (seen when loading sub-comments of a post/comment) -->
-<!-- <div *ngIf="ghost && show_post" class="hidden-main">
-
-  <table width="100%" style="table-layout: fixed;">
-    <tr>
-      <td align="left" class="avatar">
-        <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
-        </ng-container>
-        <ng-template #default_avatar>
-          <img src="assets/logo.png" class="img-circle object-cover">
-        </ng-template>
-      </td>
-
-      <td class="hidden-content-container">
-        <p class="hidden-content">{{ post.content }}</p>
-      </td>
-    </tr>
-  </table>
-</div> -->
 <ng-container *ngIf="ghost && show_post">
   <app-ghost-post
     [post_content]="post.content"
@@ -34,52 +15,6 @@
 </ng-container>
 
 <!-- Featured Post (seen in the featured section) -->
-<!-- <div *ngIf="featured show_post" class="ghost-main">
-
-  <table width="100%" style="table-layout: fixed;">
-    <tr>
-      <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
-        <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
-        </ng-container>
-        <ng-template #default_avatar>
-          <img src="assets/logo.png" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
-        </ng-template>
-      </td>
-      <td class="user_date" style="left: 44px; text-align: left;">
-        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.posted_by.name }}</p>
-        <p class="date"> {{ printable_date }}</p>
-      </td>
-    </tr>
-  </table>
-
-
-  <table width="100%">
-    <td class=" ghost-content-container">
-      <div *ngIf="!render_images">
-        <p class="ghost-content">
-          {{ post.content }}
-        </p>
-      </div>
-
-      <div *ngIf="render_images">
-        <p class="ghost-content" style="-webkit-line-clamp: 2;">
-          {{ post.content }}
-        </p>
-      </div>
-    </td>
-
-  </table>
-  <div *ngIf="render_images" class="images">
-
-    <ng-container *ngFor="let imgUrl of post.image_url">
-      <img [src]="imgUrl" class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
-    </ng-container>
-
-  </div>
-
-
-</div> -->
 <ng-container *ngIf="featured && show_post">
   <app-featured-post [post]="post">
 
@@ -113,6 +48,7 @@
         <p class="date"> {{ printable_date }}</p>
       </td>
 
+      <!-- Post status indicators -->
       <td *ngIf="post.status !== undefined && (post.status !== 1 || post.deleted)">
         <ng-container *ngIf="post.deleted; else statusBadge">
           <div class="status-indicator" style="border-color: red;">
@@ -132,39 +68,41 @@
           </ng-container>
         </ng-template>
       </td>
+
       <td align="right">
-        <button mat-button [matMenuTriggerFor]="menu">
+        <button mat-button *ngIf="post.status == 1" [matMenuTriggerFor]="menu">
           <mat-icon class="icon_more">more_vert</mat-icon>
         </button>
+
         <mat-menu #menu="matMenu">
           <button *ngIf="is_approval_moderator" (click)=onFeaturePinClicked() mat-menu-item>
             <mat-icon>offline_pin</mat-icon>
             <span *ngIf="!post.featured">Pin to Featured</span>
             <span *ngIf="post.featured">Unpin from Featured</span>
           </button>
+
           <button *ngIf="posted_by_current_user && is_rank_one" (click)=onEditClicked() mat-menu-item>
             <mat-icon>edit</mat-icon>
             <span>Edit Post</span>
           </button>
+
           <button *ngIf="posted_by_current_user || (is_approval_moderator && is_rank_one) || (is_comment_moderator && !is_rank_one)" 
             (click)=onDeleteClicked() mat-menu-item>
             <mat-icon>delete</mat-icon>
             <span>{{ is_rank_one ? 'Delete Post' : 'Delete Comment' }}</span>
           </button>
-          <button (click)=onShareClicked() *ngIf="post.status == 1 && is_rank_one"mat-menu-item>
+
+          <button (click)=onShareClicked() mat-menu-item>
             <mat-icon>share</mat-icon>
             <span>Share Post</span>
           </button>
 
-          <button (click)=onShareClicked() *ngIf="post.status == 1 && !is_rank_one"mat-menu-item>
-            <mat-icon>share</mat-icon>
-            <span>Share Post</span>
-          </button>
-          <button (click)=onReportClicked() *ngIf="post.status == 1 && !is_rank_one && !has_user_reported"mat-menu-item>
+          <button (click)=onReportClicked() *ngIf="!is_rank_one && !has_user_reported"mat-menu-item>
             <mat-icon>report</mat-icon>
             <span>Report Comment</span>
           </button>
-          <button (click)=onReportClicked() *ngIf="post.status == 1 && !is_rank_one && has_user_reported"mat-menu-item>
+
+          <button (click)=onReportClicked() *ngIf="!is_rank_one && has_user_reported"mat-menu-item>
             <mat-icon>report</mat-icon>
             <span>Unreport Comment</span>
           </button>
@@ -183,9 +121,6 @@
 
   <div *ngIf="render_images" class="images">
 
-    <!-- <img
-      src="https://media.pitchfork.com/photos/620e81cad8bc62857b465cc3/2:1/w_2560%2Cc_limit/Stranger-Things-Season-4.jpg"
-      class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;"> -->
     <ng-container *ngFor="let imgUrl of post.image_url">
       <img [src]="imgUrl" class="img-responsive" style="width:100%; box-shadow: 2px; padding-bottom: 5px;">
     </ng-container>
@@ -206,11 +141,8 @@
       <tr>
         <td>
           <div class="inline">
-            <!-- <img class="emoji noResponse clickable" (click)="onAddReactionClicked()" src='assets/emojis/like.png' alt='x'> -->
             <img class="emoji noResponse clickable" [matMenuTriggerFor]="reactMenu" (click)="onAddReactionClicked()"
               [src]="post.user_reaction !== -1 ? user_rxn_type :add_image_url" alt='x'>
-            <!-- "user_rxn_type !== -1 ? user_rxn_type :add_image_url" -->
-            <!-- <mat-icon class="emoji noResponse clickable gray-fill-btn">thumb_up</mat-icon> -->
           </div>
           <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="after">
             <ng-container *ngFor="let reaction of all_reactions">
@@ -237,20 +169,16 @@
 
           <div *ngIf="is_rank_one" (click)=onCommentButtonClicked() class="comments noResponse clickable">
             <img class="emoji noResponse" src='assets/icons/comment.png' alt='x'>
-            <!-- <mat-icon class="emoji noResponse gray-fill-btn">comment</mat-icon> -->
             <div class="noResponse">
               <span> {{ post.comments_count }}</span>
             </div>
           </div>
           <div *ngIf="!is_rank_one" (click)=onReplyClicked() class="comments noResponse clickable" clickable>
-            <!-- <mat-icon class="emoji noResponse gray-fill-btn">reply</mat-icon> -->
             <img class="emoji noResponse gray-fill-btn" src="assets/reply.svg" alt="x">
           </div>
 
 
         </td>
-
-
         <td align="right">
           <mat-icon (click)=onShareClicked() class="icon_more clickable">share</mat-icon>
         </td>
@@ -292,7 +220,7 @@
   <div *ngIf="show_comment_thread" class="comment-thread-container">
     <div class="comment-thread-subcontainer">
       <ng-container *ngFor="let comment of post.comments">
-        <app-communitypost-card [post]="comment"></app-communitypost-card>
+        <app-communitypost-card is_nested="true" [post]="comment"></app-communitypost-card>
       </ng-container>
     </div>
   </div>
