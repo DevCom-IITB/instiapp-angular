@@ -92,7 +92,7 @@
             <span>{{ is_rank_one ? 'Delete Post' : 'Delete Comment' }}</span>
           </button>
 
-          <button (click)=onShareClicked() mat-menu-item>
+          <button *ngIf="is_rank_one" (click)=onShareClicked() mat-menu-item>
             <mat-icon>share</mat-icon>
             <span>Share Post</span>
           </button>
@@ -179,7 +179,7 @@
 
 
         </td>
-        <td align="right">
+        <td align="right" *ngIf="is_rank_one">
           <mat-icon (click)=onShareClicked() class="icon_more clickable">share</mat-icon>
         </td>
 
