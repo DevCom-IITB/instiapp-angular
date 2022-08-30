@@ -7,10 +7,7 @@
 
 <!-- Ghost post card (seen when loading sub-comments of a post/comment) -->
 <ng-container *ngIf="ghost && show_post">
-  <app-ghost-post
-    [post_content]="post.content"
-    [poster_pic_path]="post.posted_by.profile_pic"
-  >
+  <app-ghost-post [post_content]="post.content" [poster_pic_path]="post.posted_by.profile_pic">
   </app-ghost-post>
 </ng-container>
 
@@ -31,11 +28,12 @@
 
       <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
         <ng-container *ngIf="post.anonymous; else non_anon">
-            <img src="assets/anonymous_pic.jpg" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+          <img src="assets/anonymous_pic.jpg" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
         </ng-container>
         <ng-template #non_anon>
           <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-            <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+            <img [src]="post.posted_by.profile_pic" class="img-circle object-cover"
+              [ngStyle]="{ 'left.px': pic_offset }">
           </ng-container>
           <ng-template #default_avatar>
             <img src="assets/logo.png" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
@@ -44,7 +42,8 @@
       </td>
 
       <td class="user_date" [ngStyle]="{ 'left.px': name_offset }">
-        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.anonymous ? "Anonymous" : post.posted_by.name }}</p>
+        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">
+          {{ post.anonymous ? "Anonymous" : post.posted_by.name }}</p>
         <p class="date"> {{ printable_date }}</p>
       </td>
 
@@ -86,7 +85,8 @@
             <span>Edit Post</span>
           </button>
 
-          <button *ngIf="posted_by_current_user || (is_approval_moderator && is_rank_one) || (is_comment_moderator && !is_rank_one)" 
+          <button
+            *ngIf="posted_by_current_user || (is_approval_moderator && is_rank_one) || (is_comment_moderator && !is_rank_one)"
             (click)=onDeleteClicked() mat-menu-item>
             <mat-icon>delete</mat-icon>
             <span>{{ is_rank_one ? 'Delete Post' : 'Delete Comment' }}</span>
@@ -97,12 +97,12 @@
             <span>Share Post</span>
           </button>
 
-          <button (click)=onReportClicked() *ngIf="!is_rank_one && !has_user_reported"mat-menu-item>
+          <button (click)=onReportClicked() *ngIf="!is_rank_one && !has_user_reported" mat-menu-item>
             <mat-icon>report</mat-icon>
             <span>Report Comment</span>
           </button>
 
-          <button (click)=onReportClicked() *ngIf="!is_rank_one && has_user_reported"mat-menu-item>
+          <button (click)=onReportClicked() *ngIf="!is_rank_one && has_user_reported" mat-menu-item>
             <mat-icon>report</mat-icon>
             <span>Unreport Comment</span>
           </button>
@@ -126,8 +126,8 @@
     </ng-container>
 
   </div>
-  <div class="footer">
-    <div class="report-action-container" *ngIf="post.status === 3 && is_approval_moderator">
+  <div class="footer" *ngIf="post.status === undefined || post.status === 1">
+    <!-- <div class="report-action-container" *ngIf="post.status === 3 && is_approval_moderator">
       <button mat-button class="btn-ignore">Ignore</button>
       <button mat-button class="btn-remove">Remove</button>
       <br>
@@ -135,7 +135,7 @@
     </div>
     <div class="hide-action-container" *ngIf="post.status === 4 && is_approval_moderator">
       <button mat-button class="btn-unhide">Unhide</button>
-    </div>
+    </div> -->
 
     <table *ngIf="post.status === undefined || post.status === 1" width=100%>
       <tr>
@@ -196,7 +196,7 @@
     </div>
   </div>
 
-  <div *ngIf="!is_rank_one && is_approval_moderator " class="footer">
+  <div *ngIf="!is_rank_one && is_comment_moderator" class="footer">
     <div class="approve-action-container">
       <button mat-button class="btn-approve" (click)=onApproveClicked()>Ignore</button>
       <button mat-button class="btn-disapprove" (click)=onRejectClicked()>Delete</button>
@@ -207,7 +207,9 @@
     <input (keydown.enter)="onCommentSubmit()" matInput [(ngModel)]="content" required id="comment-content-input"
       placeholder="Add a comment...">
 
-    <div id="send-comment-btn" class="clickable" (click)=onCommentSubmit()><mat-icon>send</mat-icon></div>
+    <div id="send-comment-btn" class="clickable" (click)=onCommentSubmit()>
+      <mat-icon>send</mat-icon>
+    </div>
   </div>
 
   <div *ngIf="!is_rank_one && !show_comment_thread && post.comments_count > 0"
@@ -228,4 +230,4 @@
   <div *ngIf="more_comments && show_comment_thread" (click)=onViewMoreClicked()
     class="btn_view-more-comments clickable">
     <p>View more comments</p>
-</div>
+  </div>
