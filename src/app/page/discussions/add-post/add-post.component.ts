@@ -1,27 +1,40 @@
-import { Component, OnInit, Input, ChangeDetectorRef, Inject } from '@angular/core';
-import { DataService } from '../../../data.service';
-import { ICommunityPost, IBody, IInterest, IUserProfile, IEvent, ICommunity } from '../../../interfaces';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectorRef,
+  Inject,
+} from "@angular/core";
+import { DataService } from "../../../data.service";
+import {
+  ICommunityPost,
+  IBody,
+  IInterest,
+  IUserProfile,
+  IEvent,
+  ICommunity,
+} from "../../../interfaces";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 //import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from "@angular/material/snack-bar";
 //import { ClosePopupComponent } from './close-popup/close-popup.component';
 
-import { API } from '../../../../api';
-import { ILocation } from 'instimapweb';
-import { Router } from '@angular/router';
+import { API } from "../../../../api";
+import { ILocation } from "instimapweb";
+import { Router } from "@angular/router";
 
-const DEFAULT_USERNAME = 'Anonymous';
-const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
+const DEFAULT_USERNAME = "Anonymous";
+const DEFAULT_PROFILE_PIC = "assets/useravatar.svg";
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.css']
+  selector: "app-add-post",
+  templateUrl: "./add-post.component.html",
+  styleUrls: ["./add-post.component.css"],
 })
 export class AddPostComponent implements OnInit {
   public current_user: IUserProfile = {} as IUserProfile;
 
-  content_border = 'none';
+  content_border = "none";
   public networkBusy = false;
   anonymous: boolean = false;
 
@@ -47,7 +60,6 @@ export class AddPostComponent implements OnInit {
   public community: ICommunity;
   public interest = {} as IInterest;
 
-
   constructor(
     public dataService: DataService,
     //private dialog: MatDialog,
@@ -56,18 +68,16 @@ export class AddPostComponent implements OnInit {
     public snackBar: MatSnackBar,
     public router: Router,
 
-    @Inject(MAT_DIALOG_DATA) public data: { community: ICommunity, post: ICommunityPost },
-
-
+    @Inject(MAT_DIALOG_DATA)
+    public data: { community: ICommunity; post: ICommunityPost }
   ) {
     this.community = data.community;
     if (data.post) {
       this.addpost = data.post;
       console.log(this.addpost);
       this.images = this.addpost.image_url;
-      this.tagged = [...this.addpost.tag_body, ...this.addpost.tag_user]
+      this.tagged = [...this.addpost.tag_body, ...this.addpost.tag_user];
       this.tagged_interests = this.addpost.interests;
-
     }
   }
 
@@ -95,6 +105,8 @@ export class AddPostComponent implements OnInit {
         parent: null,
         image_url: [],
       } as ICommunityPost;
+    } else {
+      this.anonymous = this.data.post.anonymous;
     }
   }
 
@@ -102,7 +114,7 @@ export class AddPostComponent implements OnInit {
     this.current_user.name = DEFAULT_USERNAME;
     this.current_user.profile_pic = DEFAULT_PROFILE_PIC;
 
-    this.dataService.GetFillCurrentUser().subscribe(user => {
+    this.dataService.GetFillCurrentUser().subscribe((user) => {
       // this.userName = user.name;
       // this.ldap = user.roll_no;
       // this.profilePic = user.profile_pic;
@@ -111,32 +123,32 @@ export class AddPostComponent implements OnInit {
     });
   }
 
-
-
-  search(query: string,): void {
+  search(query: string): void {
     if (query.length >= 3) {
-      this.dataService.FireGET<any>(API.Search, { query: query }).subscribe(result => {
-        /* Check if the search query changed in the meanwhile */
-        if (this.searchQ !== query) { return; }
+      this.dataService
+        .FireGET<any>(API.Search, { query: query })
+        .subscribe((result) => {
+          /* Check if the search query changed in the meanwhile */
+          if (this.searchQ !== query) {
+            return;
+          }
 
-        /* Update all data */
-        this.tag_bodies = result.bodies;
-        this.tag_users = result.users;
-        this.tag_events = result.events;
-      });
+          /* Update all data */
+          this.tag_bodies = result.bodies;
+          this.tag_users = result.users;
+          this.tag_events = result.events;
+        });
     }
   }
 
-
   setInterest(event: any): void {
-
     this.interest = {} as IInterest;
     if (event.option) {
-      console.log(event.option.value.title)
+      console.log(event.option.value.title);
       this.interest.title = event.option.value.title;
       this.interest.id = event.option.value.id;
 
-      console.log(this.interest.title)
+      console.log(this.interest.title);
 
       if (this.searchTagInTaggedI(this.interest) === -1) {
         console.log("pushing");
@@ -144,7 +156,6 @@ export class AddPostComponent implements OnInit {
         this.tagged_interests.push(this.interest);
       }
     }
-
   }
 
   addTag(taggable: any, name: string, type: string) {
@@ -183,7 +194,6 @@ export class AddPostComponent implements OnInit {
     }
     console.log(this.images);
     console.log(this.addpost.image_url);
-
   }
   searchImageInImages(target_image: string) {
     let target_index = -1;
@@ -196,7 +206,8 @@ export class AddPostComponent implements OnInit {
   searchTagInTagged(tag: any): number {
     let target_index = -1;
     for (let i = 0; i < this.tagged.length; i++) {
-      if (tag.id === this.tagged[i].id && tag.type === this.tagged[i].type) target_index = i;
+      if (tag.id === this.tagged[i].id && tag.type === this.tagged[i].type)
+        target_index = i;
     }
 
     return target_index;
@@ -215,40 +226,38 @@ export class AddPostComponent implements OnInit {
 
   /** Tries to mark the network as busy */
   MarkNetworkBusy(): Boolean {
-    if (this.networkBusy) { return false; }
+    if (this.networkBusy) {
+      return false;
+    }
     this.networkBusy = true;
     return true;
   }
 
-  toggleAnon(){
-   this.anonymous = !this.anonymous;
+  toggleAnon() {
+    this.anonymous = !this.anonymous;
   }
 
   uploadImage(files: FileList) {
-    if (!this.MarkNetworkBusy()) { return; }
+    if (!this.MarkNetworkBusy()) {
+      return;
+    }
 
-    this.dataService.UploadImage(files[0]).subscribe(result => {
-
-
-      // result.picture
-      this.addpost.image_url.push(result.picture);
-      this.images.push(result.picture);
-      this.networkBusy = false;
-
-
-    }, (error) => {
-      this.networkBusy = false;
-      this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
-        duration: 2000,
-
-
-      });
-      console.log("nhi ho paya");
-    });
+    this.dataService.UploadImage(files[0]).subscribe(
+      (result) => {
+        // result.picture
+        this.addpost.image_url.push(result.picture);
+        this.images.push(result.picture);
+        this.networkBusy = false;
+      },
+      (error) => {
+        this.networkBusy = false;
+        this.snackBar.open(`Upload Failed - ${error.message}`, "Dismiss", {
+          duration: 2000,
+        });
+        console.log("nhi ho paya");
+      }
+    );
   }
-
-
-
 
   onPost() {
     this.populateNewPostData();
@@ -265,18 +274,25 @@ export class AddPostComponent implements OnInit {
 
     console.log(this.addpost);
     if (!this.data.post) {
-      this.dataService.FirePOST<ICommunityPost>(API.CommunityAddPost, this.addpost).subscribe(() => {
-        this.addpost = {} as ICommunityPost;
-      });
+      this.dataService
+        .FirePOST<ICommunityPost>(API.CommunityAddPost, this.addpost)
+        .subscribe(() => {
+          this.addpost = {} as ICommunityPost;
+        });
     } else {
-      this.dataService.FirePUT<ICommunityPost>(API.CommunityPost, this.addpost, { uuid: this.addpost.id }).subscribe(() => {
-        this.addpost = {} as ICommunityPost;
-      });
+      this.dataService
+        .FirePUT<ICommunityPost>(API.CommunityPost, this.addpost, {
+          uuid: this.addpost.id,
+        })
+        .subscribe(() => {
+          this.addpost = {} as ICommunityPost;
+        });
     }
 
     this.dialogRef.close();
-    this.snackBar.open('Sent for Verification', 'Dismiss', {
-      duration: 3000,})
+    this.snackBar.open("Sent for Verification", "Dismiss", {
+      duration: 3000,
+    });
 
     //const dialogConfig = new MatDialogConfig();
     //dialogConfig.autoFocus = false;
@@ -291,7 +307,5 @@ export class AddPostComponent implements OnInit {
     this.addpost.time_of_modification = this.addpost.time_of_creation;
     this.addpost.user_reaction = -1;
     this.addpost.status = 0;
-
   }
-
 }
