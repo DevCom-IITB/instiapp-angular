@@ -1,8 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, noop } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
-import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, 
-  INotification, ICommunity, ICommunityPost } from './interfaces';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpRequest,
+  HttpEventType,
+} from '@angular/common/http';
+import {
+  IEnumContainer,
+  IUserProfile,
+  ILocation,
+  IEvent,
+  IBody,
+  INewsEntry,
+  INotification,
+  ICommunity,
+  ICommunityPost,
+} from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
@@ -31,7 +45,6 @@ const CLIENT_ID = environment.sso_client_id;
 /** Main data service */
 @Injectable()
 export class DataService {
-
   /** Detailed events */
   public eventsDetailed: IEvent[] = [] as IEvent[];
   public groupDetailed: ICommunity[] = [] as ICommunity[];
@@ -68,8 +81,8 @@ export class DataService {
 
   /** Achievement offer types cache */
   private achievementOfferTypes: {
-    name: string,
-    code: string
+    name: string;
+    code: string;
   }[];
 
   /** Show or hide QR code button */
@@ -79,7 +92,7 @@ export class DataService {
     private http: HttpClient,
     public router: Router,
     public location: Location,
-    public titleService: Title,
+    public titleService: Title
   ) {
     /* Initialize */
     this._loggedInSubject = new Subject<boolean>();
@@ -93,13 +106,17 @@ export class DataService {
    * Encode an object for passing through URL
    * @param o Object to encode
    */
-  EncodeObject(o: any): string { return encodeURIComponent(btoa(JSON.stringify(o))); }
+  EncodeObject(o: any): string {
+    return encodeURIComponent(btoa(JSON.stringify(o)));
+  }
 
   /**
    * Decode an object encoded with "EncodeObject"
    * @param s Encoded string
    */
-  DecodeObject<T>(s: string): T { return JSON.parse(atob(decodeURIComponent(s))) as T; }
+  DecodeObject<T>(s: string): T {
+    return JSON.parse(atob(decodeURIComponent(s))) as T;
+  }
 
   /**
    * Fire a URI template or URL with GET verb
@@ -116,8 +133,15 @@ export class DataService {
    * @param body Body to PUT
    * @param options Options to fill in URI Template
    */
-  FirePUT<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
-    return this.http.put<T>(this.FillURITemplate(HOST + uriTemplate, options), body);
+  FirePUT<T>(
+    uriTemplate: string,
+    body: any = null,
+    options: any = {}
+  ): Observable<T> {
+    return this.http.put<T>(
+      this.FillURITemplate(HOST + uriTemplate, options),
+      body
+    );
   }
 
   /**
@@ -126,8 +150,15 @@ export class DataService {
    * @param body Body to POST
    * @param options Options to fill in URI Template
    */
-  FirePOST<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
-    return this.http.post<T>(this.FillURITemplate(HOST + uriTemplate, options), body);
+  FirePOST<T>(
+    uriTemplate: string,
+    body: any = null,
+    options: any = {}
+  ): Observable<T> {
+    return this.http.post<T>(
+      this.FillURITemplate(HOST + uriTemplate, options),
+      body
+    );
   }
 
   /**
@@ -136,8 +167,15 @@ export class DataService {
    * @param body Body to PATCH
    * @param options Options to fill in URI Template
    */
-  FirePATCH<T>(uriTemplate: string, body: any = null, options: any = {}): Observable<T> {
-    return this.http.patch<T>(this.FillURITemplate(HOST + uriTemplate, options), body);
+  FirePATCH<T>(
+    uriTemplate: string,
+    body: any = null,
+    options: any = {}
+  ): Observable<T> {
+    return this.http.patch<T>(
+      this.FillURITemplate(HOST + uriTemplate, options),
+      body
+    );
   }
 
   /**
@@ -146,7 +184,9 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FireDELETE<T>(uriTemplate: string, options: any = {}): Observable<T> {
-    return this.http.delete<T>(this.FillURITemplate(HOST + uriTemplate, options));
+    return this.http.delete<T>(
+      this.FillURITemplate(HOST + uriTemplate, options)
+    );
   }
 
   /**
@@ -167,13 +207,16 @@ export class DataService {
     const uploadReq = new HttpRequest('POST', API.PostImage, formData);
 
     /* Make upload request and return */
-    return new Observable(observer => {
-      this.http.request(uploadReq).subscribe(event => {
-        if (event.type === HttpEventType.Response) {
-          observer.next(event.body);
-          observer.complete();
-        }
-      }, (error) => observer.error(error));
+    return new Observable((observer) => {
+      this.http.request(uploadReq).subscribe(
+        (event) => {
+          if (event.type === HttpEventType.Response) {
+            observer.next(event.body);
+            observer.complete();
+          }
+        },
+        (error) => observer.error(error)
+      );
     });
   }
 
@@ -193,19 +236,21 @@ export class DataService {
     return this.FireGET<ICommunity>(API.Community, { uuid: uuid });
   }
 
-
   /** Fills the event with uuid into the cache and returns it */
   FillGetEvent(uuid: string): Observable<IEvent> {
-    const index = this.eventsDetailed.findIndex(m => m.id === uuid);
-    return new Observable(observer => {
+    const index = this.eventsDetailed.findIndex((m) => m.id === uuid);
+    return new Observable((observer) => {
       if (index === -1) {
-        this.GetEvent(uuid).subscribe(result => {
-          this.eventsDetailed.push(result);
-          observer.next(result);
-          observer.complete();
-        }, (error) => {
-          observer.error(error);
-        });
+        this.GetEvent(uuid).subscribe(
+          (result) => {
+            this.eventsDetailed.push(result);
+            observer.next(result);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
       } else {
         observer.next(this.eventsDetailed[index]);
         observer.complete();
@@ -217,16 +262,19 @@ export class DataService {
    * Checks cache first and caches the community if not cached
    */
   FillGetCommunity(uuid: string): Observable<ICommunity> {
-    const index = this.groupDetailed.findIndex(m => m.id === uuid);
-    return new Observable(observer => {
+    const index = this.groupDetailed.findIndex((m) => m.id === uuid);
+    return new Observable((observer) => {
       if (index === -1) {
-        this.GetCommunity(uuid).subscribe(result => {
-          this.groupDetailed.push(result);
-          observer.next(result);
-          observer.complete();
-        }, (error) => {
-          observer.error(error);
-        });
+        this.GetCommunity(uuid).subscribe(
+          (result) => {
+            this.groupDetailed.push(result);
+            observer.next(result);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
       } else {
         observer.next(this.groupDetailed[index]);
         observer.complete();
@@ -235,10 +283,12 @@ export class DataService {
   }
 
   fillGetPost(uuid: string): Observable<ICommunityPost> {
-    const index = this.postDetailed.findIndex(m => m.id === uuid);
-    return new Observable(observer => {
+    const index = this.postDetailed.findIndex((m) => m.id === uuid);
+    return new Observable((observer) => {
       if (index === -1) {
-        this.FireGET<ICommunityPost>(API.CommunityPost, { uuid: uuid }).subscribe(result => {
+        this.FireGET<ICommunityPost>(API.CommunityPost, {
+          uuid: uuid,
+        }).subscribe((result) => {
           this.postDetailed.push(result);
           observer.next(result);
           observer.complete();
@@ -260,14 +310,16 @@ export class DataService {
 
   /** Get all locations */
   GetAllLocations(excludeGroup: number = null): Observable<ILocation[]> {
-    return this.FireGET<ILocation[]>(API.Locations, { exclude_group: excludeGroup });
+    return this.FireGET<ILocation[]>(API.Locations, {
+      exclude_group: excludeGroup,
+    });
   }
 
   /** Gets the current user if logged in
    * The result is cached
    */
   GetFillCurrentUser(): Observable<IUserProfile> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       if (!this._currentUser) {
         /* Try to get from localStorage */
         if (!this.isSandbox && localStorage.getItem(this.LS_USER) !== null) {
@@ -278,12 +330,14 @@ export class DataService {
         }
 
         /* Fire a get */
-        this.FireGET<any>(API.LoggedInUser).subscribe(result => {
-          this.loginUser(observer, result.profile, !this.isSandbox);
-        }, (error) => {
-          observer.error(error);
-        });
-
+        this.FireGET<any>(API.LoggedInUser).subscribe(
+          (result) => {
+            this.loginUser(observer, result.profile, !this.isSandbox);
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
       } else {
         observer.next(this._currentUser);
         observer.complete();
@@ -313,7 +367,9 @@ export class DataService {
 
   /** Updates the current user profile */
   updateUser(profile: IUserProfile = null) {
-    if (!this._loggedIn) { return; }
+    if (!this._loggedIn) {
+      return;
+    }
 
     /* Helper function to update user */
     const update = (u: IUserProfile) => {
@@ -329,24 +385,28 @@ export class DataService {
     }
 
     /* Update the profile */
-    this.FireGET<any>(API.LoggedInUser).subscribe(result => {
-      update(result.profile);
+    this.FireGET<any>(API.LoggedInUser).subscribe(
+      (result) => {
+        update(result.profile);
 
-      /* Update calendar on WinRT */
-      WinRT.updateAppointments(result.profile.events_going);
-    }, (error) => {
-      if (error.status === 401) {
-        alert('Your session has expired');
-        this.PostLogout();
+        /* Update calendar on WinRT */
+        WinRT.updateAppointments(result.profile.events_going);
+      },
+      (error) => {
+        if (error.status === 401) {
+          alert('Your session has expired');
+          this.PostLogout();
+        }
+        this._loggedInSubject.next(false);
       }
-      this._loggedInSubject.next(false);
-    });
+    );
   }
 
   /** Gets SSO URL */
   GetLoginURL() {
     const RESPONSE_TYPE = 'code';
-    const SCOPE = 'basic profile picture sex ldap phone insti_address program secondary_emails';
+    const SCOPE =
+      'basic profile picture sex ldap phone insti_address program secondary_emails';
 
     return `${SSOHOST}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${SSO_REDIR}`;
   }
@@ -391,13 +451,15 @@ export class DataService {
    * @param permission Any of `AddE`, `UpdE`, `DelE`, `Role`
    */
   GetBodiesWithPermission(permission: string): IBody[] {
-    if (!this._loggedIn) { return []; }
+    if (!this._loggedIn) {
+      return [];
+    }
 
     const bodies: IBody[] = [] as IBody[];
     for (const role of this._currentUser.roles) {
-      if ((role.permissions.includes(permission))) {
+      if (role.permissions.includes(permission)) {
         for (const body of role.bodies) {
-          if (!bodies.map(m => m.id).includes(body.id)) {
+          if (!bodies.map((m) => m.id).includes(body.id)) {
             bodies.push(body);
           }
         }
@@ -408,19 +470,30 @@ export class DataService {
 
   /** Returns true if the user has the permission for institute */
   HasInstitutePermission(permission: string): boolean {
-    if (!this.isLoggedIn()) { return false; }
+    if (!this.isLoggedIn()) {
+      return false;
+    }
     return this.GetInstitutePermissions().indexOf(permission) !== -1;
   }
 
   /** Get a list of institute permissions the user has */
   GetInstitutePermissions(): string[] {
-    if (!this.isLoggedIn()) { return []; }
-    return [].concat.apply([], this.getCurrentUser().institute_roles.map(m => m.permissions));
+    if (!this.isLoggedIn()) {
+      return [];
+    }
+    return [].concat.apply(
+      [],
+      this.getCurrentUser().institute_roles.map((m) => m.permissions)
+    );
   }
 
   /** Returns true if the user has the permission for the body */
   HasBodyPermission(bodyid: string, permission: string) {
-    return this.GetBodiesWithPermission(permission).map(m => m.id).indexOf(bodyid) !== -1;
+    return (
+      this.GetBodiesWithPermission(permission)
+        .map((m) => m.id)
+        .indexOf(bodyid) !== -1
+    );
   }
 
   /** Returns true if the user has permission to edit the event */
@@ -445,14 +518,20 @@ export class DataService {
 
   /** Mark a UNR for the current user */
   MarkUNR(news: INewsEntry, reaction: number) {
-    return this.FireGET(API.NewsFeedReaction, { uuid: news.id, reaction: reaction });
+    return this.FireGET(API.NewsFeedReaction, {
+      uuid: news.id,
+      reaction: reaction,
+    });
   }
 
   /** Gets concatenated going and interested events for current User */
   getFollowedEvents(): IEvent[] {
-    if (!this._loggedIn) { return [] as IEvent[]; }
+    if (!this._loggedIn) {
+      return [] as IEvent[];
+    }
     return this._currentUser.events_going.concat(
-      this._currentUser.events_interested);
+      this._currentUser.events_interested
+    );
   }
 
   /** Navigates to the previous page */
@@ -505,7 +584,7 @@ export class DataService {
 
   /** Get unread notifications */
   getUnreadNotifications() {
-    return this.notifications.filter(n => n.unread && n.actor);
+    return this.notifications.filter((n) => n.unread && n.actor);
   }
 
   /** Set scrollingDown */
@@ -527,8 +606,13 @@ export class DataService {
 
   /** Get a cropped URL for a static image */
   getCropped(url: string, w: number, h: number): string {
-    if (url === null) { return null; }
-    return url.replace('api.insti.app/static/', `img.insti.app/static/crop/${w}/${h}/`);
+    if (url === null) {
+      return null;
+    }
+    return url.replace(
+      'api.insti.app/static/',
+      `img.insti.app/static/crop/${w}/${h}/`
+    );
   }
 
   /** Get the URL of a body from str_id */
@@ -538,23 +622,24 @@ export class DataService {
 
   /** Get (and cache) list of types of achievement offers */
   getAchievementOfferTypes(): Observable<any[]> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       if (this.achievementOfferTypes) {
         observer.next(this.achievementOfferTypes);
         observer.complete();
       } else {
-        this.FireGET('/assets/achievements/list.json').subscribe((res: any) => {
-          this.achievementOfferTypes = res.types;
-          observer.next(this.achievementOfferTypes);
-          observer.complete();
-        }, (error) => observer.error(error));
+        this.FireGET('/assets/achievements/list.json').subscribe(
+          (res: any) => {
+            this.achievementOfferTypes = res.types;
+            observer.next(this.achievementOfferTypes);
+            observer.complete();
+          },
+          (error) => observer.error(error)
+        );
       }
     });
   }
 
   canEditInterest(roll: String): boolean {
-    // console.log(roll, this._currentUser.ldap_id)
-
     if (!this._loggedIn) {
       return false;
     }

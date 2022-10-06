@@ -31,7 +31,6 @@ export class GroupFeedComponent implements OnInit {
   private LOAD_SCROLL_THRESHOLD = 0.9;
 
   constructor(
-    // private activatedRoute: ActivatedRoute,
     public dataService: DataService,
     private dialog: MatDialog,
     public activatedRoute: ActivatedRoute,
@@ -57,25 +56,21 @@ export class GroupFeedComponent implements OnInit {
       this.is_approval_moderator = this.dataService.HasBodyPermission(
         this.group.body,
         'AppP'
-      ); // ModC
+      );
       this.is_comment_moderator = this.dataService.HasBodyPermission(
         this.group.body,
         'ModC'
-      ); // ModC
-
-      console.log(this.is_approval_moderator);
-      console.log(this.is_comment_moderator);
+      );
 
       this.updateTabs();
     });
   }
 
-  ngOnChanges() {
+  OnChanges() {
     this.refresh();
   }
 
-  ngOnDestroy(): void {
-  }
+  OnDestroy(): void {}
 
   refresh() {
     this.group = null;
@@ -128,10 +123,15 @@ export class GroupFeedComponent implements OnInit {
   }
 
   updateTabs(): void {
-    if (this.dataService.isLoggedIn()) { this.tabs[1].show = true; }
-    if (this.is_approval_moderator) { this.tabs[2].show = true; }
-    if (this.is_comment_moderator) { this.tabs[3].show = true; }
-    this.dataService.HasBodyPermission;
+    if (this.dataService.isLoggedIn()) {
+      this.tabs[1].show = true;
+    }
+    if (this.is_approval_moderator) {
+      this.tabs[2].show = true;
+    }
+    if (this.is_comment_moderator) {
+      this.tabs[3].show = true;
+    }
   }
 
   onCreate() {
@@ -155,8 +155,6 @@ export class GroupFeedComponent implements OnInit {
   }
 
   onTabClicked(tab_id: number): void {
-    console.log(tab_id);
-
     this.selected_tab = tab_id;
     this.populateGroupAndPosts();
   }
@@ -167,10 +165,7 @@ export class GroupFeedComponent implements OnInit {
         this.group = result[0];
         this.dataService.setTitle(this.group.name);
       },
-      (e) => {
-        console.log(e);
-        // Handle this error
-      }
+      (_) => {}
     );
   }
 }

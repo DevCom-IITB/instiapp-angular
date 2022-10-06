@@ -60,7 +60,6 @@ export class AddPostComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    // private dialog: MatDialog,
     public dialogRef: MatDialogRef<AddPostComponent>,
     public changeDetectorRef: ChangeDetectorRef,
     public snackBar: MatSnackBar,
@@ -72,7 +71,6 @@ export class AddPostComponent implements OnInit {
     this.community = data.community;
     if (data.post) {
       this.addpost = data.post;
-      console.log(this.addpost);
       this.images = this.addpost.image_url;
       this.tagged = [...this.addpost.tag_body, ...this.addpost.tag_user];
       this.tagged_interests = this.addpost.interests;
@@ -80,8 +78,6 @@ export class AddPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.addpost);
-
     this.getUser();
     this.images = [];
     if (!this.data.post) {
@@ -111,7 +107,6 @@ export class AddPostComponent implements OnInit {
     this.current_user.profile_pic = DEFAULT_PROFILE_PIC;
 
     this.dataService.GetFillCurrentUser().subscribe((user) => {
-
       this.current_user = user;
     });
   }
@@ -137,15 +132,10 @@ export class AddPostComponent implements OnInit {
   setInterest(event: any): void {
     this.interest = {} as IInterest;
     if (event.option) {
-      console.log(event.option.value.title);
       this.interest.title = event.option.value.title;
       this.interest.id = event.option.value.id;
 
-      console.log(this.interest.title);
-
       if (this.searchTagInTaggedI(this.interest) === -1) {
-        console.log('pushing');
-
         this.tagged_interests.push(this.interest);
       }
     }
@@ -176,7 +166,9 @@ export class AddPostComponent implements OnInit {
   removeTag(target_tag: any) {
     const target_index = this.searchTagInTaggedI(target_tag);
 
-    if (target_index !== -1) { this.tagged_interests.splice(target_index, 1); }
+    if (target_index !== -1) {
+      this.tagged_interests.splice(target_index, 1);
+    }
   }
 
   removeImage(target_image: string) {
@@ -186,13 +178,13 @@ export class AddPostComponent implements OnInit {
       this.addpost.image_url.splice(target_index, 1);
       this.images.splice(target_index, 1);
     }
-    console.log(this.images);
-    console.log(this.addpost.image_url);
   }
   searchImageInImages(target_image: string) {
     let target_index = -1;
     for (let i = 0; i < this.images.length; i++) {
-      if (target_image === this.images[i]) { target_index = i; }
+      if (target_image === this.images[i]) {
+        target_index = i;
+      }
     }
 
     return target_index;
@@ -210,7 +202,9 @@ export class AddPostComponent implements OnInit {
   searchTagInTaggedI(tag: any): number {
     let target_index = -1;
     for (let i = 0; i < this.tagged_interests.length; i++) {
-      if (tag.id === this.tagged_interests[i].id) { target_index = i; }
+      if (tag.id === this.tagged_interests[i].id) {
+        target_index = i;
+      }
     }
 
     return target_index;
@@ -248,7 +242,6 @@ export class AddPostComponent implements OnInit {
         this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
           duration: 2000,
         });
-        console.log('nhi ho paya');
       }
     );
   }
@@ -261,12 +254,8 @@ export class AddPostComponent implements OnInit {
     this.addpost.tag_body = this.tagged_bodies;
     this.addpost.tag_user = this.tagged_users;
 
-    console.log(this.addpost.image_url);
-    console.log(this.addpost);
-
     this.addpost.interests = this.tagged_interests;
 
-    console.log(this.addpost);
     if (!this.data.post) {
       this.dataService
         .FirePOST<ICommunityPost>(API.CommunityAddPost, this.addpost)

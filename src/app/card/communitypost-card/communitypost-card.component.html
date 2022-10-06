@@ -132,7 +132,7 @@
       <tr>
         <td>
           <div class="inline">
-            <img class="emoji noResponse clickable" [matMenuTriggerFor]="reactMenu" (click)="onAddReactionClicked()"
+            <img class="emoji noResponse clickable" [matMenuTriggerFor]="reactMenu"
               [src]="post.user_reaction !== -1 ? user_rxn_type :add_image_url" alt='x'>
           </div>
           <mat-menu #reactMenu="matMenu" yPosition="below" xPosition="after">
