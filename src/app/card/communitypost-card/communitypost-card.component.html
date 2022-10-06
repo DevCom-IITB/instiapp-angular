@@ -70,8 +70,13 @@
       </td>
 
       <td align="right">
+<<<<<<< HEAD
         <button mat-button *ngIf="post.status == 1" [matMenuTriggerFor]="menu">
           <mat-icon class="icon_more">more_vert</mat-icon>
+=======
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon *ngIf="posted_by_current_user || is_moderator" class="icon_more">more_vert</mat-icon>
+>>>>>>> 60222ca (add feature for vert menu to disappear if not posted by current user or moderator)
         </button>
 
         <mat-menu #menu="matMenu">
