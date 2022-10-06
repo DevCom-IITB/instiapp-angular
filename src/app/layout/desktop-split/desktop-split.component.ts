@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { DataService } from '../../data.service';
+import { Component, Input } from "@angular/core";
+import { DataService } from "../../data.service";
 
 @Component({
-  selector: 'app-desktop-split',
-  templateUrl: './desktop-split.component.html',
-  styleUrls: ['./desktop-split.component.css'],
+  selector: "app-desktop-split",
+  templateUrl: "./desktop-split.component.html",
+  styleUrls: ["./desktop-split.component.css"],
 })
 export class DesktopSplitComponent {
   /** 0 = no hiding
@@ -22,7 +22,7 @@ export class DesktopSplitComponent {
 
   constructor(public dataService: DataService) {}
 
-  OnInit() {
+  ngOnInit() {
     if (this.center_width_percentage === undefined) {
       this.center_width_percentage = 50;
     }
@@ -34,8 +34,8 @@ export class DesktopSplitComponent {
     }
 
     document.documentElement.style.setProperty(
-      '--cw_frac',
-      this.center_width_percentage / 100 + ''
+      "--cw_frac",
+      this.center_width_percentage / 100 + ""
     );
   }
 }
