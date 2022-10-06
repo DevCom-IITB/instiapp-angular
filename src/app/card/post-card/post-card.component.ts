@@ -10,7 +10,7 @@ import { DataService } from '../../data.service';
 export class PostCardComponent implements OnInit {
   @Input() post: ICommunityPost;
   constructor(
-    public dataService: DataService,) {
+    public dataService: DataService, ) {
 
   }
 

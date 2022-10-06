@@ -26,13 +26,11 @@ export class InterestCardComponent implements OnInit {
 
   ngOnInit() {
     /* Set fallback images explictly */
-
-    // console.log(this.canDelete)s
   }
 
   /** Get the badge for the event */
   getBadge() {
-    // return this.event.offered_achievements.length > 0 ? 'assets/badge-medal.png' : null;
+
   }
 
   onNoClick(interest: IInterest) {
@@ -41,7 +39,6 @@ export class InterestCardComponent implements OnInit {
       return;
     }
     const myCompOneObj = new UserDetailsComponent(this.activateRoute, this.dataService, this.snakbar, this.router);
-    // console.log(interest)
     myCompOneObj.deleteInterest(interest);
   }
 }

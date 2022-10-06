@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, noop } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
-import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, INotification, ICommunity, ICommunityPost } from './interfaces';
+import { IEnumContainer, IUserProfile, ILocation, IEvent, IBody, INewsEntry, 
+  INotification, ICommunity, ICommunityPost } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
 import * as uriTemplates from 'uri-templates';
@@ -240,8 +241,8 @@ export class DataService {
         this.FireGET<ICommunityPost>(API.CommunityPost, { uuid: uuid }).subscribe(result => {
           this.postDetailed.push(result);
           observer.next(result);
-          observer.complete()
-        })
+          observer.complete();
+        });
       } else {
         observer.next(this.postDetailed[index]);
         observer.complete();

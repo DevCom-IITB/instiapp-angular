@@ -35,15 +35,14 @@ div.content p {
 
 
 .card-sub-title {
-    /* white-space: nowrap; */
     overflow: hidden;
-    /* text-overflow: ellipsis; */
+
 }
 
 .followers_posts {
-    /* white-space: nowrap; */
+    
     overflow: hidden;
-    /* text-overflow: ellipsis; */
+  
 }
 
 .badge {

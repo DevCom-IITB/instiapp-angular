@@ -293,7 +293,7 @@ export class AddEventComponent implements OnInit {
 
   uploadImage(files: FileList) {
     if (!this.MarkNetworkBusy()) { return; }
-    console.log("files");
+    console.log('files');
     console.log(files[0]);
 
 

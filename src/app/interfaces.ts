@@ -1,4 +1,4 @@
-﻿export interface IEnumContainer {
+export interface IEnumContainer {
     count: number;
     data: any;
 }
@@ -230,49 +230,49 @@ export interface IOfferedAchievement {
 }
 
 export interface ICommunity {
-    id: string,
-    name: string,
-    body: string,
-    followers_count: number,
-    about: string,
-    logo_image: string,
-    cover_image: string,
-    description: string,
-    created_at: Date,
-    updated_at: Date,
-    is_user_following: boolean,
-    posts: ICommunityPost[],
-    roles: IBodyRole[],
-    str_id: string,
-    featured_posts: ICommunityPost[],
+    id: string;
+    name: string;
+    body: string;
+    followers_count: number;
+    about: string;
+    logo_image: string;
+    cover_image: string;
+    description: string;
+    created_at: Date;
+    updated_at: Date;
+    is_user_following: boolean;
+    posts: ICommunityPost[];
+    roles: IBodyRole[];
+    str_id: string;
+    featured_posts: ICommunityPost[];
 
 }
 
 
 export interface ICommunityPost {
-    id: string,
-    str_id: string,
-    thread_rank: number,
-    comments: ICommunityPost[],
-    content: string,
-    comments_count: number,
-    image_url: string[],
-    posted_by: IUserProfile,
-    reactions_count: any,
-    time_of_creation: Date,
-    time_of_modification: Date,
-    user_reaction: number,
-    most_liked_comment: ICommunityPost,
-    status: number,
-    tag_user: IUserProfile[],
-    tag_location: ILocation[],
-    tag_body: IBody[],
-    deleted: boolean,
-    interests: IInterest[],
-    community: ICommunity,
-    parent: string,
-    featured: boolean,
-    anonymous: boolean,
-    has_user_reported: boolean,
-    reported_by: IUserProfile[],
+    id: string;
+    str_id: string;
+    thread_rank: number;
+    comments: ICommunityPost[];
+    content: string;
+    comments_count: number;
+    image_url: string[];
+    posted_by: IUserProfile;
+    reactions_count: any;
+    time_of_creation: Date;
+    time_of_modification: Date;
+    user_reaction: number;
+    most_liked_comment: ICommunityPost;
+    status: number;
+    tag_user: IUserProfile[];
+    tag_location: ILocation[];
+    tag_body: IBody[];
+    deleted: boolean;
+    interests: IInterest[];
+    community: ICommunity;
+    parent: string;
+    featured: boolean;
+    anonymous: boolean;
+    has_user_reported: boolean;
+    reported_by: IUserProfile[];
 }

@@ -31,12 +31,12 @@ export class GroupCardComponent implements OnInit {
     this.dataService.FireGET<IBody>(API.Body, {uuid: this.group.body}).subscribe(result => {
       this.group_body = result;
     }, (e) => {
-      console.log(`couldn't load body: ${ e }`)
+      console.log(`couldn't load body: ${ e }`);
     });
 
   }
 
-  onJoinClicked(): void{
+  onJoinClicked(): void {
     this.followBody(this.group_body);
   }
   followBody(body: IBody) {
@@ -50,12 +50,12 @@ export class GroupCardComponent implements OnInit {
     });
   }
 
-  onShareClicked(): void{
+  onShareClicked(): void {
     Helpers.NativeShare(this.group.name, `Check out the ${this.group.name} community at InstiApp!`, this.getGroupUrl());
   }
 
 
-  getGroupUrl(): string{
+  getGroupUrl(): string {
     return  `${environment.host}group-feed/${this.group.str_id}`;
   }
 }

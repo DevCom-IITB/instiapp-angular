@@ -2,9 +2,9 @@
 
   <table width="100%" style="table-layout: fixed;">
     <tr>
-      <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
+      <td text-align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
         <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" style="width:" [ngStyle]="{ 'left.px': pic_offset }">
+          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
         </ng-container>
         <ng-template #default_avatar>
           <img src="assets/logo.png" class="img-circle object-cover">
@@ -25,17 +25,6 @@
           {{ post.content }}
         </p>
       </div>
-      <!-- <div *ngIf="!render_images">
-        <p class="featured-content">
-          {{ post.content }}
-        </p>
-      </div>
-
-      <div *ngIf="render_images">
-        <p class="featured-content" style="-webkit-line-clamp: 2;">
-          {{ post.content }}
-        </p>
-      </div> -->
     </td>
 
   </table>

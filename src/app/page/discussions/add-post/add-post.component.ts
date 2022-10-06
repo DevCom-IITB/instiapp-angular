@@ -4,8 +4,8 @@ import {
   Input,
   ChangeDetectorRef,
   Inject,
-} from "@angular/core";
-import { DataService } from "../../../data.service";
+} from '@angular/core';
+import { DataService } from '../../../data.service';
 import {
   ICommunityPost,
   IBody,
@@ -13,30 +13,28 @@ import {
   IUserProfile,
   IEvent,
   ICommunity,
-} from "../../../interfaces";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-//import { MatDialog, MatDialogConfig, } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
-//import { ClosePopupComponent } from './close-popup/close-popup.component';
+} from '../../../interfaces';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { API } from "../../../../api";
-import { ILocation } from "instimapweb";
-import { Router } from "@angular/router";
+import { API } from '../../../../api';
+import { ILocation } from 'instimapweb';
+import { Router } from '@angular/router';
 
-const DEFAULT_USERNAME = "Anonymous";
-const DEFAULT_PROFILE_PIC = "assets/useravatar.svg";
+const DEFAULT_USERNAME = 'Anonymous';
+const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
 
 @Component({
-  selector: "app-add-post",
-  templateUrl: "./add-post.component.html",
-  styleUrls: ["./add-post.component.css"],
+  selector: 'app-add-post',
+  templateUrl: './add-post.component.html',
+  styleUrls: ['./add-post.component.css'],
 })
 export class AddPostComponent implements OnInit {
   public current_user: IUserProfile = {} as IUserProfile;
 
-  content_border = "none";
+  content_border = 'none';
   public networkBusy = false;
-  anonymous: boolean = false;
+  anonymous = false;
 
   public images: string[];
   public searchQ: string;
@@ -62,7 +60,7 @@ export class AddPostComponent implements OnInit {
 
   constructor(
     public dataService: DataService,
-    //private dialog: MatDialog,
+    // private dialog: MatDialog,
     public dialogRef: MatDialogRef<AddPostComponent>,
     public changeDetectorRef: ChangeDetectorRef,
     public snackBar: MatSnackBar,
@@ -84,8 +82,6 @@ export class AddPostComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.addpost);
 
-    // this.dataService.setTitle("Create post")
-    // this.populateDummyData();
     this.getUser();
     this.images = [];
     if (!this.data.post) {
@@ -115,9 +111,6 @@ export class AddPostComponent implements OnInit {
     this.current_user.profile_pic = DEFAULT_PROFILE_PIC;
 
     this.dataService.GetFillCurrentUser().subscribe((user) => {
-      // this.userName = user.name;
-      // this.ldap = user.roll_no;
-      // this.profilePic = user.profile_pic;
 
       this.current_user = user;
     });
@@ -151,7 +144,7 @@ export class AddPostComponent implements OnInit {
       console.log(this.interest.title);
 
       if (this.searchTagInTaggedI(this.interest) === -1) {
-        console.log("pushing");
+        console.log('pushing');
 
         this.tagged_interests.push(this.interest);
       }
@@ -159,34 +152,35 @@ export class AddPostComponent implements OnInit {
   }
 
   addTag(taggable: any, name: string, type: string) {
-    let tag_to_push = {
+    const tag_to_push = {
       id: taggable.id,
       name: name,
       data: taggable,
       type: type,
     };
-    if (type === "body") {
+    if (type === 'body') {
       if (this.searchTagInTagged(tag_to_push) === -1) {
         this.tagged_bodies.push(taggable);
       }
     }
-    if (type === "user") {
+    if (type === 'user') {
       if (this.searchTagInTagged(tag_to_push) === -1) {
         this.tagged_users.push(taggable);
       }
     }
 
-    if (this.searchTagInTagged(tag_to_push) === -1)
+    if (this.searchTagInTagged(tag_to_push) === -1) {
       this.tagged.push(tag_to_push);
+    }
   }
   removeTag(target_tag: any) {
-    let target_index = this.searchTagInTaggedI(target_tag);
+    const target_index = this.searchTagInTaggedI(target_tag);
 
-    if (target_index !== -1) this.tagged_interests.splice(target_index, 1);
+    if (target_index !== -1) { this.tagged_interests.splice(target_index, 1); }
   }
 
   removeImage(target_image: string) {
-    let target_index = this.searchImageInImages(target_image);
+    const target_index = this.searchImageInImages(target_image);
 
     if (target_index !== -1) {
       this.addpost.image_url.splice(target_index, 1);
@@ -198,7 +192,7 @@ export class AddPostComponent implements OnInit {
   searchImageInImages(target_image: string) {
     let target_index = -1;
     for (let i = 0; i < this.images.length; i++) {
-      if (target_image === this.images[i]) target_index = i;
+      if (target_image === this.images[i]) { target_index = i; }
     }
 
     return target_index;
@@ -206,8 +200,9 @@ export class AddPostComponent implements OnInit {
   searchTagInTagged(tag: any): number {
     let target_index = -1;
     for (let i = 0; i < this.tagged.length; i++) {
-      if (tag.id === this.tagged[i].id && tag.type === this.tagged[i].type)
+      if (tag.id === this.tagged[i].id && tag.type === this.tagged[i].type) {
         target_index = i;
+      }
     }
 
     return target_index;
@@ -215,13 +210,13 @@ export class AddPostComponent implements OnInit {
   searchTagInTaggedI(tag: any): number {
     let target_index = -1;
     for (let i = 0; i < this.tagged_interests.length; i++) {
-      if (tag.id === this.tagged_interests[i].id) target_index = i;
+      if (tag.id === this.tagged_interests[i].id) { target_index = i; }
     }
 
     return target_index;
   }
   clearTagInput() {
-    this.searchQ = "";
+    this.searchQ = '';
   }
 
   /** Tries to mark the network as busy */
@@ -244,17 +239,16 @@ export class AddPostComponent implements OnInit {
 
     this.dataService.UploadImage(files[0]).subscribe(
       (result) => {
-        // result.picture
         this.addpost.image_url.push(result.picture);
         this.images.push(result.picture);
         this.networkBusy = false;
       },
       (error) => {
         this.networkBusy = false;
-        this.snackBar.open(`Upload Failed - ${error.message}`, "Dismiss", {
+        this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
           duration: 2000,
         });
-        console.log("nhi ho paya");
+        console.log('nhi ho paya');
       }
     );
   }
@@ -290,17 +284,9 @@ export class AddPostComponent implements OnInit {
     }
 
     this.dialogRef.close();
-    this.snackBar.open("Sent for Verification", "Dismiss", {
+    this.snackBar.open('Sent for Verification', 'Dismiss', {
       duration: 3000,
     });
-
-    //const dialogConfig = new MatDialogConfig();
-    //dialogConfig.autoFocus = false;
-    //dialogConfig.width = "30%";
-    //dialogConfig.height = "20%";
-    //dialogConfig.position = { top: '200px' };
-    //dialogConfig.panelClass = 'custom-container';
-    //this.dialog.open(ClosePopupComponent, dialogConfig);
   }
   populateNewPostData(): void {
     this.addpost.time_of_creation = new Date();

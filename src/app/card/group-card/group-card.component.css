@@ -15,37 +15,17 @@ div.block {
     position: absolute;
     width: 100%;
     height: 100%;
-    /* background: linear-gradient(45deg, rgba(43.16927966, 43.4529661, 77.12881356, 1) 0%, rgba(53.48020219, 68.78011794, 110.77908107, 1) 50%,
-
-            rgba(177.83865475, 152.25159642, 126.74286931, 1) 100%); */
-    /* background: linear-gradient(rgba(55, 121, 202, 0.3) 100%, rgba(173, 113, 113, 0.3) 100%); */
-
     background-size: cover, cover;
-    /* background: rgba(238, 7, 7, 0.2); */
     filter: blur(10px);
 }
 
-/* rgba(249.10896008, 166.25663868, 127.9835532, 1) 60%, */
 
 
-.my-card__media:before {
-    /* content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    z-index: -1;
-
-    filter: blur(20px); */
-    /* -webkit-filter: blur(20px); */
-
-}
 
 .mdc-card__media-content {
     position: relative;
     color: white !important;
-    /* font-weight: bold; */
-    /* bottom: 0; */
+    
 }
 
 .block {
@@ -103,15 +83,15 @@ div.content p {
 
 
 .card-sub-title {
-    /* white-space: nowrap; */
+    
     overflow: hidden;
-    /* text-overflow: ellipsis; */
+    
 }
 
 .followers_posts {
-    /* white-space: nowrap; */
+   
     overflow: hidden;
-    /* text-overflow: ellipsis; */
+   
 }
 
 .badge {
@@ -131,7 +111,7 @@ div.content p {
     font-weight: 500;
     font-size: 16px;
     line-height: 140%;
-    /* or 22px */
+    
 
     display: flex;
     align-items: center;
@@ -139,7 +119,6 @@ div.content p {
     padding: 0;
     margin: 0;
 
-    /* Ref/Primary/Primary100 */
 
     color: #FFFFFF;
 
@@ -151,7 +130,7 @@ div.content p {
     font-weight: 400;
     font-size: 12px;
     line-height: 140%;
-    /* identical to box height, or 17px */
+    
     margin: 0;
     display: flex;
     align-items: center;
@@ -166,7 +145,6 @@ div.content p {
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
-    /* or 133% */
 
     letter-spacing: 0.4px;
 

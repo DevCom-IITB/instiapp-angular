@@ -70,13 +70,8 @@
       </td>
 
       <td align="right">
-<<<<<<< HEAD
-        <button mat-button *ngIf="post.status == 1" [matMenuTriggerFor]="menu">
-          <mat-icon class="icon_more">more_vert</mat-icon>
-=======
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon *ngIf="posted_by_current_user || is_moderator" class="icon_more">more_vert</mat-icon>
->>>>>>> 60222ca (add feature for vert menu to disappear if not posted by current user or moderator)
         </button>
 
         <mat-menu #menu="matMenu">
@@ -133,16 +128,6 @@
 
   </div>
   <div class="footer" *ngIf="post.status === undefined || post.status === 1">
-    <!-- <div class="report-action-container" *ngIf="post.status === 3 && is_approval_moderator">
-      <button mat-button class="btn-ignore">Ignore</button>
-      <button mat-button class="btn-remove">Remove</button>
-      <br>
-      <button mat-button class="btn-view-details">View Report Details</button>
-    </div>
-    <div class="hide-action-container" *ngIf="post.status === 4 && is_approval_moderator">
-      <button mat-button class="btn-unhide">Unhide</button>
-    </div> -->
-
     <table *ngIf="post.status === undefined || post.status === 1" width=100%>
       <tr>
         <td>

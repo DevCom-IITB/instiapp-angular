@@ -19,17 +19,18 @@ export class FeaturedPostComponent implements OnInit {
     this.setDefaults();
   }
 
-  setDefaults(): void{
+  setDefaults(): void {
     this.printable_date = new Date(this.post.time_of_creation).toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
     });
 
-    if (this.post.image_url !== undefined && this.post.image_url !== null)
+    if (this.post.image_url !== undefined && this.post.image_url !== null) {
       this.render_images = (this.post.image_url.length > 0);
-    else
+    } else {
       this.render_images = false;
+    }
   }
 
 }
