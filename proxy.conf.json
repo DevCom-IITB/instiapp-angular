@@ -1,12 +1,12 @@
 {
-    "/api/**": {
-      "target": {
-        "host": "localhost",
-        "protocol": "http:",
-        "port": 8000
-        },
-      "secure": false,
-      "changeOrigin": true,
-      "logLevel": "info"
-    }
+  "/api/**": {
+    "target": {
+      "host": "www.insti.app",
+      "protocol": "https:",
+      "port": 443
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
 }
