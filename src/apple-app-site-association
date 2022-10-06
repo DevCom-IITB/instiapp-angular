@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "5WT47589CF.app.instiapp.flutter",
+        "paths": [
+          "*"
+        ]
+      }
+    ]
+  }
+}

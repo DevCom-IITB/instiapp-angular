@@ -26,15 +26,11 @@
                 "glob": "assetlinks.json",
                 "input": "src/assets/",
                 "output": "/.well-known"
-              }
+              },
+              "src/apple-app-site-association"
             ],
-            "styles": [
-              "src/styles.css",
-              "src/theme.scss"
-            ],
-            "scripts": [
-              "node_modules/marked/lib/marked.js"
-            ]
+            "styles": ["src/styles.css", "src/theme.scss"],
+            "scripts": ["node_modules/marked/lib/marked.js"]
           },
           "configurations": {
             "production": {
@@ -85,12 +81,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
