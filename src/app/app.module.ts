@@ -57,6 +57,7 @@ import { BodyCardComponent } from './card/body-card/body-card.component';
 import { UserCardComponent } from './card/user-card/user-card.component';
 import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 import { InterestCardComponent } from './card/interest-card/interest-card.component';
+import { CommunityPostCardComponent } from './card/communitypost-card/communitypost-card.component';
 
 // Components
 import { ListLoadingComponent } from './comp/list-loading/list-loading.component';
@@ -77,6 +78,16 @@ import { AchievementCardComponent } from './card/achievement-card/achievement-ca
 import { AchievementOfferMakeComponent } from './page/achievements/achievement-offer-make/achievement-offer-make.component';
 import { SkillsNewComponent } from './page/achievements/skills-new/skills-new.component';
 import { QrScanComponent } from './page/qr-scan/qr-scan.component';
+import { DiscussionsComponent } from './page/discussions/discussions.component';
+import { GroupCardComponent } from './card/group-card/group-card.component';
+import { PostCardComponent } from './card/post-card/post-card.component';
+import { AddPostComponent } from './page/discussions/add-post/add-post.component';
+import { GroupFeedComponent } from './page/discussions/group-feed/group-feed.component';
+import { GroupDetailsComponent } from './page/group-details/group-details.component';
+import { PostViewComponent } from './page/discussions/post-view/post-view.component';
+import { ClosePopupComponent } from './page/discussions/add-post/close-popup/close-popup.component';
+import { GhostPostComponent } from './card/communitypost-card/ghost-post/ghost-post.component';
+import { FeaturedPostComponent } from './card/communitypost-card/featured-post/featured-post.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +101,7 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     UserDetailsComponent,
     EventCardComponent,
     BodyCardComponent,
+    CommunityPostCardComponent,
     BodyDetailsComponent,
     UserCardComponent,
     UpdateBodyComponent,
@@ -115,14 +127,24 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
     AchievementRequestComponent,
     AchievementNewComponent,
     SearchBoxComponent,
+    GroupDetailsComponent,
 
     AchievementCardComponent,
+    GroupCardComponent,
     AchievementOfferMakeComponent,
     QrScanComponent,
     AlumniComponent,
     OTPComponent,
     QuerySearchComponent,
     QueryNewComponent,
+    DiscussionsComponent,
+    PostCardComponent,
+    AddPostComponent,
+    GroupFeedComponent,
+    PostViewComponent,
+    ClosePopupComponent,
+    GhostPostComponent,
+    FeaturedPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -141,57 +163,159 @@ import { QrScanComponent } from './page/qr-scan/qr-scan.component';
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
       { path: 'feed', component: FeedComponent, data: { state: 'base' } },
       { path: 'news', component: NewsComponent, data: { state: 'base' } },
-      { path: 'calendar', component: CalendarComponent, data: { state: 'base' } },
+      {
+        path: 'calendar',
+        component: CalendarComponent,
+        data: { state: 'base' },
+      },
       { path: 'explore', component: ExploreComponent, data: { state: 'base' } },
       { path: 'mess', component: MessComponent, data: { state: 'base' } },
 
       { path: 'map', component: MapComponent, data: { state: 'base' } },
       { path: 'map/:name', component: MapComponent, data: { state: 'base' } },
 
-      { path: 'achievements', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
-      { path: 'achievements/:body', component: AchievementsComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
-      { path: 'achievement-new', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
-      { path: 'achievement-new/:offer', component: AchievementNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      {
+        path: 'achievements',
+        component: AchievementsComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'achievements/:body',
+        component: AchievementsComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'achievement-new',
+        component: AchievementNewComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'achievement-new/:offer',
+        component: AchievementNewComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
       { path: 'qr-scan', component: QrScanComponent, data: { state: 'base' } },
 
-      { path: 'quick-links', component: QuickLinksComponent, data: { state: 'base' } },
-      { path: 'settings', component: SettingsComponent, data: { state: 'base' } },
+      {
+        path: 'quick-links',
+        component: QuickLinksComponent,
+        data: { state: 'base' },
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+        data: { state: 'base' },
+      },
       { path: 'about', component: AboutComponent, data: { state: 'overlay' } },
 
-      { path: 'add-event', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
-      { path: 'edit-event/:id', component: AddEventComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
-      { path: 'edit-body/:id', component: UpdateBodyComponent, data: { state: 'overlay' }, canActivate: [LoginActivate] },
+      {
+        path: 'add-event',
+        component: AddEventComponent,
+        data: { state: 'overlay' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'edit-event/:id',
+        component: AddEventComponent,
+        data: { state: 'overlay' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'edit-body/:id',
+        component: UpdateBodyComponent,
+        data: { state: 'overlay' },
+        canActivate: [LoginActivate],
+      },
 
-      { path: 'event/:id', component: EventDetailsComponent, data: { state: 'overlay' } },
-      { path: 'user/:id', component: UserDetailsComponent, data: { state: 'overlay' } },
-      { path: 'org/:id', component: BodyDetailsComponent, data: { state: 'overlay' } },
+      {
+        path: 'event/:id',
+        component: EventDetailsComponent,
+        data: { state: 'overlay' },
+      },
+      {
+        path: 'user/:id',
+        component: UserDetailsComponent,
+        data: { state: 'overlay' },
+      },
+      {
+        path: 'org/:id',
+        component: BodyDetailsComponent,
+        data: { state: 'overlay' },
+      },
 
-      { path: 'query-search', component: QuerySearchComponent, data: { state: 'base' } },
-      { path: 'query-new', component: QueryNewComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      {
+        path: 'query-search',
+        component: QuerySearchComponent,
+        data: { state: 'base' },
+      },
+      {
+        path: 'query-new',
+        component: QueryNewComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
 
-      { path: 'blog/:blog', component: BlogComponent, data: { state: 'base' }, canActivate: [LoginActivate] },
+      {
+        path: 'discussions',
+        component: DiscussionsComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'group/:id',
+        component: GroupDetailsComponent,
+        data: { state: 'overlay' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'add-post',
+        component: AddPostComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'group-feed/:id',
+        component: GroupFeedComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: 'view-post/:id',
+        component: PostViewComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
+
+      {
+        path: 'blog/:blog',
+        component: BlogComponent,
+        data: { state: 'base' },
+        canActivate: [LoginActivate],
+      },
       { path: 'login', component: LoginComponent, data: { state: 'base' } },
-      { path: 'alumni', component: AlumniComponent, data: { state: 'base'}},
-      { path: 'alumni-otp', component: OTPComponent, data: { state: 'base'}},
+      { path: 'alumni', component: AlumniComponent, data: { state: 'base' } },
+      { path: 'alumni-otp', component: OTPComponent, data: { state: 'base' } },
       { path: 'feedback', component: RedirComponent, data: { state: 'base' } },
       { path: 'android', component: RedirComponent, data: { state: 'base' } },
       { path: '**', redirectTo: 'feed' },
     ]),
 
-    ServiceWorkerModule.register(environment.service_worker_url, { enabled: environment.production }),
+    ServiceWorkerModule.register(environment.service_worker_url, {
+      enabled: environment.production,
+    }),
     MyMaterialClass,
     LayoutModule,
   ],
-  entryComponents: [
-    NotifyCardComponent
-  ],
+  entryComponents: [NotifyCardComponent, AddPostComponent],
   providers: [
     DataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
-
   ],
-  bootstrap: [AppComponent,
-    QuerySearchComponent]
+  bootstrap: [AppComponent, QuerySearchComponent],
 })
-export class AppModule { }
+export class AppModule {}

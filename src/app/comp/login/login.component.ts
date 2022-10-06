@@ -5,10 +5,9 @@ import { DataService } from '../../data.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   /** Currently authenticating */
   public authenticating = false;
 
@@ -17,8 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     public dataService: DataService,
-    public router: Router,
-  ) { }
+    public router: Router
+  ) {}
 
   ngOnInit() {
     this.dataService.setTitle('Login');
@@ -31,12 +30,14 @@ export class LoginComponent implements OnInit {
     if (params.hasOwnProperty('code')) {
       this.authenticating = true;
       const auth_code = params['code'];
-      this.dataService.AuthenticateSSO(auth_code).subscribe(() => {
-        this.dataService.performLogin();
-      }, (e) => {
-        console.log(e);
-        this.error = e.status;
-      });
+      this.dataService.AuthenticateSSO(auth_code).subscribe(
+        () => {
+          this.dataService.performLogin();
+        },
+        (e) => {
+          this.error = e.status;
+        }
+      );
     } else {
       this.authenticating = false;
     }

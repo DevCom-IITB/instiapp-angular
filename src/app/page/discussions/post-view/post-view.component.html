@@ -1,0 +1,15 @@
+<app-xunk-spinner *ngIf="!post"></app-xunk-spinner>
+
+<app-event-sidebar-desktop *ngIf="post" [isgrouppage]="true" [group]="group">
+
+    <div center id="main-post-container">
+
+        <app-communitypost-card [post]="post" show_comment_thread="true">
+
+        </app-communitypost-card>
+
+
+    </div>
+
+
+</app-event-sidebar-desktop>

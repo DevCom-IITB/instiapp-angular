@@ -1,11 +1,9 @@
-<div class="center-comp"
-    [hidden]="hideOnMobile === 1 && dataService.isMobile()"
-    [class.rightborder]="centerRightBorder">
+<div class="center-comp" 
+ [hidden]="hideOnMobile === 1 && dataService.isMobile()" [class.rightborder]="centerRightBorder">
   <ng-content select="[center]"></ng-content>
 </div>
 
-<div class="right-comp"
-    [hidden]="hideOnMobile === 2 && dataService.isMobile()"
-    [class.leftborder]="rightLeftBorder">
-    <ng-content select="[right]"></ng-content>
+<div class="right-comp" 
+  [hidden]="hideOnMobile === 2 && dataService.isMobile()" [class.leftborder]="rightLeftBorder">
+  <ng-content select="[right]"></ng-content>
 </div>

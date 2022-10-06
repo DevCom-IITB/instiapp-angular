@@ -1,0 +1,7 @@
+#container{
+    border-radius: 20px;
+    border: 2px solid black;
+    height: auto;
+    margin: 4px;
+    text-align: center;
+}

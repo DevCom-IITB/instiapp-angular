@@ -1,0 +1,126 @@
+<div id="main-addpost-container">
+    <div id="addpost-header-container">
+        <p style="font: 20px 'Roboto';"><b>Create Post</b></p>
+    </div>
+
+    <div id="user-container" *ngIf="!anonymous">
+        <img class="profile-pic img-circle object-cover"
+            [src]="anonymous ? 'assets/logo.png' : current_user.profile_pic" src-fallback="assets/useravatar.svg">
+        <div id="username-container">
+            <span style="font: 14px 'Roboto';"><b>{{ current_user.name }}</b></span>
+            <div id="public-indicator" class="clickable" (click)="toggleAnon()">
+                <mat-icon style="height:14px;width:14px;font-size:14px;">public</mat-icon>
+                <span style="margin-left: 2px;">Public</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="user-container" *ngIf="anonymous">
+        <img class="profile-pic img-circle object-cover" src="assets/anonymous_pic.jpg">
+        <div id="username-container">
+            <span style="font: 14px 'Roboto';"><b>Anonymous</b></span>
+            <div id="public-indicator" class="clickable" (click)="toggleAnon()" style="background-color:black;">
+                <mat-icon style="height:14px;width:14px;font-size:14px; color:white;">sentiment_neutral</mat-icon>
+                <span style="margin-left: 2px; color:white;">Anonymous</span>
+            </div>
+        </div>
+    </div>
+
+    <textarea matInput [(ngModel)]="addpost.content" rows=4 required id="post-content-input"
+        placeholder="Write your post…"></textarea>
+
+    <div id="image-container" *ngIf="this.images">
+        <ng-container *ngFor="let image of this.addpost.image_url">
+            <div style="position:relative;">
+                <img class="img-attached" [src]="image" alt="x">
+                <div class="img-attached-close clickable">
+                    <mat-icon style="height:16px;width:16px;font-size:16px;" (click)="removeImage(image);">close
+                    </mat-icon>
+                </div>
+            </div>
+        </ng-container>
+        <div id="img-add-bigplus" class="clickable">
+            <div style="height:36px;width:36px;font-size:36px;">
+                <input style="display:none;" type="file" accept="image/*" #file id="file"
+                    (change)="uploadImage($event.target.files)">
+                <mat-icon (click)="file.click()">add</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="tagging-container">
+        <div class="tagging-container-header">
+            <div class="tag-type-container">
+                <p><b>Tags</b></p>
+            </div>
+            <div class="tag-search-container">
+                <mat-form-field style="width:100%;">
+                    <input id="tag-input" class="taggable-search" placeholder="Search People or Institute Bodies"
+                        matInput name="search" [(ngModel)]="searchQ" (keyup)="search(searchQ)"
+                        [matAutocomplete]="tag_suggestions">
+
+                    <mat-autocomplete #tag_suggestions="matAutocomplete">
+                        <mat-option *ngFor="let body of tag_bodies"
+                            (click)="addTag(body, body.name, 'body'); clearTagInput();" [value]="body.name">
+                            {{ body.name }}
+                        </mat-option>
+                        <mat-option *ngFor="let user of tag_users"
+                            (click)="addTag(user, user.name,'user'); clearTagInput();" [value]="user.name">
+                            {{ user.name }}
+                        </mat-option>
+
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <div class="tagged" *ngFor="let tag of tagged">
+                <span>{{ tag.name }}</span>
+                <mat-icon class="clickable" (click)="removeTag(tag);" style="height:16px;width:16px;font-size:16px;">
+                    close</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="tagging-container">
+        <div class="tagging-container-header">
+            <div class="tag-type-container">
+                <p><b>Interests</b></p>
+            </div>
+            <div class="tag-search-container">
+                <app-search-box style="
+                    width: 100%;" exploreProp="interests" displayProp="title" placeholder="Search for interests"
+                    hint="" (change)="setInterest($event)">
+                </app-search-box>
+
+
+            </div>
+        </div>
+        <div class="tagged" *ngFor="let tag of tagged_interests">
+            <span>{{ tag.title }}</span>
+            <mat-icon class="clickable" (click)="removeTag(tag);" style="height:16px;width:16px;font-size:16px;">
+                close</mat-icon>
+        </div>
+
+    </div>
+
+
+    <mat-dialog-actions>
+        <div class="bottom_button">
+            <button mat-raised-button class="margin-sv" id="submit_btn" (click)="onPost()">
+                Post
+            </button>
+            <button mat-icon-button class="margin-sv" id="attach_btn">
+                <input style="display:none;" type="file" accept="image/*" #file id="file"
+                    (change)="uploadImage($event.target.files)">
+                <mat-icon (click)="file.click()">attach_file</mat-icon>
+            </button>
+
+
+
+            <button mat-icon-button class="margin-sv" id="link_btn">
+                <mat-icon>link</mat-icon>
+            </button>
+        </div>
+    </mat-dialog-actions>
+</div>

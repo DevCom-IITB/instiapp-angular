@@ -21,7 +21,12 @@
               "src/favicon.ico",
               "src/manifest.json",
               "src/browserconfig.xml",
-              "src/manifest.json"
+              "src/manifest.json",
+              {
+                "glob": "assetlinks.json",
+                "input": "src/assets/",
+                "output": "/.well-known"
+              }
             ],
             "styles": [
               "src/styles.css",
