@@ -1,15 +1,15 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { ICommunity, IUserProfile } from "../../interfaces";
-import { DataService } from "../../data.service";
-import { Router } from "@angular/router";
-import { API } from "../../../api";
+import { Component, OnInit, Input } from '@angular/core';
+import { ICommunity, IUserProfile } from '../../interfaces';
+import { DataService } from '../../data.service';
+import { Router } from '@angular/router';
+import { API } from '../../../api';
 
-const TITLE = "Discussions";
+const TITLE = 'Discussions';
 
 @Component({
-  selector: "app-insight-disscussion-forum",
-  templateUrl: "./discussions.component.html",
-  styleUrls: ["./discussions.component.css"],
+  selector: 'app-insight-disscussion-forum',
+  templateUrl: './discussions.component.html',
+  styleUrls: ['./discussions.component.css'],
 })
 export class DiscussionsComponent implements OnInit {
   @Input() public groups: ICommunity[];
@@ -27,7 +27,7 @@ export class DiscussionsComponent implements OnInit {
       (result) => {
         if (result.length > 0) {
           // TODO: Remove this if more communities
-          this.router.navigate(["group-feed", result[0].str_id]);
+          this.router.navigate(['group-feed', result[0].str_id]);
         }
 
         this.groups = result;
