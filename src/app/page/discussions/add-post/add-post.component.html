@@ -32,7 +32,7 @@
         placeholder="Write your post…"></textarea>
 
     <div id="image-container" *ngIf="this.images">
-        <ng-container *ngFor="let image of this.addpost.image_url">
+        <ng-container *ngFor="let image of this.images">
             <div style="position:relative;">
                 <img class="img-attached" [src]="image" alt="x">
                 <div class="img-attached-close clickable">

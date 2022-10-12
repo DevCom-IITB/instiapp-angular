@@ -72,10 +72,12 @@ export class AddPostComponent implements OnInit {
     if (data.post) {
       this.addpost = data.post;
       this.images = this.addpost.image_url;
+      if (!this.images) this.images = [];
       this.tagged = [...this.addpost.tag_body, ...this.addpost.tag_user];
       this.tagged_bodies = this.addpost.tag_body;
       this.tagged_users = this.addpost.tag_user;
       this.tagged_interests = this.addpost.interests;
+      if (!this.tagged_interests) this.tagged_interests = [];
     }
   }
 
@@ -173,6 +175,7 @@ export class AddPostComponent implements OnInit {
     if (target_index !== -1) {
       this.tagged_interests.splice(target_index, 1);
     }
+    // this.addpost.interests = this.tagged_interests;
   }
 
   removeTagBodyUsers(target_tag: any) {
@@ -273,8 +276,9 @@ export class AddPostComponent implements OnInit {
 
     this.dataService.UploadImage(files[0]).subscribe(
       (result) => {
-        this.addpost.image_url.push(result.picture);
-        // this.images.push(result.picture);
+        // console.log(result.picture);
+        // this.addpost.image_url.push(result.picture);
+        this.images.push(result.picture);
         this.networkBusy = false;
       },
       (error) => {
@@ -284,7 +288,7 @@ export class AddPostComponent implements OnInit {
         });
       }
     );
-    this.images = this.addpost.image_url;
+    this.addpost.image_url = this.images;
   }
 
   onPost() {
@@ -293,9 +297,7 @@ export class AddPostComponent implements OnInit {
     this.addpost.anonymous = this.anonymous;
     this.addpost.tag_body = this.tagged_bodies;
     this.addpost.tag_user = this.tagged_users;
-
     this.addpost.interests = this.tagged_interests;
-
     if (!this.data.post) {
       this.dataService
         .FirePOST<ICommunityPost>(API.CommunityAddPost, this.addpost)
@@ -311,6 +313,7 @@ export class AddPostComponent implements OnInit {
           this.addpost = {} as ICommunityPost;
         });
     }
+    console.log(this.addpost);
 
     this.dialogRef.close();
     this.snackBar.open('Sent for Verification', 'Dismiss', {
