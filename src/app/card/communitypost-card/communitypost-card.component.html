@@ -26,14 +26,14 @@
 
     <tr>
 
-      <td align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
+      <td align="left" class="avatar clickable">
         <ng-container *ngIf="post.anonymous && post.status == 1; else non_anon">
           <img src="assets/anonymous_pic.jpg" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
         </ng-container>
         <ng-template #non_anon>
           <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
-            <img [src]="post.posted_by.profile_pic" class="img-circle object-cover"
-              [ngStyle]="{ 'left.px': pic_offset }">
+            <img [routerLink]="['/user', post.posted_by.id]" [src]="post.posted_by.profile_pic"
+              class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
           </ng-container>
           <ng-template #default_avatar>
             <img src="assets/logo.png" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
@@ -43,7 +43,8 @@
 
       <td class="user_date" [ngStyle]="{ 'left.px': name_offset }">
         <p class="user clickable" [routerLink]="post.anonymous && post.status == 1?[]: ['/user', post.posted_by.id]">
-          {{ post.anonymous && post.status == 1 ? "Anonymous" : post.posted_by.name + (post.anonymous ? " (Anonymous)":"") }}
+          {{ post.anonymous && post.status == 1 ? "Anonymous" : post.posted_by.name + (post.anonymous ? "
+          (Anonymous)":"") }}
         </p>
         <p class="date"> {{ printable_date }}</p>
       </td>
