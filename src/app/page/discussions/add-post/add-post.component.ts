@@ -72,12 +72,12 @@ export class AddPostComponent implements OnInit {
     if (data.post) {
       this.addpost = data.post;
       this.images = this.addpost.image_url;
-      if (!this.images) this.images = [];
+      if (!this.images) { this.images = []; }
       this.tagged = [...this.addpost.tag_body, ...this.addpost.tag_user];
       this.tagged_bodies = this.addpost.tag_body;
       this.tagged_users = this.addpost.tag_user;
       this.tagged_interests = this.addpost.interests;
-      if (!this.tagged_interests) this.tagged_interests = [];
+      if (!this.tagged_interests) { this.tagged_interests = []; }
     }
   }
 
@@ -181,18 +181,18 @@ export class AddPostComponent implements OnInit {
   removeTagBodyUsers(target_tag: any) {
 
     let target_index = this.searchInPool(this.tagged_bodies, target_tag);
-    if (target_index != -1) {
+    if (target_index !== -1) {
       this.tagged_bodies.splice(target_index, 1);
     }
 
     target_index = this.searchInPool(this.tagged_users, target_tag);
-    if (target_index != -1) {
+    if (target_index !== -1) {
       this.tagged_users.splice(target_index, 1);
     }
 
 
     target_index = this.searchInPool(this.tagged, target_tag);
-    if (target_index != -1) {
+    if (target_index !== -1) {
       this.tagged.splice(target_index, 1);
     }
 
@@ -276,8 +276,6 @@ export class AddPostComponent implements OnInit {
 
     this.dataService.UploadImage(files[0]).subscribe(
       (result) => {
-        // console.log(result.picture);
-        // this.addpost.image_url.push(result.picture);
         this.images.push(result.picture);
         this.networkBusy = false;
       },
@@ -313,7 +311,6 @@ export class AddPostComponent implements OnInit {
           this.addpost = {} as ICommunityPost;
         });
     }
-    console.log(this.addpost);
 
     this.dialogRef.close();
     this.snackBar.open('Sent for Verification', 'Dismiss', {
