@@ -3,6 +3,17 @@
         <p style="font: 20px 'Roboto';"><b>Create Post</b></p>
     </div>
 
+    <div id="user-container" *ngIf="anonymous">
+        <img class="profile-pic img-circle object-cover" src="assets/anonymous_pic.jpg">
+        <div id="username-container">
+            <span style="font: 14px 'Roboto';"><b>Anonymous</b></span>
+            <div id="public-indicator" class="clickable" (click)="toggleAnon()" style="background-color:black;">
+                <mat-icon style="height:14px;width:14px;font-size:14px; color:white;">sentiment_neutral</mat-icon>
+                <span style="margin-left: 2px; color:white;">Anonymous</span>
+            </div>
+        </div>
+    </div>
+
     <div id="user-container" *ngIf="!anonymous">
         <img class="profile-pic img-circle object-cover"
             [src]="anonymous ? 'assets/logo.png' : current_user.profile_pic" src-fallback="assets/useravatar.svg">
@@ -15,22 +26,13 @@
         </div>
     </div>
 
-    <div id="user-container" *ngIf="anonymous">
-        <img class="profile-pic img-circle object-cover" src="assets/anonymous_pic.jpg">
-        <div id="username-container">
-            <span style="font: 14px 'Roboto';"><b>Anonymous</b></span>
-            <div id="public-indicator" class="clickable" (click)="toggleAnon()" style="background-color:black;">
-                <mat-icon style="height:14px;width:14px;font-size:14px; color:white;">sentiment_neutral</mat-icon>
-                <span style="margin-left: 2px; color:white;">Anonymous</span>
-            </div>
-        </div>
-    </div>
+
 
     <textarea matInput [(ngModel)]="addpost.content" rows=4 required id="post-content-input"
         placeholder="Write your post…"></textarea>
 
     <div id="image-container" *ngIf="this.images">
-        <ng-container *ngFor="let image of this.addpost.image_url">
+        <ng-container *ngFor="let image of this.images">
             <div style="position:relative;">
                 <img class="img-attached" [src]="image" alt="x">
                 <div class="img-attached-close clickable">
@@ -76,7 +78,8 @@
         <div>
             <div class="tagged" *ngFor="let tag of tagged">
                 <span>{{ tag.name }}</span>
-                <mat-icon class="clickable" (click)="removeTag(tag);" style="height:16px;width:16px;font-size:16px;">
+                <mat-icon class="clickable" (click)="removeTagBodyUsers(tag);"
+                    style="height:16px;width:16px;font-size:16px;">
                     close</mat-icon>
             </div>
         </div>
