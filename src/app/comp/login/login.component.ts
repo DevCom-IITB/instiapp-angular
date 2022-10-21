@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../../data.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { DataService } from "../../data.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
   /** Currently authenticating */
@@ -20,19 +20,20 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dataService.setTitle('Login');
+    this.dataService.setTitle("Login");
     if (this.dataService.isLoggedIn()) {
-      this.router.navigate(['feed']);
+      this.router.navigate(["feed"]);
       return;
     }
 
     const params = this.activatedRoute.snapshot.queryParams;
-    if (params.hasOwnProperty('code')) {
+    if (params.hasOwnProperty("code")) {
       this.authenticating = true;
-      const auth_code = params['code'];
+      const auth_code = params["code"];
       this.dataService.AuthenticateSSO(auth_code).subscribe(
         (res) => {
-          localStorage.setItem(this.dataService.SESSION_ID, res['sessionid']);
+          localStorage.setItem(this.dataService.SESSION_ID, res["sessionid"]);
+          document.cookie = `sessionid=${res["sessionid"]}; path=/`;
           this.dataService.performLogin();
         },
         (e) => {
