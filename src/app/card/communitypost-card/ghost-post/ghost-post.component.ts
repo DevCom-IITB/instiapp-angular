@@ -9,7 +9,15 @@ export class GhostPostComponent implements OnInit {
   @Input() public post_content: string;
   @Input() public poster_pic_path: string;
 
-  constructor() {}
+  @Input() public pic_offset_px = -46;
 
-  ngOnInit(): void {}
+  constructor() { }
+
+  ngOnInit(): void {
+    this.setDefaults();
+  }
+
+  setDefaults(): void {
+    if (this.pic_offset_px === undefined) { this.pic_offset_px = -46; }
+  }
 }

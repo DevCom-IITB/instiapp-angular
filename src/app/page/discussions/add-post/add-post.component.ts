@@ -72,15 +72,19 @@ export class AddPostComponent implements OnInit {
     if (data.post) {
       this.addpost = data.post;
       this.images = this.addpost.image_url;
+      if (!this.images) { this.images = []; }
       this.tagged = [...this.addpost.tag_body, ...this.addpost.tag_user];
+      this.tagged_bodies = this.addpost.tag_body;
+      this.tagged_users = this.addpost.tag_user;
       this.tagged_interests = this.addpost.interests;
+      if (!this.tagged_interests) { this.tagged_interests = []; }
     }
   }
 
   ngOnInit(): void {
     this.getUser();
-    this.images = [];
     if (!this.data.post) {
+      this.images = [];
       this.addpost = {
         reactions_count: {
           0: 0,
@@ -163,22 +167,60 @@ export class AddPostComponent implements OnInit {
       this.tagged.push(tag_to_push);
     }
   }
+
+
   removeTag(target_tag: any) {
     const target_index = this.searchTagInTaggedI(target_tag);
 
     if (target_index !== -1) {
       this.tagged_interests.splice(target_index, 1);
     }
+    // this.addpost.interests = this.tagged_interests;
   }
+
+  removeTagBodyUsers(target_tag: any) {
+
+    let target_index = this.searchInPool(this.tagged_bodies, target_tag);
+    if (target_index !== -1) {
+      this.tagged_bodies.splice(target_index, 1);
+    }
+
+    target_index = this.searchInPool(this.tagged_users, target_tag);
+    if (target_index !== -1) {
+      this.tagged_users.splice(target_index, 1);
+    }
+
+
+    target_index = this.searchInPool(this.tagged, target_tag);
+    if (target_index !== -1) {
+      this.tagged.splice(target_index, 1);
+    }
+
+  }
+
+  searchInPool(pool: any, toSearch: any) {
+    let target_index = -1;
+    for (let i = 0; i < pool.length; i++) {
+      if (toSearch === pool[i]) {
+        target_index = i;
+      }
+    }
+
+    return target_index;
+  }
+
+
+
 
   removeImage(target_image: string) {
     const target_index = this.searchImageInImages(target_image);
 
     if (target_index !== -1) {
       this.addpost.image_url.splice(target_index, 1);
-      this.images.splice(target_index, 1);
     }
+    this.images = this.addpost.image_url;
   }
+
   searchImageInImages(target_image: string) {
     let target_index = -1;
     for (let i = 0; i < this.images.length; i++) {
@@ -190,6 +232,7 @@ export class AddPostComponent implements OnInit {
     return target_index;
   }
   searchTagInTagged(tag: any): number {
+
     let target_index = -1;
     for (let i = 0; i < this.tagged.length; i++) {
       if (tag.id === this.tagged[i].id && tag.type === this.tagged[i].type) {
@@ -233,7 +276,6 @@ export class AddPostComponent implements OnInit {
 
     this.dataService.UploadImage(files[0]).subscribe(
       (result) => {
-        this.addpost.image_url.push(result.picture);
         this.images.push(result.picture);
         this.networkBusy = false;
       },
@@ -244,18 +286,16 @@ export class AddPostComponent implements OnInit {
         });
       }
     );
+    this.addpost.image_url = this.images;
   }
 
   onPost() {
     this.populateNewPostData();
 
     this.addpost.anonymous = this.anonymous;
-
     this.addpost.tag_body = this.tagged_bodies;
     this.addpost.tag_user = this.tagged_users;
-
     this.addpost.interests = this.tagged_interests;
-
     if (!this.data.post) {
       this.dataService
         .FirePOST<ICommunityPost>(API.CommunityAddPost, this.addpost)
