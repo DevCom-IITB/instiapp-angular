@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
       this.authenticating = true;
       const auth_code = params['code'];
       this.dataService.AuthenticateSSO(auth_code).subscribe(
-        () => {
+        (res) => {
+          localStorage.setItem(this.dataService.SESSION_ID, res['sessionid']);
           this.dataService.performLogin();
         },
         (e) => {

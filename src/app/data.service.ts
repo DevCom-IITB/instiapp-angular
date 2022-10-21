@@ -72,6 +72,7 @@ export class DataService {
   /* Constants */
   public LOGIN_REDIR = 'login_redir';
   public LS_USER = 'user_profile';
+  public SESSION_ID = 'session_id';
 
   /** Running in a sandbox */
   public isSandbox = false;
@@ -124,6 +125,23 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FireGET<T>(uriTemplate: string, options: any = {}): Observable<T> {
+    const sid = localStorage.getItem(this.SESSION_ID);
+    if (sid !== null && sid !== undefined) {
+      if (options['headers'] != null) {
+        const headers = options['headers'] as HttpHeaders;
+        headers.append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+        options['headers'] = headers;
+      } else {
+        options['headers'] = new HttpHeaders().append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+      }
+    }
+
     return this.http.get<T>(this.FillURITemplate(HOST + uriTemplate, options));
   }
 
@@ -138,6 +156,22 @@ export class DataService {
     body: any = null,
     options: any = {}
   ): Observable<T> {
+    const sid = localStorage.getItem(this.SESSION_ID);
+    if (sid !== null && sid !== undefined) {
+      if (options['headers'] != null) {
+        const headers = options['headers'] as HttpHeaders;
+        headers.append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+        options['headers'] = headers;
+      } else {
+        options['headers'] = new HttpHeaders().append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+      }
+    }
     return this.http.put<T>(
       this.FillURITemplate(HOST + uriTemplate, options),
       body
@@ -155,6 +189,22 @@ export class DataService {
     body: any = null,
     options: any = {}
   ): Observable<T> {
+    const sid = localStorage.getItem(this.SESSION_ID);
+    if (sid !== null && sid !== undefined) {
+      if (options['headers'] != null) {
+        const headers = options['headers'] as HttpHeaders;
+        headers.append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+        options['headers'] = headers;
+      } else {
+        options['headers'] = new HttpHeaders().append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+      }
+    }
     return this.http.post<T>(
       this.FillURITemplate(HOST + uriTemplate, options),
       body
@@ -172,6 +222,22 @@ export class DataService {
     body: any = null,
     options: any = {}
   ): Observable<T> {
+    const sid = localStorage.getItem(this.SESSION_ID);
+    if (sid !== null && sid !== undefined) {
+      if (options['headers'] != null) {
+        const headers = options['headers'] as HttpHeaders;
+        headers.append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+        options['headers'] = headers;
+      } else {
+        options['headers'] = new HttpHeaders().append(
+          'Cookie',
+          'sessionid=' + localStorage.getItem(this.SESSION_ID)
+        );
+      }
+    }
     return this.http.patch<T>(
       this.FillURITemplate(HOST + uriTemplate, options),
       body
