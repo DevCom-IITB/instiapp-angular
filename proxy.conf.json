@@ -1,11 +1,7 @@
 {
   "/api/**": {
-    "target": {
-      "host": "www.insti.app",
-      "protocol": "https:",
-      "port": 443
-    },
-    "secure": false,
+    "target": "https://gymkhana.iitb.ac.in/instiapp",
+    "secure": true,
     "changeOrigin": true,
     "logLevel": "info"
   }

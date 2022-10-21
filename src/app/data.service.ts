@@ -605,14 +605,16 @@ export class DataService {
   }
 
   /** Get a cropped URL for a static image */
-  getCropped(url: string, w: number, h: number): string {
+  getCropped(url: string, _: number, __: number): string {
     if (url === null) {
       return null;
     }
-    return url.replace(
-      'api.insti.app/static/',
-      `img.insti.app/static/crop/${w}/${h}/`
-    );
+    return url;
+    // TODO: fix this
+    // .replace(
+    //   'api.insti.app/static/',
+    //   `img.insti.app/static/crop/${w}/${h}/`
+    // );
   }
 
   /** Get the URL of a body from str_id */
