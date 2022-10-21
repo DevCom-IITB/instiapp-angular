@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -88,6 +88,7 @@ import { PostViewComponent } from './page/discussions/post-view/post-view.compon
 import { ClosePopupComponent } from './page/discussions/add-post/close-popup/close-popup.component';
 import { GhostPostComponent } from './card/communitypost-card/ghost-post/ghost-post.component';
 import { FeaturedPostComponent } from './card/communitypost-card/featured-post/featured-post.component';
+import { TokenInterceptor } from './interceptor';
 
 @NgModule({
   declarations: [
@@ -315,6 +316,7 @@ import { FeaturedPostComponent } from './card/communitypost-card/featured-post/f
     DataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent, QuerySearchComponent],
 })

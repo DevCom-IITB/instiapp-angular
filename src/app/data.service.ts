@@ -34,7 +34,7 @@ JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 const HOST = environment.host;
 
 /** Absolute SSO redirection URL */
-const SSO_REDIR = HOST + 'login'; /* Has to be absolute URL */
+const SSO_REDIR = environment.host + 'login'; /* Has to be absolute URL */
 
 /** SSO host address */
 const SSOHOST = environment.sso_host;
@@ -125,24 +125,20 @@ export class DataService {
    * @param options Options to fill in URI Template
    */
   FireGET<T>(uriTemplate: string, options: any = {}): Observable<T> {
-    const sid = localStorage.getItem(this.SESSION_ID);
-    if (sid !== null && sid !== undefined) {
-      if (options['headers'] != null) {
-        const headers = options['headers'] as HttpHeaders;
-        headers.append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-        options['headers'] = headers;
-      } else {
-        options['headers'] = new HttpHeaders().append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-      }
-    }
+    // const sid = localStorage.getItem(this.SESSION_ID);
+    // if (sid !== null && sid !== undefined) {
+    //   options["headers"] = {
+    //     ...options["headers"],
+    //     Cookie: "sessionid=" + sid,
+    //   };
+    // }
 
-    return this.http.get<T>(this.FillURITemplate(HOST + uriTemplate, options));
+    return this.http.get<T>(
+      this.FillURITemplate(HOST + uriTemplate, {
+        ...options,
+        withCredentials: true,
+      })
+    );
   }
 
   /**
@@ -156,24 +152,18 @@ export class DataService {
     body: any = null,
     options: any = {}
   ): Observable<T> {
-    const sid = localStorage.getItem(this.SESSION_ID);
-    if (sid !== null && sid !== undefined) {
-      if (options['headers'] != null) {
-        const headers = options['headers'] as HttpHeaders;
-        headers.append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-        options['headers'] = headers;
-      } else {
-        options['headers'] = new HttpHeaders().append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-      }
-    }
+    // const sid = localStorage.getItem(this.SESSION_ID);
+    // if (sid !== null && sid !== undefined) {
+    //   options["headers"] = {
+    //     ...options["headers"],
+    //     Cookie: "sessionid=" + sid,
+    //   };
+    // }
     return this.http.put<T>(
-      this.FillURITemplate(HOST + uriTemplate, options),
+      this.FillURITemplate(HOST + uriTemplate, {
+        ...options,
+        withCredentials: true,
+      }),
       body
     );
   }
@@ -189,24 +179,27 @@ export class DataService {
     body: any = null,
     options: any = {}
   ): Observable<T> {
-    const sid = localStorage.getItem(this.SESSION_ID);
-    if (sid !== null && sid !== undefined) {
-      if (options['headers'] != null) {
-        const headers = options['headers'] as HttpHeaders;
-        headers.append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-        options['headers'] = headers;
-      } else {
-        options['headers'] = new HttpHeaders().append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-      }
-    }
+    // const sid = localStorage.getItem(this.SESSION_ID);
+    // if (sid !== null && sid !== undefined) {
+    //   if (options["headers"] != null) {
+    //     const headers = options["headers"] as HttpHeaders;
+    //     headers.append(
+    //       "Cookie",
+    //       "sessionid=" + localStorage.getItem(this.SESSION_ID)
+    //     );
+    //     options["headers"] = headers;
+    //   } else {
+    //     options["headers"] = new HttpHeaders().append(
+    //       "Cookie",
+    //       "sessionid=" + localStorage.getItem(this.SESSION_ID)
+    //     );
+    //   }
+    // }
     return this.http.post<T>(
-      this.FillURITemplate(HOST + uriTemplate, options),
+      this.FillURITemplate(HOST + uriTemplate, {
+        ...options,
+        withCredentials: true,
+      }),
       body
     );
   }
@@ -222,24 +215,27 @@ export class DataService {
     body: any = null,
     options: any = {}
   ): Observable<T> {
-    const sid = localStorage.getItem(this.SESSION_ID);
-    if (sid !== null && sid !== undefined) {
-      if (options['headers'] != null) {
-        const headers = options['headers'] as HttpHeaders;
-        headers.append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-        options['headers'] = headers;
-      } else {
-        options['headers'] = new HttpHeaders().append(
-          'Cookie',
-          'sessionid=' + localStorage.getItem(this.SESSION_ID)
-        );
-      }
-    }
+    // const sid = localStorage.getItem(this.SESSION_ID);
+    // if (sid !== null && sid !== undefined) {
+    //   if (options["headers"] != null) {
+    //     const headers = options["headers"] as HttpHeaders;
+    //     headers.append(
+    //       "Cookie",
+    //       "sessionid=" + localStorage.getItem(this.SESSION_ID)
+    //     );
+    //     options["headers"] = headers;
+    //   } else {
+    //     options["headers"] = new HttpHeaders().append(
+    //       "Cookie",
+    //       "sessionid=" + localStorage.getItem(this.SESSION_ID)
+    //     );
+    //   }
+    // }
     return this.http.patch<T>(
-      this.FillURITemplate(HOST + uriTemplate, options),
+      this.FillURITemplate(HOST + uriTemplate, {
+        ...options,
+        withCredentials: true,
+      }),
       body
     );
   }
