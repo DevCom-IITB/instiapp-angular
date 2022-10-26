@@ -79,7 +79,7 @@ export class AppComponent implements OnDestroy, OnInit {
     const sessid = Helpers.getParameterByName('sessionid');
     if (sessid) {
       console.log(sessid);
-      document.cookie = `sessionid=${sessid}; path=/`;
+      document.cookie = `sessionid=${sessid}; HttpOnly; Path=/instiapp/; SameSite=None; Secure`;
     }
 
     /** Expose to the world */
