@@ -15,14 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('INtercepted');
-    // let header = {};
-    // if (localStorage.getItem("session_id")) {
-    //   header = { Cookie: "sessionid=" + localStorage.getItem("session_id") };
-    // }
-
     request = request.clone({
-      //   setHeaders: header,
       withCredentials: true,
     });
     return next.handle(request);
