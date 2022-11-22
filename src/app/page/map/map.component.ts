@@ -122,6 +122,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.selectLocation(loc);
     }, () => {
       this.maploaded = true;
+      InstiMap.makeline(0,0,1000,1000);
     });
   }
 
