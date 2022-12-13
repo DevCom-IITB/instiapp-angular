@@ -32,6 +32,7 @@
      (panup)="mobileShowLoc(true)"
      (pandown)="mobileShowLoc(false)">
 
+
   <div class="edit-loc" *ngIf="editing">
     <mat-form-field>
       <input matInput type="text" [(ngModel)]="selLocationAnim.name" placeholder="Name" />
@@ -63,6 +64,14 @@
             *ngIf="hasUpdateRole()">
         Update
     </button>
+    <button mat-button
+            class="directions-button"
+            (click)="setDirections()">
+      Directions
+    </button>
+    <!-- <div id="comp-render" *ngIf="display">
+      <button>hola </button>
+    </div> -->
   </ng-container>
 </div>
 
