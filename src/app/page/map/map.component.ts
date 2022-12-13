@@ -42,9 +42,12 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public showLocBox = false;
   public mobShowLocBox = false;
   public showResidences = false;
+  public showingDirections: boolean = false;
 
   searchForm: FormControl;
+  searchForm2: FormControl;
   filteredOptions: Observable<any[]>;
+  filteredOptions2: Observable<any[]>;
 
   /* Fuse config */
   public fuse_options: Fuse.FuseOptions<ILocation> = {
@@ -71,6 +74,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     public location: Location,
   ) {
     this.searchForm = new FormControl();
+    this.searchForm2 = new FormControl();
     /* Check for initial marker */
     this.activatedRoute.params.subscribe((params: Params) => {
       this.initialMarker = params['name'];
@@ -80,6 +84,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.dataService.setTitle('InstiMap');
     this.filteredOptions = this.searchForm.valueChanges.pipe(
+      map(result =>
+        this.filteredLocations(result)
+      )
+    );
+    this.filteredOptions2 = this.searchForm2.valueChanges.pipe(
       map(result =>
         this.filteredLocations(result)
       )
@@ -254,6 +263,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }, () => {
       this.snackBar.open('Updating Failed!', 'Dismiss', { duration: 2000 });
     });
+  }
+
+  showDirections(){
+    this.showingDirections = true;
+
+    InstiMap.getGPS();
+    this.searchForm.setValue("Your Location");
+    this.searchForm2.setValue( this.selectedLocation.name);
   }
 
 }

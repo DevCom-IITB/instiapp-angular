@@ -30,6 +30,13 @@
     z-index: 2;
 }
 
+#searchbox2 {
+    position: fixed;
+    right: 40px; top: calc(40px + 56px + 30px + 1rem + 5px);
+    background: white;
+    z-index: 2;
+}
+
 .search {
     padding: 15px 20px;
     border: none;
@@ -49,6 +56,9 @@
 
 #infobox.editing {
     width: 700px;
+}
+#infobox.showingDirections{
+    top: 210px;
 }
 
 #locname {
@@ -98,6 +108,14 @@
 @media (max-width: 560px) {
     #searchbox {
         top: 56px;
+        width: 100%;
+        right: unset;
+        left: 0;
+        background-color: var(--primary-color);
+    }
+
+    #searchbox2 {
+        top: calc(56px + 16px + 1rem);
         width: 100%;
         right: unset;
         left: 0;
