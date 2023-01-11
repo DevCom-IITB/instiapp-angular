@@ -52,6 +52,8 @@
     width: 300px;
     z-index: 2;
     font-family: 'Segoe UI' initial;
+    overflow-y: auto;
+    max-height: 75vh;
 }
 
 #directions {
@@ -89,7 +91,7 @@
 
 .description-box {
     max-height: 65vh;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     white-space: pre-line;
 }
 
@@ -172,11 +174,16 @@
         right: unset; left: 0; top: unset;
         bottom: calc(-90vh + 80px);
         height: 90vh;
+        max-height: none;
         transition: all 200ms ease;
     }
 
     #infobox.expanded {
         transform: translateY(calc(-90vh + 180px));
+    }
+
+    #infobox.showingDirections{
+        top: unset;
     }
 
     .fab.translateinfo {

@@ -28,6 +28,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   /* Data */
   public locations: ILocation[];
   public selectedLocation: ILocation;
+  public location1: ILocation;
   vectorlayerline: any;
 
   /* Helpers */
@@ -44,6 +45,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public mobShowLocBox = false;
   public showResidences = false;
   public showingDirections: boolean = false;
+  public gotDirections: boolean =false;
+  public loc1Changed: boolean = false;
 
   searchForm: FormControl;
   searchForm2: FormControl;
@@ -63,8 +66,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       'name',
       'short_name'
     ]
-  };
-
+  };        
   public fuse;
 
   constructor(
@@ -188,7 +190,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /** Fire when search input has changed */
-  searchChanged(e) {
+  searchChanged(e, searchId:number) {
     let lname;
     if ('target' in e) {
       lname = this.filteredLocations(e.target.value)[0].name;
@@ -198,15 +200,28 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const loc = this.locations.find(l => l.name === lname);
-    if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
-      this.selectLocation(loc);
-      InstiMap.moveToLocation(loc);
-      this.mobileShowLoc(false);
+    if(!this.showingDirections || searchId === 2){
+      if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
+        this.selectLocation(loc);
+        InstiMap.moveToLocation(loc);
+        this.mobileShowLoc(false);
+      }
+    }
+
+    else{
+      if(loc){
+        this.location1 = loc;
+        this.loc1Changed = true;
+        InstiMap.moveMarker(loc.pixel_x, loc.pixel_y, true, 'user-marker');
+        this.mobileShowLoc(false);
+      }
     }
   }
 
   /** Toggle location showing on mobile */
   mobileShowLoc(show: boolean) {
+    console.log("Entered");
+    
     this.mobShowLocBox = show;
   }
 
@@ -269,25 +284,33 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.snackBar.open('Updating Failed!', 'Dismiss', { duration: 2000 });
     });
   }
-  setDirections(){
-    var x1,y1,x2,y2;
 
-    x1=this.geoLocationLast().pixel_x;  
-    y1=this.geoLocationLast().pixel_y;
+  setDirections(){
+    let x1,y1,x2,y2;
+
+    if(this.loc1Changed){
+      x1 = this.location1.pixel_x;
+      y1 = this.location1.pixel_y;
+    }
+    else{
+      x1=this.geoLocationLast().pixel_x;  
+      y1=this.geoLocationLast().pixel_y;
+    }
     x2=this.selectedLocation.pixel_x;
     y2=this.selectedLocation.pixel_y;
+    if (this.vectorlayerline !== undefined){
+      InstiMap.removeLine(this.vectorlayerline);
+    }
     this.vectorlayerline=InstiMap.makeline(x1,y1,x2,y2,"#000000", 5);
-    // // if (this.y3!=y1 && this.x3!=x1){
-    // //      InstiMap.removeLine(vectorlinelahyer);
-    // // }
   }
-
   showDirections(){
+    
     this.showingDirections = true;
-
-    InstiMap.getGPS();
+    this.getGPS();
     this.searchForm.setValue("Your Location");
     this.searchForm2.setValue( this.selectedLocation.name);
+    this.gotDirections=true;
+    
   }
 
 }
