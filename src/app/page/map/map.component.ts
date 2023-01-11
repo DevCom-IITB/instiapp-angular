@@ -28,6 +28,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   /* Data */
   public locations: ILocation[];
   public selectedLocation: ILocation;
+  vectorlayerline: any;
 
   /* Helpers */
   @ViewChild('searchbox', { static: true }) searchBoxEl: ElementRef;
@@ -129,6 +130,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       user_marker_id: 'user-marker',
     }, this.locations, (loc: ILocation) => {
       this.selectLocation(loc);
+      
     }, () => {
       this.maploaded = true;
     });
@@ -147,6 +149,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /* Set selected location */
     this.selectedLocation = loc;
+    if (this.vectorlayerline!=loc){
+      InstiMap.removeLine(this.vectorlayerline);
+    }
 
     /* No delay on first click */
     if (!this.initLocBox) {
@@ -263,6 +268,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }, () => {
       this.snackBar.open('Updating Failed!', 'Dismiss', { duration: 2000 });
     });
+  }
+  setDirections(){
+    var x1,y1,x2,y2;
+
+    x1=this.geoLocationLast().pixel_x;  
+    y1=this.geoLocationLast().pixel_y;
+    x2=this.selectedLocation.pixel_x;
+    y2=this.selectedLocation.pixel_y;
+    this.vectorlayerline=InstiMap.makeline(x1,y1,x2,y2,"#000000", 5);
+    // // if (this.y3!=y1 && this.x3!=x1){
+    // //      InstiMap.removeLine(vectorlinelahyer);
+    // // }
   }
 
   showDirections(){
