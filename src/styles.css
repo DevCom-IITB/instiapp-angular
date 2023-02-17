@@ -59,7 +59,7 @@ mat-form-field, mat-form-field *, .markdown *, input {
 .flyout {
     -webkit-overflow-scrolling: auto;
     bottom: auto !important;
-    z-index: 102;
+    z-index: 52;
     width: 20vw;
     min-width: 240px;
     height: 100vh;
@@ -67,7 +67,7 @@ mat-form-field, mat-form-field *, .markdown *, input {
 
 .flyout-backdrop {
     top: -70px !important;
-    z-index: 101;
+    z-index: 51;
     touch-action: none;
 }
 

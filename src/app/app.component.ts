@@ -17,8 +17,10 @@ import { API } from '../api';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NotifyCardComponent } from './card/notify-card/notify-card.component';
 import { WinRT } from './windows';
+import { ConfettiService } from './confetti_service';
 
 const TITLE = 'InstiApp';
+
 
 @Component({
   selector: 'app-root',
@@ -42,7 +44,8 @@ export class AppComponent implements OnDestroy, OnInit {
     private swUpdate: SwUpdate,
     private swPush: SwPush,
     private bottomSheet: MatBottomSheet,
-    public zone: NgZone
+    public zone: NgZone,
+    private confettiService: ConfettiService,
   ) {
     /* Open flyout on screen type change */
     this.mobileQuery = window.matchMedia('(max-width: 960px)');
@@ -96,6 +99,12 @@ export class AppComponent implements OnDestroy, OnInit {
       this._title = title;
       this.changeDetectorRef.detectChanges();
     });
+
+    if(localStorage.getItem('wished') !='yes'){
+    setTimeout(() => {
+      this.confettiService.canon();
+      localStorage.setItem("wished", "yes")
+    }, 500);}
 
     /** Check for update */
     if (environment.production) {
@@ -266,4 +275,13 @@ export class AppComponent implements OnDestroy, OnInit {
       this.router.navigateByUrl(url);
     });
   }
+
+  closepopup:boolean = true
+  closepopupfn(){
+    this.closepopup = true
+  }
+  wishbday(){
+   this.closepopup =false
+  }
+
 }

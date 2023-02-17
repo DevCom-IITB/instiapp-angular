@@ -89,6 +89,7 @@ import { ClosePopupComponent } from './page/discussions/add-post/close-popup/clo
 import { GhostPostComponent } from './card/communitypost-card/ghost-post/ghost-post.component';
 import { FeaturedPostComponent } from './card/communitypost-card/featured-post/featured-post.component';
 import { TokenInterceptor } from './interceptor';
+import { ConfettiService } from './confetti_service';
 
 @NgModule({
   declarations: [
@@ -317,6 +318,7 @@ import { TokenInterceptor } from './interceptor';
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    ConfettiService,
   ],
   bootstrap: [AppComponent, QuerySearchComponent],
 })

@@ -1,6 +1,14 @@
 <app-xunk-spinner *ngIf="!dataService.isInitialized()"></app-xunk-spinner>
 
 <ng-container *ngIf="dataService.isInitialized()">
+<div class="darkness" *ngIf="!closepopup">
+    <div class="close-btn" (click)="closepopupfn()">
+        X
+    </div>
+</div> 
+<div class="popup-post" *ngIf="!closepopup">
+        <img class="img-xscroll" src="../assets/icons/imgyes.jpg" alt="">
+    </div>
 
 <mat-toolbar class="example-toolbar"
              color="primary"
@@ -52,6 +60,10 @@
         <mat-icon *ngIf="dataService.getUnreadNotifications().length === 0">
             notifications
         </mat-icon>
+    </button>
+    <button class="cake-btn" mat-button (click)="wishbday()">
+        <!-- <div class="red-dot"></div> -->
+        <img class="cake-img" src="../assets/icons/cake.jpg" alt="">    
     </button>
 </mat-toolbar>
 
