@@ -108,6 +108,14 @@ cursor: pointer;
         margin-left: 0;
         margin-top: 0;
     }
+    .popup-post{
+        position: fixed;
+        top: 25vh;
+        overflow-x: scroll;
+        height: 75vw;
+        width: 75vw;
+        z-index: 56;
+    }
 }
 
 @media (max-width: 600px) {
