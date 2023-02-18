@@ -103,6 +103,7 @@ export class AppComponent implements OnDestroy, OnInit {
     if(localStorage.getItem('wished') !='yes'){
     setTimeout(() => {
       this.confettiService.canon();
+      this.closepopup = false
       localStorage.setItem("wished", "yes")
     }, 500);}
 

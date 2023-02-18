@@ -4,13 +4,14 @@
 }
 .darkness{
     position: fixed;
-    top: 0%;
+    top: 0;
     left: 0;
     z-index: 55;
     background-color: #333;
-    opacity: 1;
-    height: 100%;
-    width: 100%;
+    opacity: 0.75;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,13 +32,20 @@ cursor: pointer;
     top: 27vh;
     cursor: pointer;
 }
+.center_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 56;
+}
 .popup-post{
     position: fixed;
-    top: 30vh;
-    left: 30vw;
-    height:40vh;
-    width: 40vw;
+    top: 12.5vh;
     overflow-x: scroll;
+    height: 76.0263558vh;
+    width: 75vh;
     z-index: 56;
 }
 .img-xscroll{

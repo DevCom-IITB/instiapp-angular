@@ -1,14 +1,6 @@
 <app-xunk-spinner *ngIf="!dataService.isInitialized()"></app-xunk-spinner>
 
 <ng-container *ngIf="dataService.isInitialized()">
-<div class="darkness" *ngIf="!closepopup">
-    <div class="close-btn" (click)="closepopupfn()">
-        X
-    </div>
-</div> 
-<div class="popup-post" *ngIf="!closepopup">
-        <img class="img-xscroll" src="../assets/icons/imgyes.jpg" alt="">
-    </div>
 
 <mat-toolbar class="example-toolbar"
              color="primary"
@@ -92,5 +84,13 @@
      (click)="toggleSidebar()"
      (swiperight)="toggleSidebar()">
 </div>
-
+<div class="darkness" *ngIf="!closepopup">
+    <div class="close-btn" (click)="closepopupfn()">
+        X
+    </div>
+</div> 
+<div class="center_content" *ngIf="!closepopup">
+<div class="popup-post" >
+        <img class="img-xscroll" src="../assets/icons/imgyes.png" alt="">
+    </div></div>
 </ng-container>
