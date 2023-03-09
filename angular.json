@@ -64,7 +64,8 @@
           "options": {
             "hmrWarning": false,
             "browserTarget": "instiapp:build",
-            "aot": true
+            "aot": true,
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
