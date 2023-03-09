@@ -88,25 +88,28 @@ export class BlogComponent implements OnInit, OnDestroy {
     }, () => { this.loading = false; });
   }
 
-  search(e, click = false) {
-    /* Reset */
-    this.allLoaded = false;
-    this.feed = [];
+  functw(e:any){console.log(e.target.value);
+    this.search(e)
+}
 
-    /* Check if nothing */
-    const val: string = click ? e.value : e.target.value;
-    if (!val || val.length < 3) {
-      this.query = null;
-      this.reload();
-      return;
-    }
-
-    /* Load query data */
-    if (!this.feed || this.loading) { return; }
-    this.query = val;
+search(e) {
+  /* Reset */
+  this.allLoaded = false;
+  this.feed = [];
+  
+  /* Check if nothing */
+  const val: string = e.target.value;
+  if (!val) {
+    this.query = null;
     this.reload();
-    console.log(this.query);
-    
+    return;
   }
+
+  /* Load query data */
+  if (!this.feed || this.loading) { return; }
+  this.query = val;
+  this.reload();
+}
+
 
 }

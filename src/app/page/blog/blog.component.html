@@ -4,13 +4,13 @@
   <mat-form-field class="searchinput">
     <input type="search" #box
       matInput placeholder="Search"
-      (keyup.enter)="search($event)">
+      (input)="functw($event)">
     <mat-hint align="start">Find blog posts </mat-hint>
   </mat-form-field>
 
   <button mat-icon-button
           color="primary"
-          (click)="search(box, true)"
+          (click)="search(box)"
           style="max-height:37px;">
       <mat-icon>search</mat-icon>
   </button>
