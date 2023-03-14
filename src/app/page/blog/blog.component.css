@@ -4,6 +4,10 @@
     width: 90%;
 }
 
+::ng-deep .highlighted-text{
+    background-color: yellow;
+  }
+
 .feed-card {
     overflow: auto;
     font-size: 0.9em;

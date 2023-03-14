@@ -1,0 +1,29 @@
+#searchbox {
+    margin: 10px 5%;
+    white-space: nowrap;
+}
+
+.searchinput {
+    min-width: 40%;
+}
+
+
+
+.margin-card {
+    background-color: #0D4BA8;
+    border-radius: 4px;
+    width: 42%;
+    margin-bottom: 0.5em;
+    margin-left: 1%;
+    display: inline-block;
+}
+
+.section-main {
+    width: 96%;
+    margin-left: 4%;
+}
+
+.header {
+    margin-bottom: 0.5em;
+    margin-top: 0.3em;
+}

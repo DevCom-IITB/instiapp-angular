@@ -1,0 +1,48 @@
+div.hidden-main {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    margin: 0px 10px;
+    background: white;
+}
+.hidden-content-container {
+    position: relative;
+
+    vertical-align: middle;
+}
+
+p.hidden-content {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    margin-left: 6px;
+    padding: 12px;
+
+    background-color: #F0F2F7;
+
+    color: #5E6067;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 14px;
+}
+
+.avatar {
+    width: 0px;
+}
+
+.avatar img {
+    position: relative;
+
+    border: 4px solid white;
+    /* border: 4px solid black; */
+    border-radius: 500px;
+    /* any ridiculously large radius would work for making a circle, apparently*/
+
+    height: 38px;
+    width: 38px;
+    background: url('assets/lotus_placeholder.png') no-repeat;
+    background-size: contain;
+}

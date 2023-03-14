@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, HostListener, NgZone } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  HostListener,
+  NgZone,
+} from '@angular/core';
 import { DataService } from './data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Helpers } from './helpers';
@@ -35,7 +42,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private swUpdate: SwUpdate,
     private swPush: SwPush,
     private bottomSheet: MatBottomSheet,
-    public zone: NgZone,
+    public zone: NgZone
   ) {
     /* Open flyout on screen type change */
     this.mobileQuery = window.matchMedia('(max-width: 960px)');
@@ -58,9 +65,11 @@ export class AppComponent implements OnDestroy, OnInit {
     /* Mark notification as read if followed */
     const notifid = Helpers.getParameterByName('notif');
     if (notifid && notifid !== null && notifid !== '') {
-      const sub = this.dataService.loggedInObservable.subscribe(status => {
+      const sub = this.dataService.loggedInObservable.subscribe((status) => {
         if (status) {
-          this.dataService.FireGET(API.NotificationRead, { id: notifid }).subscribe();
+          this.dataService
+            .FireGET(API.NotificationRead, { id: notifid })
+            .subscribe();
           sub.unsubscribe();
         }
       });
@@ -69,7 +78,8 @@ export class AppComponent implements OnDestroy, OnInit {
     /* Check if sessionid is passed as a query parameter */
     const sessid = Helpers.getParameterByName('sessionid');
     if (sessid) {
-      document.cookie = `sessionid=${sessid}; path=/`;
+      console.log(sessid);
+      document.cookie = `sessionid=${sessid}; HttpOnly; Path=/instiapp/; SameSite=None; Secure`;
     }
 
     /** Expose to the world */
@@ -92,13 +102,19 @@ export class AppComponent implements OnDestroy, OnInit {
       if (!this.isSandbox && !WinRT.is()) {
         /* Show a prompt to update */
         this.swUpdate.available.subscribe(() => {
-          const snackBarRef = this.snackBar.open('New version available!', 'Refresh', {
-            duration: 60000,
-          });
+          const snackBarRef = this.snackBar.open(
+            'New version available!',
+            'Refresh',
+            {
+              duration: 60000,
+            }
+          );
 
           /* On clicking refresh */
           snackBarRef.onAction().subscribe(() => {
-            this.swUpdate.activateUpdate().then(() => document.location.reload());
+            this.swUpdate
+              .activateUpdate()
+              .then(() => document.location.reload());
           });
         });
       }
@@ -107,32 +123,39 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     /** Get user (try) */
-    this.dataService.GetFillCurrentUser().subscribe(() => {
-      this.dataService.setInitialized();
-    }, () => {
-      this.dataService.setInitialized();
-    });
+    this.dataService.GetFillCurrentUser().subscribe(
+      () => {
+        this.dataService.setInitialized();
+      },
+      () => {
+        this.dataService.setInitialized();
+      }
+    );
 
     /** Get notifications */
-    this.dataService.loggedInObservable.subscribe(status => {
+    this.dataService.loggedInObservable.subscribe((status) => {
       const DEFAULT_IMAGE = '/assets/logo.png';
 
       if (status) {
-        this.dataService.FireGET<INotification[]>(API.Notifications).subscribe(result => {
-          for (const notification of result) {
-            if (notification.actor_type.includes('event')) {
-              notification.title = notification.actor.name;
-              notification.image_url = notification.actor.image_url || notification.actor.bodies[0].image_url;
-            } else if (notification.actor_type.includes('newsentry')) {
-              notification.title = notification.actor.title;
-              notification.image_url = notification.actor.body.image_url;
-            } else if (notification.actor_type.includes('blogentry')) {
-              notification.title = notification.actor.title;
-              notification.image_url = DEFAULT_IMAGE;
+        this.dataService
+          .FireGET<INotification[]>(API.Notifications)
+          .subscribe((result) => {
+            for (const notification of result) {
+              if (notification.actor_type.includes('event')) {
+                notification.title = notification.actor.name;
+                notification.image_url =
+                  notification.actor.image_url ||
+                  notification.actor.bodies[0].image_url;
+              } else if (notification.actor_type.includes('newsentry')) {
+                notification.title = notification.actor.title;
+                notification.image_url = notification.actor.body.image_url;
+              } else if (notification.actor_type.includes('blogentry')) {
+                notification.title = notification.actor.title;
+                notification.image_url = DEFAULT_IMAGE;
+              }
             }
-          }
-          this.dataService.notifications = result;
-        });
+            this.dataService.notifications = result;
+          });
       }
     });
 
@@ -144,13 +167,13 @@ export class AppComponent implements OnDestroy, OnInit {
     /* Scroll to top on route change */
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
-          return;
+        return;
       }
       window.scrollTo(0, 0);
     });
 
     /* Subscribe on login */
-    const lis = this.dataService.loggedInObservable.subscribe(status => {
+    const lis = this.dataService.loggedInObservable.subscribe((status) => {
       if (status && this.swUpdate.isEnabled) {
         this.subscribeNotifications();
         lis.unsubscribe();
@@ -162,7 +185,7 @@ export class AppComponent implements OnDestroy, OnInit {
   subscribeNotifications() {
     /* Try to get existing subscription */
     this.swPush.subscription.subscribe((sub: PushSubscription) => {
-      if (sub === null ) {
+      if (sub === null) {
         /* No subscription found */
         this.requestNotificationSubscription();
       } else {
@@ -174,20 +197,24 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Request a new notifications subscription */
   requestNotificationSubscription() {
-    this.swPush.requestSubscription({
-      serverPublicKey: environment.VAPID_PUBLIC_KEY
-    }).then(sub => {
-      this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
-    })
-    .catch(err => console.error('Could not subscribe to notifications', err));
+    this.swPush
+      .requestSubscription({
+        serverPublicKey: environment.VAPID_PUBLIC_KEY,
+      })
+      .then((sub) => {
+        this.dataService.FirePOST(API.WebPushSubscribe, sub).subscribe();
+      })
+      .catch((err) =>
+        console.error('Could not subscribe to notifications', err)
+      );
   }
 
   /** Unsubscribe from listeners */
   ngOnDestroy(): void {
-      this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.removeListener(this._mobileQueryListener);
 
-      /* Remove the context */
-      window['angularAppComponentRef'] = null;
+    /* Remove the context */
+    window['angularAppComponentRef'] = null;
   }
 
   /** Gets if the current router outlet state is `base` or `overlay` */
@@ -197,14 +224,19 @@ export class AppComponent implements OnDestroy, OnInit {
 
   /** Close sidebar only for mobile */
   closeSidebarMobile() {
-    if (this.mobileQuery.matches) { this.toggleSidebar(); }
+    if (this.mobileQuery.matches) {
+      this.toggleSidebar();
+    }
   }
 
   /** Redirects to login */
   login() {
     if (!this.router.url.includes('login')) {
       const path = [this.router.url];
-      localStorage.setItem(this.dataService.LOGIN_REDIR, this.dataService.EncodeObject(path));
+      localStorage.setItem(
+        this.dataService.LOGIN_REDIR,
+        this.dataService.EncodeObject(path)
+      );
     }
     window.location.href = this.dataService.GetLoginURL();
   }
@@ -216,7 +248,9 @@ export class AppComponent implements OnDestroy, OnInit {
   /** Handle reaching end of page and sidenav on android chrome */
   @HostListener('window:scroll')
   windowScroll() {
-    const top = Helpers.CheckScrollBottom(this.dataService.scrollBottomFunction);
+    const top = Helpers.CheckScrollBottom(
+      this.dataService.scrollBottomFunction
+    );
     this.dataService.setScrollingDown(top > this.previousScrollTop);
     this.previousScrollTop = top;
   }
