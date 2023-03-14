@@ -1,0 +1,227 @@
+<app-xunk-spinner *ngIf="!group" [error]="error"></app-xunk-spinner>
+
+<ng-container *ngIf="group && desktopMode">
+  <ng-container *ngTemplateOutlet="centerlayout"></ng-container>
+</ng-container>
+
+<app-desktop-split *ngIf="group && !desktopMode" [rightLeftBorder]="false" [centerRightBorder]="true"
+  [isGroup]="showingGroupDetails" [isgrouppage]="true">
+
+  <div center>
+    <ng-container *ngTemplateOutlet="centerlayout"></ng-container>
+  </div>
+
+  <div right class="right">
+    <ng-container *ngTemplateOutlet="rightlayout"></ng-container>
+  </div>
+
+
+
+
+  <!-- <div class="section">
+      <div class="rl-header sm">Following</div>
+      <app-user-card *ngFor="let user of event.interested.concat(event.going)"
+                      [profile]="user"
+                      [role]="user.ldap_id">
+      </app-user-card>
+    </div> -->
+
+  <!-- </div> -->
+
+</app-desktop-split>
+
+<ng-template #centerlayout>
+  <div class="container">
+    <div>
+      <tr class="fb-profile inline">
+        <img align="left" class="fb-image-lg" [src]="group.cover_image" alt="Profile image example" />
+      </tr>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td align="left" class="avatar3">
+            <img align="left" class="fb-image-profile avatar3" [src]="dataService.getResized(group.logo_image, 150)"
+              alt="Profile image example" />
+          </td>
+
+
+
+          <td class="fb-profile-text">
+            <h1>{{group.name}}</h1>
+            <!-- <h2>{{ group.followers_count }} followers . 2 Posts Today</h2> -->
+            <h2>{{ group.followers_count }} followers</h2>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="container join_button_cont">
+      <ng-container *ngIf="group.is_user_following else join_state_btn">
+        <button class="join_button clickable" (click)=onJoinClicked()
+          style="background-color:rgb(255, 255, 255); color:blue; border-color: #435FFE;">
+          JOINED
+        </button>
+      </ng-container>
+      <ng-template #join_state_btn>
+        <button class="join_button clickable" (click)=onJoinClicked() style="background-color: #435FFE;">
+          JOIN
+        </button>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="container">
+    <mat-tab-group mat-stretch-tabs class="tabs">
+      <mat-tab label="About">
+        <p class="tabText">{{group.description}}</p>
+      </mat-tab>
+      <mat-tab label="People">
+
+        <!-- hola -->
+        <ng-container *ngFor="let role of group.roles">
+
+          <div class="role-container">
+            <div class="role-name">{{ role.name }}</div>
+            <app-user-card *ngFor="let user of role.users_detail" [profile]="user" role="">
+            </app-user-card>
+          </div>
+
+
+        </ng-container>
+
+      </mat-tab>
+    </mat-tab-group>
+
+  </div>
+
+  <div class="featured-container">
+    <h4 style="padding-top: 9px; padding-bottom: 9px;  font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;">Featured</h4>
+    <div class="scroll-container featured-post-container ">
+      <ng-container *ngFor="let featured of featured_posts">
+        <app-communitypost-card [featured]="true" [post]="featured"></app-communitypost-card>
+
+      </ng-container>
+    </div>
+  </div>
+
+</ng-template>
+
+
+
+
+
+
+<!-- <ng-template #centerlayout>
+  <div>
+    <div class="theme-header primary-background-color">
+      <img class="event-image" src='assets/bg.png' alt="">
+
+      <div class="card-header">
+        <div>
+          <div class="event-name">{{ group.title }}</div>
+          <div class="event-time">{{ group.body }}</div>
+        </div>
+
+
+      </div> -->
+
+<!-- <div class="follow-div">
+        <button mat-button
+              [class.following]="event.user_ues === 1"
+              (click)="markUES(1);"
+              [disabled]="!dataService.isLoggedIn()">
+          Interested <span class="badge">{{ event.interested_count }}</span>
+        </button>
+        <button mat-button
+              [class.following]="event.user_ues === 2"
+              (click)="markUES(2);"
+              [disabled]="!dataService.isLoggedIn()">
+          Going <span class="badge">{{ event.going_count }}</span>
+        </button>
+      </div> -->
+<!-- </div> -->
+
+<!-- <div class="event-body">
+      <ng-container *ngIf="desktopMode || dataService.isMobile()">
+        <div class="description markdown">
+          <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
+        </div>
+        <ng-container *ngIf="!desktopMode">
+          <ng-container *ngTemplateOutlet="achievements"></ng-container>
+        </ng-container>
+      </ng-container> -->
+
+<!-- Bodies conducting the event are: -->
+<!-- <div class="bodies">
+        <ng-container *ngIf="desktopMode">
+          <ng-container *ngTemplateOutlet="achievements"></ng-container>
+        </ng-container>
+        <app-body-card
+            *ngFor="let body of event.bodies"
+            [body]="body">
+        </app-body-card>
+      </div>
+    </div> -->
+<!-- </div>
+</ng-template> -->
+<!--  </ng-template>
+
+<ng-template #achievements>
+  <div mat-ripple *ngFor="let oa of event.offered_achievements"
+    [routerLink]="['/achievement-new', oa.id]" class="achievement">
+    <app-card [title]="oa.title" [subtitle]="oa.description"
+              [avatar]="'/assets/achievements/' + oa.generic + '.png'">
+    </app-card>
+  </div>
+</ng-template> -->
+
+
+<!-- <div class="section">
+  <table class="card-table">
+    <tbody>
+      <tc>
+
+        <td>
+          <div>
+            <img class="event-image" src='assets/bg.png' alt="">
+          </div>
+        </td>
+
+        <td class="main">
+          <tr>
+            <td class="avatar">
+              <img src="assets/lotus_placeholder.png" class="img-circle object-cover" />
+            </td>
+
+            <td>
+              <div class="content">
+                <p>
+                  {{ group.title }}
+                </p>
+              </div>
+            </td>
+          </tr>
+        </td>
+
+        <td>
+          <p *ngIf="followers" class="followers_posts">
+            {{ group.followers }} followers
+          </p>
+          <p class="card-sub-title">
+            {{ group.subtitle }}
+          </p>
+        </td>
+      </tc>
+
+
+
+
+    </tbody>
+  </table>
+</div>
+<div class="markdown">
+  <div [innerHTML]="dataService.processMDHTML(group.body | markdown)"></div>
+</div> -->

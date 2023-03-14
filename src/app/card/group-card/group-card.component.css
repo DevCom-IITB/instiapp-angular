@@ -1,0 +1,153 @@
+div.block {
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.icon_more {
+    vertical-align: auto;
+}
+
+.content {
+    display: inline-block;
+}
+
+.my-card__media {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover, cover;
+    filter: blur(10px);
+}
+
+
+
+
+.mdc-card__media-content {
+    position: relative;
+    color: white !important;
+    
+}
+
+.block {
+    position: relative;
+
+}
+
+
+#subtitle {
+    max-width: 85%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+div.card {
+    padding: 10px;
+    padding-bottom: 8px;
+    width: 100%;
+}
+
+table.card-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.avatar {
+    width: 50px;
+    vertical-align: top;
+}
+
+.avatar img {
+    height: 50px;
+    width: 50px;
+    background: url('assets/lotus_placeholder.png') no-repeat;
+    background-size: contain;
+}
+
+.content {
+    margin: 0;
+    margin-left: 5px;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+div.content p {
+    margin: 0.3em 0;
+    width: calc(100% - 2em);
+}
+
+
+
+.card-sub-title {
+    
+    overflow: hidden;
+    
+}
+
+.followers_posts {
+   
+    overflow: hidden;
+   
+}
+
+.badge {
+    width: 30px;
+    padding-right: 5px;
+}
+
+.badge img {
+    height: 20px;
+    width: 20px;
+}
+
+
+.title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0015em;
+    padding: 0;
+    margin: 0;
+
+
+    color: #FFFFFF;
+
+}
+
+.followers {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    
+    margin: 0;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.4px;
+
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.about {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    letter-spacing: 0.4px;
+
+    color: #FFFFFF;
+
+}

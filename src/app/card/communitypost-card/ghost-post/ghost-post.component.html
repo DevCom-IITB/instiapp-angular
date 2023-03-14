@@ -1,0 +1,19 @@
+<div class="hidden-main">
+
+  <table width="100%" style="table-layout: fixed;">
+    <tr>
+      <td align="left" class="avatar">
+        <ng-container *ngIf="poster_pic_path; else default_avatar">
+          <img [src]="poster_pic_path" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset_px }">
+        </ng-container>
+        <ng-template #default_avatar>
+          <img src="assets/logo.png" class="img-circle object-cover">
+        </ng-template>
+      </td>
+
+      <td class="hidden-content-container">
+        <p class="hidden-content">{{ post_content }}</p>
+      </td>
+    </tr>
+  </table>
+</div>

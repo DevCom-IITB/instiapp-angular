@@ -34,6 +34,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+*package.json
+*package-lock.json
 
 # e2e
 /e2e/*.js
@@ -42,3 +44,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+src/environments/environment.ts
+
+# TODO files
+*.todo
+src/environments/environment.ts

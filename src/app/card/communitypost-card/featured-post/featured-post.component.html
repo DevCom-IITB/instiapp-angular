@@ -1,0 +1,40 @@
+<div *ngIf="post" class="featured-main">
+
+  <table width="100%" style="table-layout: fixed;">
+    <tr>
+      <td text-align="left" [routerLink]="['/user', post.posted_by.id]" class="avatar clickable">
+        <ng-container *ngIf="post.posted_by.profile_pic; else default_avatar">
+          <img [src]="post.posted_by.profile_pic" class="img-circle object-cover" [ngStyle]="{ 'left.px': pic_offset }">
+        </ng-container>
+        <ng-template #default_avatar>
+          <img src="assets/logo.png" class="img-circle object-cover">
+        </ng-template>
+      </td>
+      <td class="user-date-container">
+        <p class="user clickable" [routerLink]="['/user', post.posted_by.id]">{{ post.posted_by.name }}</p>
+        <p class="date"> {{ printable_date }}</p>
+      </td>
+    </tr>
+  </table>
+
+
+  <table width="100%">
+    <td class=" featured-content-container">
+      <div>
+        <p class="featured-content" [ngStyle]="{ '-webkit-line-clamp': render_images ? 2 : 'none' }">
+          {{ post.content }}
+        </p>
+      </div>
+    </td>
+
+  </table>
+  <div *ngIf="render_images" class="images">
+
+    <ng-container *ngFor="let img_url of post.image_url">
+      <img [src]="img_url" class="img-responsive featured-img">
+    </ng-container>
+
+  </div>
+
+
+</div>
