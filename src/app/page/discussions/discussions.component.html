@@ -1,0 +1,36 @@
+<app-xunk-spinner *ngIf="!groups"></app-xunk-spinner>
+
+<div class="main">
+    <app-desktop-split *ngIf="groups" center_width_percentage="62.5">
+            <div center>
+                <div id="searchbox">
+                    <mat-form-field class="searchinput">
+                        <input matInput type="search" name="search" placeholder="Search">
+                        <mat-hint align="start">Find Groups</mat-hint>
+                    </mat-form-field>
+
+                    <button mat-icon-button color="primary" style="max-height:37px;">
+                        <mat-icon>search</mat-icon>
+                    </button>
+            </div>
+
+            <ng-container *ngIf="groups">
+
+                <ng-container *ngFor="let group of groups" class="margin-card">
+                    <div on-mouseover='over(group)'>
+
+                        <app-group-card [group]="group">
+                        </app-group-card>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+        </div>
+
+        <div right>
+            <app-group-details *ngIf="selected_group" [groupId]="selected_group.id" noCenter="true" [desktopMode]="true">
+            </app-group-details>
+        </div>
+    </app-desktop-split>
+
+</div>

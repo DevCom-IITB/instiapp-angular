@@ -1,0 +1,118 @@
+div.featured-main {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    margin: 0px 5px;
+    background: white;
+    overflow: hidden;
+    width: 323px;
+    border-radius: 10px;
+
+}
+
+.featured-content-container {
+    position: relative;
+
+
+    display: block;
+
+}
+
+p.featured-content {
+    display: block;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+
+    margin-left: 6px;
+
+    color: #5E6067;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 14px;
+
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+}
+
+img.featured-img{
+    width:100%;
+    box-shadow: 2px; 
+    padding-bottom: 5px;
+}
+
+
+.user-date-container {
+    position: relative;
+
+    width: max-content;
+
+    left: 44px;
+    text-align: left;
+}
+
+.user {
+    position: relative;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    /* line-height: 140%; */
+
+}
+
+.date {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    color: #767881;
+}
+
+img.img-responsive {
+    max-height: 50vh;
+    max-width: 50vh;
+
+    height: auto;
+    width: auto;
+    margin: auto 12px;
+}
+
+.images {
+
+    background: #F6F7F8;
+    padding-top: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: inherit;
+    /* display: block; */
+
+    vertical-align: middle;
+
+    max-height: 600px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    white-space: nowrap;
+
+}
+
+.avatar {
+    width: 0px;
+}
+
+.avatar img {
+    position: relative;
+
+    border: 4px solid white;
+    /* border: 4px solid black; */
+    border-radius: 500px;
+    /* any ridiculously large radius would work for making a circle, apparently*/
+
+    height: 38px;
+    width: 38px;
+    background: url('assets/lotus_placeholder.png') no-repeat;
+    background-size: contain;
+}

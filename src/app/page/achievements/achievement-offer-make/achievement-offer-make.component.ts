@@ -5,22 +5,18 @@ import { DataService } from '../../../data.service';
 @Component({
   selector: 'app-achievement-offer-make',
   templateUrl: './achievement-offer-make.component.html',
-  styleUrls: ['./achievement-offer-make.component.css']
+  styleUrls: ['./achievement-offer-make.component.css'],
 })
 export class AchievementOfferMakeComponent implements OnInit {
-
   @Input() offer: IOfferedAchievement;
   @Input() bodies = [] as IBody[];
   offerTypes = [] as any[];
 
-  constructor(
-    public dataService: DataService,
-  ) { }
+  constructor(public dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getAchievementOfferTypes().subscribe(res => {
+    this.dataService.getAchievementOfferTypes().subscribe((res) => {
       this.offerTypes = res;
-      console.log(this.offerTypes);
     });
   }
 }

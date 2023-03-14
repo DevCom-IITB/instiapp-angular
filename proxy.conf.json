@@ -1,12 +1,8 @@
 {
-    "/api/**": {
-      "target": {
-        "host": "localhost",
-        "protocol": "http:",
-        "port": 8000
-        },
-      "secure": false,
-      "changeOrigin": true,
-      "logLevel": "info"
-    }
+  "/api/**": {
+    "target": "https://gymkhana.iitb.ac.in/instiapp",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
 }
