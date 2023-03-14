@@ -166,6 +166,10 @@ mat-form-field, mat-form-field *, .markdown *, input {
     text-overflow: ellipsis;
 }
 
+.clickable{
+    cursor:pointer;
+}
+
 .rl-header {
     /* Responsive light header */
     font-weight: 200;
@@ -174,6 +178,11 @@ mat-form-field, mat-form-field *, .markdown *, input {
 
 .rl-header.sm {font-size: 2em;}
 .rl-header.xs { font-size: 1.4em; }
+
+/* For Create-Post & Close-popup Dialogbox  */
+.custom-container .mat-dialog-container {
+    border-radius: 20px !important;
+ }
 
 @media (max-width: 768px) {
     .rl-header { font-size: 1.5em; }

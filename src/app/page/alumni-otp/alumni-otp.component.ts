@@ -15,15 +15,15 @@ export class OTPComponent implements OnInit {
   public error: number;
   public ldap: string;
   otpForm = this.formBuilder.group({
-    otp: ''
+    otp: '',
   });
   constructor(
     public dataService: DataService,
     public route: ActivatedRoute,
     public router: Router,
     public formBuilder: FormBuilder,
-    public snackBar: MatSnackBar,
-  ) { }
+    public snackBar: MatSnackBar
+  ) {}
 
   /** Initialize initial list wiht API call */
   ngOnInit() {
@@ -39,21 +39,28 @@ export class OTPComponent implements OnInit {
 
   verifyOTP(): void {
     this.authenticating = true;
-    this.dataService.SendOTP(this.ldap, this.otpForm.value.otp).subscribe((status) => {
-      if (status['error_status'] === false) {
-        // performs login
-        this.dataService.performLogin();
-      } else {
-        // displays message
-        this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });
-        if (status['msg'] === 'Wrong OTP, retry') {
-          this.router.navigate(['alumni-otp', {ldap: this.ldap}]);
+    this.dataService
+      .SendOTP(this.ldap, this.otpForm.value.otp)
+      .subscribe((status) => {
+        if (status['error_status'] === false) {
+          // performs login
+          localStorage.setItem(
+            this.dataService.SESSION_ID,
+            status['sessionid']
+          );
+          document.cookie = `sessionid=${status['sessionid']}; path=/`;
+          this.dataService.performLogin();
         } else {
-          this.router.navigate(['alumni']);
+          // displays message
+          this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });
+          if (status['msg'] === 'Wrong OTP, retry') {
+            this.router.navigate(['alumni-otp', { ldap: this.ldap }]);
+          } else {
+            this.router.navigate(['alumni']);
+          }
         }
-      }
-      this.authenticating = false;
-    });
+        this.authenticating = false;
+      });
     this.otpForm.reset();
   }
 
@@ -61,7 +68,7 @@ export class OTPComponent implements OnInit {
     this.authenticating = true;
     this.dataService.ResendOTP(this.ldap).subscribe((status) => {
       if (status['error_status'] === false) {
-        this.router.navigate(['alumni-otp', {ldap: this.ldap}]);
+        this.router.navigate(['alumni-otp', { ldap: this.ldap }]);
       } else {
         // if latest OTP is invalid now we navigate back to alumni
         this.snackBar.open(status['msg'], 'Dismiss', { duration: 2000 });

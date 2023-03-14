@@ -11,6 +11,7 @@ export class CardComponent implements OnInit {
   @Input() public title = '';
   @Input() public subtitle = '';
   @Input() public badge: string;
+  @Input() public followers: '';
 
   constructor() { }
 

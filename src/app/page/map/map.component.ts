@@ -28,6 +28,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   /* Data */
   public locations: ILocation[];
   public selectedLocation: ILocation;
+  public location1: ILocation;
+  vectorlayerline: any;
 
   /* Helpers */
   @ViewChild('searchbox', { static: true }) searchBoxEl: ElementRef;
@@ -42,9 +44,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public showLocBox = false;
   public mobShowLocBox = false;
   public showResidences = false;
+  public showingDirections: boolean = false;
+  public gotDirections: boolean =false;
+  public loc1Changed: boolean = false;
 
   searchForm: FormControl;
+  searchForm2: FormControl;
   filteredOptions: Observable<any[]>;
+  filteredOptions2: Observable<any[]>;
 
   /* Fuse config */
   public fuse_options: Fuse.FuseOptions<ILocation> = {
@@ -59,8 +66,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       'name',
       'short_name'
     ]
-  };
-
+  };        
   public fuse;
 
   constructor(
@@ -71,6 +77,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     public location: Location,
   ) {
     this.searchForm = new FormControl();
+    this.searchForm2 = new FormControl();
     /* Check for initial marker */
     this.activatedRoute.params.subscribe((params: Params) => {
       this.initialMarker = params['name'];
@@ -80,6 +87,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.dataService.setTitle('InstiMap');
     this.filteredOptions = this.searchForm.valueChanges.pipe(
+      map(result =>
+        this.filteredLocations(result)
+      )
+    );
+    this.filteredOptions2 = this.searchForm2.valueChanges.pipe(
       map(result =>
         this.filteredLocations(result)
       )
@@ -120,6 +132,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       user_marker_id: 'user-marker',
     }, this.locations, (loc: ILocation) => {
       this.selectLocation(loc);
+      
     }, () => {
       this.maploaded = true;
     });
@@ -138,6 +151,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /* Set selected location */
     this.selectedLocation = loc;
+    if (this.vectorlayerline!=loc){
+      InstiMap.removeLine(this.vectorlayerline);
+    }
 
     /* No delay on first click */
     if (!this.initLocBox) {
@@ -174,7 +190,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /** Fire when search input has changed */
-  searchChanged(e) {
+  searchChanged(e, searchId:number) {
     let lname;
     if ('target' in e) {
       lname = this.filteredLocations(e.target.value)[0].name;
@@ -184,15 +200,28 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const loc = this.locations.find(l => l.name === lname);
-    if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
-      this.selectLocation(loc);
-      InstiMap.moveToLocation(loc);
-      this.mobileShowLoc(false);
+    if(!this.showingDirections || searchId === 2){
+      if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
+        this.selectLocation(loc);
+        InstiMap.moveToLocation(loc);
+        this.mobileShowLoc(false);
+      }
+    }
+
+    else{
+      if(loc){
+        this.location1 = loc;
+        this.loc1Changed = true;
+        InstiMap.moveMarker(loc.pixel_x, loc.pixel_y, true, 'user-marker');
+        this.mobileShowLoc(false);
+      }
     }
   }
 
   /** Toggle location showing on mobile */
   mobileShowLoc(show: boolean) {
+    console.log("Entered");
+    
     this.mobShowLocBox = show;
   }
 
@@ -254,6 +283,34 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }, () => {
       this.snackBar.open('Updating Failed!', 'Dismiss', { duration: 2000 });
     });
+  }
+
+  setDirections(){
+    let x1,y1,x2,y2;
+
+    if(this.loc1Changed){
+      x1 = this.location1.pixel_x;
+      y1 = this.location1.pixel_y;
+    }
+    else{
+      x1=this.geoLocationLast().pixel_x;  
+      y1=this.geoLocationLast().pixel_y;
+    }
+    x2=this.selectedLocation.pixel_x;
+    y2=this.selectedLocation.pixel_y;
+    if (this.vectorlayerline !== undefined){
+      InstiMap.removeLine(this.vectorlayerline);
+    }
+    this.vectorlayerline=InstiMap.makeline(x1,y1,x2,y2,"#000000", 5);
+  }
+  showDirections(){
+    
+    this.showingDirections = true;
+    this.getGPS();
+    this.searchForm.setValue("Your Location");
+    this.searchForm2.setValue( this.selectedLocation.name);
+    this.gotDirections=true;
+    
   }
 
 }

@@ -1,36 +1,34 @@
 <app-xunk-spinner *ngIf="!maploaded"></app-xunk-spinner>
 
-<div class="main"
-    [class.sandbox]="dataService.isSandbox"
-    [class.loaded]="maploaded">
+<div class="main" [class.sandbox]="dataService.isSandbox" [class.loaded]="maploaded">
   <div id="map" class="map"></div>
   <img id="marker" src="/assets/map/marker_blue_s.png">
   <img id="user-marker" src="/assets/map/marker_red_s.png">
 </div>
 
-<div id="searchbox" class="mat-elevation-z3"
-    [@enterFade]="bstr(true)">
-  <input class="search"
-         type="search" #searchbox
-         placeholder="Search"
-         [matAutocomplete]="auto"
-         [formControl]="searchForm"
-         (keyup.enter)="searchChanged($event)">
-  <mat-autocomplete name="locsauto" #auto (optionSelected)="searchChanged($event)">
+<div id="searchbox" class="mat-elevation-z3" [@enterFade]="bstr(true)" >
+  <input class="search" type="search" #searchbox placeholder="Search" [matAutocomplete]="auto"
+    [formControl]="searchForm" (keyup.enter)="searchChanged($event, 1)">
+  <mat-autocomplete name="locsauto" #auto (optionSelected)="searchChanged($event, 1)">
     <mat-option *ngFor="let loc of filteredOptions | async" [value]="loc.name">
       {{ loc.name }}
     </mat-option>
   </mat-autocomplete>
 </div>
 
-<div id="infobox"
-    *ngIf="initLocBox"
-    [@enterFade]="bstr(showLocBox)"
-     class="infobox mat-elevation-z3"
-     [class.expanded]="mobShowLocBox"
-     [class.editing]="editing"
-     (panup)="mobileShowLoc(true)"
-     (pandown)="mobileShowLoc(false)">
+<div id="searchbox2" class="mat-elevation-z3" [@enterFade]="bstr(true)" *ngIf="showingDirections" >
+  <input class="search" type="search" #searchbox2 placeholder="Search" [matAutocomplete]="auto2"
+    [formControl]="searchForm2" (keyup.enter)="searchChanged($event, 2)">
+  <mat-autocomplete name="locsauto" #auto2 (optionSelected)="searchChanged($event, 2)">
+    <mat-option *ngFor="let loc of filteredOptions2 | async" [value]="loc.name" >
+      {{ loc.name }}
+    </mat-option>
+  </mat-autocomplete>
+</div>
+
+<div id="infobox" *ngIf="initLocBox" [@enterFade]="bstr(showLocBox)" class="infobox mat-elevation-z3"
+  [class.expanded]="mobShowLocBox" [class.editing]="editing" [class.showingDirections]="showingDirections" (click)="mobileShowLoc(!mobShowLocBox)">
+
 
   <div class="edit-loc" *ngIf="editing">
     <mat-form-field>
@@ -44,41 +42,40 @@
   </div>
 
   <ng-container *ngIf="selLocationAnim">
-    <div id="locname"
-        (panup)="mobileShowLoc(true)"
-        (pandown)="mobileShowLoc(false)">
-          {{ selLocationAnim.name }}
+    <div id="locname" (panup)="mobileShowLoc(true)" (pandown)="mobileShowLoc(false)">
+      {{ selLocationAnim.name }}
     </div>
-    <div *ngIf="selLocationAnim.description !== ''"
-          class="description-box"
-          (panup)="mobileShowLoc(true)"
-          (pandown)="mobileShowLoc(false)">
-        {{ selLocationAnim.description }}
+    <div *ngIf="selLocationAnim.description !== ''" class="description-box" (panup)="mobileShowLoc(true)"
+      (pandown)="mobileShowLoc(false)">
+      {{ selLocationAnim.description }}
     </div>
-
-    <button mat-button
-            class="update-button"
-            color="warn"
-            (click)="updateLocation(selLocationAnim)"
-            *ngIf="hasUpdateRole()">
-        Update
+    <button mat-button class="update-button" color="warn" (click)="showDirections()" *ngIf="!gotDirections">
+       Get Location
     </button>
+    <button mat-button class="update-button" color="warn" (click)="setDirections()" *ngIf="gotDirections">
+      Directions
+    </button>
+    <button mat-button class="update-button" color="warn" (click)="updateLocation(selLocationAnim)"
+      *ngIf="hasUpdateRole()">
+      Update
+    </button>
+    <!-- <button mat-button
+            class="directions-button"
+            (click)="setDirections()">
+      Directions
+    </button> -->
+    <!-- <div id="comp-render" *ngIf="display">
+      <button>hola </button>
+    </div> -->
   </ng-container>
 </div>
 
-<button mat-fab
-       *ngIf="hasGeolocation()"
-       class="fab location-button"
-       (click)="getGPS()"
-       [class.selbutton]="isFollowingUser() && geoLocationLast()"
-       [class.translateinfo]="showLocBox">
+<button mat-fab *ngIf="hasGeolocation()" class="fab location-button" (click)="getGPS()"
+  [class.selbutton]="isFollowingUser() && geoLocationLast()" [class.translateinfo]="showLocBox">
   <mat-icon>my_location</mat-icon>
 </button>
 
-<button mat-mini-fab
-       class="fab residences-button"
-       (click)="toggleResidences()"
-       [class.selbutton]="showResidences"
-       [class.translateinfo]="showLocBox">
+<button mat-mini-fab class="fab residences-button" (click)="toggleResidences()" [class.selbutton]="showResidences"
+  [class.translateinfo]="showLocBox">
   <mat-icon>home</mat-icon>
 </button>

@@ -1,0 +1,10 @@
+<div class="sub-card"
+     *ngIf="post"
+     mat-ripple>
+
+  <app-card [title]="post.author.name"
+            [subtitle]= "post.content"
+  >
+
+  </app-card>
+</div>
