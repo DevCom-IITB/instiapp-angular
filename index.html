@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>InstiApp | IIT Bombay</title>
@@ -17,10 +18,11 @@
   <link rel="apple-touch-icon" sizes="144x144" href="assets/icons/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="msapplication-TileColor" content="#536dfe">
   <meta name="msapplication-TileImage" content="assets/icons/ms-icon-144x144.png">
 
@@ -38,7 +40,7 @@
   <meta property="og:url" content="https://www.insti.app" />
   <meta property="og:image" content="https://www.insti.app/assets/logo.png" />
   <meta property="og:site_name" content="InstiApp">
-<link rel="stylesheet" href="styles.a21798aa18a43ac0b270.css"></head>
+<link rel="stylesheet" href="styles.bc5615da3b03e1fbff65.css"></head>
 
 <body>
   <style>
@@ -61,19 +63,23 @@
 
     #instiapp-global-spinner {
       position: fixed;
-      top: 50%; left: 50%;
-      height: 88px; width: 88px;
+      top: 50%;
+      left: 50%;
+      height: 88px;
+      width: 88px;
       transform: translateY(-50%);
       z-index: 200;
       visibility: visible;
     }
 
     #instiapp-global-spinner.list-spinner {
-      top: unset; bottom: 10%;
-      height: 35px; width: 35px;
+      top: unset;
+      bottom: 10%;
+      height: 35px;
+      width: 35px;
     }
 
-    .instiapp-spinner > .petal-bg {
+    .instiapp-spinner>.petal-bg {
       background-color: white;
       width: 230%;
       height: 230%;
@@ -82,7 +88,7 @@
       transform: translate(-50%, -25%);
     }
 
-    .instiapp-spinner > img {
+    .instiapp-spinner>img {
       height: 100%;
       transform-origin: bottom;
       opacity: 0.15;
@@ -91,25 +97,78 @@
       animation: spinner 2s infinite ease-in-out;
     }
 
-    .instiapp-spinner .petal-7 { transform: translateX(-50%) rotate(-67deg); -webkit-animation-delay: 0.09s; animation-delay: 0.09s; }
-    .instiapp-spinner .petal-6 { transform: translateX(-50%) rotate(-45deg); -webkit-animation-delay: 0.18s; animation-delay: 0.18s; }
-    .instiapp-spinner .petal-5 { transform: translateX(-50%) rotate(-20deg); -webkit-animation-delay: 0.27s; animation-delay: 0.27s; }
-    .instiapp-spinner .petal-4 { transform: translateX(-50%) rotate(00deg); -webkit-animation-delay: 0.36s; animation-delay: 0.36s; }
-    .instiapp-spinner .petal-3 { transform: translateX(-50%) rotate(20deg); -webkit-animation-delay: 0.45s; animation-delay: 0.45s; }
-    .instiapp-spinner .petal-2 { transform: translateX(-50%) rotate(45deg); -webkit-animation-delay: 0.54s; animation-delay: 0.54s; }
-    .instiapp-spinner .petal-1 { transform: translateX(-50%) rotate(67deg); -webkit-animation-delay: 0.63s; animation-delay: 0.63s; }
+    .instiapp-spinner .petal-7 {
+      transform: translateX(-50%) rotate(-67deg);
+      -webkit-animation-delay: 0.09s;
+      animation-delay: 0.09s;
+    }
+
+    .instiapp-spinner .petal-6 {
+      transform: translateX(-50%) rotate(-45deg);
+      -webkit-animation-delay: 0.18s;
+      animation-delay: 0.18s;
+    }
+
+    .instiapp-spinner .petal-5 {
+      transform: translateX(-50%) rotate(-20deg);
+      -webkit-animation-delay: 0.27s;
+      animation-delay: 0.27s;
+    }
+
+    .instiapp-spinner .petal-4 {
+      transform: translateX(-50%) rotate(00deg);
+      -webkit-animation-delay: 0.36s;
+      animation-delay: 0.36s;
+    }
+
+    .instiapp-spinner .petal-3 {
+      transform: translateX(-50%) rotate(20deg);
+      -webkit-animation-delay: 0.45s;
+      animation-delay: 0.45s;
+    }
+
+    .instiapp-spinner .petal-2 {
+      transform: translateX(-50%) rotate(45deg);
+      -webkit-animation-delay: 0.54s;
+      animation-delay: 0.54s;
+    }
+
+    .instiapp-spinner .petal-1 {
+      transform: translateX(-50%) rotate(67deg);
+      -webkit-animation-delay: 0.63s;
+      animation-delay: 0.63s;
+    }
 
     @keyframes spinner {
-      0% { opacity: 0.15;}
-      25% { opacity: 0.55; }
-      50% { opacity: 0.4; }
-      70% { opacity: 0.15; }
-      100% { opacity: 0.15; }
+      0% {
+        opacity: 0.15;
+      }
+
+      25% {
+        opacity: 0.55;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+
+      70% {
+        opacity: 0.15;
+      }
+
+      100% {
+        opacity: 0.15;
+      }
     }
 
     /* need to specify this here - workaround for static page width */
-    * { scrollbar-width: thin; }
-    ::-webkit-scrollbar { width: 6px; }
+    * {
+      scrollbar-width: thin;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
   </style>
 
   <app-root></app-root>
@@ -139,5 +198,6 @@
     }
     window.jumpToUrl = jumpToUrl;
   </script>
-<script src="runtime.e227d1a0e31cbccbf8ec.js" defer></script><script src="polyfills-es5.f5475ef480a27891a330.js" nomodule defer></script><script src="polyfills.d513f2bc7203f0302452.js" defer></script><script src="scripts.0281b7cdacbb84a40750.js" defer></script><script src="main.3265bdf1b3560cbefa7f.js" defer></script></body>
+<script src="runtime.e227d1a0e31cbccbf8ec.js" defer></script><script src="polyfills-es5.f5475ef480a27891a330.js" nomodule defer></script><script src="polyfills.d513f2bc7203f0302452.js" defer></script><script src="scripts.0281b7cdacbb84a40750.js" defer></script><script src="main.dc7a83cc2ec041066c35.js" defer></script></body>
+
 </html>
