@@ -12,6 +12,7 @@ Client for IIT Bombay's InstiApp in Angular 9, deployed at https://insti.app
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/13a3b7f7ac724c589bab82b14e4f9201)](https://www.codacy.com/gh/wncc/instiapp-angular?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=wncc/instiapp-angular&amp;utm_campaign=Badge_Grade)
 
 ## Setup
+### Use node version 14.16.1
 All dependencies can be installed with `npm install`. To serve the application with hot module reloading, use `npm run start`. For an optimized production build, do `npm run build`.
 
 ## CI Built Files
