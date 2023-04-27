@@ -81,6 +81,8 @@ export class BlogComponent implements OnInit, OnDestroy {
 
       /* Add to current list */
       this.feed = this.feed.concat(result);
+      console.log(this.feed[0].content);
+      
 
       this.loading = false;
     }, () => { this.loading = false; });
@@ -103,6 +105,8 @@ export class BlogComponent implements OnInit, OnDestroy {
     if (!this.feed || this.loading) { return; }
     this.query = val;
     this.reload();
+    console.log(this.query);
+    
   }
 
 }

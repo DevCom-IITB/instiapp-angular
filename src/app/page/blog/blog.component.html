@@ -19,10 +19,10 @@
 <div *ngIf="feed" class="main-div">
   <ng-container *ngFor="let item of feed">
     <div class="feed-card">
-        <div class="title">{{ item.title }}</div>
+        <div class="title" [innerHTML]="item.title | texthigh:query:'partial'"></div>
         {{ item.published | date:"dd-MMM-yyyy HH:mm" }}
-        <div [innerHTML]="dataService.processMDHTML(item.content | markdown)" class="markdown"></div>
-        <div *ngIf="external"> By {{ item.body }}</div>
+        <div [innerHtml]="(dataService.processMDHTML((item.content | texthigh:query:'partial')|markdown))" class="markdown"></div>
+        <div *ngIf="external">By</div><div *ngIf="external" [innerHTML]="item.body | texthigh:query:'partial'"></div>
     </div>
   </ng-container>
 </div>
