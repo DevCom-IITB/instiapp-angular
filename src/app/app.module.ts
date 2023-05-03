@@ -25,6 +25,7 @@ import { FlyoutModule } from 'ngx-flyout-ivy';
 import { CustomReuseStrategy } from './routing';
 import { MyMaterialClass } from './material-angular.module';
 import { LoginActivate } from './loginactivate';
+import { InstiMap } from 'iitbmapweb2';
 
 // Services
 import { DataService } from './data.service';

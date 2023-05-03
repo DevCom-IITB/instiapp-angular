@@ -1,37 +1,44 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
-import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Location } from '@angular/common';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import {
+  Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+} from "@angular/core";
+import { MatAutocompleteTrigger } from "@angular/material/autocomplete";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Location } from "@angular/common";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { FormControl } from "@angular/forms";
 
-import * as InstiMap from 'instimapweb';
+import * as InstiMap from "instimapweb2";
 
-import * as Fuse from 'fuse.js';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { ILocation } from '../../interfaces';
-import { API } from '../../../api';
-import { Helpers } from '../../helpers';
-import { DataService } from '../../data.service';
-import { EnterFade } from '../../animations';
+import * as Fuse from "fuse.js";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { ILocation } from "../../interfaces";
+import { API } from "../../../api";
+import { Helpers } from "../../helpers";
+import { DataService } from "../../data.service";
+import { EnterFade } from "../../animations";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
-  animations: [EnterFade]
+  selector: "app-map",
+  templateUrl: "./map.component.html",
+  styleUrls: ["./map.component.css"],
+  animations: [EnterFade],
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
-
   /* Data */
   public locations: ILocation[];
   public selectedLocation: ILocation;
 
   /* Helpers */
-  @ViewChild('searchbox', { static: true }) searchBoxEl: ElementRef;
-  @ViewChild(MatAutocompleteTrigger, { static: true }) autoComplete: MatAutocompleteTrigger;
+  @ViewChild("searchbox", { static: true }) searchBoxEl: ElementRef;
+  @ViewChild(MatAutocompleteTrigger, { static: true })
+  autoComplete: MatAutocompleteTrigger;
 
   public maploaded = false;
   public initialMarker: string = null;
@@ -43,9 +50,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public mobShowLocBox = false;
   public showResidences = false;
 
+  searchandinfoboxposition: boolean = false;
   searchForm: FormControl;
   filteredOptions: Observable<any[]>;
-
+  // location: { origin:string;destination:string }
   /* Fuse config */
   public fuse_options: Fuse.FuseOptions<ILocation> = {
     shouldSort: true,
@@ -55,47 +63,49 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     distance: 7,
     maxPatternLength: 10,
     minMatchCharLength: 1,
-    keys: [
-      'name',
-      'short_name'
-    ]
+    keys: ["name", "short_name"],
   };
-
+  originAndDestinationData = {
+    origin: "",
+    destination: "",
+  };
   public fuse;
 
   constructor(
+    public http: HttpClient,
     public activatedRoute: ActivatedRoute,
     public dataService: DataService,
     public snackBar: MatSnackBar,
     public router: Router,
-    public location: Location,
+    public location: Location
   ) {
     this.searchForm = new FormControl();
     /* Check for initial marker */
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.initialMarker = params['name'];
+      this.initialMarker = params["name"];
     });
   }
 
   ngOnInit() {
-    this.dataService.setTitle('InstiMap');
+    this.dataService.setTitle("InstiMap");
     this.filteredOptions = this.searchForm.valueChanges.pipe(
-      map(result =>
-        this.filteredLocations(result)
-      )
+      map((result) => this.filteredLocations(result))
     );
-
+    document.getElementById("searchbox-origin").style.visibility = "hidden";
+    // InstiMap.makeline(232, 546, 116, 664, "blue", 52);
   }
 
   ngAfterViewInit() {
-    this.dataService.FireGET<ILocation[]>(API.Locations).subscribe(result => {
+    this.dataService.FireGET<ILocation[]>(API.Locations).subscribe((result) => {
       this.locations = result;
       this.fuse = new Fuse(this.locations, this.fuse_options);
       this.showLoc();
 
       /* Show initial marker if set */
       if (this.initialMarker != null) {
-        const locs = this.locations.filter(l => Helpers.getPassable(l.short_name) === this.initialMarker);
+        const locs = this.locations.filter(
+          (l) => Helpers.getPassable(l.short_name) === this.initialMarker
+        );
         if (locs.length > 0) {
           this.selectLocation(locs[0]);
           InstiMap.moveToLocation(locs[0]);
@@ -110,19 +120,25 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** Show all locations - generate map */
   showLoc() {
-    InstiMap.getMap({
-      mapPath: 'assets/map.jpg',
-      mapMinPath: 'assets/map-min.jpg',
-      markersBase: '/assets/map/',
-      attributions: '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
-      map_id: 'map',
-      marker_id: 'marker',
-      user_marker_id: 'user-marker',
-    }, this.locations, (loc: ILocation) => {
-      this.selectLocation(loc);
-    }, () => {
-      this.maploaded = true;
-    });
+    InstiMap.getMap(
+      {
+        mapPath: "assets/map.jpg",
+        mapMinPath: "assets/map-min.jpg",
+        markersBase: "/assets/map/",
+        attributions:
+          '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
+        map_id: "map",
+        marker_id: "marker",
+        user_marker_id: "user-marker",
+      },
+      this.locations,
+      (loc: ILocation) => {
+        this.selectLocation(loc);
+      },
+      () => {
+        this.maploaded = true;
+      }
+    );
   }
 
   selectLocation(loc?: ILocation) {
@@ -160,10 +176,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param location Location to set URL to (null for empty)
    */
   setURL(location: ILocation) {
-    const urlParam = location != null ? `/${Helpers.getPassable(location.short_name)}` : '';
-    const urlTree = this.router.createUrlTree(
-      [`/map${urlParam}`],
-      {relativeTo: this.activatedRoute});
+    const urlParam =
+      location != null ? `/${Helpers.getPassable(location.short_name)}` : "";
+    const urlTree = this.router.createUrlTree([`/map${urlParam}`], {
+      relativeTo: this.activatedRoute,
+    });
     this.location.go(urlTree.toString());
   }
 
@@ -172,23 +189,51 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     /* Search with fuse.js*/
     return this.fuse.search(name).slice(0, 10);
   }
+  searchChangedDestination(e) {
+    console.log("destination1");
 
-  /** Fire when search input has changed */
-  searchChanged(e) {
     let lname;
-    if ('target' in e) {
+    if ("target" in e) {
       lname = this.filteredLocations(e.target.value)[0].name;
       this.autoComplete.closePanel();
-    } else if ('option' in e) {
+      this.initLocBox = false;
+    } else if ("option" in e) {
       lname = e.option.value;
     }
 
-    const loc = this.locations.find(l => l.name === lname);
-    if (loc && (!this.selectedLocation || this.selectedLocation.name !== loc.name)) {
+    const loc = this.locations.find((l) => l.name === lname);
+    if (
+      loc &&
+      (!this.selectedLocation || this.selectedLocation.name !== loc.name)
+    ) {
       this.selectLocation(loc);
       InstiMap.moveToLocation(loc);
       this.mobileShowLoc(false);
     }
+    console.log("destination2");
+  }
+  searchChangedOrigin(e) {
+    console.log("origin1");
+
+    let lname;
+    if ("target" in e) {
+      lname = this.filteredLocations(e.target.value)[0].name;
+      this.autoComplete.closePanel();
+      this.initLocBox = false;
+    } else if ("option" in e) {
+      lname = e.option.value;
+    }
+
+    const loc = this.locations.find((l) => l.name === lname);
+    if (
+      loc &&
+      (!this.selectedLocation || this.selectedLocation.name !== loc.name)
+    ) {
+      InstiMap.moveToLocation(loc);
+      this.mobileShowLoc(false);
+    }
+
+    console.log("origin2");
   }
 
   /** Toggle location showing on mobile */
@@ -200,11 +245,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleResidences() {
     this.showResidences = !this.showResidences;
     InstiMap.setResidencesVisible(this.showResidences);
-    let msg = 'Residences Visible';
+    let msg = "Residences Visible";
     if (!this.showResidences) {
-      msg = 'Residences Hidden';
+      msg = "Residences Hidden";
     }
-    this.snackBar.open(msg, 'Dismiss', {
+    this.snackBar.open(msg, "Dismiss", {
       duration: 2000,
     });
   }
@@ -230,12 +275,15 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** boolean to boolean string */
   bstr(b: boolean) {
-    return b ? 'true' : 'false';
+    return b ? "true" : "false";
   }
 
   /** If has institute role to update location */
   hasUpdateRole() {
-    return (!this.dataService.isMobile()) && this.dataService.HasInstitutePermission('Location');
+    return (
+      !this.dataService.isMobile() &&
+      this.dataService.HasInstitutePermission("Location")
+    );
   }
 
   /** PUT a location with an institute role */
@@ -246,14 +294,62 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     /* Check for role again */
-    if (!this.hasUpdateRole()) { return; }
+    if (!this.hasUpdateRole()) {
+      return;
+    }
 
     /* Fire the PUT request */
-    this.dataService.FirePUT(API.Location, location, {id: location.id}).subscribe(() => {
-      this.snackBar.open('Location Updated', 'Dismiss', { duration: 2000 });
-    }, () => {
-      this.snackBar.open('Updating Failed!', 'Dismiss', { duration: 2000 });
-    });
+    this.dataService
+      .FirePUT(API.Location, location, { id: location.id })
+      .subscribe(
+        () => {
+          this.snackBar.open("Location Updated", "Dismiss", { duration: 2000 });
+        },
+        () => {
+          this.snackBar.open("Updating Failed!", "Dismiss", { duration: 2000 });
+        }
+      );
   }
 
+  originAndDestination() {
+    console.log(this.originAndDestinationData);
+    this.dataService.originAndDestination()
+    // let requestParam: RequestInit = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(this.originAndDestinationData),
+    // };
+    // fetch(API.ShortestPath, requestParam)
+    //   .then((response) => response.text())
+    //   .then((response) => console.log(response));
+  }
+  markDestination() {
+    this.initLocBox = false;
+    this.searchandinfoboxposition = true;
+    this.searchAndInfoBoxPosition();
+  }
+
+  searchAndInfoBoxPosition() {
+    if (this.searchandinfoboxposition) {
+      document.getElementById("searchbox-origin").style.visibility = "visible";
+      document.getElementById("searchbox-destination").style.top =
+        "calc(200px)";
+    } else {
+      document.getElementById("searchbox-origin").style.visibility = "hidden";
+      document.getElementById("searchbox-destination").style.top =
+        "calc(100px)";
+    }
+  }
+  path: string[];
+  pathlength: number;
+  i: number = 0;
+  buttonVisiblity() {}
+  makeline(response) {
+    this.path = Object.keys(response);
+    // InstiMap.makeline()
+    this.pathlength = this.path.length;
+    console.log(this.path);
+    console.log(Object.keys(response));
+    for (this.i = 0; this.i < this.pathlength; this.i++) {}
+  }
 }

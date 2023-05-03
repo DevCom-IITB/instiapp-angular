@@ -25,7 +25,6 @@ import { Location } from '@angular/common';
 import { Helpers } from './helpers';
 import { Title } from '@angular/platform-browser';
 import { WinRT } from './windows';
-
 /** Headers for injection for quick use */
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -377,6 +376,22 @@ export class DataService {
     });
   }
 
+  /**fetch all adj list posting origin and destination */
+   originAndDestinationData={
+    origin:"",
+    destination:""
+  } 
+  originAndDestination() {
+    console.log(this.originAndDestinationData);
+    let requestParam: RequestInit = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.originAndDestinationData)
+    };
+    fetch(API.ShortestPath, requestParam)
+      .then((response) => response.text())
+      .then((response) => console.log(response));
+  }
   /** Gets the current user if logged in
    * The result is cached
    */
