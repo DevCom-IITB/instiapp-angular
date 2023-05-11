@@ -12,7 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 
-import * as InstiMap from "instimapweb2";
+import * as InstiMap from "mapmakeline";
 
 import * as Fuse from "fuse.js";
 import { Observable } from "rxjs";
@@ -92,7 +92,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       map((result) => this.filteredLocations(result))
     );
     document.getElementById("searchbox-origin").style.visibility = "hidden";
-    // InstiMap.makeline(232, 546, 116, 664, "blue", 52);
   }
 
   ngAfterViewInit() {
@@ -190,8 +189,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.fuse.search(name).slice(0, 10);
   }
   searchChangedDestination(e) {
-    console.log("destination1");
-
     let lname;
     if ("target" in e) {
       lname = this.filteredLocations(e.target.value)[0].name;
@@ -210,11 +207,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       InstiMap.moveToLocation(loc);
       this.mobileShowLoc(false);
     }
-    console.log("destination2");
+    this.originAndDestination();
   }
   searchChangedOrigin(e) {
-    console.log("origin1");
-
     let lname;
     if ("target" in e) {
       lname = this.filteredLocations(e.target.value)[0].name;
@@ -224,16 +219,15 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       lname = e.option.value;
     }
 
-    const loc = this.locations.find((l) => l.name === lname);
+    var locorg = this.locations.find((l) => l.name === lname);
     if (
-      loc &&
-      (!this.selectedLocation || this.selectedLocation.name !== loc.name)
+      locorg &&
+      (!this.selectedLocation || this.selectedLocation.name !== locorg.name)
     ) {
-      InstiMap.moveToLocation(loc);
+      InstiMap.moveToLocation(locorg);
       this.mobileShowLoc(false);
     }
-
-    console.log("origin2");
+    this.originAndDestination();
   }
 
   /** Toggle location showing on mobile */
@@ -313,15 +307,15 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   originAndDestination() {
     console.log(this.originAndDestinationData);
-    this.dataService.originAndDestination()
-    // let requestParam: RequestInit = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(this.originAndDestinationData),
-    // };
-    // fetch(API.ShortestPath, requestParam)
-    //   .then((response) => response.text())
-    //   .then((response) => console.log(response));
+    // this.dataService.originAndDestination()
+    let requestParam: RequestInit = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.originAndDestinationData),
+    };
+    fetch(API.ShortestPath, requestParam)
+      .then((response) => response.text())
+      .then((response) => this.makelineonmap(JSON.parse(response)));
   }
   markDestination() {
     this.initLocBox = false;
@@ -329,6 +323,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchAndInfoBoxPosition();
   }
 
+  path: number[];
+  pathlength: number;
+  i: number = 0;
+  buttonVisiblity() {}
   searchAndInfoBoxPosition() {
     if (this.searchandinfoboxposition) {
       document.getElementById("searchbox-origin").style.visibility = "visible";
@@ -338,18 +336,25 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       document.getElementById("searchbox-origin").style.visibility = "hidden";
       document.getElementById("searchbox-destination").style.top =
         "calc(100px)";
+      InstiMap.makeline();
     }
   }
-  path: string[];
-  pathlength: number;
-  i: number = 0;
-  buttonVisiblity() {}
-  makeline(response) {
-    this.path = Object.keys(response);
-    // InstiMap.makeline()
-    this.pathlength = this.path.length;
-    console.log(this.path);
-    console.log(Object.keys(response));
-    for (this.i = 0; this.i < this.pathlength; this.i++) {}
+  makelineonmap(response) {
+    // var len = response.length
+    const i=0
+    console.log(response[i])
+
+    // for (let i = 1; i < 1000; i++)
+      InstiMap.makeline(
+        response[i][0],
+        response[i][1],
+        response[i][0] + 2,
+        response[i][1] + 2,
+        "red",
+        20
+      );
+  }
+  getCurrentLocation() {
+    this.http.post("", InstiMap.getGPS());
   }
 }

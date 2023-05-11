@@ -1,18 +1,19 @@
 <app-xunk-spinner *ngIf="!maploaded"></app-xunk-spinner>
 
 <div
-  class="main"
-  [class.sandbox]="dataService.isSandbox"
-  [class.loaded]="maploaded"
+class="main"
+[class.sandbox]="dataService.isSandbox"
+[class.loaded]="maploaded"
 >
-  <div id="map" class="map"></div>
-  <img id="marker" src="/assets/map/marker_blue_s.png" />
-  <img id="user-marker" src="/assets/map/marker_red_s.png" />
+<div id="map" class="map"></div>
+<img id="marker" src="/assets/map/marker_blue_s.png" />
+<img id="user-marker" src="/assets/map/marker_red_s.png" />
 </div>
 
+<button (click)="originAndDestination()">MARK POINT</button>
 <div id="searchbox" class="mat-elevation-z3" [@enterFade]="bstr(true)">
   <form
-    class="c-form"
+  class="c-form"
   >
     <div
       id="searchbox-destination"
@@ -64,7 +65,6 @@
         (keyup.enter)="searchChangedOrigin($event)"
         (click)="searchChangedOrigin($event)"
         [(ngModel)]="originAndDestinationData.origin"
-
         required
       />
       <mat-autocomplete
@@ -73,7 +73,7 @@
       #auto2
       (optionSelected)="searchChangedOrigin($event)"
       >
-      <button id="yourLocation" type="button" onclick="">Your location</button>
+      <button id="yourLocation" type="button" (click)="getCurrentLocation()">Your location</button>
       <mat-option
       *ngFor="let loc of filteredOptions | async"
       [value]="loc.name"
@@ -106,7 +106,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <textarea
+          <textarea 
             matInput
             type="text"
             [(ngModel)]="selLocationAnim.description"
@@ -134,7 +134,7 @@
         {{ selLocationAnim.description }}
         </div>
         <button
-          id="destination"
+
           type="button"
           id="direction"
           (click)="markDestination()"
@@ -153,8 +153,6 @@
         </button>
       </ng-container>
     </div>
-    <button id="submit" type="submit" (click)="originAndDestination()">saaas</button>
-
     <button
       mat-fab
       *ngIf="hasGeolocation()"

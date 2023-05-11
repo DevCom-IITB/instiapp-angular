@@ -45,7 +45,8 @@
   z-index: 2;
 }
 
-#infobox #direction {
+#infobox #direction,
+#yourLocation {
   background-color: #536dfe;
   color: white;
   border: none;
@@ -61,7 +62,7 @@
   width: 300px;
 }
 
-#submit{
+#submit {
   position: fixed;
   top: 300px;
 }
@@ -169,7 +170,9 @@
     height: 90vh;
     transition: all 200ms ease;
   }
-
+  #yourLocation {
+    margin-left: 15px;
+  }
   #infobox.expanded {
     transform: translateY(calc(-90vh + 180px));
   }
