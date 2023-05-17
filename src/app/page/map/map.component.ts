@@ -12,7 +12,8 @@ import { Location } from "@angular/common";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 
-import * as InstiMap from "mapmakeline";
+// import * as InstiMap from "mapmakeline";
+import * as InstiMap from "mapmakedots";
 
 import * as Fuse from "fuse.js";
 import { Observable } from "rxjs";
@@ -286,7 +287,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.mobileShowLoc(false);
     }
     this.originAndDestination()
-    console.log(InstiMap.geoLoactionLast());
+    console.log(InstiMap.getGeolocationLast());
   }
   searchChangedOrigin(e) {
     let lname;
@@ -307,7 +308,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.mobileShowLoc(false);
     }
     this.originAndDestination();
-    console.log(InstiMap.geoLoactionLast());
+    console.log(InstiMap.getGeolocationLast());
   }
 
   originAndDestination() {
@@ -341,11 +342,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       document.getElementById("searchbox-origin").style.visibility = "hidden";
       document.getElementById("searchbox-destination").style.top =
         "calc(100px)";
-      InstiMap.makeline();
+      // InstiMap.makeline();
     }
   }
   makelineonmap(response) {
-    InstiMap.removeLine()
+    // InstiMap.removeLine()
     var len = response.length;
     console.log(response);
 
@@ -361,10 +362,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getCurrentLocation() {
-    console.log(InstiMap.geoLoactionLast());
-    this.originAndDestinationData.origin = InstiMap.geoLoactionLast();
+    console.log(InstiMap.getGeolocationLast());
+    // this.originAndDestinationData.origin = InstiMap.mapmakedots();
     console.log(this.originAndDestinationData);
-    console.log("asdfasdfasdf");
     let requestParam: RequestInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

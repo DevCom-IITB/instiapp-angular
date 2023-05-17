@@ -18,7 +18,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { API } from '../../../../api';
-import { ILocation } from 'mapmakeline';
+import { ILocation } from 'mapmakedots';
 import { Router } from '@angular/router';
 
 const DEFAULT_USERNAME = 'Anonymous';
