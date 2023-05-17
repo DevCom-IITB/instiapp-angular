@@ -377,22 +377,22 @@ export class DataService {
   }
 
   /**fetch all adj list posting origin and destination */
-   originAndDestinationData={
-    origin:"",
-    destination:""
-  } 
-  originAndDestination() {
-    console.log(this.originAndDestinationData);
+  originAndDestinationData : {
+    origin:string
+    destination: string,
+  };
+  postOriginAndDestination() {
+    console.log(this.originAndDestinationData)
     let requestParam: RequestInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.originAndDestinationData)
+      body: JSON.stringify(this.originAndDestinationData),
     };
     fetch(API.ShortestPath, requestParam)
       .then((response) => response.text())
-      .then((response) => console.log(response));
+      .then((response) => { return response});
   }
-  /** Gets the current user if logged in
+   /** Gets the current user if logged in
    * The result is cached
    */
   GetFillCurrentUser(): Observable<IUserProfile> {

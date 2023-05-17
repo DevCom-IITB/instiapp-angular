@@ -1,20 +1,16 @@
 <app-xunk-spinner *ngIf="!maploaded"></app-xunk-spinner>
 
 <div
-class="main"
-[class.sandbox]="dataService.isSandbox"
-[class.loaded]="maploaded"
+  class="main"
+  [class.sandbox]="dataService.isSandbox"
+  [class.loaded]="maploaded"
 >
-<div id="map" class="map"></div>
-<img id="marker" src="/assets/map/marker_blue_s.png" />
-<img id="user-marker" src="/assets/map/marker_red_s.png" />
+  <div id="map" class="map"></div>
+  <img id="marker" src="/assets/map/marker_blue_s.png" />
+  <img id="user-marker" src="/assets/map/marker_red_s.png" />
 </div>
-
-<button (click)="originAndDestination()">MARK POINT</button>
 <div id="searchbox" class="mat-elevation-z3" [@enterFade]="bstr(true)">
-  <form
-  class="c-form"
-  >
+  <form class="c-form">
     <div
       id="searchbox-destination"
       class="mat-elevation-z3"
@@ -68,16 +64,18 @@ class="main"
         required
       />
       <mat-autocomplete
-      id="originautocomplete"
-      name="locsauto"
-      #auto2
-      (optionSelected)="searchChangedOrigin($event)"
+        id="originautocomplete"
+        name="locsauto"
+        #auto2
+        (optionSelected)="searchChangedOrigin($event)"
       >
-      <button id="yourLocation" type="button" (click)="getCurrentLocation()">Your location</button>
-      <mat-option
-      *ngFor="let loc of filteredOptions | async"
-      [value]="loc.name"
-      >
+        <button id="yourLocation" type="button" (click)="getCurrentLocation()">
+          Your location
+        </button>
+        <mat-option
+          *ngFor="let loc of filteredOptions | async"
+          [value]="loc.name"
+        >
           {{ loc.name }}
         </mat-option>
       </mat-autocomplete>
@@ -106,7 +104,7 @@ class="main"
         </mat-form-field>
 
         <mat-form-field>
-          <textarea 
+          <textarea
             matInput
             type="text"
             [(ngModel)]="selLocationAnim.description"
@@ -116,12 +114,12 @@ class="main"
           </textarea>
         </mat-form-field>
       </div>
-      
+
       <ng-container *ngIf="selLocationAnim">
         <div
-        id="locname"
-        (panup)="mobileShowLoc(true)"
-        (pandown)="mobileShowLoc(false)"
+          id="locname"
+          (panup)="mobileShowLoc(true)"
+          (pandown)="mobileShowLoc(false)"
         >
           {{ selLocationAnim.name }}
         </div>
@@ -131,24 +129,19 @@ class="main"
           (panup)="mobileShowLoc(true)"
           (pandown)="mobileShowLoc(false)"
         >
-        {{ selLocationAnim.description }}
+          {{ selLocationAnim.description }}
         </div>
-        <button
+        <button type="button" id="direction" (click)="markDestination()">
+          Direction
+        </button>
 
-          type="button"
-          id="direction"
-          (click)="markDestination()"
-        >
-        Direction
-      </button>
-      
-      <button
+        <button
           mat-button
           class="update-button"
           color="warn"
           (click)="updateLocation(selLocationAnim)"
           *ngIf="hasUpdateRole()"
-          >
+        >
           Update
         </button>
       </ng-container>

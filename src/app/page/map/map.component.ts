@@ -65,7 +65,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     minMatchCharLength: 1,
     keys: ["name", "short_name"],
   };
-  originAndDestinationData = {
+  originAndDestinationData: {
+    origin: any;
+    destination: string;
+  } = {
     origin: "",
     destination: "",
   };
@@ -188,47 +191,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     /* Search with fuse.js*/
     return this.fuse.search(name).slice(0, 10);
   }
-  searchChangedDestination(e) {
-    let lname;
-    if ("target" in e) {
-      lname = this.filteredLocations(e.target.value)[0].name;
-      this.autoComplete.closePanel();
-      this.initLocBox = false;
-    } else if ("option" in e) {
-      lname = e.option.value;
-    }
-
-    const loc = this.locations.find((l) => l.name === lname);
-    if (
-      loc &&
-      (!this.selectedLocation || this.selectedLocation.name !== loc.name)
-    ) {
-      this.selectLocation(loc);
-      InstiMap.moveToLocation(loc);
-      this.mobileShowLoc(false);
-    }
-    this.originAndDestination();
-  }
-  searchChangedOrigin(e) {
-    let lname;
-    if ("target" in e) {
-      lname = this.filteredLocations(e.target.value)[0].name;
-      this.autoComplete.closePanel();
-      this.initLocBox = false;
-    } else if ("option" in e) {
-      lname = e.option.value;
-    }
-
-    var locorg = this.locations.find((l) => l.name === lname);
-    if (
-      locorg &&
-      (!this.selectedLocation || this.selectedLocation.name !== locorg.name)
-    ) {
-      InstiMap.moveToLocation(locorg);
-      this.mobileShowLoc(false);
-    }
-    this.originAndDestination();
-  }
 
   /** Toggle location showing on mobile */
   mobileShowLoc(show: boolean) {
@@ -304,10 +266,53 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       );
   }
+  searchChangedDestination(e) {
+    let lname;
+    if ("target" in e) {
+      lname = this.filteredLocations(e.target.value)[0].name;
+      this.autoComplete.closePanel();
+      this.initLocBox = false;
+    } else if ("option" in e) {
+      lname = e.option.value;
+    }
+
+    const loc = this.locations.find((l) => l.name === lname);
+    if (
+      loc &&
+      (!this.selectedLocation || this.selectedLocation.name !== loc.name)
+    ) {
+      this.selectLocation(loc);
+      InstiMap.moveToLocation(loc);
+      this.mobileShowLoc(false);
+    }
+    this.originAndDestination()
+    console.log(InstiMap.geoLoactionLast());
+  }
+  searchChangedOrigin(e) {
+    let lname;
+    if ("target" in e) {
+      lname = this.filteredLocations(e.target.value)[0].name;
+      this.autoComplete.closePanel();
+      this.initLocBox = false;
+    } else if ("option" in e) {
+      lname = e.option.value;
+    }
+
+    var locorg = this.locations.find((l) => l.name === lname);
+    if (
+      locorg &&
+      (!this.selectedLocation || this.selectedLocation.name !== locorg.name)
+    ) {
+      InstiMap.moveToLocation(locorg);
+      this.mobileShowLoc(false);
+    }
+    this.originAndDestination();
+    console.log(InstiMap.geoLoactionLast());
+  }
 
   originAndDestination() {
     console.log(this.originAndDestinationData);
-    // this.dataService.originAndDestination()
+    // this.dataService.postOriginAndDestination()
     let requestParam: RequestInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -340,21 +345,33 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   makelineonmap(response) {
-    // var len = response.length
-    const i=0
-    console.log(response[i])
+    InstiMap.removeLine()
+    var len = response.length;
+    console.log(response);
 
-    // for (let i = 1; i < 1000; i++)
+    for (let i = 0; i < len; i++)
       InstiMap.makeline(
         response[i][0],
         response[i][1],
-        response[i][0] + 2,
-        response[i][1] + 2,
+        response[i + 1][0],
+        response[i + 1][1],
         "red",
-        20
+        5
       );
   }
+
   getCurrentLocation() {
-    this.http.post("", InstiMap.getGPS());
+    console.log(InstiMap.geoLoactionLast());
+    this.originAndDestinationData.origin = InstiMap.geoLoactionLast();
+    console.log(this.originAndDestinationData);
+    console.log("asdfasdfasdf");
+    let requestParam: RequestInit = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.originAndDestinationData),
+    };
+    fetch(API.ShortestPath, requestParam)
+      .then((response) => response.text())
+      .then((response) => this.makelineonmap(JSON.parse(response)));
   }
 }

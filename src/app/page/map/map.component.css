@@ -171,7 +171,7 @@
     transition: all 200ms ease;
   }
   #yourLocation {
-    margin-left: 15px;
+     margin-left: 15px;
   }
   #infobox.expanded {
     transform: translateY(calc(-90vh + 180px));

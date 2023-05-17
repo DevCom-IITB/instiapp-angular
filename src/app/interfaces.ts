@@ -277,6 +277,6 @@ export interface ICommunityPost {
     reported_by: IUserProfile[];
 }
 export interface originAndDestinationData {
-    origin: string;
-    destination: string;
+    origin: "";
+    destination: "";
 }
