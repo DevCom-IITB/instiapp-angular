@@ -31,7 +31,7 @@ let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
 
 /** The hoste the app is being served on */
-const HOST = environment.host;
+const HOST = environment.apiUrl;
 
 /** Absolute SSO redirection URL */
 const SSO_REDIR = environment.host + 'login'; /* Has to be absolute URL */

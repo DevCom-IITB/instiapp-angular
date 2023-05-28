@@ -3,6 +3,7 @@ import { DataService } from '../../data.service';
 import { IEvent, IEventContainer } from '../../interfaces';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { API } from '../../../api';
 
 export const TITLE = 'Feed';
 
@@ -25,6 +26,7 @@ export class FeedComponent implements OnInit {
 
   /** Initialize initial list wiht API call */
   ngOnInit() {
+    console.log(API.Communities)
     /* If this is a child component */
     if (this.containers) {
       return;
