@@ -346,7 +346,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   lastresponse:number[]=[]
   makelineonmap(response) {
-    InstiMap.removeLine(this.lastresponse);xxx
+    InstiMap.removeLine(this.lastresponse);
     this.lastresponse = response;
     let len = response.length;
     console.log(response);
