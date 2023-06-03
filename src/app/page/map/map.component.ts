@@ -13,7 +13,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 
 // import * as InstiMap from "mapmakeline";
-import * as InstiMap from "mapmakedots";
+import * as InstiMap from "mapmakeline";
 
 import * as Fuse from "fuse.js";
 import { Observable } from "rxjs";
@@ -347,15 +347,17 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   makelineonmap(response) {
     // InstiMap.removeLine()
-    var len = response.length;
+    // var len = response.length;
     console.log(response);
 
-    for (let i = 0; i < len; i++)
+    // for (let i = 0; i < len; i++)
+    const i=0
       InstiMap.makeline(
+
         response[i][0],
         response[i][1],
-        response[i + 1][0],
-        response[i + 1][1],
+        response[i ][0]+2,
+        response[i][1]+2,
         "red",
         5
       );
@@ -363,7 +365,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getCurrentLocation() {
     console.log(InstiMap.getGeolocationLast());
-    // this.originAndDestinationData.origin = InstiMap.mapmakedots();
+    this.originAndDestinationData.origin = InstiMap.geoLocationLast();
     console.log(this.originAndDestinationData);
     let requestParam: RequestInit = {
       method: "POST",

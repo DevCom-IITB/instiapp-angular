@@ -26,6 +26,7 @@
     "hammerjs": "^2.0.8",
     "json2csv": "^4.5.4",
     "mapmakedots": "^2.0.0",
+    "mapmakeline": "^1.2.0",
     "material-design-icons": "^3.0.1",
     "moment": "^2.29.4",
     "ngx-flyout-ivy": "^1.1.1",
