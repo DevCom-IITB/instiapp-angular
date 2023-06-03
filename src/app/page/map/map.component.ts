@@ -91,6 +91,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log(InstiMap.getGeolocationLast());
+
     this.dataService.setTitle("InstiMap");
     this.filteredOptions = this.searchForm.valueChanges.pipe(
       map((result) => this.filteredLocations(result))
@@ -270,7 +272,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   searchChangedDestination(e) {
     let lname;
     if ("target" in e) {
-      lname = this.filteredLocations(e.target.value)[0].name;
       this.autoComplete.closePanel();
       this.initLocBox = false;
     } else if ("option" in e) {
@@ -286,13 +287,12 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       InstiMap.moveToLocation(loc);
       this.mobileShowLoc(false);
     }
-    this.originAndDestination()
+    this.originAndDestination();
     console.log(InstiMap.getGeolocationLast());
   }
   searchChangedOrigin(e) {
     let lname;
     if ("target" in e) {
-      lname = this.filteredLocations(e.target.value)[0].name;
       this.autoComplete.closePanel();
       this.initLocBox = false;
     } else if ("option" in e) {
@@ -342,9 +342,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       document.getElementById("searchbox-origin").style.visibility = "hidden";
       document.getElementById("searchbox-destination").style.top =
         "calc(100px)";
-      // InstiMap.makeline();
     }
   }
+  lastresponse:number[]=[]
   makelineonmap(response) {
     // InstiMap.removeLine()
     // var len = response.length;
