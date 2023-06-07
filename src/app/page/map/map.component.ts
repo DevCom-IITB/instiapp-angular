@@ -12,8 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 
-// import * as InstiMap from "mapmakeline";
-import * as InstiMap from "mapmakedots";
+import * as InstiMap from "mapmakeline";
 
 import * as Fuse from "fuse.js";
 import { Observable } from "rxjs";
@@ -24,6 +23,7 @@ import { Helpers } from "../../helpers";
 import { DataService } from "../../data.service";
 import { EnterFade } from "../../animations";
 import { HttpClient } from "@angular/common/http";
+import { IPath } from "../../interfaces";
 
 @Component({
   selector: "app-map",
@@ -66,10 +66,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     minMatchCharLength: 1,
     keys: ["name", "short_name"],
   };
-  originAndDestinationData: {
-    origin: any;
-    destination: string;
-  } = {
+  originAndDestinationData: IPath = {
     origin: "",
     destination: "",
   };
@@ -313,15 +310,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   originAndDestination() {
     console.log(this.originAndDestinationData);
-    // this.dataService.postOriginAndDestination()
-    let requestParam: RequestInit = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.originAndDestinationData),
-    };
-    fetch(API.ShortestPath, requestParam)
-      .then((response) => response.text())
-      .then((response) => this.makelineonmap(JSON.parse(response)));
+    this.dataService.FirePOST<IPath>(API.ShortestPath, this.originAndDestinationData).subscribe((res)=> {
+      console.log(res);
+      this.makelineonmap(res);
+    }
+    )
   }
   markDestination() {
     this.initLocBox = false;
@@ -344,21 +337,35 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         "calc(100px)";
     }
   }
-  lastresponse:number[]=[]
+  lastres
+  templine
   makelineonmap(response) {
-    InstiMap.removeLine(this.lastresponse);
-    this.lastresponse = response;
-    let len = response.length;
-    console.log(response);
-    for (let i = 0; i < len; i++)
-      InstiMap.makeline(
+    this.removelines()
+    this.lastres = response
+    let len = response.length;    
+    for (let i = 0; i < len; i++){
+      this.templine =InstiMap.makeline(
         response[i][0],
         response[i][1],
         response[i + 1][0],
         response[i + 1][1],
         "red",
         5
-      );
+        );
+        this.lastres[i] = this.templine  
+        console.log(this.lastres[i]);
+                
+    }
+           
+  }
+
+  removelines(){
+    if (this.lastres != null || undefined) {     
+      for (let i = 0; i < this.lastres.length; i++){
+        InstiMap.removeLine(this.lastres[i]) 
+      }
+    }
+
   }
 
   getCurrentLocation() {

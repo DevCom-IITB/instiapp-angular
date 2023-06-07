@@ -72,6 +72,11 @@ export interface ILocation {
     reusable: boolean;
 }
 
+export interface IPath {
+    origin: string;
+    destination: string;
+}
+
 export interface IInterest {
     id: string;
     title: string;
