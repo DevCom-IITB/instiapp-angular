@@ -5,30 +5,30 @@ import {
   ElementRef,
   OnInit,
   OnDestroy,
-} from "@angular/core";
-import { MatAutocompleteTrigger } from "@angular/material/autocomplete";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { Location } from "@angular/common";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { FormControl } from "@angular/forms";
+} from '@angular/core';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
-import * as InstiMap from "mapmakeline";
+import * as InstiMap from 'instimapline';
 
-import * as Fuse from "fuse.js";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { ILocation } from "../../interfaces";
-import { API } from "../../../api";
-import { Helpers } from "../../helpers";
-import { DataService } from "../../data.service";
-import { EnterFade } from "../../animations";
-import { HttpClient } from "@angular/common/http";
-import { IPath } from "../../interfaces";
+import * as Fuse from 'fuse.js';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ILocation } from '../../interfaces';
+import { API } from '../../../api';
+import { Helpers } from '../../helpers';
+import { DataService } from '../../data.service';
+import { EnterFade } from '../../animations';
+import { HttpClient } from '@angular/common/http';
+import { IPath } from '../../interfaces';
 
 @Component({
-  selector: "app-map",
-  templateUrl: "./map.component.html",
-  styleUrls: ["./map.component.css"],
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css'],
   animations: [EnterFade],
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -37,7 +37,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public selectedLocation: ILocation;
 
   /* Helpers */
-  @ViewChild("searchbox", { static: true }) searchBoxEl: ElementRef;
+  @ViewChild('searchbox', { static: true }) searchBoxEl: ElementRef;
   @ViewChild(MatAutocompleteTrigger, { static: true })
   autoComplete: MatAutocompleteTrigger;
 
@@ -51,7 +51,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   public mobShowLocBox = false;
   public showResidences = false;
 
-  searchandinfoboxposition: boolean = false;
+  lastres;
+  templine;
+
+  searchandinfoboxposition = false;
   searchForm: FormControl;
   filteredOptions: Observable<any[]>;
   // location: { origin:string;destination:string }
@@ -64,11 +67,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     distance: 7,
     maxPatternLength: 10,
     minMatchCharLength: 1,
-    keys: ["name", "short_name"],
+    keys: ['name', 'short_name'],
   };
   originAndDestinationData: IPath = {
-    origin: "",
-    destination: "",
+    origin: '',
+    destination: '',
   };
   public fuse;
 
@@ -83,18 +86,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchForm = new FormControl();
     /* Check for initial marker */
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.initialMarker = params["name"];
+      this.initialMarker = params['name'];
     });
   }
 
   ngOnInit() {
     console.log(InstiMap.getGeolocationLast());
 
-    this.dataService.setTitle("InstiMap");
+    this.dataService.setTitle('InstiMap');
     this.filteredOptions = this.searchForm.valueChanges.pipe(
       map((result) => this.filteredLocations(result))
     );
-    document.getElementById("searchbox-origin").style.visibility = "hidden";
+    document.getElementById('searchbox-origin').style.visibility = 'hidden';
   }
 
   ngAfterViewInit() {
@@ -124,14 +127,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   showLoc() {
     InstiMap.getMap(
       {
-        mapPath: "assets/map.jpg",
-        mapMinPath: "assets/map-min.jpg",
-        markersBase: "/assets/map/",
+        mapPath: 'assets/map.jpg',
+        mapMinPath: 'assets/map-min.jpg',
+        markersBase: '/assets/map/',
         attributions:
           '<a href="http://mrane.com/" target="_blank">Prof. Mandar Rane</a>',
-        map_id: "map",
-        marker_id: "marker",
-        user_marker_id: "user-marker",
+        map_id: 'map',
+        marker_id: 'marker',
+        user_marker_id: 'user-marker',
       },
       this.locations,
       (loc: ILocation) => {
@@ -179,7 +182,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   setURL(location: ILocation) {
     const urlParam =
-      location != null ? `/${Helpers.getPassable(location.short_name)}` : "";
+      location != null ? `/${Helpers.getPassable(location.short_name)}` : '';
     const urlTree = this.router.createUrlTree([`/map${urlParam}`], {
       relativeTo: this.activatedRoute,
     });
@@ -201,11 +204,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleResidences() {
     this.showResidences = !this.showResidences;
     InstiMap.setResidencesVisible(this.showResidences);
-    let msg = "Residences Visible";
+    let msg = 'Residences Visible';
     if (!this.showResidences) {
-      msg = "Residences Hidden";
+      msg = 'Residences Hidden';
     }
-    this.snackBar.open(msg, "Dismiss", {
+    this.snackBar.open(msg, 'Dismiss', {
       duration: 2000,
     });
   }
@@ -231,14 +234,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** boolean to boolean string */
   bstr(b: boolean) {
-    return b ? "true" : "false";
+    return b ? 'true' : 'false';
   }
 
   /** If has institute role to update location */
   hasUpdateRole() {
     return (
       !this.dataService.isMobile() &&
-      this.dataService.HasInstitutePermission("Location")
+      this.dataService.HasInstitutePermission('Location')
     );
   }
 
@@ -259,19 +262,19 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       .FirePUT(API.Location, location, { id: location.id })
       .subscribe(
         () => {
-          this.snackBar.open("Location Updated", "Dismiss", { duration: 2000 });
+          this.snackBar.open('Location Updated', 'Dismiss', { duration: 2000 });
         },
         () => {
-          this.snackBar.open("Updating Failed!", "Dismiss", { duration: 2000 });
+          this.snackBar.open('Updating Failed!', 'Dismiss', { duration: 2000 });
         }
       );
   }
   searchChangedDestination(e) {
     let lname;
-    if ("target" in e) {
+    if ('target' in e) {
       this.autoComplete.closePanel();
       this.initLocBox = false;
-    } else if ("option" in e) {
+    } else if ('option' in e) {
       lname = e.option.value;
     }
 
@@ -285,18 +288,17 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.mobileShowLoc(false);
     }
     this.originAndDestination();
-    console.log(InstiMap.getGeolocationLast());
   }
   searchChangedOrigin(e) {
     let lname;
-    if ("target" in e) {
+    if ('target' in e) {
       this.autoComplete.closePanel();
       this.initLocBox = false;
-    } else if ("option" in e) {
+    } else if ('option' in e) {
       lname = e.option.value;
     }
 
-    var locorg = this.locations.find((l) => l.name === lname);
+    const locorg = this.locations.find((l) => l.name === lname);
     if (
       locorg &&
       (!this.selectedLocation || this.selectedLocation.name !== locorg.name)
@@ -305,16 +307,13 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.mobileShowLoc(false);
     }
     this.originAndDestination();
-    console.log(InstiMap.getGeolocationLast());
   }
 
   originAndDestination() {
-    console.log(this.originAndDestinationData);
-    this.dataService.FirePOST<IPath>(API.ShortestPath, this.originAndDestinationData).subscribe((res)=> {
-      console.log(res);
+    this.dataService.FirePOST<IPath>(API.ShortestPath, this.originAndDestinationData).subscribe((res) => {
       this.makelineonmap(res);
     }
-    )
+    );
   }
   markDestination() {
     this.initLocBox = false;
@@ -322,63 +321,49 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchAndInfoBoxPosition();
   }
 
-  path: number[];
-  pathlength: number;
-  i: number = 0;
   buttonVisiblity() {}
   searchAndInfoBoxPosition() {
     if (this.searchandinfoboxposition) {
-      document.getElementById("searchbox-origin").style.visibility = "visible";
-      document.getElementById("searchbox-destination").style.top =
-        "calc(200px)";
+      document.getElementById('searchbox-origin').style.visibility = 'visible';
+      document.getElementById('searchbox-destination').style.top =
+        'calc(200px)';
     } else {
-      document.getElementById("searchbox-origin").style.visibility = "hidden";
-      document.getElementById("searchbox-destination").style.top =
-        "calc(100px)";
+      document.getElementById('searchbox-origin').style.visibility = 'hidden';
+      document.getElementById('searchbox-destination').style.top =
+        'calc(100px)';
     }
   }
-  lastres
-  templine
+
   makelineonmap(response) {
-    this.removelines()
-    this.lastres = response
-    let len = response.length;    
-    for (let i = 0; i < len; i++){
-      this.templine =InstiMap.makeline(
+    this.removelines();
+    this.lastres = response;
+    const len = response.length;
+    for (let i = 0; i < len; i++) {
+      this.templine = InstiMap.makeline(
         response[i][0],
         response[i][1],
         response[i + 1][0],
         response[i + 1][1],
-        "red",
+        'red',
         5
         );
-        this.lastres[i] = this.templine  
-        console.log(this.lastres[i]);
-                
+      this.lastres[i] = this.templine;
     }
-           
   }
 
-  removelines(){
-    if (this.lastres != null || undefined) {     
-      for (let i = 0; i < this.lastres.length; i++){
-        InstiMap.removeLine(this.lastres[i]) 
+  removelines() {
+    if (this.lastres != null || undefined) {
+      for (let i = 0; i < this.lastres.length; i++) {
+        InstiMap.removeLine(this.lastres[i]);
       }
     }
-
   }
 
   getCurrentLocation() {
     console.log(InstiMap.getGeolocationLast());
     this.originAndDestinationData.origin = InstiMap.getGeolocationLast();
-    console.log(this.originAndDestinationData);
-    let requestParam: RequestInit = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.originAndDestinationData),
-    };
-    fetch(API.ShortestPath, requestParam)
-      .then((response) => response.text())
-      .then((response) => this.makelineonmap(JSON.parse(response)));
+    this.dataService.FirePOST<IPath>(API.ShortestPath, this.originAndDestinationData).subscribe((res) => {
+      this.makelineonmap(res);
+    });
   }
 }

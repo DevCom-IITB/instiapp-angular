@@ -16,6 +16,7 @@ import {
   INotification,
   ICommunity,
   ICommunityPost,
+  IPath,
 } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
@@ -64,6 +65,8 @@ export class DataService {
 
   /** Notifications */
   public notifications: INotification[];
+
+  public originAndDestinationData: IPath;
 
   /** Function called when user reaches bottom of content */
   public scrollBottomFunction = noop;
@@ -377,20 +380,12 @@ export class DataService {
   }
 
   /**fetch all adj list posting origin and destination */
-  originAndDestinationData : {
-    origin:string
-    destination: string,
-  };
+
   postOriginAndDestination() {
-    console.log(this.originAndDestinationData)
-    let requestParam: RequestInit = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.originAndDestinationData),
-    };
-    fetch(API.ShortestPath, requestParam)
-      .then((response) => response.text())
-      .then((response) => { return response});
+    this.FirePOST<IPath>(API.ShortestPath, this.originAndDestinationData).subscribe((res) => {
+      return res;
+    }
+    );
   }
    /** Gets the current user if logged in
    * The result is cached

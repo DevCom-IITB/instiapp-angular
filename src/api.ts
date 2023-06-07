@@ -23,7 +23,7 @@ export const API = {
 
     Locations: 'api/locations{?exclude_group}',
     Location: 'api/locations/{id}',
-    ShortestPath: "api/shortestpath/",
+    ShortestPath: 'api/shortestpath/',
     PostImage: 'api/upload',
 
     LoggedInUser: 'api/login/get-user',

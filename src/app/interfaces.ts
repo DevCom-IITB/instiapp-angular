@@ -281,7 +281,3 @@ export interface ICommunityPost {
     has_user_reported: boolean;
     reported_by: IUserProfile[];
 }
-export interface originAndDestinationData {
-    origin: "";
-    destination: "";
-}
