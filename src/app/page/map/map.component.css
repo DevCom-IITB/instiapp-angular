@@ -166,7 +166,7 @@
     right: unset;
     left: 0;
     top: unset;
-    bottom: calc(-90vh + 80px);
+    bottom: calc(-90vh + 160px);
     height: 90vh;
     transition: all 200ms ease;
   }
