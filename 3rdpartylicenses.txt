@@ -602,7 +602,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-instimapweb
+instimapline
 MIT
 Copyright 2019 Varun Patil <radialapps@gmail.com>
 
