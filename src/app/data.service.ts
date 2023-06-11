@@ -16,6 +16,7 @@ import {
   INotification,
   ICommunity,
   ICommunityPost,
+  IPath,
 } from './interfaces';
 import { Router } from '@angular/router';
 import { environment } from '../environments/environment';
@@ -25,7 +26,6 @@ import { Location } from '@angular/common';
 import { Helpers } from './helpers';
 import { Title } from '@angular/platform-browser';
 import { WinRT } from './windows';
-
 /** Headers for injection for quick use */
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -65,6 +65,8 @@ export class DataService {
 
   /** Notifications */
   public notifications: INotification[];
+
+  public originAndDestinationData: IPath;
 
   /** Function called when user reaches bottom of content */
   public scrollBottomFunction = noop;
@@ -377,7 +379,15 @@ export class DataService {
     });
   }
 
-  /** Gets the current user if logged in
+  /**fetch all adj list posting origin and destination */
+
+  postOriginAndDestination() {
+    this.FirePOST<IPath>(API.ShortestPath, this.originAndDestinationData).subscribe((res) => {
+      return res;
+    }
+    );
+  }
+   /** Gets the current user if logged in
    * The result is cached
    */
   GetFillCurrentUser(): Observable<IUserProfile> {

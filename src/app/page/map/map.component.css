@@ -1,143 +1,192 @@
 .main {
-    overflow: hidden;
-    width: 100%;
-    height: calc(100vh - 64px);
-    margin-bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  height: calc(100vh - 64px);
+  margin-bottom: 0;
 }
 
 .main.loaded {
-    background-color: #666;
+  background-color: #666;
 }
 
 .main.sandbox {
-    height: 100vh;
+  height: 100vh;
 }
 
 .map {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-#marker, #user-marker {
-    height: 60px;
-    transform: translateY(6px);
+#marker,
+#user-marker {
+  height: 60px;
+  transform: translateY(6px);
 }
-
 #searchbox {
-    position: fixed;
-    right: 40px; top: calc(40px + 56px);
-    background: white;
-    z-index: 2;
+  display: flex;
+  flex-direction: column;
+  top: 100px;
+}
+#searchbox-origin {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 40px;
+  top: calc(100px);
+  background: white;
+  z-index: 2;
+}
+#searchbox-destination {
+  position: fixed;
+  right: 40px;
+  top: calc(100px);
+  background: white;
+  z-index: 2;
+}
+
+#infobox #direction,
+#yourLocation {
+  background-color: #536dfe;
+  color: white;
+  border: none;
+  position: relative;
+  margin-top: 10px;
+  padding: 5px;
+  padding-right: 15px;
 }
 
 .search {
-    padding: 15px 20px;
-    border: none;
-    width: 300px;
+  padding: 15px 20px;
+  border: none;
+  width: 300px;
+}
+
+#submit {
+  position: fixed;
+  top: 300px;
 }
 
 #infobox {
-    padding: 15px 20px;
-    box-sizing: border-box;
-    position: fixed;
-    right: 40px; top: 160px;
-    background: white;
-    width: 300px;
-    z-index: 2;
-    font-family: 'Segoe UI' initial;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  position: absolute;
+  right: 40px;
+  top: 160px;
+  background: white;
+  width: 300px;
+  z-index: 2;
+  font-family: "Segoe UI" initial;
 }
 
 #infobox.editing {
-    width: 700px;
+  width: 700px;
 }
 
 #locname {
-    font-size: 1.3em;
-    margin-bottom: 0.2em;
+  font-size: 1.3em;
+  margin-bottom: 0.2em;
 }
 
 .edit-loc {
-    float: left;
-    width: 45%;
-    margin-right: 5%
+  float: left;
+  width: 45%;
+  margin-right: 5%;
 }
 
 .edit-loc mat-form-field {
-    width: 100%;
+  width: 100%;
 }
 
 .description-box {
-    max-height: 65vh;
-    overflow-y: auto;
-    white-space: pre-line;
+  max-height: 65vh;
+  overflow-y: auto;
+  white-space: pre-line;
+  margin-bottom: 10px;
 }
 
 .fab {
-    position: fixed;
-    right: 15px;
-    transition: all 250ms ease;
+  position: fixed;
+  right: 15px;
+  transition: all 250ms ease;
 }
 
-.fab.location-button { bottom: 15px; }
-.fab.residences-button { bottom: 80px; }
+.fab.location-button {
+  bottom: 15px;
+}
+.fab.residences-button {
+  bottom: 80px;
+}
 
 .fab.selbutton {
-    color: white;
-    background-color: var(--primary-color);
+  color: white;
+  background-color: var(--primary-color);
 }
 
 .update-button {
-    margin-top: 2px;
-    float: right;
+  margin-top: 2px;
+  float: right;
 }
 
 .only-mobile {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 560px) {
-    #searchbox {
-        top: 56px;
-        width: 100%;
-        right: unset;
-        left: 0;
-        background-color: var(--primary-color);
-    }
+  #searchbox {
+    top: 56px;
+    width: 100%;
+    right: unset;
+    left: 0;
+    background-color: var(--primary-color);
+  }
 
-    .search::-webkit-input-placeholder { color: white; }
-    .search::-moz-placeholder { color: white; }
-    .search::-ms-placeholder { color: white; }
-    .search::placeholder { color: white; }
+  .search::-webkit-input-placeholder {
+    color: white;
+  }
+  .search::-moz-placeholder {
+    color: white;
+  }
+  .search::-ms-placeholder {
+    color: white;
+  }
+  .search::placeholder {
+    color: white;
+  }
 
-    .search {
-        padding: 8px 20px;
-        width: 100%;
-        background-color: var(--primary-color);
-        color: white;
-    }
+  .search {
+    padding: 8px 20px;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+  }
 
-    #infobox {
-        width: 100vw;
-        right: unset; left: 0; top: unset;
-        bottom: calc(-90vh + 80px);
-        height: 90vh;
-        transition: all 200ms ease;
-    }
+  #infobox {
+    width: 100vw;
+    right: unset;
+    left: 0;
+    top: unset;
+    bottom: calc(-90vh + 160px);
+    height: 90vh;
+    transition: all 200ms ease;
+  }
+  #yourLocation {
+     margin-left: 15px;
+  }
+  #infobox.expanded {
+    transform: translateY(calc(-90vh + 180px));
+  }
 
-    #infobox.expanded {
-        transform: translateY(calc(-90vh + 180px));
-    }
+  .fab.translateinfo {
+    transform: translateY(-80px);
+  }
 
-    .fab.translateinfo {
-        transform: translateY(-80px);
-    }
+  .main {
+    height: calc(100vh - 56px);
+    margin-top: 0;
+  }
 
-    .main {
-        height: calc(100vh - 56px);
-        margin-top: 0;
-    }
-
-    .only-mobile {
-        display: block;
-    }
+  .only-mobile {
+    display: block;
+  }
 }
