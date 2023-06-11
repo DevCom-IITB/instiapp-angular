@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   hmr: true,
+  apiUrl: 'http://localhost:8000/',
   host: 'http://localhost:4200/',
   sso_host: 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/',
   sso_client_id: 'HeKlfCluQLxa5cG5c4yHYiAEFZynroiKwylpiwNV',

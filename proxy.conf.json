@@ -1,8 +1,0 @@
-{
-  "/api/**": {
-    "target": "https://gymkhana.iitb.ac.in/instiapp",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "info"
-  }
-  }
