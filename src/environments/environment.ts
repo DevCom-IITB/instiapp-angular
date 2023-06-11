@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   hmr: true,
-  apiUrl: 'https://gymkhana.iitb.ac.in/instiapp/',
+  apiUrl: 'http://localhost:8000/',
   host: 'http://localhost:4200/',
   sso_host: 'https://gymkhana.iitb.ac.in/sso/oauth/authorize/',
   sso_client_id: '5jyMJufq0Vk0aDlj9Hnudsj84UfbFZlYRUnn02Xd',
@@ -14,10 +14,4 @@ export const environment = {
   VAPID_PUBLIC_KEY:
     'BIH7RBzSBVprQy4-6uaUQZOp5TmrzbpCYKA2COp02jRdS1ihX2qZ3sB0SJG4_pr6G2Q2GSCfGtK8kMax19b0mz0',
   VERSION: require('../../package.json').version,
-  api: {
-    "target": "https://gymkhana.iitb.ac.in/instiapp/",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "info"
-  }
 };
