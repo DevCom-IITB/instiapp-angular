@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "license": "MPL-2.0",
   "scripts": {
-    "start": "ng serve --hmr --proxy-config proxy.conf.json --host 0.0.0.0",
+    "start": "ng serve --hmr --host 0.0.0.0",
     "build": "ng build --prod",
     "lint": "ng lint"
   },

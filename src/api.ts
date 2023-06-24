@@ -1,3 +1,4 @@
+
 export const API = {
     User: 'api/users/{uuid}',
 
