@@ -16,7 +16,7 @@ export class GroupFeedComponent implements OnInit {
   @Input() public group: ICommunity;
 
   public posts: ICommunityPost[];
-
+  communityId:string;
   public is_approval_moderator: boolean;
   public is_comment_moderator: boolean;
 
@@ -77,12 +77,18 @@ export class GroupFeedComponent implements OnInit {
 
     this.populateGroupAndPosts();
   }
-  populateGroupAndPosts(): void {
+  populateGroupAndPosts() {
+    this.dataService.FillGetCommunity(this.groupId).subscribe((result) => {
+      this.communityId = result.id;
+    });
+
+    setTimeout(() => {
+
     switch (this.selected_tab) {
       case 0:
         this.posts = null;
         this.dataService
-          .FireGET<any>(API.CommunityAddPost, { status: 1 })
+          .FireGET<any>(API.CommunityAddPost, { status: 1, community: this.communityId })
           .subscribe((result) => {
             this.posts = result.data;
           });
@@ -101,7 +107,7 @@ export class GroupFeedComponent implements OnInit {
       case 2:
         this.posts = null;
         this.dataService
-          .FireGET<any>(API.CommunityAddPost, { status: 0 })
+          .FireGET<any>(API.CommunityAddPost, { status: 0, community: this.communityId })
           .subscribe((result) => {
             this.posts = result.data;
           });
@@ -112,13 +118,13 @@ export class GroupFeedComponent implements OnInit {
       case 3:
         this.posts = null;
         this.dataService
-          .FireGET<any>(API.CommunityAddPost, { status: 3 })
+          .FireGET<any>(API.CommunityAddPost, { status: 3, community: this.communityId })
           .subscribe((result) => {
             this.posts = result.data;
           });
 
         break;
-    }
+    }}, 100);
   }
 
   updateTabs(): void {
