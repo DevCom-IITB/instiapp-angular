@@ -81,52 +81,58 @@ export class GroupFeedComponent implements OnInit {
     this.dataService.FillGetCommunity(this.groupId).subscribe((result) => {
       this.communityId = result.id;
     });
+    this.loadPosts();
 
-    setTimeout(() => {
-
+  }
+  async loadPosts(): Promise<void> {
     switch (this.selected_tab) {
       case 0:
         this.posts = null;
-        this.dataService
+        await this.dataService
           .FireGET<any>(API.CommunityAddPost, { status: 1, community: this.communityId })
-          .subscribe((result) => {
+          .toPromise()
+          .then((result) => {
             this.posts = result.data;
           });
-
+  
         break;
-
+  
       case 1:
         // populate posts of the current user
         this.posts = null;
-        this.dataService
+        await this.dataService
           .FireGET<any>(API.CommunityAddPost)
-          .subscribe((result) => {
+          .toPromise()
+          .then((result) => {
             this.posts = result.data;
           });
         break;
+  
       case 2:
         this.posts = null;
-        this.dataService
+        await this.dataService
           .FireGET<any>(API.CommunityAddPost, { status: 0, community: this.communityId })
-          .subscribe((result) => {
+          .toPromise()
+          .then((result) => {
             this.posts = result.data;
           });
-
+  
         // populate pending posts for the moderator
         break;
-
+  
       case 3:
         this.posts = null;
-        this.dataService
+        await this.dataService
           .FireGET<any>(API.CommunityAddPost, { status: 3, community: this.communityId })
-          .subscribe((result) => {
+          .toPromise()
+          .then((result) => {
             this.posts = result.data;
           });
-
+  
         break;
-    }}, 100);
+    }
   }
-
+  
   updateTabs(): void {
     if (this.dataService.isLoggedIn()) {
       this.tabs[1].show = true;
