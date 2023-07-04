@@ -1,69 +1,97 @@
 <div class="main-menu">
-    <div class="head-card primary-background-color" (click)="OpenMyProfile()">
-        <img class="profile-pic img-circle object-cover" [src]="profilePic" src-fallback="assets/useravatar.svg">
-        <div class="overflow-ellipsis">
-            {{ userName }}
-            <div id="ldap">{{ ldap }}</div>
-        </div>
+  <div class="head-card primary-background-color" (click)="OpenMyProfile()">
+    <img
+      class="profile-pic img-circle object-cover"
+      [src]="profilePic"
+      src-fallback="assets/useravatar.svg"
+    />
+    <div class="overflow-ellipsis">
+      {{ userName }}
+      <div id="ldap">{{ ldap }}</div>
     </div>
+  </div>
 
-    <a [routerLink]="['/feed']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>list</mat-icon> &nbsp; Feed
-    </a>
+  <a [routerLink]="['/feed']" routerLinkActive="active-link" mat-list-item>
+    <mat-icon>list</mat-icon> &nbsp; Feed
+  </a>
 
-    <a [routerLink]="['/news/']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>rss_feed</mat-icon> &nbsp; News
-    </a>
+  <a [routerLink]="['/news/']" routerLinkActive="active-link" mat-list-item>
+    <mat-icon>rss_feed</mat-icon> &nbsp; News
+  </a>
 
-    <a mat-list-item [routerLink]="['/explore/']" routerLinkActive="active-link">
-        <mat-icon>search</mat-icon> &nbsp; Explore
-    </a>
+  <a mat-list-item [routerLink]="['/explore/']" routerLinkActive="active-link">
+    <mat-icon>search</mat-icon> &nbsp; Explore
+  </a>
 
-    <a mat-list-item [routerLink]="['/mess/']" routerLinkActive="active-link">
-        <mat-icon>restaurant</mat-icon> &nbsp; Mess Menu
-    </a>
+  <a mat-list-item [routerLink]="['/mess/']" routerLinkActive="active-link">
+    <mat-icon>restaurant</mat-icon> &nbsp; Mess Menu
+  </a>
 
-    <a [routerLink]="['/blog/' + dataService.EncodeObject(api.PlacementBlog)]" routerLinkActive="active-link"
-        mat-list-item>
-        <mat-icon>work</mat-icon> &nbsp; Placement Blog
-    </a>
+  <a
+    [routerLink]="['/blog/' + dataService.EncodeObject(api.PlacementBlog)]"
+    routerLinkActive="active-link"
+    mat-list-item
+  >
+    <mat-icon>work</mat-icon> &nbsp; Placement Blog
+  </a>
 
-    <a [routerLink]="['/blog/' + dataService.EncodeObject(api.TrainingBlog)]" routerLinkActive="active-link"
-        mat-list-item>
-        <mat-icon>work</mat-icon> &nbsp; Internship Blog
-    </a>
+  <a
+    [routerLink]="['/blog/' + dataService.EncodeObject(api.TrainingBlog)]"
+    routerLinkActive="active-link"
+    mat-list-item
+  >
+    <mat-icon>work</mat-icon> &nbsp; Internship Blog
+  </a>
 
-    <a [routerLink]="['/blog/' +  dataService.EncodeObject(api.external)]" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>work</mat-icon> &nbsp; External Blog
-    </a>
+  <a
+    [routerLink]="['/blog/' + dataService.EncodeObject(api.external)]"
+    routerLinkActive="active-link"
+    mat-list-item
+  >
+    <mat-icon>work</mat-icon> &nbsp; External Blog
+  </a>
 
-    <a [routerLink]="['/discussions']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>forum</mat-icon> &nbsp; Insight Discussion Forum
-    </a>
+  <a
+    [routerLink]="['/discussions']"
+    routerLinkActive="active-link"
+    mat-list-item
+  >
+    <mat-icon>forum</mat-icon> &nbsp; Community Discussion
+  </a>
 
-    <a [routerLink]="['/query-search/']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>help</mat-icon> &nbsp; Find Answers
-    </a>
+  <a
+    [routerLink]="['/query-search/']"
+    routerLinkActive="active-link"
+    mat-list-item
+  >
+    <mat-icon>help</mat-icon> &nbsp; Find Answers
+  </a>
 
+  <a [routerLink]="['/calendar']" routerLinkActive="active-link" mat-list-item>
+    <mat-icon>event_available</mat-icon> &nbsp; Calendar
+  </a>
 
-    <a [routerLink]="['/calendar']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>event_available</mat-icon> &nbsp; Calendar
-    </a>
+  <a [routerLink]="['/map']" routerLinkActive="active-link" mat-list-item>
+    <mat-icon>map</mat-icon> &nbsp; Map
+  </a>
 
-    <a [routerLink]="['/map']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>map</mat-icon> &nbsp; Map
-    </a>
+  <a
+    [routerLink]="['/achievements']"
+    routerLinkActive="active-link"
+    mat-list-item
+  >
+    <mat-icon>done_all</mat-icon> &nbsp; Achievements
+  </a>
 
-    <a [routerLink]="['/achievements']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>done_all</mat-icon> &nbsp; Achievements
-    </a>
+  <a
+    [routerLink]="['/quick-links']"
+    routerLinkActive="active-link"
+    mat-list-item
+  >
+    <mat-icon>link</mat-icon> &nbsp; Quick Links
+  </a>
 
-    <a [routerLink]="['/quick-links']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>link</mat-icon> &nbsp; Quick Links
-    </a>
-
-    <a [routerLink]="['/settings']" routerLinkActive="active-link" mat-list-item>
-        <mat-icon>settings</mat-icon> &nbsp; Settings
-    </a>
-
+  <a [routerLink]="['/settings']" routerLinkActive="active-link" mat-list-item>
+    <mat-icon>settings</mat-icon> &nbsp; Settings
+  </a>
 </div>
