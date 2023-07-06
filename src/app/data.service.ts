@@ -26,6 +26,8 @@ import { Location } from '@angular/common';
 import { Helpers } from './helpers';
 import { Title } from '@angular/platform-browser';
 import { WinRT } from './windows';
+//import { setWithCredentials } from 'ol/featureloader';
+//import { error } from 'console';
 /** Headers for injection for quick use */
 let JSON_HEADERS = new HttpHeaders();
 JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
@@ -268,14 +270,14 @@ export class DataService {
     /* Construct upload request */
     const formData = new FormData();
     formData.append('picture', image);
-    const uploadReq = new HttpRequest('POST', API.PostImage, formData);
+    const uploadReq = new HttpRequest('POST', 'http://localhost:8000/'+API.PostImage, formData);
 
     /* Make upload request and return */
     return new Observable((observer) => {
       this.http.request(uploadReq).subscribe(
         (event) => {
           if (event.type === HttpEventType.Response) {
-            observer.next(event.body);
+            observer.next(event.body['picture']);
             observer.complete();
           }
         },

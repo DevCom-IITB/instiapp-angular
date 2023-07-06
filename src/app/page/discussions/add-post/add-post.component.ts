@@ -272,7 +272,7 @@ export class AddPostComponent implements OnInit {
 
     this.dataService.UploadImage(files[0]).subscribe(
       (result) => {
-        this.images.push(result.picture);
+        this.images.push(result);
         this.networkBusy = false;
       },
       (error) => {
