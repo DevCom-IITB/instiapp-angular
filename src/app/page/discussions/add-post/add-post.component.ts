@@ -4,8 +4,8 @@ import {
   Input,
   ChangeDetectorRef,
   Inject,
-} from '@angular/core';
-import { DataService } from '../../../data.service';
+} from "@angular/core";
+import { DataService } from "../../../data.service";
 import {
   ICommunityPost,
   IBody,
@@ -13,26 +13,26 @@ import {
   IUserProfile,
   IEvent,
   ICommunity,
-} from '../../../interfaces';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+} from "../../../interfaces";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
-import { API } from '../../../../api';
-import { ILocation } from 'instimapline';
-import { Router } from '@angular/router';
+import { API } from "../../../../api";
+import { ILocation } from "instimapline";
+import { Router } from "@angular/router";
 
-const DEFAULT_USERNAME = 'Anonymous';
-const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
+const DEFAULT_USERNAME = "Anonymous";
+const DEFAULT_PROFILE_PIC = "assets/useravatar.svg";
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.css'],
+  selector: "app-add-post",
+  templateUrl: "./add-post.component.html",
+  styleUrls: ["./add-post.component.css"],
 })
 export class AddPostComponent implements OnInit {
   public current_user: IUserProfile = {} as IUserProfile;
 
-  content_border = 'none';
+  content_border = "none";
   public networkBusy = false;
   anonymous = false;
 
@@ -72,12 +72,16 @@ export class AddPostComponent implements OnInit {
     if (data.post) {
       this.addpost = data.post;
       this.images = this.addpost.image_url;
-      if (!this.images) { this.images = []; }
+      if (!this.images) {
+        this.images = [];
+      }
       this.tagged = [...this.addpost.tag_body, ...this.addpost.tag_user];
       this.tagged_bodies = this.addpost.tag_body;
       this.tagged_users = this.addpost.tag_user;
       this.tagged_interests = this.addpost.interests;
-      if (!this.tagged_interests) { this.tagged_interests = []; }
+      if (!this.tagged_interests) {
+        this.tagged_interests = [];
+      }
     }
   }
 
@@ -152,12 +156,12 @@ export class AddPostComponent implements OnInit {
       data: taggable,
       type: type,
     };
-    if (type === 'body') {
+    if (type === "body") {
       if (this.searchTagInTagged(tag_to_push) === -1) {
         this.tagged_bodies.push(taggable);
       }
     }
-    if (type === 'user') {
+    if (type === "user") {
       if (this.searchTagInTagged(tag_to_push) === -1) {
         this.tagged_users.push(taggable);
       }
@@ -167,7 +171,6 @@ export class AddPostComponent implements OnInit {
       this.tagged.push(tag_to_push);
     }
   }
-
 
   removeTag(target_tag: any) {
     const target_index = this.searchTagInTaggedI(target_tag);
@@ -179,7 +182,6 @@ export class AddPostComponent implements OnInit {
   }
 
   removeTagBodyUsers(target_tag: any) {
-
     let target_index = this.searchInPool(this.tagged_bodies, target_tag);
     if (target_index !== -1) {
       this.tagged_bodies.splice(target_index, 1);
@@ -190,12 +192,10 @@ export class AddPostComponent implements OnInit {
       this.tagged_users.splice(target_index, 1);
     }
 
-
     target_index = this.searchInPool(this.tagged, target_tag);
     if (target_index !== -1) {
       this.tagged.splice(target_index, 1);
     }
-
   }
 
   searchInPool(pool: any, toSearch: any) {
@@ -208,9 +208,6 @@ export class AddPostComponent implements OnInit {
 
     return target_index;
   }
-
-
-
 
   removeImage(target_image: string) {
     const target_index = this.searchImageInImages(target_image);
@@ -232,7 +229,6 @@ export class AddPostComponent implements OnInit {
     return target_index;
   }
   searchTagInTagged(tag: any): number {
-
     let target_index = -1;
     for (let i = 0; i < this.tagged.length; i++) {
       if (tag.id === this.tagged[i].id && tag.type === this.tagged[i].type) {
@@ -253,7 +249,7 @@ export class AddPostComponent implements OnInit {
     return target_index;
   }
   clearTagInput() {
-    this.searchQ = '';
+    this.searchQ = "";
   }
 
   /** Tries to mark the network as busy */
@@ -280,8 +276,9 @@ export class AddPostComponent implements OnInit {
         this.networkBusy = false;
       },
       (error) => {
+        console.log(this.networkBusy)
         this.networkBusy = false;
-        this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
+        this.snackBar.open(`Upload Failed - ${error.message}`, "Dismiss", {
           duration: 2000,
         });
       }
@@ -313,7 +310,7 @@ export class AddPostComponent implements OnInit {
     }
 
     this.dialogRef.close();
-    this.snackBar.open('Sent for Verification', 'Dismiss', {
+    this.snackBar.open("Sent for Verification", "Dismiss", {
       duration: 3000,
     });
   }

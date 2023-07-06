@@ -1,31 +1,31 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { API } from '../../../../api';
-import { DataService } from '../../../data.service';
-import { ICommunity, ICommunityPost } from '../../../interfaces';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddPostComponent } from '../add-post/add-post.component';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { API } from "../../../../api";
+import { DataService } from "../../../data.service";
+import { ICommunity, ICommunityPost } from "../../../interfaces";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { AddPostComponent } from "../add-post/add-post.component";
+import { ActivatedRoute, Params } from "@angular/router";
 
 @Component({
-  selector: 'app-group-feed',
-  templateUrl: './group-feed.component.html',
-  styleUrls: ['./group-feed.component.css'],
+  selector: "app-group-feed",
+  templateUrl: "./group-feed.component.html",
+  styleUrls: ["./group-feed.component.css"],
 })
 export class GroupFeedComponent implements OnInit {
   @Input() public groupId: string;
   @Input() public group: ICommunity;
 
   public posts: ICommunityPost[];
-  communityId:string;
+  communityId: string;
   public is_approval_moderator: boolean;
   public is_comment_moderator: boolean;
 
   public selected_tab: number;
   public tabs = [
-    { id: 0, name: 'All', show: true },
-    { id: 1, name: 'Your Posts', show: false },
-    { id: 2, name: 'Pending', show: false },
-    { id: 3, name: 'Reported', show: false },
+    { id: 0, name: "All", show: true },
+    { id: 1, name: "Your Posts", show: false },
+    { id: 2, name: "Pending", show: false },
+    { id: 3, name: "Reported", show: false },
   ];
 
   private LOAD_SCROLL_THRESHOLD = 0.9;
@@ -43,7 +43,7 @@ export class GroupFeedComponent implements OnInit {
 
     if (!this.groupId) {
       this.activatedRoute.params.subscribe((params: Params) => {
-        this.groupId = params['id'];
+        this.groupId = params["id"];
         this.refresh();
       });
     }
@@ -55,11 +55,11 @@ export class GroupFeedComponent implements OnInit {
 
       this.is_approval_moderator = this.dataService.HasBodyPermission(
         this.group.body,
-        'AppP'
+        "AppP"
       );
       this.is_comment_moderator = this.dataService.HasBodyPermission(
         this.group.body,
-        'ModC'
+        "ModC"
       );
 
       this.updateTabs();
@@ -82,21 +82,23 @@ export class GroupFeedComponent implements OnInit {
       this.communityId = result.id;
     });
     this.loadPosts();
-
   }
   async loadPosts(): Promise<void> {
     switch (this.selected_tab) {
       case 0:
         this.posts = null;
         await this.dataService
-          .FireGET<any>(API.CommunityAddPost, { status: 1, community: this.communityId })
+          .FireGET<any>(API.CommunityAddPost, {
+            status: 1,
+            community: this.communityId,
+          })
           .toPromise()
           .then((result) => {
             this.posts = result.data;
           });
-  
+
         break;
-  
+
       case 1:
         // populate posts of the current user
         this.posts = null;
@@ -107,32 +109,38 @@ export class GroupFeedComponent implements OnInit {
             this.posts = result.data;
           });
         break;
-  
+
       case 2:
         this.posts = null;
         await this.dataService
-          .FireGET<any>(API.CommunityAddPost, { status: 0, community: this.communityId })
+          .FireGET<any>(API.CommunityAddPost, {
+            status: 0,
+            community: this.communityId,
+          })
           .toPromise()
           .then((result) => {
             this.posts = result.data;
           });
-  
+
         // populate pending posts for the moderator
         break;
-  
+
       case 3:
         this.posts = null;
         await this.dataService
-          .FireGET<any>(API.CommunityAddPost, { status: 3, community: this.communityId })
+          .FireGET<any>(API.CommunityAddPost, {
+            status: 3,
+            community: this.communityId,
+          })
           .toPromise()
           .then((result) => {
             this.posts = result.data;
           });
-  
+
         break;
     }
   }
-  
+
   updateTabs(): void {
     if (this.dataService.isLoggedIn()) {
       this.tabs[1].show = true;
@@ -148,9 +156,9 @@ export class GroupFeedComponent implements OnInit {
   onCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
-    dialogConfig.width = '80%';
-    dialogConfig.height = '80%';
-    dialogConfig.panelClass = 'custom-container';
+    dialogConfig.width = "80%";
+    dialogConfig.height = "80%";
+    dialogConfig.panelClass = "custom-container";
     dialogConfig.data = { community: this.group };
     this.dialog.open(AddPostComponent, dialogConfig);
   }
