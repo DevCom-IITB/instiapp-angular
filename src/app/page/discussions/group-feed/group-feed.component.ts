@@ -40,7 +40,6 @@ export class GroupFeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.selected_tab = 0;
-
     if (!this.groupId) {
       this.activatedRoute.params.subscribe((params: Params) => {
         this.groupId = params["id"];
@@ -61,7 +60,7 @@ export class GroupFeedComponent implements OnInit {
         this.group.body,
         "ModC"
       );
-
+      this.populateGroupAndPosts();
       this.updateTabs();
     });
   }
@@ -96,14 +95,15 @@ export class GroupFeedComponent implements OnInit {
           .then((result) => {
             this.posts = result.data;
           });
-
         break;
 
       case 1:
         // populate posts of the current user
         this.posts = null;
         await this.dataService
-          .FireGET<any>(API.CommunityAddPost)
+          .FireGET<any>(API.CommunityAddPost, {
+            community: this.communityId,
+          })
           .toPromise()
           .then((result) => {
             this.posts = result.data;
