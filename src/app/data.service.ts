@@ -270,7 +270,7 @@ export class DataService {
     /* Construct upload request */
     const formData = new FormData();
     formData.append('picture', image);
-    const uploadReq = new HttpRequest('POST', 'http://localhost:8000/'+API.PostImage, formData);
+    const uploadReq = new HttpRequest('POST',HOST+API.PostImage, formData);
 
     /* Make upload request and return */
     return new Observable((observer) => {
