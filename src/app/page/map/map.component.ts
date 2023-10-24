@@ -69,10 +69,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     minMatchCharLength: 1,
     keys: ["name", "short_name"],
   };
-  originAndDestinationData: IPath = {
-    origin: "",
-    destination: "",
-  };
+  public originAndDestinationData: IPath;
   public fuse;
 
   constructor(
@@ -287,7 +284,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       InstiMap.moveToLocation(loc);
       this.mobileShowLoc(false);
     }
-    this.originAndDestination();
   }
   searchChangedOrigin(e) {
     let lname;
@@ -322,7 +318,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchAndInfoBoxPosition();
   }
 
-  buttonVisiblity() {}
   searchAndInfoBoxPosition() {
     if (this.searchandinfoboxposition) {
       document.getElementById("searchbox-origin").style.visibility = "visible";

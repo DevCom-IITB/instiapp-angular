@@ -24,6 +24,9 @@
     <div class="mess-card mat-elevation-z1" *ngFor="let menuday of menu">
       <div class="mess-card-head">{{ daysOfWeek[menuday.day] }}</div>
       <div class="time">
+        <div class="time-head">Last Updated: {{menuday.last_update}}</div>
+      </div>
+      <div class="time">
         <div class="head">Breakfast</div>
         <div class="menu">{{ menuday.breakfast }}</div>
       </div>
@@ -45,6 +48,9 @@
   <div class="desktop desktop-main" *ngIf="menu && !dataService.isMobile()">
     <div class="menu" *ngFor="let menuday of menu">
       <div class="rl-header day">{{ daysOfWeek[menuday.day] }}</div>
+      <div class="time">
+        <div class="time-head">Last Updated: {{menuday.last_update}}</div>
+      </div>
       <div class="time">
         <div class="time-head">Breakfast</div>
         {{ menuday.breakfast }}

@@ -150,6 +150,7 @@ export interface IMenuEntry {
     lunch: string;
     snacks: string;
     dinner: string;
+    last_update: string;
     hostel: string;
 }
 
