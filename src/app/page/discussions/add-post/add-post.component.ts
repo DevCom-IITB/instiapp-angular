@@ -276,7 +276,7 @@ export class AddPostComponent implements OnInit {
         this.networkBusy = false;
       },
       (error) => {
-        console.log(this.networkBusy)
+        console.log(this.networkBusy);
         this.networkBusy = false;
         this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
           duration: 2000,
