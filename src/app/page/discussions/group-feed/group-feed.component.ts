@@ -1,15 +1,15 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
-import { API } from "../../../../api";
-import { DataService } from "../../../data.service";
-import { ICommunity, ICommunityPost } from "../../../interfaces";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { AddPostComponent } from "../add-post/add-post.component";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { API } from '../../../../api';
+import { DataService } from '../../../data.service';
+import { ICommunity, ICommunityPost } from '../../../interfaces';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddPostComponent } from '../add-post/add-post.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: "app-group-feed",
-  templateUrl: "./group-feed.component.html",
-  styleUrls: ["./group-feed.component.css"],
+  selector: 'app-group-feed',
+  templateUrl: './group-feed.component.html',
+  styleUrls: ['./group-feed.component.css'],
 })
 export class GroupFeedComponent implements OnInit {
   @Input() public groupId: string;
@@ -22,10 +22,10 @@ export class GroupFeedComponent implements OnInit {
 
   public selected_tab: number;
   public tabs = [
-    { id: 0, name: "All", show: true },
-    { id: 1, name: "Your Posts", show: false },
-    { id: 2, name: "Pending", show: false },
-    { id: 3, name: "Reported", show: false },
+    { id: 0, name: 'All', show: true },
+    { id: 1, name: 'Your Posts', show: false },
+    { id: 2, name: 'Pending', show: false },
+    { id: 3, name: 'Reported', show: false },
   ];
 
   private LOAD_SCROLL_THRESHOLD = 0.9;
@@ -42,7 +42,7 @@ export class GroupFeedComponent implements OnInit {
     this.selected_tab = 0;
     if (!this.groupId) {
       this.activatedRoute.params.subscribe((params: Params) => {
-        this.groupId = params["id"];
+        this.groupId = params['id'];
         this.refresh();
       });
     }
@@ -54,11 +54,11 @@ export class GroupFeedComponent implements OnInit {
 
       this.is_approval_moderator = this.dataService.HasBodyPermission(
         this.group.body,
-        "AppP"
+        'AppP'
       );
       this.is_comment_moderator = this.dataService.HasBodyPermission(
         this.group.body,
-        "ModC"
+        'ModC'
       );
       this.populateGroupAndPosts();
       this.updateTabs();
@@ -156,9 +156,9 @@ export class GroupFeedComponent implements OnInit {
   onCreate() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
-    dialogConfig.width = "80%";
-    dialogConfig.height = "80%";
-    dialogConfig.panelClass = "custom-container";
+    dialogConfig.width = '80%';
+    dialogConfig.height = '80%';
+    dialogConfig.panelClass = 'custom-container';
     dialogConfig.data = { community: this.group };
     this.dialog.open(AddPostComponent, dialogConfig);
   }

@@ -4,8 +4,8 @@ import {
   Input,
   ChangeDetectorRef,
   Inject,
-} from "@angular/core";
-import { DataService } from "../../../data.service";
+} from '@angular/core';
+import { DataService } from '../../../data.service';
 import {
   ICommunityPost,
   IBody,
@@ -13,26 +13,26 @@ import {
   IUserProfile,
   IEvent,
   ICommunity,
-} from "../../../interfaces";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
+} from '../../../interfaces';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { API } from "../../../../api";
-import { ILocation } from "instimapline";
-import { Router } from "@angular/router";
+import { API } from '../../../../api';
+import { ILocation } from 'instimapline';
+import { Router } from '@angular/router';
 
-const DEFAULT_USERNAME = "Anonymous";
-const DEFAULT_PROFILE_PIC = "assets/useravatar.svg";
+const DEFAULT_USERNAME = 'Anonymous';
+const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
 
 @Component({
-  selector: "app-add-post",
-  templateUrl: "./add-post.component.html",
-  styleUrls: ["./add-post.component.css"],
+  selector: 'app-add-post',
+  templateUrl: './add-post.component.html',
+  styleUrls: ['./add-post.component.css'],
 })
 export class AddPostComponent implements OnInit {
   public current_user: IUserProfile = {} as IUserProfile;
 
-  content_border = "none";
+  content_border = 'none';
   public networkBusy = false;
   anonymous = false;
 
@@ -156,12 +156,12 @@ export class AddPostComponent implements OnInit {
       data: taggable,
       type: type,
     };
-    if (type === "body") {
+    if (type === 'body') {
       if (this.searchTagInTagged(tag_to_push) === -1) {
         this.tagged_bodies.push(taggable);
       }
     }
-    if (type === "user") {
+    if (type === 'user') {
       if (this.searchTagInTagged(tag_to_push) === -1) {
         this.tagged_users.push(taggable);
       }
@@ -249,7 +249,7 @@ export class AddPostComponent implements OnInit {
     return target_index;
   }
   clearTagInput() {
-    this.searchQ = "";
+    this.searchQ = '';
   }
 
   /** Tries to mark the network as busy */
@@ -278,7 +278,7 @@ export class AddPostComponent implements OnInit {
       (error) => {
         console.log(this.networkBusy)
         this.networkBusy = false;
-        this.snackBar.open(`Upload Failed - ${error.message}`, "Dismiss", {
+        this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
           duration: 2000,
         });
       }
@@ -310,7 +310,7 @@ export class AddPostComponent implements OnInit {
     }
 
     this.dialogRef.close();
-    this.snackBar.open("Sent for Verification", "Dismiss", {
+    this.snackBar.open('Sent for Verification', 'Dismiss', {
       duration: 3000,
     });
   }
