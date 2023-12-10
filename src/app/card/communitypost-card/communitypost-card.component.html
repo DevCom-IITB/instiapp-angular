@@ -88,7 +88,10 @@
           </button>
 
           <button
-            *ngIf="posted_by_current_user || (is_approval_moderator && is_rank_one) || (is_comment_moderator && !is_rank_one)"
+            *ngIf="(posted_by_current_user || (is_approval_moderator && is_rank_one) || (is_comment_moderator && !is_rank_one)) 
+            && !post.deleted
+            "
+
             (click)=onDeleteClicked() mat-menu-item>
             <mat-icon>delete</mat-icon>
             <span>{{ is_rank_one ? 'Delete Post' : 'Delete Comment' }}</span>

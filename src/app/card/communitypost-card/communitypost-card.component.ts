@@ -281,6 +281,7 @@ export class CommunityPostCardComponent implements OnInit {
       dialogConfig.data = { community: this.post.community, post: this.post };
       this.dialog.open(AddPostComponent, dialogConfig);
     }
+
   }
   onDeleteClicked(): void {
     if (this.posted_by_current_user || this.is_comment_moderator) {

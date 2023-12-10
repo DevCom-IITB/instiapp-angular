@@ -27,11 +27,12 @@ export class DiscussionsComponent implements OnInit {
       (result) => {
         if (result.length > 0) {
           // TODO: Remove this if more communities
-          this.router.navigate(['group-feed', result[0].str_id]);
+          // this.router.navigate(['group-feed', result[0].str_id]);
         }
 
         this.groups = result;
         this.allgroups = result;
+        this.selected_group = this.groups[1];
       },
       (e) => {
         this.error = e.status;
