@@ -23,8 +23,7 @@ export class QuickLinksComponent implements OnInit {
     {
       title: 'DevCom',
       links: [
-        { href: 'https://gymkhana.iitb.ac.in/lap', icon: 'book', text: 'Leave Portal' },
-        { href: 'https://resume.devcom-iitb.org', icon: 'book', text: 'Resume Portal' },
+        { href: 'https://www.devcom-iitb.org/', icon: 'book', text: 'DevCom Website' },
         { href: 'https://ams.iitb.ac.in', icon: 'book', text: 'AMS' },
       ],
     },
@@ -34,8 +33,7 @@ export class QuickLinksComponent implements OnInit {
         { href: 'https://asc.iitb.ac.in', icon: 'book', text: 'ASC' },
         { href: 'https://portal.iitb.ac.in/asc', icon: 'book', text: 'ASC - External' },
         { href: 'https://moodle.iitb.ac.in', icon: 'book', text: 'Moodle' },
-        { href: 'https://campus.placements.iitb.ac.in/auth/student/login', icon: 'school', text: 'Internship Login' },
-        { href: 'https://campus.placements.iitb.ac.in/auth/student/login', icon: 'school', text: 'Placement Login' },
+        { href: 'https://campus.placements.iitb.ac.in/auth/student/login', icon: 'school', text: 'Internship and Placement Login' },
         { href: 'http://www.library.iitb.ac.in/', icon: 'local_library', text: 'Central Library' },
       ],
     },
@@ -55,7 +53,6 @@ export class QuickLinksComponent implements OnInit {
         { href: 'https://sso.iitb.ac.in/', icon: 'account_box', text: 'SSO Login' },
         { href: 'https://webmail.iitb.ac.in', icon: 'email', text: 'WebMail' },
         { href: 'https://camp.iitb.ac.in/', icon: 'account_box', text: 'CAMP' },
-        { href: 'http://msstore.iitb.ac.in/', icon: 'shopping_cart', text: 'Microsoft Store' },
         { href: 'https://home.iitb.ac.in/', icon: 'cloud', text: 'BigHome Cloud' },
         { href: 'ftp://ftp.iitb.ac.in/', icon: 'folder_open', text: 'FTP Server' },
       ],
@@ -66,7 +63,7 @@ export class QuickLinksComponent implements OnInit {
         { href: 'https://access.iitb.ac.in/', icon: 'phone', text: 'CC Access Portal' },
         { href: 'https://portal.iitb.ac.in/TelephoneDirectory/', icon: 'phone', text: 'Intercom Extensions' },
         { href: 'http://www.iitb.ac.in/hospital/', icon: 'local_hospital', text: 'Hospital' },
-        { href: 'https://www.cc.iitb.ac.in/engservices/engaccessingiitffromoutside/19-vpn', icon: 'vpn_lock', text: 'VPN Guide' },
+        { href: 'https://www.cc.iitb.ac.in/page/configurevpn', icon: 'vpn_lock', text: 'VPN Guide' },
         { href: 'https://www.iitb-bandhu.com/', icon: 'emoji_people', text: 'Bandhu IITB' },
       ]
     }
