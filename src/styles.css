@@ -75,7 +75,6 @@ mat-form-field, mat-form-field *, .markdown *, input {
 /* Sub card styles */
 
 .sub-card {
-    max-width: 500px;
     cursor: pointer;
     box-shadow: none !important;
     margin: 0;
