@@ -1,50 +1,58 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../data.service';
-import { IHostel, IMenuEntry } from '../../../app/interfaces';
-import { API } from '../../../api';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "../../data.service";
+import { IHostel, IMenuEntry } from "../../../app/interfaces";
+import { API } from "../../../api";
 
 @Component({
-  selector: 'app-mess',
-  templateUrl: './mess.component.html',
-  styleUrls: ['./mess.component.css']
+  selector: "app-mess",
+  templateUrl: "./mess.component.html",
+  styleUrls: ["./mess.component.css"],
 })
 export class MessComponent implements OnInit {
-
   public hostels: IHostel[];
   public menu: IMenuEntry[];
   public currHostel: IHostel;
   public error: number;
 
   public daysOfWeek = {
-    1: 'Monday', 2: 'Tuesday', 3: 'Wednesday',
-    4: 'Thursday', 5: 'Friday', 6: 'Saturday', 7: 'Sunday'
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday",
+    7: "Sunday",
   };
 
-  constructor(
-    public dataService: DataService,
-  ) { }
+  constructor(public dataService: DataService) {}
 
   ngOnInit() {
     /* Set title */
-    this.dataService.setTitle('Mess Menu');
+    this.dataService.setTitle("Mess Menu");
 
     /* Get all mess menus (hostels) */
-    this.dataService.FireGET<IHostel[]>(API.Mess).subscribe(result => {
-      this.hostels = result.sort((a, b) => a.name.localeCompare(b.name, undefined, {numeric: true}));
-      if (this.dataService.isLoggedIn()) {
-        const hostel = this.hostels.find(
-          h => h.short_name === this.dataService.getCurrentUser().hostel);
-        if (hostel) {
-          this.constructMenu(hostel);
+    this.dataService.FireGET<IHostel[]>(API.Mess).subscribe(
+      (result) => {
+        this.hostels = result.sort((a, b) =>
+          a.name.localeCompare(b.name, undefined, { numeric: true })
+        );
+        if (this.dataService.isLoggedIn()) {
+          const hostel = this.hostels.find(
+            (h) => h.short_name === this.dataService.getCurrentUser().hostel
+          );
+          if (hostel) {
+            this.constructMenu(hostel);
+          } else {
+            this.constructMenu(this.hostels[0]);
+          }
         } else {
           this.constructMenu(this.hostels[0]);
         }
-      } else {
-        this.constructMenu(this.hostels[0]);
+      },
+      (e) => {
+        this.error = e.status;
       }
-    }, (e) => {
-      this.error = e.status;
-    });
+    );
   }
 
   /** Select a particular hostel */
@@ -63,16 +71,14 @@ export class MessComponent implements OnInit {
     this.currHostel = hostel;
 
     for (let i = 0; i < 7; i++) {
-      const day = (today + i) % 7 + 1;
-      this.menu.push(hostel.mess.find(o => o.day === day));
+      const day = ((today + i) % 7) + 1;
+      this.menu.push(hostel.mess.find((o) => o.day === day));
     }
   }
-
   /** Go back to list of hostels */
   restoreList() {
     this.menu = null;
     this.currHostel = null;
     window.scrollTo(0, 0);
   }
-
 }

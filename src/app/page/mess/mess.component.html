@@ -1,31 +1,38 @@
 <app-xunk-spinner *ngIf="!hostels || error" [error]="error"></app-xunk-spinner>
 
 <ng-container *ngIf="hostels">
-
   <div class="responsive-header">
-    <div *ngIf="currHostel" class="rl-header selected-hostel" [matMenuTriggerFor]="hostelMenu">
+    <div
+      *ngIf="currHostel"
+      class="rl-header selected-hostel"
+      [matMenuTriggerFor]="hostelMenu"
+    >
       {{ currHostel.name }}
     </div>
 
-    <button class="pick-hostel" mat-icon-button [matMenuTriggerFor]="hostelMenu">
+    <button
+      class="pick-hostel"
+      mat-icon-button
+      [matMenuTriggerFor]="hostelMenu"
+    >
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
     <mat-menu #hostelMenu="matMenu">
-      <button mat-button
-              *ngFor="let hostel of hostels"
-              (click)="selectHostel(hostel)"
-              class="hostel-menu-button">
+      <button
+        mat-button
+        *ngFor="let hostel of hostels"
+        (click)="selectHostel(hostel)"
+        class="hostel-menu-button"
+      >
         {{ hostel.name }}
-    </button>
+      </button>
     </mat-menu>
   </div>
-
   <div class="real-center" *ngIf="menu && dataService.isMobile()">
+    <div class="last-updated">Last Updated: {{ menu[0].last_updated }}</div>
     <div class="mess-card mat-elevation-z1" *ngFor="let menuday of menu">
       <div class="mess-card-head">{{ daysOfWeek[menuday.day] }}</div>
-      <div class="time">
-        <div class="time-head">Last Updated: {{menuday.last_update}}</div>
-      </div>
+      <div class="time"></div>
       <div class="time">
         <div class="head">Breakfast</div>
         <div class="menu">{{ menuday.breakfast }}</div>
@@ -46,11 +53,9 @@
   </div>
 
   <div class="desktop desktop-main" *ngIf="menu && !dataService.isMobile()">
+    <div class="last-updated">Last Updated: {{ menu[0].last_updated }}</div>
     <div class="menu" *ngFor="let menuday of menu">
       <div class="rl-header day">{{ daysOfWeek[menuday.day] }}</div>
-      <div class="time">
-        <div class="time-head">Last Updated: {{menuday.last_update}}</div>
-      </div>
       <div class="time">
         <div class="time-head">Breakfast</div>
         {{ menuday.breakfast }}
@@ -69,5 +74,4 @@
       </div>
     </div>
   </div>
-
 </ng-container>
