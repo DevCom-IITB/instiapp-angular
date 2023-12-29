@@ -1,156 +1,160 @@
 /* Mobile styles */
 .super-head {
-    max-width: calc(550px - 16px);
-    width: calc(100% - 16px);
-    text-align: center;
-    font-size: 1.6em;
-    padding: 0.4em 0;
-    margin: 5px auto;
-    margin-bottom: 0.7em;
-    background-color: white;
+  max-width: calc(550px - 16px);
+  width: calc(100% - 16px);
+  text-align: center;
+  font-size: 1.6em;
+  padding: 0.4em 0;
+  margin: 5px auto;
+  margin-bottom: 0.7em;
+  background-color: white;
 }
 
 .margin-card {
-    margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .mess-card {
-    max-width: 550px;
-    padding: 12px;
-    margin: 8px;
-    cursor: pointer;
-    white-space: pre-wrap;
-    margin-bottom: 0.7em;
+  max-width: 550px;
+  padding: 12px;
+  margin: 8px;
+  cursor: pointer;
+  white-space: pre-wrap;
+  margin-bottom: 0.7em;
 }
 
 .mess-card-head {
-    font-size: 1.1em;
-    font-weight: bold;
-    padding: 2px 0;
-    margin: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 2px 0;
+  margin: 0;
 }
 
 .mess-card .time {
-    font-size: 0.94em;
-    margin: 12px 0;
+  font-size: 0.94em;
+  margin: 12px 0;
 }
 
 .mess-card .time .head {
-    color: var(--primary-dark);
+  color: var(--primary-dark);
 }
 
 .mess-card .time .menu {
-    font-size: 0.93em;
+  font-size: 0.93em;
 }
 
 .mess-table {
-    width: 100%;
-    border-spacing: 8px;
-    table-layout: fixed;
+  width: 100%;
+  border-spacing: 8px;
+  table-layout: fixed;
 }
 
 .mess-table mat-card {
-    padding: 8px;
-    min-height: 110px;
+  padding: 8px;
+  min-height: 110px;
 }
 
 @media (max-width: 600px) {
-    .mess-table {
-        border-spacing: 5px;
-    }
+  .mess-table {
+    border-spacing: 5px;
+  }
 
-    .mess-table mat-card {
-        padding: 5px;
-    }
+  .mess-table mat-card {
+    padding: 5px;
+  }
 }
 
 .mess-table mat-card-subtitle {
-    font-size: 0.83em;
+  font-size: 0.83em;
 }
 
 /* Desktop styles */
 
 .desktop {
-    overflow-y: auto;
-    overflow-x: auto;
-    width: 100%;
-    white-space: nowrap;
-    height: calc(100vh - 2.5em - 2em - 2em - 41px);
+  overflow-y: auto;
+  overflow-x: auto;
+  width: 100%;
+  white-space: nowrap;
+  height: calc(100vh - 2.5em - 2em - 2em - 41px);
 }
 
 .desktop .day {
-    font-family: 'Roboto';
-    padding-bottom: 0.8em;
+  font-family: "Roboto";
+  padding-bottom: 0.8em;
 }
 
 .desktop .menu {
-    display: inline-block;
-    padding: 2em;
-    width: 200px;
-    white-space: pre-line;
-    height: auto;
-    overflow: hidden;
-    vertical-align: top;
+  display: inline-block;
+  padding: 2em;
+  width: 200px;
+  white-space: pre-line;
+  height: auto;
+  overflow: hidden;
+  vertical-align: top;
 }
 
 .desktop .time {
-    min-height: 40px;
-    font-size: 0.95em;
-    padding-bottom: 10px;
+  min-height: 40px;
+  font-size: 0.95em;
+  padding-bottom: 10px;
 }
 
 .desktop .time-head {
-    color: #a0a0a0;
-    font-style: italic;
-    font-size: 0.85em;
+  color: #000000;
+  font-style: italic;
+  font-size: 0.85em;
 }
-
-.desktop .menu:first-child  {
-    margin-left: 15px;
+.last-updated {
+  margin-left: 35px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.desktop .menu:first-child {
+  margin-left: 15px;
 }
 
 .desktop .menu:not(:first-child) {
-    color: #a0a0a0;
+  color: #a0a0a0;
 }
 
 /* Common */
 
 .responsive-header {
-    margin-top: 2em;
-    margin-left: 3.5em;
+  margin-top: 2em;
+  margin-left: 3.5em;
 }
 
 .responsive-header > * {
-    font-size: 2.5em
+  font-size: 2.5em;
 }
 
 .responsive-header .selected-hostel {
-    font-family: 'Roboto';
-    display: inline-block;
+  font-family: "Roboto";
+  display: inline-block;
 }
 
 .pick-hostel {
-    display: inline-block;
+  display: inline-block;
 }
 
 .hostel-menu-button {
-    font-family: 'Roboto';
-    font-weight: 200;
-    font-size: 1.2em;
+  font-family: "Roboto";
+  font-weight: 200;
+  font-size: 1.2em;
 }
 
 @media (max-width: 767px) {
-    .responsive-header {
-        margin: 0.4em 2em;
-    }
+  .responsive-header {
+    margin: 0.4em 2em;
+  }
 
-    .responsive-header > * {
-        font-size: 1.5em;
-    }
+  .responsive-header > * {
+    font-size: 1.5em;
+  }
 }
 
 @media (min-width: 1256px) {
-    .real-center {
-        transform: translateX(-150px);
-    }
+  .real-center {
+    transform: translateX(-150px);
+  }
 }
