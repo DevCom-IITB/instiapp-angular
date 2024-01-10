@@ -40,6 +40,7 @@ export class AddEventComponent implements OnInit {
   public networkBusy = false;
 
   public bodies: IBody[] = [] as IBody[];
+  public verification_bodies: IBody[] = [] as IBody[];
   public disabledBodies: IBody[] = [] as IBody[];
 
   public editing = false;
@@ -69,7 +70,7 @@ export class AddEventComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   /** Filter venues with name */
   filterVenues(name: string): ILocation[] {
@@ -114,6 +115,11 @@ export class AddEventComponent implements OnInit {
 
     this.bodies = this.bodies.concat(
       this.dataService.GetBodiesWithPermission('AddE')
+    );
+    this.sortBodies();
+
+    this.verification_bodies = this.verification_bodies.concat(
+      this.dataService.GetBodiesWithPermission('VerE')
     );
     this.sortBodies();
 
@@ -175,6 +181,7 @@ export class AddEventComponent implements OnInit {
           /* Initialize things */
           this.initializeEvent();
           this.initializeBodiesExisting();
+          this.initializeVerificationBodiesExisting();
           this.sortBodies();
           this.updateReach();
 
@@ -250,11 +257,31 @@ export class AddEventComponent implements OnInit {
     }
   }
 
+  initializeVerificationBodiesExisting() {
+    for (const verification_body of this.event.verification_bodies) {
+      /* Remove if already present */
+      const currIndex = this.verification_bodies.map((m) => m.id).indexOf(verification_body.id);
+      if (currIndex !== -1) {
+        this.bodies.splice(currIndex, 1);
+      }
+
+      /* Add according to privilege */
+      if (this.dataService.HasBodyPermission(verification_body.id, 'VerE')) {
+        this.bodies.push(verification_body);
+      } else {
+        this.disabledBodies.push(verification_body);
+      }
+    }
+  }
+
+
   /* Initialize a blank event */
   initializeBlank() {
     this.event = {} as IEvent;
     this.event.notify = true;
     this.event.bodies_id = [];
+    this.event.interests_id = [];
+    this.event.verification_bodies_id = [];
     this.event.venues = [] as ILocation[];
     this.event.user_tags = [];
     this.AddVenue();
@@ -265,8 +292,12 @@ export class AddEventComponent implements OnInit {
   /** Initializes defaults from query parameters */
   initializeQueryDefaults() {
     const params = this.activatedRoute.snapshot.queryParams;
+    console.log("hi", params.hasOwnProperty('body'))
     if (params.hasOwnProperty('body')) {
       this.event.bodies_id.push(params['body']);
+    }
+    if (params.hasOwnProperty('verification_bodies')) {
+      this.event.verification_bodies_id = params['verification_bodies'];
     }
     if (params.hasOwnProperty('date')) {
       const date = new Date(params['date']);
@@ -348,12 +379,21 @@ export class AddEventComponent implements OnInit {
       return;
     }
 
+    if (
+      this.assertValidation(
+        this.event.verification_bodies_id.length > 0,
+        'No  verification bodies selected!'
+      )
+    ) {
+      return;
+    }
+
     /* Validate name length */
     if (
       this.assertValidation(
         this.event.name &&
-          this.event.name.length > 0 &&
-          this.event.name.length <= 50,
+        this.event.name.length > 0 &&
+        this.event.name.length <= 50,
         'Event name too long/short'
       )
     ) {
@@ -369,6 +409,7 @@ export class AddEventComponent implements OnInit {
     ) {
       return;
     }
+
 
     /* Create observable for POST/PUT */
     let obs: Observable<IEvent>;
@@ -394,7 +435,6 @@ export class AddEventComponent implements OnInit {
         } else {
           this.close(result);
         }
-
         /* Set editing to true */
         this.event.id = result.id;
         this.event.str_id = result.id;

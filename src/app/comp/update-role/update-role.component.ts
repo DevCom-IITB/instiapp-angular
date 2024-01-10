@@ -19,6 +19,7 @@ export class UpdateRoleComponent implements OnInit {
     { name: 'Add Event', code: 'AddE' },
     { name: 'Edit Event', code: 'UpdE' },
     { name: 'Delete Event', code: 'DelE' },
+    { name: 'Verify Event', code: 'VerE' },
     { name: 'Update Body', code: 'UpdB' },
     { name: 'Modify Roles', code: 'Role' },
     { name: 'Verify Achievements', code: 'VerA' },
@@ -26,7 +27,7 @@ export class UpdateRoleComponent implements OnInit {
     { name: 'Moderate Comment', code: 'ModC' },
   ];
 
-  constructor(public dataService: DataService, public snackBar: MatSnackBar) {}
+  constructor(public dataService: DataService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     if (this.minrole.editing) {
