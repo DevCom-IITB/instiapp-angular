@@ -82,11 +82,11 @@
           <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
           <!-- <div [innerHTML]="dataService.processMDHTML(event.long_description | markdown)"></div> -->
         </div>
-        <ng-container *ngIf="dataService.canViewMaxContent(event)">
+        <ng-container *ngIf="dataService.canViewMaxContent()">
           <div class="longdescription markdown">
             <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
           </div>
-          <ng-container *ngIf="dataService.canViewMaxContent(event)">
+          <ng-container *ngIf="dataService.canViewMaxContent()">
             <button mat-raised-button color="primary" (click)="openVerifyEmailPopup()">
               Verify Email
             </button>

@@ -118,9 +118,14 @@ export class AddEventComponent implements OnInit {
     );
     this.sortBodies();
 
-    this.verification_bodies = this.verification_bodies.concat(
-      this.dataService.GetBodiesWithPermission('VerE')
-    );
+    this.dataService.GetVerificationBodies().subscribe(
+      (bodies: IBody[]) => {
+        this.verification_bodies = this.verification_bodies.concat(bodies);
+      },
+      (error) => {
+        console.error('Error fetching verification bodies:', error);
+      })
+
     this.sortBodies();
 
     this.activatedRoute.params.subscribe((params: Params) => {

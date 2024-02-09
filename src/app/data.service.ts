@@ -542,6 +542,11 @@ export class DataService {
     return bodies;
   }
 
+  GetVerificationBodies(): Observable<IBody[]> {
+    return this.FireGET<IBody[]>(`${API.EventVerificationBodies}`);
+  }
+
+
   /** Returns true if the user has the permission for institute */
   HasInstitutePermission(permission: string): boolean {
     if (!this.isLoggedIn()) {
@@ -591,13 +596,13 @@ export class DataService {
   }
 
   /** Return true if the current user can view the max content of the event and push email */
-  canViewMaxContent(event: IEvent): boolean {
-    for (const body of event.bodies) {
-      if (!this.HasBodyPermission(body.id, 'VerE')) {
-        return false;
+  canViewMaxContent(): boolean {
+    for (const role of this._currentUser.roles) {
+      if (role.permissions.includes("VerE")) {
+        return true;
       }
     }
-    return true;
+
   }
 
   /** Mark a UNR for the current user */
