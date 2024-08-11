@@ -35,11 +35,11 @@ export class FeedComponent implements OnInit {
 
     /* Get all events */
     this.dataService.GetAllEvents().subscribe(result => {
-        this.events = result.data;
-        if (this.events.length === 0) {
-          this.error = 204;
-        }
-        this.containers = this.MakeContainers(result.data);
+      this.events = result.data;
+      if (this.events.length === 0) {
+        this.error = 204;
+      }
+      this.containers = this.MakeContainers(result.data);
     }, (e) => {
       this.error = e.status;
     });
@@ -85,13 +85,13 @@ export class FeedComponent implements OnInit {
       return result;
     }
 
-    let prev = {title: this.getDateTitle(events[0]), events: []} as IEventContainer;
+    let prev = { title: this.getDateTitle(events[0]), events: [] } as IEventContainer;
     for (const event of events) {
       /* Same title means same group */
       const title = this.getDateTitle(event);
       if (prev.title !== title) {
         result.push(prev);
-        prev = {title: title, events: []} as IEventContainer;
+        prev = { title: title, events: [] } as IEventContainer;
       }
       prev.events.push(event);
     }

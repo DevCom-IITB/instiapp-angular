@@ -77,12 +77,26 @@
         </mat-form-field>
       </div>
 
-      <div class="full-width-details">
-          <app-search-box exploreProp="interests" displayProp="title" placeholder="Notify according to interests"
-            hint="Enter a Interest" (change)="setInterest($event)">
-          </app-search-box>
+      <div>
+        <mat-form-field class="full-width-details">
+          <mat-select [(ngModel)]="event.verification_bodies_id" placeholder="Verification Bodies" multiple>
+            <mat-option *ngFor="let verification_body of verification_bodies" [value]="verification_body.id">
+              {{ verification_body.name }}
+            </mat-option>
+            <mat-option *ngFor="let body of disabledBodies" [value]="body.id" disabled>
+              {{ body.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-          <app-interest-card *ngFor="let interest of event.event_interest" [interest]=interest [canDelete]=true [deleteMethod]="deleteInterestFunc">
+      <div class="full-width-details">
+        <app-search-box exploreProp="interests" displayProp="title" placeholder="Notify according to interests"
+          hint="Enter a Interest" (change)="setInterest($event)">
+        </app-search-box>
+
+        <app-interest-card *ngFor="let interest of event.event_interest" [interest]=interest [canDelete]=true
+          [deleteMethod]="deleteInterestFunc">
 
         </app-interest-card>
 
@@ -98,6 +112,12 @@
         <mat-form-field class="full-width-details">
           <textarea matInput placeholder="Description" [(ngModel)]="event.description" rows=8>
         </textarea>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="full-width-details">
+          <textarea matInput placeholder="Email Content" [(ngModel)]="event.longdescription" rows=8></textarea>
         </mat-form-field>
       </div>
 

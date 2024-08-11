@@ -1,6 +1,6 @@
 .event-image {
-    width:100%;
-    height:auto;
+    width: 100%;
+    height: auto;
 }
 
 .card-header {
@@ -21,7 +21,7 @@
 }
 
 .u-actions {
-    text-align:center;
+    text-align: center;
     margin-top: 5px;
 }
 
@@ -40,6 +40,12 @@
 }
 
 .description {
+    padding-left: 10px;
+    padding-right: 10px;
+    word-wrap: break-word;
+}
+
+.longdescription {
     padding-left: 10px;
     padding-right: 10px;
     word-wrap: break-word;
@@ -86,6 +92,34 @@
 .following {
     background-color: var(--accent-color);
     color: black;
+}
+
+.verify-email-popup {
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 100000;
+    transition: background-color 0.3s;
+}
+
+.verify-email-popup button {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #3498db;
+    color: #3498db;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+        background-color: #3498db;
+        color: white;
+    }
 }
 
 span.badge {

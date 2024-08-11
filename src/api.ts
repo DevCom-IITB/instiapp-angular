@@ -9,6 +9,9 @@ export const API = {
     Events: 'api/events',
     EventsFiltered: 'api/events{?start,end}',
     Event: 'api/events/{uuid}',
+    EventApproveMail: 'api/events/{uuid}/approve-mail',
+    EventRejectMail: 'api/events/{uuid}/reject-mail',
+    EventVerificationBodies: 'api/bodies-with-privilege/',
 
     Bodies: 'api/bodies',
     Body: 'api/bodies/{uuid}',

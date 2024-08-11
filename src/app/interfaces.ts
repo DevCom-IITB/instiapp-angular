@@ -34,6 +34,8 @@ export interface IEvent {
     str_id: string;
     name: string;
     description: string;
+    longdescription: string;
+    email_verified: boolean,
     image_url: string;
     website_url: string;
     start_time: Date;
@@ -43,6 +45,8 @@ export interface IEvent {
     venue_names: string[];
     venues_str: string;
     bodies: IBody[];
+    verification_bodies: IBody[];
+    verification_bodies_id: string[];
     bodies_id: string[];
     interested: IUserProfile[];
     interested_count: number;

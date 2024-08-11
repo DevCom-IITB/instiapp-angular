@@ -389,9 +389,9 @@ export class DataService {
     }
     );
   }
-   /** Gets the current user if logged in
-   * The result is cached
-   */
+  /** Gets the current user if logged in
+  * The result is cached
+  */
   GetFillCurrentUser(): Observable<IUserProfile> {
     return new Observable((observer) => {
       if (!this._currentUser) {
@@ -542,6 +542,11 @@ export class DataService {
     return bodies;
   }
 
+  GetVerificationBodies(): Observable<IBody[]> {
+    return this.FireGET<IBody[]>(`${API.EventVerificationBodies}`);
+  }
+
+
   /** Returns true if the user has the permission for institute */
   HasInstitutePermission(permission: string): boolean {
     if (!this.isLoggedIn()) {
@@ -588,6 +593,16 @@ export class DataService {
       }
     }
     return true;
+  }
+
+  /** Return true if the current user can view the max content of the event and push email */
+  canViewMaxContent(): boolean {
+    for (const role of this._currentUser.roles) {
+      if (role.permissions.includes("VerE")) {
+        return true;
+      }
+    }
+
   }
 
   /** Mark a UNR for the current user */
@@ -744,4 +759,25 @@ export class DataService {
       }
     });
   }
+
+  /**
+   * Approve email for a specific event
+   * @param eventId ID of the event
+   */
+  approveEmail(eventId: string): Observable<any> {
+    const url = `${API.Events}/${eventId}/approve-mail`;
+    console.log('Constructed URL:', url);
+    return this.FirePOST(url, {});
+  }
+
+  /**
+   * Reject email for a specific event
+   * @param eventId ID of the event
+   */
+  rejectEmail(eventId: string): Observable<any> {
+    const url = `${API.Events}/${eventId}/reject-mail`;
+
+    return this.FirePOST(url, {});
+  }
+
 }

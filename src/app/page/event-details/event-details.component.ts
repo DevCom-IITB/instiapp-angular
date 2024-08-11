@@ -21,12 +21,13 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   public event: IEvent;
   public error: number;
   @Input() public desktopMode = false;
+  public showVerifyEmailPopup = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public dataService: DataService,
     public router: Router,
-  ) {}
+  ) { }
 
   /** Refresh the component whenever passed eventId changes */
   ngOnChanges() {
@@ -35,6 +36,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
 
   /** Check if called with a url and update */
   ngOnInit() {
+
     if (!this.eventId) {
       this.activatedRoute.params.subscribe((params: Params) => {
         this.eventId = params['id'];
@@ -51,7 +53,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.FillGetEvent(this.eventId).subscribe(result => {
       /* Check if no image */
       if (result.image_url === null || result.image_url === '') {
-        result.image_url = result.bodies[0].image_url;
+        result.image_url = result.bodies[0]?.image_url || null;
       }
 
       /** Preload image and mark done */
@@ -75,7 +77,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     if (this.event.user_ues === status) {
       status = 0;
     }
-    return this.dataService.FireGET(API.UserMeEventStatus, {event: this.event.id, status: status}).subscribe(() => {
+    return this.dataService.FireGET(API.UserMeEventStatus, { event: this.event.id, status: status }).subscribe(() => {
       /* Change counts */
       if (status === 0) {
         if (this.event.user_ues === 1) { this.event.interested_count--; }
@@ -108,11 +110,40 @@ export class EventDetailsComponent implements OnChanges, OnInit {
 
   /** Get the sharing url */
   shareUrl(): string {
-    return  `${environment.host}event/${this.event.str_id}`;
+    return `${environment.host}event/${this.event.str_id}`;
   }
 
   openEventEdit() {
     this.router.navigate(['edit-event', this.event.id]);
+  }
+
+  openVerifyEmailPopup() {
+    this.showVerifyEmailPopup = true;
+  }
+
+  approveEmail(): void {
+    console.log('event', this.eventId); // Log the eventId
+    this.dataService.approveEmail(this.eventId).subscribe(
+      () => {
+        console.log('Email approved successfully!');
+      },
+      (error) => {
+        console.error('Error approving email:', error);
+      }
+    );
+    this.showVerifyEmailPopup = false;
+  }
+
+  rejectEmail(): void {
+    this.dataService.rejectEmail(this.eventId).subscribe(
+      () => {
+        console.log('Email rejected successfully!');
+      },
+      (error) => {
+        console.error('Error rejecting email:', error);
+      }
+    );
+    this.showVerifyEmailPopup = false;
   }
 
 }

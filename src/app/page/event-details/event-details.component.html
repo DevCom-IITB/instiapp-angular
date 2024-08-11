@@ -4,9 +4,7 @@
   <ng-container *ngTemplateOutlet="centerlayout"></ng-container>
 </ng-container>
 
-<app-desktop-split *ngIf="event && !desktopMode"
-    [rightLeftBorder]="false"
-    [centerRightBorder]="true">
+<app-desktop-split *ngIf="event && !desktopMode" [rightLeftBorder]="false" [centerRightBorder]="true">
 
   <div center>
     <ng-container *ngTemplateOutlet="centerlayout"></ng-container>
@@ -23,9 +21,7 @@
 
     <div class="section">
       <div class="rl-header sm">Following</div>
-      <app-user-card *ngFor="let user of event.interested.concat(event.going)"
-                      [profile]="user"
-                      [role]="user.ldap_id">
+      <app-user-card *ngFor="let user of event.interested.concat(event.going)" [profile]="user" [role]="user.ldap_id">
       </app-user-card>
     </div>
 
@@ -34,22 +30,16 @@
 </app-desktop-split>
 
 <div class="float-fixed-right-bottom">
-  <button mat-fab
-          class="mat-elevation-z2 edit-fab"
-          [class.gone]="dataService.isScrollingDown()"
-          (click)="openEventEdit()"
-          *ngIf="event && !desktopMode && dataService.CanEditEvent(event)">
-      <mat-icon>edit</mat-icon>
+  <button mat-fab class="mat-elevation-z2 edit-fab" [class.gone]="dataService.isScrollingDown()"
+    (click)="openEventEdit()" *ngIf="event && !desktopMode && dataService.CanEditEvent(event)">
+    <mat-icon>edit</mat-icon>
   </button>
 </div>
 
 <ng-template #centerlayout>
   <div>
     <div class="theme-header primary-background-color">
-      <img class="event-image"
-            [src]="event.image_url"
-            alt=""
-            [src-fallback]="event.bodies[0].image_url">
+      <img class="event-image" [src]="event.image_url" alt="" [src-fallback]="event.bodies[0].image_url">
 
       <div class="card-header">
         <div>
@@ -58,41 +48,29 @@
         </div>
 
         <div class="action-buttons">
-          <button mat-icon-button
-                (click)="openEventEdit()"
-                *ngIf="desktopMode && dataService.CanEditEvent(event)">
-              <mat-icon>edit</mat-icon>
+          <button mat-icon-button (click)="openEventEdit()" *ngIf="desktopMode && dataService.CanEditEvent(event)">
+            <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button
-                 [routerLink]="['/event', event.str_id]"
-                 *ngIf="desktopMode">
-              <mat-icon>open_in_new</mat-icon>
+          <button mat-icon-button [routerLink]="['/event', event.str_id]" *ngIf="desktopMode">
+            <mat-icon>open_in_new</mat-icon>
           </button>
-          <a mat-icon-button
-            *ngIf="event.website_url && event.website_url !== ''"
-            [href]="event.website_url"
-            target="_blank"
-            rel="noopener">
+          <a mat-icon-button *ngIf="event.website_url && event.website_url !== ''" [href]="event.website_url"
+            target="_blank" rel="noopener">
             <mat-icon>public</mat-icon>
           </a>
-          <button mat-icon-button
-                  (click)="share()">
-              <mat-icon>share</mat-icon>
+          <button mat-icon-button (click)="share()">
+            <mat-icon>share</mat-icon>
           </button>
         </div>
       </div>
 
       <div class="follow-div">
-        <button mat-button
-              [class.following]="event.user_ues === 1"
-              (click)="markUES(1);"
-              [disabled]="!dataService.isLoggedIn()">
+        <button mat-button [class.following]="event.user_ues === 1" (click)="markUES(1);"
+          [disabled]="!dataService.isLoggedIn()">
           Interested <span class="badge">{{ event.interested_count }}</span>
         </button>
-        <button mat-button
-              [class.following]="event.user_ues === 2"
-              (click)="markUES(2);"
-              [disabled]="!dataService.isLoggedIn()">
+        <button mat-button [class.following]="event.user_ues === 2" (click)="markUES(2);"
+          [disabled]="!dataService.isLoggedIn()">
           Going <span class="badge">{{ event.going_count }}</span>
         </button>
       </div>
@@ -102,7 +80,18 @@
       <ng-container *ngIf="desktopMode || dataService.isMobile()">
         <div class="description markdown">
           <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
+          <!-- <div [innerHTML]="dataService.processMDHTML(event.long_description | markdown)"></div> -->
         </div>
+        <ng-container *ngIf="dataService.canViewMaxContent()">
+          <div class="longdescription markdown">
+            <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
+          </div>
+          <ng-container *ngIf="dataService.canViewMaxContent()">
+            <button mat-raised-button color="primary" (click)="openVerifyEmailPopup()">
+              Verify Email
+            </button>
+          </ng-container>
+        </ng-container>
         <ng-container *ngIf="!desktopMode">
           <ng-container *ngTemplateOutlet="achievements"></ng-container>
         </ng-container>
@@ -113,9 +102,7 @@
         <ng-container *ngIf="desktopMode">
           <ng-container *ngTemplateOutlet="achievements"></ng-container>
         </ng-container>
-        <app-body-card
-            *ngFor="let body of event.bodies"
-            [body]="body">
+        <app-body-card *ngFor="let body of event.bodies" [body]="body">
         </app-body-card>
       </div>
     </div>
@@ -123,10 +110,20 @@
 </ng-template>
 
 <ng-template #achievements>
-  <div mat-ripple *ngFor="let oa of event.offered_achievements"
-    [routerLink]="['/achievement-new', oa.id]" class="achievement">
-    <app-card [title]="oa.title" [subtitle]="oa.description"
-              [avatar]="'/assets/achievements/' + oa.generic + '.png'">
+  <div mat-ripple *ngFor="let oa of event.offered_achievements" [routerLink]="['/achievement-new', oa.id]"
+    class="achievement">
+    <app-card [title]="oa.title" [subtitle]="oa.description" [avatar]="'/assets/achievements/' + oa.generic + '.png'">
     </app-card>
   </div>
 </ng-template>
+
+
+<ng-container *ngIf="showVerifyEmailPopup">
+  <div class="verify-email-popup">
+    <div class="description markdown">
+      <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
+    </div>
+    <button mat-button (click)="approveEmail()">Approve</button>
+    <button mat-button (click)="rejectEmail()">Reject</button>
+  </div>
+</ng-container>
