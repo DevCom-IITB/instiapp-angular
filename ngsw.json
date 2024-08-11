@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1705842075814,
+  "timestamp": 1723401867265,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -14,7 +14,7 @@
         "/apple-app-site-association",
         "/favicon.ico",
         "/index.html",
-        "/main.6894880bc50d0533474a.js",
+        "/main.2ecc4402d04c5e35ded1.js",
         "/polyfills-es5.bb812e818878bec889d3.js",
         "/polyfills.56f32bf17d35da84a143.js",
         "/runtime.b2175705264e769e2e1d.js",
@@ -222,8 +222,8 @@
     "/assets/sadcloud.svg": "21165d82d4b3d3521f23442cb54f0cfd2949fcfb",
     "/assets/useravatar.svg": "085f2e8f8205b1fcc2830984ef0a47d7ffed89de",
     "/favicon.ico": "d6f5b640fbbdf13cf59735ce13cc467fccbd893b",
-    "/index.html": "e4657deaac266eabe33719373c80df508162bf34",
-    "/main.6894880bc50d0533474a.js": "e91526d7ab849d966e9725ca7d2fe042c3463e7b",
+    "/index.html": "f599146aec298a2dc4fd4d2fca5c49d1f90c7c7f",
+    "/main.2ecc4402d04c5e35ded1.js": "0bcf578578bd79e6371d5aedb3f1c7aa0249ff57",
     "/polyfills-es5.bb812e818878bec889d3.js": "79fa4c989cdee1317bde0a48931d0c3cc28ae36c",
     "/polyfills.56f32bf17d35da84a143.js": "6d8de3617c56bf784a824ddc2d2b3416c9a617f0",
     "/runtime.b2175705264e769e2e1d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
