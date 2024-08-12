@@ -26,8 +26,11 @@
 #searchbox {
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
   top: 100px;
 }
+
 #searchbox-origin {
   display: flex;
   flex-direction: column;
@@ -37,10 +40,11 @@
   background: white;
   z-index: 2;
 }
+
 #searchbox-destination {
   position: fixed;
   right: 40px;
-  top: calc(100px);
+  top: 100px;
   background: white;
   z-index: 2;
 }
@@ -134,11 +138,29 @@
 
 @media (max-width: 560px) {
   #searchbox {
-    top: 56px;
-    width: 100%;
-    right: unset;
-    left: 0;
-    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    top: 10px;
+  }
+  
+  #searchbox-origin {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 10px;
+    top: 70px;
+    background: white;
+    z-index: 2;
+  }
+  
+  #searchbox-destination {
+    position: fixed;
+    right: 10px;
+    top: 70px;
+    background: white;
+    z-index: 2;
   }
 
   .search::-webkit-input-placeholder {
