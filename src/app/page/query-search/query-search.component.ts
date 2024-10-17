@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { API } from '../../../api';
 import { DataService } from '../../data.service';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 
 @Component({
@@ -14,7 +14,7 @@ export class QuerySearchComponent implements OnInit {
 
   public answers = [];
   finalarray: String[];
-  filters = new FormControl();
+  filters = new UntypedFormControl();
   selected: any[];
   categories: any[];
   loading: boolean;

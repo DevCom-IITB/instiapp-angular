@@ -30,7 +30,14 @@
               "src/apple-app-site-association"
             ],
             "styles": ["src/styles.css", "src/theme.scss"],
-            "scripts": ["node_modules/marked/lib/marked.js"]
+            "scripts": ["node_modules/marked/lib/marked.js"],
+            "aot": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -43,7 +50,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -57,38 +63,29 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "hmrWarning": false,
-            "browserTarget": "instiapp:build",
-            "aot": true
+            "buildTarget": "instiapp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "instiapp:build:production"
+              "buildTarget": "instiapp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "instiapp:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["src/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**"]
+            "buildTarget": "instiapp:build"
           }
         }
       }
     }
   },
-  "defaultProject": "instiapp",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

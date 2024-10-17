@@ -15,7 +15,7 @@ import { Helpers } from '../../helpers';
 import { Observable } from 'rxjs';
 import { API } from '../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
 const PLACEHOLDER = 'assets/add_image_placeholder.svg';
@@ -522,7 +522,7 @@ export class AddEventComponent implements OnInit {
 
   /** Get a form for filtering */
   getFilterForm(location: ILocation) {
-    const form = new FormControl();
+    const form = new UntypedFormControl();
     const filteredLocations = form.valueChanges.pipe(
       map((result) => {
         location.short_name = result;

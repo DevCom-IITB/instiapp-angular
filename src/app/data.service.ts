@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, noop } from 'rxjs';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpRequest,
-  HttpEventType,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
 import {
   IEnumContainer,
   IUserProfile,
