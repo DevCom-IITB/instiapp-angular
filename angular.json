@@ -86,7 +86,6 @@
       }
     }
   },
-  "defaultProject": "instiapp",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

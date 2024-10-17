@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 export const TITLE = 'Alumni OTP';
@@ -21,7 +21,7 @@ export class OTPComponent implements OnInit {
     public dataService: DataService,
     public route: ActivatedRoute,
     public router: Router,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public snackBar: MatSnackBar
   ) {}
 
