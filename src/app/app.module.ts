@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -90,8 +90,7 @@ import { GhostPostComponent } from './card/communitypost-card/ghost-post/ghost-p
 import { FeaturedPostComponent } from './card/communitypost-card/featured-post/featured-post.component';
 import { TokenInterceptor } from './interceptor';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         NavmenuComponent,
         FeedComponent,
@@ -146,11 +145,9 @@ import { TokenInterceptor } from './interceptor';
         GhostPostComponent,
         FeaturedPostComponent,
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent, QuerySearchComponent], imports: [BrowserModule,
         MatTabsModule,
         CommonModule,
-        HttpClientModule,
         FormsModule,
         BrowserAnimationsModule,
         ImgFallbackModule,
@@ -296,14 +293,11 @@ import { TokenInterceptor } from './interceptor';
             enabled: environment.production,
         }),
         MyMaterialClass,
-        LayoutModule,
-    ],
-    providers: [
+        LayoutModule], providers: [
         DataService,
         { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
         LoginActivate,
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    ],
-    bootstrap: [AppComponent, QuerySearchComponent]
-})
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
