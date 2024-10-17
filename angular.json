@@ -69,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "instiapp:build"
+            "buildTarget": "instiapp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "instiapp:build:production"
+              "buildTarget": "instiapp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "instiapp:build"
+            "buildTarget": "instiapp:build"
           }
         }
       }
