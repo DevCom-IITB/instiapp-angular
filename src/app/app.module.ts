@@ -1,5 +1,5 @@
 // Angular imports
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -310,6 +310,7 @@ import { TokenInterceptor } from './interceptor';
     }),
     MyMaterialClass,
     LayoutModule,
+    HammerModule,
   ],
   entryComponents: [NotifyCardComponent, AddPostComponent],
   providers: [
