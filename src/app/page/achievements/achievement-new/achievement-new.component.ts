@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../data.service';
 import { IAchievement, IBody, IEvent, IOfferedAchievement, IUserProfile } from '../../../interfaces';
 import { API } from '../../../../api';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Helpers } from '../../../helpers';
 import { Parser } from 'json2csv';

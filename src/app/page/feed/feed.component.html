@@ -10,7 +10,7 @@
                 *ngIf="c.title !== ''">
                 {{ c.title }}
             </div>
-            <mat-card *ngIf="!nobig"
+            <mat-card appearance="outlined" *ngIf="!nobig"
                        mat-ripple
                        class="sub-card head-card"
                       (click)=OpenEvent(c.events[0])>
