@@ -74,9 +74,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "hmrWarning": false,
-            "browserTarget": "instiapp:build",
-            "aot": true
+            "browserTarget": "instiapp:build"
           },
           "configurations": {
             "production": {

@@ -129,7 +129,6 @@ import { TokenInterceptor } from "./interceptor";
     AchievementNewComponent,
     SearchBoxComponent,
     GroupDetailsComponent,
-
     AchievementCardComponent,
     GroupCardComponent,
     AchievementOfferMakeComponent,
@@ -149,17 +148,14 @@ import { TokenInterceptor } from "./interceptor";
   ],
   imports: [
     BrowserModule,
-
     MatTabsModule,
     CommonModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-
     ImgFallbackModule,
     MarkdownModule.forRoot(),
     FlyoutModule,
-
     RouterModule.forRoot(
       [
         { path: "", redirectTo: "feed", pathMatch: "full" },
@@ -319,7 +315,6 @@ import { TokenInterceptor } from "./interceptor";
       ],
       { relativeLinkResolution: "legacy" }
     ),
-
     ServiceWorkerModule.register(environment.service_worker_url, {
       enabled: environment.production,
     }),
@@ -327,7 +322,6 @@ import { TokenInterceptor } from "./interceptor";
     LayoutModule,
     HammerModule,
   ],
-  entryComponents: [NotifyCardComponent, AddPostComponent],
   providers: [
     DataService,
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
