@@ -3,7 +3,11 @@ import { BrowserModule, HammerModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -146,175 +150,172 @@ import { TokenInterceptor } from "./interceptor";
     GhostPostComponent,
     FeaturedPostComponent,
   ],
+  bootstrap: [AppComponent, QuerySearchComponent],
   imports: [
     BrowserModule,
     MatTabsModule,
     CommonModule,
-    HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     ImgFallbackModule,
     MarkdownModule.forRoot(),
     FlyoutModule,
-    RouterModule.forRoot(
-      [
-        { path: "", redirectTo: "feed", pathMatch: "full" },
-        { path: "feed", component: FeedComponent, data: { state: "base" } },
-        { path: "news", component: NewsComponent, data: { state: "base" } },
-        {
-          path: "calendar",
-          component: CalendarComponent,
-          data: { state: "base" },
-        },
-        {
-          path: "explore",
-          component: ExploreComponent,
-          data: { state: "base" },
-        },
-        { path: "mess", component: MessComponent, data: { state: "base" } },
-        { path: "map", component: MapComponent, data: { state: "base" } },
-        { path: "map/:name", component: MapComponent, data: { state: "base" } },
-        {
-          path: "achievements",
-          component: AchievementsComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "achievements/:body",
-          component: AchievementsComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "achievement-new",
-          component: AchievementNewComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "achievement-new/:offer",
-          component: AchievementNewComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "qr-scan",
-          component: QrScanComponent,
-          data: { state: "base" },
-        },
-        {
-          path: "quick-links",
-          component: QuickLinksComponent,
-          data: { state: "base" },
-        },
-        {
-          path: "settings",
-          component: SettingsComponent,
-          data: { state: "base" },
-        },
-        {
-          path: "about",
-          component: AboutComponent,
-          data: { state: "overlay" },
-        },
-        {
-          path: "add-event",
-          component: AddEventComponent,
-          data: { state: "overlay" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "edit-event/:id",
-          component: AddEventComponent,
-          data: { state: "overlay" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "edit-body/:id",
-          component: UpdateBodyComponent,
-          data: { state: "overlay" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "event/:id",
-          component: EventDetailsComponent,
-          data: { state: "overlay" },
-        },
-        {
-          path: "user/:id",
-          component: UserDetailsComponent,
-          data: { state: "overlay" },
-        },
-        {
-          path: "org/:id",
-          component: BodyDetailsComponent,
-          data: { state: "overlay" },
-        },
-        {
-          path: "query-search",
-          component: QuerySearchComponent,
-          data: { state: "base" },
-        },
-        {
-          path: "query-new",
-          component: QueryNewComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "discussions",
-          component: DiscussionsComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "group/:id",
-          component: GroupDetailsComponent,
-          data: { state: "overlay" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "add-post",
-          component: AddPostComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "group-feed/:id",
-          component: GroupFeedComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "view-post/:id",
-          component: PostViewComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        {
-          path: "blog/:blog",
-          component: BlogComponent,
-          data: { state: "base" },
-          canActivate: [LoginActivate],
-        },
-        { path: "login", component: LoginComponent, data: { state: "base" } },
-        { path: "alumni", component: AlumniComponent, data: { state: "base" } },
-        {
-          path: "alumni-otp",
-          component: OTPComponent,
-          data: { state: "base" },
-        },
-        {
-          path: "feedback",
-          component: RedirComponent,
-          data: { state: "base" },
-        },
-        { path: "android", component: RedirComponent, data: { state: "base" } },
-        { path: "**", redirectTo: "feed" },
-      ],
-      { relativeLinkResolution: "legacy" }
-    ),
+    RouterModule.forRoot([
+      { path: "", redirectTo: "feed", pathMatch: "full" },
+      { path: "feed", component: FeedComponent, data: { state: "base" } },
+      { path: "news", component: NewsComponent, data: { state: "base" } },
+      {
+        path: "calendar",
+        component: CalendarComponent,
+        data: { state: "base" },
+      },
+      {
+        path: "explore",
+        component: ExploreComponent,
+        data: { state: "base" },
+      },
+      { path: "mess", component: MessComponent, data: { state: "base" } },
+      { path: "map", component: MapComponent, data: { state: "base" } },
+      { path: "map/:name", component: MapComponent, data: { state: "base" } },
+      {
+        path: "achievements",
+        component: AchievementsComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "achievements/:body",
+        component: AchievementsComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "achievement-new",
+        component: AchievementNewComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "achievement-new/:offer",
+        component: AchievementNewComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "qr-scan",
+        component: QrScanComponent,
+        data: { state: "base" },
+      },
+      {
+        path: "quick-links",
+        component: QuickLinksComponent,
+        data: { state: "base" },
+      },
+      {
+        path: "settings",
+        component: SettingsComponent,
+        data: { state: "base" },
+      },
+      {
+        path: "about",
+        component: AboutComponent,
+        data: { state: "overlay" },
+      },
+      {
+        path: "add-event",
+        component: AddEventComponent,
+        data: { state: "overlay" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "edit-event/:id",
+        component: AddEventComponent,
+        data: { state: "overlay" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "edit-body/:id",
+        component: UpdateBodyComponent,
+        data: { state: "overlay" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "event/:id",
+        component: EventDetailsComponent,
+        data: { state: "overlay" },
+      },
+      {
+        path: "user/:id",
+        component: UserDetailsComponent,
+        data: { state: "overlay" },
+      },
+      {
+        path: "org/:id",
+        component: BodyDetailsComponent,
+        data: { state: "overlay" },
+      },
+      {
+        path: "query-search",
+        component: QuerySearchComponent,
+        data: { state: "base" },
+      },
+      {
+        path: "query-new",
+        component: QueryNewComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "discussions",
+        component: DiscussionsComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "group/:id",
+        component: GroupDetailsComponent,
+        data: { state: "overlay" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "add-post",
+        component: AddPostComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "group-feed/:id",
+        component: GroupFeedComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "view-post/:id",
+        component: PostViewComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      {
+        path: "blog/:blog",
+        component: BlogComponent,
+        data: { state: "base" },
+        canActivate: [LoginActivate],
+      },
+      { path: "login", component: LoginComponent, data: { state: "base" } },
+      { path: "alumni", component: AlumniComponent, data: { state: "base" } },
+      {
+        path: "alumni-otp",
+        component: OTPComponent,
+        data: { state: "base" },
+      },
+      {
+        path: "feedback",
+        component: RedirComponent,
+        data: { state: "base" },
+      },
+      { path: "android", component: RedirComponent, data: { state: "base" } },
+      { path: "**", redirectTo: "feed" },
+    ]),
     ServiceWorkerModule.register(environment.service_worker_url, {
       enabled: environment.production,
     }),
@@ -327,7 +328,7 @@ import { TokenInterceptor } from "./interceptor";
     { provide: RouteReuseStrategy, useClass: CustomReuseStrategy },
     LoginActivate,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent, QuerySearchComponent],
 })
 export class AppModule {}
