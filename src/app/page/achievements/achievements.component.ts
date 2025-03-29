@@ -6,9 +6,10 @@ import { API } from '../../../api';
 import QrScanner from 'qr-scanner';
 
 @Component({
-  selector: 'app-achievements',
-  templateUrl: './achievements.component.html',
-  styleUrls: ['./achievements.component.css']
+    selector: 'app-achievements',
+    templateUrl: './achievements.component.html',
+    styleUrls: ['./achievements.component.css'],
+    standalone: false
 })
 export class AchievementsComponent implements OnInit, OnDestroy {
   /** Main achievements array */

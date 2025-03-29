@@ -6,9 +6,10 @@ import { UntypedFormBuilder } from '@angular/forms';
 export const TITLE = 'Alumni Login';
 
 @Component({
-  selector: 'app-alumni-login',
-  templateUrl: './alumni-login.component.html',
-  styleUrls: ['./alumni-login.component.css'],
+    selector: 'app-alumni-login',
+    templateUrl: './alumni-login.component.html',
+    styleUrls: ['./alumni-login.component.css'],
+    standalone: false
 })
 export class AlumniComponent implements OnInit {
   public authenticating = false;

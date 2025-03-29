@@ -6,9 +6,10 @@ import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-update-role',
-  templateUrl: './update-role.component.html',
-  styleUrls: ['./update-role.component.css'],
+    selector: 'app-update-role',
+    templateUrl: './update-role.component.html',
+    styleUrls: ['./update-role.component.css'],
+    standalone: false
 })
 export class UpdateRoleComponent implements OnInit {
   @Input() minrole: IBodyRole;

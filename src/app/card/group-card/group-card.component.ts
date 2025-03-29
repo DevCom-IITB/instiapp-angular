@@ -7,9 +7,10 @@ import { environment } from '../../../environments/environment';
 import { API } from '../../../api';
 
 @Component({
-  selector: 'app-group-card',
-  templateUrl: './group-card.component.html',
-  styleUrls: ['./group-card.component.css'],
+    selector: 'app-group-card',
+    templateUrl: './group-card.component.html',
+    styleUrls: ['./group-card.component.css'],
+    standalone: false
 })
 export class GroupCardComponent implements OnInit {
   @Input() group: ICommunity;

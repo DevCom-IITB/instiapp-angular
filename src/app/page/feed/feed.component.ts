@@ -7,9 +7,10 @@ import * as moment from 'moment';
 export const TITLE = 'Feed';
 
 @Component({
-  selector: 'app-feed',
-  templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css'],
+    selector: 'app-feed',
+    templateUrl: './feed.component.html',
+    styleUrls: ['./feed.component.css'],
+    standalone: false
 })
 export class FeedComponent implements OnInit {
   @Input() public containers: IEventContainer[];

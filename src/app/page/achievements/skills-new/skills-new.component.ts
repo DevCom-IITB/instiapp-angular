@@ -6,9 +6,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-skills-new',
-  templateUrl: './skills-new.component.html',
-  styleUrls: ['./skills-new.component.css'],
+    selector: 'app-skills-new',
+    templateUrl: './skills-new.component.html',
+    styleUrls: ['./skills-new.component.css'],
+    standalone: false
 })
 export class SkillsNewComponent implements OnInit, OnDestroy {
   /** Main object to edit */

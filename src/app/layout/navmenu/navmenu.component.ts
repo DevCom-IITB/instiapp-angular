@@ -8,9 +8,10 @@ const DEFAULT_LDAP = 'IITB User';
 const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
 
 @Component({
-  selector: 'app-navmenu',
-  templateUrl: './navmenu.component.html',
-  styleUrls: ['./navmenu.component.css']
+    selector: 'app-navmenu',
+    templateUrl: './navmenu.component.html',
+    styleUrls: ['./navmenu.component.css'],
+    standalone: false
 })
 export class NavmenuComponent implements OnInit {
 

@@ -6,9 +6,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export const TITLE = 'Alumni OTP';
 
 @Component({
-  selector: 'app-alumni-otp',
-  templateUrl: './alumni-otp.component.html',
-  styleUrls: ['./alumni-otp.component.css'],
+    selector: 'app-alumni-otp',
+    templateUrl: './alumni-otp.component.html',
+    styleUrls: ['./alumni-otp.component.css'],
+    standalone: false
 })
 export class OTPComponent implements OnInit {
   public authenticating = false;

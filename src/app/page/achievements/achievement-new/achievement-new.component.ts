@@ -10,9 +10,10 @@ import * as moment from 'moment';
 import * as QRCode from 'qrcode-generator';
 
 @Component({
-  selector: 'app-achievement-new',
-  templateUrl: './achievement-new.component.html',
-  styleUrls: ['./achievement-new.component.css']
+    selector: 'app-achievement-new',
+    templateUrl: './achievement-new.component.html',
+    styleUrls: ['./achievement-new.component.css'],
+    standalone: false
 })
 export class AchievementNewComponent implements OnInit, OnDestroy {
 

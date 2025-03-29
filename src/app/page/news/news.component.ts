@@ -7,9 +7,10 @@ import { INewsEntry } from '../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.css']
+    selector: 'app-news',
+    templateUrl: './news.component.html',
+    styleUrls: ['./news.component.css'],
+    standalone: false
 })
 export class NewsComponent implements OnInit, OnDestroy {
   public feed: INewsEntry[];

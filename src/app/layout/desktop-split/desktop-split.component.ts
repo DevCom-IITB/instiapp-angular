@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-desktop-split',
-  templateUrl: './desktop-split.component.html',
-  styleUrls: ['./desktop-split.component.css'],
+    selector: 'app-desktop-split',
+    templateUrl: './desktop-split.component.html',
+    styleUrls: ['./desktop-split.component.css'],
+    standalone: false
 })
 export class DesktopSplitComponent {
   /** 0 = no hiding

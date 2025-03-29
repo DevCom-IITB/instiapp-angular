@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-list-loading',
-  templateUrl: './list-loading.component.html',
+    selector: 'app-list-loading',
+    templateUrl: './list-loading.component.html',
+    standalone: false
 })
 export class ListLoadingComponent implements OnInit, OnDestroy {
 

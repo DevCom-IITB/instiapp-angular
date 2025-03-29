@@ -6,9 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-interest-card',
-  templateUrl: './interest-card.component.html',
-  styleUrls: ['./interest-card.component.css']
+    selector: 'app-interest-card',
+    templateUrl: './interest-card.component.html',
+    styleUrls: ['./interest-card.component.css'],
+    standalone: false
 })
 export class InterestCardComponent implements OnInit {
 

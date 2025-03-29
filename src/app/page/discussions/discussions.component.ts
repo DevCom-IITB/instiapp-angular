@@ -7,9 +7,10 @@ import { API } from '../../../api';
 const TITLE = 'Discussions';
 
 @Component({
-  selector: 'app-insight-disscussion-forum',
-  templateUrl: './discussions.component.html',
-  styleUrls: ['./discussions.component.css'],
+    selector: 'app-insight-disscussion-forum',
+    templateUrl: './discussions.component.html',
+    styleUrls: ['./discussions.component.css'],
+    standalone: false
 })
 export class DiscussionsComponent implements OnInit {
   @Input() public groups: ICommunity[];

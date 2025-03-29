@@ -2,9 +2,10 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-event-sidebar-desktop',
-  templateUrl: './event-sidebar-desktop.component.html',
-  styleUrls: ['./event-sidebar-desktop.component.css']
+    selector: 'app-event-sidebar-desktop',
+    templateUrl: './event-sidebar-desktop.component.html',
+    styleUrls: ['./event-sidebar-desktop.component.css'],
+    standalone: false
 })
 export class EventSidebarDesktopComponent implements OnInit, OnChanges {
   showingEventDetails = false;

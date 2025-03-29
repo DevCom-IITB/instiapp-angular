@@ -7,9 +7,10 @@ import { Helpers } from '../../helpers';
 import { environment } from '../../../environments/environment';
 
 @Component({
-  selector: 'app-body-details',
-  templateUrl: './body-details.component.html',
-  styleUrls: ['./body-details.component.css']
+    selector: 'app-body-details',
+    templateUrl: './body-details.component.html',
+    styleUrls: ['./body-details.component.css'],
+    standalone: false
 })
 export class BodyDetailsComponent implements OnInit {
 

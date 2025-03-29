@@ -3,9 +3,10 @@ import { IEvent } from '../../interfaces';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-event-card',
-  templateUrl: './event-card.component.html',
-  styleUrls: ['./event-card.component.css']
+    selector: 'app-event-card',
+    templateUrl: './event-card.component.html',
+    styleUrls: ['./event-card.component.css'],
+    standalone: false
 })
 export class EventCardComponent implements OnInit {
 

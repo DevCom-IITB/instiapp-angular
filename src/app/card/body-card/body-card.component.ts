@@ -3,9 +3,10 @@ import { IBody } from '../../interfaces';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-body-card',
-  templateUrl: './body-card.component.html',
-  styleUrls: ['./body-card.component.css']
+    selector: 'app-body-card',
+    templateUrl: './body-card.component.html',
+    styleUrls: ['./body-card.component.css'],
+    standalone: false
 })
 export class BodyCardComponent implements OnInit {
 

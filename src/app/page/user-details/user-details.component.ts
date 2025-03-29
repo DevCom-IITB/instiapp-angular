@@ -6,9 +6,10 @@ import { API } from '../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-user-details',
-  templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css'],
+    selector: 'app-user-details',
+    templateUrl: './user-details.component.html',
+    styleUrls: ['./user-details.component.css'],
+    standalone: false
 })
 export class UserDetailsComponent implements OnInit {
   interest: IInterest;

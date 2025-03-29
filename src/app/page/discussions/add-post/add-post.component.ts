@@ -25,9 +25,10 @@ const DEFAULT_USERNAME = 'Anonymous';
 const DEFAULT_PROFILE_PIC = 'assets/useravatar.svg';
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.css'],
+    selector: 'app-add-post',
+    templateUrl: './add-post.component.html',
+    styleUrls: ['./add-post.component.css'],
+    standalone: false
 })
 export class AddPostComponent implements OnInit {
   public current_user: IUserProfile = {} as IUserProfile;

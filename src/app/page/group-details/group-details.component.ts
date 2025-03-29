@@ -12,9 +12,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { API } from '../../../api';
 
 @Component({
-  selector: 'app-group-details',
-  templateUrl: './group-details.component.html',
-  styleUrls: ['./group-details.component.css'],
+    selector: 'app-group-details',
+    templateUrl: './group-details.component.html',
+    styleUrls: ['./group-details.component.css'],
+    standalone: false
 })
 export class GroupDetailsComponent implements OnChanges, OnInit {
   @Input() public groupId: string;

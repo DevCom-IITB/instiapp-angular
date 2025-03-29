@@ -6,9 +6,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
-  selector: 'app-achievement-request',
-  templateUrl: './achievement-request.component.html',
-  styleUrls: ['./achievement-request.component.css']
+    selector: 'app-achievement-request',
+    templateUrl: './achievement-request.component.html',
+    styleUrls: ['./achievement-request.component.css'],
+    standalone: false
 })
 export class AchievementRequestComponent implements OnInit {
 

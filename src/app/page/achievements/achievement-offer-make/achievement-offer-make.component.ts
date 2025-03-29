@@ -3,9 +3,10 @@ import { IOfferedAchievement, IBody } from '../../../interfaces';
 import { DataService } from '../../../data.service';
 
 @Component({
-  selector: 'app-achievement-offer-make',
-  templateUrl: './achievement-offer-make.component.html',
-  styleUrls: ['./achievement-offer-make.component.css'],
+    selector: 'app-achievement-offer-make',
+    templateUrl: './achievement-offer-make.component.html',
+    styleUrls: ['./achievement-offer-make.component.css'],
+    standalone: false
 })
 export class AchievementOfferMakeComponent implements OnInit {
   @Input() offer: IOfferedAchievement;

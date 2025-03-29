@@ -4,9 +4,10 @@ import { IHostel, IMenuEntry } from '../../../app/interfaces';
 import { API } from '../../../api';
 
 @Component({
-  selector: 'app-mess',
-  templateUrl: './mess.component.html',
-  styleUrls: ['./mess.component.css']
+    selector: 'app-mess',
+    templateUrl: './mess.component.html',
+    styleUrls: ['./mess.component.css'],
+    standalone: false
 })
 export class MessComponent implements OnInit {
 

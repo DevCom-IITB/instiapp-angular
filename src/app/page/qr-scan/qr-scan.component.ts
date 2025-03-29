@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 import QrScanner from 'qr-scanner';
 
 @Component({
-  selector: 'app-qr-scan',
-  templateUrl: './qr-scan.component.html',
-  styleUrls: ['./qr-scan.component.css'],
+    selector: 'app-qr-scan',
+    templateUrl: './qr-scan.component.html',
+    styleUrls: ['./qr-scan.component.css'],
+    standalone: false
 })
 export class QrScanComponent implements OnInit, OnDestroy {
   qrScanner: any;

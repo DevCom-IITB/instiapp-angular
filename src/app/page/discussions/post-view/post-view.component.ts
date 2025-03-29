@@ -5,9 +5,10 @@ import { DataService } from '../../../data.service';
 import { ICommunity, ICommunityPost, IUserProfile } from '../../../interfaces';
 
 @Component({
-  selector: 'app-post-view',
-  templateUrl: './post-view.component.html',
-  styleUrls: ['./post-view.component.css'],
+    selector: 'app-post-view',
+    templateUrl: './post-view.component.html',
+    styleUrls: ['./post-view.component.css'],
+    standalone: false
 })
 export class PostViewComponent implements OnInit {
   @Input() public post_id: string;

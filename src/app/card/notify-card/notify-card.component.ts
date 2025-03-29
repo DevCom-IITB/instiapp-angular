@@ -8,9 +8,10 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 const ACTOR_TYPE_EVENT = 'event';
 
 @Component({
-  selector: 'app-notify-card',
-  templateUrl: './notify-card.component.html',
-  styleUrls: ['./notify-card.component.css']
+    selector: 'app-notify-card',
+    templateUrl: './notify-card.component.html',
+    styleUrls: ['./notify-card.component.css'],
+    standalone: false
 })
 export class NotifyCardComponent {
 

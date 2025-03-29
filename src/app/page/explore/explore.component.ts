@@ -7,9 +7,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 const TITLE = 'Explore';
 
 @Component({
-  selector: 'app-explore',
-  templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.css']
+    selector: 'app-explore',
+    templateUrl: './explore.component.html',
+    styleUrls: ['./explore.component.css'],
+    standalone: false
 })
 export class ExploreComponent implements OnInit {
 

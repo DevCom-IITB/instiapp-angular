@@ -3,9 +3,10 @@ import { ICommunityPost } from '../../interfaces';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-post-card',
-  templateUrl: './post-card.component.html',
-  styleUrls: ['./post-card.component.css']
+    selector: 'app-post-card',
+    templateUrl: './post-card.component.html',
+    styleUrls: ['./post-card.component.css'],
+    standalone: false
 })
 export class PostCardComponent implements OnInit {
   @Input() post: ICommunityPost;

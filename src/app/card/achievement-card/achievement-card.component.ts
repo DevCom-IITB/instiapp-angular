@@ -3,9 +3,10 @@ import { IAchievement } from '../../interfaces';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-achievement-card',
-  templateUrl: './achievement-card.component.html',
-  styleUrls: ['./achievement-card.component.css']
+    selector: 'app-achievement-card',
+    templateUrl: './achievement-card.component.html',
+    styleUrls: ['./achievement-card.component.css'],
+    standalone: false
 })
 export class AchievementCardComponent implements OnInit {
 

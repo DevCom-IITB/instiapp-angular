@@ -6,9 +6,10 @@ import { UntypedFormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 
 @Component({
-  selector: 'app-query-search',
-  templateUrl: './query-search.component.html',
-  styleUrls: ['./query-search.component.css']
+    selector: 'app-query-search',
+    templateUrl: './query-search.component.html',
+    styleUrls: ['./query-search.component.css'],
+    standalone: false
 })
 export class QuerySearchComponent implements OnInit {
 

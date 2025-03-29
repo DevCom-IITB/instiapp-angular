@@ -6,9 +6,10 @@ import { API } from '../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-update-body',
-  templateUrl: './update-body.component.html',
-  styleUrls: ['./update-body.component.css']
+    selector: 'app-update-body',
+    templateUrl: './update-body.component.html',
+    styleUrls: ['./update-body.component.css'],
+    standalone: false
 })
 export class UpdateBodyComponent implements OnInit {
 

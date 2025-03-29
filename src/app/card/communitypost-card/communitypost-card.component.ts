@@ -9,9 +9,10 @@ import { ICommunityPost, IUserProfile } from '../../interfaces';
 import { AddPostComponent } from '../../page/discussions/add-post/add-post.component';
 
 @Component({
-  selector: 'app-communitypost-card',
-  templateUrl: './communitypost-card.component.html',
-  styleUrls: ['./communitypost-card.component.css'],
+    selector: 'app-communitypost-card',
+    templateUrl: './communitypost-card.component.html',
+    styleUrls: ['./communitypost-card.component.css'],
+    standalone: false
 })
 export class CommunityPostCardComponent implements OnInit {
   @Input() public post: ICommunityPost;

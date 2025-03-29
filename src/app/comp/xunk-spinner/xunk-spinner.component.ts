@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-xunk-spinner',
-  templateUrl: './xunk-spinner.component.html',
-  styleUrls: ['./xunk-spinner.component.css']
+    selector: 'app-xunk-spinner',
+    templateUrl: './xunk-spinner.component.html',
+    styleUrls: ['./xunk-spinner.component.css'],
+    standalone: false
 })
 export class XunkSpinnerComponent implements OnInit, OnChanges, OnDestroy {
 

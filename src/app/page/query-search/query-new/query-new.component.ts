@@ -4,9 +4,10 @@ import { API } from '../../../../api';
 import { DataService } from '../../../data.service';
 
 @Component({
-  selector: 'app-query-new',
-  templateUrl: './query-new.component.html',
-  styleUrls: ['./query-new.component.css']
+    selector: 'app-query-new',
+    templateUrl: './query-new.component.html',
+    styleUrls: ['./query-new.component.css'],
+    standalone: false
 })
 export class QueryNewComponent implements OnInit {
   /** Main object to edit */

@@ -7,9 +7,10 @@ import { AddPostComponent } from '../add-post/add-post.component';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-group-feed',
-  templateUrl: './group-feed.component.html',
-  styleUrls: ['./group-feed.component.css'],
+    selector: 'app-group-feed',
+    templateUrl: './group-feed.component.html',
+    styleUrls: ['./group-feed.component.css'],
+    standalone: false
 })
 export class GroupFeedComponent implements OnInit {
   @Input() public groupId: string;

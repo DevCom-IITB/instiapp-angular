@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-ghost-post',
-  templateUrl: './ghost-post.component.html',
-  styleUrls: ['./ghost-post.component.css'],
+    selector: 'app-ghost-post',
+    templateUrl: './ghost-post.component.html',
+    styleUrls: ['./ghost-post.component.css'],
+    standalone: false
 })
 export class GhostPostComponent implements OnInit {
   @Input() public post_content: string;

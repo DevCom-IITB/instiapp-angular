@@ -6,9 +6,10 @@ import { noop } from 'rxjs';
 import { API } from '../../../api';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+    selector: 'app-blog',
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.css'],
+    standalone: false
 })
 export class BlogComponent implements OnInit, OnDestroy {
   public feed;

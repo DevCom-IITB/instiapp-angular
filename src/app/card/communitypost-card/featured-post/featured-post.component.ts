@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ICommunityPost } from '../../../interfaces';
 
 @Component({
-  selector: 'app-featured-post',
-  templateUrl: './featured-post.component.html',
-  styleUrls: ['./featured-post.component.css']
+    selector: 'app-featured-post',
+    templateUrl: './featured-post.component.html',
+    styleUrls: ['./featured-post.component.css'],
+    standalone: false
 })
 export class FeaturedPostComponent implements OnInit {
 

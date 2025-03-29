@@ -8,9 +8,10 @@ import { API } from '../../../api';
 import { WinRT } from '../../windows';
 
 @Component({
-  selector: 'app-event-details',
-  templateUrl: './event-details.component.html',
-  styleUrls: ['./event-details.component.css']
+    selector: 'app-event-details',
+    templateUrl: './event-details.component.html',
+    styleUrls: ['./event-details.component.css'],
+    standalone: false
 })
 export class EventDetailsComponent implements OnChanges, OnInit {
 

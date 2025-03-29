@@ -26,10 +26,11 @@ import { HttpClient } from '@angular/common/http';
 import { IPath } from '../../interfaces';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
-  animations: [EnterFade],
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.css'],
+    animations: [EnterFade],
+    standalone: false
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   /* Data */

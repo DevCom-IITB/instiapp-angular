@@ -21,9 +21,10 @@ import { map } from 'rxjs/operators';
 const PLACEHOLDER = 'assets/add_image_placeholder.svg';
 
 @Component({
-  selector: 'app-add-event',
-  templateUrl: './add-event.component.html',
-  styleUrls: ['./add-event.component.css'],
+    selector: 'app-add-event',
+    templateUrl: './add-event.component.html',
+    styleUrls: ['./add-event.component.css'],
+    standalone: false
 })
 export class AddEventComponent implements OnInit {
   public venuesList: ILocation[] = [];

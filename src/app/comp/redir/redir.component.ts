@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-redir',
-  templateUrl: './redir.component.html'
+    selector: 'app-redir',
+    templateUrl: './redir.component.html',
+    standalone: false
 })
 export class RedirComponent implements OnInit {
 
