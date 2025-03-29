@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -19,13 +19,13 @@ export class SearchBoxComponent implements OnInit {
   @Output() change = new EventEmitter<any>();
 
 
-  addForm: FormControl;
+  addForm: UntypedFormControl;
   exploreObs: Observable<any[]>;
 
   constructor(
     public dataService: DataService,
   ) {
-    this.addForm = new FormControl();
+    this.addForm = new UntypedFormControl();
   }
 
   ngOnInit() {

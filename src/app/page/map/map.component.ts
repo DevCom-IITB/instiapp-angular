@@ -10,7 +10,7 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import * as InstiMap from 'instimapline';
 
@@ -55,7 +55,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   templine;
 
   searchandinfoboxposition = false;
-  searchForm: FormControl;
+  searchForm: UntypedFormControl;
   filteredOptions: Observable<any[]>;
   // location: { origin:string;destination:string }
   /* Fuse config */
@@ -83,7 +83,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     public router: Router,
     public location: Location
   ) {
-    this.searchForm = new FormControl();
+    this.searchForm = new UntypedFormControl();
     /* Check for initial marker */
     this.activatedRoute.params.subscribe((params: Params) => {
       this.initialMarker = params['name'];

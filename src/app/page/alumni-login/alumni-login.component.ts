@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 export const TITLE = 'Alumni Login';
 
 @Component({
@@ -20,7 +20,7 @@ export class AlumniComponent implements OnInit {
     public router: Router,
     public dataService: DataService,
     public snackBar: MatSnackBar,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public activatedRoute: ActivatedRoute
   ) {}
 
