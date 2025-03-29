@@ -22,7 +22,7 @@ export class DesktopSplitComponent {
 
   constructor(public dataService: DataService) {}
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   ngOnInit() {
     if (this.center_width_percentage === undefined) {
       this.center_width_percentage = 50;

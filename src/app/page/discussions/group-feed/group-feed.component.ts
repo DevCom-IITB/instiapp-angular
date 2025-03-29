@@ -65,7 +65,7 @@ export class GroupFeedComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line
+  // eslint-disable-next-line
   ngOnChanges() {
     this.refresh();
   }
