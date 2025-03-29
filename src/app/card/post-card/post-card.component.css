@@ -1,13 +1,11 @@
-
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #subtitle {
-    max-width: 85%;
-    height:fit-content;
-    white-space: normal;
-    overflow: hidden;
-    word-wrap: break-word;
+  max-width: 85%;
+  height: fit-content;
+  white-space: normal;
+  overflow: hidden;
+  word-wrap: break-word;
 }

@@ -1,72 +1,70 @@
-
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #subtitle {
-    max-width: 85%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  max-width: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
 
 div.card {
-    padding: 10px;
-    padding-bottom: 8px;
-    width: 100%;
+  padding: 10px;
+  padding-bottom: 8px;
+  width: 100%;
 }
-.fixed-bottom{
-    align-self: flex-end;
-    align-content: right;
+.fixed-bottom {
+  align-self: flex-end;
+  align-content: right;
 }
 
 table.card-table {
-    table-layout: fixed;
-    width: 100%;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .avatar {
-    width: 50px;
+  width: 50px;
 }
 
-.close{
-    scale: 0.5;
-    color: red;
+.close {
+  scale: 0.5;
+  color: red;
 }
 
 .avatar img {
-    height: 50px;
-    width: 50px;
-    background: url('/assets/lotus_placeholder.png') no-repeat;
-    background-size: contain;
+  height: 50px;
+  width: 50px;
+  background: url("/assets/lotus_placeholder.png") no-repeat;
+  background-size: contain;
 }
 
 div.content {
-    margin: 0;
-    margin-left: 5px;
-    font-size: 0.9em;
-    width: 100%;
+  margin: 0;
+  margin-left: 5px;
+  font-size: 0.9em;
+  width: 100%;
 }
 
 div.content p {
-    margin: 0.3em 0;
-    width: calc(100% - 2em);
+  margin: 0.3em 0;
+  width: calc(100% - 2em);
 }
 
 .card-sub-title {
-    color: gray;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  color: gray;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .badge {
-    width: 30px;
-    padding-right: 5px;
+  width: 30px;
+  padding-right: 5px;
 }
 
 .badge img {
-    height: 20px; width: 20px;
+  height: 20px;
+  width: 20px;
 }
