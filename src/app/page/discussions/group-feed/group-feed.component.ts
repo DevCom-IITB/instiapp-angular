@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { API } from '../../../../api';
 import { DataService } from '../../../data.service';
 import { ICommunity, ICommunityPost } from '../../../interfaces';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
 import { AddPostComponent } from '../add-post/add-post.component';
 import { ActivatedRoute, Params } from '@angular/router';
 

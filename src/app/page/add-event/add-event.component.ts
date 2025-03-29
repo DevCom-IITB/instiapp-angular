@@ -14,7 +14,7 @@ import * as Fuse from 'fuse.js';
 import { Helpers } from '../../helpers';
 import { Observable } from 'rxjs';
 import { API } from '../../../api';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { UntypedFormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 

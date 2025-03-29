@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../../data.service';
 import { IBody, IEvent, IUserProfile } from '../../interfaces';
 import { API } from '../../../api';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 const TITLE = 'Explore';
 

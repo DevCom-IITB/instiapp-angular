@@ -3,7 +3,7 @@ import { IBodyRole, IUserProfile } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
 import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-update-role',

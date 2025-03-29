@@ -3,7 +3,7 @@ import { IBody, IBodyRole } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { API } from '../../../api';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-update-body',

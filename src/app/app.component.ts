@@ -9,7 +9,7 @@ import {
 import { DataService } from './data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Helpers } from './helpers';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { SwUpdate, SwPush } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { INotification } from './interfaces';

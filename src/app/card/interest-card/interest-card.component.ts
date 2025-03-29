@@ -3,7 +3,7 @@ import { IInterest } from '../../interfaces';
 import { DataService } from '../../data.service';
 import { UserDetailsComponent } from '../../page/user-details/user-details.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-interest-card',

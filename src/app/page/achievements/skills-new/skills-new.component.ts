@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../../data.service';
 import { IAchievement, IBody } from '../../../interfaces';
 import { API } from '../../../../api';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

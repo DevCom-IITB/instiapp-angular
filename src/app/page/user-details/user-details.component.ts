@@ -3,7 +3,7 @@ import { IUserProfile, IEvent, IInterest } from '../../interfaces';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { API } from '../../../api';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-user-details',

@@ -9,7 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { RouteReuseStrategy } from "@angular/router";
 import { LayoutModule } from "@angular/cdk/layout";
-import { MatTabsModule } from "@angular/material/tabs";
+import { MatLegacyTabsModule as MatTabsModule } from "@angular/material/legacy-tabs";
 
 // Basic app imports
 import { AppComponent } from "./app.component";
