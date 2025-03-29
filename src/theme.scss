@@ -1,3 +1,4 @@
+@use "sass:map";
 @use '@angular/material' as mat;
 // TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
 //  The following line adds:
@@ -101,20 +102,20 @@ $my-theme-foreground: (
 );
 
 $my-theme-background: (
-  status-bar: map_get(mat.$m2-grey-palette, 300),
-  app-bar:    map_get(mat.$m2-grey-palette, 100),
-  background: map_get(mat.$m2-grey-palette, 50),
+  status-bar: map.get(mat.$m2-grey-palette, 300),
+  app-bar:    map.get(mat.$m2-grey-palette, 100),
+  background: map.get(mat.$m2-grey-palette, 50),
   hover:      rgba(black, 0.04),
   card:       white,
   dialog:     white,
   disabled-button: rgba(black, 0.12),
   raised-button: white,
   focused-button: rgba(black, 0.12),
-  selected-button: map_get(mat.$m2-grey-palette, 300),
-  selected-disabled-button: map_get(mat.$m2-grey-palette, 400),
-  disabled-button-toggle: map_get(mat.$m2-grey-palette, 200),
-  unselected-chip: map_get(mat.$m2-grey-palette, 300),
-  disabled-list-option: map_get(mat.$m2-grey-palette, 200),
+  selected-button: map.get(mat.$m2-grey-palette, 300),
+  selected-disabled-button: map.get(mat.$m2-grey-palette, 400),
+  disabled-button-toggle: map.get(mat.$m2-grey-palette, 200),
+  unselected-chip: map.get(mat.$m2-grey-palette, 300),
+  disabled-list-option: map.get(mat.$m2-grey-palette, 200),
 );
 
 $theme: (

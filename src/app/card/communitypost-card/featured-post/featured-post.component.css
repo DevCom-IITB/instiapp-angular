@@ -39,7 +39,7 @@ p.featured-content {
 
 img.featured-img{
     width:100%;
-    box-shadow: 2px; 
+    box-shadow: 2px;
     padding-bottom: 5px;
 }
 
@@ -113,6 +113,6 @@ img.img-responsive {
 
     height: 38px;
     width: 38px;
-    background: url('assets/lotus_placeholder.png') no-repeat;
+    background: url('/assets/lotus_placeholder.png') no-repeat;
     background-size: contain;
 }

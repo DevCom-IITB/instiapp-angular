@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../data.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "../../data.service";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 import {
   IEvent,
   IBody,
@@ -9,22 +9,22 @@ import {
   IUserTag,
   IOfferedAchievement,
   IInterest,
-} from '../../interfaces';
-import * as Fuse from 'fuse.js';
-import { Helpers } from '../../helpers';
-import { Observable } from 'rxjs';
-import { API } from '../../../api';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { UntypedFormControl } from '@angular/forms';
-import { map } from 'rxjs/operators';
+} from "../../interfaces";
+import Fuse from "fuse.js";
+import { Helpers } from "../../helpers";
+import { Observable } from "rxjs";
+import { API } from "../../../api";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { UntypedFormControl } from "@angular/forms";
+import { map } from "rxjs/operators";
 
-const PLACEHOLDER = 'assets/add_image_placeholder.svg';
+const PLACEHOLDER = "assets/add_image_placeholder.svg";
 
 @Component({
-    selector: 'app-add-event',
-    templateUrl: './add-event.component.html',
-    styleUrls: ['./add-event.component.css'],
-    standalone: false
+  selector: "app-add-event",
+  templateUrl: "./add-event.component.html",
+  styleUrls: ["./add-event.component.css"],
+  standalone: false,
 })
 export class AddEventComponent implements OnInit {
   public venuesList: ILocation[] = [];
@@ -32,8 +32,8 @@ export class AddEventComponent implements OnInit {
 
   public event: IEvent;
 
-  public start_time = '00:00';
-  public end_time = '00:00';
+  public start_time = "00:00";
+  public end_time = "00:00";
 
   public start_date: Date;
   public end_date: Date;
@@ -55,15 +55,13 @@ export class AddEventComponent implements OnInit {
   public fuse;
 
   /* Fuse config */
-  public fuse_options: Fuse.FuseOptions<ILocation> = {
+  public fuse_options = {
     shouldSort: true,
     threshold: 0.3,
-    tokenize: true,
     location: 0,
     distance: 7,
-    maxPatternLength: 10,
     minMatchCharLength: 1,
-    keys: ['name', 'short_name'],
+    keys: ["name", "short_name"],
   };
 
   constructor(
@@ -71,7 +69,7 @@ export class AddEventComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   /** Filter venues with name */
   filterVenues(name: string): ILocation[] {
@@ -98,7 +96,7 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit() {
     if (!this.dataService.isLoggedIn()) {
-      alert('Please login to continue!');
+      alert("Please login to continue!");
       this.close(this.event);
       return;
     }
@@ -115,7 +113,7 @@ export class AddEventComponent implements OnInit {
     });
 
     this.bodies = this.bodies.concat(
-      this.dataService.GetBodiesWithPermission('AddE')
+      this.dataService.GetBodiesWithPermission("AddE")
     );
     this.sortBodies();
 
@@ -124,13 +122,14 @@ export class AddEventComponent implements OnInit {
         this.verification_bodies = this.verification_bodies.concat(bodies);
       },
       (error) => {
-        console.error('Error fetching verification bodies:', error);
-      })
+        console.error("Error fetching verification bodies:", error);
+      }
+    );
 
     this.sortBodies();
 
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.eventId = params['id'];
+      this.eventId = params["id"];
       this.refresh();
     });
 
@@ -154,7 +153,7 @@ export class AddEventComponent implements OnInit {
       cat.tags.sort((a, b) =>
         a.name.localeCompare(b.name, undefined, {
           numeric: true,
-          sensitivity: 'base',
+          sensitivity: "base",
         })
       );
     }
@@ -180,7 +179,7 @@ export class AddEventComponent implements OnInit {
 
           /* Check if the user can edit the event */
           if (!this.dataService.CanEditEvent(this.event)) {
-            alert('You do not have sufficient privileges to edit this event!');
+            alert("You do not have sufficient privileges to edit this event!");
             this.close(this.event);
           }
 
@@ -195,13 +194,13 @@ export class AddEventComponent implements OnInit {
           this.event.offered_achievements = null;
         },
         () => {
-          alert('Event not found!');
+          alert("Event not found!");
           this.dataService.navigateBack();
         }
       );
     } else {
       this.initializeBlank();
-      this.dataService.setTitle('Add Event');
+      this.dataService.setTitle("Add Event");
     }
   }
 
@@ -255,7 +254,7 @@ export class AddEventComponent implements OnInit {
       }
 
       /* Add according to privilege */
-      if (this.dataService.HasBodyPermission(body.id, 'DelE')) {
+      if (this.dataService.HasBodyPermission(body.id, "DelE")) {
         this.bodies.push(body);
       } else {
         this.disabledBodies.push(body);
@@ -266,20 +265,21 @@ export class AddEventComponent implements OnInit {
   initializeVerificationBodiesExisting() {
     for (const verification_body of this.event.verification_bodies) {
       /* Remove if already present */
-      const currIndex = this.verification_bodies.map((m) => m.id).indexOf(verification_body.id);
+      const currIndex = this.verification_bodies
+        .map((m) => m.id)
+        .indexOf(verification_body.id);
       if (currIndex !== -1) {
         this.bodies.splice(currIndex, 1);
       }
 
       /* Add according to privilege */
-      if (this.dataService.HasBodyPermission(verification_body.id, 'VerE')) {
+      if (this.dataService.HasBodyPermission(verification_body.id, "VerE")) {
         this.bodies.push(verification_body);
       } else {
         this.disabledBodies.push(verification_body);
       }
     }
   }
-
 
   /* Initialize a blank event */
   initializeBlank() {
@@ -298,15 +298,15 @@ export class AddEventComponent implements OnInit {
   /** Initializes defaults from query parameters */
   initializeQueryDefaults() {
     const params = this.activatedRoute.snapshot.queryParams;
-    console.log("hi", params.hasOwnProperty('body'))
-    if (params.hasOwnProperty('body')) {
-      this.event.bodies_id.push(params['body']);
+    console.log("hi", params.hasOwnProperty("body"));
+    if (params.hasOwnProperty("body")) {
+      this.event.bodies_id.push(params["body"]);
     }
-    if (params.hasOwnProperty('verification_bodies')) {
-      this.event.verification_bodies_id = params['verification_bodies'];
+    if (params.hasOwnProperty("verification_bodies")) {
+      this.event.verification_bodies_id = params["verification_bodies"];
     }
-    if (params.hasOwnProperty('date')) {
-      const date = new Date(params['date']);
+    if (params.hasOwnProperty("date")) {
+      const date = new Date(params["date"]);
       this.event.start_time = date;
       this.event.end_time = date;
       this.start_date = date;
@@ -344,13 +344,13 @@ export class AddEventComponent implements OnInit {
       (result) => {
         this.event.image_url = result.picture;
         this.networkBusy = false;
-        this.snackBar.open('Image Uploaded', 'Dismiss', {
+        this.snackBar.open("Image Uploaded", "Dismiss", {
           duration: 2000,
         });
       },
       (error) => {
         this.networkBusy = false;
-        this.snackBar.open(`Upload Failed - ${error.message}`, 'Dismiss', {
+        this.snackBar.open(`Upload Failed - ${error.message}`, "Dismiss", {
           duration: 2000,
         });
       }
@@ -369,7 +369,7 @@ export class AddEventComponent implements OnInit {
     if (
       this.assertValidation(
         this.event.start_time < this.event.end_time,
-        'Event must end after it starts!'
+        "Event must end after it starts!"
       )
     ) {
       return;
@@ -379,7 +379,7 @@ export class AddEventComponent implements OnInit {
     if (
       this.assertValidation(
         this.event.bodies_id.length > 0,
-        'No bodies selected!'
+        "No bodies selected!"
       )
     ) {
       return;
@@ -388,7 +388,7 @@ export class AddEventComponent implements OnInit {
     if (
       this.assertValidation(
         this.event.verification_bodies_id.length > 0,
-        'No  verification bodies selected!'
+        "No  verification bodies selected!"
       )
     ) {
       return;
@@ -398,9 +398,9 @@ export class AddEventComponent implements OnInit {
     if (
       this.assertValidation(
         this.event.name &&
-        this.event.name.length > 0 &&
-        this.event.name.length <= 50,
-        'Event name too long/short'
+          this.event.name.length > 0 &&
+          this.event.name.length <= 50,
+        "Event name too long/short"
       )
     ) {
       return;
@@ -410,12 +410,11 @@ export class AddEventComponent implements OnInit {
     if (
       this.assertValidation(
         this.offeredAchievements.every((o) => this.isValidOffer(o)),
-        'You have some invalid achievements!'
+        "You have some invalid achievements!"
       )
     ) {
       return;
     }
-
 
     /* Create observable for POST/PUT */
     let obs: Observable<IEvent>;
@@ -428,7 +427,7 @@ export class AddEventComponent implements OnInit {
     /* Make the request */
     obs.subscribe(
       (result) => {
-        this.assertValidation(false, 'Successful!');
+        this.assertValidation(false, "Successful!");
 
         /* Add one venue if not present */
         if (this.event.venue_names.length === 0) {
@@ -449,13 +448,13 @@ export class AddEventComponent implements OnInit {
       },
       (result) => {
         /* Construct error statement */
-        let string_error = '';
+        let string_error = "";
         for (const err of Object.keys(result.error)) {
-          string_error += ' - ' + err + ': ' + result.error[err];
+          string_error += " - " + err + ": " + result.error[err];
         }
 
         /* Display message */
-        this.assertValidation(false, 'Error' + string_error);
+        this.assertValidation(false, "Error" + string_error);
       }
     );
   }
@@ -463,7 +462,7 @@ export class AddEventComponent implements OnInit {
   /** Show a validation error */
   assertValidation(condition: boolean, error: string): boolean {
     if (!condition) {
-      this.snackBar.open(error, 'Dismiss', {
+      this.snackBar.open(error, "Dismiss", {
         duration: 2000,
       });
       this.networkBusy = false;
@@ -475,22 +474,22 @@ export class AddEventComponent implements OnInit {
   delete() {
     if (
       confirm(
-        'Are you sure you want to delete this event? This action is irreversible!'
+        "Are you sure you want to delete this event? This action is irreversible!"
       )
     ) {
       this.dataService.FireDELETE(API.Event, { uuid: this.eventId }).subscribe(
         () => {
-          this.snackBar.open('Event Deleted!', 'Dismiss', {
+          this.snackBar.open("Event Deleted!", "Dismiss", {
             duration: 2000,
           });
-          this.router.navigate(['feed']);
+          this.router.navigate(["feed"]);
         },
         (error) => {
           if (error.detail) {
             alert(error.detail);
           } else {
             alert(
-              'Deleting failed. Are you sure you have the required permissions?'
+              "Deleting failed. Are you sure you have the required permissions?"
             );
           }
         }
@@ -537,7 +536,7 @@ export class AddEventComponent implements OnInit {
   ConstructVenuesNames() {
     this.event.venue_names = this.event.venues.map((v) => v.short_name);
     this.event.venue_names = this.event.venue_names.filter(
-      (v) => v && v !== ''
+      (v) => v && v !== ""
     );
   }
 
@@ -550,9 +549,9 @@ export class AddEventComponent implements OnInit {
   /** Open the event page */
   close(event: IEvent) {
     if (this.dataService.isSandbox) {
-      window.location.href = '/event/' + event.str_id;
+      window.location.href = "/event/" + event.str_id;
     } else {
-      this.router.navigate(['event', event.str_id]);
+      this.router.navigate(["event", event.str_id]);
     }
   }
 
@@ -560,7 +559,7 @@ export class AddEventComponent implements OnInit {
    * Gets the image URL or placeholder
    */
   getImageUrl() {
-    if (this.event && this.event.image_url && this.event.image_url !== '') {
+    if (this.event && this.event.image_url && this.event.image_url !== "") {
       return this.event.image_url;
     } else {
       return PLACEHOLDER;
@@ -602,7 +601,7 @@ export class AddEventComponent implements OnInit {
   addOffer(): void {
     const offer = {
       stat: 0,
-      generic: 'generic',
+      generic: "generic",
     } as IOfferedAchievement;
     if (this.event.bodies_id.length > 0) {
       offer.body = this.event.bodies_id[0];
@@ -618,8 +617,8 @@ export class AddEventComponent implements OnInit {
     };
 
     /* Check if the offer actually exists */
-    if (offer.id && offer.id !== '') {
-      if (confirm('Remove this achievement? This is irreversible!')) {
+    if (offer.id && offer.id !== "") {
+      if (confirm("Remove this achievement? This is irreversible!")) {
         this.dataService
           .FireDELETE(API.AchievementOffer, { id: offer.id })
           .subscribe(
@@ -648,7 +647,7 @@ export class AddEventComponent implements OnInit {
 
       /* Get the observable */
       let obs: Observable<IOfferedAchievement>;
-      if (offer.id && offer.id !== '') {
+      if (offer.id && offer.id !== "") {
         obs = this.dataService.FirePUT<IOfferedAchievement>(
           API.AchievementOffer,
           offer,
@@ -678,7 +677,7 @@ export class AddEventComponent implements OnInit {
         () => {
           this.snackBar.open(
             `Achievement ${offer.title} failed. The event was updated.`,
-            'Dismiss',
+            "Dismiss",
             { duration: 2000 }
           );
           offer.stat = 2;

@@ -114,7 +114,7 @@ table.card-table {
 .avatar3 img {
     width: 9vw;
     height: 9vw;
-    background: url('assets/lotus_placeholder.png') no-repeat;
+    background: url('/assets/lotus_placeholder.png') no-repeat;
     background-size: contain;
 }
 

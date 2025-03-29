@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../data.service';
 import { IEvent, IEventContainer } from '../../interfaces';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export const TITLE = 'Feed';
 
@@ -96,7 +96,7 @@ export class FeedComponent implements OnInit {
       }
       prev.events.push(event);
     }
-    if (prev.events !== []) {
+    if (prev.events.length) {
       result.push(prev);
     }
     return result;

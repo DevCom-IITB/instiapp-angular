@@ -1,6 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject, noop } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpRequest, HttpEventType } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { Observable, Subject, noop } from "rxjs";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpRequest,
+  HttpEventType,
+} from "@angular/common/http";
 import {
   IEnumContainer,
   IUserProfile,
@@ -12,26 +17,26 @@ import {
   ICommunity,
   ICommunityPost,
   IPath,
-} from './interfaces';
-import { Router } from '@angular/router';
-import { environment } from '../environments/environment';
-import * as uriTemplates from 'uri-templates';
-import { API } from '../api';
-import { Location } from '@angular/common';
-import { Helpers } from './helpers';
-import { Title } from '@angular/platform-browser';
-import { WinRT } from './windows';
+} from "./interfaces";
+import { Router } from "@angular/router";
+import { environment } from "../environments/environment";
+import uriTemplates from "uri-templates";
+import { API } from "../api";
+import { Location } from "@angular/common";
+import { Helpers } from "./helpers";
+import { Title } from "@angular/platform-browser";
+import { WinRT } from "./windows";
 // import { setWithCredentials } from 'ol/featureloader';
 // import { error } from 'console';
 /** Headers for injection for quick use */
 let JSON_HEADERS = new HttpHeaders();
-JSON_HEADERS = JSON_HEADERS.set('Content-Type', 'application/json');
+JSON_HEADERS = JSON_HEADERS.set("Content-Type", "application/json");
 
 /** The hoste the app is being served on */
 const HOST = environment.apiUrl;
 
 /** Absolute SSO redirection URL */
-const SSO_REDIR = environment.host + 'login'; /* Has to be absolute URL */
+const SSO_REDIR = environment.host + "login"; /* Has to be absolute URL */
 
 /** SSO host address */
 const SSOHOST = environment.sso_host;
@@ -69,9 +74,9 @@ export class DataService {
   public scrollBottomFunction = noop;
 
   /* Constants */
-  public LOGIN_REDIR = 'login_redir';
-  public LS_USER = 'user_profile';
-  public SESSION_ID = 'session_id';
+  public LOGIN_REDIR = "login_redir";
+  public LS_USER = "user_profile";
+  public SESSION_ID = "session_id";
 
   /** Running in a sandbox */
   public isSandbox = false;
@@ -180,7 +185,7 @@ export class DataService {
   ): Observable<T> {
     // const sid = localStorage.getItem(this.SESSION_ID);
     // if (sid !== null && sid !== undefined) {
-    //   if (options["headers"] != null) {
+    //   if (options["headers"] !==null) {
     //     const headers = options["headers"] as HttpHeaders;
     //     headers.append(
     //       "Cookie",
@@ -216,7 +221,7 @@ export class DataService {
   ): Observable<T> {
     // const sid = localStorage.getItem(this.SESSION_ID);
     // if (sid !== null && sid !== undefined) {
-    //   if (options["headers"] != null) {
+    //   if (options["headers"] !==null) {
     //     const headers = options["headers"] as HttpHeaders;
     //     headers.append(
     //       "Cookie",
@@ -264,15 +269,15 @@ export class DataService {
   UploadImage(image: File): Observable<any> {
     /* Construct upload request */
     const formData = new FormData();
-    formData.append('picture', image);
-    const uploadReq = new HttpRequest('POST', HOST + API.PostImage, formData);
+    formData.append("picture", image);
+    const uploadReq = new HttpRequest("POST", HOST + API.PostImage, formData);
 
     /* Make upload request and return */
     return new Observable((observer) => {
       this.http.request(uploadReq).subscribe(
         (event) => {
           if (event.type === HttpEventType.Response) {
-            observer.next(event.body['picture']);
+            observer.next(event.body["picture"]);
             observer.complete();
           }
         },
@@ -379,14 +384,16 @@ export class DataService {
   /**fetch all adj list posting origin and destination */
 
   postOriginAndDestination() {
-    this.FirePOST<IPath>(API.ShortestPath, this.originAndDestinationData).subscribe((res) => {
+    this.FirePOST<IPath>(
+      API.ShortestPath,
+      this.originAndDestinationData
+    ).subscribe((res) => {
       return res;
-    }
-    );
+    });
   }
   /** Gets the current user if logged in
-  * The result is cached
-  */
+   * The result is cached
+   */
   GetFillCurrentUser(): Observable<IUserProfile> {
     return new Observable((observer) => {
       if (!this._currentUser) {
@@ -463,7 +470,7 @@ export class DataService {
       },
       (error) => {
         if (error.status === 401) {
-          alert('Your session has expired');
+          alert("Your session has expired");
           this.PostLogout();
         }
         this._loggedInSubject.next(false);
@@ -473,9 +480,9 @@ export class DataService {
 
   /** Gets SSO URL */
   GetLoginURL() {
-    const RESPONSE_TYPE = 'code';
+    const RESPONSE_TYPE = "code";
     const SCOPE =
-      'basic profile picture sex ldap phone insti_address program secondary_emails';
+      "basic profile picture sex ldap phone insti_address program secondary_emails";
 
     return `${SSOHOST}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${SSO_REDIR}`;
   }
@@ -541,7 +548,6 @@ export class DataService {
     return this.FireGET<IBody[]>(`${API.EventVerificationBodies}`);
   }
 
-
   /** Returns true if the user has the permission for institute */
   HasInstitutePermission(permission: string): boolean {
     if (!this.isLoggedIn()) {
@@ -573,7 +579,7 @@ export class DataService {
   /** Returns true if the user has permission to edit the event */
   CanEditEvent(event: IEvent): boolean {
     for (const body of event.bodies) {
-      if (this.HasBodyPermission(body.id, 'UpdE')) {
+      if (this.HasBodyPermission(body.id, "UpdE")) {
         return true;
       }
     }
@@ -583,7 +589,7 @@ export class DataService {
   /** Return true if the current user can delete the event */
   CanDeleteEvent(event: IEvent): boolean {
     for (const body of event.bodies) {
-      if (!this.HasBodyPermission(body.id, 'DelE')) {
+      if (!this.HasBodyPermission(body.id, "DelE")) {
         return false;
       }
     }
@@ -597,7 +603,6 @@ export class DataService {
         return true;
       }
     }
-
   }
 
   /** Mark a UNR for the current user */
@@ -703,7 +708,7 @@ export class DataService {
 
   /** Get the URL of a body from str_id */
   getBodyUrl(body: IBody): string {
-    return window.location.origin + '/org/' + body.str_id;
+    return window.location.origin + "/org/" + body.str_id;
   }
 
   /** Get (and cache) list of types of achievement offers */
@@ -713,7 +718,7 @@ export class DataService {
         observer.next(this.achievementOfferTypes);
         observer.complete();
       } else {
-        this.FireGET('/assets/achievements/list.json').subscribe(
+        this.FireGET("/assets/achievements/list.json").subscribe(
           (res: any) => {
             this.achievementOfferTypes = res.types;
             observer.next(this.achievementOfferTypes);
@@ -736,7 +741,7 @@ export class DataService {
   }
 
   equals(objOne, objTwo) {
-    if (typeof objOne !== 'undefined' && typeof objTwo !== 'undefined') {
+    if (typeof objOne !== "undefined" && typeof objTwo !== "undefined") {
       return objOne.id === objTwo.id;
     }
   }
@@ -745,12 +750,12 @@ export class DataService {
   performLogin() {
     this.GetFillCurrentUser().subscribe(() => {
       const redir = localStorage.getItem(this.LOGIN_REDIR);
-      if (redir && redir !== '') {
-        localStorage.setItem(this.LOGIN_REDIR, '');
+      if (redir && redir !== "") {
+        localStorage.setItem(this.LOGIN_REDIR, "");
         const rpath: any[] = this.DecodeObject(redir);
         this.router.navigate(rpath);
       } else {
-        this.router.navigate(['feed']);
+        this.router.navigate(["feed"]);
       }
     });
   }
@@ -761,7 +766,7 @@ export class DataService {
    */
   approveEmail(eventId: string): Observable<any> {
     const url = `${API.Events}/${eventId}/approve-mail`;
-    console.log('Constructed URL:', url);
+    console.log("Constructed URL:", url);
     return this.FirePOST(url, {});
   }
 
@@ -774,5 +779,4 @@ export class DataService {
 
     return this.FirePOST(url, {});
   }
-
 }

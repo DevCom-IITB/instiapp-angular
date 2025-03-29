@@ -43,6 +43,6 @@ p.hidden-content {
 
     height: 38px;
     width: 38px;
-    background: url('assets/lotus_placeholder.png') no-repeat;
+    background: url('/assets/lotus_placeholder.png') no-repeat;
     background-size: contain;
 }

@@ -5,9 +5,9 @@ import { API } from '../../../../api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Helpers } from '../../../helpers';
-import { Parser } from 'json2csv';
-import * as moment from 'moment';
-import * as QRCode from 'qrcode-generator';
+import { Parser } from '@json2csv/plainjs';
+import moment from 'moment';
+import QRCode from 'qrcode-generator';
 
 @Component({
     selector: 'app-achievement-new',

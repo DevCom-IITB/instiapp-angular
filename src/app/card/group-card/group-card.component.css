@@ -25,7 +25,7 @@ div.block {
 .mdc-card__media-content {
     position: relative;
     color: white !important;
-    
+
 }
 
 .block {
@@ -64,7 +64,7 @@ table.card-table {
 .avatar img {
     height: 50px;
     width: 50px;
-    background: url('assets/lotus_placeholder.png') no-repeat;
+    background: url('/assets/lotus_placeholder.png') no-repeat;
     background-size: contain;
 }
 
@@ -83,15 +83,15 @@ div.content p {
 
 
 .card-sub-title {
-    
+
     overflow: hidden;
-    
+
 }
 
 .followers_posts {
-   
+
     overflow: hidden;
-   
+
 }
 
 .badge {
@@ -111,7 +111,7 @@ div.content p {
     font-weight: 500;
     font-size: 16px;
     line-height: 140%;
-    
+
 
     display: flex;
     align-items: center;
@@ -130,7 +130,7 @@ div.content p {
     font-weight: 400;
     font-size: 12px;
     line-height: 140%;
-    
+
     margin: 0;
     display: flex;
     align-items: center;
