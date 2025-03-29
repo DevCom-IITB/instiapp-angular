@@ -1,5 +1,5 @@
-@import '~@angular/material/theming';
-@include mat-core();
+@use '~@angular/material' as mat;
+@include mat.core();
 
 /* For use in src/lib/core/theming/_palette.scss */
 $md-cprimary: (
@@ -69,19 +69,19 @@ $md-caccent: (
     )
 );
 
-$md-primary: mat-palette($md-cprimary, 500, 100, 700);
-$md-accent: mat-palette($md-caccent, 500, 300, 800);
-$md-warn: mat-palette($mat-red, 500, 300, 900);
+$md-primary: mat.define-palette($md-cprimary, 500, 100, 700);
+$md-accent: mat.define-palette($md-caccent, 500, 300, 800);
+$md-warn: mat.define-palette(mat.$red-palette, 500, 300, 900);
 
 $my-theme-foreground: (
   base: black,
-  divider: $dark-dividers,
-  dividers: $dark-dividers,
-  disabled: $dark-disabled-text,
+  divider: rgba(black, 0.12),
+  dividers: rgba(black, 0.12),
+  disabled: rgba(black, 0.38),
   disabled-button: rgba(black, 0.26),
-  disabled-text: $dark-disabled-text,
-  hint-text: $dark-disabled-text,
-  secondary-text: $dark-secondary-text,
+  disabled-text: rgba(black, 0.38),
+  hint-text: rgba(black, 0.38),
+  secondary-text: rgba(black, 0.54),
   icon: rgba(black, 0.54),
   icons: rgba(black, 0.54),
   text: rgba(black, 0.87),
@@ -91,20 +91,20 @@ $my-theme-foreground: (
 );
 
 $my-theme-background: (
-  status-bar: map_get($mat-grey, 300),
-  app-bar:    map_get($mat-grey, 100),
-  background: map_get($mat-grey, 50),
+  status-bar: map_get(mat.$grey-palette, 300),
+  app-bar:    map_get(mat.$grey-palette, 100),
+  background: map_get(mat.$grey-palette, 50),
   hover:      rgba(black, 0.04),
   card:       white,
   dialog:     white,
   disabled-button: rgba(black, 0.12),
   raised-button: white,
-  focused-button: $dark-focused,
-  selected-button: map_get($mat-grey, 300),
-  selected-disabled-button: map_get($mat-grey, 400),
-  disabled-button-toggle: map_get($mat-grey, 200),
-  unselected-chip: map_get($mat-grey, 300),
-  disabled-list-option: map_get($mat-grey, 200),
+  focused-button: rgba(black, 0.12),
+  selected-button: map_get(mat.$grey-palette, 300),
+  selected-disabled-button: map_get(mat.$grey-palette, 400),
+  disabled-button-toggle: map_get(mat.$grey-palette, 200),
+  unselected-chip: map_get(mat.$grey-palette, 300),
+  disabled-list-option: map_get(mat.$grey-palette, 200),
 );
 
 $theme: (
@@ -117,4 +117,4 @@ $theme: (
 );
 
 // Establish theme
-@include angular-material-theme($theme);
+@include mat.all-component-themes($theme);
