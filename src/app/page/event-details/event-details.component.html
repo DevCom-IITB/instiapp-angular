@@ -12,7 +12,7 @@
 
   <div right class="right">
     <div class="section">
-      <div class="rl-header sm">{{ event.description }}</div>
+      <div class="rl-header sm">{{ event.email_subject }}</div>
       <div class="markdown">
         <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
       </div>
@@ -79,7 +79,7 @@
     <div class="event-body">
       <ng-container *ngIf="desktopMode || dataService.isMobile()">
         <div class="description markdown">
-          <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
+          <div [innerHTML]="dataService.processMDHTML(event.email_subject | markdown)"></div>
           <!-- <div [innerHTML]="dataService.processMDHTML(event.long_description | markdown)"></div> -->
         </div>
         <ng-container *ngIf="dataService.canViewMaxContent()">
@@ -139,7 +139,7 @@
       <mat-icon>close</mat-icon>
     </button>
     <div class="description markdown scrollable-content">
-      <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
+      <div [innerHTML]="dataService.processMDHTML(event.email_subject | markdown)"></div>
       <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
     </div>
     <div class="popup-actions">

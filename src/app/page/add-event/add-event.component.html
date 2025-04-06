@@ -110,14 +110,14 @@
 
       <div>
         <mat-form-field class="full-width-details">
-          <textarea matInput placeholder="Email Subject" [(ngModel)]="event.description" rows=8>
+          <textarea matInput placeholder="Email Subject" [(ngModel)]="event.email_subject" rows=8>
         </textarea>
         </mat-form-field>
       </div>
 
       <div>
         <mat-form-field class="full-width-details">
-          <textarea matInput placeholder="Email Content / InstiApp Description" [(ngModel)]="event.longdescription" rows=8></textarea>
+          <textarea matInput placeholder="Email Content / InstiApp Description" [(ngModel)]="event.longdescription" (ngModelChange)="event.description = $event" rows=8></textarea>
         </mat-form-field>
       </div>
 
@@ -228,7 +228,7 @@
       Styling with <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
         target="_blank">Markdown</a> is supported
     </div>
-    <markdown class="markdown" [data]="event.description"></markdown>
+    <markdown class="markdown" [data]="event.email_subject"></markdown>
     <markdown class="markdown" [data]="event.longdescription"></markdown>
   </div>
 

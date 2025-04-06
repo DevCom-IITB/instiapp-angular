@@ -34,6 +34,7 @@ export interface IEvent {
     str_id: string;
     name: string;
     description: string;
+    email_subject: string;
     longdescription: string;
     email_verified: boolean,
     email_rejected: boolean,
