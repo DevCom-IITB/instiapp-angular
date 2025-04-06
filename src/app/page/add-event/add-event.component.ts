@@ -341,7 +341,7 @@ export class AddEventComponent implements OnInit {
     }
     this.dataService.UploadImage(files[0]).subscribe(
       (result) => {
-        this.event.image_url = result.picture;
+        this.event.image_url = result;
         this.networkBusy = false;
         this.snackBar.open('Image Uploaded', 'Dismiss', {
           duration: 2000,

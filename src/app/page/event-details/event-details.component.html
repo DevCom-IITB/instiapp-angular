@@ -12,9 +12,9 @@
 
   <div right class="right">
     <div class="section">
-      <div class="rl-header sm">{{ event.name }}</div>
+      <div class="rl-header sm">{{ event.description }}</div>
       <div class="markdown">
-        <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
+        <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
       </div>
       <ng-container *ngTemplateOutlet="achievements"></ng-container>
     </div>
@@ -87,9 +87,24 @@
             <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
           </div>
           <ng-container *ngIf="dataService.canViewMaxContent()">
-            <button mat-raised-button color="primary" (click)="openVerifyEmailPopup()">
-              Verify Email
-            </button>
+            <ng-container *ngIf="event.email_rejected; else emailStatus">
+              <button mat-raised-button class="rejected-button" disabled>
+                Event Rejected
+              </button>
+            </ng-container>
+            <ng-template #emailStatus>
+              <ng-container *ngIf="event.email_verified; else verifyEmailButton">
+                <button mat-raised-button class="approved-button" disabled>
+                  Event Approved
+                </button>
+              </ng-container>
+              <ng-template #verifyEmailButton>
+                <button mat-raised-button color="primary" (click)="openVerifyEmailPopup()">
+                  Verify Email
+                </button>
+              </ng-template>
+            </ng-template>
+            
           </ng-container>
         </ng-container>
         <ng-container *ngIf="!desktopMode">
@@ -120,10 +135,16 @@
 
 <ng-container *ngIf="showVerifyEmailPopup">
   <div class="verify-email-popup">
-    <div class="description markdown">
+    <button mat-icon-button class="close-button" (click)="showVerifyEmailPopup = false">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="description markdown scrollable-content">
+      <div [innerHTML]="dataService.processMDHTML(event.description | markdown)"></div>
       <div [innerHTML]="dataService.processMDHTML(event.longdescription | markdown)"></div>
     </div>
-    <button mat-button (click)="approveEmail()">Approve</button>
-    <button mat-button (click)="rejectEmail()">Reject</button>
+    <div class="popup-actions">
+      <button mat-button color="primary" (click)="approveEmail()">Approve</button>
+      <button mat-button color="warn" (click)="rejectEmail()">Reject</button>
+    </div>
   </div>
 </ng-container>

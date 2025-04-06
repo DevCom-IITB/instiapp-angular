@@ -22,7 +22,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
   public error: number;
   @Input() public desktopMode = false;
   public showVerifyEmailPopup = false;
-
+  public emailRejected = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     public dataService: DataService,
@@ -126,6 +126,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.approveEmail(this.eventId).subscribe(
       () => {
         console.log('Email approved successfully!');
+        this.event.email_verified = true;
       },
       (error) => {
         console.error('Error approving email:', error);
@@ -138,6 +139,7 @@ export class EventDetailsComponent implements OnChanges, OnInit {
     this.dataService.rejectEmail(this.eventId).subscribe(
       () => {
         console.log('Email rejected successfully!');
+        this.event.email_rejected = true;
       },
       (error) => {
         console.error('Error rejecting email:', error);
