@@ -16,9 +16,7 @@
             },
             "index": "src/index.html",
             "tsConfig": "src/tsconfig.app.json",
-            "polyfills": [
-              "src/polyfills.ts"
-            ],
+            "polyfills": ["src/polyfills.ts"],
             "assets": [
               "src/assets",
               "src/favicon.ico",
@@ -32,13 +30,8 @@
               },
               "src/apple-app-site-association"
             ],
-            "styles": [
-              "src/styles.css",
-              "src/theme.scss"
-            ],
-            "scripts": [
-              "node_modules/marked/lib/marked.js"
-            ],
+            "styles": ["src/styles.css", "src/theme.scss"],
+            "scripts": ["node_modules/marked/lib/marked.esm.js"],
             "aot": false,
             "extractLicenses": false,
             "sourceMap": true,
@@ -91,10 +84,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -117,8 +107,6 @@
   },
   "cli": {
     "analytics": false,
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }
