@@ -34,8 +34,10 @@ export interface IEvent {
     str_id: string;
     name: string;
     description: string;
+    email_subject: string;
     longdescription: string;
     email_verified: boolean,
+    email_rejected: boolean,
     image_url: string;
     website_url: string;
     start_time: Date;

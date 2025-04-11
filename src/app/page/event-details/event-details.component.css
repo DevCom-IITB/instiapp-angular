@@ -51,6 +51,17 @@
     word-wrap: break-word;
 }
 
+.approved-button {
+    background-color: white !important; /* Ensure the background remains white */
+    color: green !important; /* Green text */
+    border: 2px solid green !important; /* Green border */
+}
+.rejected-button {
+    background-color: white !important; /* Ensure the background remains white */
+    color: red !important; /* Green text */
+    border: 2px solid red !important; /* Green border */
+}
+
 .event-body {
     max-width: 500px;
     margin: 0 auto;
@@ -94,7 +105,7 @@
     color: black;
 }
 
-.verify-email-popup {
+/* .verify-email-popup {
     position: fixed;
     top: 50%;
     left: 60%;
@@ -104,7 +115,48 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 100000;
     transition: background-color 0.3s;
-}
+} */
+.verify-email-popup {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 40%;
+    max-width: 40%;
+    max-height: 70%; /* Prevent overflow */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px; /* Ensure the button is a perfect circle */
+    height: 40px;
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    align-items: center; /* Center the icon vertically */
+    justify-content: center; /* Center the icon horizontally */
+    background-color: white; /* Optional: Add a background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better visibility */
+  }
+
+  .scrollable-content {
+    overflow-y: auto;
+    max-height: 60%; /* Adjust height to allow scrolling */
+    margin-bottom: 20px;
+  }
+  .popup-actions {
+    display: flex;
+    justify-content: space-between;
+  }
 
 .verify-email-popup button {
     margin-top: 10px;

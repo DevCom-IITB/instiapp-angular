@@ -201,8 +201,8 @@
         <mat-form-field class="full-width-details">
           <textarea
             matInput
-            placeholder="Description"
-            [(ngModel)]="event.description"
+            placeholder="Email Subject"
+            [(ngModel)]="event.email_subject"
             rows="8"
           >
           </textarea>
@@ -213,8 +213,9 @@
         <mat-form-field class="full-width-details">
           <textarea
             matInput
-            placeholder="Email Content"
+            placeholder="Email Content / InstiApp Description"
             [(ngModel)]="event.longdescription"
+            (ngModelChange)="event.description = $event"
             rows="8"
           ></textarea>
         </mat-form-field>
@@ -355,7 +356,7 @@
   </div>
 
   <div right class="md-preview">
-    <div class="rl-header head">Description Preview</div>
+    <div class="rl-header head">Email Preview</div>
     <div class="subh">
       Styling with
       <a
@@ -365,6 +366,7 @@
       >
       is supported
     </div>
-    <markdown class="markdown" [data]="event.description"></markdown>
+    <markdown class="markdown" [data]="event.email_subject"></markdown>
+    <markdown class="markdown" [data]="event.longdescription"></markdown>
   </div>
 </app-desktop-split>
