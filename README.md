@@ -1,6 +1,6 @@
 # InstiApp-Angular
 
-Client for IIT Bombay's InstiApp in Angular 9, deployed at https://insti.app
+Client for IIT Bombay's InstiApp in Angular 19, deployed at https://insti.app
 
 [![Build](https://github.com/DevCom-IITB/instiapp-angular/workflows/Build/badge.svg)](https://github.com/DevCom-IITB/instiapp-angular/actions)
 [![Deploy](https://github.com/DevCom-IITB/instiapp-angular/workflows/Deploy/badge.svg)](https://github.com/DevCom-IITB/instiapp-angular/tree/built)
