@@ -44,24 +44,42 @@
         </mat-form-field>
       </div>
 
-      <div *ngFor="let vn of event.venues; let i = index">
-        <mat-form-field class="full-width-details venue">
+      <div>
+        <!-- <mat-form-field class="full-width-details venue">
           <input matInput placeholder="Venue" aria-label="Venue" [matAutocomplete]="venueAuto"
-            [formControl]="venueControls[i].form">
+            [formControl]="venueControls[0].form">
         </mat-form-field>
 
         <mat-autocomplete #venueAuto="matAutocomplete">
-          <mat-option *ngFor="let venue of venueControls[i].filteredLocations | async" [value]="venue.short_name">
+          <mat-option *ngFor="let venue of venueControls[0].filteredLocations | async" [value]="venue.short_name">
             {{ venue.short_name }}
           </mat-option>
-        </mat-autocomplete>
+        </mat-autocomplete> -->
 
-        <button *ngIf="i==0" (click)="AddVenue()" mat-icon-button>
+        <mat-form-field class="full-width-details venue">
+          <mat-select
+            placeholder="Venue / Building"
+            [(ngModel)]="event.venues[0].short_name"
+            required
+            panelClass="venue-dropdown-panel">
+            <mat-option *ngFor="let location of predefinedLocations" [value]="location">
+              {{ location }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-details">
+          <input
+            matInput
+            placeholder="Specific Location / Room (optional)"
+            [(ngModel)]="event.venue_room">
+        </mat-form-field>
+        <!-- <button *ngIf="i==0" (click)="AddVenue()" mat-icon-button>
           <mat-icon>add</mat-icon>
         </button>
         <button *ngIf="i!=0" (click)="RemoveVenue(i)" mat-icon-button>
           <mat-icon>remove</mat-icon>
-        </button>
+        </button> -->
       </div>
 
       <div>
@@ -79,7 +97,7 @@
 
       <div>
         <mat-form-field class="full-width-details">
-          <mat-select [(ngModel)]="event.verification_bodies_id" placeholder="Verification Bodies" multiple>
+          <mat-select [(ngModel)]="event.verification_bodies_id[0]" placeholder="Verification Bodies" required>
             <mat-option *ngFor="let verification_body of verification_bodies" [value]="verification_body.id">
               {{ verification_body.name }}
             </mat-option>
@@ -90,7 +108,7 @@
         </mat-form-field>
       </div>
 
-      <div class="full-width-details">
+      <!-- <div class="full-width-details">
         <app-search-box exploreProp="interests" displayProp="title" placeholder="Notify according to interests"
           hint="Enter a Interest" (change)="setInterest($event)">
         </app-search-box>
@@ -100,7 +118,7 @@
 
         </app-interest-card>
 
-      </div>
+      </div> -->
 
       <div>
         <mat-form-field class="full-width-details">
@@ -117,11 +135,11 @@
 
       <div>
         <mat-form-field class="full-width-details">
-          <textarea matInput placeholder="Email Content / InstiApp Description" [(ngModel)]="event.longdescription" (ngModelChange)="event.description = $event" rows=8></textarea>
+          <textarea matInput placeholder="Email Content / InstiApp Description" [(ngModel)]="event.description" (ngModelChange)="event.description = $event" rows=8></textarea>
         </mat-form-field>
       </div>
 
-      <div class="audience-panel" *ngIf="tagCategoryList">
+      <!-- <div class="audience-panel" *ngIf="tagCategoryList">
         <div class="full-width-details">
           <div class="label tag-category">
             Offered Achievements
@@ -129,9 +147,9 @@
             <div class="sub">
               Make your event stand out
             </div>
-          </div>
+          </div> -->
 
-          <mat-accordion>
+          <!-- <mat-accordion>
             <mat-expansion-panel *ngFor="let offer of offeredAchievements">
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -155,9 +173,9 @@
             </mat-expansion-panel>
           </mat-accordion>
         </div>
-      </div>
+      </div> -->
 
-      <div class="audience-panel" *ngIf="tagCategoryList">
+      <!-- <div class="audience-panel" *ngIf="tagCategoryList">
         <div class="full-width-details">
           <div class="label">
             Restricted Audience
@@ -195,15 +213,15 @@
             </mat-expansion-panel>
           </mat-accordion>
         </div>
-      </div>
-
+      </div> -->
+<!-- 
       <div>
         <div class="full-width-details switch">
           <mat-slide-toggle [(ngModel)]="event.notify">
             Notify followers on creation/updation
           </mat-slide-toggle>
         </div>
-      </div>
+      </div> -->
 
 
 
@@ -229,7 +247,7 @@
         target="_blank">Markdown</a> is supported
     </div>
     <markdown class="markdown" [data]="event.email_subject"></markdown>
-    <markdown class="markdown" [data]="event.longdescription"></markdown>
+    <markdown class="markdown" [data]="event.description"></markdown>
   </div>
 
 </app-desktop-split>

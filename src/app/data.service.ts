@@ -596,13 +596,25 @@ export class DataService {
   }
 
   /** Return true if the current user can view the max content of the event and push email */
-  canViewMaxContent(): boolean {
+  canViewMaxContent(event: IEvent): boolean {
+    if (
+      !this._loggedIn ||
+      !event ||
+      !event.verification_bodies_id ||
+      !event.verification_bodies_id.length
+    ) return false;
+
+    const verificationBodyId = event.verification_bodies_id[0];
+
     for (const role of this._currentUser.roles) {
-      if (role.permissions.includes("VerE")) {
+      if (
+        role.permissions.includes("VerE") &&
+        role.bodies.some(body => body.id === verificationBodyId)
+      ) {
         return true;
       }
     }
-
+    return false;
   }
 
   /** Mark a UNR for the current user */

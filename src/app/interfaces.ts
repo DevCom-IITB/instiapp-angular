@@ -46,6 +46,7 @@ export interface IEvent {
     venues: ILocation[];
     venue_names: string[];
     venues_str: string;
+    venue_room: string;
     bodies: IBody[];
     verification_bodies: IBody[];
     verification_bodies_id: string[];

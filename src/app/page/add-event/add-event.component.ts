@@ -28,6 +28,93 @@ const PLACEHOLDER = 'assets/add_image_placeholder.svg';
 export class AddEventComponent implements OnInit {
   public venuesList: ILocation[] = [];
   public venueControls: any[] = [];
+  public predefinedLocations: string[] = [
+  "ACRE / Advanced Centre",
+  "Aerospace Engineering",
+  "AR for Research & Electronics Lab",
+  "Basketball Court",
+  "Central Library",
+  "Central Office (Chem. Dept.)",
+  "CESE / Center for Environmental Science and Engineering",
+  "Chemical Department",
+  "Chemistry Department",
+  "Civil Engineering",
+  "Computer Science & Engg.",
+  "Construction Division",
+  "Convocation Hall",
+  "CSRE",
+  "Cummins Engine Research Facility",
+  "Earth Science Department",
+  "Electrical Engineering",
+  "Electrical Maintenance Division",
+  "Elec. Maintenance Dept.",
+  "Energy Systems Lab",
+  "Energy Science and Engineering",
+  "Environmental Science and Engineering",
+  "Estate Stores / Offices",
+  "Guest House",
+  "Gymkhana Ground",
+  "Hostel 1",
+  "Hostel 10",
+  "Hostel 11",
+  "Hostel 12",
+  "Hostel 13",
+  "Hostel 14",
+  "Hostel 15",
+  "Hostel 16",
+  "Hostel 17",
+  "Hostel 18",
+  "Hostel 2",
+  "Hostel 3",
+  "Hostel 4",
+  "Hostel 5",
+  "Hostel 6",
+  "Hostel 7",
+  "Hostel 8",
+  "Hostel 9",
+  "Humanities and Social Sciences (HSS)",
+  "IC Engine Lab",
+  "IDC",
+  "Indoor Badminton Court",
+  "Indoor Gymkhana Courts",
+  "IRCC / Research and Consultancy",
+  "Kendriya Vidyalaya (KV)",
+  "KReSIT Building",
+  "Lake Side",
+  "Lecture Hall Complex (LHC)",
+  "LTPCSA",
+  "Machine Tool Lab",
+  "Main Building",
+  "Mathematics Department",
+  "Mechanical Engineering",
+  "Metallurgical Engineering and Material Science",
+  "Micro Fluids Lab",
+  "NanoTech & Science Research Centre (ACRE)",
+  "NASAC / Nano Science & Engg. Centre",
+  "NCC Office",
+  "New SAC (Students Activity Centre)",
+  "Old SAC (Students Activity Centre)",
+  "Orthocad Lab",
+  "Physics Department",
+  "Rahul Bajaj Technology Innovation Centre",
+  "SITC Lab",
+  "SJSOM / Shailesh J. Mehta School of Management",
+  "Solar Lab",
+  "Sophisticated Analysis Instrument Facility (SAIF)",
+  "State Bank",
+  "Steam Power Lab",
+  "Stores and Estate Office",
+  "Swimming Pool",
+  "Systems & Control Engg.",
+  "Tansa House",
+  "Temple (Padmavati Devi)",
+  "Tennis Court",
+  "Thermal Hydraulic Test Facility",
+  "Tinkerers Lab (TL)",
+  "UG Lab / 52 Bay",
+  "Victor Menezes Convention Centre (VMCC)"
+];
+
 
   public event: IEvent;
 
@@ -173,7 +260,7 @@ export class AddEventComponent implements OnInit {
             this.venueControls.push(fcontrol);
             fcontrol.form.setValue(vn.short_name);
           }
-
+          
           /* Set data */
           this.event = result;
 
@@ -292,6 +379,12 @@ export class AddEventComponent implements OnInit {
     this.AddVenue();
     this.initializeQueryDefaults();
     this.updateReach();
+    // After loading or initializing event
+    if (!Array.isArray(this.event.verification_bodies_id)) {
+      this.event.verification_bodies_id = this.event.verification_bodies_id
+        ? [this.event.verification_bodies_id]
+        : [];
+    }
   }
 
   /** Initializes defaults from query parameters */
@@ -374,6 +467,19 @@ export class AddEventComponent implements OnInit {
       return;
     }
 
+    // Validate building (venue)
+    if (
+      this.assertValidation(
+        this.event.venues &&
+          this.event.venues.length > 0 &&
+          this.event.venues[0].short_name &&
+          this.event.venues[0].short_name.trim().length > 0,
+        'Venue/Building is required!'
+      )
+    ) {
+      return;
+    }
+
     /* Validate non zero bodies */
     if (
       this.assertValidation(
@@ -405,6 +511,28 @@ export class AddEventComponent implements OnInit {
       return;
     }
 
+    // Validate subject
+    if (
+      this.assertValidation(
+        this.event.email_subject &&
+          this.event.email_subject.trim().length > 0, 
+        'Email subject is required!'
+      )
+    ) {
+      return;
+    }
+
+    // Validate description
+    if (
+      this.assertValidation(
+        this.event.description &&
+          this.event.description.trim().length > 0 , 
+        'Description is required!'
+      )
+    ) {
+      return;
+    }
+
     /* Validate achievements */
     if (
       this.assertValidation(
@@ -415,7 +543,7 @@ export class AddEventComponent implements OnInit {
       return;
     }
 
-
+    this.event.longdescription = this.event.description;
     /* Create observable for POST/PUT */
     let obs: Observable<IEvent>;
     if (!this.editing) {
