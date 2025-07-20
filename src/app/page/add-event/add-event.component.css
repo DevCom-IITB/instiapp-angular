@@ -87,6 +87,11 @@
     float: right;
 }
 
+ .venue-dropdown-panel {
+  max-height: 250px !important;
+  overflow-y: auto !important;
+} 
+
 @media (max-width: 1200px) {
     .full-width-details {
         left: 1%;

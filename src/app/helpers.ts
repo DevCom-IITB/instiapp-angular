@@ -170,7 +170,7 @@ export module Helpers {
             /* Init times */
             event.start_time = new Date(event.start_time.toString());
             event.end_time = new Date(event.end_time.toString());
-
+            event.venue_room = event.venue_room || '';
             /* Check for ongoing/ended events */
             let subtitleTime = GetDate(event.start_time);
             const now = new Date();
@@ -183,7 +183,7 @@ export module Helpers {
             }
 
             /* Get the subtitle */
-            return subtitleTime + (event.venues.length > 0 ?  ' | ' + event.venues_str : '');
+            return subtitleTime + (event.venue_room.length > 0 ?  ' | ' + event.venue_room : '')+ (event.venues.length > 0 ?  ' | ' + event.venues_str : '');
         }
         return '';
     }
