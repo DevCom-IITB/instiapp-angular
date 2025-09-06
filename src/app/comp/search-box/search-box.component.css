@@ -7,5 +7,5 @@
 .full-width-post {
     width: -webkit-fill-available;
     width: -moz-available;
-    width: fill-available;
+    width: stretch;
 }

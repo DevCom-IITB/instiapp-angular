@@ -293,6 +293,18 @@ export class DataService {
     return this.FireGET<IEnumContainer>(API.Events);
   }
 
+  GetAllEventsVerified(): Observable<IEnumContainer> {
+    return this.FireGET<IEnumContainer>(API.EventAll);
+  }
+
+  GetEventsToVerify(): Observable<IEnumContainer> {
+    return this.FireGET<IEnumContainer>(API.EventToVerify);
+  }
+  
+  GetMyEvents(): Observable<IEnumContainer> {
+    return this.FireGET<IEnumContainer>(API.EventMy);
+  }
+
   /** Get detailed information on an event */
   GetEvent(uuid: string): Observable<IEvent> {
     return this.FireGET<IEvent>(API.Event, { uuid: uuid });

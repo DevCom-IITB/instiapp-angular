@@ -14,9 +14,10 @@ export const TITLE = 'Feed';
 export class FeedComponent implements OnInit {
   @Input() public containers: IEventContainer[];
   @Input() public nobig = false;
-  public events: IEvent[];
+  public events: IEvent[] = [];
   public selectedEvent: IEvent;
   public error: number;
+  public eventFilter: 'all' | 'mine' | 'verify' = 'all';
 
   constructor(
     public dataService: DataService,
@@ -33,16 +34,32 @@ export class FeedComponent implements OnInit {
     /* Set title */
     this.dataService.setTitle(TITLE);
 
-    /* Get all events */
-    this.dataService.GetAllEvents().subscribe(result => {
+    this.loadEvents();
+  }
+
+  loadEvents() {
+    this.error = null;
+    let obs;
+    if (this.eventFilter === 'mine') {
+      obs = this.dataService.GetMyEvents();
+    } else if (this.eventFilter === 'verify') {
+      obs = this.dataService.GetEventsToVerify();
+    } else {
+      obs = this.dataService.GetAllEventsVerified();
+    }
+
+    obs.subscribe(result => {
       this.events = result.data;
-      if (this.events.length === 0) {
-        this.error = 204;
-      }
-      this.containers = this.MakeContainers(result.data);
+      if (this.events.length === 0) this.error = 204;
+      this.containers = this.MakeContainers(this.events);
     }, (e) => {
       this.error = e.status;
     });
+  }
+
+  onFilterChange(filter: 'all' | 'mine' | 'verify') {
+    this.eventFilter = filter;
+    this.loadEvents();
   }
 
   /** Opens the event-details component */
@@ -58,8 +75,8 @@ export class FeedComponent implements OnInit {
   MakeContainers(events: IEvent[]): IEventContainer[] {
     /* Initialize */
     for (const event of events) {
-      /* Set fallback images explictly */
-      if (!event.image_url || event.image_url === '') {
+      // Safe fallback image
+      if ((!event.image_url || event.image_url === '') && event.bodies && event.bodies.length > 0) {
         event.image_url = event.bodies[0].image_url;
       }
     }
@@ -77,7 +94,7 @@ export class FeedComponent implements OnInit {
     /** Static first tab */
     result.push({
       title: 'Upcoming',
-      events: events.splice(0, 3)
+      events: events.slice(0, 3)
     });
 
     /** Check if not enough events */
@@ -95,7 +112,7 @@ export class FeedComponent implements OnInit {
       }
       prev.events.push(event);
     }
-    if (prev.events !== []) {
+    if (prev.events.length > 0) {
       result.push(prev);
     }
     return result;
