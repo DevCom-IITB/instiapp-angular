@@ -94,6 +94,7 @@ export class AddEventComponent implements OnInit {
   "NCC Office",
   "New SAC (Students Activity Centre)",
   "Old SAC (Students Activity Centre)",
+  "Online",
   "Orthocad Lab",
   "Physics Department",
   "Rahul Bajaj Technology Innovation Centre",
